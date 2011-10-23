@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AnimeCompatibility</name>
+    </assembly>
+    <members>
+        <member name="P:AnimeCompatibility.Logging.Log">
+            <summary>
+            Gets or sets the logger that the AnimeCompatibility library should use. Logging can ease
+            troubleshooting. Setting this property to null is shorthand for setting it to a
+            Common.Logging.Simple.NoOpLogger. If a logger is never set, a Common.Logging.Simple.NoOpLogger
+            is used.
+            </summary>
+        </member>
+        <member name="M:AnimeCompatibility.MyAnimeListApi.GetAnimeListForUser(System.String)">
+            <summary>
+            Anime lists are cached for the lifetime of this MyAnimeListApi object.
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="P:AnimeCompatibility.GoodOkBadAnime.GoodCutoff">
+            <summary>
+            Good anime is greater than or equal to cutoff
+            </summary>
+        </member>
+        <member name="P:AnimeCompatibility.GoodOkBadAnime.OkCutoff">
+            <summary>
+            Ok anime is greater than or equal to cutoff, less the good cutoff
+            </summary>
+        </member>
+    </members>
+</doc>
