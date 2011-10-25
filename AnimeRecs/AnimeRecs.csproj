@@ -37,6 +37,9 @@
     <Reference Include="AnimeCompatibility">
       <HintPath>..\lib\AnimeCompatibility\AnimeCompatibility.dll</HintPath>
     </Reference>
+    <Reference Include="AnimeRecs.Common">
+      <HintPath>..\lib\AnimeRecs.Common\AnimeRecs.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\lib\AnimeCompatibility\Common.Logging.dll</HintPath>
     </Reference>
@@ -69,24 +72,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AnimeJson.cs" />
-    <Compile Include="Models\MalAnimeList.cs" />
     <Compile Include="Models\IRecommendationFinder.cs" />
     <Compile Include="Models\IRecommendationFinderFactory.cs" />
     <Compile Include="Models\IRecommendorCache.cs" />
-    <Compile Include="Models\IRecommendorCacheFactory.cs" />
-    <Compile Include="Models\MalApiJson.cs" />
-    <Compile Include="Models\MalApiJsonAnime.cs" />
+    <Compile Include="Models\Json\MalApiJson.cs" />
+    <Compile Include="Models\Json\MalApiJsonAnime.cs" />
     <Compile Include="Models\MockRecommendorCache.cs" />
-    <Compile Include="Models\MockRecommendorCacheFactory.cs" />
-    <Compile Include="Models\RecommendationResults.cs" />
-    <Compile Include="Models\Recommendor.cs" />
+    <Compile Include="Models\Json\RecommendationResults.cs" />
+    <Compile Include="Models\MongoRecommendorCache.cs" />
     <Compile Include="Models\RecommendorCacheFinderFactory.cs" />
-    <Compile Include="Models\RecommendorMatch.cs" />
+    <Compile Include="Models\Json\RecommendorMatch.cs" />
     <Compile Include="Models\RecommendorCacheRecommendationFinder.cs" />
-    <Compile Include="Models\UnofficialMalApiList.cs" />
-    <Compile Include="Models\UnofficialMapApiAnime.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
+    <Compile Include="MyAnimeListEntryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

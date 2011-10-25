@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AnimeRecs.Models
 {
-    public interface IRecommendationFinderFactory
+    public interface IRecommendationFinderFactory : IDisposable
     {
         IRecommendationFinder GetRecommendationFinder();
     }

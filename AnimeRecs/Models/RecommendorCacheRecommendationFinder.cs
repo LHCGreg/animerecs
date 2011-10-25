@@ -3,58 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AnimeCompatibility;
+using AnimeRecs.Common;
 
 namespace AnimeRecs.Models
 {
     public class RecommendorCacheRecommendationFinder : IRecommendationFinder
     {
-        private IRecommendorCacheFactory m_cacheFactory;
+        private IRecommendorCache m_recommendorCache;
+        private bool m_disposeCache;
 
-        public RecommendorCacheRecommendationFinder(IRecommendorCacheFactory cacheFactory)
+        public RecommendorCacheRecommendationFinder(IRecommendorCache recommendorCache, bool disposeCache = true)
         {
-            m_cacheFactory = cacheFactory;
+            m_recommendorCache = recommendorCache;
+            m_disposeCache = disposeCache;
         }
 
         public RecommendationResults GetRecommendations(ICollection<MyAnimeListEntry> animeList)
         {
             RecommendationResults results = new RecommendationResults();
-            List<Tuple<Recommendor, OneWayCompatibilityResults>> compatibilityScores = new List<Tuple<Recommendor, OneWayCompatibilityResults>>();
+            List<Tuple<RecommendorJson, OneWayCompatibilityResults>> compatibilityScores = new List<Tuple<RecommendorJson, OneWayCompatibilityResults>>();
             
-            using (IRecommendorCache recommendorCache = m_cacheFactory.GetCache())
+            CompatibilityCalculator calculator = new CompatibilityCalculator();
+            PercentileGoodOkBadFilter goodOkBadFilter = new PercentileGoodOkBadFilter() { RecommendedPercentile = 25, DislikedPercentile = 25 };
+            CalculatorUserParams user = new CalculatorUserParams()
             {
-                CompatibilityCalculator calculator = new CompatibilityCalculator();
-                CalculatorUserParams user = new CalculatorUserParams()
-                {
-                    CompletedAnime = animeList,
-                    DislikedPenalty = -1,
-                    DislikedPercentile = 25,
-                    RecommendedBonus = 1,
-                    RecommendedPercentile = 25
-                };
+                AnimeList = animeList,
+                DislikedPenalty = -1,
+                RecommendedBonus = 1,
+                GoodOkBadFilter = goodOkBadFilter
+            };
+
+            GoodOkBadAnime usersFilteredAnime = goodOkBadFilter.GetGoodOkBadAnime(animeList);
+            results.Disliked = usersFilteredAnime.BadAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson()).ToList();
+            results.Liked = usersFilteredAnime.GoodAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson()).ToList();
+            results.Ok = usersFilteredAnime.OkAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson()).ToList();
+            results.OkCutoff = usersFilteredAnime.OkCutoff;
+            results.RecommendedCutoff = usersFilteredAnime.GoodCutoff;
   
-                foreach (Recommendor recommendor in recommendorCache.Recommendors)
-                {
-                    List<IAnimeListEntry> malList = new List<IAnimeListEntry>();
-                    foreach (AnimeJson animeJson in recommendor.Recommendations)
+            foreach (RecommendorJson recommendor in m_recommendorCache.GetRecommendors())
+            {
+                List<IAnimeListEntry> recommendorMalList = new List<IAnimeListEntry>(
+                    from animeJson in recommendor.Recommendations
+                    select new MyAnimeListEntry()
                     {
-                        if (animeJson.MalId.HasValue)
-                        {
-                            malList.Add(new MyAnimeListEntry() { Id = animeJson.MalId.Value, Name = animeJson.Name, Status = CompletionStatus.Completed });
-                        }
-                    }
+                        Id = animeJson.MalId,
+                        Name = animeJson.Name,
+                        Status = CompletionStatus.Completed // XXX: We don't really know if the recommendor completed it, but this is so that the calculator will take this anime into account
+                    });
 
-                    OneWayCompatibilityResults compatibilityResults = calculator.GetOneWayCompatibilityScore(malList, user);
-                    compatibilityScores.Add(new Tuple<Recommendor, OneWayCompatibilityResults>(recommendor, compatibilityResults));
-
-                    if (results.Disliked == null)
-                    {
-                        results.Disliked = compatibilityResults.RecommendeeGoodBadOkAnime.BadAnime.Select(animeListEntry => ((MyAnimeListEntry)(animeListEntry)).ToAnimeJson()).ToList();
-                        results.Liked = compatibilityResults.RecommendeeGoodBadOkAnime.GoodAnime.Select(animeListEntry => ((MyAnimeListEntry)(animeListEntry)).ToAnimeJson()).ToList();
-                        results.Ok = compatibilityResults.RecommendeeGoodBadOkAnime.OkAnime.Select(animeListEntry => ((MyAnimeListEntry)(animeListEntry)).ToAnimeJson()).ToList();
-                        results.OkCutoff = compatibilityResults.RecommendeeGoodBadOkAnime.OkCutoff;
-                        results.RecommendedCutoff = compatibilityResults.RecommendeeGoodBadOkAnime.GoodCutoff;
-                    }
-                }
+                OneWayCompatibilityResults compatibilityResults = calculator.GetOneWayCompatibilityScore(
+                recommendedAnime: recommendorMalList, recommendee: user);
+                compatibilityScores.Add(new Tuple<RecommendorJson, OneWayCompatibilityResults>(recommendor, compatibilityResults));
             }
 
             compatibilityScores.Sort(
@@ -65,16 +64,26 @@ namespace AnimeRecs.Models
             int maxRecommendorsToTake = 3;
             for (int i = 0; i < maxRecommendorsToTake && i < compatibilityScores.Count; i++)
             {
+                RecommendorJson recommendor = compatibilityScores[i].Item1;
+                OneWayCompatibilityResults compatResults = compatibilityScores[i].Item2;
                 var match = new RecommendorMatch()
                 {
-                    CompatibilityRating = new decimal(Math.Round(compatibilityScores[i].Item2.NormalizedCompatibilityScore, 2)),
-                    Recommendor = compatibilityScores[i].Item1
+                    CompatibilityRating = new decimal(Math.Round(compatResults.NormalizedCompatibilityScore * 100, 2)),
+                    Recommendor = recommendor
                 };
 
                 results.BestMatches.Add(match);
             }
 
             return results;
+        }
+
+        public void Dispose()
+        {
+            if (m_disposeCache)
+            {
+                m_recommendorCache.Dispose();
+            }
         }
     }
 }

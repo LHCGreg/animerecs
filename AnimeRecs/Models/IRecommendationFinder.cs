@@ -6,7 +6,7 @@ using AnimeCompatibility;
 
 namespace AnimeRecs.Models
 {
-    public interface IRecommendationFinder
+    public interface IRecommendationFinder : IDisposable
     {
         RecommendationResults GetRecommendations(ICollection<MyAnimeListEntry> animeList);
     }

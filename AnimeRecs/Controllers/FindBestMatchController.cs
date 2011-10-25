@@ -15,17 +15,26 @@ namespace AnimeRecs.Controllers
 
         public FindBestMatchController()
         {
-            m_finderFactory = new RecommendorCacheFinderFactory(new MockRecommendorCacheFactory());
+            m_finderFactory = new RecommendorCacheFinderFactory(new MockRecommendorCache(), disposeCache: true);
         }
         
         public FindBestMatchController(IRecommendationFinderFactory finderFactory)
         {
             m_finderFactory = finderFactory;
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                m_finderFactory.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
         
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Index([Required] MalApiJson animeList)
-        //public JsonResult Index(AnimeJson animeJson)
         {
             if (!ModelState.IsValid)
             {
@@ -42,14 +51,13 @@ namespace AnimeRecs.Controllers
                     Status = ParseCompletionStatus(malApiAnimeJson.watched_status)
                 })
                 .ToList();
-            
-            
-            IRecommendationFinder recFinder = m_finderFactory.GetRecommendationFinder();
-            RecommendationResults results = recFinder.GetRecommendations(malList);
 
-            //return Json(results);
 
-            return Json(animeList);
+            using (IRecommendationFinder recFinder = m_finderFactory.GetRecommendationFinder())
+            {
+                RecommendationResults results = recFinder.GetRecommendations(malList);
+                return Json(results);
+            }
         }
 
         internal static CompletionStatus ParseCompletionStatus(string status)

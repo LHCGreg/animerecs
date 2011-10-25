@@ -1,0 +1,32 @@
+﻿{
+	Recommendors: [
+		{
+			MalName: "LordHighCaptain",
+			RecommendedCutoff: 8
+		},
+		{
+			MalName: "TheAlmightyMoo"
+		},
+		{
+			MalName: "YamiNoSenshi"
+		},
+		{
+			MalName: "Dyxanije"
+		},
+		{
+			MalName: "Yxel"
+		},
+		{
+			MalName: "tassytas"
+		},
+		{
+			MalName: "Wisteria"
+		},
+		{
+			MalName: "Zaotsu"
+		},
+		{
+			MalName: "casualhero"
+		}
+	]
+}

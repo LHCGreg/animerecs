@@ -7,16 +7,26 @@ namespace AnimeRecs.Models
 {
     public class RecommendorCacheFinderFactory : IRecommendationFinderFactory
     {
-        private IRecommendorCacheFactory m_cacheFactory;
+        private IRecommendorCache m_cache;
+        private bool m_disposeCache;
 
-        public RecommendorCacheFinderFactory(IRecommendorCacheFactory cacheFactory)
+        public RecommendorCacheFinderFactory(IRecommendorCache recommendorCache, bool disposeCache = true)
         {
-            m_cacheFactory = cacheFactory;
+            m_cache = recommendorCache;
+            m_disposeCache = disposeCache;
         }
         
         public IRecommendationFinder GetRecommendationFinder()
         {
-            return new RecommendorCacheRecommendationFinder(m_cacheFactory);
+            return new RecommendorCacheRecommendationFinder(m_cache, false);
+        }
+
+        public void Dispose()
+        {
+            if (m_disposeCache)
+            {
+                m_cache.Dispose();
+            }
         }
     }
 }
