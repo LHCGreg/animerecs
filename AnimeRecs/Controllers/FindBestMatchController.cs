@@ -6,16 +6,31 @@ using System.Web.Mvc;
 using AnimeRecs.Models;
 using System.ComponentModel.DataAnnotations;
 using AnimeCompatibility;
+using MongoDB.Driver;
+using System.Configuration;
+using AnimeRecs.Common;
 
 namespace AnimeRecs.Controllers
 {
+    // TODO:
+    // Allow input of good/ok cutoff or liked/disliked percentiles
+    
     public class FindBestMatchController : Controller
     {
         private IRecommendationFinderFactory m_finderFactory;
 
         public FindBestMatchController()
         {
-            m_finderFactory = new RecommendorCacheFinderFactory(new MockRecommendorCache(), disposeCache: true);
+            string mongoConnectionString = ConfigurationManager.ConnectionStrings["Mongo"].ToString();
+            MongoServer mongoServer = MongoServer.Create(mongoConnectionString);
+
+            string dbName = "AnimeRecs";
+            MongoDatabase recommendorDb = mongoServer.GetDatabase(dbName);
+
+            string collectionName = "Recommendors";
+            MongoCollection<RecommendorJson> recommendorCollection = recommendorDb.GetCollection<RecommendorJson>(collectionName);
+
+            m_finderFactory = new RecommendorCacheFinderFactory(new MongoRecommendorCache(recommendorCollection), disposeCache: true);
         }
         
         public FindBestMatchController(IRecommendationFinderFactory finderFactory)
@@ -47,7 +62,7 @@ namespace AnimeRecs.Controllers
                 {
                     Id = malApiAnimeJson.id,
                     Name = malApiAnimeJson.title,
-                    Score = malApiAnimeJson.score,
+                    Score = malApiAnimeJson.score != 0 ? malApiAnimeJson.score : (decimal?)null,
                     Status = ParseCompletionStatus(malApiAnimeJson.watched_status)
                 })
                 .ToList();

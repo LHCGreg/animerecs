@@ -20,11 +20,19 @@ namespace AnimeRecs.Models
 
         public RecommendationResults GetRecommendations(ICollection<MyAnimeListEntry> animeList)
         {
+            const int recommendedPercentile = 30;
+            const int dislikedPercentile = 30;
+            
             RecommendationResults results = new RecommendationResults();
             List<Tuple<RecommendorJson, OneWayCompatibilityResults>> compatibilityScores = new List<Tuple<RecommendorJson, OneWayCompatibilityResults>>();
             
             CompatibilityCalculator calculator = new CompatibilityCalculator();
-            PercentileGoodOkBadFilter goodOkBadFilter = new PercentileGoodOkBadFilter() { RecommendedPercentile = 25, DislikedPercentile = 25 };
+            PercentileGoodOkBadFilter goodOkBadFilter = new PercentileGoodOkBadFilter()
+            {
+                RecommendedPercentile = recommendedPercentile,
+                DislikedPercentile = dislikedPercentile
+            };
+
             CalculatorUserParams user = new CalculatorUserParams()
             {
                 AnimeList = animeList,
@@ -56,16 +64,27 @@ namespace AnimeRecs.Models
                 compatibilityScores.Add(new Tuple<RecommendorJson, OneWayCompatibilityResults>(recommendor, compatibilityResults));
             }
 
-            compatibilityScores.Sort(
-                (recommendorAndResults1, recommendorAndResults2) =>
-                    -(recommendorAndResults1.Item2.NormalizedCompatibilityScore.CompareTo(recommendorAndResults2.Item2.NormalizedCompatibilityScore)));
+            const int minimumRecsSeen = 8;
+            const int minimumRecsNotSeen = 1;
+            
+            List<Tuple<RecommendorJson, OneWayCompatibilityResults>> sortedPrunedCompatibilityScores =
+                compatibilityScores
+                // Only count recommendors if the user has seen at least 8 of the animes that the recommendor recommends.
+                // Less than that and the compatibility rating may not be very accurate.
+                .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeInCommon.Count >= minimumRecsSeen)
+
+                // Only count recommendors if there is at least 1 recommendation that the user has not seen yet.
+                // Otherwise the recommendations are useless or maybe the recommendor is the same person!
+                .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeNotInCommon.Count >= minimumRecsNotSeen)
+                .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.NormalizedCompatibilityScore)
+                .ToList();
 
             results.BestMatches = new List<RecommendorMatch>();
             int maxRecommendorsToTake = 3;
-            for (int i = 0; i < maxRecommendorsToTake && i < compatibilityScores.Count; i++)
+            for (int i = 0; i < maxRecommendorsToTake && i < sortedPrunedCompatibilityScores.Count; i++)
             {
-                RecommendorJson recommendor = compatibilityScores[i].Item1;
-                OneWayCompatibilityResults compatResults = compatibilityScores[i].Item2;
+                RecommendorJson recommendor = sortedPrunedCompatibilityScores[i].Item1;
+                OneWayCompatibilityResults compatResults = sortedPrunedCompatibilityScores[i].Item2;
                 var match = new RecommendorMatch()
                 {
                     CompatibilityRating = new decimal(Math.Round(compatResults.NormalizedCompatibilityScore * 100, 2)),

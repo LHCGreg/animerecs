@@ -9,7 +9,7 @@ namespace AnimeRecs.Models
     public class MalApiJsonAnime
     {
         [Required] public int id { get; set; }
-        public decimal? score { get; set; }
+        public decimal score { get; set; }
         [Required] public string watched_status { get; set; }
         [Required] public string title { get; set; }
     }

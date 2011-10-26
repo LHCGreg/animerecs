@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AnimeRecs.Models;
+using AnimeRecs.Common;
 
 namespace AnimeRecs
 {
@@ -35,6 +37,14 @@ namespace AnimeRecs
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
+
+            MongoDB.Bson.Serialization.BsonClassMap.RegisterClassMap<RecommendorJson>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(c => c.Name));
+            });
         }
     }
 }
