@@ -73,24 +73,30 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationGlobals.cs" />
     <Compile Include="Controllers\FindBestMatchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\IRecommendationFinder.cs" />
-    <Compile Include="Models\IRecommendationFinderFactory.cs" />
-    <Compile Include="Models\IRecommendorCache.cs" />
+    <Compile Include="Models\Factories\IMyAnimeListApiFactory.cs" />
+    <Compile Include="Models\RecommendationFinder\IRecommendationFinder.cs" />
+    <Compile Include="Models\Factories\IRecommendationFinderFactory.cs" />
+    <Compile Include="Models\RecommendationFinder\IRecommendorCache.cs" />
+    <Compile Include="Models\Json\AnimeRecsInputJson.cs" />
     <Compile Include="Models\Json\MalApiJson.cs" />
     <Compile Include="Models\Json\MalApiJsonAnime.cs" />
-    <Compile Include="Models\MockRecommendorCache.cs" />
+    <Compile Include="Models\RecommendationFinder\MockRecommendorCache.cs" />
     <Compile Include="Models\Json\RecommendationResults.cs" />
     <Compile Include="Models\ModelBinders\DecimalModelBinder.cs" />
-    <Compile Include="Models\MongoRecommendorCache.cs" />
-    <Compile Include="Models\RecommendorCacheFinderFactory.cs" />
+    <Compile Include="Models\ModelBinders\NullableDecimalModelBinder.cs" />
+    <Compile Include="Models\RecommendationFinder\MongoRecommendorCache.cs" />
+    <Compile Include="Models\Factories\NoDisposeMalApi.cs" />
+    <Compile Include="Models\Factories\RecommendorCacheFinderFactory.cs" />
     <Compile Include="Models\Json\RecommendorMatch.cs" />
-    <Compile Include="Models\RecommendorCacheRecommendationFinder.cs" />
+    <Compile Include="Models\RecommendationFinder\RecommendorCacheRecommendationFinder.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
+    <Compile Include="Models\Factories\SingleMyAnimeListApiFactory.cs" />
     <Compile Include="MyAnimeListEntryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

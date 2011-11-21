@@ -52,8 +52,9 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\..\lib\Mongo-CSharpDriver\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json.Net35">
-      <HintPath>..\..\lib\AnimeCompatibility\Newtonsoft.Json.Net35.dll</HintPath>
+    <Reference Include="Newtonsoft.Json.Net35, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Json.NET\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\lib\NLog\NLog.dll</HintPath>

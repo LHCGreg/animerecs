@@ -8,6 +8,6 @@ namespace AnimeRecs.Models
 {
     public interface IRecommendationFinder : IDisposable
     {
-        RecommendationResults GetRecommendations(ICollection<MyAnimeListEntry> animeList);
+        RecommendationResults GetRecommendations(ICollection<MyAnimeListEntry> animeList, IGoodOkBadFilter goodOkBadFilter);
     }
 }

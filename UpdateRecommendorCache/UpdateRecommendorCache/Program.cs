@@ -67,7 +67,7 @@ namespace AnimeRecs.UpdateCache
         private static void AddRecommendorsToMongo(RecommendorsInputJson recommendors,
             MongoCollection<RecommendorJson> recommendorCollection, int delayBetweenRequestsMs)
         {
-            MyAnimeListApi malApi = new MyAnimeListApi();
+            OfficialMalApi malApi = new OfficialMalApi();
 
             // For each recommendor, get MAL anime list, calculate recommendations, and add to mongo
             foreach (var recommendorSmartEnum in recommendors.Recommendors.AsSmartEnumerable())
@@ -85,7 +85,11 @@ namespace AnimeRecs.UpdateCache
                 {
                     animeList = malApi.GetAnimeListForUser(recommendor.MalName);
                 }
-                catch (Exception ex)
+                catch (MalUserNotFoundException ex)
+                {
+                    Logging.Log.ErrorFormat("User '{0}' does not have an anime list. Skipping.", ex, recommendor.MalName);
+                }
+                catch (MalApiException ex)
                 {
                     Logging.Log.ErrorFormat("Error getting anime list for {0}. Skipping.", ex, recommendor.MalName);
                     continue;
@@ -118,7 +122,7 @@ namespace AnimeRecs.UpdateCache
 
         private static GoodOkBadAnime GetGoodOkBadAnime(RecommendorInputJson recommendor, ICollection<MyAnimeListEntry> animeList)
         {
-            IGookOkBadFilter partitioner = null;
+            IGoodOkBadFilter partitioner = null;
 
             if (recommendor.RecommendedCutoff != null)
             {
