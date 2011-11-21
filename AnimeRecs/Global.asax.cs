@@ -57,6 +57,7 @@ namespace AnimeRecs
 
                 OfficialMalApi api = null;
                 CachingMyAnimeListApi cachingApi = null;
+                RecommendorCacheFinderFactory recommendationFinderFactory = null;
 
                 try
                 {
@@ -80,8 +81,14 @@ namespace AnimeRecs
                     string collectionName = ConfigurationManager.AppSettings["MongoRecommendorCacheCollectionName"];
                     MongoCollection<RecommendorJson> recommendorCollection = recommendorDb.GetCollection<RecommendorJson>(collectionName);
 
-                    ApplicationGlobals.RecommendationFinderFactory = new RecommendorCacheFinderFactory(
+                    recommendationFinderFactory = new RecommendorCacheFinderFactory(
                         new MongoRecommendorCache(recommendorCollection), disposeCache: true);
+                    recommendationFinderFactory.MinimumRecsSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsInCommon"]);
+                    recommendationFinderFactory.MinimumRecsNotSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsNotInCommon"]);
+                    recommendationFinderFactory.MaximumRecommendorsToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendorsToReturn"]);
+
+                    ApplicationGlobals.RecommendationFinderFactory = recommendationFinderFactory;
+
                 }
                 catch (Exception)
                 {
@@ -89,6 +96,8 @@ namespace AnimeRecs
                         cachingApi.Dispose();
                     if (api != null)
                         cachingApi.Dispose();
+                    if (recommendationFinderFactory != null)
+                        recommendationFinderFactory.Dispose();
 
                     throw;
                 }

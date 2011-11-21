@@ -12,17 +12,19 @@ namespace AnimeRecs.Models
         private IRecommendorCache m_recommendorCache;
         private bool m_disposeCache;
 
-        public const int defaultMinimumRecsSeen = 8;
-        public const int defaultMinimumRecsNotSeen = 1;
-        public const int defaultMaximumRecommendorsToReturn = 3;
+        public const int DefaultMinimumRecsSeen = 8;
+        public const int DefaultMinimumRecsNotSeen = 1;
+        public const int DefaultMaximumRecommendorsToReturn = 3;
 
-        private int m_minimumRecsSeen = defaultMinimumRecsSeen;
+        private int m_minimumRecsSeen = DefaultMinimumRecsSeen;
         public int MinimumRecsSeen { get { return m_minimumRecsSeen; } set { m_minimumRecsSeen = value; } }
 
-        private int m_minimumRecsNotSeen = defaultMinimumRecsNotSeen;
+        // TODO: Have a second, more lenient MinimumRecsSeen for people who are just getting into anime and have only seen a few.
+
+        private int m_minimumRecsNotSeen = DefaultMinimumRecsNotSeen;
         public int MinimumRecsNotSeen { get { return m_minimumRecsNotSeen; } set { m_minimumRecsNotSeen = value; } }
 
-        private int m_maximumRecommendorsToReturn = defaultMaximumRecommendorsToReturn;
+        private int m_maximumRecommendorsToReturn = DefaultMaximumRecommendorsToReturn;
         public int MaximumRecommendorsToReturn { get { return m_maximumRecommendorsToReturn; } set { m_maximumRecommendorsToReturn = value; } }
 
         public RecommendorCacheRecommendationFinder(IRecommendorCache recommendorCache, bool disposeCache = true)
