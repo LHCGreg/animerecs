@@ -84,8 +84,6 @@
     <Compile Include="Models\Factories\IRecommendationFinderFactory.cs" />
     <Compile Include="Models\RecommendationFinder\IRecommendorCache.cs" />
     <Compile Include="Models\Json\AnimeRecsInputJson.cs" />
-    <Compile Include="Models\Json\MalApiJson.cs" />
-    <Compile Include="Models\Json\MalApiJsonAnime.cs" />
     <Compile Include="Models\RecommendationFinder\MockRecommendorCache.cs" />
     <Compile Include="Models\Json\RecommendationResults.cs" />
     <Compile Include="Models\ModelBinders\DecimalModelBinder.cs" />
