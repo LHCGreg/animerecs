@@ -3,3 +3,4 @@ syntax: glob
 *.csproj.user
 bin
 obj
+*.app.js

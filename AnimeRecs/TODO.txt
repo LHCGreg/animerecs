@@ -1,0 +1,34 @@
+﻿Show-stopper
+------------
+Figure out mod_mono
+
+
+Critical
+--------
+Top-level exception handler in the cache updater
+Logging in the web app
+Emit JSON error for server-side exceptions instead of default ASP.NET error
+Detect server errors on client side, display some sort of message
+Input fields for what scores to consider "liked" and "ok"
+Make it not look ugly
+
+
+Major
+-----
+Make recommendation fetching asynchronous
+Display spinner or something while fetching recommendations
+Show stats for liked, ok, disliked
+
+
+Normal
+------
+Don't send empty string for name - client-side validation of input
+Check validity of JSON from server on client side, emit debugging information if invalid and message to user
+Graceful degradation in absence of javascript
+Sort recommendors and recommendations client-side. The server is not guranteed to return them in any order, it just happens to do so right now.
+
+Minor
+-----
+ToString for various things for easier debugging
+Allow recommendors' names to not be their real MAL names
+Automate compilation of Dart code.
