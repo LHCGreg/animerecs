@@ -18,37 +18,45 @@ namespace AnimeRecs.UpdateCache
         static void Main(string[] args)
         {
             Logging.SetUpLogging();
-            
-            int delayBetweenRequestsMs = int.Parse(ConfigurationManager.AppSettings["DelayBetweenRequestsMs"]);
 
-            // Read list of recommendors from file
-            string recommendorFilePath = ConfigurationManager.AppSettings["RecommendorFilePath"];
-            RecommendorsInputJson recommendors = ReadRecommendorListFromFile(recommendorFilePath);
-            
-            // Connect to mongo
-            string mongoConnectionString = ConfigurationManager.ConnectionStrings["Mongo"].ToString();
-
-            Logging.Log.DebugFormat("Creating MongoServer.");
-            MongoServer mongo = MongoServer.Create(mongoConnectionString);
-
-            string dbName = "AnimeRecs";
-            Logging.Log.DebugFormat("Creating MongoDatabase {0}.", dbName);
-            MongoDatabase recommendorDb = mongo.GetDatabase(dbName);
-
-            string collectionName = "Recommendors";
-            Logging.Log.DebugFormat("Getting collection {0}.", collectionName);
-            MongoCollection<RecommendorJson> recommendorCollection = recommendorDb.GetCollection<RecommendorJson>(collectionName);
-
-            MongoDB.Bson.Serialization.BsonClassMap.RegisterClassMap<RecommendorJson>(cm =>
+            try
             {
-                cm.AutoMap();
-                cm.SetIdMember(cm.GetMemberMap(c => c.Name));
-            });
+                int delayBetweenRequestsMs = int.Parse(ConfigurationManager.AppSettings["DelayBetweenRequestsMs"]);
 
-            AddRecommendorsToMongo(recommendors, recommendorCollection, delayBetweenRequestsMs);
+                // Read list of recommendors from file
+                string recommendorFilePath = ConfigurationManager.AppSettings["RecommendorFilePath"];
+                RecommendorsInputJson recommendors = ReadRecommendorListFromFile(recommendorFilePath);
 
-            // Remove any recommendors in mongo that are not in the recomendors file
-            RemoveUnusedRecommendors(recommendorCollection, recommendors.Recommendors);
+                // Connect to mongo
+                string mongoConnectionString = ConfigurationManager.ConnectionStrings["Mongo"].ToString();
+
+                Logging.Log.DebugFormat("Creating MongoServer.");
+                MongoServer mongo = MongoServer.Create(mongoConnectionString);
+
+                string dbName = "AnimeRecs";
+                Logging.Log.DebugFormat("Creating MongoDatabase {0}.", dbName);
+                MongoDatabase recommendorDb = mongo.GetDatabase(dbName);
+
+                string collectionName = "Recommendors";
+                Logging.Log.DebugFormat("Getting collection {0}.", collectionName);
+                MongoCollection<RecommendorJson> recommendorCollection = recommendorDb.GetCollection<RecommendorJson>(collectionName);
+
+                MongoDB.Bson.Serialization.BsonClassMap.RegisterClassMap<RecommendorJson>(cm =>
+                {
+                    cm.AutoMap();
+                    cm.SetIdMember(cm.GetMemberMap(c => c.Name));
+                });
+
+                AddRecommendorsToMongo(recommendors, recommendorCollection, delayBetweenRequestsMs);
+
+                // Remove any recommendors in mongo that are not in the recomendors file
+                RemoveUnusedRecommendors(recommendorCollection, recommendors.Recommendors);
+            }
+            catch (Exception ex)
+            {
+                Logging.Log.Fatal("Fatal error!", ex);
+                Environment.Exit(1);
+            }
         }
 
         private static RecommendorsInputJson ReadRecommendorListFromFile(string recommendorFilePath)

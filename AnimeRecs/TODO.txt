@@ -5,13 +5,13 @@ Figure out mod_mono
 
 Critical
 --------
-Top-level exception handler in the cache updater
 Logging in the web app
 Emit JSON error for server-side exceptions instead of default ASP.NET error
 Detect server errors on client side, display some sort of message
 Input fields for what scores to consider "liked" and "ok"
 Make it not look ugly
 Only allow one fetch of a given user's anime list at a time to help prevent DoS attacks
+Message if user has not watched enough anime to have good recommendations
 
 
 Major
@@ -33,3 +33,5 @@ Minor
 ToString for various things for easier debugging
 Allow recommendors' names to not be their real MAL names
 Automate compilation of Dart code.
+Put anime name in MAL link, just like how MAL does it
+Better error messages in cache updater
