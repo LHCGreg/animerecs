@@ -20,6 +20,11 @@ namespace AnimeRecs.Models
         [Range(0, 100)]
         public decimal? DislikedPercentile { get; set; }
 
+        public override string ToString()
+        {
+            return MalName;
+        }
+
         public IGoodOkBadFilter GoodOkBadFilter
         {
             get

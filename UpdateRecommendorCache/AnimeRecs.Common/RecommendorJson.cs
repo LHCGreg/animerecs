@@ -9,5 +9,10 @@ namespace AnimeRecs.Common
     {
         public string Name { get; set; }
         public IList<RecommendedAnimeJson> Recommendations { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -19,5 +19,10 @@ namespace AnimeRecs.Common
                 return string.Format("http://myanimelist.net/anime/{0}", MalId.ToString(CultureInfo.InvariantCulture));
             }
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

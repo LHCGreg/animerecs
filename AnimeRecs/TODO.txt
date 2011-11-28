@@ -30,7 +30,6 @@ Sort recommendors and recommendations client-side. The server is not guranteed t
 
 Minor
 -----
-ToString for various things for easier debugging
 Allow recommendors' names to not be their real MAL names
 Automate compilation of Dart code.
 Put anime name in MAL link, just like how MAL does it
