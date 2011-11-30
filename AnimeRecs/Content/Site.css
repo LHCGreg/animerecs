@@ -16,6 +16,13 @@ section {
 /* Styles for basic forms
 -----------------------------------------------------------*/
 
+label
+{
+    display:block;
+    clear:both;
+}
+
+
 fieldset 
 {
     border:1px solid #ddd;

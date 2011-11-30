@@ -5,10 +5,7 @@ Figure out mod_mono
 
 Critical
 --------
-Logging in the web app
-Emit JSON error for server-side exceptions instead of default ASP.NET error
 Detect server errors on client side, display some sort of message
-Input fields for what scores to consider "liked" and "ok"
 Make it not look ugly
 Only allow one fetch of a given user's anime list at a time to help prevent DoS attacks
 Message if user has not watched enough anime to have good recommendations
@@ -19,6 +16,9 @@ Major
 Make recommendation fetching asynchronous
 Display spinner or something while fetching recommendations
 Show stats for liked, ok, disliked
+Emit JSON error for server-side exceptions instead of default ASP.NET error
+Logging in the web app
+Remember username and cutoffs
 
 
 Normal

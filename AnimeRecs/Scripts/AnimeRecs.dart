@@ -26,10 +26,24 @@ ButtonElement GetMalButton()
   return document.query("#malButton");  
 }
 
-String GetMalInputJson()
+int GetGoodCutoff()
 {
-    MalInputJson jsonObject = new MalInputJson(GetMalUsername());
-    return jsonObject.ToJson();
+  InputElement textbox = document.query("#goodCutoff");
+  String text = textbox.value;
+  return Math.parseInt(text);
+}
+
+int GetOkCutoff()
+{
+  InputElement textbox = document.query("#okCutoff");
+  String text = textbox.value;
+  return Math.parseInt(text);
+}
+
+String GetMalInputJson()
+{  
+  MalInputJson jsonObject = new MalInputJson.WithAbsoluteCutoffs(GetMalUsername(), GetGoodCutoff(), GetOkCutoff());
+  return jsonObject.ToJson();
 }
 
 void OnMalClicked()
