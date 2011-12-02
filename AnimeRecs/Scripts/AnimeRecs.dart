@@ -48,7 +48,6 @@ String GetMalInputJson()
 
 void OnMalClicked()
 {
-  print("OnMalClicked() begin");
   ButtonElement malButton = GetMalButton();
   malButton.disabled = true;
   
@@ -57,30 +56,90 @@ void OnMalClicked()
       XMLHttpRequest ajax = new XMLHttpRequest();
       String matchUrl = "FindBestMatch";
       String inputJson = GetMalInputJson();
-      // TODO: Make async
-      ajax.open("POST", matchUrl, false);
+      
+      ajax.open("POST", matchUrl, true);
+      ajax.on.load.add( (event) => OnMalAjaxComplete(ajax));
+      ajax.on.error.add( (event) => OnMalAjaxError(ajax));
       ajax.setRequestHeader("Content-Type", "application/json");
       ajax.send(inputJson);
-      // TODO: Handle errors
-      
-      // TODO: Handle malformed json
-      print("Got response.");
-      String responseString = ajax.responseText;
-      RecommendationResultsJson results = new RecommendationResultsJson.FromJsonString(responseString);
-      print("Parsed response. # liked = ${results.Liked.length}");
-      
-      DisplayResults(results);
   }
-  finally
+  catch(var ex) // XXX: Is this correct?
   {
     malButton.disabled = false;
-    print("Re-enabled button.");
+    throw;
   }
+  
+  ShowLoadingImage();
+}
+
+void OnMalAjaxComplete(XMLHttpRequest ajax)
+{
+  if(ajax.status < 200 || ajax.status >= 300)
+  {
+    OnMalAjaxError(ajax);
+    return;
+  }
+  
+  ButtonElement malButton = GetMalButton();
+  malButton.disabled = false;
+  HideLoadingImage();
+  
+  // TODO: Handle malformed json
+  print("Got response.");
+  String responseString = ajax.responseText;
+  RecommendationResultsJson results = new RecommendationResultsJson.FromJsonString(responseString);
+  print("Parsed response. # liked = ${results.Liked.length}");
+  
+  DisplayResults(results);
+}
+
+void OnMalAjaxError(XMLHttpRequest ajax)
+{
+  ButtonElement malButton = GetMalButton();
+  malButton.disabled = false;
+  HideLoadingImage();
+  DisplayError();
+}
+
+void ShowLoadingImage()
+{
+  Element loadingImageDiv = GetLoadingImageDiv();
+  Element loadingImg = new Element.tag("img");
+  loadingImg.attributes["src"] = "Content/img/ajax-loader.gif";
+  loadingImg.attributes["alt"] = "Loading...";
+  loadingImageDiv.elements.add(loadingImg);
+}
+
+void HideLoadingImage()
+{
+  Element loadingImageDiv = GetLoadingImageDiv();
+  loadingImageDiv.elements.clear();
+}
+
+Element GetLoadingImageDiv()
+{
+  return document.query("#loadingImageDiv"); 
+}
+
+Element GetResultsDiv()
+{
+  return document.query("#results");  
+}
+
+void DisplayError()
+{
+  Element resultsDiv = GetResultsDiv();
+  resultsDiv.nodes.clear();
+  Element errorTextSpan = new Element.tag("span");
+  errorTextSpan.classes.add("Error");
+  errorTextSpan.text = "Sorry, something went wrong.";
+  resultsDiv.elements.add(errorTextSpan);
 }
 
 void DisplayResults(RecommendationResultsJson results)
 {
-  Element resultsDiv = document.query("#results");
+  Element resultsDiv = GetResultsDiv();
+  resultsDiv.nodes.clear();
   resultsDiv.text = "Your best matches are";
   resultsDiv.elements.add(GetMatchListOl(results));
 }

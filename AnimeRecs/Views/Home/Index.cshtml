@@ -11,6 +11,7 @@
 <label for="okCutoff">Minimum score for an anime you watched to be considered "ok" <input type="text" id="okCutoff" name="okCutoff" size="2"/> </label>
 <input type="button" id="malButton" value="Get recommendations"/>
 
+<div id="loadingImageDiv"></div>
 <div id="results">
     Your best matches are
     <ol class="matchList">
@@ -58,4 +59,4 @@
         </li>
     </ol>
 </div>
-<script type="text/javascript" src="Scripts/AnimeRecs.dart.app.js"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/AnimeRecs.dart.app.js")"></script>
