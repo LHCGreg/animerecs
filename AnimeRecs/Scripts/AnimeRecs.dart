@@ -63,7 +63,7 @@ void OnMalClicked()
       ajax.setRequestHeader("Content-Type", "application/json");
       ajax.send(inputJson);
   }
-  catch(var ex) // XXX: Is this correct?
+  catch(var ex)
   {
     malButton.disabled = false;
     throw;
