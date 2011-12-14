@@ -6,22 +6,27 @@ Figure out mod_mono
 Critical
 --------
 Make it not look ugly
-Only allow one fetch of a given user's anime list at a time to help prevent DoS attacks
 Message if user has not watched enough anime to have good recommendations
 Show stats for liked, ok, disliked
 
 
+
 Major
 -----
-Emit JSON error for server-side exceptions instead of default ASP.NET error
+XXX Emit JSON error for server-side exceptions instead of default ASP.NET error XXX - not needed if returning recommendations as html
 Logging in the web app
 Remember username and cutoffs
+Ensure caching of static things like images and js
+Remove unused default MVC junk
+Sanitize username when creating link to MAL profile
+Only allow one fetch of a given user's anime list at a time to help prevent DoS attacks
 
 
 Normal
 ------
 Don't send empty string for name - client-side validation of input
 Check validity of JSON from server on client side, emit debugging information if invalid and message to user
+Return recommendations as html to assist in easier...
 Graceful degradation in absence of javascript
 Sort recommendors and recommendations client-side. The server is not guranteed to return them in any order, it just happens to do so right now.
 
