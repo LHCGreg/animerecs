@@ -4,3 +4,4 @@ syntax: glob
 bin
 obj
 *.app.js
+*.Publish.xml
