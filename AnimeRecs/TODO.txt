@@ -1,9 +1,4 @@
-﻿Show-stopper
-------------
-Figure out mod_mono
-
-
-Critical
+﻿Critical
 --------
 Make it not look ugly
 Message if user has not watched enough anime to have good recommendations
@@ -29,6 +24,7 @@ Check validity of JSON from server on client side, emit debugging information if
 Return recommendations as html to assist in easier...
 Graceful degradation in absence of javascript
 Sort recommendors and recommendations client-side. The server is not guranteed to return them in any order, it just happens to do so right now.
+Script for removing unneeded files from a publish
 
 Minor
 -----
