@@ -8,22 +8,19 @@ Show stats for liked, ok, disliked
 
 Major
 -----
-XXX Emit JSON error for server-side exceptions instead of default ASP.NET error XXX - not needed if returning recommendations as html
 Logging in the web app
 Remember username and cutoffs
 Ensure caching of static things like images and js
 Remove unused default MVC junk
-Sanitize username when creating link to MAL profile
+Don't send empty string for name - client-side validation of input
 
 
 Normal
 ------
-Don't send empty string for name - client-side validation of input
-Check validity of JSON from server on client side, emit debugging information if invalid and message to user
 Return recommendations as html to assist in easier...
 Graceful degradation in absence of javascript
-Sort recommendors and recommendations client-side. The server is not guranteed to return them in any order, it just happens to do so right now.
 Script for removing unneeded files from a publish
+Sanitize username when creating link to MAL profile
 
 Minor
 -----
@@ -31,4 +28,4 @@ Allow recommendors' names to not be their real MAL names
 Automate compilation of Dart code.
 Put anime name in MAL link, just like how MAL does it
 Better error messages in cache updater
-Support anime list sources other than MAL
+Sort recommendors and recommendations client-side. The server is not guranteed to return them in any order, it just happens to do so right now.
