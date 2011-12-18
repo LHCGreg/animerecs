@@ -57,6 +57,7 @@ namespace AnimeRecs
 
                 OfficialMalApi api = null;
                 CachingMyAnimeListApi cachingApi = null;
+                NoConcurrentFetchesOfSameUserMalApi dosProtectionApi = null;
                 RecommendorCacheFinderFactory recommendationFinderFactory = null;
 
                 try
@@ -70,7 +71,9 @@ namespace AnimeRecs
                     TimeSpan animeListCacheExpiration = new TimeSpan(expirationHours, expirationMinutes, expirationSeconds);
                     cachingApi = new CachingMyAnimeListApi(api, expiration: animeListCacheExpiration, ownApi: true);
 
-                    ApplicationGlobals.MalApiFactory = new SingleMyAnimeListApiFactory(cachingApi);
+                    dosProtectionApi = new NoConcurrentFetchesOfSameUserMalApi(cachingApi);
+
+                    ApplicationGlobals.MalApiFactory = new SingleMyAnimeListApiFactory(dosProtectionApi);
 
                     string mongoConnectionString = ConfigurationManager.ConnectionStrings["Mongo"].ToString();
                     MongoServer mongoServer = MongoServer.Create(mongoConnectionString);
@@ -92,6 +95,8 @@ namespace AnimeRecs
                 }
                 catch (Exception)
                 {
+                    if (dosProtectionApi != null)
+                        dosProtectionApi.Dispose();
                     if (cachingApi != null)
                         cachingApi.Dispose();
                     if (api != null)
