@@ -49,9 +49,28 @@ namespace AnimeRecs.Models
             };
 
             GoodOkBadAnime usersFilteredAnime = goodOkBadFilter.GetGoodOkBadAnime(animeList);
-            results.Disliked = usersFilteredAnime.BadAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson()).ToList();
-            results.Liked = usersFilteredAnime.GoodAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson()).ToList();
-            results.Ok = usersFilteredAnime.OkAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson()).ToList();
+
+            results.DislikedByMalId = new Dictionary<int, RecommendedAnimeJson>();
+            IEnumerable<RecommendedAnimeJson> dislikedAnimeJson = usersFilteredAnime.BadAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson());
+            foreach (RecommendedAnimeJson anime in dislikedAnimeJson)
+            {
+                results.DislikedByMalId[anime.MalId] = anime;
+            }
+
+            results.OkByMalId = new Dictionary<int, RecommendedAnimeJson>();
+            IEnumerable<RecommendedAnimeJson> okAnimeJson = usersFilteredAnime.OkAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson());
+            foreach (RecommendedAnimeJson anime in okAnimeJson)
+            {
+                results.OkByMalId[anime.MalId] = anime;
+            }
+
+            results.LikedByMalId = new Dictionary<int, RecommendedAnimeJson>();
+            IEnumerable<RecommendedAnimeJson> likedAnimeJson = usersFilteredAnime.GoodAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson());
+            foreach (RecommendedAnimeJson anime in likedAnimeJson)
+            {
+                results.LikedByMalId[anime.MalId] = anime;
+            }
+
             results.OkCutoff = usersFilteredAnime.OkCutoff;
             results.RecommendedCutoff = usersFilteredAnime.GoodCutoff;
   
@@ -73,11 +92,11 @@ namespace AnimeRecs.Models
             
             List<Tuple<RecommendorJson, OneWayCompatibilityResults>> sortedPrunedCompatibilityScores =
                 compatibilityScores
-                // Only count recommendors if the user has seen at least 8 of the animes that the recommendor recommends.
+                // Only count recommendors if the user has seen at least X of the animes that the recommendor recommends.
                 // Less than that and the compatibility rating may not be very accurate.
                 .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeInCommon.Count >= MinimumRecsSeen)
 
-                // Only count recommendors if there is at least 1 recommendation that the user has not seen yet.
+                // Only count recommendors if there is at least X recommendation that the user has not seen yet.
                 // Otherwise the recommendations are useless or maybe the recommendor is the same person!
                 .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeNotInCommon.Count >= MinimumRecsNotSeen)
                 .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.NormalizedCompatibilityScore)

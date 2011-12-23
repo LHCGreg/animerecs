@@ -30,13 +30,13 @@ namespace AnimeRecs.Controllers
         }
 
         [HttpPost]
-        public JsonResult Index([Required] AnimeRecsInputJson input)
+        public ActionResult Index([Required] AnimeRecsInputJson input)
         {
             if (!ModelState.IsValid)
             {
                 HttpContext.Response.StatusCode = 400;
                 // TODO: Log
-                return Json(new { error = true });
+                return new HttpStatusCodeResult(400);
             }
 
             using (IMyAnimeListApi malApi = m_malApiFactory.GetMalApi())
@@ -46,7 +46,7 @@ namespace AnimeRecs.Controllers
                 IGoodOkBadFilter goodOkBadFilter = input.GoodOkBadFilter;
 
                 RecommendationResults results = recFinder.GetRecommendations(animeList, goodOkBadFilter);
-                return Json(results);
+                return PartialView(results);
             }
         }
     }

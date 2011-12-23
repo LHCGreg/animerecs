@@ -1,0 +1,38 @@
+﻿@using System.Globalization;
+@using AnimeRecs.Models;
+@using AnimeRecs;
+@using AnimeRecs.Common;
+
+@model AnimeRecs.Models.RecommendationResults
+
+
+Your best matches are
+<ol class="matchList">
+    @foreach (RecommendorMatch recommendor in Model.BestMatches)
+    {
+        <li>
+            <a href="@Html.Raw(recommendor.Recommendor.GetMalListUri())" class="recommendor">@recommendor.Recommendor.Name</a>'s recommendations <span class="compatibilityRating">(@((recommendor.CompatibilityRating / 100m).ToString("P")) compatible)</span>
+            <table class="recsTable">
+                <thead>
+                    <tr>
+                        <td>Anime</td>
+                        <td>Status</td>
+                        <td>Their Rating</td>
+                        <td>Your Rating</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (RecommendedAnimeJson anime in recommendor.Recommendor.GetSortedRecommendations(Model))
+                    {
+                        <tr>
+                            <td><a href="@Html.Raw(anime.MalUrl)" class="recommendation">@anime.Name</a></td>
+                            <td>@Model.GetStatusString(anime.MalId)</td>
+                            <td>@(anime.Rating != null ? anime.Rating.Value.ToString(CultureInfo.InvariantCulture) : "-")</td>
+                            <td>@Model.GetMyScoreString(anime.MalId)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </li>
+    }
+</ol>

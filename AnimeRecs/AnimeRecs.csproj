@@ -114,6 +114,8 @@
     <Compile Include="Models\Factories\SingleMyAnimeListApiFactory.cs" />
     <Compile Include="MyAnimeListEntryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecommendorJsonExtensions.cs" />
+    <Compile Include="ViewHelpers\ViewHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\ajax-loader.gif" />
@@ -179,6 +181,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\FindBestMatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

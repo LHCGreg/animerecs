@@ -2,8 +2,6 @@
 --------
 Make it not look ugly
 Message if user has not watched enough anime to have good recommendations
-Show stats for liked, ok, disliked
-
 
 
 Major
@@ -17,10 +15,9 @@ Don't send empty string for name - client-side validation of input
 
 Normal
 ------
-Return recommendations as html to assist in easier...
 Graceful degradation in absence of javascript
 Script for removing unneeded files from a publish
-Sanitize username when creating link to MAL profile
+
 
 Minor
 -----
@@ -28,4 +25,3 @@ Allow recommendors' names to not be their real MAL names
 Automate compilation of Dart code.
 Put anime name in MAL link, just like how MAL does it
 Better error messages in cache updater
-Sort recommendors and recommendations client-side. The server is not guranteed to return them in any order, it just happens to do so right now.
