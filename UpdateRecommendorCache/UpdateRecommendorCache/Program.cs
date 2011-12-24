@@ -174,7 +174,7 @@ namespace AnimeRecs.UpdateCache
             foreach(string recommendorToRemove in recommendorsInDbButNotFile)
             {
                 Logging.Log.InfoFormat("Removing {0} from the DB.", recommendorToRemove);
-                recommendorCollection.Remove(Query.EQ("Name", recommendorToRemove));
+                recommendorCollection.Remove(Query.EQ("_id", recommendorToRemove));
                 Logging.Log.DebugFormat("Removed.");
             }
 
