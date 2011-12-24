@@ -2,37 +2,55 @@
 @using AnimeRecs.Models;
 @using AnimeRecs;
 @using AnimeRecs.Common;
+@using System.Configuration;
 
 @model AnimeRecs.Models.RecommendationResults
 
-
-Your best matches are
-<ol class="matchList">
-    @foreach (RecommendorMatch recommendor in Model.BestMatches)
-    {
-        <li>
-            <a href="@Html.Raw(recommendor.Recommendor.GetMalListUri())" class="recommendor">@recommendor.Recommendor.Name</a>'s recommendations <span class="compatibilityRating">(@((recommendor.CompatibilityRating / 100m).ToString("P")) compatible)</span>
-            <table class="recsTable">
-                <thead>
-                    <tr>
-                        <td>Anime</td>
-                        <td>Status</td>
-                        <td>Their Rating</td>
-                        <td>Your Rating</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (RecommendedAnimeJson anime in recommendor.Recommendor.GetSortedRecommendations(Model))
-                    {
-                        <tr>
-                            <td><a href="@Html.Raw(anime.MalUrl)" class="recommendation">@anime.Name</a></td>
-                            <td>@Model.GetStatusString(anime.MalId)</td>
-                            <td>@(anime.Rating != null ? anime.Rating.Value.ToString(CultureInfo.InvariantCulture) : "-")</td>
-                            <td>@Model.GetMyScoreString(anime.MalId)</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </li>
-    }
-</ol>
+@if(Model.BestMatches.Count == 0)
+{
+    <text>
+        You haven't watched enough anime for the system to match you with anyone. In order to be matched with a recommendor, you must have completed and rated at least @ConfigurationManager.AppSettings["MinimumRecommendationsInCommon"] of their recommendations. Here are some links to get you started.
+        <ul>
+            <li><a href="http://myanimelist.net/topanime.php">myanimelist.net's top rated anime</a></li>
+            <li><a href="http://redditanime.wikia.com/wiki/The_massive_%22I_just_got_in_to_anime%22_recommendation_list">Reddit's "I just got into anime" recommendation list</a></li>
+            <li><a href="http://www.funimation.com/videos">Funimation</a> has free legal streams for many of the shows they license</li>
+            <li><a href="http://www.crunchyroll.com/">Crunchyroll</a> offers free legal streaming</li>
+            <li><a href="http://www.hulu.com/genres/Animation-and-Cartoons/Anime?type=tv">Hulu</a> has some free legal streaming as well</li>
+        </ul>
+    </text>
+}
+else
+{
+    <text>
+        Your best matches are
+        <ol class="matchList">
+            @foreach (RecommendorMatch recommendor in Model.BestMatches)
+            {
+                <li>
+                    <a href="@Html.Raw(recommendor.Recommendor.GetMalListUri())" class="recommendor">@recommendor.Recommendor.Name</a>'s recommendations <span class="compatibilityRating">(@((recommendor.CompatibilityRating / 100m).ToString("P")) compatible)</span>
+                    <table class="recsTable">
+                        <thead>
+                            <tr>
+                                <td>Anime</td>
+                                <td>Status</td>
+                                <td>Their Rating</td>
+                                <td>Your Rating</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (RecommendedAnimeJson anime in recommendor.Recommendor.GetSortedRecommendations(Model))
+                            {
+                                <tr>
+                                    <td><a href="@Html.Raw(anime.MalUrl)" class="recommendation">@anime.Name</a></td>
+                                    <td>@Model.GetStatusString(anime.MalId)</td>
+                                    <td>@(anime.Rating != null ? anime.Rating.Value.ToString(CultureInfo.InvariantCulture) : "-")</td>
+                                    <td>@Model.GetMyScoreString(anime.MalId)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </li>
+            }
+        </ol>
+    </text>
+}

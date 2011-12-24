@@ -1,7 +1,6 @@
 ﻿Critical
 --------
 Make it not look ugly
-Message if user has not watched enough anime to have good recommendations
 
 
 Major
@@ -10,14 +9,14 @@ Logging in the web app
 Remember username and cutoffs
 Ensure caching of static things like images and js
 Remove unused default MVC junk
-Don't send empty string for name - client-side validation of input
+
 
 
 Normal
 ------
 Graceful degradation in absence of javascript
 Script for removing unneeded files from a publish
-
+Don't send empty string for name - client-side validation of input
 
 Minor
 -----
