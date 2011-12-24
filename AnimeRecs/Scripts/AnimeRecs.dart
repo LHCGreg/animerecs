@@ -24,7 +24,8 @@ void main()
 
 void OnTextboxKeyDown(var event)
 {
-  if(event.keyCode == 13)
+  ButtonElement malButton = GetMalButton();
+  if(event.keyCode == 13 && !malButton.disabled)
   {
     OnMalClicked();
   }
