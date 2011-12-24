@@ -8,7 +8,6 @@ Major
 Logging in the web app
 Remember username and cutoffs
 Ensure caching of static things like images and js
-Remove unused default MVC junk
 
 
 
@@ -20,7 +19,5 @@ Don't send empty string for name - client-side validation of input
 
 Minor
 -----
-Allow recommendors' names to not be their real MAL names
 Automate compilation of Dart code.
 Put anime name in MAL link, just like how MAL does it
-Better error messages in cache updater
