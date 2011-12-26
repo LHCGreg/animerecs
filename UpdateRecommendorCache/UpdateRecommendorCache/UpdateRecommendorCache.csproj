@@ -99,7 +99,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SampleRecommendorFile.json" />
+    <None Include="recommendors.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.Common\AnimeRecs.Common.csproj">
