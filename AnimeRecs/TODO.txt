@@ -8,6 +8,7 @@ Major
 Logging in the web app
 Remember username and cutoffs
 Ensure caching of static things like images and js
+"Determine cutoffs for me" button - 35% liked, 20% disliked?
 
 
 
