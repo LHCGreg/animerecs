@@ -95,7 +95,8 @@ namespace AnimeRecs.UpdateCache
                 }
                 catch (MalUserNotFoundException ex)
                 {
-                    Logging.Log.ErrorFormat("User '{0}' does not have an anime list. Skipping.", ex, recommendor.MalName);
+                    Logging.Log.ErrorFormat("User '{0}' does not have an anime list. Skipping.", recommendor.MalName);
+                    continue;
                 }
                 catch (MalApiException ex)
                 {
