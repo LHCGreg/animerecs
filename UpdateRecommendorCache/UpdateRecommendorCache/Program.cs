@@ -95,7 +95,16 @@ namespace AnimeRecs.UpdateCache
                 }
                 catch (MalUserNotFoundException ex)
                 {
-                    Logging.Log.ErrorFormat("User '{0}' does not have an anime list. Skipping.", recommendor.MalName);
+                    Logging.Log.ErrorFormat("User '{0}' does not have an anime list. Removing list from cache.", recommendor.MalName);
+                    SafeModeResult removeResult = recommendorCollection.Remove(Query.EQ("_id", recommendor.MalName));
+                    if (removeResult.DocumentsAffected > 0)
+                    {
+                        Logging.Log.DebugFormat("Removed.");
+                    }
+                    else
+                    {
+                        Logging.Log.DebugFormat("Not in cache, not removed.");
+                    }
                     continue;
                 }
                 catch (MalApiException ex)
@@ -175,8 +184,15 @@ namespace AnimeRecs.UpdateCache
             foreach(string recommendorToRemove in recommendorsInDbButNotFile)
             {
                 Logging.Log.InfoFormat("Removing {0} from the DB.", recommendorToRemove);
-                recommendorCollection.Remove(Query.EQ("_id", recommendorToRemove));
-                Logging.Log.DebugFormat("Removed.");
+                SafeModeResult removeResult = recommendorCollection.Remove(Query.EQ("_id", recommendorToRemove));
+                if (removeResult.DocumentsAffected > 0)
+                {
+                    Logging.Log.DebugFormat("Removed.");
+                }
+                else
+                {
+                    Logging.Log.Error("Not in cache, not removed.");
+                }
             }
 
             Logging.Log.InfoFormat("Done removing recommendations in DB that are not in the file.");
