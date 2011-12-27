@@ -283,6 +283,10 @@
 		{
 			MalName: "FoolsLove",
 			RecommendedPercentile: 35
+		},
+		{
+			MalName: "LostRadiant",
+			RecommendedPercentile: 35
 		}
 	]
 }
