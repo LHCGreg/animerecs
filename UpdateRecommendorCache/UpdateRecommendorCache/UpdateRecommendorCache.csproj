@@ -99,7 +99,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="recommendors.json" />
+    <None Include="recommendors.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.Common\AnimeRecs.Common.csproj">
