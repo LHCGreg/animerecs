@@ -75,7 +75,10 @@ namespace AnimeRecs.UpdateCache
         private static void AddRecommendorsToMongo(RecommendorsInputJson recommendors,
             MongoCollection<RecommendorJson> recommendorCollection, int delayBetweenRequestsMs)
         {
-            OfficialMalApi malApi = new OfficialMalApi();
+            OfficialMalApi malApi = new OfficialMalApi()
+            {
+                UserAgent = ConfigurationManager.AppSettings["MalApiUserAgentString"]
+            };
 
             // For each recommendor, get MAL anime list, calculate recommendations, and add to mongo
             foreach (var recommendorSmartEnum in recommendors.Recommendors.AsSmartEnumerable())

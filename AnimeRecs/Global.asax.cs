@@ -12,9 +12,6 @@ using MongoDB.Driver;
 
 namespace AnimeRecs
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         private static bool m_errorOnStarting = false;
@@ -62,8 +59,7 @@ namespace AnimeRecs
 
                 try
                 {
-                    // TODO: Add real version number, include URL of live site
-                    api = new OfficialMalApi() { UserAgent = "anime-recommendation-finder/1.0.0.0", TimeoutInMs = 5000 };
+                    api = new OfficialMalApi() { UserAgent = ConfigurationManager.AppSettings["MalApiUserAgentString"], TimeoutInMs = 5000 };
 
                     int expirationHours = 0;
                     int expirationMinutes = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpirationMinutes"]);
@@ -91,7 +87,6 @@ namespace AnimeRecs
                     recommendationFinderFactory.MaximumRecommendorsToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendorsToReturn"]);
 
                     ApplicationGlobals.RecommendationFinderFactory = recommendationFinderFactory;
-
                 }
                 catch (Exception)
                 {

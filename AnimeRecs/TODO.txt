@@ -14,8 +14,8 @@ Ensure caching of static things like images and js
 Normal
 ------
 Graceful degradation in absence of javascript
-Script for removing unneeded files from a publish
 Don't send empty string for name - client-side validation of input
+Show status of anime currently being watched as "watching" instead of "unwatched"?
 
 Minor
 -----

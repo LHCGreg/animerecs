@@ -24,7 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -96,7 +96,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Factories\IMyAnimeListApiFactory.cs" />
-    <Compile Include="Models\Json\RecommendationResultsAsHtml.cs" />
+    <Compile Include="Models\Json\RecommendationResultsWithHtml.cs" />
     <Compile Include="Models\NoConcurrentFetchesOfSameUserMalApi.cs" />
     <Compile Include="Models\RecommendationFinder\IRecommendationFinder.cs" />
     <Compile Include="Models\Factories\IRecommendationFinderFactory.cs" />

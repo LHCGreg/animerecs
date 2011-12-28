@@ -63,7 +63,6 @@ namespace AnimeRecs.Controllers
                 IGoodOkBadFilter goodOkBadFilter = GetGoodOkBadFilter(input);
 
                 RecommendationResults results = recFinder.GetRecommendations(animeList, goodOkBadFilter);
-                //return PartialView(results);
 
                 RecommendationResultsWithHtml resultsWithHtml = new RecommendationResultsWithHtml();
 
