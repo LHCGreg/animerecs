@@ -4,14 +4,32 @@
     ViewBag.Title = "Anime recommendation finder";
 }
 
-<h2 class="header">Anime Recommendation finder</h2>
+<div id="header" class="noselect">
+	<h1 class="title">Anime Recommendation finder</h1>
+</div>
+<div id="main" class="splash">
+	<div class="title">Anime Recommendation finder</div>
+	<div class="datainput">
+		<div class="usernamesubmit">
+			<input class="username textinput bigtextinput" type="text" placeholder="your MyAnimeList.net username" />
+			<a class="go noselect" id="splash-go"><div class="go-arrow"></div></a>
+		</div>
+		<div class="autoscores noselect">
+			<input id="autoscores" type="checkbox" value="autoscores" checked />
+			<label for="autoscores">Figure out my minimum scores</label> 
+		</div>
+		<div class="scores" style="display: none;">
+			<div class="scoretitle">Minimum score for an anime you watched to be considered</div>
+			<div class="scoreinput scoregood"><span>"good"</span><input class="good textinput smalltextinput" type="text" value="8" maxlength="2" /></div>
+			<div class="scoreinput scoreokay"><span>"okay"</span><input class="okay textinput smalltextinput" type="text" value="7" maxlength="2" /></div>
+		</div>
+	</div>
+	<div id="results">
+	</div>
+</div> <!-- #main -->
 
-<label for="malUserId">myanimelist.net username <input type="text" id="malUserId" name="malUserId" /> </label>
-<label for="goodCutoff">Minimum score for an anime you watched to be considered "good" <input type="text" id="goodCutoff" name="goodCutoff" size="2" value="8"/> </label>
-<label for="okCutoff">Minimum score for an anime you watched to be considered "ok" <input type="text" id="okCutoff" name="okCutoff" size="2" value="7"/> </label>
-<input type="button" id="malButton" value="Get recommendations"/>
-<input type="button" id="malPercentileButton" value="Figure out my minimum scores for me"/>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>    window.jQuery || document.write('<script src="@Url.Content("~/Scripts/libs/jquery-1.7.1.min.js")"><\/script>')</script>
 
-<div id="loadingImageDiv"></div>
-<div id="results"></div>
-<script type="text/javascript" src="@Url.Content("~/Scripts/AnimeRecs.dart.app.js")"></script>
+<script src="@Url.Content("~/Scripts/libs/jquery.placeholder.min.js")"></script>
+<script src="@Url.Content("~/Scripts/script.js")"></script>

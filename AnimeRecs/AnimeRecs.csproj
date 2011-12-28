@@ -121,8 +121,11 @@
     <Content Include="Content\img\ajax-loader.gif" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\AnimeRecs.dart.app.js" />
     <None Include="TODO.txt" />
+    <Content Include="Scripts\libs\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\libs\jquery.placeholder.min.js" />
+    <Content Include="Scripts\libs\modernizr-2.0.6.min.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
