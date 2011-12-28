@@ -25,25 +25,6 @@ namespace AnimeRecs.Models
             return MalName;
         }
 
-        public IGoodOkBadFilter GoodOkBadFilter
-        {
-            get
-            {
-                if (GoodCutoff.HasValue)
-                {
-                    return new CutoffGoodOkBadFilter() { GoodCutoff = GoodCutoff.Value, OkCutoff = OkCutoff.Value };
-                }
-                else if (GoodPercentile.HasValue)
-                {
-                    return new PercentileGoodOkBadFilter() { RecommendedPercentile = decimal.ToDouble(GoodPercentile.Value), DislikedPercentile = decimal.ToDouble(this.DislikedPercentile.Value) };
-                }
-                else
-                {
-                    return new PercentileGoodOkBadFilter();
-                }
-            }
-        }
-
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (GoodCutoff.HasValue)

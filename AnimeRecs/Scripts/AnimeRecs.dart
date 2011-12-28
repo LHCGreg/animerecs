@@ -1,24 +1,29 @@
 #import('dart:html');
 #import("dart:json");
 #source('MalInputJson.dart');
+#source('RecommendationResultsWithHtmlJson.dart');
 
 void main()
 {
-  ButtonElement malButton = document.query("#malButton");
+  ButtonElement malButton = GetMalButton();
   malButton.on.click.add( (event) => OnMalClicked() );
+  
+  ButtonElement malPercentileButton = GetMalPercentileButton();
+  malPercentileButton.on.click.add( (event) => OnMalPercentileClicked() );
   
   // If the button was disabled when the user left the page last time for some reason,
   // The browser might leave it disabled. Make sure it's enabled.
   malButton.disabled = false;
+  malPercentileButton.disabled = false;
   
-  InputElement malTextbox = document.query("#malUserId");
+  InputElement malTextbox = GetMalUserTextbox();
   malTextbox.select();
   malTextbox.on.keyDown.add( (event) => OnTextboxKeyDown(event) );
   
-  InputElement goodTextbox = document.query("#goodCutoff");
+  InputElement goodTextbox = GetGoodTextbox();
   goodTextbox.on.keyDown.add( (event) => OnTextboxKeyDown(event) );
   
-  InputElement okTextbox = document.query("#okCutoff");
+  InputElement okTextbox = GetOkTextbox();
   okTextbox.on.keyDown.add( (event) => OnTextboxKeyDown(event) );
 }
 
@@ -33,7 +38,7 @@ void OnTextboxKeyDown(var event)
 
 String GetMalUsername()
 {
-  InputElement malTextbox = document.query("#malUserId");
+  InputElement malTextbox = GetMalUserTextbox();
   String text = malTextbox.value;
   return text;
 }
@@ -43,36 +48,107 @@ ButtonElement GetMalButton()
   return document.query("#malButton");  
 }
 
+ButtonElement GetMalPercentileButton()
+{
+  return document.query("#malPercentileButton");  
+}
+
+InputElement GetMalUserTextbox()
+{
+  return document.query("#malUserId");
+}
+
+InputElement GetGoodTextbox()
+{
+  return document.query("#goodCutoff");
+}
+
+InputElement GetOkTextbox()
+{
+  return document.query("#okCutoff");  
+}
+
 int GetGoodCutoff()
 {
-  InputElement textbox = document.query("#goodCutoff");
+  InputElement textbox = GetGoodTextbox();
   String text = textbox.value;
   return Math.parseInt(text);
 }
 
 int GetOkCutoff()
 {
-  InputElement textbox = document.query("#okCutoff");
+  InputElement textbox = GetOkTextbox();
   String text = textbox.value;
   return Math.parseInt(text);
 }
 
-String GetMalInputJson()
+void SetCutoffs(double goodCutoff, double okCutoff)
+{
+  InputElement goodTextbox = GetGoodTextbox();
+  goodTextbox.value = goodCutoff.toString();
+  
+  InputElement okTextbox = GetOkTextbox();
+  okTextbox.value = okCutoff.toString();
+}
+
+String GetMalInputJsonWithAbsoluteCutoffs()
 {  
   MalInputJson jsonObject = new MalInputJson.WithAbsoluteCutoffs(GetMalUsername(), GetGoodCutoff(), GetOkCutoff());
   return jsonObject.ToJson();
 }
 
-void OnMalClicked()
+String GetMalInputJsonWithPercentileCutoffs()
+{
+  MalInputJson jsonObject = new MalInputJson(GetMalUsername());
+  return jsonObject.ToJson();
+}
+
+void SetButtonState(bool enabled)
 {
   ButtonElement malButton = GetMalButton();
-  malButton.disabled = true;
+  malButton.disabled = !enabled;
+  
+  ButtonElement malPercentileButton = GetMalPercentileButton();
+  malPercentileButton.disabled = !enabled;
+}
+
+void DisableButtons()
+{
+  SetButtonState(false);  
+}
+
+void EnableButtons()
+{
+  SetButtonState(true);  
+}
+
+void OnMalClicked()
+{
+  OnButtonClicked(true);
+}
+
+void OnMalPercentileClicked()
+{
+  OnButtonClicked(false);
+}
+
+void OnButtonClicked(bool absoluteCutoffs)
+{
+  DisableButtons();
   
   try
   {
       XMLHttpRequest ajax = new XMLHttpRequest();
       String matchUrl = "FindBestMatch";
-      String inputJson = GetMalInputJson();
+      String inputJson;
+      if(absoluteCutoffs)
+      {
+        inputJson = GetMalInputJsonWithAbsoluteCutoffs();
+      }
+      else
+      {
+        inputJson = GetMalInputJsonWithPercentileCutoffs();
+      }
       
       ajax.open("POST", matchUrl, true);
       ajax.on.load.add( (event) => OnMalAjaxComplete(ajax));
@@ -82,7 +158,7 @@ void OnMalClicked()
   }
   catch(var ex)
   {
-    malButton.disabled = false;
+    EnableButtons();
     throw;
   }
   
@@ -97,18 +173,24 @@ void OnMalAjaxComplete(XMLHttpRequest ajax)
     return;
   }
   
-  ButtonElement malButton = GetMalButton();
-  malButton.disabled = false;
+  EnableButtons();
   HideLoadingImage();
   
-  String resultsHtml = ajax.responseText;
-  DisplayResultsHtml(resultsHtml);
+  try
+  {
+    String resultsWithHtmlJsonString = ajax.responseText;
+    RecommendationResultsWithHtmlJson resultsObject = new RecommendationResultsWithHtmlJson.FromJsonString(resultsWithHtmlJsonString);
+    DisplayResults(resultsObject);
+  }
+  catch(var ex)
+  {
+    DisplayError();
+  }
 }
 
 void OnMalAjaxError(XMLHttpRequest ajax)
 {
-  ButtonElement malButton = GetMalButton();
-  malButton.disabled = false;
+  EnableButtons();
   HideLoadingImage();
   DisplayError();
 }
@@ -148,9 +230,11 @@ void DisplayError()
   resultsDiv.elements.add(errorTextSpan);
 }
 
-void DisplayResultsHtml(String resultsHtml)
+void DisplayResults(RecommendationResultsWithHtmlJson results)
 {
   Element resultsDiv = GetResultsDiv();
   resultsDiv.nodes.clear();
-  resultsDiv.innerHTML = resultsHtml;
+  resultsDiv.innerHTML = results.Html;
+  
+  SetCutoffs(results.RecommendedCutoff, results.OkCutoff);
 }
