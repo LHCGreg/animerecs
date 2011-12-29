@@ -118,7 +118,7 @@
     <Compile Include="ViewHelpers\ViewHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\favicon.ico" />
+    <Content Include="favicon.ico" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
