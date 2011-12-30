@@ -3,7 +3,6 @@
 - Microsoft Visual Web Developer 2010 Express
 - Microsoft Visual C# 2010 Express
 - MongoDB (http://www.mongodb.org/downloads)
-- Google Dart editor (http://www.dartlang.org/docs/getting-started/editor/index-win.html)
 
 
 Once those are installed, you'll need to configure MongoDB.
@@ -23,11 +22,6 @@ Start the mongo server by running
 mongod -f C:\Users\Greg\AppData\Roaming\AnimeRecs\mongo.conf
 
 from mongo's /bin folder (changing the mongo.conf path of course). You can stop the server with ctrl+c.
-
-
-
-Next, compile the dart code to javascript by opening AnimeRecs.dart in the Dart editor. Change one character in the code, then change it back, then save to force a compile.
-
 
 
 Now open up the UpdateRecommendorCache solution in Visual C#. Change the log file path in App.config from C:\Users\Greg\AppData\Roaming\AnimeRecs\UpdateRecommendorCache.log to something more suitable for you. Compile it and run it. This will build the recommendor database. The Mongo server must be running.
