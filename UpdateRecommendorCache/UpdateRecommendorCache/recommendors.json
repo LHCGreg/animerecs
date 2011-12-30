@@ -69,10 +69,6 @@
 			RecommendedPercentile: 35
 		},
 		{
-			MalName: "wizardforce",
-			RecommendedPercentile: 35
-		},
-		{
 			MalName: "violaxcore",
 			RecommendedPercentile: 35
 		},
