@@ -103,9 +103,6 @@
 						field_okay.val(result.OkCutoff);
 					
 					
-					console.log(field_good.val());
-					console.log(field_okay.val());
-					
 					results.html(result.Html);
 				} else if(status == "error") {
 					alert("Sorry, something went wrong.");
