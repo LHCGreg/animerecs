@@ -1,13 +1,16 @@
 ﻿Critical
 --------
+Scale minimum number of recommendations in common with number of shows watched
 Logging in the web app
-Specific user error message for when a MAL id is not found.
 More accurate status. "Completed but not rated" should not be "unwatched". Neither should anime that is currently being watched.
-Uncheck checkbox, refresh, checkbox is unchecked but no textboxes.
+
 
 Major
 -----
 Remember username and cutoffs
+Randomize order of recommendors with same compatibility rating
+Specific user error message for when a MAL id is not found.
+Bug that shows up in Firefox: Uncheck checkbox, refresh, checkbox is unchecked but no textboxes.
 
 
 Normal
