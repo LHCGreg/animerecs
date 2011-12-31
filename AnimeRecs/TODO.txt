@@ -1,22 +1,19 @@
 ﻿Critical
 --------
-
+Logging in the web app
+Specific user error message for when a MAL id is not found.
+More accurate status. "Completed but not rated" should not be "unwatched". Neither should anime that is currently being watched.
 
 Major
 -----
-Logging in the web app
 Remember username and cutoffs
-Ensure caching of static things like images and js
-
 
 
 Normal
 ------
 Graceful degradation in absence of javascript
 Don't send empty string for name - client-side validation of input
-Show status of anime currently being watched as "watching" instead of "unwatched"?
 
 Minor
 -----
-Automate compilation of Dart code.
 Put anime name in MAL link, just like how MAL does it
