@@ -283,6 +283,10 @@
 		{
 			MalName: "LostRadiant",
 			RecommendedPercentile: 35
+		},
+		{
+			MalName: "ueda",
+			RecommendedPercentile: 35
 		}
 	]
 }
