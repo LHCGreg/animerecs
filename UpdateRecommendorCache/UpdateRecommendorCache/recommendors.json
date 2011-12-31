@@ -287,6 +287,14 @@
 		{
 			MalName: "ueda",
 			RecommendedPercentile: 35
+		},
+		{
+			MalName: "IssacandAsimov",
+			RecommendedPercentile: 35
+		},
+		{
+			MalName: "Resinball",
+			RecommendedPercentile: 35
 		}
 	]
 }
