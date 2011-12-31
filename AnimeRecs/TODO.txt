@@ -3,6 +3,7 @@
 Logging in the web app
 Specific user error message for when a MAL id is not found.
 More accurate status. "Completed but not rated" should not be "unwatched". Neither should anime that is currently being watched.
+Uncheck checkbox, refresh, checkbox is unchecked but no textboxes.
 
 Major
 -----
