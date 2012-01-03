@@ -82,7 +82,7 @@ namespace AnimeRecs
 
                     recommendationFinderFactory = new RecommendorCacheFinderFactory(
                         new MongoRecommendorCache(recommendorCollection), disposeCache: true);
-                    recommendationFinderFactory.MinimumRecsSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsInCommon"]);
+                    //recommendationFinderFactory.MinimumRecsSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsInCommon"]);
                     recommendationFinderFactory.MinimumRecsNotSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsNotInCommon"]);
                     recommendationFinderFactory.MaximumRecommendorsToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendorsToReturn"]);
 

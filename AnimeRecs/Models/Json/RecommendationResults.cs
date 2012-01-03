@@ -13,27 +13,21 @@ namespace AnimeRecs.Models
         // Put these in sort order
         Unwatched,
         Liked,
-        Ok,
-        Disliked
+        NotLiked
     }
 
     public class RecommendationResults
     {
         public decimal? RecommendedCutoff { get; set; }
-        public decimal? OkCutoff { get; set; }
 
         [JsonIgnore]
         public IDictionary<int, RecommendedAnimeJson> LikedByMalId { get; set; }
 
         [JsonIgnore]
-        public IDictionary<int, RecommendedAnimeJson> OkByMalId { get; set; }
-
-        [JsonIgnore]
-        public IDictionary<int, RecommendedAnimeJson> DislikedByMalId { get; set; }
+        public IDictionary<int, RecommendedAnimeJson> NotLikedByMalId { get; set; }
 
         public IEnumerable<RecommendedAnimeJson> Liked { get { return LikedByMalId.Values; } }
-        public IEnumerable<RecommendedAnimeJson> Ok { get { return OkByMalId.Values; } }
-        public IEnumerable<RecommendedAnimeJson> Disliked { get { return DislikedByMalId.Values; } }
+        public IEnumerable<RecommendedAnimeJson> NotLiked { get { return NotLikedByMalId.Values; } }
 
         public IList<RecommendorMatch> BestMatches { get; set; }
 
@@ -43,13 +37,9 @@ namespace AnimeRecs.Models
             {
                 return RecommendationStatus.Liked;
             }
-            else if (OkByMalId.ContainsKey(malId))
+            else if (NotLikedByMalId.ContainsKey(malId))
             {
-                return RecommendationStatus.Ok;
-            }
-            else if (DislikedByMalId.ContainsKey(malId))
-            {
-                return RecommendationStatus.Disliked;
+                return RecommendationStatus.NotLiked;
             }
             else
             {
@@ -63,13 +53,9 @@ namespace AnimeRecs.Models
             {
                 return "Liked";
             }
-            else if (status == RecommendationStatus.Ok)
+            else if (status == RecommendationStatus.NotLiked)
             {
-                return "Ok";
-            }
-            else if (status == RecommendationStatus.Disliked)
-            {
-                return "Disliked";
+                return "Not liked";
             }
             else
             {
@@ -95,10 +81,8 @@ namespace AnimeRecs.Models
         {
             if (LikedByMalId.ContainsKey(malId))
                 return LikedByMalId[malId].Rating;
-            else if (OkByMalId.ContainsKey(malId))
-                return OkByMalId[malId].Rating;
-            else if (DislikedByMalId.ContainsKey(malId))
-                return DislikedByMalId[malId].Rating;
+            else if (NotLikedByMalId.ContainsKey(malId))
+                return NotLikedByMalId[malId].Rating;
             else
                 return null;
         }

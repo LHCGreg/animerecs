@@ -12,14 +12,8 @@ namespace AnimeRecs.Models
         private IRecommendorCache m_recommendorCache;
         private bool m_disposeCache;
 
-        public const int DefaultMinimumRecsSeen = 8;
         public const int DefaultMinimumRecsNotSeen = 1;
         public const int DefaultMaximumRecommendorsToReturn = 3;
-
-        private int m_minimumRecsSeen = DefaultMinimumRecsSeen;
-        public int MinimumRecsSeen { get { return m_minimumRecsSeen; } set { m_minimumRecsSeen = value; } }
-
-        // TODO: Have a second, more lenient MinimumRecsSeen for people who are just getting into anime and have only seen a few.
 
         private int m_minimumRecsNotSeen = DefaultMinimumRecsNotSeen;
         public int MinimumRecsNotSeen { get { return m_minimumRecsNotSeen; } set { m_minimumRecsNotSeen = value; } }
@@ -36,32 +30,20 @@ namespace AnimeRecs.Models
         public RecommendationResults GetRecommendations(ICollection<MyAnimeListEntry> animeList, IGoodOkBadFilter goodOkBadFilter)
         {
             RecommendationResults results = new RecommendationResults();
-            List<Tuple<RecommendorJson, OneWayCompatibilityResults>> compatibilityScores = new List<Tuple<RecommendorJson, OneWayCompatibilityResults>>();
-            
-            CompatibilityCalculator calculator = new CompatibilityCalculator();
-
-            CalculatorUserParams user = new CalculatorUserParams()
-            {
-                AnimeList = animeList,
-                DislikedPenalty = -1,
-                RecommendedBonus = 1,
-                GoodOkBadFilter = goodOkBadFilter
-            };
+            List<Tuple<RecommendorJson, RecommendorCompatibility>> recommendorResults = new List<Tuple<RecommendorJson, RecommendorCompatibility>>();
 
             GoodOkBadAnime usersFilteredAnime = goodOkBadFilter.GetGoodOkBadAnime(animeList);
 
-            results.DislikedByMalId = new Dictionary<int, RecommendedAnimeJson>();
+            results.NotLikedByMalId = new Dictionary<int, RecommendedAnimeJson>();
             IEnumerable<RecommendedAnimeJson> dislikedAnimeJson = usersFilteredAnime.BadAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson());
+            IEnumerable<RecommendedAnimeJson> okAnimeJson = usersFilteredAnime.OkAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson());
             foreach (RecommendedAnimeJson anime in dislikedAnimeJson)
             {
-                results.DislikedByMalId[anime.MalId] = anime;
+                results.NotLikedByMalId[anime.MalId] = anime;
             }
-
-            results.OkByMalId = new Dictionary<int, RecommendedAnimeJson>();
-            IEnumerable<RecommendedAnimeJson> okAnimeJson = usersFilteredAnime.OkAnime.Select(anime => ((MyAnimeListEntry)(anime)).ToAnimeJson());
             foreach (RecommendedAnimeJson anime in okAnimeJson)
             {
-                results.OkByMalId[anime.MalId] = anime;
+                results.NotLikedByMalId[anime.MalId] = anime;
             }
 
             results.LikedByMalId = new Dictionary<int, RecommendedAnimeJson>();
@@ -71,7 +53,6 @@ namespace AnimeRecs.Models
                 results.LikedByMalId[anime.MalId] = anime;
             }
 
-            results.OkCutoff = usersFilteredAnime.OkCutoff;
             results.RecommendedCutoff = usersFilteredAnime.GoodCutoff;
   
             foreach (RecommendorJson recommendor in m_recommendorCache.GetRecommendors())
@@ -85,31 +66,80 @@ namespace AnimeRecs.Models
                         Status = CompletionStatus.Completed // XXX: We don't really know if the recommendor completed it, but this is so that the calculator will take this anime into account
                     });
 
-                OneWayCompatibilityResults compatibilityResults = calculator.GetOneWayCompatibilityScore(
-                recommendedAnime: recommendorMalList, recommendee: user);
-                compatibilityScores.Add(new Tuple<RecommendorJson, OneWayCompatibilityResults>(recommendor, compatibilityResults));
+                //OneWayCompatibilityResults compatibilityResults = calculator.GetOneWayCompatibilityScore(
+                //recommendedAnime: recommendorMalList, recommendee: user);
+                //compatibilityScores.Add(new Tuple<RecommendorJson, OneWayCompatibilityResults>(recommendor, compatibilityResults));
+
+                List<IAnimeListEntry> recsLiked = recommendorMalList.Where(anime => usersFilteredAnime.GoodAnime.Contains(anime)).ToList();
+                List<IAnimeListEntry> recsNotLiked = recommendorMalList.Where(anime => usersFilteredAnime.OkAnime.Contains(anime) || usersFilteredAnime.BadAnime.Contains(anime)).ToList();
+
+                if (recsLiked.Count == 0 && recsNotLiked.Count == 0)
+                {
+                    continue; // Skip recommendors user has nothing in common with
+                }
+
+                //RecommendorCompatibilityJson thisRecommendorResults = new RecommendorCompatibilityJson()
+                //{
+                //    //NumRecommendations = recommendorMalList.Count,
+                //    //NumRecommendationsLiked = recsLiked.Count
+                //    RecommendedAnime = recommendorMalList,
+                //    RecommendedAnimeInCommon = recommendorMalList.Where(anime => usersFilteredAnime.GoodAnime.Contains(anime)
+                //        || usersFilteredAnime.OkAnime.Contains(anime) || usersFilteredAnime.BadAnime.Contains(anime)).ToList(),
+                //    RecommendedAnimeNotInCommon = recommendorMalList.Where(anime => !usersFilteredAnime.GoodAnime.Contains(anime)
+                //        && !usersFilteredAnime.OkAnime.Contains(anime) && !usersFilteredAnime.BadAnime.Contains(anime)).ToList(),
+                //    RecommendedAnimeLiked = recommendorMalList.Where(anime => usersFilteredAnime.GoodAnime.Contains(anime)).ToList(),
+                //    RecommendedAnimeNotliked = recommendorMalList.Where(anime => usersFilteredAnime.OkAnime.Contains(anime)
+                //        || usersFilteredAnime.BadAnime.Contains(anime)).ToList()
+                //};
+
+                if (recommendor.Name == "Bass00" || recommendor.Name == "auratrice")
+                {
+                    int blah = 3;
+                }
+
+                RecommendorCompatibility thisRecommendorResults = new RecommendorCompatibility(
+                    recommendedAnime: recommendorMalList,
+                    recommendedAnimeLiked: recommendorMalList.Where(anime => usersFilteredAnime.GoodAnime.Contains(anime)).ToList(),
+                    recommendedAnimeInCommon: recommendorMalList.Where(anime => usersFilteredAnime.GoodAnime.Contains(anime)
+                        || usersFilteredAnime.OkAnime.Contains(anime) || usersFilteredAnime.BadAnime.Contains(anime)).ToList());
+
+                recommendorResults.Add(new Tuple<RecommendorJson, RecommendorCompatibility>(recommendor, thisRecommendorResults));
             }
             
-            List<Tuple<RecommendorJson, OneWayCompatibilityResults>> sortedPrunedCompatibilityScores =
-                compatibilityScores
-                // Only count recommendors if the user has seen at least X of the animes that the recommendor recommends.
-                // Less than that and the compatibility rating may not be very accurate.
-                .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeInCommon.Count >= MinimumRecsSeen)
+            //List<Tuple<RecommendorJson, OneWayCompatibilityResults>> sortedPrunedCompatibilityScores =
+            //    compatibilityScores
+            //    // Only count recommendors if the user has seen at least X of the animes that the recommendor recommends.
+            //    // Less than that and the compatibility rating may not be very accurate.
+            //    .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeInCommon.Count >= MinimumRecsSeen)
 
-                // Only count recommendors if there is at least X recommendation that the user has not seen yet.
-                // Otherwise the recommendations are useless or maybe the recommendor is the same person!
+            //    // Only count recommendors if there is at least X recommendation that the user has not seen yet.
+            //    // Otherwise the recommendations are useless or maybe the recommendor is the same person!
+            //    .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeNotInCommon.Count >= MinimumRecsNotSeen)
+            //    .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.NormalizedCompatibilityScore)
+            //    .ToList();
+
+            List<Tuple<RecommendorJson, RecommendorCompatibility>> sortedPrunedCompatibilityScores =
+                recommendorResults
                 .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeNotInCommon.Count >= MinimumRecsNotSeen)
-                .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.NormalizedCompatibilityScore)
+                .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.Compatibility80PercentConfidenceInterval.Item1)
                 .ToList();
 
             results.BestMatches = new List<RecommendorMatch>();
             for (int i = 0; i < MaximumRecommendorsToReturn && i < sortedPrunedCompatibilityScores.Count; i++)
             {
                 RecommendorJson recommendor = sortedPrunedCompatibilityScores[i].Item1;
-                OneWayCompatibilityResults compatResults = sortedPrunedCompatibilityScores[i].Item2;
+                //OneWayCompatibilityResults compatResults = sortedPrunedCompatibilityScores[i].Item2;
+                //var match = new RecommendorMatch()
+                //{
+                //    CompatibilityRating = new decimal(Math.Round(compatResults.NormalizedCompatibilityScore * 100, 2)),
+                //    Recommendor = recommendor
+                //};
                 var match = new RecommendorMatch()
                 {
-                    CompatibilityRating = new decimal(Math.Round(compatResults.NormalizedCompatibilityScore * 100, 2)),
+                    //CompatibilityRating = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility90PercentConfidenceInterval.Item1 * 100, 2)),
+                    PercentLiked = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.FractionLiked * 100, 2)),
+                    LowerBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility80PercentConfidenceInterval.Item1 * 100, 2)),
+                    UpperBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility80PercentConfidenceInterval.Item2 * 100, 2)),
                     Recommendor = recommendor
                 };
 

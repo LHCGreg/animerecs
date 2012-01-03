@@ -31,11 +31,14 @@ else
     <ol class="matchList">
         @foreach (RecommendorMatch recommendor in Model.BestMatches)
         {
+            string percentLiked = (recommendor.PercentLiked / 100m).ToString("P");
+            string lowerBound = (recommendor.LowerBound / 100m).ToString("P");
+            string upperBound = (recommendor.UpperBound / 100m).ToString("P");
+            
             <li>
                 <div class="userhead">
                     <a href="@Html.Raw(recommendor.Recommendor.GetMalListUri())" class="recommendor">@recommendor.Recommendor.Name</a>'s
-                    recommendations <span class="compatibilityRating">(@((recommendor.CompatibilityRating / 100m).ToString("P"))
-                        compatible)</span>
+                    recommendations <span class="compatibilityRating">(@percentLiked (@lowerBound - @upperBound) compatible)</span>
                 </div>
                 <table class="recsTable">
                     <thead>

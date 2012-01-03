@@ -89,6 +89,7 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimeRecsConfiguration.cs" />
     <Compile Include="ApplicationGlobals.cs" />
     <Compile Include="Controllers\FindBestMatchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -97,6 +98,7 @@
     </Compile>
     <Compile Include="Models\Factories\IMyAnimeListApiFactory.cs" />
     <Compile Include="Models\Json\RecommendationResultsWithHtml.cs" />
+    <Compile Include="Models\RecommendorCompatibility.cs" />
     <Compile Include="Models\NoConcurrentFetchesOfSameUserMalApi.cs" />
     <Compile Include="Models\RecommendationFinder\IRecommendationFinder.cs" />
     <Compile Include="Models\Factories\IRecommendationFinderFactory.cs" />
@@ -128,7 +130,9 @@
     <Content Include="Scripts\libs\jquery.placeholder.min.js" />
     <Content Include="Scripts\libs\modernizr-2.0.6.min.js" />
     <Content Include="Scripts\script.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

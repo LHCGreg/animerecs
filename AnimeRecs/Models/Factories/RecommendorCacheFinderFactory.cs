@@ -10,8 +10,8 @@ namespace AnimeRecs.Models
         private IRecommendorCache m_cache;
         private bool m_disposeCache;
 
-        private int m_minimumRecsSeen = RecommendorCacheRecommendationFinder.DefaultMinimumRecsSeen;
-        public int MinimumRecsSeen { get { return m_minimumRecsSeen; } set { m_minimumRecsSeen = value; } }
+        //private int m_minimumRecsSeen = RecommendorCacheRecommendationFinder.DefaultMinimumRecsSeen;
+        //public int MinimumRecsSeen { get { return m_minimumRecsSeen; } set { m_minimumRecsSeen = value; } }
 
         private int m_minimumRecsNotSeen = RecommendorCacheRecommendationFinder.DefaultMinimumRecsNotSeen;
         public int MinimumRecsNotSeen { get { return m_minimumRecsNotSeen; } set { m_minimumRecsNotSeen = value; } }
@@ -29,7 +29,7 @@ namespace AnimeRecs.Models
         {
             return new RecommendorCacheRecommendationFinder(m_cache, false)
             {
-                MinimumRecsSeen = this.MinimumRecsSeen,
+                //MinimumRecsSeen = this.MinimumRecsSeen,
                 MinimumRecsNotSeen = this.MinimumRecsNotSeen,
                 MaximumRecommendorsToReturn = this.MaximumRecommendorsToReturn
             };

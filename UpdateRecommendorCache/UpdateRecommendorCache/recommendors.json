@@ -295,6 +295,10 @@
 		{
 			MalName: "Resinball",
 			RecommendedPercentile: 35
+		},
+		{
+			MalName: "BlitzkriegAL",
+			RecommendedPercentile: 35
 		}
 	]
 }

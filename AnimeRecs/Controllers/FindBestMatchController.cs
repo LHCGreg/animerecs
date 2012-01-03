@@ -77,7 +77,8 @@ namespace AnimeRecs.Controllers
                 }
 
                 resultsWithHtml.RecommendedCutoff = results.RecommendedCutoff;
-                resultsWithHtml.OkCutoff = results.OkCutoff;
+                //resultsWithHtml.OkCutoff = results.OkCutoff;
+                resultsWithHtml.OkCutoff = 5; // XXX
 
                 return Json(resultsWithHtml);
             }
