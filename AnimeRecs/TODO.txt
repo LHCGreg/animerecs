@@ -11,6 +11,8 @@ Remember username and cutoffs
 Randomize order of recommendors with same compatibility rating
 Specific user error message for when a MAL id is not found.
 Bug that shows up in Firefox: Uncheck checkbox, refresh, checkbox is unchecked but no textboxes.
+Left side is cut off on iPhone.
+Paging through results
 
 
 Normal
