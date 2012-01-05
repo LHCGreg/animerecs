@@ -59,34 +59,24 @@ namespace AnimeRecs
 
                 try
                 {
-                    api = new OfficialMalApi() { UserAgent = ConfigurationManager.AppSettings["MalApiUserAgentString"], TimeoutInMs = 5000 };
-
-                    int expirationHours = 0;
-                    int expirationMinutes = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpirationMinutes"]);
-                    int expirationSeconds = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpirationSeconds"]);
-                    TimeSpan animeListCacheExpiration = new TimeSpan(expirationHours, expirationMinutes, expirationSeconds);
-                    cachingApi = new CachingMyAnimeListApi(api, expiration: animeListCacheExpiration, ownApi: true);
-
+                    AppGlobals.Config = AnimeRecsConfiguration.FromConfig();
+                    
+                    api = new OfficialMalApi() { UserAgent = AppGlobals.Config.MalApiUserAgentString, TimeoutInMs = 5000 };
+                    cachingApi = new CachingMyAnimeListApi(api, expiration: AppGlobals.Config.AnimeListCacheExpiration, ownApi: true);
                     dosProtectionApi = new NoConcurrentFetchesOfSameUserMalApi(cachingApi);
 
-                    ApplicationGlobals.MalApiFactory = new SingleMyAnimeListApiFactory(dosProtectionApi);
+                    AppGlobals.MalApiFactory = new SingleMyAnimeListApiFactory(dosProtectionApi);
 
-                    string mongoConnectionString = ConfigurationManager.ConnectionStrings["Mongo"].ToString();
-                    MongoServer mongoServer = MongoServer.Create(mongoConnectionString);
-
-                    string dbName = ConfigurationManager.AppSettings["MongoDbName"];
-                    MongoDatabase recommendorDb = mongoServer.GetDatabase(dbName);
-
-                    string collectionName = ConfigurationManager.AppSettings["MongoRecommendorCacheCollectionName"];
-                    MongoCollection<RecommendorJson> recommendorCollection = recommendorDb.GetCollection<RecommendorJson>(collectionName);
+                    MongoServer mongoServer = MongoServer.Create(AppGlobals.Config.MongoConnectionString);
+                    MongoDatabase recommendorDb = mongoServer.GetDatabase(AppGlobals.Config.MongoDatabaseName);
+                    MongoCollection<RecommendorJson> recommendorCollection = recommendorDb.GetCollection<RecommendorJson>(AppGlobals.Config.MongoRecommendorCacheCollectionName);
 
                     recommendationFinderFactory = new RecommendorCacheFinderFactory(
                         new MongoRecommendorCache(recommendorCollection), disposeCache: true);
-                    //recommendationFinderFactory.MinimumRecsSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsInCommon"]);
-                    recommendationFinderFactory.MinimumRecsNotSeen = int.Parse(ConfigurationManager.AppSettings["MinimumRecommendationsNotInCommon"]);
-                    recommendationFinderFactory.MaximumRecommendorsToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendorsToReturn"]);
+                    recommendationFinderFactory.MinimumRecsNotSeen = AppGlobals.Config.MinimumRecommendationsNotInCommon;
+                    recommendationFinderFactory.MaximumRecommendorsToReturn = AppGlobals.Config.MaximumRecommendorsToReturn;
 
-                    ApplicationGlobals.RecommendationFinderFactory = recommendationFinderFactory;
+                    AppGlobals.RecommendationFinderFactory = recommendationFinderFactory;
                 }
                 catch (Exception)
                 {
@@ -112,14 +102,14 @@ namespace AnimeRecs
 
         protected void Application_End()
         {
-            if (ApplicationGlobals.MalApiFactory != null)
+            if (AppGlobals.MalApiFactory != null)
             {
-                ApplicationGlobals.MalApiFactory.Dispose();
+                AppGlobals.MalApiFactory.Dispose();
             }
 
-            if (ApplicationGlobals.RecommendationFinderFactory != null)
+            if (AppGlobals.RecommendationFinderFactory != null)
             {
-                ApplicationGlobals.RecommendationFinderFactory.Dispose();
+                AppGlobals.RecommendationFinderFactory.Dispose();
             }
         }
 

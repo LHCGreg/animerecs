@@ -6,9 +6,10 @@ using AnimeRecs.Models;
 
 namespace AnimeRecs
 {
-    public static class ApplicationGlobals
+    public static class AppGlobals
     {
         public static IMyAnimeListApiFactory MalApiFactory { get; set; }
         public static IRecommendationFinderFactory RecommendationFinderFactory { get; set; }
+        public static AnimeRecsConfiguration Config { get; set; }
     }
 }

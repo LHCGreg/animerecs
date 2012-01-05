@@ -1,6 +1,5 @@
 ﻿Critical
 --------
-Scale minimum number of recommendations in common with number of shows watched
 Logging in the web app
 More accurate status. "Completed but not rated" should not be "unwatched". Neither should anime that is currently being watched.
 

@@ -6,7 +6,6 @@
 	
 	// Default values -- should match up with HTML
 	var reccomendedDefault = 8;
-	var okayDefault = 7;
 	
 	// Activate jQuery plugins
 	$('input[placeholder], textarea[placeholder]').placeholder();
@@ -15,7 +14,6 @@
 	var main = $("#main");
 	var field_username = $(".datainput .username");
 	var field_good = $(".datainput .good");
-	var field_okay = $(".datainput .okay");
 	var gobutton = $(".datainput .go");
 	var results = $("#results");
 	var scores = $(".scores");
@@ -48,16 +46,12 @@
 		var good = parseInt(field_good.val());
 		if(isNaN(good))
 			good = reccomendedDefault;
-			
-		var okay = parseInt(field_okay.val());
-		if(isNaN(okay))
-			okay = okayDefault;
 		
 		if(username) {
 			if(autoscoretoggle.attr("checked"))
-				app.displayUserdata(username, undefined, undefined);
+				app.displayUserdata(username, undefined);
 			else
-				app.displayUserdata(username, good, okay);
+				app.displayUserdata(username, good);
 		}
 	}
 	
@@ -79,7 +73,7 @@
 			results.html("");
 		}
 		
-		this.displayUserdata = function(username, rec, ok){
+		this.displayUserdata = function(username, rec){
 			if(waitingForResponse)
 				return;
 			
@@ -87,7 +81,7 @@
 			gobutton.addClass("loading");
 			results.html("");
 			
-			var cancelGetData = getData(username, rec, ok, function(status, result){
+			var cancelGetData = getData(username, rec, function(status, result){
 				waitingForResponse = false;
 				gobutton.removeClass("loading");
 				
@@ -99,8 +93,6 @@
 					
 					if(result.RecommendedCutoff != null)
 						field_good.val(result.RecommendedCutoff);
-					if(result.OkCutoff != null)
-						field_okay.val(result.OkCutoff);
 					
 					
 					results.html(result.Html);
@@ -121,12 +113,12 @@
 		};
 		
 		
-		function getData(username, rec, ok, callback){
+		function getData(username, rec, callback){
 			
 			var data;
 			
-			if (rec != undefined && ok != undefined) { // Specified scores
-				data = { "MalName" : username, "GoodCutoff": rec, "OkCutoff": ok };
+			if (rec != undefined) { // Specified scores
+				data = { "MalName" : username, "GoodCutoff": rec };
 			} else { // figure out scores
 				data = { "MalName" : username };
 			}

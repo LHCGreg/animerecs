@@ -9,6 +9,8 @@ namespace AnimeRecs.Models
     public class RecommendorMatch
     {
         public RecommendorJson Recommendor { get; set; }
+        public int NumRecsLiked { get; set; }
+        public int NumRecsConsidered { get; set; }
         public decimal PercentLiked { get; set; }
         public decimal LowerBound { get; set; }
         public decimal UpperBound { get; set; }

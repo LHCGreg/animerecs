@@ -19,31 +19,19 @@ namespace AnimeRecs.Controllers
         private IRecommendationFinderFactory m_finderFactory;
         private IMyAnimeListApiFactory m_malApiFactory;
         private double m_defaultGoodPercentile;
-        private double m_defaultBadPercentile;
 
         public FindBestMatchController()
-            : this(ApplicationGlobals.RecommendationFinderFactory, ApplicationGlobals.MalApiFactory, GetDefaultGoodPercentile(), GetDefaultBadPercentile())
+            : this(AppGlobals.RecommendationFinderFactory, AppGlobals.MalApiFactory, (double)AppGlobals.Config.DefaultLikedPercent)
         {
             ;
         }
-
-        private static double GetDefaultGoodPercentile()
-        {
-            return double.Parse(ConfigurationManager.AppSettings["DefaultGoodPercentile"], CultureInfo.InvariantCulture);
-        }
-
-        private static double GetDefaultBadPercentile()
-        {
-            return double.Parse(ConfigurationManager.AppSettings["DefaultBadPercentile"], CultureInfo.InvariantCulture);
-        }
         
         public FindBestMatchController(IRecommendationFinderFactory finderFactory, IMyAnimeListApiFactory malApiFactory,
-            double defaultGoodPercentile, double defaultBadPercentile)
+            double defaultGoodPercentile)
         {
             m_finderFactory = finderFactory;
             m_malApiFactory = malApiFactory;
             m_defaultGoodPercentile = defaultGoodPercentile;
-            m_defaultBadPercentile = defaultBadPercentile;
         }
 
         [HttpPost]
@@ -51,7 +39,6 @@ namespace AnimeRecs.Controllers
         {
             if (!ModelState.IsValid)
             {
-                HttpContext.Response.StatusCode = 400;
                 // TODO: Log
                 return new HttpStatusCodeResult(400);
             }
@@ -77,8 +64,6 @@ namespace AnimeRecs.Controllers
                 }
 
                 resultsWithHtml.RecommendedCutoff = results.RecommendedCutoff;
-                //resultsWithHtml.OkCutoff = results.OkCutoff;
-                resultsWithHtml.OkCutoff = 5; // XXX
 
                 return Json(resultsWithHtml);
             }
@@ -86,16 +71,17 @@ namespace AnimeRecs.Controllers
 
         private IGoodOkBadFilter GetGoodOkBadFilter(AnimeRecsInputJson input)
         {
+            // The distinction between "disliked" and "ok" doesn't matter, all we care about is "liked" and "not liked".
             if (input.GoodCutoff.HasValue)
             {
-                return new CutoffGoodOkBadFilter() { GoodCutoff = input.GoodCutoff.Value, OkCutoff = input.OkCutoff.Value };
+                return new CutoffGoodOkBadFilter() { GoodCutoff = input.GoodCutoff.Value, OkCutoff = input.GoodCutoff.Value - 1 };
             }
             else if (input.GoodPercentile.HasValue)
             {
                 return new PercentileGoodOkBadFilter()
                 {
                     RecommendedPercentile = decimal.ToDouble(input.GoodPercentile.Value),
-                    DislikedPercentile = decimal.ToDouble(input.DislikedPercentile.Value)
+                    DislikedPercentile = 0
                 };
             }
             else
@@ -103,7 +89,7 @@ namespace AnimeRecs.Controllers
                 return new PercentileGoodOkBadFilter()
                 {
                     RecommendedPercentile = m_defaultGoodPercentile,
-                    DislikedPercentile = m_defaultBadPercentile
+                    DislikedPercentile = 0
                 };
             }
         }

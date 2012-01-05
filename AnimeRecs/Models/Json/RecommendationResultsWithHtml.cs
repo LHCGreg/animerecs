@@ -10,6 +10,5 @@ namespace AnimeRecs.Models
         public string Html { get; set; }
 
         public decimal? RecommendedCutoff { get; set; }
-        public decimal? OkCutoff { get; set; }
     }
 }
