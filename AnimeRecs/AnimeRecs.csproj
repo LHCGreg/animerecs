@@ -124,7 +124,6 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
-    <None Include="TODO.txt" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\libs\jquery-1.7.1.min.js" />
     <Content Include="Scripts\libs\jquery.placeholder.min.js" />
