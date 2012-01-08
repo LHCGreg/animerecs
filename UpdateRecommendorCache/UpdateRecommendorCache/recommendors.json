@@ -299,6 +299,10 @@
 		{
 			MalName: "BlitzkriegAL",
 			RecommendedPercentile: 35
+		},
+		{
+			MalName: "mandralyne",
+			RecommendedPercentile: 35
 		}
 	]
 }
