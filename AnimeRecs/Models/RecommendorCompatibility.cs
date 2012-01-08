@@ -20,6 +20,7 @@ namespace AnimeRecs.Models
 
         public Tuple<double, double> Compatibility80PercentConfidenceInterval { get; set; }
         public Tuple<double, double> Compatibility90PercentConfidenceInterval { get; set; }
+        public Tuple<double, double> Compatibility92PercentConfidenceInterval { get; set; }
         public Tuple<double, double> Compatibility95PercentConfidenceInterval { get; set; }
 
         public double FractionLiked { get { return ((double)RecommendedAnimeLiked.Count) / RecommendedAnimeInCommon.Count; } }
@@ -38,6 +39,7 @@ namespace AnimeRecs.Models
 
             Compatibility80PercentConfidenceInterval = GetCompatibility80PercentConfidenceInterval();
             Compatibility90PercentConfidenceInterval = GetCompatibility90PercentConfidenceInterval();
+            Compatibility92PercentConfidenceInterval = GetCompatibility92PercentConfidenceInteval();
             Compatibility95PercentConfidenceInterval = GetCompatibility95PercentConfidenceInterval();
         }
 
@@ -49,6 +51,11 @@ namespace AnimeRecs.Models
         public Tuple<double, double> GetCompatibility90PercentConfidenceInterval()
         {
             return GetCompatibilityConfidenceInterval(1.645);
+        }
+
+        public Tuple<double, double> GetCompatibility92PercentConfidenceInteval()
+        {
+            return GetCompatibilityConfidenceInterval(1.75);
         }
 
         public Tuple<double, double> GetCompatibility95PercentConfidenceInterval()

@@ -86,7 +86,7 @@ namespace AnimeRecs.Models
             List<Tuple<RecommendorJson, RecommendorCompatibility>> sortedPrunedCompatibilityScores =
                 recommendorResults
                 .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeNotInCommon.Count >= MinimumRecsNotSeen)
-                .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.Compatibility80PercentConfidenceInterval.Item1)
+                .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.Compatibility95PercentConfidenceInterval.Item1)
                 .ToList();
 
             results.BestMatches = new List<RecommendorMatch>();
@@ -99,8 +99,8 @@ namespace AnimeRecs.Models
                     NumRecsLiked = sortedPrunedCompatibilityScores[i].Item2.RecommendedAnimeLiked.Count,
                     NumRecsConsidered = sortedPrunedCompatibilityScores[i].Item2.RecommendedAnimeInCommon.Count,
                     PercentLiked = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.FractionLiked * 100, 2)),
-                    LowerBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility80PercentConfidenceInterval.Item1 * 100, 2)),
-                    UpperBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility80PercentConfidenceInterval.Item2 * 100, 2)),
+                    LowerBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility95PercentConfidenceInterval.Item1 * 100, 2)),
+                    UpperBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility95PercentConfidenceInterval.Item2 * 100, 2)),
                     Recommendor = recommendor
                 };
 
