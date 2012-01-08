@@ -16,6 +16,7 @@ namespace AnimeRecs
         public int MaximumRecommendorsToReturn { get; set; }
         public decimal DefaultLikedPercent { get; set; }
         public string MalApiUserAgentString { get; set; }
+        public string OwnerMalLink { get; set; }
 
         public string MongoConnectionString { get; set; }
 
@@ -38,6 +39,7 @@ namespace AnimeRecs
             config.MaximumRecommendorsToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendorsToReturn"], CultureInfo.InvariantCulture);
             config.DefaultLikedPercent = decimal.Parse(ConfigurationManager.AppSettings["DefaultGoodPercentile"], CultureInfo.InvariantCulture);
             config.MalApiUserAgentString = ConfigurationManager.AppSettings["MalApiUserAgentString"];
+            config.OwnerMalLink = ConfigurationManager.AppSettings["OwnerMalLink"];
 
             return config;
         }

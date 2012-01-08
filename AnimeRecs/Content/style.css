@@ -472,6 +472,15 @@ ol.matchList li .recsTable a:hover, ol.matchList li .recsTable a:active {
 	text-decoration: underline;
 }
 
+.footer a {
+    color: #3a6dad;
+	text-decoration: none;
+}
+
+.footer a:hover, .footer a:active {
+    color: #5478a6;
+	text-decoration: underline;
+}
 
 /* =============================================================================
    Non-semantic helper classes

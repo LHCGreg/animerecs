@@ -1,4 +1,5 @@
-﻿@model AnimeRecs.Models.ViewModels.HomeViewModel
+﻿@using AnimeRecs;
+@model AnimeRecs.Models.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Anime Recommendation Finder";
 }
@@ -32,6 +33,7 @@
     </div>
     <div id="results">
     </div>
+    <div class="footer">Want to help out by being a recommendor? Have a bug report or suggestion? <a href="@AppGlobals.Config.OwnerMalLink"> Message me on MAL.</a></div>
 </div>
 <!-- #main -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
