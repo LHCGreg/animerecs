@@ -276,6 +276,7 @@ h2, h3{font-weight:normal;}
 
 
 .datainput {
+	margin-bottom: 10px;
 }
 
 .datainput .usernamesubmit {
