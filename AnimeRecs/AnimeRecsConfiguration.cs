@@ -17,6 +17,7 @@ namespace AnimeRecs
         public decimal DefaultLikedPercent { get; set; }
         public string MalApiUserAgentString { get; set; }
         public string OwnerMalLink { get; set; }
+        public string HtmlBeforeBodyEnd { get; set; }
 
         public string MongoConnectionString { get; set; }
 
@@ -40,6 +41,15 @@ namespace AnimeRecs
             config.DefaultLikedPercent = decimal.Parse(ConfigurationManager.AppSettings["DefaultGoodPercentile"], CultureInfo.InvariantCulture);
             config.MalApiUserAgentString = ConfigurationManager.AppSettings["MalApiUserAgentString"];
             config.OwnerMalLink = ConfigurationManager.AppSettings["OwnerMalLink"];
+
+            if (ConfigurationManager.AppSettings["HtmlBeforeBodyEnd"] != null)
+            {
+                config.HtmlBeforeBodyEnd = ConfigurationManager.AppSettings["HtmlBeforeBodyEnd"];
+            }
+            else
+            {
+                config.HtmlBeforeBodyEnd = "";
+            }
 
             return config;
         }
