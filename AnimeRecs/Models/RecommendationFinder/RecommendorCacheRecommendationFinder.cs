@@ -83,10 +83,14 @@ namespace AnimeRecs.Models
                 recommendorResults.Add(new Tuple<RecommendorJson, RecommendorCompatibility>(recommendor, thisRecommendorResults));
             }
 
+            DateTime easternTimeNow = DateTime.UtcNow.Subtract(new TimeSpan(hours: 4, minutes: 0, seconds: 0));
+            bool isAprilFools = easternTimeNow.Month == 4 && easternTimeNow.Day == 1;
+            
             List<Tuple<RecommendorJson, RecommendorCompatibility>> sortedPrunedCompatibilityScores =
                 recommendorResults
                 .Where(recommendorAndResults => recommendorAndResults.Item2.RecommendedAnimeNotInCommon.Count >= MinimumRecsNotSeen)
-                .OrderByDescending(recommendorAndResults => recommendorAndResults.Item2.Compatibility95PercentConfidenceInterval.Item1)
+                .OrderByDescending(recommendorAndResults => isAprilFools && recommendorAndResults.Item1.Name == "LordHighCaptain" ? 1 : 0)
+                .ThenByDescending(recommendorAndResults => recommendorAndResults.Item2.Compatibility95PercentConfidenceInterval.Item1)
                 .ToList();
 
             results.BestMatches = new List<RecommendorMatch>();
@@ -103,6 +107,13 @@ namespace AnimeRecs.Models
                     UpperBound = new decimal(Math.Round(sortedPrunedCompatibilityScores[i].Item2.Compatibility95PercentConfidenceInterval.Item2 * 100, 2)),
                     Recommendor = recommendor
                 };
+
+                if (isAprilFools && recommendor.Name == "LordHighCaptain")
+                {
+                    match.PercentLiked = 9000;
+                    match.LowerBound = 9000;
+                    match.UpperBound = 9000;
+                }
 
                 results.BestMatches.Add(match);
             }
