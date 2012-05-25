@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7463E78-C746-4D37-A869-759FB38B247B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnimeRecs.DAL</RootNamespace>
+    <AssemblyName>AnimeRecs.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Security">
+      <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MalListEntryJoined.cs" />
+    <Compile Include="mal_anime.cs" />
+    <Compile Include="mal_anime_type.cs" />
+    <Compile Include="mal_list_entry.cs" />
+    <Compile Include="mal_list_entry_status.cs" />
+    <Compile Include="mal_user.cs" />
+    <Compile Include="PetaPoco.cs" />
+    <Compile Include="PgMalDataLoader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="row_count.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateDb.sql" />
+    <Content Include="InitDb.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
+      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
+      <Name>AnimeRecs.MalApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
+      <Project>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</Project>
+      <Name>AnimeRecs.RecEngine.MAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj">
+      <Project>{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}</Project>
+      <Name>AnimeRecs.RecEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

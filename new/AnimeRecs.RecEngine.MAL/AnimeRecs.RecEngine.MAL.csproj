@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnimeRecs.RecEngine.MAL</RootNamespace>
+    <AssemblyName>AnimeRecs.RecEngine.MAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C5, Version=1.1.1.0, Culture=neutral, PublicKeyToken=06a1b38866503b69, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyMediaLite\C5.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=2011.4.17.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyMediaLite\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMediaLite, Version=3.0.4524.38217, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyMediaLite\MyMediaLite.dll</HintPath>
+    </Reference>
+    <Reference Include="SVM, Version=1.99.4524.38185, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MyMediaLite\SVM.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilterHelpers.cs" />
+    <Compile Include="MalAnime.cs" />
+    <Compile Include="MalAnimeRecsRecSource.cs" />
+    <Compile Include="MalAverageScoreRecSource.cs" />
+    <Compile Include="MalListEntry.cs" />
+    <Compile Include="MalMostPopularRecSource.cs" />
+    <Compile Include="MalMyMediaLiteRatingPredictionRecSource.cs" />
+    <Compile Include="MalPercentageRatingClassifier.cs" />
+    <Compile Include="MalTrainingData.cs" />
+    <Compile Include="MalUserListEntries.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
+      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
+      <Name>AnimeRecs.MalApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj">
+      <Project>{2B67526A-EBD8-43F6-8A65-26F64453C0BD}</Project>
+      <Name>AnimeRecs.RecEngine.MyMediaLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj">
+      <Project>{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}</Project>
+      <Name>AnimeRecs.RecEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,21 @@
+AnimeRecs.MalApi copyright 2012 Greg Najda, licensed under the Apache License 2.0 (AnimeRecs.MalApi/LICENSE.txt).
+
+All other code copyright 2012 Greg Najda, licensed under the GPL version 3 (<project name>/COPYING.txt).
+
+
+AnimeRecs uses the following libraries:
+
+
+NDesk.Options is copyright NDesk.org and is licensed under the MIT/X11 license (licenses/NDesk_license.txt).
+
+Common.Logging is copyright by the Common.Logging developers and is licensed under the Apache License 2.0 (licenses/Common_Logging_license.txt).
+
+NLog is copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net> and is licensed under the BSD license (licenses/NLog_license.txt).
+
+Npgsql is copyright (c) 2002-2007, The Npgsql Development Team. The license for Npgsql is in licenses/Npgsql_license.txt.
+
+Petapoco is Copyright © 2011 Topten Software and is licensed under the Apache License 2.0 (licenses/Common_Logging_license.txt).
+
+MyMediaLite is Copyright (C) 2011, 2012 Zeno Gantner, Copyright (C) 2010 Zeno Gantner, Steffen Rendle, Christoph Freudenthaler and is licensed under the GPL version 3 (licenses/mymedialite_license.txt).
+
+MyMediaLite uses C5 (see licenses/C5_license.txt), MathNet.Numerics (see licenses/MathNet.Numerics.License.txt), and SVM.NET (see licesnes/SVMNET_license.txt), a port of LIBSVM (see licenses/libsvm_license.txt).
