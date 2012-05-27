@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Input classifier for basic input.
+    /// </summary>
     public class BasicInputForUserPercentageClassifier : PercentageRatingClassifier<BasicInputForUser>
     {
         public BasicInputForUserPercentageClassifier(double goodPercentage)

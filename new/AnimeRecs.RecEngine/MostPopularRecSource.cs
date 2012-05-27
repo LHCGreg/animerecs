@@ -5,6 +5,12 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Non-personalized recommendation source that recommends the most popular items. Each time that an item is in the training data counts
+    /// towards its popularity.
+    /// </summary>
+    /// <typeparam name="TTrainingData"></typeparam>
+    /// <typeparam name="TTrainingUserInput"></typeparam>
     public class MostPopularRecSource<TTrainingData, TTrainingUserInput>
         : IRecommendationSource<IInputForUser, MostPopularRecommendation>, ITrainable<TTrainingData>,
         ITrainableRecSource<TTrainingData, IInputForUser, MostPopularRecommendation>
@@ -42,7 +48,6 @@ namespace AnimeRecs.RecEngine
             List<MostPopularRecommendation> recs = new List<MostPopularRecommendation>();
             for (int i = 0; recs.Count < numRecommendationsToTryToGet && i < m_numRatingsForEachItem.Count; i++)
             {
-                // Only recommend items the user has not already rated
                 if (userRatings.ItemIsOkToRecommend(m_numRatingsForEachItem[i].Item1))
                 {
                     recs.Add(new MostPopularRecommendation(m_numRatingsForEachItem[i].Item1, popularityRank: i + 1,

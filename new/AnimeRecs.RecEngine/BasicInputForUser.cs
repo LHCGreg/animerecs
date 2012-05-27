@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Simple user data containing only a set of item ratings.
+    /// </summary>
     public class BasicInputForUser : IBasicInputForUser
     {
         public IDictionary<int, float> Ratings { get; private set; }
@@ -19,6 +22,11 @@ namespace AnimeRecs.RecEngine
             Ratings = ratings;
         }
 
+        /// <summary>
+        /// Returns true if the user has not rated the item.
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
         public bool ItemIsOkToRecommend(int itemId)
         {
             return !Ratings.ContainsKey(itemId);

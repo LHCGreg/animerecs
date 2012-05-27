@@ -5,6 +5,25 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Recommendation source using the algorithm used by www.animerecs.com. 
+    /// </summary>
+    /// <typeparam name="TUnderlyingTrainingData"></typeparam>
+    /// <typeparam name="TTrainingDataUserRatings"></typeparam>
+    /// <typeparam name="TInput"></typeparam>
+    /// <remarks>Takes N users as input. These users are called "recommenders". The recommenders' ratings are divided into liked and
+    /// unliked items. The liked items are considered to be recommendations.
+    /// 
+    /// To get recommendations for a user, go through all recommenders and calculate
+    /// (NumRecommendationsLiked / (NumRecommendationsLiked + NumRecommendationsNotLiked)).
+    /// That is called the user's compatibility rating with that recommender.
+    /// Calculate a 95% confidence interval of the compatibility rating.
+    /// Sort recommenders by the low endpoint of the confidence interval. This has the effect of giving more weight to recommendations
+    /// that are more certain.
+    /// Go through the sorted list of recommenders and recommend each recommendation in turn. The caller may supply a function
+    /// for ordering the recommendations by a particular user. One way of ordering might be to order by the recommender's rating
+    /// then by the item's average rating.
+    /// </remarks>
     public class AnimeRecsRecSource<TUnderlyingTrainingData, TTrainingDataUserRatings, TInput>
         : IRecommendationSource<AnimeRecsInput<TInput>, AnimeRecsRecommendation>,
         ITrainable<AnimeRecsTrainingData<TUnderlyingTrainingData, TTrainingDataUserRatings>>,
@@ -96,7 +115,6 @@ namespace AnimeRecs.RecEngine
 
                 foreach (int rec in itemIdsRecommendedByThisUser)
                 {
-                    // Only give it as a recommendation if the user has not already seen it
                     if (!recIds.Contains(rec) && input.ItemIsOkToRecommend(rec))
                     {
                         recs.Add(new AnimeRecsRecommendation(recommender, rec));

@@ -7,6 +7,10 @@ using MyMediaLite.RatingPrediction;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Recommendation source that uses a MyMediaLite rating prediction algorithm.
+    /// </summary>
+    /// <typeparam name="TRecommender"></typeparam>
     public class MyMediaLiteRatingPredictionRecSource<TRecommender>
         : IRecommendationSource<IBasicInputForUser, RatingPredictionRecommendation>, ITrainable<IBasicTrainingData<IBasicInputForUser>>
         where TRecommender : RatingPredictor, IFoldInRatingPredictor

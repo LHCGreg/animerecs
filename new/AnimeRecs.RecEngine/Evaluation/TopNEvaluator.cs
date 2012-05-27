@@ -5,6 +5,10 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine.Evaluation
 {
+    /// <summary>
+    /// Evalutes the effectiveness of a recommendation source by removing some items from the input for each user and seeing
+    /// if the recomendation source recommends an item that was removed.
+    /// </summary>
     public class TopNEvaluator
     {
         public TopNEvaluator()
@@ -19,6 +23,20 @@ namespace AnimeRecs.RecEngine.Evaluation
             set { m_fractionOfInputToSetAsideForEvaluation = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <typeparam name="TRecommendation"></typeparam>
+        /// <param name="recSource">A recommendation source that has already been trained.</param>
+        /// <param name="users">The users to use in evaluation by getting recommendations for them.</param>
+        /// <param name="goodBadClassifier">Classifier to classify input for a user into liked items and unliked items. If an
+        /// item was left out of the input passed to the recommendation source and it gets recommended, this determines whether
+        /// it gets considered a true positive or a false positive.</param>
+        /// <param name="inputDivisionFunc">Takes a user's classified input and a fraction to set aside (.2 for 20%) and returns
+        /// a new user input object and the items that were set aside.</param>
+        /// <param name="numRecsToTryToGet">Number of recommendations to try to get for each user.</param>
+        /// <returns></returns>
         public EvaluationResults Evaluate<TInput, TRecommendation>(
             IRecommendationSource<TInput, TRecommendation> recSource,
             ICollection<TInput> users,
@@ -26,6 +44,7 @@ namespace AnimeRecs.RecEngine.Evaluation
             Func<ClassifiedUserInput<TInput>, double, ItemsForInputAndEvaluation<TInput>> inputDivisionFunc,
             int numRecsToTryToGet)
 
+            where TInput : IInputForUser
             where TRecommendation : IRecommendation
         {
             EvaluationResults results = new EvaluationResults()
@@ -73,6 +92,7 @@ namespace AnimeRecs.RecEngine.Evaluation
             Func<ClassifiedUserInput<TInput>, double, ItemsForInputAndEvaluation<TInput>> inputDivisionFunc,
             int numRecsToTryToGet)
 
+            where TInput : IInputForUser
             where TRecommendation : IRecommendation
         {
             // Divide into liked and unliked.

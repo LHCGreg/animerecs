@@ -5,6 +5,11 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Non-personalized recommendation source returning items that have the highest average score.
+    /// </summary>
+    /// <typeparam name="TTrainingData"></typeparam>
+    /// <typeparam name="TTrainingDataUserRatings"></typeparam>
     public class AverageScoreRecSource<TTrainingData, TTrainingDataUserRatings>
         : IRecommendationSource<IInputForUser, AverageScoreRecommendation>, ITrainable<TTrainingData>,
         ITrainableRecSource<TTrainingData, IInputForUser, AverageScoreRecommendation>
@@ -58,11 +63,13 @@ namespace AnimeRecs.RecEngine
             List<AverageScoreRecommendation> recs = new List<AverageScoreRecommendation>();
             for (int i = 0; recs.Count < numRecommendationsToTryToGet && i < m_itemIdNumRatingsAndAverage.Count; i++)
             {
-                // Only recommend items the user has not already rated
                 if (userRatings.ItemIsOkToRecommend(m_itemIdNumRatingsAndAverage[i].Item1))
                 {
-                    recs.Add(new AverageScoreRecommendation(m_itemIdNumRatingsAndAverage[i].Item1,
-                        m_itemIdNumRatingsAndAverage[i].Item2, m_itemIdNumRatingsAndAverage[i].Item3));
+                    recs.Add(new AverageScoreRecommendation(
+                        itemId: m_itemIdNumRatingsAndAverage[i].Item1,
+                        numRatings: m_itemIdNumRatingsAndAverage[i].Item2,
+                        averageScore: m_itemIdNumRatingsAndAverage[i].Item3)
+                    );
                 }
             }
 

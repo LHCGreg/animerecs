@@ -7,7 +7,7 @@ namespace AnimeRecs.RecEngine
 {
     public interface ITrainableRecSource<in TTrainingData, in TInput, out TRecommendation>
         : ITrainable<TTrainingData>, IRecommendationSource<TInput, TRecommendation>
-
+        where TInput : IInputForUser
         where TRecommendation : IRecommendation
     {
     }

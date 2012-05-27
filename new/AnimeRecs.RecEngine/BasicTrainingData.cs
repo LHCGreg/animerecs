@@ -5,6 +5,10 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
+    /// <summary>
+    /// Simple training data containing only a set of users that each have a set of item ratings.
+    /// </summary>
+    /// <typeparam name="TTrainingUserInput"></typeparam>
     public class BasicTrainingData<TTrainingUserInput> : IBasicTrainingData<TTrainingUserInput>
         where TTrainingUserInput : IBasicInputForUser
     {
