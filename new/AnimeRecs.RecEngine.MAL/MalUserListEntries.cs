@@ -13,21 +13,21 @@ namespace AnimeRecs.RecEngine.MAL
         public IDictionary<int, MalListEntry> Entries { get; private set; }
         public string MalUsername { get; private set; }
 
-        public IDictionary<int, MalAnime> Animes { get; private set; }
+        public IDictionary<int, MalAnime> AnimesEligibleForRecommendation { get; private set; }
 
         ICollection<int> IInputForUserWithItemIds.ItemIds { get { return Entries.Keys; } }
 
         public MalUserListEntries(IDictionary<int, MalListEntry> ratings, IDictionary<int, MalAnime> animes, string malUsername)
         {
             Entries = ratings;
-            Animes = animes;
+            AnimesEligibleForRecommendation = animes;
             MalUsername = malUsername;
         }
 
         public MalUserListEntries(MalUserLookupResults apiLookup, IDictionary<int, MalAnime> animes)
         {
             MalUsername = apiLookup.CanonicalUserName;
-            Animes = animes;
+            AnimesEligibleForRecommendation = animes;
             Entries = new Dictionary<int, MalListEntry>();
 
             foreach (MyAnimeListEntry entry in apiLookup.AnimeList)
@@ -60,7 +60,7 @@ namespace AnimeRecs.RecEngine.MAL
         public bool ItemIsOkToRecommend(int itemId)
         {
             return (!Entries.ContainsKey(itemId) || Entries[itemId].Status == CompletionStatus.PlanToWatch)
-                && Animes[itemId].Type != MalAnimeType.Special;
+                && AnimesEligibleForRecommendation[itemId].Type != MalAnimeType.Special;
         }
 
         public bool ContainsItem(int itemId)
@@ -110,7 +110,7 @@ namespace AnimeRecs.RecEngine.MAL
 
             return new ItemsForInputAndEvaluation<MalUserListEntries>()
             {
-                ItemsForInput = new MalUserListEntries(entriesForInput, classifiedInput.Liked.Animes, classifiedInput.Liked.MalUsername),
+                ItemsForInput = new MalUserListEntries(entriesForInput, classifiedInput.Liked.AnimesEligibleForRecommendation, classifiedInput.Liked.MalUsername),
                 LikedItemsForEvaluation = likedAnimesForEvaluation,
                 UnlikedItemsForEvaluation = unlikedAnimesForEvaluation
             };

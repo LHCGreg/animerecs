@@ -65,9 +65,9 @@ namespace AnimeRecs.RecEngine.MAL
             }
 
             return new ClassifiedUserInput<MalUserListEntries>(
-                liked: new MalUserListEntries(ratings: likedAnimes, animes: inputForUser.Animes, malUsername: inputForUser.MalUsername),
-                notLiked: new MalUserListEntries(ratings: unlikedAnimes, animes: inputForUser.Animes, malUsername: inputForUser.MalUsername),
-                other: new MalUserListEntries(ratings: otherAnimes, animes: inputForUser.Animes, malUsername: inputForUser.MalUsername)
+                liked: new MalUserListEntries(ratings: likedAnimes, animes: inputForUser.AnimesEligibleForRecommendation, malUsername: inputForUser.MalUsername),
+                notLiked: new MalUserListEntries(ratings: unlikedAnimes, animes: inputForUser.AnimesEligibleForRecommendation, malUsername: inputForUser.MalUsername),
+                other: new MalUserListEntries(ratings: otherAnimes, animes: inputForUser.AnimesEligibleForRecommendation, malUsername: inputForUser.MalUsername)
             );
         }
 

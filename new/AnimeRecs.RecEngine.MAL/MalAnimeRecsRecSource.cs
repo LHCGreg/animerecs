@@ -53,7 +53,7 @@ namespace AnimeRecs.RecEngine.MAL
                     }
                 }
 
-                MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].Animes, trainingData.Users[userId].MalUsername);
+                MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].AnimesEligibleForRecommendation, trainingData.Users[userId].MalUsername);
                 filteredUsers[userId] = filteredUser;
             }
 

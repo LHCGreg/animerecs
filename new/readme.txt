@@ -17,3 +17,11 @@ AnimeRecs.FreshenMalDatabase: Program that gets N users that are not in the Post
 AnimeRecs.GetMalRecs: Program for training a recommendation source with the PostgreSQL database, getting a given MAL user's anime list, and getting recommendations for that user. Useful for testing out a recommendation source and seeing what recommendations it returns.
 
 AnimeRecs.MalEvaluationRunner: Program for evaluating MAL recommendation sources.
+
+AnimeRecs.RecService: Service that listens on a socket and responds to requests for anime recommendations and commands to load/unload recommendation sources.
+
+AnimeRecs.RecService.DTO: Definitions of objects passed between the rec service client and server.
+
+AnimeRecs.RecService.ClientLib: Client library for interacting with AnimeRecs.RecService.
+
+AnimeRecs.RecService.Client: Command-line rec service client application for controlling a running rec service and testing recommendation sources.
