@@ -10,10 +10,25 @@ namespace AnimeRecs.RecService.Client
     {
         static void Main(string[] args)
         {
-            using (AnimeRecsClient client = new AnimeRecsClient(5541))
+            CommandLineArgs commandLine = new CommandLineArgs(args);
+
+            if (commandLine.ShowHelp)
             {
-                string pingResponse = client.Ping("Ping Ping");
-                Console.WriteLine(pingResponse);
+                commandLine.DisplayHelp(Console.Out);
+                return;
+            }
+            
+            using (AnimeRecsClient client = new AnimeRecsClient(commandLine.PortNumber))
+            {
+                switch (commandLine.Operation)
+                {
+                    case ClientOperation.Ping:
+                        string pingResponse = client.Ping(commandLine.PingMessage);
+                        Console.WriteLine("The service replied: {0}", pingResponse);
+                        break;
+                    default:
+                        throw new Exception(string.Format("Oops, missed an operation: {0}", commandLine.Operation));
+                }
             }
         }
     }
