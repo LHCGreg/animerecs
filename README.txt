@@ -1,4 +1,7 @@
-﻿To build and run the site for development, you will need to install the following:
+﻿A new engine in development under /new. The goal is to have pluggable recommendation sources to make it as easy as possible for third parties to write and test recommendation algorithms. The current engine is extremely coupled to the animerecs algorithm.
+
+
+To build and run the site for development, you will need to install the following:
 
 - Microsoft Visual Web Developer 2010 Express
 - Microsoft Visual C# 2010 Express
