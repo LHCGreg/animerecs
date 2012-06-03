@@ -11,6 +11,10 @@ namespace AnimeRecs.RecEngine.MAL
     public class MalUserListEntries : IInputForUser, IInputForUserWithItemIds
     {
         public IDictionary<int, MalListEntry> Entries { get; private set; }
+        
+        /// <summary>
+        /// Can be null if not known.
+        /// </summary>
         public string MalUsername { get; private set; }
 
         public IDictionary<int, MalAnime> AnimesEligibleForRecommendation { get; private set; }

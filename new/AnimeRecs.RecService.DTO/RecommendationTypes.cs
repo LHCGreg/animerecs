@@ -5,22 +5,12 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class Response
+    public class RecommendationTypes
     {
-        public Error Error { get; set; }
-
-        public static Response GetErrorResponse(string errorCode, string message)
-        {
-            return new Response()
-            {
-                Error = new Error(errorCode: errorCode, message: message)
-            };
-        }
-    }
-
-    public class Response<TResponseBody> : Response
-    {
-        public TResponseBody Body { get; set; }
+        public static string BasicRecommendation { get { return "BasicRecommendation"; } }
+        public static string AverageScore { get { return "AverageScore"; } }
+        public static string MostPopular { get { return "MostPopular"; } }
+        public static string AnimeRecs { get { return "AnimeRecs"; } }
     }
 }
 

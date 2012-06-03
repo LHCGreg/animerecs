@@ -4,11 +4,25 @@ using System.Linq;
 using System.Text;
 
 namespace AnimeRecs.RecService.DTO
-{    
-    public class MalRecRequestWithListResponse<TRecommendation>
-        where TRecommendation : BasicRecommendation
+{
+    public class MalRecRequestWithListResponse
     {
         public string RecommendationType { get; set; }
+
+        public MalRecRequestWithListResponse()
+        {
+            ;
+        }
+
+        public MalRecRequestWithListResponse(string recommendationType)
+        {
+            RecommendationType = recommendationType;
+        }
+    }
+    
+    public class MalRecRequestWithListResponse<TRecommendation> : MalRecRequestWithListResponse
+        where TRecommendation : Recommendation
+    {
         public IList<TRecommendation> Recommendations { get; set; }
 
         public MalRecRequestWithListResponse()
@@ -17,8 +31,8 @@ namespace AnimeRecs.RecService.DTO
         }
 
         public MalRecRequestWithListResponse(string recommendationType, IList<TRecommendation> recommendations)
+            : base(recommendationType)
         {
-            RecommendationType = recommendationType;
             Recommendations = recommendations;
         }
     }

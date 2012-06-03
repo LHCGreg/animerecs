@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
-using AnimeRecs.DAL;
+using Newtonsoft.Json;
 
 namespace AnimeRecs.RecService
 {
-    internal class Program
+    internal class OperationReinterpreter
     {
-        static void Main(string[] args)
+        private string Json { get; set; }
+        
+        internal OperationReinterpreter(string json)
         {
-            int port = 5541;
-            string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-            PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
-            using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, port))
-            {
-                recService.Start();
-                Console.WriteLine("Started listening on port {0}. Press any key to stop.", port);
-                Console.ReadKey();
-            }
+            Json = json;
+        }
+
+        public T As<T>()
+        {
+            return JsonConvert.DeserializeObject<T>(Json);
         }
     }
 }

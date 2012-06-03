@@ -1,4 +1,4 @@
-﻿The AnimeRecs.RecService protocol is a TCP protocol. The client connects to the server, then sends a JSON Operation object, then closes the send half of the connection. An Operation object is:
+﻿The AnimeRecs.RecService protocol is a TCP protocol. The client connects to the server, then sends a UTF-8 encoded JSON Operation object, then closes the send half of the connection. An Operation object is:
 
 {
 	OpName: "string",
@@ -12,7 +12,7 @@
 
 See ConnectionServicer.cs for valid op names, the kind of input they take, and the kind of output they give.
 
-Upon receiving an operation from a client, the server does what it needs to do, returns a JSON Response object, and closes the connection. A Response object is:
+Upon receiving an operation from a client, the server does what it needs to do, returns a UTF-8 encoded JSON Response object, and closes the connection. A Response object is:
 
 {
 	(null if no error)

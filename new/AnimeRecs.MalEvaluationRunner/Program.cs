@@ -38,13 +38,13 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
                 minEpisodesToCountIncomplete, useDropped: true);
             var defaultMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<MatrixFactorization>
                 (new MatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true);
-            var animeRecsRecSource35 = new MalAnimeRecsRecSource(
+            var animeRecsRecSource35 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
                 numRecommendersToUse: 100,
                 fractionConsideredRecommended: 0.35,
                 targetFraction: 0.35,
                 minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
             );
-            var animeRecsRecSource25 = new MalAnimeRecsRecSource(
+            var animeRecsRecSource25 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
                 numRecommendersToUse: 100,
                 fractionConsideredRecommended: 0.25,
                 targetFraction: 0.25,
@@ -80,7 +80,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             string postgresConnectionString = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
             using (PgMalDataLoader loader = new PgMalDataLoader(postgresConnectionString))
             {
-                rawData = loader.LoadRawData();
+                rawData = loader.LoadMalTrainingData();
             }
 
             const int numEvaluations = 5;

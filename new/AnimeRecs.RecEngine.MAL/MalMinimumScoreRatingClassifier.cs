@@ -6,17 +6,17 @@ using AnimeRecs.MalApi;
 
 namespace AnimeRecs.RecEngine.MAL
 {
-    public class MalPercentageRatingClassifier : IUserInputClassifier<MalUserListEntries>
+    public class MalMinimumScoreRatingClassifier : IUserInputClassifier<MalUserListEntries>
     {
-        public double GoodFraction { get; private set; }
+        public decimal MinimumGoodScore { get; private set; }
         public int MinEpisodesToClassifyIncomplete { get; private set; }
 
-        public MalPercentageRatingClassifier(double goodFraction, int minEpisodesToClassifyIncomplete)
+        public MalMinimumScoreRatingClassifier(decimal minimumGoodScore, int minEpisodesToClassifyIncomplete)
         {
-            GoodFraction = goodFraction;
+            MinimumGoodScore = minimumGoodScore;
             MinEpisodesToClassifyIncomplete = minEpisodesToClassifyIncomplete;
         }
-        
+
         public ClassifiedUserInput<MalUserListEntries> Classify(MalUserListEntries inputForUser)
         {
             Dictionary<int, MalListEntry> likedAnimes = new Dictionary<int, MalListEntry>();
@@ -24,8 +24,8 @@ namespace AnimeRecs.RecEngine.MAL
             Dictionary<int, MalListEntry> otherAnimes = new Dictionary<int, MalListEntry>();
 
             // Dropped anime is automatically considered unliked.
-            // All other anime that is completed or has > N episodes seen gets percentage-classified.
-            List<KeyValuePair<int, MalListEntry>> animesEligibleForPercentageClassification = new List<KeyValuePair<int, MalListEntry>>();
+            // All other anime that is completed or has > N episodes seen gets classified by rating
+            // Everything else goes into Other.
 
             foreach (KeyValuePair<int, MalListEntry> animeIdAndEntry in inputForUser.Entries)
             {
@@ -38,30 +38,30 @@ namespace AnimeRecs.RecEngine.MAL
                 }
                 else if (entry.Status == CompletionStatus.Completed && entry.Rating != null)
                 {
-                    animesEligibleForPercentageClassification.Add(animeIdAndEntry);
+                    if (entry.Rating.Value >= MinimumGoodScore)
+                    {
+                        likedAnimes[animeId] = entry;
+                    }
+                    else
+                    {
+                        unlikedAnimes[animeId] = entry;
+                    }
                 }
                 else if (entry.NumEpisodesWatched > MinEpisodesToClassifyIncomplete && entry.Rating != null)
                 {
-                    animesEligibleForPercentageClassification.Add(animeIdAndEntry);
+                    if (entry.Rating.Value >= MinimumGoodScore)
+                    {
+                        likedAnimes[animeId] = entry;
+                    }
+                    else
+                    {
+                        unlikedAnimes[animeId] = entry;
+                    }
                 }
                 else
                 {
                     otherAnimes[animeId] = entry;
                 }
-            }
-
-            PercentageSplit<KeyValuePair<int, MalListEntry>> percentageClassified = RecUtils.SplitByPercentage(
-                animesEligibleForPercentageClassification, GoodFraction,
-                (animeIdAndEntry1, animeIdAndEntry2) => animeIdAndEntry1.Value.Rating.Value.CompareTo(animeIdAndEntry2.Value.Rating.Value));
-
-            foreach (KeyValuePair<int, MalListEntry> unlikedAnimeIdAndEntry in percentageClassified.LowerPart)
-            {
-                unlikedAnimes[unlikedAnimeIdAndEntry.Key] = unlikedAnimeIdAndEntry.Value;
-            }
-
-            foreach (KeyValuePair<int, MalListEntry> likedAnimeIdAndEntry in percentageClassified.UpperPart)
-            {
-                likedAnimes[likedAnimeIdAndEntry.Key] = likedAnimeIdAndEntry.Value;
             }
 
             return new ClassifiedUserInput<MalUserListEntries>(
@@ -73,7 +73,7 @@ namespace AnimeRecs.RecEngine.MAL
 
         public override string ToString()
         {
-            return string.Format("GoodFraction = {0:P}, MinEpisodesToClassifyIncomplete = {1}", GoodFraction, MinEpisodesToClassifyIncomplete);
+            return string.Format("MinimumGoodScore = {0}, MinEpisodesToClassifyIncomplete = {1}", MinimumGoodScore, MinEpisodesToClassifyIncomplete);
         }
     }
 }

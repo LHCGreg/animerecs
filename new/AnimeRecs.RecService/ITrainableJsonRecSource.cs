@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
-using AnimeRecs.DAL;
+using AnimeRecs.RecEngine.MAL;
+using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService
 {
-    internal class Program
+    internal interface ITrainableJsonRecSource
     {
-        static void Main(string[] args)
-        {
-            int port = 5541;
-            string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-            PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
-            using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, port))
-            {
-                recService.Start();
-                Console.WriteLine("Started listening on port {0}. Press any key to stop.", port);
-                Console.ReadKey();
-            }
-        }
+        void Train(MalTrainingData trainingData);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="recRequest"></param>
+        /// <returns></returns>
+        /// <exception cref="AnimeRecs.RecService.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
+        MalRecRequestWithListResponse GetRecommendations(MalRecRequestWithList recRequest, MalUserListEntries animeList);
     }
 }
 

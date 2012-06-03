@@ -8,6 +8,7 @@ namespace AnimeRecs.RecService.DTO
 {
     public class MalListEntry
     {
+        public int MalAnimeId { get; set; }
         public decimal? Rating { get; set; }
         public CompletionStatus Status { get; set; }
         public int NumEpisodesWatched { get; set; }
@@ -17,8 +18,9 @@ namespace AnimeRecs.RecService.DTO
             ;
         }
 
-        public MalListEntry(decimal? rating, CompletionStatus status, int numEpisodesWatched)
+        public MalListEntry(int malAnimeId, decimal? rating, CompletionStatus status, int numEpisodesWatched)
         {
+            MalAnimeId = malAnimeId;
             Rating = rating;
             Status = status;
             NumEpisodesWatched = numEpisodesWatched;
@@ -26,7 +28,7 @@ namespace AnimeRecs.RecService.DTO
 
         public override string ToString()
         {
-            return string.Format("{0} - {1}", Rating.HasValue ? Rating.Value.ToString() : "?", Status);
+            return string.Format("{0} - {1} - {2}", MalAnimeId, Rating.HasValue ? Rating.Value.ToString() : "?", Status);
         }
     }
 }

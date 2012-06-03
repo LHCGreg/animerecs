@@ -7,7 +7,7 @@ using AnimeRecs.MalApi;
 
 namespace AnimeRecs.DAL
 {
-    public class PgMalDataLoader : IDisposable
+    public class PgMalDataLoader : IMalTrainingDataLoader, IDisposable
     {
         private PetaPoco.Database m_db;
         private bool m_disposeDb;
@@ -32,7 +32,7 @@ namespace AnimeRecs.DAL
             }
         }
 
-        public MalTrainingData LoadRawData()
+        public MalTrainingData LoadMalTrainingData()
         {
             //public int mal_anime_id { get; set; }
             //public int mal_user_id { get; set; }

@@ -6,22 +6,48 @@ using AnimeRecs.MalApi;
 
 namespace AnimeRecs.RecEngine.MAL
 {
+    public class MalAnimeRecsInput : IInputForUser
+    {
+        public MalUserListEntries AnimeList { get; private set; }
+        public double? TargetFraction { get; private set; }
+        public decimal? TargetScore { get; private set; }
+
+        public MalAnimeRecsInput(MalUserListEntries animeList, double targetFraction)
+        {
+            AnimeList = animeList;
+            TargetFraction = targetFraction;
+        }
+
+        public MalAnimeRecsInput(MalUserListEntries animeList, decimal targetScore)
+        {
+            AnimeList = animeList;
+            TargetScore = targetScore;
+        }
+
+        public bool ItemIsOkToRecommend(int itemId)
+        {
+            return AnimeList.ItemIsOkToRecommend(itemId);
+        }
+
+        public bool ContainsItem(int itemId)
+        {
+            return AnimeList.ContainsItem(itemId);
+        }
+    }
+    
     public class MalAnimeRecsRecSource
-        : ITrainableRecSource<MalTrainingData, MalUserListEntries, AnimeRecsRecommendation>
+        : ITrainableRecSource<MalTrainingData, MalAnimeRecsInput, AnimeRecsRecommendation>
     {
         private AnimeRecsRecSource<MalTrainingData, MalUserListEntries, MalUserListEntries> m_recommender;
         private MalPercentageRatingClassifier m_recommendationClassifier;
-        private MalPercentageRatingClassifier m_inputClassifier;
         private int m_minEpisodesToClassifyIncomplete;
         private Dictionary<int, float> m_itemAverages = new Dictionary<int, float>();
         private MalTrainingData m_trainingData = new MalTrainingData();
 
-        public MalAnimeRecsRecSource(int numRecommendersToUse, double fractionConsideredRecommended, double targetFraction,
-            int minEpisodesToClassifyIncomplete)
+        public MalAnimeRecsRecSource(int numRecommendersToUse, double fractionConsideredRecommended, int minEpisodesToClassifyIncomplete)
         {
             m_recommender = new AnimeRecsRecSource<MalTrainingData, MalUserListEntries, MalUserListEntries>(numRecommendersToUse);
             m_recommendationClassifier = new MalPercentageRatingClassifier(fractionConsideredRecommended, minEpisodesToClassifyIncomplete);
-            m_inputClassifier = new MalPercentageRatingClassifier(targetFraction, minEpisodesToClassifyIncomplete);
             m_minEpisodesToClassifyIncomplete = minEpisodesToClassifyIncomplete;
         }
 
@@ -96,11 +122,23 @@ namespace AnimeRecs.RecEngine.MAL
             }
         }
 
-        public IEnumerable<AnimeRecsRecommendation> GetRecommendations(MalUserListEntries inputForUser, int numRecommendationsToTryToGet)
+        public IEnumerable<AnimeRecsRecommendation> GetRecommendations(MalAnimeRecsInput inputForUser, int numRecommendationsToTryToGet)
         {
+            ClassifiedUserInput<MalUserListEntries> classifiedInput;
+            if (inputForUser.TargetFraction != null)
+            {
+                MalPercentageRatingClassifier inputClassifier = new MalPercentageRatingClassifier(inputForUser.TargetFraction.Value, m_minEpisodesToClassifyIncomplete);
+                classifiedInput = inputClassifier.Classify(inputForUser.AnimeList);
+            }
+            else
+            {
+                MalMinimumScoreRatingClassifier inputClassifier = new MalMinimumScoreRatingClassifier(inputForUser.TargetScore.Value, m_minEpisodesToClassifyIncomplete);
+                classifiedInput = inputClassifier.Classify(inputForUser.AnimeList);
+            }
+
             AnimeRecsInput<MalUserListEntries> inputWithParameters = new AnimeRecsInput<MalUserListEntries>(
-                originalInput: inputForUser,
-                classifiedInput: m_inputClassifier.Classify(inputForUser),
+                originalInput: inputForUser.AnimeList,
+                classifiedInput: classifiedInput,
                 orderingGivenRecommenderAndItemIds: CompareRecs
             );
             return m_recommender.GetRecommendations(inputWithParameters, numRecommendationsToTryToGet);
@@ -132,9 +170,56 @@ namespace AnimeRecs.RecEngine.MAL
 
         public override string ToString()
         {
-            return string.Format("AnimeRecs NumRecommendersToUse = {0} FractionConsideredRecommended = {1} TargetFraction = {2}, MinEpisodesToClassifyIncomplete = {3}",
-                m_recommender.NumRecommenders, m_recommendationClassifier.GoodFraction, m_inputClassifier.GoodFraction,
-                m_minEpisodesToClassifyIncomplete);
+            return string.Format("AnimeRecs NumRecommendersToUse = {0} FractionConsideredRecommended = {1} MinEpisodesToClassifyIncomplete = {3}",
+                m_recommender.NumRecommenders, m_recommendationClassifier.GoodFraction, m_minEpisodesToClassifyIncomplete);
+        }
+    }
+
+    public class MalAnimeRecsRecSourceWithConstantPercentTarget
+        : ITrainableRecSource<MalTrainingData, MalUserListEntries, AnimeRecsRecommendation>
+    {
+        private MalAnimeRecsRecSource m_underlyingRecSource;
+        private double m_targetFraction;
+
+        public MalAnimeRecsRecSourceWithConstantPercentTarget(int numRecommendersToUse, double fractionConsideredRecommended,
+            double targetFraction, int minEpisodesToClassifyIncomplete)
+        {
+            m_underlyingRecSource = new MalAnimeRecsRecSource(numRecommendersToUse, fractionConsideredRecommended, minEpisodesToClassifyIncomplete);
+            m_targetFraction = targetFraction;
+        }
+
+        public void Train(MalTrainingData trainingData)
+        {
+            m_underlyingRecSource.Train(trainingData);
+        }
+
+        public IEnumerable<AnimeRecsRecommendation> GetRecommendations(MalUserListEntries inputForUser, int numRecommendationsToTryToGet)
+        {
+            return m_underlyingRecSource.GetRecommendations(new MalAnimeRecsInput(inputForUser, m_targetFraction), numRecommendationsToTryToGet);
+        }
+    }
+
+    public class MalAnimeRecsRecSourceWithConstantAbsoluteTarget
+        : ITrainableRecSource<MalTrainingData, MalUserListEntries, AnimeRecsRecommendation>
+    {
+        private MalAnimeRecsRecSource m_underlyingRecSource;
+        private decimal m_targetScore;
+
+        public MalAnimeRecsRecSourceWithConstantAbsoluteTarget(int numRecommendersToUse, double fractionConsideredRecommended,
+            decimal targetScore, int minEpisodesToClassifyIncomplete)
+        {
+            m_underlyingRecSource = new MalAnimeRecsRecSource(numRecommendersToUse, fractionConsideredRecommended, minEpisodesToClassifyIncomplete);
+            m_targetScore = targetScore;
+        }
+
+        public void Train(MalTrainingData trainingData)
+        {
+            m_underlyingRecSource.Train(trainingData);
+        }
+
+        public IEnumerable<AnimeRecsRecommendation> GetRecommendations(MalUserListEntries inputForUser, int numRecommendationsToTryToGet)
+        {
+            return m_underlyingRecSource.GetRecommendations(new MalAnimeRecsInput(inputForUser, m_targetScore), numRecommendationsToTryToGet);
         }
     }
 }

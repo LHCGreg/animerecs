@@ -2,25 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
 using AnimeRecs.DAL;
 
 namespace AnimeRecs.RecService
 {
-    internal class Program
+    internal interface IMalTrainingDataLoaderFactory
     {
-        static void Main(string[] args)
-        {
-            int port = 5541;
-            string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-            PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
-            using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, port))
-            {
-                recService.Start();
-                Console.WriteLine("Started listening on port {0}. Press any key to stop.", port);
-                Console.ReadKey();
-            }
-        }
+        IMalTrainingDataLoader GetTrainingDataLoader();
     }
 }
 

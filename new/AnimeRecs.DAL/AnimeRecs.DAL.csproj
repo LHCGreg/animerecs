@@ -45,6 +45,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMalTrainingDataLoader.cs" />
     <Compile Include="MalListEntryJoined.cs" />
     <Compile Include="mal_anime.cs" />
     <Compile Include="mal_anime_type.cs" />

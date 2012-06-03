@@ -6,18 +6,30 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Net;
+using AnimeRecs.RecEngine.MAL;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.RecService
 {
-    class TcpRecService : IDisposable
+    internal class TcpRecService : IDisposable
     {
         private TcpListener Listener { get; set; }
         private Thread ListenerThread { get; set; }
         private bool m_stop = false;
         private object m_syncHandle = new object();
 
-        public TcpRecService(int portNumber)
+        private Dictionary<int, Task> m_runningTasks = new Dictionary<int, Task>();
+
+        private RecServiceState m_state;
+
+        public TcpRecService(IMalTrainingDataLoaderFactory trainingDataLoaderFactory, int portNumber)
         {
+            MalTrainingData trainingData;
+            using (IMalTrainingDataLoader trainingDataLoader = trainingDataLoaderFactory.GetTrainingDataLoader())
+            {
+                trainingData = trainingDataLoader.LoadMalTrainingData();
+            }
+            m_state = new RecServiceState(trainingData);
             Listener = new TcpListener(new IPEndPoint(IPAddress.Any, portNumber));
         }
 
@@ -45,7 +57,13 @@ namespace AnimeRecs.RecService
                 try
                 {
                     TcpClient client = Listener.AcceptTcpClient();
-                    Task.Factory.StartNew(ConnectionEntryPoint, client);
+                    //Task newTask = Task.Factory.StartNew(ConnectionEntryPoint, client);
+                    Task connectionHandlerTask = new Task(ConnectionEntryPoint, client);
+                    lock (m_syncHandle)
+                    {
+                        m_runningTasks[connectionHandlerTask.Id] = connectionHandlerTask;
+                    }
+                    connectionHandlerTask.Start();
                 }
                 catch (Exception ex)
                 {
@@ -73,7 +91,7 @@ namespace AnimeRecs.RecService
                         const int writeTimeout = 3000;
                         clientStream.ReadTimeout = readTimeout;
                         clientStream.WriteTimeout = writeTimeout;
-                        ConnectionServicer servicer = new ConnectionServicer(clientStream);
+                        ConnectionServicer servicer = new ConnectionServicer(clientStream, m_state);
                         servicer.ServiceConnection();
                     }
                 }
@@ -82,25 +100,44 @@ namespace AnimeRecs.RecService
                     Console.WriteLine(ex); // TODO: Log error
                 }
             }
+
+            lock(m_syncHandle)
+            {
+                m_runningTasks.Remove(Task.CurrentId.Value);
+            }
         }
 
         public void Dispose()
         {
             try
             {
+                // Tells the listener thread to stop before trying to do another Accept
                 lock (m_syncHandle)
                 {
                     m_stop = true;
                 }
+                // Stops the listener thread from its Accept if its waiting for a connection like it is most of the time.
                 if (Listener != null)
                     Listener.Stop();
+                // Wait for listener thread to finish.
                 if (ListenerThread != null)
                     ListenerThread.Join();
 
-                // TODO: Wait for pending operations to complete?
+                // Wait for pending operations to complete
+                Task[] runningTasks;
+                lock (m_syncHandle)
+                {
+                    runningTasks = m_runningTasks.Values.ToArray();
+                }
+
+                Task.WaitAll(runningTasks);
+
+                // Dispose of service state
+                m_state.Dispose();
             }
             catch (Exception ex)
             {
+                // Hopefully this is never reached.
                 Console.WriteLine(ex); // TODO: Log error
             }
         }

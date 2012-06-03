@@ -40,7 +40,7 @@ namespace AnimeRecs.GetMalRecs
             }
             else if (commandLine.RecommenderType == RecommenderType.AnimeRecs)
             {
-                recSource = new MalAnimeRecsRecSource(numRecommendersToUse: commandLine.NumRecommenders,
+                recSource = new MalAnimeRecsRecSourceWithConstantPercentTarget(numRecommendersToUse: commandLine.NumRecommenders,
                     fractionConsideredRecommended: commandLine.FractionRecommended, targetFraction: commandLine.TargetFraction,
                     minEpisodesToClassifyIncomplete: commandLine.MinEpisodesToCountIncomplete);
             }
@@ -66,7 +66,7 @@ namespace AnimeRecs.GetMalRecs
             MalTrainingData rawData;
             using (PgMalDataLoader loader = new PgMalDataLoader(postgresConnectionString))
             {
-                rawData = loader.LoadRawData();
+                rawData = loader.LoadMalTrainingData();
             }
             watch.Stop();
             Console.WriteLine("Loading data: {0}", watch.Elapsed);

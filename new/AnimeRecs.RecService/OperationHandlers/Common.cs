@@ -6,18 +6,11 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
-    static partial class OpHandlers
+    internal static partial class OpHandlers
     {
         private static Response GetArgumentNotSetError(string argPath)
         {
-            return new Response()
-            {
-                Error = new Error()
-                {
-                    ErrorCode = ErrorCodes.InvalidArgument,
-                    Message = string.Format("{0} was not set.", argPath)
-                }
-            };
+            return Response.GetErrorResponse(errorCode: ErrorCodes.InvalidArgument, message: string.Format("{0} was not set.", argPath));
         }
     }
 }

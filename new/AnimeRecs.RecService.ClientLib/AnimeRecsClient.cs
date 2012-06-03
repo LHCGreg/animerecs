@@ -31,6 +31,30 @@ namespace AnimeRecs.RecService.ClientLib
             return pingResponse.ResponseMessage;
         }
 
+        public void LoadAverageScoreRecSource(string name, bool replaceExisting, AverageScoreRecSourceParams parameters)
+        {
+            Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>> operation = new Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>>(
+                opName: OpNames.LoadRecSource,
+                payload: new LoadRecSourceRequest<AverageScoreRecSourceParams>(
+                    name: name, type: RecSourceTypes.AverageScore, replaceExisting: replaceExisting, parameters: parameters
+                )
+            );
+
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: 60000);
+        }
+
+        public void LoadMostPopularRecSource(string name, bool replaceExisting, MostPopularRecSourceParams parameters)
+        {
+            Operation<LoadRecSourceRequest<MostPopularRecSourceParams>> operation = new Operation<LoadRecSourceRequest<MostPopularRecSourceParams>>(
+                opName: OpNames.LoadRecSource,
+                payload: new LoadRecSourceRequest<MostPopularRecSourceParams>(
+                    name: name, type: RecSourceTypes.MostPopular, replaceExisting: replaceExisting, parameters: parameters
+                )
+            );
+
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: 60000);
+        }
+
         /// <summary>
         /// 
         /// </summary>

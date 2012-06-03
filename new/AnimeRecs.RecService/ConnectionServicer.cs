@@ -10,7 +10,7 @@ using AnimeRecs.RecService.OperationHandlers;
 
 namespace AnimeRecs.RecService
 {
-    class ConnectionServicer
+    internal class ConnectionServicer
     {
         private Dictionary<string, OperationDescription> Operations = new Dictionary<string, OperationDescription>(StringComparer.OrdinalIgnoreCase)
         {
@@ -20,14 +20,24 @@ namespace AnimeRecs.RecService
                 operationType: typeof(Operation<PingRequest>),
                 responseType: typeof(Response<PingResponse>)
                 )
+            },
+
+            { OpNames.LoadRecSource, new OperationDescription
+                (
+                operationHandler: OpHandlers.LoadRecSource,
+                operationType: typeof(Operation<LoadRecSourceRequest<RecSourceParams>>),
+                responseType: typeof(Response)
+                )
             }
         };
         
         private Stream ClientStream { get; set; }
+        private RecServiceState State { get; set; }
         
-        public ConnectionServicer(Stream clientStream)
+        public ConnectionServicer(Stream clientStream, RecServiceState state)
         {
             ClientStream = clientStream;
+            State = state;
         }
 
         public void ServiceConnection()
@@ -44,6 +54,7 @@ namespace AnimeRecs.RecService
                 }
                 catch (Exception ex2)
                 {
+                    // TODO: Logging
                     Console.WriteLine("Error trying to notify client of unexpected error: {0}", ex2);
                 }
 
@@ -56,6 +67,8 @@ namespace AnimeRecs.RecService
             byte[] messageBytes = StreamUtil.ReadFully(ClientStream);
             string messageString = Encoding.UTF8.GetString(messageBytes);
 
+            // First deserialize as a non-specific Operation object to learn what operation it is.
+            // Then we can deserialize as a more specific operation object once we know what operation it is.
             Operation operationCheck;
             try
             {
@@ -83,7 +96,8 @@ namespace AnimeRecs.RecService
 
             Operation derivedOp = (Operation)(JsonConvert.DeserializeObject(messageString, opDescription.OperationType));
 
-            Response response = opDescription.OperationHandler(derivedOp);
+            OperationReinterpreter opReinterpreter = new OperationReinterpreter(messageString);
+            Response response = opDescription.OperationHandler(derivedOp, State, opReinterpreter);
             WriteResponse(response);
         }
 

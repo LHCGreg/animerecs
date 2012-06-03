@@ -9,6 +9,17 @@ namespace AnimeRecs.RecService.DTO
     {
         public string Message { get; set; }
         public string ErrorCode { get; set; }
+
+        public Error()
+        {
+            ;
+        }
+
+        public Error(string errorCode, string message)
+        {
+            ErrorCode = errorCode;
+            Message = message;
+        }
     }
 }
 

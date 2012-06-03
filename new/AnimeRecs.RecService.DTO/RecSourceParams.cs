@@ -2,27 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.MalApi;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class BasicRecommendation
+    public class RecSourceParams
     {
-        public int MalAnimeId { get; set; }
-        public string Title { get; set; }
-        public MalAnimeType MalAnimeType { get; set; }
 
-        public BasicRecommendation()
-        {
-            ;
-        }
+    }
 
-        public BasicRecommendation(int malAnimeId, string title, MalAnimeType malAnimeType)
-        {
-            MalAnimeId = malAnimeId;
-            Title = title;
-            MalAnimeType = malAnimeType;
-        }
+    public class AverageScoreRecSourceParams : RecSourceParams
+    {
+        public int MinEpisodesToCountIncomplete { get; set; }
+        public int MinUsersToCountAnime { get; set; }
+        public bool UseDropped { get; set; }
+    }
+
+    public class MostPopularRecSourceParams : RecSourceParams
+    {
+        public int MinEpisodesToCountIncomplete { get; set; }
+        public bool UseDropped { get; set; }
+    }
+
+    public class AnimeRecsRecSourceParams : RecSourceParams
+    {
+        public int NumRecommendersToUse { get; set; }
+        public double FractionConsideredRecommended { get; set; }
+        public int MinEpisodesToClassifyIncomplete { get; set; }
     }
 }
 

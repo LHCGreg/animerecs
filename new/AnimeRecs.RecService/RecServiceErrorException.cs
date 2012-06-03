@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
-using AnimeRecs.DAL;
+using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService
 {
-    internal class Program
+    [Serializable]
+    public class RecServiceErrorException : Exception
     {
-        static void Main(string[] args)
+        public Error Error { get; private set; }
+
+        public RecServiceErrorException(Error error)
+            : base(error.Message)
         {
-            int port = 5541;
-            string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-            PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
-            using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, port))
-            {
-                recService.Start();
-                Console.WriteLine("Started listening on port {0}. Press any key to stop.", port);
-                Console.ReadKey();
-            }
+            Error = error;
         }
+        protected RecServiceErrorException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
     }
 }
 

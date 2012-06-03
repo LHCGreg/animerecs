@@ -6,12 +6,12 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
-    static partial class OpHandlers
+    internal static partial class OpHandlers
     {
-        public static Response Ping(Operation baseOperation)
+        public static Response Ping(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
         {
             Operation<PingRequest> operation = (Operation<PingRequest>)(baseOperation);
-            if (!operation.PayloadSet)
+            if (!operation.PayloadSet || operation.Payload == null)
                 return GetArgumentNotSetError("Payload");
             if (operation.Payload.PingMessage == null)
                 return GetArgumentNotSetError("Payload.PingMessage");

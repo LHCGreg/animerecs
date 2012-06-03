@@ -6,7 +6,7 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService
 {
-    class OperationDescription
+    internal class OperationDescription
     {
         public Type OperationType { get; private set; }
         
