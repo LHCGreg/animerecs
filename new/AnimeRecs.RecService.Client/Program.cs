@@ -42,14 +42,19 @@ namespace AnimeRecs.RecService.Client
                         }
                     }
                 }
-                else if (commandLine.Operation.Equals(OpNames.Ping))
+                else if (commandLine.Operation.Equals(OpNames.Ping, StringComparison.OrdinalIgnoreCase))
                 {
                     string pingResponse = client.Ping(commandLine.PingMessage);
                     Console.WriteLine("The service replied: {0}", pingResponse);
                 }
-                else if (commandLine.Operation.Equals(OpNames.LoadRecSource))
+                else if(commandLine.Operation.Equals(OpNames.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (commandLine.RecSourceType.Equals(RecSourceTypes.AverageScore))
+                    client.ReloadTrainingData();
+                    Console.WriteLine("Training data reloaded.");
+                }
+                else if (commandLine.Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (commandLine.RecSourceType.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
                     {
                         client.LoadAverageScoreRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new AverageScoreRecSourceParams(
@@ -59,7 +64,7 @@ namespace AnimeRecs.RecService.Client
                             )
                         );
                     }
-                    else if (commandLine.RecSourceType.Equals(RecSourceTypes.MostPopular))
+                    else if (commandLine.RecSourceType.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
                     {
                         client.LoadMostPopularRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new MostPopularRecSourceParams(
@@ -68,7 +73,7 @@ namespace AnimeRecs.RecService.Client
                             )
                         );
                     }
-                    else if (commandLine.RecSourceType.Equals(RecSourceTypes.AnimeRecs))
+                    else if (commandLine.RecSourceType.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
                     {
                         client.LoadAnimeRecsRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new AnimeRecsRecSourceParams(

@@ -14,6 +14,7 @@ namespace AnimeRecs.RecService.Client
         {
             OpNames.Ping,
             OpNames.LoadRecSource,
+            OpNames.ReloadTrainingData,
             "Raw"
         };
 
