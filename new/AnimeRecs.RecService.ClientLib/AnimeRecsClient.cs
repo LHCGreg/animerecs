@@ -67,6 +67,12 @@ namespace AnimeRecs.RecService.ClientLib
             DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
+        public void ReloadTrainingData(int receiveTimeoutInMs = 0)
+        {
+            Operation operation = new Operation(OpNames.ReloadTrainingData);
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+        }
+
         /// <summary>
         /// 
         /// </summary>
