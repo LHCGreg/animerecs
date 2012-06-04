@@ -28,6 +28,14 @@ namespace AnimeRecs.RecService
                 operationType: typeof(Operation<LoadRecSourceRequest<RecSourceParams>>),
                 responseType: typeof(Response)
                 )
+            },
+
+            { OpNames.ReloadTrainingData, new OperationDescription
+                (
+                operationHandler: OpHandlers.ReloadTrainingData,
+                operationType: typeof(Operation),
+                responseType: typeof(Response)
+                )
             }
         };
         

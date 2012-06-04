@@ -24,12 +24,7 @@ namespace AnimeRecs.RecService
 
         public TcpRecService(IMalTrainingDataLoaderFactory trainingDataLoaderFactory, int portNumber)
         {
-            MalTrainingData trainingData;
-            using (IMalTrainingDataLoader trainingDataLoader = trainingDataLoaderFactory.GetTrainingDataLoader())
-            {
-                trainingData = trainingDataLoader.LoadMalTrainingData();
-            }
-            m_state = new RecServiceState(trainingData);
+            m_state = new RecServiceState(trainingDataLoaderFactory);
             Listener = new TcpListener(new IPEndPoint(IPAddress.Any, portNumber));
         }
 

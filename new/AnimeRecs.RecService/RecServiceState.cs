@@ -6,6 +6,7 @@ using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using System.Threading;
 using AnimeRecs.RecService.DTO;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.RecService
 {
@@ -15,7 +16,7 @@ namespace AnimeRecs.RecService
     internal class RecServiceState : IDisposable
     {
         // When locking, always lock in the order the members are listed here.
-        
+
         // This object is never actually modified, just repointed to another object.
         // So it is ok to get a read lock, store a reference in a variable, unlock, then train using the variable.
         private MalTrainingData m_trainingData;
@@ -23,11 +24,22 @@ namespace AnimeRecs.RecService
         private Dictionary<string, ITrainableJsonRecSource> m_recSources = new Dictionary<string, ITrainableJsonRecSource>(StringComparer.OrdinalIgnoreCase);
         private ReaderWriterLockSlim m_recSourcesLock;
 
-        public RecServiceState(MalTrainingData trainingData)
+        private IMalTrainingDataLoaderFactory m_trainingDataLoaderFactory;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="trainingDataLoaderFactory">Must be thread-safe.</param>
+        public RecServiceState(IMalTrainingDataLoaderFactory trainingDataLoaderFactory)
         {
-            m_trainingData = trainingData;
+            using (IMalTrainingDataLoader trainingDataLoader = trainingDataLoaderFactory.GetTrainingDataLoader())
+            {
+                m_trainingData = trainingDataLoader.LoadMalTrainingData();
+            }
+
             m_trainingDataLock = new ReaderWriterLockSlim();
             m_recSourcesLock = new ReaderWriterLockSlim();
+            m_trainingDataLoaderFactory = trainingDataLoaderFactory;
         }
 
         public void LoadRecSource(ITrainableJsonRecSource recSource, string name, bool replaceExisting)
@@ -45,13 +57,36 @@ namespace AnimeRecs.RecService
                     throw new RecServiceErrorException(new Error(errorCode: ErrorCodes.Unknown,
                         message: string.Format("A recommendation source with the name \"{0}\" already exists.", name)));
                 }
-                
+
                 recSource.Train(trainingData);
 
                 using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
                 {
                     m_recSources[name] = recSource;
                 }
+            }
+        }
+
+        public void ReloadTrainingData()
+        {
+            MalTrainingData newData;
+            // Load new training data first
+            using (IMalTrainingDataLoader malTrainingDataLoader = m_trainingDataLoaderFactory.GetTrainingDataLoader())
+            {
+                newData = malTrainingDataLoader.LoadMalTrainingData();
+            }
+
+            // Then swap out training data and retrain all loaded rec sources
+            using (var trainingDataWriteLock = m_trainingDataLock.ScopedWriteLock())
+            using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
+            {
+                foreach (ITrainableJsonRecSource recSource in m_recSources.Values)
+                {
+                    // TODO: What to do if training throws?
+                    recSource.Train(newData);
+                }
+
+                m_trainingData = newData;
             }
         }
 

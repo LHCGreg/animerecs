@@ -74,6 +74,7 @@
     <Compile Include="OperationHandlers\Common.cs" />
     <Compile Include="OperationHandlers\LoadRecSourceHandler.cs" />
     <Compile Include="OperationHandlers\PingHandler.cs" />
+    <Compile Include="OperationHandlers\ReloadTrainingDataHandler.cs" />
     <Compile Include="OperationReinterpreter.cs" />
     <Compile Include="PgMalTrainingDataLoaderFactory.cs" />
     <Compile Include="Program.cs" />
