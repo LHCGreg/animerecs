@@ -52,8 +52,17 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MiscUtil, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
+    </Reference>
     <Reference Include="NDesk.Options">
       <HintPath>..\lib\NDesk.Options\NDesk.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net35, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Json.NET\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +76,10 @@
     <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj">
       <Project>{052C3459-C8BF-44A3-AFE1-8B587B023044}</Project>
       <Name>AnimeRecs.RecService.ClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj">
+      <Project>{2E870408-2BC8-404F-BCAC-98289C1F489E}</Project>
+      <Name>AnimeRecs.RecService.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,18 +20,18 @@ namespace AnimeRecs.RecService.ClientLib
 
         /// <exception cref="AnimeRecs.RecService.ClientLib.RecServiceException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>
-        public string Ping(string message)
+        public string Ping(string message, int receiveTimeoutInMs = 0)
         {
             Operation<PingRequest> operation = new Operation<PingRequest>(
                 opName: OpNames.Ping,
                 payload: new PingRequest(message)
             );
 
-            PingResponse pingResponse = DoOperationWithResponseBody<PingResponse>(operation, receiveTimeoutInMs: 5000);
+            PingResponse pingResponse = DoOperationWithResponseBody<PingResponse>(operation, receiveTimeoutInMs: receiveTimeoutInMs);
             return pingResponse.ResponseMessage;
         }
 
-        public void LoadAverageScoreRecSource(string name, bool replaceExisting, AverageScoreRecSourceParams parameters)
+        public void LoadAverageScoreRecSource(string name, bool replaceExisting, AverageScoreRecSourceParams parameters, int receiveTimeoutInMs = 0)
         {
             Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>> operation = new Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>>(
                 opName: OpNames.LoadRecSource,
@@ -40,10 +40,10 @@ namespace AnimeRecs.RecService.ClientLib
                 )
             );
 
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: 60000);
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
-        public void LoadMostPopularRecSource(string name, bool replaceExisting, MostPopularRecSourceParams parameters)
+        public void LoadMostPopularRecSource(string name, bool replaceExisting, MostPopularRecSourceParams parameters, int receiveTimeoutInMs = 0)
         {
             Operation<LoadRecSourceRequest<MostPopularRecSourceParams>> operation = new Operation<LoadRecSourceRequest<MostPopularRecSourceParams>>(
                 opName: OpNames.LoadRecSource,
@@ -52,7 +52,19 @@ namespace AnimeRecs.RecService.ClientLib
                 )
             );
 
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: 60000);
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+        }
+
+        public void LoadAnimeRecsRecSource(string name, bool replaceExisting, AnimeRecsRecSourceParams parameters, int receiveTimeoutInMs = 0)
+        {
+            Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>> operation = new Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>>(
+                opName: OpNames.LoadRecSource,
+                payload: new LoadRecSourceRequest<AnimeRecsRecSourceParams>(
+                    name: name, type: RecSourceTypes.AnimeRecs, replaceExisting: replaceExisting, parameters: parameters
+                )
+            );
+
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
         /// <summary>

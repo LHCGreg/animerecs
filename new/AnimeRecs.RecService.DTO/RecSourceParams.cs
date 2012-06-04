@@ -15,12 +15,35 @@ namespace AnimeRecs.RecService.DTO
         public int MinEpisodesToCountIncomplete { get; set; }
         public int MinUsersToCountAnime { get; set; }
         public bool UseDropped { get; set; }
+
+        public AverageScoreRecSourceParams()
+        {
+            ;
+        }
+
+        public AverageScoreRecSourceParams(int minEpisodesToCountIncomplete, int minUsersToCountAnime, bool useDropped)
+        {
+            MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
+            MinUsersToCountAnime = minUsersToCountAnime;
+            UseDropped = useDropped;
+        }
     }
 
     public class MostPopularRecSourceParams : RecSourceParams
     {
         public int MinEpisodesToCountIncomplete { get; set; }
         public bool UseDropped { get; set; }
+
+        public MostPopularRecSourceParams()
+        {
+            ;
+        }
+
+        public MostPopularRecSourceParams(int minEpisodesToCountIncomplete, bool useDropped)
+        {
+            MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
+            UseDropped = useDropped;
+        }
     }
 
     public class AnimeRecsRecSourceParams : RecSourceParams
@@ -28,6 +51,18 @@ namespace AnimeRecs.RecService.DTO
         public int NumRecommendersToUse { get; set; }
         public double FractionConsideredRecommended { get; set; }
         public int MinEpisodesToClassifyIncomplete { get; set; }
+
+        public AnimeRecsRecSourceParams()
+        {
+            ;
+        }
+
+        public AnimeRecsRecSourceParams(int numRecommendersToUse, double fractionConsideredRecommended, int minEpisodesToClassifyIncomplete)
+        {
+            NumRecommendersToUse = numRecommendersToUse;
+            FractionConsideredRecommended = fractionConsideredRecommended;
+            MinEpisodesToClassifyIncomplete = minEpisodesToClassifyIncomplete;
+        }
     }
 }
 
