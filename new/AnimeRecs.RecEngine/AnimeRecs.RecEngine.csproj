@@ -41,6 +41,7 @@
     <Compile Include="BasicInputForUser.cs" />
     <Compile Include="BasicInputForUserPercentageClassifier.cs" />
     <Compile Include="BasicInputForUserWithOkToRecommendPredicate.cs" />
+    <Compile Include="BasicRecommendation.cs" />
     <Compile Include="BasicTrainingData.cs" />
     <Compile Include="ClassifiedUserInput.cs" />
     <Compile Include="ConfidenceInterval.cs" />

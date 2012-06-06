@@ -12,7 +12,7 @@ namespace AnimeRecs.RecService.OperationHandlers
         public static Response GetMalRecs(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
         {
             Operation<GetMalRecsRequest> operation = (Operation<GetMalRecsRequest>)baseOperation;
-            return state.GetMalRecs(operation.Payload);
+            return new Response<GetMalRecsResponse>() { Body = state.GetMalRecs(operation.Payload) };
         }
     }
 }

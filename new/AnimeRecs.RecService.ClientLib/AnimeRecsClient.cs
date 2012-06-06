@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using AnimeRecs.RecService.DTO;
 using Newtonsoft.Json;
 using MiscUtil.IO;
+using AnimeRecs.RecEngine;
+using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.ClientLib
 {
@@ -73,6 +75,59 @@ namespace AnimeRecs.RecService.ClientLib
             DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
+        public MalRecommendations GetMalRecommendations(IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName,
+            int numRecsDesired, decimal targetScore, int receiveTimeoutInMs = 0)
+        {
+            List<DTO.MalListEntry> dtoAnimeList = new List<DTO.MalListEntry>();
+            foreach (int animeId in animeList.Keys)
+            {
+                RecEngine.MAL.MalListEntry engineEntry = animeList[animeId];
+                DTO.MalListEntry dtoEntry = new DTO.MalListEntry(animeId, engineEntry.Rating, engineEntry.Status, engineEntry.NumEpisodesWatched);
+                dtoAnimeList.Add(dtoEntry);
+            }
+
+            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
+                new GetMalRecsRequest(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
+            string jsonResponseString;
+            GetMalRecsResponse<Recommendation> response = DoOperationWithResponseBody<GetMalRecsResponse<Recommendation>>(operation, receiveTimeoutInMs, out jsonResponseString);
+
+            List<IRecommendation> recommendations = new List<IRecommendation>();
+            if (response.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
+            {
+                Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>> specificResponse =
+                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>>>(jsonResponseString);
+                recommendations.AddRange(specificResponse.Body.Recommendations.Select(
+                    dtoRec => new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore)));
+            }
+            else if (response.RecommendationType.Equals(RecommendationTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
+            {
+                Response<GetMalRecsResponse<DTO.MostPopularRecommendation>> specificResponse =
+                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.MostPopularRecommendation>>>(jsonResponseString);
+                recommendations.AddRange(specificResponse.Body.Recommendations.Select(
+                    dtoRec => new AnimeRecs.RecEngine.MostPopularRecommendation(dtoRec.MalAnimeId, dtoRec.PopularityRank, dtoRec.NumRatings)));
+            }
+            else
+            {
+                recommendations.AddRange(response.Recommendations.Select(dtoRec => new BasicRecommendation(dtoRec.MalAnimeId)));
+            }
+
+            Dictionary<int, MalAnime> animeInfo = new Dictionary<int, MalAnime>();
+            foreach (Recommendation basicRecDto in response.Recommendations)
+            {
+                animeInfo[basicRecDto.MalAnimeId] = new MalAnime(basicRecDto.MalAnimeId, basicRecDto.MalAnimeType, basicRecDto.Title);
+            }
+
+            return new MalRecommendations(recommendations, animeInfo);
+        }
+
+        private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs)
+            where TResponse : Response
+        {
+            string responseJsonString;
+            TResponse response = DoOperation<TResponse>(operation, receiveTimeoutInMs, out responseJsonString);
+            return response;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -82,7 +137,7 @@ namespace AnimeRecs.RecService.ClientLib
         /// <returns></returns>
         /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>
-        private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs)
+        private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs, out string responseJsonString)
             where TResponse : Response
         {
             string operationJsonString = JsonConvert.SerializeObject(operation);
@@ -103,7 +158,7 @@ namespace AnimeRecs.RecService.ClientLib
                 }
             }
 
-            string responseJsonString = Encoding.UTF8.GetString(responseJsonBytes);
+            responseJsonString = Encoding.UTF8.GetString(responseJsonBytes);
             TResponse response = JsonConvert.DeserializeObject<TResponse>(responseJsonString);
             if (response.Error != null)
             {
@@ -118,6 +173,12 @@ namespace AnimeRecs.RecService.ClientLib
         private TResponseBody DoOperationWithResponseBody<TResponseBody>(Operation operation, int receiveTimeoutInMs)
         {
             Response<TResponseBody> response = DoOperation<Response<TResponseBody>>(operation, receiveTimeoutInMs);
+            return response.Body;
+        }
+
+        private TResponseBody DoOperationWithResponseBody<TResponseBody>(Operation operation, int receiveTimeoutInMs, out string jsonResponseString)
+        {
+            Response<TResponseBody> response = DoOperation<Response<TResponseBody>>(operation, receiveTimeoutInMs, out jsonResponseString);
             return response.Body;
         }
 

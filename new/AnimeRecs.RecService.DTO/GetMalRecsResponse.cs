@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class GetMalRecsResponse : Response
+    public class GetMalRecsResponse
     {
         public string RecommendationType { get; set; }
 
