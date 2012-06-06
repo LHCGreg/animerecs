@@ -72,6 +72,7 @@
     <Compile Include="OperationDescription.cs" />
     <Compile Include="OperationHandler.cs" />
     <Compile Include="OperationHandlers\Common.cs" />
+    <Compile Include="OperationHandlers\GetMalRecsHandler.cs" />
     <Compile Include="OperationHandlers\LoadRecSourceHandler.cs" />
     <Compile Include="OperationHandlers\PingHandler.cs" />
     <Compile Include="OperationHandlers\ReloadTrainingDataHandler.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="RecSources\AverageScoreJsonRecSource.cs" />
     <Compile Include="RecSources\MostPopularJsonRecSource.cs" />
     <Compile Include="TcpRecService.cs" />
+    <Compile Include="ValidationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">

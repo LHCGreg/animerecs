@@ -16,6 +16,16 @@ namespace AnimeRecs.RecService.DTO
                 Error = new Error(errorCode: errorCode, message: message)
             };
         }
+
+        public Response()
+        {
+            ;
+        }
+
+        public Response(Error error)
+        {
+            Error = error;
+        }
     }
 
     public class Response<TResponseBody> : Response

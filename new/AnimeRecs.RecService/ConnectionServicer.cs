@@ -10,6 +10,9 @@ using AnimeRecs.RecService.OperationHandlers;
 
 namespace AnimeRecs.RecService
 {
+    /// <summary>
+    /// Services one connection's request.
+    /// </summary>
     internal class ConnectionServicer
     {
         private Dictionary<string, OperationDescription> Operations = new Dictionary<string, OperationDescription>(StringComparer.OrdinalIgnoreCase)
@@ -105,8 +108,16 @@ namespace AnimeRecs.RecService
             Operation derivedOp = (Operation)(JsonConvert.DeserializeObject(messageString, opDescription.OperationType));
 
             OperationReinterpreter opReinterpreter = new OperationReinterpreter(messageString);
-            Response response = opDescription.OperationHandler(derivedOp, State, opReinterpreter);
-            WriteResponse(response);
+            try
+            {
+                Response response = opDescription.OperationHandler(derivedOp, State, opReinterpreter);
+                WriteResponse(response);
+            }
+            catch (RecServiceErrorException ex)
+            {
+                Response errorResponse = new Response(ex.Error);
+                WriteResponse(errorResponse);
+            }
         }
 
         private void SendInvalidJsonError(JsonReaderException ex)

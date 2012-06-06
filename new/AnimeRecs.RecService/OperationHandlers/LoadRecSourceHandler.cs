@@ -55,17 +55,7 @@ namespace AnimeRecs.RecService.OperationHandlers
                 );
             }
 
-            try
-            {
-                state.LoadRecSource(recSource, operation.Payload.Name, operation.Payload.ReplaceExisting);
-            }
-            catch (RecServiceErrorException ex)
-            {
-                return new Response()
-                {
-                    Error = ex.Error
-                };
-            }
+            state.LoadRecSource(recSource, operation.Payload.Name, operation.Payload.ReplaceExisting);
 
             return new Response();
         }

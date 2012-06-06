@@ -41,8 +41,8 @@
     <Compile Include="LoadRecSourceRequest.cs" />
     <Compile Include="MalListEntry.cs" />
     <Compile Include="MalListForUser.cs" />
-    <Compile Include="MalRecRequestWithList.cs" />
-    <Compile Include="MalRecRequestWithListResponse.cs" />
+    <Compile Include="GetMalRecsRequest.cs" />
+    <Compile Include="GetMalRecsResponse.cs" />
     <Compile Include="Operation.cs" />
     <Compile Include="OpNames.cs" />
     <Compile Include="PingRequest.cs" />

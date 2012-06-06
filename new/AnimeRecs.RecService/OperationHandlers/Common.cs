@@ -8,7 +8,7 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        private static Response GetArgumentNotSetError(string argPath)
+        internal static Response GetArgumentNotSetError(string argPath)
         {
             return Response.GetErrorResponse(errorCode: ErrorCodes.InvalidArgument, message: string.Format("{0} was not set.", argPath));
         }

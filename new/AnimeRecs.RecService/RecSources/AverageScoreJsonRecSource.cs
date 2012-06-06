@@ -24,15 +24,8 @@ namespace AnimeRecs.RecService.RecSources
             m_animesAvailableForRecommendation = trainingData.Animes;
         }
 
-        public MalRecRequestWithListResponse GetRecommendations(MalRecRequestWithList recRequest, MalUserListEntries animeList)
+        public GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
         {
-            //Dictionary<int, AnimeRecs.RecEngine.MAL.MalListEntry> entries = new Dictionary<int, RecEngine.MAL.MalListEntry>();
-            //foreach (AnimeRecs.RecService.DTO.MalListEntry dtoEntry in recRequest.AnimeList.Entries)
-            //{
-            //    AnimeRecs.RecEngine.MAL.MalListEntry recEngineEntry = new RecEngine.MAL.MalListEntry(dtoEntry.Rating, dtoEntry.Status, dtoEntry.NumEpisodesWatched);
-            //    entries[dtoEntry.MalAnimeId] = recEngineEntry;
-            //}
-            //MalUserListEntries animeList = new MalUserListEntries(ratings: entries, animes: m_animesAvailableForRecommendation, malUsername: null);
             List<RecEngine.AverageScoreRecommendation> recs = m_underlyingRecSource.GetRecommendations(animeList, recRequest.NumRecsDesired).ToList();
 
             List<DTO.AverageScoreRecommendation> dtoRecs = recs.Select(engineRec => new DTO.AverageScoreRecommendation(
@@ -43,8 +36,8 @@ namespace AnimeRecs.RecService.RecSources
                 averageScore: engineRec.AverageScore
             )).ToList();
 
-            MalRecRequestWithListResponse<DTO.AverageScoreRecommendation> response =
-                new MalRecRequestWithListResponse<DTO.AverageScoreRecommendation>(
+            GetMalRecsResponse<DTO.AverageScoreRecommendation> response =
+                new GetMalRecsResponse<DTO.AverageScoreRecommendation>(
                     recommendationType: RecommendationTypes.AverageScore, recommendations: dtoRecs);
 
             return response;

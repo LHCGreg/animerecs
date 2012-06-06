@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
+using AnimeRecs.RecService.RecSources;
 
-namespace AnimeRecs.RecService
+namespace AnimeRecs.RecService.OperationHandlers
 {
-    internal interface ITrainableJsonRecSource
+    internal static partial class OpHandlers
     {
-        void Train(MalTrainingData trainingData);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="recRequest"></param>
-        /// <returns></returns>
-        /// <exception cref="AnimeRecs.RecService.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
-        GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest);
+        public static Response GetMalRecs(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
+        {
+            Operation<GetMalRecsRequest> operation = (Operation<GetMalRecsRequest>)baseOperation;
+            return state.GetMalRecs(operation.Payload);
+        }
     }
 }
 

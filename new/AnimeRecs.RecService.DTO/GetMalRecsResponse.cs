@@ -5,35 +5,52 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class MalRecRequestWithListResponse
+    public class GetMalRecsResponse : Response
     {
         public string RecommendationType { get; set; }
 
-        public MalRecRequestWithListResponse()
+        public GetMalRecsResponse()
         {
             ;
         }
 
-        public MalRecRequestWithListResponse(string recommendationType)
+        public GetMalRecsResponse(string recommendationType)
         {
             RecommendationType = recommendationType;
         }
     }
     
-    public class MalRecRequestWithListResponse<TRecommendation> : MalRecRequestWithListResponse
+    public class GetMalRecsResponse<TRecommendation> : GetMalRecsResponse
         where TRecommendation : Recommendation
     {
         public IList<TRecommendation> Recommendations { get; set; }
 
-        public MalRecRequestWithListResponse()
+        public GetMalRecsResponse()
         {
             ;
         }
 
-        public MalRecRequestWithListResponse(string recommendationType, IList<TRecommendation> recommendations)
+        public GetMalRecsResponse(string recommendationType, IList<TRecommendation> recommendations)
             : base(recommendationType)
         {
             Recommendations = recommendations;
+        }
+    }
+
+    public class GetMalRecsResponse<TRecommendation, TData> : GetMalRecsResponse<TRecommendation>
+        where TRecommendation : Recommendation
+    {
+        public TData Data { get; set; }
+
+        public GetMalRecsResponse()
+        {
+            ;
+        }
+
+        public GetMalRecsResponse(string recommendationType, IList<TRecommendation> recommendations, TData data)
+            : base(recommendationType, recommendations)
+        {
+            Data = data;
         }
     }
 }

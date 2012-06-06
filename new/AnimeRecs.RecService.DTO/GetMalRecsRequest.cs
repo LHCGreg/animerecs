@@ -5,24 +5,42 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class MalRecRequestWithList
+    public class GetMalRecsRequest
     {
         public MalListForUser AnimeList { get; set; }
         public string RecSourceName { get; set; }
         public int NumRecsDesired { get; set; }
+        public decimal TargetScore { get; set; }
 
-        public MalRecRequestWithList()
+        public GetMalRecsRequest()
         {
             ;
         }
 
-        public MalRecRequestWithList(string recSourceName, int numRecsDesired, MalListForUser animeList)
+        public GetMalRecsRequest(string recSourceName, int numRecsDesired, decimal targetScore, MalListForUser animeList)
         {
             RecSourceName = recSourceName;
             NumRecsDesired = numRecsDesired;
+            TargetScore = targetScore;
             AnimeList = animeList;
         }
     }
+
+    //public class GetMalRecsRequest<TParams> : GetMalRecsRequest
+    //{
+    //    public TParams Params { get; set; }
+        
+    //    public GetMalRecsRequest()
+    //    {
+    //        ;
+    //    }
+
+    //    public GetMalRecsRequest(string recSourceName, int numRecsDesired, MalListForUser animeList, TParams parameters)
+    //        : base(recSourceName, numRecsDesired, animeList)
+    //    {
+    //        Params = parameters;
+    //    }
+    //}
 }
 
 // Copyright (C) 2012 Greg Najda

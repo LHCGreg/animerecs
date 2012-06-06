@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService
 {
-    internal interface ITrainableJsonRecSource
+    internal static class ValidationExtensions
     {
-        void Train(MalTrainingData trainingData);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="recRequest"></param>
-        /// <returns></returns>
-        /// <exception cref="AnimeRecs.RecService.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
-        GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest);
+        public static void AssertArgumentNotNull<T>(this T arg, string argPath)
+            where T : class
+        {
+            if (arg == null)
+                throw new RecServiceErrorException(new Error(errorCode: ErrorCodes.InvalidArgument, message: string.Format("{0} was not set.", argPath)));
+        }
     }
 }
 

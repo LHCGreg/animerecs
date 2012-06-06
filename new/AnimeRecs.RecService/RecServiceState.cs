@@ -90,6 +90,39 @@ namespace AnimeRecs.RecService
             }
         }
 
+        public GetMalRecsResponse GetMalRecs(GetMalRecsRequest request)
+        {
+            request.AssertArgumentNotNull("Payload");
+            // Acquire read lock on rec sources
+            using (var recSourcesReadLock = m_recSourcesLock.ScopedReadLock())
+            {
+                // Get rec source by name
+                request.RecSourceName.AssertArgumentNotNull("Payload.RecSourceName");
+                if (!m_recSources.ContainsKey(request.RecSourceName))
+                {
+                    Error error = new Error(errorCode: ErrorCodes.NoSuchRecSource,
+                        message: string.Format("No rec source called \"{0}\" is loaded.", request.RecSourceName));
+                    throw new RecServiceErrorException(error);
+                }
+                ITrainableJsonRecSource recSource = m_recSources[request.RecSourceName];
+
+                // Convert DTO anime list to RecEngine anime list
+
+                request.AnimeList.AssertArgumentNotNull("Payload.AnimeList");
+                request.AnimeList.Entries.AssertArgumentNotNull("Payload.AnimeList.Entries");
+
+                Dictionary<int, AnimeRecs.RecEngine.MAL.MalListEntry> entries = new Dictionary<int, RecEngine.MAL.MalListEntry>();
+                foreach (AnimeRecs.RecService.DTO.MalListEntry dtoEntry in request.AnimeList.Entries)
+                {
+                    AnimeRecs.RecEngine.MAL.MalListEntry recEngineEntry = new RecEngine.MAL.MalListEntry(dtoEntry.Rating, dtoEntry.Status, dtoEntry.NumEpisodesWatched);
+                    entries[dtoEntry.MalAnimeId] = recEngineEntry;
+                }
+                MalUserListEntries animeList = new MalUserListEntries(ratings: entries, animes: m_trainingData.Animes, malUsername: null);
+
+                return recSource.GetRecommendations(animeList, request);
+            }
+        }
+
         public void Dispose()
         {
             m_trainingDataLock.Dispose();

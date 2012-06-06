@@ -24,7 +24,7 @@ namespace AnimeRecs.RecService.RecSources
             m_animesAvailableForRecommendation = trainingData.Animes;
         }
 
-        public MalRecRequestWithListResponse GetRecommendations(MalRecRequestWithList recRequest, MalUserListEntries animeList)
+        public GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
         {
             List<RecEngine.MostPopularRecommendation> recs = m_underlyingRecSource.GetRecommendations(animeList, recRequest.NumRecsDesired).ToList();
 
@@ -36,8 +36,8 @@ namespace AnimeRecs.RecService.RecSources
                 numRatings: engineRec.NumRatings
             )).ToList();
 
-            MalRecRequestWithListResponse<DTO.MostPopularRecommendation> response =
-                new MalRecRequestWithListResponse<DTO.MostPopularRecommendation>(
+            GetMalRecsResponse<DTO.MostPopularRecommendation> response =
+                new GetMalRecsResponse<DTO.MostPopularRecommendation>(
                     recommendationType: RecommendationTypes.MostPopular, recommendations: dtoRecs);
 
             return response;
