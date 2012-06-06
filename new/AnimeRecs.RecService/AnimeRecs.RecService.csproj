@@ -81,7 +81,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderWriterLockSlimExtensions.cs" />
-    <Compile Include="RecServiceErrorException.cs" />
     <Compile Include="RecServiceState.cs" />
     <Compile Include="RecSources\AverageScoreJsonRecSource.cs" />
     <Compile Include="RecSources\MostPopularJsonRecSource.cs" />

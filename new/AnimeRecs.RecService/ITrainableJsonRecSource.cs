@@ -16,7 +16,7 @@ namespace AnimeRecs.RecService
         /// </summary>
         /// <param name="recRequest"></param>
         /// <returns></returns>
-        /// <exception cref="AnimeRecs.RecService.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
+        /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
         GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest);
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="PingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecommendationTypes.cs" />
+    <Compile Include="RecServiceErrorException.cs" />
     <Compile Include="RecSourceParams.cs" />
     <Compile Include="RecSourceTypes.cs" />
     <Compile Include="Response.cs" />

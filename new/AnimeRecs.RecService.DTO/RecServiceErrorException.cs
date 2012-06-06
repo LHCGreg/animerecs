@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.RecService.DTO;
 
-namespace AnimeRecs.RecService
+namespace AnimeRecs.RecService.DTO
 {
     [Serializable]
     public class RecServiceErrorException : Exception

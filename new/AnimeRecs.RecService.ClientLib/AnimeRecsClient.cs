@@ -18,7 +18,7 @@ namespace AnimeRecs.RecService.ClientLib
             PortNumber = portNumber;
         }
 
-        /// <exception cref="AnimeRecs.RecService.ClientLib.RecServiceException">The recommendation service returned an error.
+        /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>
         public string Ping(string message, int receiveTimeoutInMs = 0)
         {
@@ -80,7 +80,7 @@ namespace AnimeRecs.RecService.ClientLib
         /// <param name="operation"></param>
         /// <param name="receiveTimeoutInMs"></param>
         /// <returns></returns>
-        /// <exception cref="AnimeRecs.RecService.ClientLib.RecServiceException">The recommendation service returned an error.
+        /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>
         private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs)
             where TResponse : Response
@@ -107,7 +107,7 @@ namespace AnimeRecs.RecService.ClientLib
             TResponse response = JsonConvert.DeserializeObject<TResponse>(responseJsonString);
             if (response.Error != null)
             {
-                throw new RecServiceException(response.Error);
+                throw new RecServiceErrorException(response.Error);
             }
             else
             {

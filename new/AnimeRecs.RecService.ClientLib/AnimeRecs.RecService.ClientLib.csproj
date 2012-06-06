@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="AnimeRecsClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecServiceException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj">
