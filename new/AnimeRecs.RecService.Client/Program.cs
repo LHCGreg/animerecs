@@ -7,6 +7,7 @@ using MiscUtil.IO;
 using Newtonsoft.Json;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.RecService.DTO;
+using AnimeRecs.MalApi;
 
 namespace AnimeRecs.RecService.Client
 {
@@ -85,10 +86,61 @@ namespace AnimeRecs.RecService.Client
                     }
                     Console.WriteLine("Load complete.");
                 }
+                else if (commandLine.Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
+                {
+                    MalUserLookupResults lookup;
+                    using (MyAnimeListApi malApi = new MyAnimeListApi())
+                    {
+                        lookup = malApi.GetAnimeListForUser(commandLine.MalUsername);
+                    }
+
+                    Dictionary<int, RecEngine.MAL.MalListEntry> animeListEntries = new Dictionary<int, RecEngine.MAL.MalListEntry>();
+                    foreach (MyAnimeListEntry entry in lookup.AnimeList)
+                    {
+                        animeListEntries[entry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry(entry.Score, entry.Status, entry.NumEpisodesWatched);
+                    }
+
+                    MalRecommendations recs = client.GetMalRecommendations(
+                        animeList: animeListEntries,
+                        recSourceName: commandLine.RecSourceName,
+                        numRecsDesired: commandLine.NumRecs,
+                        targetScore: commandLine.TargetScore);
+
+                    PrintRecs(recs, animeListEntries, commandLine.TargetScore);
+                }
                 else
                 {
                     throw new Exception(string.Format("Oops, missed an operation: {0}", commandLine.Operation));
                 }
+            }
+        }
+
+        private static void PrintRecs(MalRecommendations recs, IDictionary<int, RecEngine.MAL.MalListEntry> animeList, decimal targetScore)
+        {
+            if(recs.Recommendations.Count == 0)
+            {
+                Console.WriteLine("No recommendations.");
+            }
+
+            string header = null;
+            if(recs.Recommendations[0] is RecEngine.AverageScoreRecommendation)
+            {
+                header = string.Format("     {0,-52} {1,-6} {2}", "Anime", "Avg", "# ratings");
+            }
+            // TODO: More
+            Console.WriteLine(header);
+
+            int recNumber = 1;
+            foreach(RecEngine.IRecommendation generalRec in recs.Recommendations)
+            {
+                if(generalRec is RecEngine.AverageScoreRecommendation)
+                {
+                    RecEngine.AverageScoreRecommendation rec = (RecEngine.AverageScoreRecommendation)generalRec;
+                    Console.WriteLine("{0,3}. {1,-52} {2,-6:f2} {3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.AverageScore, rec.NumRatings);
+                }
+                // TODO: More
+
+                recNumber++;
             }
         }
     }

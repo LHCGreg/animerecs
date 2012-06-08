@@ -25,22 +25,6 @@ namespace AnimeRecs.RecService.DTO
             AnimeList = animeList;
         }
     }
-
-    //public class GetMalRecsRequest<TParams> : GetMalRecsRequest
-    //{
-    //    public TParams Params { get; set; }
-        
-    //    public GetMalRecsRequest()
-    //    {
-    //        ;
-    //    }
-
-    //    public GetMalRecsRequest(string recSourceName, int numRecsDesired, MalListForUser animeList, TParams parameters)
-    //        : base(recSourceName, numRecsDesired, animeList)
-    //    {
-    //        Params = parameters;
-    //    }
-    //}
 }
 
 // Copyright (C) 2012 Greg Najda

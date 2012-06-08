@@ -15,6 +15,7 @@ namespace AnimeRecs.RecService.Client
             OpNames.Ping,
             OpNames.LoadRecSource,
             OpNames.ReloadTrainingData,
+            OpNames.GetMalRecs,
             "Raw"
         };
 
@@ -35,7 +36,8 @@ namespace AnimeRecs.RecService.Client
         private int m_portNumber = 5541;
         public int PortNumber { get { return m_portNumber; } set { m_portNumber = value; } }
 
-        public string RecSourceName { get; set; }
+        private string m_recSourceName = "default";
+        public string RecSourceName { get { return m_recSourceName; } set { m_recSourceName = value; } }
 
         private bool m_replaceExistingRecSource = false;
         public bool ReplaceExistingRecSource { get { return m_replaceExistingRecSource; } set { m_replaceExistingRecSource = value; } }
@@ -75,6 +77,14 @@ namespace AnimeRecs.RecService.Client
         private double m_fractionRecommended = 0.35;
         public double FractionRecommended { get { return m_fractionRecommended; } set { m_fractionRecommended = value; } }
 
+        public string MalUsername { get; private set; }
+
+        private int m_numRecs = 50;
+        public int NumRecs { get { return m_numRecs; } set { m_numRecs = value; } }
+
+        private decimal m_targetScore = 8m;
+        public decimal TargetScore { get { return m_targetScore; } set { m_targetScore = value; } }
+
         public string RawJson { get; set; }
 
         public OptionSet GetOptionSet()
@@ -84,20 +94,23 @@ namespace AnimeRecs.RecService.Client
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
                 { "c|command=", "Command", arg => SetCommand(arg) },
                 { "p|port=", "Port the rec service is listening on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
-                { "ping_message=", "Message to send with a ping command. Only has meaning when the ping command is used. Defaults to \"ping\".", arg => PingMessage = arg },
-                { "rec_source_name=", "Rec source name. Required for LoadRecSource command.", arg => RecSourceName = arg },
-                { "f", "Replace an existing rec source.", argExistence => ReplaceExistingRecSource = (argExistence != null) },
+                { "ping_message=", "Message to send with a ping command. Used with the Ping command. Defaults to \"ping\".", arg => PingMessage = arg },
+                { "rec_source_name=", "Rec source name. Used with LoadRecSource and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
+                { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
                 { "rec_source_type=", "Rec source type. Required for LoadRecSource command", arg => SetRecSourceType(arg) },
-                { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with AverageScore, MostPopular, and AnimeRecs. Defaults to 26.",
+                { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with the LoadRecSource command with the AverageScore, MostPopular, and AnimeRecs rec source types. Defaults to 26.",
                     arg => MinEpisodesToCountIncomplete = int.Parse(arg) },
-                { "use_dropped", "Count dropped anime. Used with AverageScore and MostPopular. Defaults to false for MostPopular, true for everything else.",
+                { "use_dropped", "Count dropped anime. Used with the LoadRecSource command with the AverageScore and MostPopular rec source types. Defaults to false for MostPopular, true for everything else.",
                     argExistence => UseDropped = (argExistence != null) },
-                { "min_users_to_count_anime=", "Minimum users to have seen an anime for it to be considered by the recommendation algorithm. Used with AverageScore. Defaults to 50.",
+                { "min_users_to_count_anime=", "Minimum users to have seen an anime for it to be considered by the recommendation algorithm. Used by the LoadRecSource command with the AverageScore rec source type. Defaults to 50.",
                     arg => MinUsersToCountAnime = int.Parse(arg) },
-                { "num_recommenders_to_use=", "Number of recommenders to use for the AnimeRecs rec source. Defaults to 100.",
+                { "num_recommenders_to_use=", "Number of recommenders to use for the AnimeRecs rec source. Used by the LoadRecSource command with the AnimeRecs rec source type. Defaults to 100.",
                     arg => NumRecommendersToUse = int.Parse(arg) },
-                { "percent_recommended=", "Percentage of anime seen that a recommender recommends. Defaults to 35.",
+                { "percent_recommended=", "Percentage of anime seen that a recommender recommends. Used by the LoadRecSource command with the AnimeRecs rec source type. Defaults to 35.",
                     arg => FractionRecommended = double.Parse(arg) / 100 },
+                { "u|username=", "MAL username. Required for the GetMalRecs command.", arg => MalUsername = arg },
+                { "n|num_recs=", "Number of recommendations to get. Used by the GetMalRecs command. Defaults to 50.", arg => NumRecs = int.Parse(arg) },
+                { "t|target_score=", "Target score. Used with the GetMalRecs command. Only used by some rec sources. Defaults to 8.", arg => TargetScore = decimal.Parse(arg) },
                 { "<>", arg => SetRaw(arg) },
             };
 
@@ -155,9 +168,9 @@ namespace AnimeRecs.RecService.Client
                 throw new OptionException("Rec source type was not specified", "rec_source_type");
             }
 
-            if(!ShowHelp && Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase) && RecSourceName == null)
+            if(!ShowHelp && Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase) && MalUsername == null)
             {
-                throw new OptionException("Rec source name was not specified.", "rec_source_name");
+                throw new OptionException("MAL username was not specified.", "username");
             }
 
             if(!ShowHelp && Operation.Equals("raw", StringComparison.OrdinalIgnoreCase) && RawJson == null)

@@ -73,6 +73,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
+      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
+      <Name>AnimeRecs.MalApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
+      <Project>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</Project>
+      <Name>AnimeRecs.RecEngine.MAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj">
+      <Project>{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}</Project>
+      <Name>AnimeRecs.RecEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj">
       <Project>{052C3459-C8BF-44A3-AFE1-8B587B023044}</Project>
       <Name>AnimeRecs.RecService.ClientLib</Name>
