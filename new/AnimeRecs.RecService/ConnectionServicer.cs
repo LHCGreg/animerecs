@@ -39,6 +39,14 @@ namespace AnimeRecs.RecService
                 operationType: typeof(Operation),
                 responseType: typeof(Response)
                 )
+            },
+
+            { OpNames.GetMalRecs, new OperationDescription
+                (
+                operationHandler: OpHandlers.GetMalRecs,
+                operationType: typeof(Operation<GetMalRecsRequest>),
+                responseType: typeof(Response<GetMalRecsResponse>)
+                )
             }
         };
         
