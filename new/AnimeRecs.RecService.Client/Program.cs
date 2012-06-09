@@ -87,6 +87,11 @@ namespace AnimeRecs.RecService.Client
                     }
                     Console.WriteLine("Load complete.");
                 }
+                else if (commandLine.Operation.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
+                {
+                    client.UnloadRecSource(commandLine.RecSourceName);
+                    Console.WriteLine("Unload complete.");
+                }
                 else if (commandLine.Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
                 {
                     MalUserLookupResults lookup;

@@ -14,6 +14,7 @@ namespace AnimeRecs.RecService.Client
         {
             OpNames.Ping,
             OpNames.LoadRecSource,
+            OpNames.UnloadRecSource,
             OpNames.ReloadTrainingData,
             OpNames.GetMalRecs,
             "Raw"
@@ -95,7 +96,7 @@ namespace AnimeRecs.RecService.Client
                 { "c|command=", "Command", arg => SetCommand(arg) },
                 { "p|port=", "Port the rec service is listening on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
                 { "ping_message=", "Message to send with a ping command. Used with the Ping command. Defaults to \"ping\".", arg => PingMessage = arg },
-                { "rec_source_name=", "Rec source name. Used with LoadRecSource and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
+                { "rec_source_name=", "Rec source name. Used with the LoadRecSource, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
                 { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
                 { "rec_source_type=", "Rec source type. Required for LoadRecSource command", arg => SetRecSourceType(arg) },
                 { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with the LoadRecSource command with the AverageScore, MostPopular, and AnimeRecs rec source types. Defaults to 26.",

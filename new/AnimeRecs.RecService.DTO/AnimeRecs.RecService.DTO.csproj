@@ -53,6 +53,7 @@
     <Compile Include="RecSourceParams.cs" />
     <Compile Include="RecSourceTypes.cs" />
     <Compile Include="Response.cs" />
+    <Compile Include="UnloadRecSourceRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">

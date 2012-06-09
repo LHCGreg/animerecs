@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using MiscUtil.Extensions;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
-using System.Threading;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.DAL;
 
@@ -63,6 +64,26 @@ namespace AnimeRecs.RecService
                 using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
                 {
                     m_recSources[name] = recSource;
+                }
+            }
+        }
+
+        public void UnloadRecSource(string name)
+        {
+            name.ThrowIfNull("name");
+            using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
+            {
+                if (!m_recSources.ContainsKey(name))
+                {
+                    Error error = new Error(
+                        errorCode: ErrorCodes.NoSuchRecSource,
+                        message: string.Format("No rec source called \"{0}\" is loaded.", name));
+
+                    throw new RecServiceErrorException(error);
+                }
+                else
+                {
+                    m_recSources.Remove(name);
                 }
             }
         }

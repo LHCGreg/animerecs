@@ -33,6 +33,14 @@ namespace AnimeRecs.RecService
                 )
             },
 
+            { OpNames.UnloadRecSource, new OperationDescription
+                (
+                operationHandler: OpHandlers.UnloadRecSource,
+                operationType: typeof(Operation<UnloadRecSourceRequest>),
+                responseType: typeof(Response)
+                )
+            },
+
             { OpNames.ReloadTrainingData, new OperationDescription
                 (
                 operationHandler: OpHandlers.ReloadTrainingData,

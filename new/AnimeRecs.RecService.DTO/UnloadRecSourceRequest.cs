@@ -5,13 +5,19 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public static class OpNames
+    public class UnloadRecSourceRequest
     {
-        public static string Ping { get { return "Ping"; } }
-        public static string LoadRecSource { get { return "LoadRecSource"; } }
-        public static string UnloadRecSource { get { return "UnloadRecSource"; } }
-        public static string ReloadTrainingData { get { return "ReloadTrainingData"; } }
-        public static string GetMalRecs { get { return "GetMalRecs"; } }
+        public string Name { get; set; }
+
+        public UnloadRecSourceRequest()
+        {
+            ;
+        }
+
+        public UnloadRecSourceRequest(string name)
+        {
+            Name = name;
+        }
     }
 }
 
