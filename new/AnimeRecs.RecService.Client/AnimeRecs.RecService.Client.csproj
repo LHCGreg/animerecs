@@ -65,14 +65,20 @@
       <HintPath>..\lib\Json.NET\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArgs.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">
+      <Project>{F7463E78-C746-4D37-A869-759FB38B247B}</Project>
+      <Name>AnimeRecs.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
       <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
       <Name>AnimeRecs.MalApi</Name>
@@ -93,6 +99,9 @@
       <Project>{2E870408-2BC8-404F-BCAC-98289C1F489E}</Project>
       <Name>AnimeRecs.RecService.DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

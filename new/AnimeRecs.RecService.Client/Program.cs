@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.MalApi;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.RecService.Client
 {
@@ -89,7 +90,8 @@ namespace AnimeRecs.RecService.Client
                 else if (commandLine.Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
                 {
                     MalUserLookupResults lookup;
-                    using (MyAnimeListApi malApi = new MyAnimeListApi())
+
+                    using (IMyAnimeListApi malApi = GetMalApi())
                     {
                         lookup = malApi.GetAnimeListForUser(commandLine.MalUsername);
                     }
@@ -112,6 +114,18 @@ namespace AnimeRecs.RecService.Client
                 {
                     throw new Exception(string.Format("Oops, missed an operation: {0}", commandLine.Operation));
                 }
+            }
+        }
+
+        private static IMyAnimeListApi GetMalApi()
+        {
+            if (Config.UseDbAsMalApi)
+            {
+                return new PgMyAnimeListApi(Config.PgConnectionString);
+            }
+            else
+            {
+                return new MyAnimeListApi();
             }
         }
 

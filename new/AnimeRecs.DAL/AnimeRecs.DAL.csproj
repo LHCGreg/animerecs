@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MiscUtil">
+      <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
     <Compile Include="mal_user.cs" />
     <Compile Include="PetaPoco.cs" />
     <Compile Include="PgMalDataLoader.cs" />
+    <Compile Include="PgMyAnimeListApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="row_count.cs" />
   </ItemGroup>

@@ -7,7 +7,14 @@ namespace AnimeRecs.MalApi
 {
     public interface IMyAnimeListApi : IDisposable
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        ///<exception cref="AnimeCompatibility.MalUserNotFoundException"></exception>
         MalUserLookupResults GetAnimeListForUser(string user);
+
         RecentUsersResults GetRecentOnlineUsers();
     }
 }
