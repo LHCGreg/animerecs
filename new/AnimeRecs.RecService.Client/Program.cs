@@ -141,7 +141,15 @@ namespace AnimeRecs.RecService.Client
             {
                 header = string.Format("     {0,-52} {1,-6} {2}", "Anime", "Avg", "# ratings");
             }
-            // TODO: More
+            else if (recs.Recommendations[0] is RecEngine.MostPopularRecommendation)
+            {
+                header = string.Format("     {0,-52} {1,4} {2}", "Anime", "Rank", "# ratings");
+            }
+            else
+            {
+                header = string.Format("     {0,-65}", "Anime");
+            }
+
             Console.WriteLine(header);
 
             int recNumber = 1;
@@ -152,7 +160,15 @@ namespace AnimeRecs.RecService.Client
                     RecEngine.AverageScoreRecommendation rec = (RecEngine.AverageScoreRecommendation)generalRec;
                     Console.WriteLine("{0,3}. {1,-52} {2,-6:f2} {3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.AverageScore, rec.NumRatings);
                 }
-                // TODO: More
+                else if (generalRec is RecEngine.MostPopularRecommendation)
+                {
+                    RecEngine.MostPopularRecommendation rec = (RecEngine.MostPopularRecommendation)generalRec;
+                    Console.WriteLine("{0,3}. {1,-52} {2,4} {3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.PopularityRank, rec.NumRatings);
+                }
+                else
+                {
+                    Console.WriteLine("{0,3}. {1.-65}", recNumber, recs.AnimeInfo[generalRec.ItemId].Title);
+                }
 
                 recNumber++;
             }
