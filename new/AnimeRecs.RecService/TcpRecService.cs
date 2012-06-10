@@ -25,20 +25,33 @@ namespace AnimeRecs.RecService
         public TcpRecService(IMalTrainingDataLoaderFactory trainingDataLoaderFactory, int portNumber)
         {
             m_state = new RecServiceState(trainingDataLoaderFactory);
-            Listener = new TcpListener(new IPEndPoint(IPAddress.Any, portNumber));
+
+            try
+            {
+                Listener = new TcpListener(new IPEndPoint(IPAddress.Any, portNumber));
+            }
+            catch
+            {
+                m_state.Dispose();
+                throw;
+            }
         }
 
         public void Start()
         {
-            Listener.Start(100);
+            const int maxPendingConnections = 100;
+            Listener.Start(maxPendingConnections);
+            Logging.Log.Debug("Started listening.");
             ListenerThread = new Thread(ListenerEntryPoint);
             ListenerThread.IsBackground = true;
-            ListenerThread.Name = "Rec Service Listener Thread";
+            ListenerThread.Name = "Listener";
             ListenerThread.Start();
+            Logging.Log.Debug("Listener thread started.");
         }
 
         private void ListenerEntryPoint()
         {
+            Logging.Log.Debug("Listener thread entry point.");
             while (true)
             {
                 lock (m_syncHandle)
@@ -51,8 +64,9 @@ namespace AnimeRecs.RecService
 
                 try
                 {
+                    Logging.Log.Debug("Ready to accept another client.");
                     TcpClient client = Listener.AcceptTcpClient();
-                    //Task newTask = Task.Factory.StartNew(ConnectionEntryPoint, client);
+                    Logging.Log.DebugFormat("Accepted client {0}", client.Client.RemoteEndPoint.ToString());
                     Task connectionHandlerTask = new Task(ConnectionEntryPoint, client);
                     lock (m_syncHandle)
                     {
@@ -64,11 +78,11 @@ namespace AnimeRecs.RecService
                 {
                     if (ex is SocketException && ((SocketException)ex).SocketErrorCode == SocketError.Interrupted)
                     {
-                        ; // We're in the process of shutting down, don't log an error.
+                        Logging.Log.Debug("Listen was interrupted.");
                     }
                     else
                     {
-                        Console.WriteLine(ex); // TODO: Log error
+                        Logging.Log.ErrorFormat("Error accepting a client: {0}", ex, ex.Message);
                     }
                 }
             }
@@ -76,10 +90,13 @@ namespace AnimeRecs.RecService
 
         private void ConnectionEntryPoint(object clientObj)
         {
+            Logging.Log.Debug("Servicer thread entry.");
             using (TcpClient client = (TcpClient)clientObj)
             {
                 try
                 {
+                    Thread.CurrentThread.Name = client.Client.RemoteEndPoint.ToString();
+                    
                     using (NetworkStream clientStream = client.GetStream())
                     {
                         const int readTimeout = 3000;
@@ -92,7 +109,7 @@ namespace AnimeRecs.RecService
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex); // TODO: Log error
+                    Logging.Log.ErrorFormat("Error servicing connection: {0}", ex, ex.Message);
                 }
             }
 
@@ -106,6 +123,7 @@ namespace AnimeRecs.RecService
         {
             try
             {
+                Logging.Log.Debug("Telling listener thread to stop.");
                 // Tells the listener thread to stop before trying to do another Accept
                 lock (m_syncHandle)
                 {
@@ -114,6 +132,8 @@ namespace AnimeRecs.RecService
                 // Stops the listener thread from its Accept if its waiting for a connection like it is most of the time.
                 if (Listener != null)
                     Listener.Stop();
+
+                Logging.Log.Debug("Waiting for listener thread to finish.");
                 // Wait for listener thread to finish.
                 if (ListenerThread != null)
                     ListenerThread.Join();
@@ -125,6 +145,8 @@ namespace AnimeRecs.RecService
                     runningTasks = m_runningTasks.Values.ToArray();
                 }
 
+                Logging.Log.InfoFormat("Waiting for {0} operations to complete.", runningTasks.Length);
+
                 Task.WaitAll(runningTasks);
 
                 // Dispose of service state
@@ -133,7 +155,7 @@ namespace AnimeRecs.RecService
             catch (Exception ex)
             {
                 // Hopefully this is never reached.
-                Console.WriteLine(ex); // TODO: Log error
+                Logging.Log.ErrorFormat("Error while cleaning up: {0}", ex, ex.Message);
             }
         }
     }

@@ -11,7 +11,8 @@
     <RootNamespace>AnimeRecs.RecService</RootNamespace>
     <AssemblyName>recservice</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -54,11 +55,21 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Common.Logging\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.NLog">
+      <HintPath>..\lib\Common.Logging\Common.Logging.NLog.dll</HintPath>
+    </Reference>
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json.Net35">
       <HintPath>..\lib\Json.NET\Newtonsoft.Json.Net35.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -69,6 +80,7 @@
     <Compile Include="ConnectionServicer.cs" />
     <Compile Include="IMalTrainingDataLoaderFactory.cs" />
     <Compile Include="ITrainableJsonRecSource.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="OperationDescription.cs" />
     <Compile Include="OperationHandler.cs" />
     <Compile Include="OperationHandlers\Common.cs" />

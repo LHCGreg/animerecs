@@ -2,29 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
-using AnimeRecs.DAL;
 
 namespace AnimeRecs.RecService
 {
-    internal class Program
+    internal class Logging
     {
-        static void Main(string[] args)
-        {
-            System.Threading.Thread.CurrentThread.Name = "Main";
-            Logging.SetUpLogging();
+        internal static global::Common.Logging.ILog Log { get; set; }
 
-            int port = 5541;
-            string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-            PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
-            using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, port))
-            {
-                recService.Start();
-                Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", port);
-                Console.ReadKey();
-                Logging.Log.InfoFormat("Got stop signal.");
-            }
-            Logging.Log.InfoFormat("Shutdown complete.");
+        internal static void SetUpLogging()
+        {
+            Log = global::Common.Logging.LogManager.GetLogger("AnimeRecs.RecService");
+            WriteLogPrologue();
+        }
+
+        private static void WriteLogPrologue()
+        {
+            Logging.Log.DebugFormat("{0} started.", System.Reflection.Assembly.GetEntryAssembly().FullName);
+            Logging.Log.DebugFormat("CLR Version: {0}", Environment.Version);
+            Logging.Log.DebugFormat("Operating System: {0}", Environment.OSVersion);
+            Logging.Log.DebugFormat("Number of processors: {0}", Environment.ProcessorCount);
         }
     }
 }

@@ -10,19 +10,19 @@ namespace AnimeRecs.RecEngine.MAL
         private MostPopularRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>
             m_recommender = new MostPopularRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>();
 
-        private int m_minEpisodesToCountIncomplete;
-        private bool m_useDropped;
+        public int MinEpisodesToCountIncomplete { get; private set; }
+        public bool UseDropped { get; private set; }
 
         public MalMostPopularRecSource(int minEpisodesToCountIncomplete, bool useDropped)
         {
-            m_minEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
-            m_useDropped = useDropped;
+            MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
+            UseDropped = useDropped;
         }
 
         public void Train(MalTrainingData trainingData)
         {
             IBasicTrainingData<IBasicInputForUser> basicTrainingData =
-                trainingData.AsBasicTrainingData(m_minEpisodesToCountIncomplete, m_useDropped);
+                trainingData.AsBasicTrainingData(MinEpisodesToCountIncomplete, UseDropped);
             m_recommender.Train(basicTrainingData);
         }
 
@@ -34,7 +34,7 @@ namespace AnimeRecs.RecEngine.MAL
         public override string ToString()
         {
             return string.Format("Popular - MinEpisodesToCountIncomplete = {0}, UseDropped = {1}",
-                m_minEpisodesToCountIncomplete, m_useDropped);
+                MinEpisodesToCountIncomplete, UseDropped);
         }
     }
 }

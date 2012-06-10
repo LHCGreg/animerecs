@@ -11,6 +11,7 @@ namespace AnimeRecs.RecService.DTO
         public static string NoSuchOp { get { return "NoSuchOp"; } }
         public static string InvalidArgument { get { return "InvalidArgument"; } }
         public static string NoSuchRecSource { get { return "NoSuchRecSource"; } }
+        public static string Maintenance { get { return "Maintenance"; } }
         
         /// <summary>
         /// Used for any errors that do not have their own error code.

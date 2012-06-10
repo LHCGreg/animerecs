@@ -10,23 +10,23 @@ namespace AnimeRecs.RecEngine.MAL
         private AverageScoreRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>
             m_recommender = new AverageScoreRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>();
 
-        private int m_minEpisodesToCountIncomplete;
-        private bool m_useDropped;
-        private int m_minUsersToCountAnime;
+        public int MinEpisodesToCountIncomplete { get; private set; }
+        public bool UseDropped { get; private set; }
+        public int MinUsersToCountAnime { get; private set; }
         
         public MalAverageScoreRecSource(int minEpisodesToCountIncomplete, bool useDropped, int minUsersToCountAnime)
         {
-            m_minEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
-            m_useDropped = useDropped;
-            m_minUsersToCountAnime = minUsersToCountAnime;
+            MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
+            UseDropped = useDropped;
+            MinUsersToCountAnime = minUsersToCountAnime;
         }
 
         public void Train(MalTrainingData trainingData)
         {
             IBasicTrainingData<IBasicInputForUser> basicTrainingData =
-                trainingData.AsBasicTrainingData(m_minEpisodesToCountIncomplete, m_useDropped);
+                trainingData.AsBasicTrainingData(MinEpisodesToCountIncomplete, UseDropped);
 
-            IBasicTrainingData<IBasicInputForUser> filteredTrainingData = FilterHelpers.RemoveItemsWithFewUsers(basicTrainingData, m_minUsersToCountAnime);
+            IBasicTrainingData<IBasicInputForUser> filteredTrainingData = FilterHelpers.RemoveItemsWithFewUsers(basicTrainingData, MinUsersToCountAnime);
             m_recommender.Train(filteredTrainingData);
         }
 
@@ -38,7 +38,7 @@ namespace AnimeRecs.RecEngine.MAL
         public override string ToString()
         {
             return string.Format("Average - MinEpisodesToCountIncomplete = {0}, UseDropped = {1}, MinUsersToCountAnime = {2}",
-                m_minEpisodesToCountIncomplete, m_useDropped, m_minUsersToCountAnime);
+                MinEpisodesToCountIncomplete, UseDropped, MinUsersToCountAnime);
         }
     }
 }

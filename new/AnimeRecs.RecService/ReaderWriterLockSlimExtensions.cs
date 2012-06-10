@@ -14,6 +14,19 @@ namespace AnimeRecs.RecService
             return new ReadLockToken(rwLock);
         }
 
+        public static ReadLockToken ScopedReadLock(this ReaderWriterLockSlim rwLock, int timeoutInMs, out bool enteredLock)
+        {
+            enteredLock = rwLock.TryEnterReadLock(timeoutInMs);
+            if (enteredLock)
+            {
+                return new ReadLockToken(rwLock);
+            }
+            else
+            {
+                return new ReadLockToken(null);
+            }
+        }
+
         public static WriteLockToken ScopedWriteLock(this ReaderWriterLockSlim rwLock)
         {
             rwLock.EnterWriteLock();
@@ -37,7 +50,8 @@ namespace AnimeRecs.RecService
 
             public void Dispose()
             {
-                m_rwLock.ExitReadLock();
+                if (m_rwLock != null)
+                    m_rwLock.ExitReadLock();
             }
         }
 
@@ -52,7 +66,8 @@ namespace AnimeRecs.RecService
 
             public void Dispose()
             {
-                m_rwLock.ExitUpgradeableReadLock();
+                if (m_rwLock != null)
+                    m_rwLock.ExitUpgradeableReadLock();
             }
         }
 
@@ -67,7 +82,8 @@ namespace AnimeRecs.RecService
 
             public void Dispose()
             {
-                m_rwLock.ExitWriteLock();
+                if (m_rwLock != null)
+                    m_rwLock.ExitWriteLock();
             }
         }
     }

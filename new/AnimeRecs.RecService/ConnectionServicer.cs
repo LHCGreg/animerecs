@@ -81,8 +81,7 @@ namespace AnimeRecs.RecService
                 }
                 catch (Exception ex2)
                 {
-                    // TODO: Logging
-                    Console.WriteLine("Error trying to notify client of unexpected error: {0}", ex2);
+                    Logging.Log.InfoFormat("Error trying to notify client of unexpected error: {0}", ex2, ex2.Message);
                 }
 
                 throw;
@@ -91,7 +90,10 @@ namespace AnimeRecs.RecService
 
         private void ServiceConnectionCore()
         {
+            Logging.Log.Debug("Reading message from client.");
             byte[] messageBytes = StreamUtil.ReadFully(ClientStream);
+
+            Logging.Log.Debug("Converting message bytes into string.");
             string messageString = Encoding.UTF8.GetString(messageBytes);
 
             // First deserialize as a non-specific Operation object to learn what operation it is.
@@ -99,6 +101,7 @@ namespace AnimeRecs.RecService
             Operation operationCheck;
             try
             {
+                Logging.Log.Debug("Deserializing message.");
                 operationCheck = JsonConvert.DeserializeObject<Operation>(messageString);
             }
             catch (JsonReaderException ex)
@@ -106,6 +109,8 @@ namespace AnimeRecs.RecService
                 SendInvalidJsonError(ex);
                 return;
             }
+
+            Logging.Log.DebugFormat("Got message with OpName {0}", operationCheck.OpName);
 
             if (operationCheck.OpName == null)
             {
@@ -121,12 +126,15 @@ namespace AnimeRecs.RecService
 
             OperationDescription opDescription = Operations[operationCheck.OpName];
 
+            Logging.Log.Debug("Deserializing op-specific message.");
             Operation derivedOp = (Operation)(JsonConvert.DeserializeObject(messageString, opDescription.OperationType));
+            Logging.Log.Debug("Deserialized op-specific message.");
 
             OperationReinterpreter opReinterpreter = new OperationReinterpreter(messageString);
             try
             {
                 Response response = opDescription.OperationHandler(derivedOp, State, opReinterpreter);
+                Logging.Log.Debug("Operation completed, writing response.");
                 WriteResponse(response);
             }
             catch (RecServiceErrorException ex)
@@ -177,6 +185,7 @@ namespace AnimeRecs.RecService
 
         private void SendUnexpectedError(Exception ex)
         {
+            Logging.Log.ErrorFormat("Unexpected error while servicing connection: {0}", ex, ex.Message);
             Response errorResponse = new Response()
             {
                 Error = new Error()
@@ -190,9 +199,20 @@ namespace AnimeRecs.RecService
 
         private void WriteResponse(Response response)
         {
+            if (response.Error != null)
+            {
+                Logging.Log.InfoFormat("Sending error response with message: {0}", response.Error.Message);
+            }
+            
+            Logging.Log.Debug("Serializing response.");
             string responseJsonString = JsonConvert.SerializeObject(response);
+
+            Logging.Log.Debug("Turning response string into bytes.");
             byte[] responseJsonBytes = Encoding.UTF8.GetBytes(responseJsonString);
+
+            Logging.Log.Debug("Writing response.");
             ClientStream.Write(responseJsonBytes, 0, responseJsonBytes.Length);
+            Logging.Log.Debug("Response written.");
         }
     }
 }

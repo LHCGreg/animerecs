@@ -42,6 +42,12 @@ namespace AnimeRecs.RecService.RecSources
 
             return response;
         }
+
+        public override string ToString()
+        {
+            return string.Format("MostPopular MinEpisodesToCountIncomplete={0}, UseDropped={1}",
+                m_underlyingRecSource.MinEpisodesToCountIncomplete, m_underlyingRecSource.UseDropped);
+        }
     }
 }
 

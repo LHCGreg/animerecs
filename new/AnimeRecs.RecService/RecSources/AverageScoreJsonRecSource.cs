@@ -42,6 +42,12 @@ namespace AnimeRecs.RecService.RecSources
 
             return response;
         }
+
+        public override string ToString()
+        {
+            return string.Format("AverageScore MinEpisodesToCountIncomplete={0}, MinUsersToCountAnime={1}, UseDropped={2}",
+                m_underlyingRecSource.MinEpisodesToCountIncomplete, m_underlyingRecSource.MinUsersToCountAnime, m_underlyingRecSource.UseDropped);
+        }
     }
 }
 
