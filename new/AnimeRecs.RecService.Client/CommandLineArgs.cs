@@ -8,7 +8,7 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.Client
 {
-    class CommandLineArgs
+    internal class CommandLineArgs
     {
         private HashSet<string> AllowedCommands = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {

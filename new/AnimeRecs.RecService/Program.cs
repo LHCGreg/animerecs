@@ -14,17 +14,30 @@ namespace AnimeRecs.RecService
             System.Threading.Thread.CurrentThread.Name = "Main";
             Logging.SetUpLogging();
 
-            int port = 5541;
-            string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-            PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
-            using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, port))
+            try
             {
-                recService.Start();
-                Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", port);
-                Console.ReadKey();
-                Logging.Log.InfoFormat("Got stop signal.");
+                CommandLineArgs commandLine = new CommandLineArgs(args);
+                if (commandLine.ShowHelp)
+                {
+                    commandLine.DisplayHelp(Console.Out);
+                    return;
+                }
+
+                string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
+                PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
+                using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, commandLine.PortNumber))
+                {
+                    recService.Start();
+                    Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", commandLine.PortNumber);
+                    Console.ReadKey();
+                    Logging.Log.InfoFormat("Got stop signal.");
+                }
+                Logging.Log.InfoFormat("Shutdown complete.");
             }
-            Logging.Log.InfoFormat("Shutdown complete.");
+            catch (Exception ex)
+            {
+                Logging.Log.FatalFormat("Fatal error: {0}", ex, ex.Message);
+            }
         }
     }
 }
