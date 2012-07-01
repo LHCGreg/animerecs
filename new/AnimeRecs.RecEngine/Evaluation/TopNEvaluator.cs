@@ -38,7 +38,7 @@ namespace AnimeRecs.RecEngine.Evaluation
         /// <param name="numRecsToTryToGet">Number of recommendations to try to get for each user.</param>
         /// <returns></returns>
         public EvaluationResults Evaluate<TInput, TRecommendation>(
-            IRecommendationSource<TInput, TRecommendation> recSource,
+            IRecommendationSource<TInput, IEnumerable<TRecommendation>, TRecommendation> recSource,
             ICollection<TInput> users,
             IUserInputClassifier<TInput> goodBadClassifier,
             Func<ClassifiedUserInput<TInput>, double, ItemsForInputAndEvaluation<TInput>> inputDivisionFunc,
@@ -86,7 +86,7 @@ namespace AnimeRecs.RecEngine.Evaluation
         }
 
         private SingleUserEvaluationResults GetSingleUserEvaluationResults<TInput, TRecommendation>(
-            IRecommendationSource<TInput, TRecommendation> recSource,
+            IRecommendationSource<TInput, IEnumerable<TRecommendation>, TRecommendation> recSource,
             TInput user,
             IUserInputClassifier<TInput> goodBadClassifier,
             Func<ClassifiedUserInput<TInput>, double, ItemsForInputAndEvaluation<TInput>> inputDivisionFunc,

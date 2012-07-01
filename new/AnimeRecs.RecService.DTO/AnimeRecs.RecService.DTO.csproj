@@ -35,6 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MalAnimeRecsExtraResponseData.cs" />
+    <Compile Include="MalAnime.cs" />
     <Compile Include="Recommendation.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ErrorCodes.cs" />

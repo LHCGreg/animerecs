@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.MalApi", "AnimeRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.FreshenMalDatabase", "AnimeRecs.FreshenMalDatabase\AnimeRecs.FreshenMalDatabase.csproj", "{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.GetMalRecs", "AnimeRecs.GetMalRecs\AnimeRecs.GetMalRecs.csproj", "{A0C50B73-2E13-4A19-8FD8-3814A188BC12}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.MalEvaluationRunner", "AnimeRecs.MalEvaluationRunner\AnimeRecs.MalEvaluationRunner.csproj", "{5C76DAA8-1A14-48B9-98F1-C075209C324C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.RecService", "AnimeRecs.RecService\AnimeRecs.RecService.csproj", "{F2E6F758-CF15-4219-9DAC-09D1190EE7E6}"
@@ -96,17 +94,6 @@ Global
 		{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}.Release|x86.ActiveCfg = Release|x86
 		{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}.Release|x86.Build.0 = Release|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Debug|x86.ActiveCfg = Debug|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Debug|x86.Build.0 = Debug|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Release|Any CPU.ActiveCfg = Release|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Release|Mixed Platforms.Build.0 = Release|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Release|x86.ActiveCfg = Release|x86
-		{A0C50B73-2E13-4A19-8FD8-3814A188BC12}.Release|x86.Build.0 = Release|x86
 		{5C76DAA8-1A14-48B9-98F1-C075209C324C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C76DAA8-1A14-48B9-98F1-C075209C324C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C76DAA8-1A14-48B9-98F1-C075209C324C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86

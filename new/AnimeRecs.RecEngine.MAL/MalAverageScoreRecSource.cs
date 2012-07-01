@@ -5,7 +5,8 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine.MAL
 {
-    public class MalAverageScoreRecSource : ITrainableRecSource<MalTrainingData, MalUserListEntries, AverageScoreRecommendation>
+    public class MalAverageScoreRecSource
+        : ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<AverageScoreRecommendation>, AverageScoreRecommendation>
     {
         private AverageScoreRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>
             m_recommender = new AverageScoreRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>();
@@ -37,7 +38,7 @@ namespace AnimeRecs.RecEngine.MAL
 
         public override string ToString()
         {
-            return string.Format("Average - MinEpisodesToCountIncomplete = {0}, UseDropped = {1}, MinUsersToCountAnime = {2}",
+            return string.Format("AverageScore MinEpisodesToCountIncomplete={0} UseDropped={1} MinUsersToCountAnime={2}",
                 MinEpisodesToCountIncomplete, UseDropped, MinUsersToCountAnime);
         }
     }

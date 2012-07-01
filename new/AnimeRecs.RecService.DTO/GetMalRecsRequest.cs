@@ -10,19 +10,34 @@ namespace AnimeRecs.RecService.DTO
         public MalListForUser AnimeList { get; set; }
         public string RecSourceName { get; set; }
         public int NumRecsDesired { get; set; }
-        public decimal TargetScore { get; set; }
+        public decimal? TargetScore { get; set; }
+        public decimal? TargetFraction { get; set; }
 
         public GetMalRecsRequest()
         {
             ;
         }
 
-        public GetMalRecsRequest(string recSourceName, int numRecsDesired, decimal targetScore, MalListForUser animeList)
+        public static GetMalRecsRequest CreateWithTargetScore(string recSourceName, int numRecsDesired, decimal targetScore, MalListForUser animeList)
         {
-            RecSourceName = recSourceName;
-            NumRecsDesired = numRecsDesired;
-            TargetScore = targetScore;
-            AnimeList = animeList;
+            return new GetMalRecsRequest()
+            {
+                RecSourceName = recSourceName,
+                NumRecsDesired = numRecsDesired,
+                TargetScore = targetScore,
+                AnimeList = animeList
+            };
+        }
+
+        public static GetMalRecsRequest CreateWithTargetFraction(string recSourceName, int numRecsDesired, decimal targetFraction, MalListForUser animeList)
+        {
+            return new GetMalRecsRequest()
+            {
+                RecSourceName = recSourceName,
+                NumRecsDesired = numRecsDesired,
+                TargetFraction = targetFraction,
+                AnimeList = animeList
+            };
         }
     }
 }

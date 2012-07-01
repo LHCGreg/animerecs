@@ -7,7 +7,7 @@ using MyMediaLite.RatingPrediction;
 namespace AnimeRecs.RecEngine.MAL
 {
     public class MalMyMediaLiteRatingPredictionRecSource<TRecommender>
-        : ITrainableRecSource<MalTrainingData, MalUserListEntries, RatingPredictionRecommendation>
+        : ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<RatingPredictionRecommendation>, RatingPredictionRecommendation>
         where TRecommender : RatingPredictor, IFoldInRatingPredictor
     {
         private MyMediaLiteRatingPredictionRecSource<TRecommender> m_recommender;

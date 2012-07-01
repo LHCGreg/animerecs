@@ -8,7 +8,7 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response UnloadRecSource(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
+        public static Response UnloadRecSource(Operation baseOperation, RecServiceState state, OperationCaster opReinterpreter)
         {
             Operation<UnloadRecSourceRequest> operation = (Operation<UnloadRecSourceRequest>)baseOperation;
             operation.Payload.AssertArgumentNotNull("Payload");

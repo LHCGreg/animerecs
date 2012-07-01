@@ -11,8 +11,7 @@ namespace AnimeRecs.RecEngine
     /// <typeparam name="TTrainingData"></typeparam>
     /// <typeparam name="TTrainingDataUserRatings"></typeparam>
     public class AverageScoreRecSource<TTrainingData, TTrainingDataUserRatings>
-        : IRecommendationSource<IInputForUser, AverageScoreRecommendation>, ITrainable<TTrainingData>,
-        ITrainableRecSource<TTrainingData, IInputForUser, AverageScoreRecommendation>
+        : ITrainableRecSource<TTrainingData, IInputForUser, IEnumerable<AverageScoreRecommendation>, AverageScoreRecommendation>
 
         where TTrainingData : IBasicTrainingData<TTrainingDataUserRatings>
         where TTrainingDataUserRatings : IBasicInputForUser

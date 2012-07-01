@@ -8,7 +8,7 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response Ping(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
+        public static Response Ping(Operation baseOperation, RecServiceState state, OperationCaster opReinterpreter)
         {
             Operation<PingRequest> operation = (Operation<PingRequest>)(baseOperation);
             if (!operation.PayloadSet || operation.Payload == null)

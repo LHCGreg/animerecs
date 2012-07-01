@@ -130,7 +130,7 @@ namespace AnimeRecs.RecService
             Operation derivedOp = (Operation)(JsonConvert.DeserializeObject(messageString, opDescription.OperationType));
             Logging.Log.Debug("Deserialized op-specific message.");
 
-            OperationReinterpreter opReinterpreter = new OperationReinterpreter(messageString);
+            OperationCaster opReinterpreter = new OperationCaster(messageString);
             try
             {
                 Response response = opDescription.OperationHandler(derivedOp, State, opReinterpreter);

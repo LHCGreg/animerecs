@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AnimeRecs.RecEngine.Utils;
 
 namespace AnimeRecs.RecEngine
 {
@@ -25,9 +26,8 @@ namespace AnimeRecs.RecEngine
     /// then by the item's average rating.
     /// </remarks>
     public class AnimeRecsRecSource<TUnderlyingTrainingData, TTrainingDataUserRatings, TInput>
-        : IRecommendationSource<AnimeRecsInput<TInput>, AnimeRecsRecommendation>,
-        ITrainable<AnimeRecsTrainingData<TUnderlyingTrainingData, TTrainingDataUserRatings>>,
-        ITrainableRecSource<AnimeRecsTrainingData<TUnderlyingTrainingData, TTrainingDataUserRatings>, AnimeRecsInput<TInput>, AnimeRecsRecommendation>
+        : ITrainableRecSource<AnimeRecsTrainingData<TUnderlyingTrainingData, TTrainingDataUserRatings>, AnimeRecsInput<TInput>,
+        AnimeRecsResults, AnimeRecsRecommendation>
 
         where TUnderlyingTrainingData : IBasicTrainingData<TTrainingDataUserRatings>
         where TTrainingDataUserRatings : IInputForUserWithItemIds
@@ -70,7 +70,7 @@ namespace AnimeRecs.RecEngine
             Recommenders.Add(recommender);
         }
 
-        public IEnumerable<AnimeRecsRecommendation> GetRecommendations(AnimeRecsInput<TInput> input,
+        public AnimeRecsResults GetRecommendations(AnimeRecsInput<TInput> input,
             int numRecommendationsToTryToGet)
         {
             // Sort recommenders by the low endpoint of the compatibility confidence interval
@@ -117,7 +117,8 @@ namespace AnimeRecs.RecEngine
                 {
                     if (!recIds.Contains(rec) && input.ItemIsOkToRecommend(rec))
                     {
-                        recs.Add(new AnimeRecsRecommendation(recommender, rec));
+                        //recs.Add(new AnimeRecsRecommendation(recommender, rec));
+                        recs.Add(new AnimeRecsRecommendation(recommenderUserId: recommender.UserId, itemId: rec));
                         recIds.Add(rec);
                         if (recs.Count >= numRecommendationsToTryToGet)
                             break;
@@ -128,7 +129,7 @@ namespace AnimeRecs.RecEngine
                     break;
             }
 
-            return recs;
+            return new AnimeRecsResults(recs, recommendersWithCompatibility);
         }
 
         private class Recommender
@@ -146,22 +147,6 @@ namespace AnimeRecs.RecEngine
             {
                 return string.Format("{0} - {1} recommendations", UserId, Recommendations.Count);
             }
-        }
-    }
-
-    // Why isn't this class in the BCL? -_-
-    internal class DelegateComparer<T> : IComparer<T>
-    {
-        private Comparison<T> m_comparison;
-
-        public DelegateComparer(Comparison<T> comparison)
-        {
-            m_comparison = comparison;
-        }
-
-        public int Compare(T x, T y)
-        {
-            return m_comparison(x, y);
         }
     }
 
@@ -198,18 +183,49 @@ namespace AnimeRecs.RecEngine
 
     public class AnimeRecsRecommendation : IRecommendation
     {
-        public AnimeRecsRecommenderUser Recommender { get; private set; }
+        //public AnimeRecsRecommenderUser Recommender { get; private set; }
+        public int RecommenderUserId { get; private set; }
         public int ItemId { get; private set; }
 
-        internal AnimeRecsRecommendation(AnimeRecsRecommenderUser recommender, int itemId)
+        public AnimeRecsRecommendation(int recommenderUserId, int itemId)
         {
-            Recommender = recommender;
+            //Recommender = recommender;
+            RecommenderUserId = recommenderUserId;
             ItemId = itemId;
         }
 
         public override string ToString()
         {
-            return Recommender.ToString();
+            return string.Format("User={0} Item={1}", RecommenderUserId, ItemId);
+        }
+    }
+
+    public class AnimeRecsResults : IEnumerable<AnimeRecsRecommendation>
+    {
+        /// <summary>
+        /// Contains no more than the amount of recommendations asked for.
+        /// </summary>
+        public IList<AnimeRecsRecommendation> Recommendations { get; private set; }
+
+        /// <summary>
+        /// Contains all recommenders sorted by compatibility low endpoint in descending order.
+        /// </summary>
+        public IList<AnimeRecsRecommenderUser> Recommenders { get; private set; }
+        
+        public AnimeRecsResults(IList<AnimeRecsRecommendation> recommendations, IList<AnimeRecsRecommenderUser> recommenders)
+        {
+            Recommendations = recommendations;
+            Recommenders = recommenders;
+        }
+
+        public IEnumerator<AnimeRecsRecommendation> GetEnumerator()
+        {
+            return Recommendations.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return ((System.Collections.IEnumerable)Recommendations).GetEnumerator();
         }
     }
 
@@ -224,7 +240,7 @@ namespace AnimeRecs.RecEngine
         public double? CompatibilityHighEndpoint { get; private set; }
         public ICollection<int> AllRecommendations { get; private set; }
 
-        internal AnimeRecsRecommenderUser(int userId, ICollection<int> recsLiked, ICollection<int> recsNotLiked, ICollection<int> allRecommendations)
+        public AnimeRecsRecommenderUser(int userId, ICollection<int> recsLiked, ICollection<int> recsNotLiked, ICollection<int> allRecommendations)
         {
             UserId = userId;
             RecsLiked = recsLiked;

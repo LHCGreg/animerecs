@@ -12,8 +12,7 @@ namespace AnimeRecs.RecEngine
     /// <typeparam name="TTrainingData"></typeparam>
     /// <typeparam name="TTrainingUserInput"></typeparam>
     public class MostPopularRecSource<TTrainingData, TTrainingUserInput>
-        : IRecommendationSource<IInputForUser, MostPopularRecommendation>, ITrainable<TTrainingData>,
-        ITrainableRecSource<TTrainingData, IInputForUser, MostPopularRecommendation>
+        : ITrainableRecSource<TTrainingData, IInputForUser, IEnumerable<MostPopularRecommendation>, MostPopularRecommendation>
 
         where TTrainingData : IBasicTrainingData<TTrainingUserInput>
         where TTrainingUserInput : IBasicInputForUser

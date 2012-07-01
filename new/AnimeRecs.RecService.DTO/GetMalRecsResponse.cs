@@ -8,15 +8,17 @@ namespace AnimeRecs.RecService.DTO
     public class GetMalRecsResponse
     {
         public string RecommendationType { get; set; }
+        public IList<DTO.MalAnime> Animes { get; set; }
 
         public GetMalRecsResponse()
         {
             ;
         }
 
-        public GetMalRecsResponse(string recommendationType)
+        public GetMalRecsResponse(string recommendationType, IList<DTO.MalAnime> animes)
         {
             RecommendationType = recommendationType;
+            Animes = animes;
         }
     }
     
@@ -30,8 +32,8 @@ namespace AnimeRecs.RecService.DTO
             ;
         }
 
-        public GetMalRecsResponse(string recommendationType, IList<TRecommendation> recommendations)
-            : base(recommendationType)
+        public GetMalRecsResponse(string recommendationType, IList<DTO.MalAnime> animes, IList<TRecommendation> recommendations)
+            : base(recommendationType, animes)
         {
             Recommendations = recommendations;
         }
@@ -47,8 +49,8 @@ namespace AnimeRecs.RecService.DTO
             ;
         }
 
-        public GetMalRecsResponse(string recommendationType, IList<TRecommendation> recommendations, TData data)
-            : base(recommendationType, recommendations)
+        public GetMalRecsResponse(string recommendationType, IList<DTO.MalAnime> animes, IList<TRecommendation> recommendations, TData data)
+            : base(recommendationType, animes, recommendations)
         {
             Data = data;
         }

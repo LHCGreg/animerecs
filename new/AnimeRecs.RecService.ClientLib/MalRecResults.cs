@@ -7,14 +7,16 @@ using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.ClientLib
 {
-    public class MalRecommendations
+    public class MalRecResults<TResults>
+        where TResults : IEnumerable<IRecommendation>
     {
-        public IList<IRecommendation> Recommendations { get; private set; }
+        //public IList<IRecommendation> Recommendations { get; private set; }
+        public TResults Results { get; private set; }
         public IDictionary<int, MalAnime> AnimeInfo { get; private set; }
 
-        public MalRecommendations(IList<IRecommendation> recommendations, IDictionary<int, MalAnime> animeInfo)
+        public MalRecResults(TResults results, IDictionary<int, MalAnime> animeInfo)
         {
-            Recommendations = recommendations;
+            Results = results;
             AnimeInfo = animeInfo;
         }
     }

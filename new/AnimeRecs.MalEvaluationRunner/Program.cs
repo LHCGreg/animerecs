@@ -18,7 +18,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
         {
             TopNEvaluator evaluator = new TopNEvaluator();
 
-            var recommendersUnderTest = new List<ITrainableRecSource<MalTrainingData, MalUserListEntries, IRecommendation>>();
+            var recommendersUnderTest = new List<ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<IRecommendation>, IRecommendation>>();
             List<List<EvaluationResults>> resultsForEachRecommender = new List<List<EvaluationResults>>();
 
             const int minEpisodesToCountIncomplete = 26;
@@ -90,7 +90,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             {
                 for (int recSourceIndex = 0; recSourceIndex < recommendersUnderTest.Count; recSourceIndex++)
                 {
-                    ITrainableRecSource<MalTrainingData, MalUserListEntries, IRecommendation> recSource = recommendersUnderTest[recSourceIndex];
+                    ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<IRecommendation>, IRecommendation> recSource = recommendersUnderTest[recSourceIndex];
                     
                     Tuple<MalTrainingData, ICollection<MalUserListEntries>> dataForTrainingAndEvaluation = GetDataForTrainingAndEvaluation(rawData);
                     MalTrainingData trainingData = dataForTrainingAndEvaluation.Item1;
@@ -112,7 +112,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
 
             for(int recSourceIndex = 0; recSourceIndex < recommendersUnderTest.Count; recSourceIndex++)
             {
-                ITrainableRecSource<MalTrainingData, MalUserListEntries, IRecommendation> recSource = recommendersUnderTest[recSourceIndex];
+                ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<IRecommendation>, IRecommendation> recSource = recommendersUnderTest[recSourceIndex];
                 Console.WriteLine(recSource);
                 foreach (EvaluationResults resultsForPass in resultsForEachRecommender[recSourceIndex])
                 {

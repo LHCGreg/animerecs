@@ -12,7 +12,9 @@ namespace AnimeRecs.RecEngine
     /// </summary>
     /// <typeparam name="TRecommender"></typeparam>
     public class MyMediaLiteRatingPredictionRecSource<TRecommender>
-        : IRecommendationSource<IBasicInputForUser, RatingPredictionRecommendation>, ITrainable<IBasicTrainingData<IBasicInputForUser>>
+        : ITrainableRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser,
+        IEnumerable<RatingPredictionRecommendation>, RatingPredictionRecommendation>
+
         where TRecommender : RatingPredictor, IFoldInRatingPredictor
     {
         private TRecommender m_recommender;

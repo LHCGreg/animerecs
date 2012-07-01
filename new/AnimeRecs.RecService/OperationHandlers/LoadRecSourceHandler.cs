@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecService.RecSources;
+using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response LoadRecSource(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
+        public static Response LoadRecSource(Operation baseOperation, RecServiceState state, OperationCaster opReinterpreter)
         {
             Operation<LoadRecSourceRequest<RecSourceParams>> operation = (Operation<LoadRecSourceRequest<RecSourceParams>>)baseOperation;
             if (!operation.PayloadSet || operation.Payload == null)
@@ -25,27 +26,33 @@ namespace AnimeRecs.RecService.OperationHandlers
             {
                 Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>> opWithRecParams =
                     opReinterpreter.As<Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>>>();
-                recSource = new AverageScoreJsonRecSource(
+                MalAverageScoreRecSource underlyingRecSource = new MalAverageScoreRecSource(
                     minEpisodesToCountIncomplete: opWithRecParams.Payload.Params.MinEpisodesToCountIncomplete,
                     useDropped: opWithRecParams.Payload.Params.UseDropped,
                     minUsersToCountAnime: opWithRecParams.Payload.Params.MinUsersToCountAnime
                 );
+                recSource = new AverageScoreJsonRecSource(underlyingRecSource);
             }
             else if (operation.Payload.Type.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
             {
                 Operation<LoadRecSourceRequest<MostPopularRecSourceParams>> opWithRecParams =
                     opReinterpreter.As<Operation<LoadRecSourceRequest<MostPopularRecSourceParams>>>();
-                recSource = new MostPopularJsonRecSource(
+                MalMostPopularRecSource underlyingRecSource = new MalMostPopularRecSource(
                     minEpisodesToCountIncomplete: opWithRecParams.Payload.Params.MinEpisodesToCountIncomplete,
                     useDropped: opWithRecParams.Payload.Params.UseDropped
                 );
+                recSource = new MostPopularJsonRecSource(underlyingRecSource);
             }
             else if (operation.Payload.Type.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
             {
                 Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>> opWithRecParams =
                     opReinterpreter.As<Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>>>();
-
-                throw new NotImplementedException("AnimeRecs handler not implemented yet."); // TODO
+                MalAnimeRecsRecSource underlyingRecSource = new MalAnimeRecsRecSource(
+                    numRecommendersToUse: opWithRecParams.Payload.Params.NumRecommendersToUse,
+                    fractionConsideredRecommended: opWithRecParams.Payload.Params.FractionConsideredRecommended,
+                    minEpisodesToClassifyIncomplete: opWithRecParams.Payload.Params.MinEpisodesToClassifyIncomplete
+                );
+                recSource = new AnimeRecsJsonRecSource(underlyingRecSource);
             }
             else
             {

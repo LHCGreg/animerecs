@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService
 {
-    internal class OperationReinterpreter
+    internal class OperationCaster
     {
         private string Json { get; set; }
         
-        internal OperationReinterpreter(string json)
+        internal OperationCaster(string json)
         {
             Json = json;
         }
 
         public T As<T>()
+            where T : Operation
         {
             return JsonConvert.DeserializeObject<T>(Json);
         }

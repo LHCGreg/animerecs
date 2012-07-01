@@ -5,7 +5,8 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine.MAL
 {
-    public class MalMostPopularRecSource : ITrainableRecSource<MalTrainingData, MalUserListEntries, MostPopularRecommendation>
+    public class MalMostPopularRecSource
+        : ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<MostPopularRecommendation>, MostPopularRecommendation>
     {
         private MostPopularRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>
             m_recommender = new MostPopularRecSource<IBasicTrainingData<IBasicInputForUser>, IBasicInputForUser>();
@@ -33,7 +34,7 @@ namespace AnimeRecs.RecEngine.MAL
 
         public override string ToString()
         {
-            return string.Format("Popular - MinEpisodesToCountIncomplete = {0}, UseDropped = {1}",
+            return string.Format("MostPopular MinEpisodesToCountIncomplete={0}, UseDropped={1}",
                 MinEpisodesToCountIncomplete, UseDropped);
         }
     }

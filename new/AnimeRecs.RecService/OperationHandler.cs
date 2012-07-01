@@ -6,7 +6,7 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService
 {
-    internal delegate Response OperationHandler(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter);
+    internal delegate Response OperationHandler(Operation baseOperation, RecServiceState state, OperationCaster opReinterpreter);
 }
 
 // Copyright (C) 2012 Greg Najda

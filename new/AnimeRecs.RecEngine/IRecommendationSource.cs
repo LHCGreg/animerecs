@@ -10,8 +10,9 @@ namespace AnimeRecs.RecEngine
     /// </summary>
     /// <typeparam name="TInput"></typeparam>
     /// <typeparam name="TRecommendation"></typeparam>
-    public interface IRecommendationSource<in TInput, out TRecommendation>
+    public interface IRecommendationSource<in TInput, out TRecommendationResults, out TRecommendation>
         where TInput : IInputForUser
+        where TRecommendationResults : IEnumerable<TRecommendation>
         where TRecommendation : IRecommendation
     {
         /// <summary>
@@ -22,7 +23,7 @@ namespace AnimeRecs.RecEngine
         /// <param name="inputForUser"></param>
         /// <param name="numRecommendationsToTryToGet"></param>
         /// <returns></returns>
-        IEnumerable<TRecommendation> GetRecommendations(TInput inputForUser, int numRecommendationsToTryToGet);
+        TRecommendationResults GetRecommendations(TInput inputForUser, int numRecommendationsToTryToGet);
     }
 }
 

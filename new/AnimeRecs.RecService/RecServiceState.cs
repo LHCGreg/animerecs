@@ -52,7 +52,7 @@ namespace AnimeRecs.RecService
 
         public void LoadRecSource(ITrainableJsonRecSource recSource, string name, bool replaceExisting)
         {
-            Logging.Log.InfoFormat("Loading rec source with name \"{0}\", replaceExisting ={1}: {2}", name, replaceExisting, recSource);
+            Logging.Log.InfoFormat("Loading rec source with name \"{0}\", replaceExisting={1}: {2}", name, replaceExisting, recSource);
 
             // Need to hold read lock on training data while training so that a retrain can't happen while we're training here.
             // Rec sources must be trained with the current m_trainingData, not an old version.
@@ -161,15 +161,21 @@ namespace AnimeRecs.RecService
             Logging.Log.InfoFormat("All rec sources retrained with the latest data. Total time: {0}", totalTimer.Elapsed);
         }
 
-        public GetMalRecsResponse GetMalRecs(GetMalRecsRequest request)
+        public GetMalRecsResponse GetMalRecs(GetMalRecsRequest request, RecRequestCaster caster)
         {
             request.AssertArgumentNotNull("Payload");
             request.RecSourceName.AssertArgumentNotNull("Payload.RecSourceName");
             request.AnimeList.AssertArgumentNotNull("Payload.AnimeList");
             request.AnimeList.Entries.AssertArgumentNotNull("Payload.AnimeList.Entries");
 
+            if (request.TargetScore == null && request.TargetFraction == null)
+            {
+                Error error = new Error(ErrorCodes.InvalidArgument, "Payload.TargetScore or Payload.TargetFraction must be set.");
+                throw new RecServiceErrorException(error);
+            }
+
             Logging.Log.InfoFormat("Request for {0} MAL recs using rec source {1}. User has {2} anime list entries. Target score is {3}.",
-                request.NumRecsDesired, request.RecSourceName, request.AnimeList.Entries.Count, request.TargetScore);
+                request.NumRecsDesired, request.RecSourceName, request.AnimeList.Entries.Count, request.TargetScore.Value.ToString() ?? (request.TargetFraction.Value).ToString("P2"));
 
             // Acquire read lock on rec sources
             bool enteredLock;
@@ -204,7 +210,7 @@ namespace AnimeRecs.RecService
                 MalUserListEntries animeList = new MalUserListEntries(ratings: entries, animes: m_trainingData.Animes, malUsername: null);
 
                 Stopwatch timer = Stopwatch.StartNew();
-                GetMalRecsResponse response = recSource.GetRecommendations(animeList, request);
+                GetMalRecsResponse response = recSource.GetRecommendations(animeList, request, caster);
                 timer.Stop();
 
                 Logging.Log.InfoFormat("Got recommendations from rec source {0}. Took {1}.", request.RecSourceName, timer.Elapsed);

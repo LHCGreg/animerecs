@@ -9,19 +9,15 @@ namespace AnimeRecs.RecService.DTO
     public class Recommendation
     {
         public int MalAnimeId { get; set; }
-        public string Title { get; set; }
-        public MalAnimeType MalAnimeType { get; set; }
 
         public Recommendation()
         {
             ;
         }
 
-        public Recommendation(int malAnimeId, string title, MalAnimeType malAnimeType)
+        public Recommendation(int malAnimeId)
         {
             MalAnimeId = malAnimeId;
-            Title = title;
-            MalAnimeType = malAnimeType;
         }
     }
 
@@ -35,13 +31,14 @@ namespace AnimeRecs.RecService.DTO
             ;
         }
 
-        public AverageScoreRecommendation(int malAnimeId, string title, MalAnimeType malAnimeType, int numRatings, float averageScore)
-            : base(malAnimeId: malAnimeId, title: title, malAnimeType: malAnimeType)
+        public AverageScoreRecommendation(int malAnimeId, int numRatings, float averageScore)
+            : base(malAnimeId)
         {
             NumRatings = numRatings;
             AverageScore = averageScore;
         }
     }
+
     public class MostPopularRecommendation : Recommendation
     {
         public int PopularityRank { get; set; }
@@ -52,11 +49,27 @@ namespace AnimeRecs.RecService.DTO
             ;
         }
 
-        public MostPopularRecommendation(int malAnimeId, string title, MalAnimeType malAnimeType, int popularityRank, int numRatings)
-            : base(malAnimeId: malAnimeId, title: title, malAnimeType: malAnimeType)
+        public MostPopularRecommendation(int malAnimeId, int popularityRank, int numRatings)
+            : base(malAnimeId)
         {
             PopularityRank = popularityRank;
             NumRatings = numRatings;
+        }
+    }
+
+    public class AnimeRecsRecommendation : Recommendation
+    {
+        public int RecommenderUserId { get; set; }
+
+        public AnimeRecsRecommendation()
+        {
+            ;
+        }
+
+        public AnimeRecsRecommendation(int malAnimeId, int recommenderUserId)
+            : base(malAnimeId)
+        {
+            RecommenderUserId = recommenderUserId;
         }
     }
 }

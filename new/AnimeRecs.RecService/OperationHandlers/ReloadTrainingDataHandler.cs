@@ -8,7 +8,7 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response ReloadTrainingData(Operation baseOperation, RecServiceState state, OperationReinterpreter opReinterpreter)
+        public static Response ReloadTrainingData(Operation baseOperation, RecServiceState state, OperationCaster opReinterpreter)
         {
             state.ReloadTrainingData();
             return new Response();

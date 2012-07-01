@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimeRecsClient.cs" />
-    <Compile Include="MalRecommendations.cs" />
+    <Compile Include="MalRecResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

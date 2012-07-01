@@ -23,7 +23,8 @@ namespace AnimeRecs.RecService.Client
         private HashSet<string> AllowedRecSourceTypes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             RecSourceTypes.AverageScore,
-            RecSourceTypes.MostPopular
+            RecSourceTypes.MostPopular,
+            RecSourceTypes.AnimeRecs
         };
         
         private bool m_showHelp = false;

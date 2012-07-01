@@ -8,46 +8,28 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.RecSources
 {
-    internal class MostPopularJsonRecSource : ITrainableJsonRecSource
+    internal class MostPopularJsonRecSource : TrainableJsonRecSource<MalMostPopularRecSource, MalUserListEntries,
+        IEnumerable<RecEngine.MostPopularRecommendation>, RecEngine.MostPopularRecommendation, GetMalRecsResponse<DTO.MostPopularRecommendation>,
+        DTO.MostPopularRecommendation>
     {
-        private MalMostPopularRecSource m_underlyingRecSource;
-        private IDictionary<int, MalAnime> m_animesAvailableForRecommendation = new Dictionary<int, MalAnime>();
-
-        public MostPopularJsonRecSource(int minEpisodesToCountIncomplete, bool useDropped)
+        public MostPopularJsonRecSource(MalMostPopularRecSource underlyingRecSource)
+            : base(underlyingRecSource)
         {
-            m_underlyingRecSource = new MalMostPopularRecSource(minEpisodesToCountIncomplete: minEpisodesToCountIncomplete, useDropped: useDropped);
-        }
-        
-        public void Train(MalTrainingData trainingData)
-        {
-            m_underlyingRecSource.Train(trainingData);
-            m_animesAvailableForRecommendation = trainingData.Animes;
+            ;
         }
 
-        public GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
+        protected override MalUserListEntries GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster)
         {
-            List<RecEngine.MostPopularRecommendation> recs = m_underlyingRecSource.GetRecommendations(animeList, recRequest.NumRecsDesired).ToList();
-
-            List<DTO.MostPopularRecommendation> dtoRecs = recs.Select(engineRec => new DTO.MostPopularRecommendation(
-                malAnimeId: engineRec.ItemId,
-                title: m_animesAvailableForRecommendation[engineRec.ItemId].Title,
-                malAnimeType: m_animesAvailableForRecommendation[engineRec.ItemId].Type,
-                popularityRank: engineRec.PopularityRank,
-                numRatings: engineRec.NumRatings
-            )).ToList();
-
-            GetMalRecsResponse<DTO.MostPopularRecommendation> response =
-                new GetMalRecsResponse<DTO.MostPopularRecommendation>(
-                    recommendationType: RecommendationTypes.MostPopular, recommendations: dtoRecs);
-
-            return response;
+            return animeList;
         }
 
-        public override string ToString()
+        protected override void SetSpecializedRecommendationProperties(DTO.MostPopularRecommendation dtoRec, RecEngine.MostPopularRecommendation engineRec)
         {
-            return string.Format("MostPopular MinEpisodesToCountIncomplete={0}, UseDropped={1}",
-                m_underlyingRecSource.MinEpisodesToCountIncomplete, m_underlyingRecSource.UseDropped);
+            dtoRec.NumRatings = engineRec.NumRatings;
+            dtoRec.PopularityRank = engineRec.PopularityRank;
         }
+
+        protected override string RecommendationType { get { return RecommendationTypes.MostPopular; } }
     }
 }
 

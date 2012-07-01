@@ -8,46 +8,28 @@ using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.RecSources
 {
-    internal class AverageScoreJsonRecSource : ITrainableJsonRecSource
+    internal class AverageScoreJsonRecSource :
+        TrainableJsonRecSource<MalAverageScoreRecSource, MalUserListEntries, IEnumerable<RecEngine.AverageScoreRecommendation>,
+        RecEngine.AverageScoreRecommendation, GetMalRecsResponse<DTO.AverageScoreRecommendation>, DTO.AverageScoreRecommendation>
     {
-        private MalAverageScoreRecSource m_underlyingRecSource;
-        private IDictionary<int, MalAnime> m_animesAvailableForRecommendation = new Dictionary<int, MalAnime>();
-
-        public AverageScoreJsonRecSource(int minEpisodesToCountIncomplete, bool useDropped, int minUsersToCountAnime)
+        public AverageScoreJsonRecSource(MalAverageScoreRecSource underlyingRecSource)
+            : base(underlyingRecSource)
         {
-            m_underlyingRecSource = new MalAverageScoreRecSource(minEpisodesToCountIncomplete, useDropped, minUsersToCountAnime);
+            ;
+        }
+        
+        protected override MalUserListEntries GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster)
+        {
+            return animeList;
         }
 
-        public void Train(MalTrainingData trainingData)
+        protected override void SetSpecializedRecommendationProperties(DTO.AverageScoreRecommendation dtoRec, RecEngine.AverageScoreRecommendation engineRec)
         {
-            m_underlyingRecSource.Train(trainingData);
-            m_animesAvailableForRecommendation = trainingData.Animes;
+            dtoRec.AverageScore = engineRec.AverageScore;
+            dtoRec.NumRatings = engineRec.NumRatings;
         }
 
-        public GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
-        {
-            List<RecEngine.AverageScoreRecommendation> recs = m_underlyingRecSource.GetRecommendations(animeList, recRequest.NumRecsDesired).ToList();
-
-            List<DTO.AverageScoreRecommendation> dtoRecs = recs.Select(engineRec => new DTO.AverageScoreRecommendation(
-                malAnimeId: engineRec.ItemId,
-                title: m_animesAvailableForRecommendation[engineRec.ItemId].Title,
-                malAnimeType: m_animesAvailableForRecommendation[engineRec.ItemId].Type,
-                numRatings: engineRec.NumRatings,
-                averageScore: engineRec.AverageScore
-            )).ToList();
-
-            GetMalRecsResponse<DTO.AverageScoreRecommendation> response =
-                new GetMalRecsResponse<DTO.AverageScoreRecommendation>(
-                    recommendationType: RecommendationTypes.AverageScore, recommendations: dtoRecs);
-
-            return response;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("AverageScore MinEpisodesToCountIncomplete={0}, MinUsersToCountAnime={1}, UseDropped={2}",
-                m_underlyingRecSource.MinEpisodesToCountIncomplete, m_underlyingRecSource.MinUsersToCountAnime, m_underlyingRecSource.UseDropped);
-        }
+        protected override string RecommendationType { get { return RecommendationTypes.AverageScore; } }
     }
 }
 

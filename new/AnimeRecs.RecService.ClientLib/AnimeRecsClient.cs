@@ -85,8 +85,8 @@ namespace AnimeRecs.RecService.ClientLib
             DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
-        public MalRecommendations GetMalRecommendations(IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName,
-            int numRecsDesired, decimal targetScore, int receiveTimeoutInMs = 0)
+        public MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(IDictionary<int, RecEngine.MAL.MalListEntry> animeList,
+            string recSourceName, int numRecsDesired, decimal targetScore, int receiveTimeoutInMs = 0)
         {
             List<DTO.MalListEntry> dtoAnimeList = new List<DTO.MalListEntry>();
             foreach (int animeId in animeList.Keys)
@@ -97,37 +97,117 @@ namespace AnimeRecs.RecService.ClientLib
             }
 
             Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
-                new GetMalRecsRequest(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
+                GetMalRecsRequest.CreateWithTargetScore(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
             string jsonResponseString;
             GetMalRecsResponse<Recommendation> response = DoOperationWithResponseBody<GetMalRecsResponse<Recommendation>>(operation, receiveTimeoutInMs, out jsonResponseString);
 
-            List<IRecommendation> recommendations = new List<IRecommendation>();
+            MalRecResults<IEnumerable<IRecommendation>> results = null;
+
             if (response.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
             {
                 Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>> specificResponse =
                     JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>>>(jsonResponseString);
-                recommendations.AddRange(specificResponse.Body.Recommendations.Select(
-                    dtoRec => new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore)));
+
+                List<IRecommendation> recommendations = new List<IRecommendation>();
+                foreach (DTO.AverageScoreRecommendation dtoRec in specificResponse.Body.Recommendations)
+                {
+                    recommendations.Add(new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore));
+                }
+
+                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
+                foreach (DTO.MalAnime dtoAnime in response.Animes)
+                {
+                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
+                }
+
+                results = new MalRecResults<IEnumerable<IRecommendation>>(recommendations, animes);
             }
             else if (response.RecommendationType.Equals(RecommendationTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
             {
                 Response<GetMalRecsResponse<DTO.MostPopularRecommendation>> specificResponse =
                     JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.MostPopularRecommendation>>>(jsonResponseString);
-                recommendations.AddRange(specificResponse.Body.Recommendations.Select(
-                    dtoRec => new AnimeRecs.RecEngine.MostPopularRecommendation(dtoRec.MalAnimeId, dtoRec.PopularityRank, dtoRec.NumRatings)));
+
+                List<IRecommendation> recommendations = new List<IRecommendation>();
+                foreach (DTO.MostPopularRecommendation dtoRec in specificResponse.Body.Recommendations)
+                {
+                    recommendations.Add(new AnimeRecs.RecEngine.MostPopularRecommendation(
+                        itemId: dtoRec.MalAnimeId,
+                        popularityRank: dtoRec.PopularityRank,
+                        numRatings: dtoRec.NumRatings
+                    ));
+                }
+
+                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
+                foreach (DTO.MalAnime dtoAnime in response.Animes)
+                {
+                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
+                }
+
+                results = new MalRecResults<IEnumerable<IRecommendation>>(recommendations, animes);
+            }
+            else if(response.RecommendationType.Equals(RecommendationTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
+            {
+                Response<GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>> specificResponse =
+                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>>>(jsonResponseString);
+
+                List<RecEngine.AnimeRecsRecommendation> recommendations = new List<RecEngine.AnimeRecsRecommendation>();
+                foreach (DTO.AnimeRecsRecommendation dtoRec in specificResponse.Body.Recommendations)
+                {
+                    recommendations.Add(new RecEngine.AnimeRecsRecommendation(dtoRec.RecommenderUserId, itemId: dtoRec.MalAnimeId));
+                }
+
+                List<MalAnimeRecsRecommenderUser> recommenders = new List<MalAnimeRecsRecommenderUser>();
+                foreach (DTO.MalAnimeRecsRecommender dtoRecommender in specificResponse.Body.Data.Recommenders)
+                {
+                    HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
+                            dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == true)
+                            .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
+
+                    HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsNotLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
+                            dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == false)
+                            .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
+                    
+                    recommenders.Add(new MalAnimeRecsRecommenderUser(
+                        userId: dtoRecommender.UserId,
+                        username: dtoRecommender.Username,
+                        recsLiked: recsLiked,
+                        recsNotLiked: recsNotLiked,
+                        allRecommendations: new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
+                            dtoRecommender.Recs.Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore))),
+                        compatibility: dtoRecommender.Compatibility,
+                        compatibilityLowEndpoint: dtoRecommender.CompatibilityLowEndpoint,
+                        compatibilityHighEndpoint: dtoRecommender.CompatibilityHighEndpoint
+                    ));
+                }
+
+                RecEngine.MAL.MalAnimeRecsResults animeRecsResults = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders);
+
+                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
+                foreach (DTO.MalAnime dtoAnime in response.Animes)
+                {
+                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
+                }
+
+                results = new MalRecResults<IEnumerable<IRecommendation>>(animeRecsResults, animes);
             }
             else
             {
-                recommendations.AddRange(response.Recommendations.Select(dtoRec => new BasicRecommendation(dtoRec.MalAnimeId)));
+                List<IRecommendation> recommendations = new List<IRecommendation>();
+                foreach (DTO.Recommendation dtoRec in response.Recommendations)
+                {
+                    recommendations.Add(new BasicRecommendation(dtoRec.MalAnimeId));
+                }
+
+                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
+                foreach (DTO.MalAnime dtoAnime in response.Animes)
+                {
+                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
+                }
+
+                results = new MalRecResults<IEnumerable<IRecommendation>>(recommendations, animes);
             }
 
-            Dictionary<int, MalAnime> animeInfo = new Dictionary<int, MalAnime>();
-            foreach (Recommendation basicRecDto in response.Recommendations)
-            {
-                animeInfo[basicRecDto.MalAnimeId] = new MalAnime(basicRecDto.MalAnimeId, basicRecDto.MalAnimeType, basicRecDto.Title);
-            }
-
-            return new MalRecommendations(recommendations, animeInfo);
+            return results;
         }
 
         private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs)

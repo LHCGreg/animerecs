@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingPredictionRecommendation.cs" />
     <Compile Include="RecUtils.cs" />
+    <Compile Include="Utils\DelegateComparer.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
