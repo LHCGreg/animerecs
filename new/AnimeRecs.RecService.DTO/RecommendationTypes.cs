@@ -11,6 +11,7 @@ namespace AnimeRecs.RecService.DTO
         public static string AverageScore { get { return "AverageScore"; } }
         public static string MostPopular { get { return "MostPopular"; } }
         public static string AnimeRecs { get { return "AnimeRecs"; } }
+        public static string RatingPrediction { get { return "RatingPrediction"; } }
     }
 }
 

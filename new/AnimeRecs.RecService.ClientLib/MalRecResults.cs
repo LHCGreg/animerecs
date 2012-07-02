@@ -10,7 +10,6 @@ namespace AnimeRecs.RecService.ClientLib
     public class MalRecResults<TResults>
         where TResults : IEnumerable<IRecommendation>
     {
-        //public IList<IRecommendation> Recommendations { get; private set; }
         public TResults Results { get; private set; }
         public IDictionary<int, MalAnime> AnimeInfo { get; private set; }
 

@@ -5,6 +5,7 @@ using System.Text;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecService.RecSources;
 using AnimeRecs.RecEngine.MAL;
+using MyMediaLite.RatingPrediction;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
@@ -53,6 +54,41 @@ namespace AnimeRecs.RecService.OperationHandlers
                     minEpisodesToClassifyIncomplete: opWithRecParams.Payload.Params.MinEpisodesToClassifyIncomplete
                 );
                 recSource = new AnimeRecsJsonRecSource(underlyingRecSource);
+            }
+            else if (operation.Payload.Type.Equals(RecSourceTypes.BiasedMatrixFactorization, StringComparison.OrdinalIgnoreCase))
+            {
+                Operation<LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>> opWithRecParams =
+                    opReinterpreter.As<Operation<LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>>>();
+                BiasedMatrixFactorization underlyingRecSource = new BiasedMatrixFactorization();
+
+                if (opWithRecParams.Payload.Params.BiasLearnRate != null)
+                    underlyingRecSource.BiasLearnRate = opWithRecParams.Payload.Params.BiasLearnRate.Value;
+                if (opWithRecParams.Payload.Params.BiasReg != null)
+                    underlyingRecSource.BiasReg = opWithRecParams.Payload.Params.BiasReg.Value;
+                if (opWithRecParams.Payload.Params.BoldDriver != null)
+                    underlyingRecSource.BoldDriver = opWithRecParams.Payload.Params.BoldDriver.Value;
+                if (opWithRecParams.Payload.Params.FrequencyRegularization != null)
+                    underlyingRecSource.FrequencyRegularization = opWithRecParams.Payload.Params.FrequencyRegularization.Value;
+                if (opWithRecParams.Payload.Params.LearnRate != null)
+                    underlyingRecSource.LearnRate = opWithRecParams.Payload.Params.LearnRate.Value;
+                if (opWithRecParams.Payload.Params.NumFactors != null)
+                    underlyingRecSource.NumFactors = opWithRecParams.Payload.Params.NumFactors.Value;
+                if (opWithRecParams.Payload.Params.NumIter != null)
+                    underlyingRecSource.NumIter = opWithRecParams.Payload.Params.NumIter.Value;
+                if (opWithRecParams.Payload.Params.OptimizationTarget != null)
+                    underlyingRecSource.Loss = (OptimizationTarget)Enum.Parse(typeof(OptimizationTarget), opWithRecParams.Payload.Params.OptimizationTarget);
+                if (opWithRecParams.Payload.Params.RegI != null)
+                    underlyingRecSource.RegI = opWithRecParams.Payload.Params.RegI.Value;
+                if (opWithRecParams.Payload.Params.RegU != null)
+                    underlyingRecSource.RegU = opWithRecParams.Payload.Params.RegU.Value;
+                if (opWithRecParams.Payload.Params.Regularization != null)
+                    underlyingRecSource.Regularization = opWithRecParams.Payload.Params.Regularization.Value;
+
+                MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization> malRecSource =
+                    new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>(underlyingRecSource,
+                        opWithRecParams.Payload.Params.MinEpisodesToCountIncomplete, opWithRecParams.Payload.Params.UseDropped);
+
+                recSource = new BiasedMatrixFactorizationJsonRecSource(malRecSource);
             }
             else
             {

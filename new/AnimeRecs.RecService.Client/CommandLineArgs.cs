@@ -24,7 +24,8 @@ namespace AnimeRecs.RecService.Client
         {
             RecSourceTypes.AverageScore,
             RecSourceTypes.MostPopular,
-            RecSourceTypes.AnimeRecs
+            RecSourceTypes.AnimeRecs,
+            RecSourceTypes.BiasedMatrixFactorization
         };
         
         private bool m_showHelp = false;
@@ -87,6 +88,13 @@ namespace AnimeRecs.RecService.Client
         private decimal m_targetScore = 8m;
         public decimal TargetScore { get { return m_targetScore; } set { m_targetScore = value; } }
 
+        private BiasedMatrixFactorizationRecSourceParams m_biasedMatrixFactorizationParams = new BiasedMatrixFactorizationRecSourceParams();
+        public BiasedMatrixFactorizationRecSourceParams BiasedMatrixFactorizationParams
+        {
+            get { return m_biasedMatrixFactorizationParams; }
+            set { m_biasedMatrixFactorizationParams = value; }
+        }
+
         public string RawJson { get; set; }
 
         public OptionSet GetOptionSet()
@@ -101,9 +109,9 @@ namespace AnimeRecs.RecService.Client
                 { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
                 { "type|rec_source_type=", "Rec source type. Required for LoadRecSource command", arg => SetRecSourceType(arg) },
                 { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with the LoadRecSource command with the AverageScore, MostPopular, and AnimeRecs rec source types. Defaults to 26.",
-                    arg => MinEpisodesToCountIncomplete = int.Parse(arg) },
+                    arg => { MinEpisodesToCountIncomplete = int.Parse(arg); BiasedMatrixFactorizationParams.MinEpisodesToCountIncomplete = int.Parse(arg); } },
                 { "use_dropped", "Count dropped anime. Used with the LoadRecSource command with the AverageScore and MostPopular rec source types. Defaults to false for MostPopular, true for everything else.",
-                    argExistence => UseDropped = (argExistence != null) },
+                    argExistence => { UseDropped = (argExistence != null); BiasedMatrixFactorizationParams.UseDropped = (argExistence != null); } },
                 { "min_users_to_count_anime=", "Minimum users to have seen an anime for it to be considered by the recommendation algorithm. Used by the LoadRecSource command with the AverageScore rec source type. Defaults to 50.",
                     arg => MinUsersToCountAnime = int.Parse(arg) },
                 { "num_recommenders_to_use=", "Number of recommenders to use for the AnimeRecs rec source. Used by the LoadRecSource command with the AnimeRecs rec source type. Defaults to 100.",
@@ -113,6 +121,18 @@ namespace AnimeRecs.RecService.Client
                 { "u|username=", "MAL username. Required for the GetMalRecs command.", arg => MalUsername = arg },
                 { "n|num_recs=", "Number of recommendations to get. Used by the GetMalRecs command. Defaults to 50.", arg => NumRecs = int.Parse(arg) },
                 { "t|target_score=", "Target score. Used with the GetMalRecs command. Only used by some rec sources. Defaults to 8.", arg => TargetScore = decimal.Parse(arg) },
+                { "bias_learn_rate=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.BiasLearnRate = float.Parse(arg) },
+                { "bias_reg=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.BiasReg = float.Parse(arg) },
+                { "bold_driver", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", argExistence => BiasedMatrixFactorizationParams.BoldDriver = (argExistence != null) },
+                { "frequency_regularization", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", argExistence => BiasedMatrixFactorizationParams.FrequencyRegularization = (argExistence != null) },
+                { "learn_rate=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.LearnRate = float.Parse(arg) },
+                { "optimzation_target=", "Used when loading a BiasedMatrixFactorization rec source. Must be LogisticLoss, MAE, or RMSE. Defaults to something.", arg => SetOptimizationTarget(arg) },
+                { "num_factors=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.NumFactors = uint.Parse(arg) },
+                { "num_iter=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.NumIter = uint.Parse(arg) },
+                { "reg_i=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.RegI = float.Parse(arg) },
+                { "reg_u=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.RegU = float.Parse(arg) },
+                { "regularization=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to something.", arg => BiasedMatrixFactorizationParams.Regularization = float.Parse(arg) },
+                   
                 { "<>", arg => SetRaw(arg) },
             };
 
@@ -140,6 +160,21 @@ namespace AnimeRecs.RecService.Client
             else
             {
                 throw new OptionException(string.Format("{0} is not a recognized rec source type.", type), "rec_source_type");
+            }
+        }
+
+        private void SetOptimizationTarget(string target)
+        {
+            //OptimizationTarget.LogisticLoss; OptimizationTarget.MAE; OptimizationTarget.RMSE
+            if (target.Equals("LogisticLoss", StringComparison.OrdinalIgnoreCase)
+                || target.Equals("MAE", StringComparison.OrdinalIgnoreCase)
+                || target.Equals("RMSE", StringComparison.OrdinalIgnoreCase))
+            {
+                BiasedMatrixFactorizationParams.OptimizationTarget = target;
+            }
+            else
+            {
+                throw new OptionException(string.Format("{0} is not a recognized optimization target.", target), "optimization_target");
             }
         }
 

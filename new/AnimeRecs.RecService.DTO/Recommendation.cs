@@ -72,6 +72,22 @@ namespace AnimeRecs.RecService.DTO
             RecommenderUserId = recommenderUserId;
         }
     }
+
+    public class RatingPredictionRecommendation : Recommendation
+    {
+        public double PredictedRating { get; set; }
+
+        public RatingPredictionRecommendation()
+        {
+            ;
+        }
+
+        public RatingPredictionRecommendation(int malAnimeId, double predictedRating)
+            : base(malAnimeId)
+        {
+            PredictedRating = predictedRating;
+        }
+    }
 }
 
 // Copyright (C) 2012 Greg Najda

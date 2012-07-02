@@ -7,7 +7,10 @@ namespace AnimeRecs.RecService.DTO
 {
     public class RecSourceParams
     {
-
+        public virtual string GetRecSourceTypeName()
+        {
+            return "Unknown";
+        }
     }
 
     public class AverageScoreRecSourceParams : RecSourceParams
@@ -27,6 +30,11 @@ namespace AnimeRecs.RecService.DTO
             MinUsersToCountAnime = minUsersToCountAnime;
             UseDropped = useDropped;
         }
+
+        public override string GetRecSourceTypeName()
+        {
+            return RecSourceTypes.AverageScore;
+        }
     }
 
     public class MostPopularRecSourceParams : RecSourceParams
@@ -43,6 +51,11 @@ namespace AnimeRecs.RecService.DTO
         {
             MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
             UseDropped = useDropped;
+        }
+
+        public override string GetRecSourceTypeName()
+        {
+            return RecSourceTypes.MostPopular;
         }
     }
 
@@ -62,6 +75,45 @@ namespace AnimeRecs.RecService.DTO
             NumRecommendersToUse = numRecommendersToUse;
             FractionConsideredRecommended = fractionConsideredRecommended;
             MinEpisodesToClassifyIncomplete = minEpisodesToClassifyIncomplete;
+        }
+
+        public override string GetRecSourceTypeName()
+        {
+            return RecSourceTypes.AnimeRecs;
+        }
+    }
+
+    public class BiasedMatrixFactorizationRecSourceParams : RecSourceParams
+    {
+        public int MinEpisodesToCountIncomplete { get; set; }
+        public bool UseDropped { get; set; }
+
+        public float? BiasLearnRate { get; set; }
+        public float? BiasReg { get; set; }
+        public bool? BoldDriver { get; set; }
+        public bool? FrequencyRegularization { get; set; }
+        public float? LearnRate { get; set; }
+        public string OptimizationTarget { get; set; }
+        public uint? NumFactors { get; set; }
+        public uint? NumIter { get; set; }
+        public float? RegI { get; set; }
+        public float? RegU { get; set; }
+        public float? Regularization { get; set; }
+
+        public BiasedMatrixFactorizationRecSourceParams()
+        {
+            ;
+        }
+
+        public BiasedMatrixFactorizationRecSourceParams(int minEpisodesToCountIncomplete, bool useDropped)
+        {
+            MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
+            UseDropped = useDropped;
+        }
+
+        public override string GetRecSourceTypeName()
+        {
+            return RecSourceTypes.BiasedMatrixFactorization;
         }
     }
 }

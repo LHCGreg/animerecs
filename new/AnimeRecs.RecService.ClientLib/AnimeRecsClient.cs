@@ -33,36 +33,12 @@ namespace AnimeRecs.RecService.ClientLib
             return pingResponse.ResponseMessage;
         }
 
-        public void LoadAverageScoreRecSource(string name, bool replaceExisting, AverageScoreRecSourceParams parameters, int receiveTimeoutInMs = 0)
+        public void LoadRecSource(string name, bool replaceExisting, RecSourceParams parameters, int receiveTimeoutInMs = 0)
         {
-            Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>> operation = new Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>>(
+            Operation<LoadRecSourceRequest<RecSourceParams>> operation = new Operation<LoadRecSourceRequest<RecSourceParams>>(
                 opName: OpNames.LoadRecSource,
-                payload: new LoadRecSourceRequest<AverageScoreRecSourceParams>(
-                    name: name, type: RecSourceTypes.AverageScore, replaceExisting: replaceExisting, parameters: parameters
-                )
-            );
-
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
-        }
-
-        public void LoadMostPopularRecSource(string name, bool replaceExisting, MostPopularRecSourceParams parameters, int receiveTimeoutInMs = 0)
-        {
-            Operation<LoadRecSourceRequest<MostPopularRecSourceParams>> operation = new Operation<LoadRecSourceRequest<MostPopularRecSourceParams>>(
-                opName: OpNames.LoadRecSource,
-                payload: new LoadRecSourceRequest<MostPopularRecSourceParams>(
-                    name: name, type: RecSourceTypes.MostPopular, replaceExisting: replaceExisting, parameters: parameters
-                )
-            );
-
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
-        }
-
-        public void LoadAnimeRecsRecSource(string name, bool replaceExisting, AnimeRecsRecSourceParams parameters, int receiveTimeoutInMs = 0)
-        {
-            Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>> operation = new Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>>(
-                opName: OpNames.LoadRecSource,
-                payload: new LoadRecSourceRequest<AnimeRecsRecSourceParams>(
-                    name: name, type: RecSourceTypes.AnimeRecs, replaceExisting: replaceExisting, parameters: parameters
+                payload: new LoadRecSourceRequest<RecSourceParams>(
+                    name: name, type: parameters.GetRecSourceTypeName(), replaceExisting: replaceExisting, parameters: parameters
                 )
             );
 
@@ -101,7 +77,7 @@ namespace AnimeRecs.RecService.ClientLib
             string jsonResponseString;
             GetMalRecsResponse<Recommendation> response = DoOperationWithResponseBody<GetMalRecsResponse<Recommendation>>(operation, receiveTimeoutInMs, out jsonResponseString);
 
-            MalRecResults<IEnumerable<IRecommendation>> results = null;
+            IEnumerable<IRecommendation> results;
 
             if (response.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
             {
@@ -114,13 +90,7 @@ namespace AnimeRecs.RecService.ClientLib
                     recommendations.Add(new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore));
                 }
 
-                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
-                foreach (DTO.MalAnime dtoAnime in response.Animes)
-                {
-                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
-                }
-
-                results = new MalRecResults<IEnumerable<IRecommendation>>(recommendations, animes);
+                results = recommendations;
             }
             else if (response.RecommendationType.Equals(RecommendationTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
             {
@@ -137,15 +107,25 @@ namespace AnimeRecs.RecService.ClientLib
                     ));
                 }
 
-                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
-                foreach (DTO.MalAnime dtoAnime in response.Animes)
+                results = recommendations;
+            }
+            else if (response.RecommendationType.Equals(RecommendationTypes.RatingPrediction, StringComparison.OrdinalIgnoreCase))
+            {
+                Response<GetMalRecsResponse<DTO.RatingPredictionRecommendation>> specificResponse =
+                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.RatingPredictionRecommendation>>>(jsonResponseString);
+
+                List<IRecommendation> recommendations = new List<IRecommendation>();
+                foreach (DTO.RatingPredictionRecommendation dtoRec in specificResponse.Body.Recommendations)
                 {
-                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
+                    recommendations.Add(new RecEngine.RatingPredictionRecommendation(
+                        itemId: dtoRec.MalAnimeId,
+                        predictedRating: dtoRec.PredictedRating
+                    ));
                 }
 
-                results = new MalRecResults<IEnumerable<IRecommendation>>(recommendations, animes);
+                results = recommendations;
             }
-            else if(response.RecommendationType.Equals(RecommendationTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
+            else if (response.RecommendationType.Equals(RecommendationTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
             {
                 Response<GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>> specificResponse =
                     JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>>>(jsonResponseString);
@@ -166,7 +146,7 @@ namespace AnimeRecs.RecService.ClientLib
                     HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsNotLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
                             dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == false)
                             .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
-                    
+
                     recommenders.Add(new MalAnimeRecsRecommenderUser(
                         userId: dtoRecommender.UserId,
                         username: dtoRecommender.Username,
@@ -180,15 +160,7 @@ namespace AnimeRecs.RecService.ClientLib
                     ));
                 }
 
-                RecEngine.MAL.MalAnimeRecsResults animeRecsResults = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders);
-
-                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
-                foreach (DTO.MalAnime dtoAnime in response.Animes)
-                {
-                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
-                }
-
-                results = new MalRecResults<IEnumerable<IRecommendation>>(animeRecsResults, animes);
+                results = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders);
             }
             else
             {
@@ -198,16 +170,18 @@ namespace AnimeRecs.RecService.ClientLib
                     recommendations.Add(new BasicRecommendation(dtoRec.MalAnimeId));
                 }
 
-                Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
-                foreach (DTO.MalAnime dtoAnime in response.Animes)
-                {
-                    animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
-                }
-
-                results = new MalRecResults<IEnumerable<IRecommendation>>(recommendations, animes);
+                results = recommendations;
             }
 
-            return results;
+            Dictionary<int, RecEngine.MAL.MalAnime> animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
+            foreach (DTO.MalAnime dtoAnime in response.Animes)
+            {
+                animes[dtoAnime.MalAnimeId] = new RecEngine.MAL.MalAnime(dtoAnime.MalAnimeId, dtoAnime.MalAnimeType, dtoAnime.Title);
+            }
+
+            MalRecResults<IEnumerable<IRecommendation>> resultsWithAnimes = new MalRecResults<IEnumerable<IRecommendation>>(results, animes);
+
+            return resultsWithAnimes;
         }
 
         private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs)

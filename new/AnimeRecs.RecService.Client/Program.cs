@@ -59,7 +59,7 @@ namespace AnimeRecs.RecService.Client
                 {
                     if (commandLine.RecSourceType.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadAverageScoreRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new AverageScoreRecSourceParams(
                                 minEpisodesToCountIncomplete: commandLine.MinEpisodesToCountIncomplete,
                                 minUsersToCountAnime: commandLine.MinUsersToCountAnime,
@@ -69,7 +69,7 @@ namespace AnimeRecs.RecService.Client
                     }
                     else if (commandLine.RecSourceType.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadMostPopularRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new MostPopularRecSourceParams(
                                 minEpisodesToCountIncomplete: commandLine.MinEpisodesToCountIncomplete,
                                 useDropped: commandLine.UseDropped
@@ -78,7 +78,7 @@ namespace AnimeRecs.RecService.Client
                     }
                     else if (commandLine.RecSourceType.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadAnimeRecsRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new AnimeRecsRecSourceParams(
                                 numRecommendersToUse: commandLine.NumRecommendersToUse,
                                 fractionConsideredRecommended: commandLine.FractionRecommended,
@@ -86,6 +86,15 @@ namespace AnimeRecs.RecService.Client
                             )
                         );
                     }
+                    else if (commandLine.RecSourceType.Equals(RecSourceTypes.BiasedMatrixFactorization, StringComparison.OrdinalIgnoreCase))
+                    {
+                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource, commandLine.BiasedMatrixFactorizationParams);
+                    }
+                    else
+                    {
+                        throw new Exception("Oops! Missed a rec source type!");
+                    }
+
                     Console.WriteLine("Load complete.");
                 }
                 else if (commandLine.Operation.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
@@ -174,6 +183,16 @@ namespace AnimeRecs.RecService.Client
                     RecEngine.MostPopularRecommendation rec = (RecEngine.MostPopularRecommendation)generalRec;
                     Console.WriteLine("{0,3}. {1,-52} {2,4} {3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.PopularityRank, rec.NumRatings);
 
+                }
+                else if (generalRec is RecEngine.RatingPredictionRecommendation)
+                {
+                    if (recNumber == 1)
+                    {
+                        Console.WriteLine("     {0,-60} {1}", "Anime", "Prediction");
+                    }
+
+                    RecEngine.RatingPredictionRecommendation rec = (RecEngine.RatingPredictionRecommendation)generalRec;
+                    Console.WriteLine("{0,3}. {1,-60} {2:F3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.PredictedRating);
                 }
                 else
                 {

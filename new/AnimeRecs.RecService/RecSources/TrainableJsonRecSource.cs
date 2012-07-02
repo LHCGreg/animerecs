@@ -45,8 +45,6 @@ namespace AnimeRecs.RecService.RecSources
                 TDtoRec dtoRec = new TDtoRec()
                 {
                     MalAnimeId = rec.ItemId,
-                    //Title = TrainingData.Animes[rec.ItemId].Title,
-                    //MalAnimeType = TrainingData.Animes[rec.ItemId].Type
                 };
                 animes[rec.ItemId] = new DTO.MalAnime(rec.ItemId, TrainingData.Animes[rec.ItemId].Title, TrainingData.Animes[rec.ItemId].Type);
 
@@ -55,7 +53,6 @@ namespace AnimeRecs.RecService.RecSources
                 dtoRecs.Add(dtoRec);
             }
 
-            //GetMalRecsResponse<TDtoRec> response = CreateResponseDto(dtoRecs);
             TResponse response = new TResponse();
             response.RecommendationType = RecommendationType;
             response.Recommendations = dtoRecs;
@@ -75,15 +72,42 @@ namespace AnimeRecs.RecService.RecSources
             return response;
         }
 
+        /// <summary>
+        /// Converts the user's anime list into the input used by the rec source. If you need more than the anime list, you can use
+        /// <paramref name="caster"/> to cast <paramref name="recRequest"/> to a more specialized DTO.
+        /// </summary>
+        /// <param name="animeList"></param>
+        /// <param name="recRequest"></param>
+        /// <param name="caster"></param>
+        /// <returns></returns>
         protected abstract TInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster);
+        
+        /// <summary>
+        /// Set any properties of a recommendation other than the item id here.
+        /// </summary>
+        /// <param name="dtoRec"></param>
+        /// <param name="engineRec"></param>
         protected abstract void SetSpecializedRecommendationProperties(TDtoRec dtoRec, TRecommendation engineRec);
+
         protected abstract string RecommendationType { get; }
 
+        /// <summary>
+        /// Set any properties of the response as a whole here. That is, properties that are not per-recommendation but apply
+        /// to the entire response. The default implementation does nothing.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="recResults"></param>
         protected virtual void SetSpecializedExtraResponseProperties(TResponse response, TRecommendationResults recResults)
         {
             ;
         }
 
+        /// <summary>
+        /// Returns a set of item ids that are referenced in the specialized extra response properties. The default implementation
+        /// returns an empty set. If you refer to anime ids in the specialized extra response properties, you must include them here.
+        /// </summary>
+        /// <param name="recResults"></param>
+        /// <returns></returns>
         protected virtual HashSet<int> GetExtraAnimesToReturn(TRecommendationResults recResults)
         {
             return new HashSet<int>();
