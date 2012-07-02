@@ -102,7 +102,7 @@ namespace AnimeRecs.RecService.Client
             OptionSet optionSet = new OptionSet()
             {
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
-                { "c|command=", "Command", arg => SetCommand(arg) },
+                { "c|command=", "Command. Possible commands are Ping, LoadRecSource, GetMalRecs, ReloadTrainingData, and UnloadRecSource.", arg => SetCommand(arg) },
                 { "p|port=", "Port the rec service is listening on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
                 { "ping_message=", "Message to send with a ping command. Used with the Ping command. Defaults to \"ping\".", arg => PingMessage = arg },
                 { "name|rec_source_name=", "Rec source name. Used with the LoadRecSource, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
