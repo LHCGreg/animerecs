@@ -6,7 +6,7 @@ To set up an environment for developing or using the new engine, you will need t
 - PostgreSQL (http://www.postgresql.org/) (9.1.x supported, earlier versions will probably work also)
 
 1. Create a PostgreSQL database called "animerecs" using the SQL in /new/AnimeRecs.DAL/CreateDb.sql
-2. Connect to the new database and run the SQL in /new/AnimeRecs.DAL/CreateDb.sql to create the tables.
+2. Connect to the new database and run the SQL in /new/AnimeRecs.DAL/InitDb.sql to create the tables.
 3. Open /new/AnimeRecs.RecEngine.sln in Visual C#. Edit App.config in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
 4. Compile and run AnimeRecs.FreshenMalDatabase. This will populate the database with users from myanimelist.net's "recently online users" page.
 
