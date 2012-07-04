@@ -11,9 +11,19 @@ using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.ClientLib
 {
+    /// <summary>
+    /// Client to the rec service. This class is thread-safe.
+    /// </summary>
     public class AnimeRecsClient : IDisposable
     {
         private int PortNumber { get; set; }
+
+        public static readonly int DefaultPort = 5541;
+
+        public AnimeRecsClient()
+        {
+            PortNumber = DefaultPort;
+        }
 
         public AnimeRecsClient(int portNumber)
         {
@@ -64,6 +74,28 @@ namespace AnimeRecs.RecService.ClientLib
         public MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(IDictionary<int, RecEngine.MAL.MalListEntry> animeList,
             string recSourceName, int numRecsDesired, decimal targetScore, int receiveTimeoutInMs = 0)
         {
+            List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
+
+            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
+                GetMalRecsRequest.CreateWithTargetScore(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
+
+            return GetMalRecommendations(operation, receiveTimeoutInMs);
+        }
+
+        public MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendationsWithPercentileTarget(
+           IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName, int numRecsDesired, decimal targetPercentile,
+           int receiveTimeoutInMs = 0)
+        {
+            List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
+
+            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
+                GetMalRecsRequest.CreateWithTargetFraction(recSourceName, numRecsDesired, targetPercentile, new MalListForUser(dtoAnimeList)));
+
+            return GetMalRecommendations(operation, receiveTimeoutInMs);
+        }
+
+        private List<DTO.MalListEntry> CreateDtoAnimeList(IDictionary<int, RecEngine.MAL.MalListEntry> animeList)
+        {
             List<DTO.MalListEntry> dtoAnimeList = new List<DTO.MalListEntry>();
             foreach (int animeId in animeList.Keys)
             {
@@ -72,8 +104,11 @@ namespace AnimeRecs.RecService.ClientLib
                 dtoAnimeList.Add(dtoEntry);
             }
 
-            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
-                GetMalRecsRequest.CreateWithTargetScore(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
+            return dtoAnimeList;
+        }
+
+        private MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(Operation<GetMalRecsRequest> operation, int receiveTimeoutInMs)
+        {
             string jsonResponseString;
             GetMalRecsResponse<Recommendation> response = DoOperationWithResponseBody<GetMalRecsResponse<Recommendation>>(operation, receiveTimeoutInMs, out jsonResponseString);
 
@@ -160,7 +195,7 @@ namespace AnimeRecs.RecService.ClientLib
                     ));
                 }
 
-                results = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders);
+                results = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders, specificResponse.Body.Data.TargetScoreUsed);
             }
             else
             {

@@ -150,15 +150,20 @@ namespace AnimeRecs.RecEngine.MAL
         public MalAnimeRecsResults GetRecommendations(MalAnimeRecsInput inputForUser, int numRecommendationsToTryToGet)
         {
             ClassifiedUserInput<MalUserListEntries> classifiedInput;
+            decimal targetScoreUsed;
             if (inputForUser.TargetFraction != null)
             {
                 MalPercentageRatingClassifier inputClassifier = new MalPercentageRatingClassifier(inputForUser.TargetFraction.Value, m_minEpisodesToClassifyIncomplete);
                 classifiedInput = inputClassifier.Classify(inputForUser.AnimeList);
+
+                // target score used is the minimum score a liked anime.
+                targetScoreUsed = classifiedInput.Liked.Entries.Values.Min(entry => entry.Rating) ?? 10m;
             }
             else
             {
                 MalMinimumScoreRatingClassifier inputClassifier = new MalMinimumScoreRatingClassifier(inputForUser.TargetScore.Value, m_minEpisodesToClassifyIncomplete);
                 classifiedInput = inputClassifier.Classify(inputForUser.AnimeList);
+                targetScoreUsed = inputForUser.TargetScore.Value;
             }
 
             AnimeRecsInput<MalUserListEntries> inputWithParameters = new AnimeRecsInput<MalUserListEntries>(
@@ -199,7 +204,7 @@ namespace AnimeRecs.RecEngine.MAL
                 ));
             }
 
-            return new MalAnimeRecsResults(baseResults.Recommendations, malRecommenders);
+            return new MalAnimeRecsResults(baseResults.Recommendations, malRecommenders, targetScoreUsed);
         }
 
         // Order recommendations by one recommender by recommender's score, then by average score.
@@ -245,10 +250,14 @@ namespace AnimeRecs.RecEngine.MAL
         /// </summary>
         public IList<MalAnimeRecsRecommenderUser> Recommenders { get; private set; }
 
-        public MalAnimeRecsResults(IList<AnimeRecsRecommendation> recommendations, IList<MalAnimeRecsRecommenderUser> recommenders)
+        public decimal TargetScoreUsed { get; private set; }
+
+        public MalAnimeRecsResults(IList<AnimeRecsRecommendation> recommendations, IList<MalAnimeRecsRecommenderUser> recommenders,
+            decimal targetScoreUsed)
         {
             Recommendations = recommendations;
             Recommenders = recommenders;
+            TargetScoreUsed = targetScoreUsed;
         }
 
         public IEnumerator<AnimeRecsRecommendation> GetEnumerator()

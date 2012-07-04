@@ -9,15 +9,17 @@ namespace AnimeRecs.RecService.DTO
     public class MalAnimeRecsExtraResponseData
     {
         public IList<MalAnimeRecsRecommender> Recommenders { get; set; }
+        public decimal TargetScoreUsed { get; set; }
 
         public MalAnimeRecsExtraResponseData()
         {
             ;
         }
 
-        public MalAnimeRecsExtraResponseData(IList<MalAnimeRecsRecommender> recommenders)
+        public MalAnimeRecsExtraResponseData(IList<MalAnimeRecsRecommender> recommenders, decimal targetScoreUsed)
         {
             Recommenders = recommenders;
+            TargetScoreUsed = targetScoreUsed;
         }
     }
 

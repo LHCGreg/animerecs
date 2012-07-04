@@ -183,13 +183,11 @@ namespace AnimeRecs.RecEngine
 
     public class AnimeRecsRecommendation : IRecommendation
     {
-        //public AnimeRecsRecommenderUser Recommender { get; private set; }
         public int RecommenderUserId { get; private set; }
         public int ItemId { get; private set; }
 
         public AnimeRecsRecommendation(int recommenderUserId, int itemId)
         {
-            //Recommender = recommender;
             RecommenderUserId = recommenderUserId;
             ItemId = itemId;
         }
@@ -211,7 +209,7 @@ namespace AnimeRecs.RecEngine
         /// Contains all recommenders sorted by compatibility low endpoint in descending order.
         /// </summary>
         public IList<AnimeRecsRecommenderUser> Recommenders { get; private set; }
-        
+
         public AnimeRecsResults(IList<AnimeRecsRecommendation> recommendations, IList<AnimeRecsRecommenderUser> recommenders)
         {
             Recommendations = recommendations;

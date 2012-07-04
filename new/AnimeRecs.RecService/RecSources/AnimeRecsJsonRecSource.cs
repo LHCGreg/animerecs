@@ -40,6 +40,7 @@ namespace AnimeRecs.RecService.RecSources
             GetMalRecsResponse<DTO.AnimeRecsRecommendation, MalAnimeRecsExtraResponseData> response, MalAnimeRecsResults recResults)
         {
             response.Data = new MalAnimeRecsExtraResponseData(
+                targetScoreUsed: recResults.TargetScoreUsed,
                 recommenders: recResults.Recommenders.Select(recommender => new DTO.MalAnimeRecsRecommender(
                     userId: recommender.UserId,
                     username: TrainingData.Users[recommender.UserId].MalUsername,
