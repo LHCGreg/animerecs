@@ -65,6 +65,17 @@ namespace AnimeRecs.RecService.ClientLib
             DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
+        public string GetRecSourceType(string recSourceName, int receiveTimeoutInMs = 0)
+        {
+            Operation<GetRecSourceTypeRequest> operation = new Operation<GetRecSourceTypeRequest>(
+                opName: OpNames.GetRecSourceType,
+                payload: new GetRecSourceTypeRequest(recSourceName)
+            );
+
+            GetRecSourceTypeResponse responseBody = DoOperationWithResponseBody<GetRecSourceTypeResponse>(operation, receiveTimeoutInMs);
+            return responseBody.RecSourceType;
+        }
+
         public void ReloadTrainingData(int receiveTimeoutInMs = 0)
         {
             Operation operation = new Operation(OpNames.ReloadTrainingData);

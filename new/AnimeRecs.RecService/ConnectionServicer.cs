@@ -41,6 +41,14 @@ namespace AnimeRecs.RecService
                 )
             },
 
+            { OpNames.GetRecSourceType, new OperationDescription
+                (
+                operationHandler: OpHandlers.GetRecSourceType,
+                operationType: typeof(Operation<GetRecSourceTypeRequest>),
+                responseType: typeof(Response<GetRecSourceTypeResponse>)
+                )
+            },
+
             { OpNames.ReloadTrainingData, new OperationDescription
                 (
                 operationHandler: OpHandlers.ReloadTrainingData,

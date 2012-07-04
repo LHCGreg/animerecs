@@ -90,6 +90,7 @@ namespace AnimeRecs.RecService.RecSources
         protected abstract void SetSpecializedRecommendationProperties(TDtoRec dtoRec, TRecommendation engineRec);
 
         protected abstract string RecommendationType { get; }
+        public abstract string RecSourceType { get; }
 
         /// <summary>
         /// Set any properties of the response as a whole here. That is, properties that are not per-recommendation but apply

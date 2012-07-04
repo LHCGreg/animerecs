@@ -105,6 +105,32 @@ namespace AnimeRecs.RecService
             Logging.Log.InfoFormat("Rec source {0} unloaded.", name);
         }
 
+        public string GetRecSourceType(string recSourceName)
+        {
+            recSourceName.ThrowIfNull("name");
+            bool enteredLock;
+            const int lockTimeoutInMs = 3000;
+            using (m_recSourcesLock.ScopedReadLock(lockTimeoutInMs, out enteredLock))
+            {
+                // If we couldn't get a read lock within 3 seconds, a reload/retrain is probably going on
+                if (!enteredLock)
+                {
+                    Error error = new Error(errorCode: ErrorCodes.Maintenance,
+                        message: "The rec service is currently undergoing maintenance and cannot respond to rec requests.");
+                    throw new RecServiceErrorException(error);
+                }
+
+                if (!m_recSources.ContainsKey(recSourceName))
+                {
+                    Error error = new Error(errorCode: ErrorCodes.NoSuchRecSource,
+                        message: string.Format("No rec source called \"{0}\" is loaded.", recSourceName));
+                    throw new RecServiceErrorException(error);
+                }
+
+                return m_recSources[recSourceName].RecSourceType;
+            }
+        }
+
         public void ReloadTrainingData()
         {
             Logging.Log.Info("Reloading training data and retraining rec sources.");

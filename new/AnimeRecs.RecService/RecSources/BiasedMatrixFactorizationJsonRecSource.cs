@@ -32,6 +32,7 @@ namespace AnimeRecs.RecService.RecSources
         }
 
         protected override string RecommendationType { get { return RecommendationTypes.RatingPrediction; } }
+        public override string RecSourceType { get { return RecSourceTypes.BiasedMatrixFactorization; } }
     }
 }
 

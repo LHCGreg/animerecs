@@ -30,6 +30,7 @@ namespace AnimeRecs.RecService.RecSources
         }
 
         protected override string RecommendationType { get { return RecommendationTypes.MostPopular; } }
+        public override string RecSourceType { get { return RecSourceTypes.MostPopular; } }
     }
 }
 

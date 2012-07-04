@@ -102,6 +102,11 @@ namespace AnimeRecs.RecService.Client
                     client.UnloadRecSource(commandLine.RecSourceName);
                     Console.WriteLine("Unload complete.");
                 }
+                else if (commandLine.Operation.Equals(OpNames.GetRecSourceType, StringComparison.OrdinalIgnoreCase))
+                {
+                    string recSourceType = client.GetRecSourceType(commandLine.RecSourceName);
+                    Console.WriteLine("Type of rec source {0} is {1}.", commandLine.RecSourceName, recSourceType);
+                }
                 else if (commandLine.Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
                 {
                     MalUserLookupResults lookup;

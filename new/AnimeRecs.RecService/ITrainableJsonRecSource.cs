@@ -18,6 +18,8 @@ namespace AnimeRecs.RecService
         /// <returns></returns>
         /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
         GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster);
+
+        string RecSourceType { get; }
     }
 }
 

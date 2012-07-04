@@ -15,6 +15,7 @@ namespace AnimeRecs.RecService.Client
             OpNames.Ping,
             OpNames.LoadRecSource,
             OpNames.UnloadRecSource,
+            OpNames.GetRecSourceType,
             OpNames.ReloadTrainingData,
             OpNames.GetMalRecs,
             "Raw"

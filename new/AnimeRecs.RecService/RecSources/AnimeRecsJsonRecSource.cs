@@ -35,6 +35,7 @@ namespace AnimeRecs.RecService.RecSources
         }
 
         protected override string RecommendationType { get { return RecommendationTypes.AnimeRecs; } }
+        public override string RecSourceType { get { return RecSourceTypes.AnimeRecs; } }
 
         protected override void SetSpecializedExtraResponseProperties(
             GetMalRecsResponse<DTO.AnimeRecsRecommendation, MalAnimeRecsExtraResponseData> response, MalAnimeRecsResults recResults)

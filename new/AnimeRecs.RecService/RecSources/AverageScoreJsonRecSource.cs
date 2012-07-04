@@ -30,6 +30,7 @@ namespace AnimeRecs.RecService.RecSources
         }
 
         protected override string RecommendationType { get { return RecommendationTypes.AverageScore; } }
+        public override string RecSourceType { get { return RecSourceTypes.AverageScore; } }
     }
 }
 

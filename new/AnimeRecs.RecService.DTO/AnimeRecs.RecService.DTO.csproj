@@ -35,6 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetRecSourceTypeRequest.cs" />
+    <Compile Include="GetRecSourceTypeResponse.cs" />
     <Compile Include="MalAnimeRecsExtraResponseData.cs" />
     <Compile Include="MalAnime.cs" />
     <Compile Include="Recommendation.cs" />
