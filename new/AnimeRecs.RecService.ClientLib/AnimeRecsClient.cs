@@ -123,6 +123,9 @@ namespace AnimeRecs.RecService.ClientLib
             string jsonResponseString;
             GetMalRecsResponse<Recommendation> response = DoOperationWithResponseBody<GetMalRecsResponse<Recommendation>>(operation, receiveTimeoutInMs, out jsonResponseString);
 
+            // This should be set as if we were running against an in-process rec source.
+            // So it should be an IEnumerable<AverageScoreRecommendation> if getting recs from an AverageScore rec source, etc.
+            // MalRecResultsExtensions.cs contains extension methods for "casting" MalRecResults to a strongly-typed MalRecResults.
             IEnumerable<IRecommendation> results;
 
             if (response.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
@@ -130,7 +133,7 @@ namespace AnimeRecs.RecService.ClientLib
                 Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>> specificResponse =
                     JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>>>(jsonResponseString);
 
-                List<IRecommendation> recommendations = new List<IRecommendation>();
+                List<RecEngine.AverageScoreRecommendation> recommendations = new List<RecEngine.AverageScoreRecommendation>();
                 foreach (DTO.AverageScoreRecommendation dtoRec in specificResponse.Body.Recommendations)
                 {
                     recommendations.Add(new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore));
@@ -143,7 +146,7 @@ namespace AnimeRecs.RecService.ClientLib
                 Response<GetMalRecsResponse<DTO.MostPopularRecommendation>> specificResponse =
                     JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.MostPopularRecommendation>>>(jsonResponseString);
 
-                List<IRecommendation> recommendations = new List<IRecommendation>();
+                List<RecEngine.MostPopularRecommendation> recommendations = new List<RecEngine.MostPopularRecommendation>();
                 foreach (DTO.MostPopularRecommendation dtoRec in specificResponse.Body.Recommendations)
                 {
                     recommendations.Add(new AnimeRecs.RecEngine.MostPopularRecommendation(
@@ -160,7 +163,7 @@ namespace AnimeRecs.RecService.ClientLib
                 Response<GetMalRecsResponse<DTO.RatingPredictionRecommendation>> specificResponse =
                     JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.RatingPredictionRecommendation>>>(jsonResponseString);
 
-                List<IRecommendation> recommendations = new List<IRecommendation>();
+                List<RecEngine.RatingPredictionRecommendation> recommendations = new List<RecEngine.RatingPredictionRecommendation>();
                 foreach (DTO.RatingPredictionRecommendation dtoRec in specificResponse.Body.Recommendations)
                 {
                     recommendations.Add(new RecEngine.RatingPredictionRecommendation(
