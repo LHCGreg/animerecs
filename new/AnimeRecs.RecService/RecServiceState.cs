@@ -200,8 +200,18 @@ namespace AnimeRecs.RecService
                 throw new RecServiceErrorException(error);
             }
 
+            string targetScoreString;
+            if (request.TargetFraction != null)
+            {
+                targetScoreString = request.TargetFraction.Value.ToString("P2");
+            }
+            else
+            {
+                targetScoreString = request.TargetScore.Value.ToString();
+            }
+
             Logging.Log.InfoFormat("Request for {0} MAL recs using rec source {1}. User has {2} anime list entries. Target score is {3}.",
-                request.NumRecsDesired, request.RecSourceName, request.AnimeList.Entries.Count, request.TargetScore.Value.ToString() ?? (request.TargetFraction.Value).ToString("P2"));
+                request.NumRecsDesired, request.RecSourceName, request.AnimeList.Entries.Count, targetScoreString);
 
             // Acquire read lock on rec sources
             bool enteredLock;
