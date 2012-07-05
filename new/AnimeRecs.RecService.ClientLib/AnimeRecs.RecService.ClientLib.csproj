@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AnimeRecsClient.cs" />
     <Compile Include="MalRecResults.cs" />
+    <Compile Include="MalRecResultsExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

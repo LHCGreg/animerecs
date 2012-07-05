@@ -151,11 +151,9 @@ namespace AnimeRecs.RecService.Client
 
         private static void PrintRecs(MalRecResults<IEnumerable<RecEngine.IRecommendation>> recs, IDictionary<int, RecEngine.MAL.MalListEntry> animeList, decimal targetScore)
         {
-            if (recs.Results is RecEngine.MAL.MalAnimeRecsResults)
+            if(recs.AsAnimeRecsResults() != null)
             {
-                MalRecResults<RecEngine.MAL.MalAnimeRecsResults> animeRecsResults = new MalRecResults<RecEngine.MAL.MalAnimeRecsResults>(
-                    (RecEngine.MAL.MalAnimeRecsResults)recs.Results, recs.AnimeInfo);
-                PrintAnimeRecsResults(animeRecsResults, animeList, targetScore);
+                PrintAnimeRecsResults(recs.AsAnimeRecsResults(), animeList, targetScore);
                 return;
             }
 

@@ -12,11 +12,13 @@ namespace AnimeRecs.RecService.ClientLib
     {
         public TResults Results { get; private set; }
         public IDictionary<int, MalAnime> AnimeInfo { get; private set; }
+        public string RecommendationType { get; private set; }
 
-        public MalRecResults(TResults results, IDictionary<int, MalAnime> animeInfo)
+        public MalRecResults(TResults results, IDictionary<int, MalAnime> animeInfo, string recommendationType)
         {
             Results = results;
             AnimeInfo = animeInfo;
+            RecommendationType = recommendationType;
         }
     }
 }

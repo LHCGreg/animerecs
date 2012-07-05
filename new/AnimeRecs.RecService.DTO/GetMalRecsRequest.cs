@@ -10,6 +10,8 @@ namespace AnimeRecs.RecService.DTO
         public MalListForUser AnimeList { get; set; }
         public string RecSourceName { get; set; }
         public int NumRecsDesired { get; set; }
+
+        // XXX: Move these to rec source-specific DTOs
         public decimal? TargetScore { get; set; }
         public decimal? TargetFraction { get; set; }
 
