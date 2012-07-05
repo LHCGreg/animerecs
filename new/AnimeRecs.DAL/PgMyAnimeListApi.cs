@@ -69,6 +69,8 @@ WHERE mal_user.mal_name ILIKE @0";
                         Score = dbEntry.rating,
                         Status = (CompletionStatus)dbEntry.mal_list_entry_status_id
                     };
+
+                    results.AnimeList.Add(entry);
                 }
 
                 if(results.CanonicalUserName == null)
