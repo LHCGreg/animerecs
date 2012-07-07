@@ -1,0 +1,130 @@
+﻿@using AnimeRecs.RecService.ClientLib
+@using AnimeRecs.RecEngine
+@using AnimeRecs.RecEngine.MAL
+@using AnimeRecs.Web
+@using AnimeRecs.Web.Models.ViewModels
+@model GetRecsViewModel<MalAnimeRecsResults>
+Your best matches are
+<ol class="matchList">
+    @foreach (MalAnimeRecsRecommenderUser recommender in Model.Results.Recommenders.Take(AppGlobals.Config.MaximumRecommendersToReturn))
+    {
+        string percentLiked = ((double)recommender.RecsLiked.Count / recommender.NumRecsInCommon).ToString("P2");
+        string lowerBound = (recommender.CompatibilityLowEndpoint ?? 0.0).ToString("P2");
+        string upperBound = (recommender.CompatibilityHighEndpoint ?? 0.0).ToString("P2");
+        
+        <li>
+            <div class="userhead">
+                <a href="@Html.AttributeEncode(ViewHelpers.GetMalListUrl(recommender.Username))" class="recommender">@recommender.Username</a>'s
+                recommendations <span class="compatibilityRating">(@recommender.RecsLiked.Count/@recommender.NumRecsInCommon
+                    @percentLiked recs liked, @lowerBound - @upperBound estimated compatibility)</span>
+            </div>
+            <table class="recsTable">
+                <thead>
+                    <tr>
+                        <td>
+                            Anime
+                        </td>
+                        <td>
+                            Status
+                        </td>
+                        @*<td>
+                            Met Target Score?
+                        </td>*@
+                        <td>
+                            Their Rating
+                        </td>
+                        <td>
+                            Your Rating
+                        </td>
+                        <td>
+                            Average Score
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MalAnimeRecsRecommenderRecommendation recommendation in recommender.AllRecommendations.OrderBy(
+                    rec => !recommender.RecsLiked.Contains(rec) && !recommender.RecsNotLiked.Contains(rec) ? 0 :
+                        recommender.RecsLiked.Contains(rec) ? 1 :
+                        2
+                    )
+                    .ThenByDescending(rec => rec.RecommenderScore)
+                    .ThenByDescending(rec => rec.AverageScore))
+                    {
+                        string rowClass = "";
+                        if (recommender.RecsLiked.Contains(recommendation))
+                        {
+                            rowClass = "class=\"goodRec\"";
+                        }
+                        else if (recommender.RecsNotLiked.Contains(recommendation))
+                        {
+                            rowClass = "class=\"badRec\"";
+                        }
+                        <tr @Html.Raw(rowClass)>
+                            <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model.AnimeInfo[recommendation.MalAnimeId].Title)
+                            </td>
+                            <td>
+                                @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId))
+                                {
+                                    <text>@Html.MalAnimeStatusAsString(Model.UserAnimeList[recommendation.MalAnimeId].Status)</text>
+                                }
+                                else
+                                {
+                                    <text>-</text>
+                                }
+                            </td>
+                            @*<td>
+                                @if(recommender.RecsLiked.Contains(recommendation))
+                                {
+                                    <text>Yes</text>
+                                }
+                                else if (recommender.RecsNotLiked.Contains(recommendation))
+                                {
+                                    <text>No</text>
+                                }
+                                else
+                                {
+                                    <text>-</text>
+                                }
+                            </td>*@
+                            <td>
+                                @(recommendation.RecommenderScore.HasValue ? recommendation.RecommenderScore.Value.ToString("F0") : "-")
+                            </td>
+                            <td>
+                                @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId) && Model.UserAnimeList[recommendation.MalAnimeId].Rating != null)
+                                {
+                                    @Model.UserAnimeList[recommendation.MalAnimeId].Rating.Value.ToString("F0")
+                                }
+                                else
+                                {
+                                    <text>-</text>
+                                }
+                            </td>
+                            <td>
+                                @recommendation.AverageScore.ToString("F2")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </li>
+    }
+</ol>
+
+@*
+Copyright (C) 2012 Greg Najda
+
+This file is part of AnimeRecs.Web.
+
+AnimeRecs.Web is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+AnimeRecs.Web is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with AnimeRecs.Web.  If not, see <http://www.gnu.org/licenses/>.
+*@

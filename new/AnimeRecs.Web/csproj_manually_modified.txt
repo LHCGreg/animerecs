@@ -1,0 +1,45 @@
+﻿AnimeRecs.Web.csproj has been manually modified to add project references, which Visual Web Developer Express does not normally allow you to do.
+
+In case Visual Studio trashes the modifications, here are the changes:
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj">
+      <Project>{052C3459-C8BF-44A3-AFE1-8B587B023044}</Project>
+      <Name>AnimeRecs.RecService.ClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
+      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
+      <Name>AnimeRecs.MalApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
+      <Project>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</Project>
+      <Name>AnimeRecs.RecEngine.MAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj">
+      <Project>{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}</Project>
+      <Name>AnimeRecs.RecEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">
+      <Project>{F7463E78-C746-4D37-A869-759FB38B247B}</Project>
+      <Name>AnimeRecs.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+
+This change works when invoking msbuild on the command-line, but when building from Visual Web Developer external project references are not build. Instead, the build process skips building the referenced project looks at where the output would be.
+
+To get around that, there is a prebuild step on AnimeRecs.Web:
+
+    <PreBuildEvent>C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj"
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj"
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj"
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj"
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.DAL\AnimeRecs.DAL.csproj"</PreBuildEvent>
+
+Hopefully that step can be eliminated and the problem can be solved with pure msbuild so building on Linux can work.
+
+There is a yellow warning sign on the reference in Solution Explorer. It compiles fine. You will get Intellisense if you manually build the referenced projects in AnimeRecs.RecEngine.sln.

@@ -1,0 +1,63 @@
+﻿@using AnimeRecs.Web;
+@model AnimeRecs.Web.Models.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Anime Recommendation Finder";
+}
+<div id="header" class="noselect">
+    <h1 class="title">
+        Anime Recommendation Finder</h1>
+</div>
+<div id="main" class="splash">
+    <div class="title">
+        Anime Recommendation Finder</div>
+    <div class="datainput">
+        <div class="usernamesubmit">
+            <input class="username textinput bigtextinput" type="text" placeholder="your MyAnimeList.net username" />
+            <a class="go noselect" id="splash-go">
+                <div class="go-arrow">
+                </div>
+            </a>
+        </div>
+        <div class="autoscores noselect">
+            <input id="autoscores" type="checkbox" value="autoscores" checked />
+            <label for="autoscores">
+                Guess my target score</label>
+        </div>
+        <div class="scores" style="display: none;">
+            <div class="scoretitle">
+                Target score</div>
+            <div class="scoreinput scoregood">
+                <input class="good textinput smalltextinput" type="text" value="8" maxlength="2" /></div>
+        </div>
+        @Html.Hidden("RecSourceName", Model.Algorithm, new Dictionary<string, object>() { { "id", "recSourceName" } })
+    </div>
+    <div id="results">
+    </div>
+    <div class="footer">
+        Have a bug report or suggestion? <a href="@AppGlobals.Config.OwnerMalLink">Message me
+            on MAL.</a></div>
+</div>
+<!-- #main -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>    window.jQuery || document.write('<script src="@Url.Content("~/Scripts/libs/jquery-1.7.1.min.js")"><\/script>')</script>
+<script src="@Url.Content("~/Scripts/libs/jquery.placeholder.min.js")"></script>
+<script src="@Url.Content("~/Scripts/script.js")"></script>
+
+@*
+Copyright (C) 2012 Greg Najda
+
+This file is part of AnimeRecs.Web.
+
+AnimeRecs.Web is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+AnimeRecs.Web is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with AnimeRecs.Web.  If not, see <http://www.gnu.org/licenses/>.
+*@
