@@ -16,6 +16,12 @@ Npgsql is copyright (c) 2002-2007, The Npgsql Development Team. The license for 
 
 Petapoco is Copyright © 2011 Topten Software and is licensed under the Apache License 2.0 (licenses/PetaPoco_license.txt).
 
+modernizr is copyright modernizr.com and is licensed under the MIT license (licenses/modernizr_license.txt).
+
+jquery is Copyright (c) 2012 jQuery Foundation and other contributors and is licensed under the MIT license (licenses/jquery_license.txt)
+
+jquery.placeholder is Copyright 2011, Daniel Stocks and is licensed under the MIT license (licenses/jquery.placeholder_license.txt).
+
 Miscellaneous Utility Library is Copyright (c) 2004-2008 Jon Skeet and Marc Gravell. The license is in lib/MiscUtil/license.txt.
 
 Json.NET is copyright 2007 James Newton-King and is licensed under the MIT/X11 license (lib/Json.NET/license.txt).
