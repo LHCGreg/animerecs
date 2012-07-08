@@ -4,6 +4,11 @@
 @using AnimeRecs.Web
 @using AnimeRecs.Web.Models.ViewModels
 @model GetRecsViewModel<MalAnimeRecsResults>
+           
+@* The warning about conditional compilation on @Model can be safely ignored. *@
+<script type="text/javascript">
+    $(".datainput .good").val(@Model.Results.TargetScoreUsed);
+</script>
 Your best matches are
 <ol class="matchList">
     @foreach (MalAnimeRecsRecommenderUser recommender in Model.Results.Recommenders.Take(AppGlobals.Config.MaximumRecommendersToReturn))
@@ -27,9 +32,6 @@ Your best matches are
                         <td>
                             Status
                         </td>
-                        @*<td>
-                            Met Target Score?
-                        </td>*@
                         <td>
                             Their Rating
                         </td>
@@ -65,27 +67,13 @@ Your best matches are
                             <td>
                                 @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId))
                                 {
-                                    <text>@Html.MalAnimeStatusAsString(Model.UserAnimeList[recommendation.MalAnimeId].Status)</text>
+                                    @Html.MalAnimeStatusAsString(Model.UserAnimeList[recommendation.MalAnimeId].Status)
                                 }
                                 else
                                 {
-                                    <text>-</text>
+                                    @:-
                                 }
                             </td>
-                            @*<td>
-                                @if(recommender.RecsLiked.Contains(recommendation))
-                                {
-                                    <text>Yes</text>
-                                }
-                                else if (recommender.RecsNotLiked.Contains(recommendation))
-                                {
-                                    <text>No</text>
-                                }
-                                else
-                                {
-                                    <text>-</text>
-                                }
-                            </td>*@
                             <td>
                                 @(recommendation.RecommenderScore.HasValue ? recommendation.RecommenderScore.Value.ToString("F0") : "-")
                             </td>
@@ -96,7 +84,7 @@ Your best matches are
                                 }
                                 else
                                 {
-                                    <text>-</text>
+                                    @:-
                                 }
                             </td>
                             <td>
