@@ -18,17 +18,20 @@
                 </div>
             </a>
         </div>
-        <div class="autoscores noselect">
-            <input id="autoscores" type="checkbox" value="autoscores" checked />
-            <label for="autoscores">
-                Guess my target score</label>
-        </div>
-        <div class="scores" style="display: none;">
-            <div class="scoretitle">
-                Target score</div>
-            <div class="scoreinput scoregood">
-                <input class="good textinput smalltextinput" type="text" value="8" maxlength="2" /></div>
-        </div>
+        @if (Model.TargetScoreNeeded)
+        {
+            <div class="autoscores noselect">
+                <input id="autoscores" type="checkbox" value="autoscores" checked />
+                <label for="autoscores">
+                    Guess my target score</label>
+            </div>
+            <div class="scores" style="display: none;">
+                <div class="scoretitle">
+                    Target score</div>
+                <div class="scoreinput scoregood">
+                    <input class="good textinput smalltextinput" type="text" value="8" maxlength="2" /></div>
+            </div>
+        }
         @Html.Hidden("RecSourceName", Model.Algorithm, new Dictionary<string, object>() { { "id", "recSourceName" } })
     </div>
     <div id="results">
@@ -42,7 +45,6 @@
 <script>    window.jQuery || document.write('<script src="@Url.Content("~/Scripts/libs/jquery-1.7.1.min.js")"><\/script>')</script>
 <script src="@Url.Content("~/Scripts/libs/jquery.placeholder.min.js")"></script>
 <script src="@Url.Content("~/Scripts/script.js")"></script>
-
 @*
 Copyright (C) 2012 Greg Najda
 

@@ -133,6 +133,10 @@
       <Project>{F7463E78-C746-4D37-A869-759FB38B247B}</Project>
       <Name>AnimeRecs.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj">
+      <Project>{2E870408-2BC8-404F-BCAC-98289C1F489E}</Project>
+      <Name>AnimeRecs.RecService.DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GetRecs\AverageScore.cshtml" />
@@ -185,6 +189,8 @@ C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:C
 
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.DAL\AnimeRecs.DAL.csproj"</PreBuildEvent>
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.DAL\AnimeRecs.DAL.csproj"
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj"</PreBuildEvent>
   </PropertyGroup>
 </Project>

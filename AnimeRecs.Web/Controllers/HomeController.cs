@@ -43,7 +43,13 @@ namespace AnimeRecs.Web.Controllers
 
             bool algorithmAvailable = recSourceType != null;
 
-            ViewData.Model = new HomeViewModel(algorithm, algorithmAvailable);
+            bool targetScoreNeeded = false;
+            if (AnimeRecs.RecService.DTO.RecSourceTypes.AnimeRecs.Equals(recSourceType, StringComparison.OrdinalIgnoreCase))
+            {
+                targetScoreNeeded = true;
+            }
+
+            ViewData.Model = new HomeViewModel(algorithm: algorithm, algorithmAvailable: algorithmAvailable, targetScoreNeeded: targetScoreNeeded);
             return View();
         }
     }

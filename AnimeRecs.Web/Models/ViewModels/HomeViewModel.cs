@@ -8,12 +8,14 @@ namespace AnimeRecs.Web.Models.ViewModels
     public class HomeViewModel
     {
         public string Algorithm { get; set; }
-        public bool AlgorithmAvailabe { get; set; }
+        public bool AlgorithmAvailable { get; set; }
+        public bool TargetScoreNeeded { get; set; }
 
-        public HomeViewModel(string algorithm, bool algorithmAvailable)
+        public HomeViewModel(string algorithm, bool algorithmAvailable, bool targetScoreNeeded)
         {
             Algorithm = algorithm;
-            AlgorithmAvailabe = algorithmAvailable;
+            AlgorithmAvailable = algorithmAvailable;
+            TargetScoreNeeded = targetScoreNeeded;
         }
     }
 }
