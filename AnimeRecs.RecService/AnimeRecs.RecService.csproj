@@ -123,9 +123,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Json.NET\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="SVM, Version=1.99.4525.38435, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\MyMediaLite\SVM.dll</HintPath>
@@ -134,6 +131,16 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup Condition=" !$(DefineConstants.Contains('MONO')) ">
+    <Reference Include="NLog">
+      <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" $(DefineConstants.Contains('MONO')) ">
+    <Reference Include="NLog">
+      <HintPath>..\lib\NLog\mono20\NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArgs.cs" />
@@ -188,6 +195,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="csproj_manually_modified.txt" />
     <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>

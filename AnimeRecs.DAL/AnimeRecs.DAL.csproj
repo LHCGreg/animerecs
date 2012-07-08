@@ -54,18 +54,25 @@
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup Condition=" !$(DefineConstants.Contains('MONO')) ">
+    <Reference Include="Mono.Security">
+      <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" $(DefineConstants.Contains('MONO')) ">
+    <Reference Include="Npgsql">
+      <HintPath>..\lib\Npgsql\mono20\Npgsql.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMalTrainingDataLoader.cs" />
@@ -83,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateDb.sql" />
+    <Content Include="csproj_manually_modified.txt" />
     <Content Include="InitDb.sql" />
   </ItemGroup>
   <ItemGroup>

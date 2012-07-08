@@ -95,20 +95,30 @@
     <Reference Include="Common.Logging.NLog">
       <HintPath>..\lib\Common.Logging\Common.Logging.NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup Condition=" !$(DefineConstants.Contains('MONO')) ">
+    <Reference Include="Mono.Security">
+      <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" $(DefineConstants.Contains('MONO')) ">
+    <Reference Include="Npgsql">
+      <HintPath>..\lib\Npgsql\mono20\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\lib\NLog\mono20\NLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
@@ -130,6 +140,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="csproj_manually_modified.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
