@@ -1,1 +1,2 @@
 ﻿The mono20 NLog is conditionally referenced if the MONO symbol is defined, otherwise the /net20 NLog is referenced.
+Mono.Posix is referenced when building for Mono.

@@ -141,6 +141,7 @@
     <Reference Include="NLog">
       <HintPath>..\lib\NLog\mono20\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArgs.cs" />
