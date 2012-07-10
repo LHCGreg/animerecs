@@ -109,14 +109,13 @@
                         main.removeClass("splash").addClass("userinfo");
                     }
 
-                    // Not passing back calculated target score for now
-                    //if(result.RecommendedCutoff != null)
-                    //field_good.val(result.RecommendedCutoff);
-
-
                     results.html(result.Html);
                 } else if (status == "error") {
-                    alert("Sorry, something went wrong.");
+                    var message = "Sorry, something went wrong.";
+                    if (result) {
+                        message = result.Message;
+                    }
+                    alert(message);
                 }
 
             });
@@ -160,12 +159,14 @@
                     if (textStatus == "abort") { // request was aborted by rq.abort()
                         // we do nothing here, as it was aborted from client side code
                     } else { // error
-                        callback("error");
+                        var errorData = null;
+                        if (jqXHR.getResponseHeader("Content-Type") && jqXHR.getResponseHeader("Content-Type").indexOf("application/json") !== -1) {
+                            errorData = $.parseJSON(jqXHR.responseText);
+                        }
+                        callback("error", errorData);
                     }
                 }
             });
-
-            //
 
             return function () {
                 rq.abort();

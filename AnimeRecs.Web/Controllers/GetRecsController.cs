@@ -42,7 +42,17 @@ namespace AnimeRecs.Web.Controllers
 
             using (IMyAnimeListApi malApi = m_malApiFactory.GetMalApi())
             {
-                MalUserLookupResults userLookup = malApi.GetAnimeListForUser(input.MalName);
+                MalUserLookupResults userLookup;
+                try
+                {
+                    userLookup = malApi.GetAnimeListForUser(input.MalName);
+                }
+                catch (MalUserNotFoundException)
+                {
+                    AjaxError error = new AjaxError("No such MAL user.");
+                    Response.StatusCode = 500; // internal server error
+                    return Json(error);
+                }
 
                 Dictionary<int, MalListEntry> animeList = new Dictionary<int, MalListEntry>();
 

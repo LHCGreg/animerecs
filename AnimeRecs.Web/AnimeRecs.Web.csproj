@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="IMyAnimeListApiFactory.cs" />
     <Compile Include="IAnimeRecsClientFactory.cs" />
+    <Compile Include="Models\Json\AjaxError.cs" />
     <Compile Include="Models\Json\AnimeRecsInputJson.cs" />
     <Compile Include="Models\Json\RecResultsAsHtml.cs" />
     <Compile Include="Models\ViewModels\GetRecsViewModel.cs" />
