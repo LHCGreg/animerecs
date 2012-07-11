@@ -132,12 +132,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
   </ItemGroup>
-  <ItemGroup Condition=" !$(DefineConstants.Contains('MONO')) ">
+  <ItemGroup Condition=" '$(BuildSystem)' == 'MSBuild' ">
     <Reference Include="NLog">
       <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition=" $(DefineConstants.Contains('MONO')) ">
+  <ItemGroup Condition=" '$(BuildSystem)' != 'MSBuild' ">
     <Reference Include="NLog">
       <HintPath>..\lib\NLog\mono20\NLog.dll</HintPath>
     </Reference>
