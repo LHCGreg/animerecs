@@ -5,3 +5,5 @@ bin
 obj
 *.app.js
 *.Publish.xml
+*~
+*.userprefs
