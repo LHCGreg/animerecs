@@ -69,7 +69,7 @@
       <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition=" '$(BuildSystem)' != 'MSBuild ">
+  <ItemGroup Condition=" '$(BuildSystem)' != 'MSBuild' ">
     <Reference Include="Npgsql">
       <HintPath>..\lib\Npgsql\mono20\Npgsql.dll</HintPath>
     </Reference>
