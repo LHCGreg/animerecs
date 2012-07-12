@@ -98,7 +98,6 @@ namespace AnimeRecs.RecService.DTO
         public uint? NumIter { get; set; }
         public float? RegI { get; set; }
         public float? RegU { get; set; }
-        public float? Regularization { get; set; }
 
         public BiasedMatrixFactorizationRecSourceParams()
         {

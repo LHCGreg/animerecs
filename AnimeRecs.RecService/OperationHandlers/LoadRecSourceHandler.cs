@@ -81,8 +81,6 @@ namespace AnimeRecs.RecService.OperationHandlers
                     underlyingRecSource.RegI = opWithRecParams.Payload.Params.RegI.Value;
                 if (opWithRecParams.Payload.Params.RegU != null)
                     underlyingRecSource.RegU = opWithRecParams.Payload.Params.RegU.Value;
-                if (opWithRecParams.Payload.Params.Regularization != null)
-                    underlyingRecSource.Regularization = opWithRecParams.Payload.Params.Regularization.Value;
 
                 MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization> malRecSource =
                     new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>(underlyingRecSource,
