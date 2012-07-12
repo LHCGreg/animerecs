@@ -34,21 +34,25 @@ namespace AnimeRecs.Web.Controllers
         [HttpPost]
         public ActionResult Index([Required] AnimeRecsInputJson input)
         {
+            Logging.Log.Info("Started processing GetRecs request.");
             if (!ModelState.IsValid)
             {
-                // TODO: Log
+                Logging.Log.Info("Invalid input.");
                 return new HttpStatusCodeResult(400);
             }
 
             using (IMyAnimeListApi malApi = m_malApiFactory.GetMalApi())
             {
+                Logging.Log.InfoFormat("Getting MAL list for user {0}.", input.MalName);
                 MalUserLookupResults userLookup;
                 try
                 {
                     userLookup = malApi.GetAnimeListForUser(input.MalName);
+                    Logging.Log.InfoFormat("Got MAL list for user {0}.", input.MalName);
                 }
                 catch (MalUserNotFoundException)
                 {
+                    Logging.Log.InfoFormat("User {0} not found.", input.MalName);
                     AjaxError error = new AjaxError("No such MAL user.");
                     Response.StatusCode = 500; // internal server error
                     return Json(error);
@@ -66,21 +70,31 @@ namespace AnimeRecs.Web.Controllers
                     MalRecResults<IEnumerable<IRecommendation>> recResults;
                     if (input.GoodPercentile != null)
                     {
+                        Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
+                            input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodPercentile.Value);
                         recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
                             input.GoodPercentile.Value);
                     }
                     else if (input.GoodCutoff != null)
                     {
+                        Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of {3}.",
+                            input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodCutoff.Value);
                         recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
                             input.GoodCutoff.Value);
                     }
                     else
                     {
+                        Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
+                            input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
                         recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
                             AppGlobals.Config.DefaultTargetPercentile);
                     }
 
+                    Logging.Log.InfoFormat("Got results from rec service for {0}.", input.MalName);
+
                     RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, animeList);
+                    Logging.Log.Debug("Converted results to return value.");
+
                     return Json(resultsJson);
                 }
             }

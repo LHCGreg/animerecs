@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using MiscUtil.IO;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
+using System.Net;
 
 namespace AnimeRecs.RecService.ClientLib
 {
@@ -260,7 +261,9 @@ namespace AnimeRecs.RecService.ClientLib
 
             using (TcpClient socket = CreateTcpClient(receiveTimeoutInMs))
             {
+                Logging.Log.Trace("Sending bytes.");
                 socket.Client.Send(operationJsonBytes);
+                Logging.Log.Trace("Sent bytes.");
                 using (NetworkStream socketStream = socket.GetStream())
                 {
                     // The half-close must be after getting the NetworkStream. GetStream() will throw an exception if the connection is half-closed.
@@ -268,11 +271,14 @@ namespace AnimeRecs.RecService.ClientLib
                     // until the connection is half-closed.
                     socket.Client.Shutdown(SocketShutdown.Send);
                     responseJsonBytes = StreamUtil.ReadFully(socketStream);
+                    Logging.Log.Trace("Got response.");
                 }
             }
 
             responseJsonString = Encoding.UTF8.GetString(responseJsonBytes);
+            Logging.Log.Trace("Decoded response string.");
             TResponse response = JsonConvert.DeserializeObject<TResponse>(responseJsonString);
+            Logging.Log.Trace("Deserialized response.");
             if (response.Error != null)
             {
                 throw new RecServiceErrorException(response.Error);
@@ -302,7 +308,10 @@ namespace AnimeRecs.RecService.ClientLib
 
         private TcpClient CreateTcpClient(int receiveTimeoutInMs)
         {
-            TcpClient client = new TcpClient("localhost", PortNumber);
+            TcpClient client = new TcpClient();
+            Logging.Log.Trace("Connecting to rec service.");
+            client.Connect(IPAddress.Loopback, PortNumber);
+            Logging.Log.Trace("Connected to rec service.");
             client.SendTimeout = 3000;
             client.ReceiveTimeout = receiveTimeoutInMs;
             return client;
