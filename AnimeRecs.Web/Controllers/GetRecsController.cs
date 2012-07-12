@@ -32,10 +32,12 @@ namespace AnimeRecs.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index([Required] AnimeRecsInputJson input)
+        public ActionResult Index(AnimeRecsInputJson input)
         {
             Logging.Log.Info("Started processing GetRecs request.");
-            if (!ModelState.IsValid)
+
+            // Can't have [Required] on input because Mono's RequiredAttribute is not permitted on parameters.
+            if (input == null || !ModelState.IsValid)
             {
                 Logging.Log.Info("Invalid input.");
                 return new HttpStatusCodeResult(400);
