@@ -148,6 +148,6 @@ WHERE entry.rating IS NOT NULL
 AND (entry.mal_list_entry_status_id = 2 OR entry.num_episodes_watched > 26)
 GROUP BY anime.mal_anime_id
 ORDER BY average DESC) AS averageStuff
-WHERE average IS NOT NULL AND num_ratings >= ((SELECT num_rows FROM row_count WHERE table_id = 1) / 50) -- >= 2% of users have seen it
+WHERE average IS NOT NULL AND num_ratings >= ((SELECT num_rows FROM row_count WHERE table_id = 1) / 50); -- >= 2% of users have seen it
 
-END TRANSACTION;
+COMMIT TRANSACTION;
