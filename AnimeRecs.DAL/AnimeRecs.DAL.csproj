@@ -89,9 +89,10 @@
     <Compile Include="row_count.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CreateDb.sql" />
+    <None Include="CreateDb_linux.sql" />
+    <None Include="CreateDb_windows.sql" />
     <Content Include="csproj_manually_modified.txt" />
-    <Content Include="InitDb.sql" />
+    <None Include="InitDb.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
