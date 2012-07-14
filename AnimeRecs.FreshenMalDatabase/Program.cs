@@ -68,7 +68,7 @@ namespace AnimeRecs.FreshenMalDatabase
         /// <returns></returns>
         static bool UserIsInDatabase(string username, PetaPoco.Database db)
         {
-            Logging.Log.DebugFormat("Checking if {0} is in the database.");
+            Logging.Log.DebugFormat("Checking if {0} is in the database.", username);
             long count = db.ExecuteScalar<long>(@"SELECT Count(*) FROM mal_user WHERE mal_name = @0", username);
             bool isInDb = count > 0;
             Logging.Log.DebugFormat("{0} in database = {1}", username, isInDb);
