@@ -94,9 +94,7 @@ namespace AnimeRecs.RecService
             using (TcpClient client = (TcpClient)clientObj)
             {
                 try
-                {
-                    Thread.CurrentThread.Name = client.Client.RemoteEndPoint.ToString();
-                    
+                {  
                     using (NetworkStream clientStream = client.GetStream())
                     {
                         const int readTimeout = 3000;
