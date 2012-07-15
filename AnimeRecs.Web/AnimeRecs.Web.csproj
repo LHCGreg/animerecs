@@ -92,27 +92,27 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(BuildSystem)' != 'MSBuild' ">
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-	  <HintPath>..\lib\MVC\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\lib\MVC\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-	  <HintPath>..\lib\MVC\System.Web.Razor.dll</HintPath>
+      <HintPath>..\lib\MVC\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-	  <HintPath>..\lib\MVC\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\lib\MVC\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-	  <HintPath>..\lib\MVC\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\lib\MVC\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-	  <HintPath>..\lib\MVC\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\lib\MVC\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-	  <HintPath>..\lib\MVC\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\lib\MVC\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog">
@@ -164,6 +164,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Web.MonoDebug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.MonoRelease.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GetRecs\Fallback.cshtml" />
