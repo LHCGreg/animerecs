@@ -104,6 +104,7 @@ namespace AnimeRecs.FreshenMalDatabase
             Logging.Log.DebugFormat("Inserted {0} into DB.", userLookup.CanonicalUserName);
 
             Logging.Log.DebugFormat("Inserting anime and list entries for {0}.", userLookup.CanonicalUserName);
+            // TODO: Doing N queries, N inserts/updates, and N inserts is a bottleneck. Optimize this.
             foreach (MyAnimeListEntry anime in userLookup.AnimeList)
             {
                 mal_anime animeRow = new mal_anime()
