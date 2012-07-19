@@ -247,17 +247,38 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup Condition=" '$(BuildSystem)' == 'MSBuild' ">
+  <!-- Visual Studio does not follow project references when building. It will reference the assembly that would be generated but will not build the project.
+  
+  "Within Visual Studio, the solution file and project build ordering are controlled by Visual Studio itself. When building a solution with msbuild.exe on the command line, MSBuild parses the solution file and orders the project builds. In both cases the projects are built individually in dependency order, and project to project references are not traversed. In contrast, when individual projects are built with msbuild.exe, project to project references are traversed." - http://msdn.microsoft.com/en-us/library/ms171468
+  -->
+  
+  <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' And '$(BuildSystem)' == 'MSBuild'">
     <PreBuildEvent>C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj"
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj"
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj"
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.DAL\AnimeRecs.DAL.csproj"
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.DAL\AnimeRecs.DAL.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj"</PreBuildEvent>
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj"</PreBuildEvent>
+  </PropertyGroup>
+  
+  <!-- Building inside MonoDevelop behaves like building inside Visual Studio. -->
+  <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' And '$(BuildSystem)' != 'MSBuild'">
+    <PreBuildEvent>xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecService.ClientLib/AnimeRecs.RecService.ClientLib.csproj"
+
+xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.MalApi/AnimeRecs.MalApi.csproj"
+
+xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecEngine.MAL/AnimeRecs.RecEngine.MAL.csproj"
+
+xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecEngine/AnimeRecs.RecEngine.csproj"
+
+xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.DAL/AnimeRecs.DAL.csproj"
+
+xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecService.DTO/AnimeRecs.RecService.DTO.csproj"
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
