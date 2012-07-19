@@ -32,13 +32,70 @@ To set up a development environment you will need to install the following:
 - Visual Web Developer 2010 Express
 - PostgreSQL (http://www.postgresql.org/) (9.1.x supported, earlier versions will probably work also)
 
-1. Create a PostgreSQL database called "animerecs" using the SQL in /AnimeRecs.DAL/CreateDb.sql
-2. Connect to the new database and run the SQL in /AnimeRecs.DAL/InitDb.sql to create the tables.
-3. Open /AnimeRecs.RecEngine.sln in Visual C#. Edit App.config in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
-4. Compile and run AnimeRecs.FreshenMalDatabase. This will populate the database with users from myanimelist.net's "recently online users" page. This will take some time to run.
-5. Edit App.config in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
-6. Compile AnimeRecs.RecService.Client and load some rec sources, preferably at least one with the name "default". See the recclient tutorial below for how to use AnimeRecs.RecService.Client.
-7. Open AnimeRecs.Web.sln. Compile and run the web site locally. Try it out. You can use http://localhost:[port]/?algorithm=some_rec_source to use a non-default rec source.
+Set up instructions for Linux assume Ubuntu. If you want to use a different distro, good luck, you're on your own. I have found Ubuntu to have good Mono support.
+
+**When building on Linux, ALWAYS use the MonoDebug/MonoRelease build configurations. If you're using MonoDevelop, set MonoDevelop to build using xbuild instead of MonoDevelop's build engine. Monodevelop does not use xbuild by default.**
+
+When building on Windows, always use Debug or Release, never MonoDebug or MonoRelease. To build for Mono on Linux, you must use xbuild (or MonoDevelop set to use xbuild) on Linux. Cross-compiling is not supported.
+
+Building on Linux with xbuild:
+$ xbuild /t:build /p:Configuration=MonoDebug /p:Platform=AnyCPU xyz.csproj
+
+Building a web package with xbuild (note, this does not apply Web.config transforms!):
+$ xbuild /t:build "/p:Configuration=MonoDebug;Platform=AnyCPU;OutDir=/home/greg/publish/" AnimeRecs.Web.csproj
+
+Setting up PostgreSQL in Ubuntu
+-------------------------------
+1. Set your locale to UTF-8. This ensures that Postgres that does not install with a default of ASCII and prevent you from creating a database that uses UTF-8 as its encoding.
+$ sudo update-locale LANG=en_US.UTF-8
+
+2. Increase the maximum shared memory size from the ridiculously small default. This step is optional but will allow you to later increase the amount of shared memory Postgres can use.
+edit /etc/sysctl.conf, add line
+kernel.shmmax=134217728
+(for 128 MB)
+
+$ sudo service procps start
+
+
+
+3. Install the postgres package
+
+4. Set a password for the "postgres" PostgreSQL user and allow Linux users other than postgres to log in as the "postgres" PostgreSQL user. Using the postgres user is not necessarily ideal in a production environment, but it's easiest to set up for development.
+
+$ su - postgres
+$ psql -d template1 -c "ALTER USER postgres WTIH PASSWORD 'testpw';"
+$ exit
+
+edit /etc/postgresql/9.1/main/pg_hba.conf
+
+edit the lines:
+local   all        postgres        peer
+local   all        all             peer
+
+change "peer" to "md5".
+
+$ sudo service postgresql restart
+
+
+Initializing the database
+-------------------------
+1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/CreateDb_windows.sql. On Linux, psql -U postgres -f AnimeRecs.DAL/CreateDb_linux.sql
+2. Connect to the new database and run the SQL in /AnimeRecs.DAL/InitDb.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.sql
+
+
+
+Populating the database with ratings
+------------------------------------
+1. Edit App.config in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
+2. Compile and run AnimeRecs.FreshenMalDatabase. This will populate the database with users from myanimelist.net's "recently online users" page. This will take some time to run.
+
+
+
+Running the web site
+-----------------------
+1. Edit App.config in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
+2. Compile AnimeRecs.RecService.Client and load some rec sources, preferably at least one with the name "default". See the recclient tutorial below for how to use AnimeRecs.RecService.Client.
+3. Open AnimeRecs.Web.sln. Compile and run the web site locally. Try it out. You can use http://localhost:[port]/?algorithm=some_rec_source to use a non-default rec source.
 
 
 [Get command-line usage info]
