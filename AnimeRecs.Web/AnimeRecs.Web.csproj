@@ -33,26 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'MonoDebug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'MonoRelease|AnyCPU'">
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;MONO</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -153,7 +133,9 @@
     <Content Include="Scripts\libs\jquery.placeholder.min.js" />
     <Content Include="Scripts\libs\modernizr-2.0.6.min.js" />
     <Content Include="Scripts\script.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -164,12 +146,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Web.MonoDebug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.MonoRelease.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GetRecs\Fallback.cshtml" />
@@ -251,7 +227,6 @@
   
   "Within Visual Studio, the solution file and project build ordering are controlled by Visual Studio itself. When building a solution with msbuild.exe on the command line, MSBuild parses the solution file and orders the project builds. In both cases the projects are built individually in dependency order, and project to project references are not traversed. In contrast, when individual projects are built with msbuild.exe, project to project references are traversed." - http://msdn.microsoft.com/en-us/library/ms171468
   -->
-  
   <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' And '$(BuildSystem)' == 'MSBuild'">
     <PreBuildEvent>C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj"
 
@@ -265,7 +240,6 @@ C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:C
 
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj"</PreBuildEvent>
   </PropertyGroup>
-  
   <!-- Building inside MonoDevelop behaves like building inside Visual Studio. -->
   <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' And '$(BuildSystem)' != 'MSBuild'">
     <PreBuildEvent>xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecService.ClientLib/AnimeRecs.RecService.ClientLib.csproj"

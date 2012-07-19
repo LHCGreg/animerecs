@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using AnimeRecs.DAL;
-
-#if MONO
 using Mono.Unix;
 using Mono.Unix.Native;
-#endif
 
 namespace AnimeRecs.RecService
 {
@@ -33,18 +30,23 @@ namespace AnimeRecs.RecService
                 using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, commandLine.PortNumber))
                 {
                     recService.Start();
-#if MONO
-                    UnixSignal[] signals = new UnixSignal[]
+
+                    if (Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX)
                     {
-                        new UnixSignal(Signum.SIGINT),
-                        new UnixSignal(Signum.SIGTERM)
-                    };
-                    Logging.Log.InfoFormat("Started listening on port {0}. Press ctrl+c to stop.", commandLine.PortNumber);
-                    UnixSignal.WaitAny(signals);
-#else
-                    Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", commandLine.PortNumber);
-                    Console.ReadKey();
-#endif
+                        UnixSignal[] signals = new UnixSignal[]
+                        {
+                            new UnixSignal(Signum.SIGINT),
+                            new UnixSignal(Signum.SIGTERM)
+                        };
+                        Logging.Log.InfoFormat("Started listening on port {0}. Press ctrl+c to stop.", commandLine.PortNumber);
+                        UnixSignal.WaitAny(signals);
+                    }
+                    else
+                    {
+                        Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", commandLine.PortNumber);
+                        Console.ReadKey();
+                    }
+
                     Logging.Log.InfoFormat("Got stop signal.");
                 }
                 Logging.Log.InfoFormat("Shutdown complete.");
