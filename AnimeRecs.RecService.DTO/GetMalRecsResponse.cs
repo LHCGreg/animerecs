@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
+using AnimeRecs.RecService.DTO.JsonConverters;
 
 namespace AnimeRecs.RecService.DTO
 {
+    [JsonConverter(typeof(GetMalRecsResponseJsonConverter))]
     public class GetMalRecsResponse
     {
         public string RecommendationType { get; set; }

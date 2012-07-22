@@ -24,11 +24,11 @@ namespace AnimeRecs.RecService.Configuration
 
         public static ConfigRoot LoadFromFile(string filePath)
         {
-            string json = File.ReadAllText(filePath);
-            ConfigRoot config = JsonConvert.DeserializeObject<ConfigRoot>(json);
-            foreach (LoadRecSourceRequest recSource in config.RecSources)
+            using(StreamReader fileReader = new StreamReader(filePath))
+            using(JsonTextReader jsonReader = new JsonTextReader(fileReader))
             {
-
+                ConfigRoot config = new JsonSerializer().Deserialize<ConfigRoot>(jsonReader);
+                return config;
             }
         }
     }

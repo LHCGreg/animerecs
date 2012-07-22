@@ -28,7 +28,7 @@ namespace AnimeRecs.RecService
             { OpNames.LoadRecSource, new OperationDescription
                 (
                 operationHandler: OpHandlers.LoadRecSource,
-                operationType: typeof(Operation<LoadRecSourceRequest<RecSourceParams>>),
+                operationType: typeof(Operation<LoadRecSourceRequest>),
                 responseType: typeof(Response)
                 )
             },
@@ -104,13 +104,11 @@ namespace AnimeRecs.RecService
             Logging.Log.Debug("Converting message bytes into string.");
             string messageString = Encoding.UTF8.GetString(messageBytes);
 
-            // First deserialize as a non-specific Operation object to learn what operation it is.
-            // Then we can deserialize as a more specific operation object once we know what operation it is.
-            Operation operationCheck;
+            Operation operation;
             try
             {
                 Logging.Log.Debug("Deserializing message.");
-                operationCheck = JsonConvert.DeserializeObject<Operation>(messageString);
+                operation = JsonConvert.DeserializeObject<Operation>(messageString);
             }
             catch (JsonReaderException ex)
             {
@@ -118,30 +116,25 @@ namespace AnimeRecs.RecService
                 return;
             }
 
-            Logging.Log.DebugFormat("Got message with OpName {0}", operationCheck.OpName);
+            Logging.Log.DebugFormat("Got message with OpName {0}", operation.OpName);
 
-            if (operationCheck.OpName == null)
+            if (operation.OpName == null)
             {
                 SendNoOpError();
                 return;
             }
 
-            if(!Operations.ContainsKey(operationCheck.OpName))
+            if(!Operations.ContainsKey(operation.OpName))
             {
-                SendBadOpError(operationCheck.OpName);
+                SendBadOpError(operation.OpName);
                 return;
             }
 
-            OperationDescription opDescription = Operations[operationCheck.OpName];
+            OperationDescription opDescription = Operations[operation.OpName];
 
-            Logging.Log.Debug("Deserializing op-specific message.");
-            Operation derivedOp = (Operation)(JsonConvert.DeserializeObject(messageString, opDescription.OperationType));
-            Logging.Log.Debug("Deserialized op-specific message.");
-
-            OperationCaster opReinterpreter = new OperationCaster(messageString);
             try
             {
-                Response response = opDescription.OperationHandler(derivedOp, State, opReinterpreter);
+                Response response = opDescription.OperationHandler(operation, State);
                 Logging.Log.Debug("Operation completed, writing response.");
                 WriteResponse(response);
             }

@@ -10,10 +10,12 @@ namespace AnimeRecs.RecService
     internal class CommandLineArgs
     {
         private bool m_showHelp = false;
-        public bool ShowHelp { get { return m_showHelp; } set { m_showHelp = value; } }
+        public bool ShowHelp { get { return m_showHelp; } private set { m_showHelp = value; } }
 
         private int m_portNumber = 5541;
-        public int PortNumber { get { return m_portNumber; } set { m_portNumber = value; } }
+        public int PortNumber { get { return m_portNumber; } private set { m_portNumber = value; } }
+
+        public string ConfigFile { get; private set; }
 
         public OptionSet GetOptionSet()
         {
@@ -21,6 +23,7 @@ namespace AnimeRecs.RecService
             {
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
                 { "p|port=", "Port to listen on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
+                { "f|config=", "File to load configuration settings from. App.config is still used for other settings. Currently this is only used to load rec sources on startup. If not specified, no rec sources are loaded on startup.", arg => ConfigFile = arg }
             };
 
             return optionSet;

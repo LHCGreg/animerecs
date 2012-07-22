@@ -96,9 +96,8 @@
     <Reference Include="NLog">
       <HintPath>..\lib\NLog\netfx20\NLog.dll</HintPath>
     </Reference>
-    
-	<!-- Reference a local Mono.Posix copy-local on .NET. Reference the GAC Mono.Posix non-copy-local on Mono. -->
-	<Reference Include="Mono.Posix">
+    <!-- Reference a local Mono.Posix copy-local on .NET. Reference the GAC Mono.Posix non-copy-local on Mono. -->
+    <Reference Include="Mono.Posix">
       <HintPath>..\lib\Mono.Posix\Mono.Posix.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -110,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArgs.cs" />
+    <Compile Include="Configuration\ConfigRoot.cs" />
     <Compile Include="ConnectionServicer.cs" />
     <Compile Include="IMalTrainingDataLoaderFactory.cs" />
     <Compile Include="ITrainableJsonRecSource.cs" />
@@ -123,12 +123,10 @@
     <Compile Include="OperationHandlers\PingHandler.cs" />
     <Compile Include="OperationHandlers\ReloadTrainingDataHandler.cs" />
     <Compile Include="OperationHandlers\UnloadRecSourceHandler.cs" />
-    <Compile Include="OperationCaster.cs" />
     <Compile Include="PgMalTrainingDataLoaderFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderWriterLockSlimExtensions.cs" />
-    <Compile Include="RecRequestCaster.cs" />
     <Compile Include="RecServiceState.cs" />
     <Compile Include="RecSources\AnimeRecsJsonRecSource.cs" />
     <Compile Include="RecSources\AverageScoreJsonRecSource.cs" />
@@ -155,6 +153,10 @@
       <Project>{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}</Project>
       <Name>AnimeRecs.RecEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj">
+      <Project>{052C3459-C8BF-44A3-AFE1-8B587B023044}</Project>
+      <Name>AnimeRecs.RecService.ClientLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj">
       <Project>{2E870408-2BC8-404F-BCAC-98289C1F489E}</Project>
       <Name>AnimeRecs.RecService.DTO</Name>
@@ -166,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="sample_config.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

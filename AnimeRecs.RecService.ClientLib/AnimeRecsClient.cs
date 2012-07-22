@@ -56,6 +56,15 @@ namespace AnimeRecs.RecService.ClientLib
             DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
+        public void LoadRecSource(LoadRecSourceRequest request, int receiveTimeoutInMs = 0)
+        {
+            Operation<LoadRecSourceRequest> operation = new Operation<LoadRecSourceRequest>(
+                opName: OpNames.LoadRecSource,
+                payload: request
+            );
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+        }
+
         public void UnloadRecSource(string name, int receiveTimeoutInMs = 0)
         {
             Operation<UnloadRecSourceRequest> operation = new Operation<UnloadRecSourceRequest>(
@@ -121,8 +130,7 @@ namespace AnimeRecs.RecService.ClientLib
 
         private MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(Operation<GetMalRecsRequest> operation, int receiveTimeoutInMs)
         {
-            string jsonResponseString;
-            GetMalRecsResponse<Recommendation> response = DoOperationWithResponseBody<GetMalRecsResponse<Recommendation>>(operation, receiveTimeoutInMs, out jsonResponseString);
+            GetMalRecsResponse response = DoOperationWithResponseBody<GetMalRecsResponse>(operation, receiveTimeoutInMs);
 
             // This should be set as if we were running against an in-process rec source.
             // So it should be an IEnumerable<AverageScoreRecommendation> if getting recs from an AverageScore rec source, etc.
@@ -131,11 +139,10 @@ namespace AnimeRecs.RecService.ClientLib
 
             if (response.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
             {
-                Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>> specificResponse =
-                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AverageScoreRecommendation>>>(jsonResponseString);
+                GetMalRecsResponse<DTO.AverageScoreRecommendation> specificResponse = (GetMalRecsResponse<DTO.AverageScoreRecommendation>)response;
 
                 List<RecEngine.AverageScoreRecommendation> recommendations = new List<RecEngine.AverageScoreRecommendation>();
-                foreach (DTO.AverageScoreRecommendation dtoRec in specificResponse.Body.Recommendations)
+                foreach (DTO.AverageScoreRecommendation dtoRec in specificResponse.Recommendations)
                 {
                     recommendations.Add(new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore));
                 }
@@ -144,11 +151,10 @@ namespace AnimeRecs.RecService.ClientLib
             }
             else if (response.RecommendationType.Equals(RecommendationTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
             {
-                Response<GetMalRecsResponse<DTO.MostPopularRecommendation>> specificResponse =
-                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.MostPopularRecommendation>>>(jsonResponseString);
+                GetMalRecsResponse<DTO.MostPopularRecommendation> specificResponse = (GetMalRecsResponse<DTO.MostPopularRecommendation>)response;
 
                 List<RecEngine.MostPopularRecommendation> recommendations = new List<RecEngine.MostPopularRecommendation>();
-                foreach (DTO.MostPopularRecommendation dtoRec in specificResponse.Body.Recommendations)
+                foreach (DTO.MostPopularRecommendation dtoRec in specificResponse.Recommendations)
                 {
                     recommendations.Add(new AnimeRecs.RecEngine.MostPopularRecommendation(
                         itemId: dtoRec.MalAnimeId,
@@ -161,11 +167,10 @@ namespace AnimeRecs.RecService.ClientLib
             }
             else if (response.RecommendationType.Equals(RecommendationTypes.RatingPrediction, StringComparison.OrdinalIgnoreCase))
             {
-                Response<GetMalRecsResponse<DTO.RatingPredictionRecommendation>> specificResponse =
-                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.RatingPredictionRecommendation>>>(jsonResponseString);
+                GetMalRecsResponse<DTO.RatingPredictionRecommendation> specificResponse = (GetMalRecsResponse<DTO.RatingPredictionRecommendation>)response;
 
                 List<RecEngine.RatingPredictionRecommendation> recommendations = new List<RecEngine.RatingPredictionRecommendation>();
-                foreach (DTO.RatingPredictionRecommendation dtoRec in specificResponse.Body.Recommendations)
+                foreach (DTO.RatingPredictionRecommendation dtoRec in specificResponse.Recommendations)
                 {
                     recommendations.Add(new RecEngine.RatingPredictionRecommendation(
                         itemId: dtoRec.MalAnimeId,
@@ -177,17 +182,16 @@ namespace AnimeRecs.RecService.ClientLib
             }
             else if (response.RecommendationType.Equals(RecommendationTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
             {
-                Response<GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>> specificResponse =
-                    JsonConvert.DeserializeObject<Response<GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>>>(jsonResponseString);
+                GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData> specificResponse = (GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>)response;
 
                 List<RecEngine.AnimeRecsRecommendation> recommendations = new List<RecEngine.AnimeRecsRecommendation>();
-                foreach (DTO.AnimeRecsRecommendation dtoRec in specificResponse.Body.Recommendations)
+                foreach (DTO.AnimeRecsRecommendation dtoRec in specificResponse.Recommendations)
                 {
                     recommendations.Add(new RecEngine.AnimeRecsRecommendation(dtoRec.RecommenderUserId, itemId: dtoRec.MalAnimeId));
                 }
 
                 List<MalAnimeRecsRecommenderUser> recommenders = new List<MalAnimeRecsRecommenderUser>();
-                foreach (DTO.MalAnimeRecsRecommender dtoRecommender in specificResponse.Body.Data.Recommenders)
+                foreach (DTO.MalAnimeRecsRecommender dtoRecommender in specificResponse.Data.Recommenders)
                 {
                     HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
                             dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == true)
@@ -210,12 +214,13 @@ namespace AnimeRecs.RecService.ClientLib
                     ));
                 }
 
-                results = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders, specificResponse.Body.Data.TargetScoreUsed);
+                results = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders, specificResponse.Data.TargetScoreUsed);
             }
             else
             {
+                GetMalRecsResponse<DTO.Recommendation> specificResponse = (GetMalRecsResponse<DTO.Recommendation>)response;
                 List<IRecommendation> recommendations = new List<IRecommendation>();
-                foreach (DTO.Recommendation dtoRec in response.Recommendations)
+                foreach (DTO.Recommendation dtoRec in specificResponse.Recommendations)
                 {
                     recommendations.Add(new BasicRecommendation(dtoRec.MalAnimeId));
                 }
@@ -292,12 +297,6 @@ namespace AnimeRecs.RecService.ClientLib
         private TResponseBody DoOperationWithResponseBody<TResponseBody>(Operation operation, int receiveTimeoutInMs)
         {
             Response<TResponseBody> response = DoOperation<Response<TResponseBody>>(operation, receiveTimeoutInMs);
-            return response.Body;
-        }
-
-        private TResponseBody DoOperationWithResponseBody<TResponseBody>(Operation operation, int receiveTimeoutInMs, out string jsonResponseString)
-        {
-            Response<TResponseBody> response = DoOperation<Response<TResponseBody>>(operation, receiveTimeoutInMs, out jsonResponseString);
             return response.Body;
         }
 

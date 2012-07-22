@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
+using AnimeRecs.RecService.DTO.JsonConverters;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class LoadRecSourceRequest<TRecSourceParams>
-        where TRecSourceParams : RecSourceParams
+    [JsonConverter(typeof(LoadRecSourceRequestJsonConverter))]
+    public class LoadRecSourceRequest
     {
         /// <summary>
         /// Name to give the loaded rec source. Other operations will use this name to refer to it. The name is not case-sensitive.
@@ -23,6 +25,22 @@ namespace AnimeRecs.RecService.DTO
         /// </summary>
         public string Type { get; set; }
 
+        public LoadRecSourceRequest()
+        {
+            ;
+        }
+
+        public LoadRecSourceRequest(string name, bool replaceExisting, string type)
+        {
+            Name = name;
+            ReplaceExisting = replaceExisting;
+            Type = type;
+        }
+    }
+    
+    public class LoadRecSourceRequest<TRecSourceParams> : LoadRecSourceRequest
+        where TRecSourceParams : RecSourceParams
+    {
         /// <summary>
         /// Parameters specific to the type of rec source.
         /// </summary>
@@ -34,10 +52,8 @@ namespace AnimeRecs.RecService.DTO
         }
 
         public LoadRecSourceRequest(string name, string type, bool replaceExisting, TRecSourceParams parameters)
+            : base(name: name, replaceExisting: replaceExisting, type: type)
         {
-            Name = name;
-            Type = type;
-            ReplaceExisting = replaceExisting;
             Params = parameters;
         }
     }

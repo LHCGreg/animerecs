@@ -11,9 +11,9 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response LoadRecSource(Operation baseOperation, RecServiceState state, OperationCaster opReinterpreter)
+        public static Response LoadRecSource(Operation baseOperation, RecServiceState state)
         {
-            Operation<LoadRecSourceRequest<RecSourceParams>> operation = (Operation<LoadRecSourceRequest<RecSourceParams>>)baseOperation;
+            Operation<LoadRecSourceRequest> operation = (Operation<LoadRecSourceRequest>)baseOperation;
             if (!operation.PayloadSet || operation.Payload == null)
                 return GetArgumentNotSetError("Payload");
             if (operation.Payload.Name == null)
@@ -25,66 +25,66 @@ namespace AnimeRecs.RecService.OperationHandlers
 
             if (operation.Payload.Type.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
             {
-                Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>> opWithRecParams =
-                    opReinterpreter.As<Operation<LoadRecSourceRequest<AverageScoreRecSourceParams>>>();
+                LoadRecSourceRequest<AverageScoreRecSourceParams> request = (LoadRecSourceRequest<AverageScoreRecSourceParams>)operation.Payload;
+                AverageScoreRecSourceParams recSourceParams = request.Params;
                 MalAverageScoreRecSource underlyingRecSource = new MalAverageScoreRecSource(
-                    minEpisodesToCountIncomplete: opWithRecParams.Payload.Params.MinEpisodesToCountIncomplete,
-                    useDropped: opWithRecParams.Payload.Params.UseDropped,
-                    minUsersToCountAnime: opWithRecParams.Payload.Params.MinUsersToCountAnime
+                    minEpisodesToCountIncomplete: recSourceParams.MinEpisodesToCountIncomplete,
+                    useDropped: recSourceParams.UseDropped,
+                    minUsersToCountAnime: recSourceParams.MinUsersToCountAnime
                 );
                 recSource = new AverageScoreJsonRecSource(underlyingRecSource);
             }
             else if (operation.Payload.Type.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
             {
-                Operation<LoadRecSourceRequest<MostPopularRecSourceParams>> opWithRecParams =
-                    opReinterpreter.As<Operation<LoadRecSourceRequest<MostPopularRecSourceParams>>>();
+                LoadRecSourceRequest<MostPopularRecSourceParams> request = (LoadRecSourceRequest<MostPopularRecSourceParams>)operation.Payload;
+                MostPopularRecSourceParams recSourceParams = request.Params;
                 MalMostPopularRecSource underlyingRecSource = new MalMostPopularRecSource(
-                    minEpisodesToCountIncomplete: opWithRecParams.Payload.Params.MinEpisodesToCountIncomplete,
-                    useDropped: opWithRecParams.Payload.Params.UseDropped
+                    minEpisodesToCountIncomplete: recSourceParams.MinEpisodesToCountIncomplete,
+                    useDropped: recSourceParams.UseDropped
                 );
                 recSource = new MostPopularJsonRecSource(underlyingRecSource);
             }
             else if (operation.Payload.Type.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
             {
-                Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>> opWithRecParams =
-                    opReinterpreter.As<Operation<LoadRecSourceRequest<AnimeRecsRecSourceParams>>>();
+                LoadRecSourceRequest<AnimeRecsRecSourceParams> request = (LoadRecSourceRequest<AnimeRecsRecSourceParams>)operation.Payload;
+                AnimeRecsRecSourceParams recSourceParams = request.Params;
                 MalAnimeRecsRecSource underlyingRecSource = new MalAnimeRecsRecSource(
-                    numRecommendersToUse: opWithRecParams.Payload.Params.NumRecommendersToUse,
-                    fractionConsideredRecommended: opWithRecParams.Payload.Params.FractionConsideredRecommended,
-                    minEpisodesToClassifyIncomplete: opWithRecParams.Payload.Params.MinEpisodesToClassifyIncomplete
+                    numRecommendersToUse: recSourceParams.NumRecommendersToUse,
+                    fractionConsideredRecommended: recSourceParams.FractionConsideredRecommended,
+                    minEpisodesToClassifyIncomplete: recSourceParams.MinEpisodesToClassifyIncomplete
                 );
                 recSource = new AnimeRecsJsonRecSource(underlyingRecSource);
             }
             else if (operation.Payload.Type.Equals(RecSourceTypes.BiasedMatrixFactorization, StringComparison.OrdinalIgnoreCase))
             {
-                Operation<LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>> opWithRecParams =
-                    opReinterpreter.As<Operation<LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>>>();
+                LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams> request = (LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>)operation.Payload;
+                BiasedMatrixFactorizationRecSourceParams recSourceParams = request.Params;
                 BiasedMatrixFactorization underlyingRecSource = new BiasedMatrixFactorization();
 
-                if (opWithRecParams.Payload.Params.BiasLearnRate != null)
-                    underlyingRecSource.BiasLearnRate = opWithRecParams.Payload.Params.BiasLearnRate.Value;
-                if (opWithRecParams.Payload.Params.BiasReg != null)
-                    underlyingRecSource.BiasReg = opWithRecParams.Payload.Params.BiasReg.Value;
-                if (opWithRecParams.Payload.Params.BoldDriver != null)
-                    underlyingRecSource.BoldDriver = opWithRecParams.Payload.Params.BoldDriver.Value;
-                if (opWithRecParams.Payload.Params.FrequencyRegularization != null)
-                    underlyingRecSource.FrequencyRegularization = opWithRecParams.Payload.Params.FrequencyRegularization.Value;
-                if (opWithRecParams.Payload.Params.LearnRate != null)
-                    underlyingRecSource.LearnRate = opWithRecParams.Payload.Params.LearnRate.Value;
-                if (opWithRecParams.Payload.Params.NumFactors != null)
-                    underlyingRecSource.NumFactors = opWithRecParams.Payload.Params.NumFactors.Value;
-                if (opWithRecParams.Payload.Params.NumIter != null)
-                    underlyingRecSource.NumIter = opWithRecParams.Payload.Params.NumIter.Value;
-                if (opWithRecParams.Payload.Params.OptimizationTarget != null)
-                    underlyingRecSource.Loss = (OptimizationTarget)Enum.Parse(typeof(OptimizationTarget), opWithRecParams.Payload.Params.OptimizationTarget);
-                if (opWithRecParams.Payload.Params.RegI != null)
-                    underlyingRecSource.RegI = opWithRecParams.Payload.Params.RegI.Value;
-                if (opWithRecParams.Payload.Params.RegU != null)
-                    underlyingRecSource.RegU = opWithRecParams.Payload.Params.RegU.Value;
+                if (recSourceParams.BiasLearnRate != null)
+                    underlyingRecSource.BiasLearnRate = recSourceParams.BiasLearnRate.Value;
+                if (recSourceParams.BiasReg != null)
+                    underlyingRecSource.BiasReg = recSourceParams.BiasReg.Value;
+                if (recSourceParams.BoldDriver != null)
+                    underlyingRecSource.BoldDriver = recSourceParams.BoldDriver.Value;
+                if (recSourceParams.FrequencyRegularization != null)
+                    underlyingRecSource.FrequencyRegularization = recSourceParams.FrequencyRegularization.Value;
+                if (recSourceParams.LearnRate != null)
+                    underlyingRecSource.LearnRate = recSourceParams.LearnRate.Value;
+                if (recSourceParams.NumFactors != null)
+                    underlyingRecSource.NumFactors = recSourceParams.NumFactors.Value;
+                if (recSourceParams.NumIter != null)
+                    underlyingRecSource.NumIter = recSourceParams.NumIter.Value;
+                if (recSourceParams.OptimizationTarget != null)
+                    underlyingRecSource.Loss = (OptimizationTarget)Enum.Parse(typeof(OptimizationTarget), recSourceParams.OptimizationTarget);
+                if (recSourceParams.RegI != null)
+                    underlyingRecSource.RegI = recSourceParams.RegI.Value;
+                if (recSourceParams.RegU != null)
+                    underlyingRecSource.RegU = recSourceParams.RegU.Value;
 
                 MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization> malRecSource =
                     new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>(underlyingRecSource,
-                        opWithRecParams.Payload.Params.MinEpisodesToCountIncomplete, opWithRecParams.Payload.Params.UseDropped);
+                        recSourceParams.MinEpisodesToCountIncomplete, recSourceParams.UseDropped);
 
                 recSource = new BiasedMatrixFactorizationJsonRecSource(malRecSource);
             }

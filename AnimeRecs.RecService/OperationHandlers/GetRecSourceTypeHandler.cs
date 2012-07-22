@@ -8,7 +8,7 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response GetRecSourceType(Operation baseOperation, RecServiceState state, OperationCaster opCaster)
+        public static Response GetRecSourceType(Operation baseOperation, RecServiceState state)
         {
             Operation<GetRecSourceTypeRequest> operation = (Operation<GetRecSourceTypeRequest>)baseOperation;
             string recSourceType = state.GetRecSourceType(operation.Payload.RecSourceName);

@@ -17,7 +17,7 @@ namespace AnimeRecs.RecService.RecSources
             ;
         }
 
-        protected override MalAnimeRecsInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster)
+        protected override MalAnimeRecsInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest)
         {
             if (recRequest.TargetScore != null)
             {

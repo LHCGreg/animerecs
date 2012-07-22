@@ -6,13 +6,15 @@ using System.Configuration;
 using AnimeRecs.DAL;
 using Mono.Unix;
 using Mono.Unix.Native;
+using AnimeRecs.RecService.Configuration;
+using AnimeRecs.RecService.ClientLib;
 
 namespace AnimeRecs.RecService
 {
     internal class Program
     {
         static void Main(string[] args)
-        {
+        {            
             System.Threading.Thread.CurrentThread.Name = "Main";
             Logging.SetUpLogging();
 
@@ -25,11 +27,28 @@ namespace AnimeRecs.RecService
                     return;
                 }
 
+                ConfigRoot config = null;
+                if (commandLine.ConfigFile != null)
+                {
+                    config = ConfigRoot.LoadFromFile(commandLine.ConfigFile);
+                }
+
                 string connectionString = ConfigurationManager.ConnectionStrings["Postgres"].ToString();
                 PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(connectionString);
                 using (TcpRecService recService = new TcpRecService(trainingDataLoaderFactory, commandLine.PortNumber))
                 {
                     recService.Start();
+
+                    if (config != null)
+                    {
+                        using (AnimeRecsClient client = new AnimeRecsClient(commandLine.PortNumber))
+                        {
+                            foreach (DTO.LoadRecSourceRequest recSourceToLoad in config.RecSources)
+                            {
+                                client.LoadRecSource(recSourceToLoad);
+                            }
+                        }
+                    }
 
                     if (Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX)
                     {

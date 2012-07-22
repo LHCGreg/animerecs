@@ -31,12 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Json.NET\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GetRecSourceTypeRequest.cs" />
     <Compile Include="GetRecSourceTypeResponse.cs" />
+    <Compile Include="JsonConverters\GetMalRecsResponseJsonConverter.cs" />
+    <Compile Include="JsonConverters\OperationJsonConverter.cs" />
+    <Compile Include="JsonConverters\JsonCreationConverter.cs" />
+    <Compile Include="JsonConverters\LoadRecSourceRequestJsonConverter.cs" />
     <Compile Include="MalAnimeRecsExtraResponseData.cs" />
     <Compile Include="MalAnime.cs" />
     <Compile Include="Recommendation.cs" />
@@ -65,6 +72,7 @@
       <Name>AnimeRecs.MalApi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

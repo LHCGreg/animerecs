@@ -21,7 +21,9 @@ namespace AnimeRecs.RecService.DTO
 
         public AverageScoreRecSourceParams()
         {
-            ;
+            MinEpisodesToCountIncomplete = 26;
+            MinUsersToCountAnime = 50;
+            UseDropped = true;
         }
 
         public AverageScoreRecSourceParams(int minEpisodesToCountIncomplete, int minUsersToCountAnime, bool useDropped)
@@ -44,7 +46,8 @@ namespace AnimeRecs.RecService.DTO
 
         public MostPopularRecSourceParams()
         {
-            ;
+            MinEpisodesToCountIncomplete = 26;
+            UseDropped = false;
         }
 
         public MostPopularRecSourceParams(int minEpisodesToCountIncomplete, bool useDropped)
@@ -67,7 +70,9 @@ namespace AnimeRecs.RecService.DTO
 
         public AnimeRecsRecSourceParams()
         {
-            ;
+            NumRecommendersToUse = 100;
+            FractionConsideredRecommended = 0.35;
+            MinEpisodesToClassifyIncomplete = 26;
         }
 
         public AnimeRecsRecSourceParams(int numRecommendersToUse, double fractionConsideredRecommended, int minEpisodesToClassifyIncomplete)
@@ -101,7 +106,8 @@ namespace AnimeRecs.RecService.DTO
 
         public BiasedMatrixFactorizationRecSourceParams()
         {
-            ;
+            MinEpisodesToCountIncomplete = 26;
+            UseDropped = true;
         }
 
         public BiasedMatrixFactorizationRecSourceParams(int minEpisodesToCountIncomplete, bool useDropped)

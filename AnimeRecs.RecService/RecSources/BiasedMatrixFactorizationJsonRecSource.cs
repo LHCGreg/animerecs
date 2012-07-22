@@ -20,7 +20,7 @@ namespace AnimeRecs.RecService.RecSources
             ;
         }
         
-        protected override MalUserListEntries GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster)
+        protected override MalUserListEntries GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest)
         {
             return animeList;
         }

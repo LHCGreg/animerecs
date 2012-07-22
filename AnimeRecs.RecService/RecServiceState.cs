@@ -187,7 +187,7 @@ namespace AnimeRecs.RecService
             Logging.Log.InfoFormat("All rec sources retrained with the latest data. Total time: {0}", totalTimer.Elapsed);
         }
 
-        public GetMalRecsResponse GetMalRecs(GetMalRecsRequest request, RecRequestCaster caster)
+        public GetMalRecsResponse GetMalRecs(GetMalRecsRequest request)
         {
             request.AssertArgumentNotNull("Payload");
             request.RecSourceName.AssertArgumentNotNull("Payload.RecSourceName");
@@ -246,7 +246,7 @@ namespace AnimeRecs.RecService
                 MalUserListEntries animeList = new MalUserListEntries(ratings: entries, animes: m_trainingData.Animes, malUsername: null);
 
                 Stopwatch timer = Stopwatch.StartNew();
-                GetMalRecsResponse response = recSource.GetRecommendations(animeList, request, caster);
+                GetMalRecsResponse response = recSource.GetRecommendations(animeList, request);
                 timer.Stop();
 
                 Logging.Log.InfoFormat("Got recommendations from rec source {0}. Took {1}.", request.RecSourceName, timer.Elapsed);

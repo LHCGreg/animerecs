@@ -33,9 +33,9 @@ namespace AnimeRecs.RecService.RecSources
             TrainingData = trainingData;
         }
 
-        public DTO.GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster)
+        public DTO.GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
         {
-            TInput recSourceInput = GetRecSourceInputFromRequest(animeList, recRequest, caster);
+            TInput recSourceInput = GetRecSourceInputFromRequest(animeList, recRequest);
             TRecommendationResults recResults = UnderlyingRecSource.GetRecommendations(recSourceInput, recRequest.NumRecsDesired);
 
             List<TDtoRec> dtoRecs = new List<TDtoRec>();
@@ -80,7 +80,7 @@ namespace AnimeRecs.RecService.RecSources
         /// <param name="recRequest"></param>
         /// <param name="caster"></param>
         /// <returns></returns>
-        protected abstract TInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest, RecRequestCaster caster);
+        protected abstract TInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest);
         
         /// <summary>
         /// Set any properties of a recommendation other than the item id here.

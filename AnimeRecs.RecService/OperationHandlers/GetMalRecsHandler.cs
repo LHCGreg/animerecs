@@ -9,10 +9,10 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response GetMalRecs(Operation baseOperation, RecServiceState state, OperationCaster opCaster)
+        public static Response GetMalRecs(Operation baseOperation, RecServiceState state)
         {
             Operation<GetMalRecsRequest> operation = (Operation<GetMalRecsRequest>)baseOperation;
-            return new Response<GetMalRecsResponse>() { Body = state.GetMalRecs(operation.Payload, new RecRequestCaster(opCaster)) };
+            return new Response<GetMalRecsResponse>() { Body = state.GetMalRecs(operation.Payload) };
         }
     }
 }
