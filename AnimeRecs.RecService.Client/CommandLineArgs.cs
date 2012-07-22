@@ -103,10 +103,10 @@ namespace AnimeRecs.RecService.Client
             OptionSet optionSet = new OptionSet()
             {
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
-                { "c|command=", "Command. Possible commands are Ping, LoadRecSource, GetMalRecs, ReloadTrainingData, and UnloadRecSource.", arg => SetCommand(arg) },
+                { "c|command=", "Command. Possible commands are Ping, LoadRecSource, GetRecSourceType, GetMalRecs, ReloadTrainingData, and UnloadRecSource.", arg => SetCommand(arg) },
                 { "p|port=", "Port the rec service is listening on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
                 { "ping_message=", "Message to send with a ping command. Used with the Ping command. Defaults to \"ping\".", arg => PingMessage = arg },
-                { "name|rec_source_name=", "Rec source name. Used with the LoadRecSource, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
+                { "name|rec_source_name=", "Rec source name. Used with the LoadRecSource, GetRecSourceType, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
                 { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
                 { "type|rec_source_type=", "Rec source type. Required for LoadRecSource command", arg => SetRecSourceType(arg) },
                 { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with the LoadRecSource command with the AverageScore, MostPopular, and AnimeRecs rec source types. Defaults to 26.",
@@ -165,7 +165,6 @@ namespace AnimeRecs.RecService.Client
 
         private void SetOptimizationTarget(string target)
         {
-            //OptimizationTarget.LogisticLoss; OptimizationTarget.MAE; OptimizationTarget.RMSE
             if (target.Equals("LogisticLoss", StringComparison.OrdinalIgnoreCase)
                 || target.Equals("MAE", StringComparison.OrdinalIgnoreCase)
                 || target.Equals("RMSE", StringComparison.OrdinalIgnoreCase))
