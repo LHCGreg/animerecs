@@ -57,6 +57,7 @@ namespace AnimeRecs.FreshenMalDatabase
             catch (Exception ex)
             {
                 Logging.Log.FatalFormat("Fatal error: {0}", ex, ex.Message);
+                Environment.ExitCode = 1;
             }
         }
 
