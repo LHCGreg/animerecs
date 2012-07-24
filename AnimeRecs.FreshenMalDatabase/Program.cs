@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PetaPoco;
+using MiscUtil.Collections.Extensions;
 using AnimeRecs.DAL;
 using AnimeRecs.MalApi;
 
@@ -90,6 +91,9 @@ namespace AnimeRecs.FreshenMalDatabase
             return count == 0;
         }
 
+        // Only insert/update an anime once per run to save on trips to the DB
+        static Dictionary<int, mal_anime> AnimesUpserted = new Dictionary<int, mal_anime>();
+
         static void InsertUserAndRatingsInDatabase(PetaPoco.Database db, MalUserLookupResults userLookup)
         {
             mal_user user = new mal_user()
@@ -104,30 +108,47 @@ namespace AnimeRecs.FreshenMalDatabase
             Logging.Log.DebugFormat("Inserted {0} into DB.", userLookup.CanonicalUserName);
 
             Logging.Log.DebugFormat("Inserting anime and list entries for {0}.", userLookup.CanonicalUserName);
-            // TODO: Doing N queries, N inserts/updates, and N inserts is a bottleneck. Optimize this.
-            foreach (MyAnimeListEntry anime in userLookup.AnimeList)
-            {
-                mal_anime animeRow = new mal_anime()
-                {
-                    mal_anime_id = anime.AnimeInfo.AnimeId,
-                    title = anime.AnimeInfo.Title,
-                    mal_anime_type_id = (int)anime.AnimeInfo.Type,
-                    last_updated = DateTime.UtcNow
-                };
 
-                Logging.Log.TraceFormat("Checking if anime \"{0}\" is in the database.", anime.AnimeInfo.Title);
-                long oneIfAnimeIsInDb = db.ExecuteScalar<long>(@"SELECT Count(*) FROM mal_anime WHERE mal_anime_id = @0", anime.AnimeInfo.AnimeId);
-                if (oneIfAnimeIsInDb < 1)
+            PetaPoco.Sql insertListEntriesSql = new PetaPoco.Sql(
+                @"INSERT INTO mal_list_entry
+(mal_user_id, mal_anime_id, rating, mal_list_entry_status_id, num_episodes_watched)
+VALUES
+");
+
+            foreach (var animeIter in userLookup.AnimeList.AsSmartEnumerable())
+            {
+                MyAnimeListEntry anime = animeIter.Value;
+
+                if (!AnimesUpserted.ContainsKey(anime.AnimeInfo.AnimeId))
                 {
-                    Logging.Log.Trace("Not in database. Inserting it.");
-                    db.Insert(tableName: "mal_anime", primaryKeyName: "mal_anime_id", autoIncrement: false, poco: animeRow);
-                    Logging.Log.TraceFormat("Inserted anime \"{0}\" in database.", anime.AnimeInfo.Title);
+                    mal_anime animeRow = new mal_anime()
+                    {
+                        mal_anime_id = anime.AnimeInfo.AnimeId,
+                        title = anime.AnimeInfo.Title,
+                        mal_anime_type_id = (int)anime.AnimeInfo.Type,
+                        last_updated = DateTime.UtcNow
+                    };
+
+                    Logging.Log.TraceFormat("Checking if anime \"{0}\" is in the database.", anime.AnimeInfo.Title);
+                    long oneIfAnimeIsInDb = db.ExecuteScalar<long>(@"SELECT Count(*) FROM mal_anime WHERE mal_anime_id = @0", anime.AnimeInfo.AnimeId);
+                    if (oneIfAnimeIsInDb < 1)
+                    {
+                        Logging.Log.Trace("Not in database. Inserting it.");
+                        db.Insert(tableName: "mal_anime", primaryKeyName: "mal_anime_id", autoIncrement: false, poco: animeRow);
+                        Logging.Log.TraceFormat("Inserted anime \"{0}\" in database.", anime.AnimeInfo.Title);
+                    }
+                    else
+                    {
+                        Logging.Log.TraceFormat("Already in database. Updating it.");
+                        db.Update(tableName: "mal_anime", primaryKeyName: "mal_anime_id", poco: animeRow);
+                        Logging.Log.TraceFormat("Updated anime \"{0}\".", anime.AnimeInfo.Title);
+                    }
+
+                    AnimesUpserted[anime.AnimeInfo.AnimeId] = animeRow;
                 }
                 else
                 {
-                    Logging.Log.TraceFormat("Already in database. Updating it.");
-                    db.Update(tableName: "mal_anime", primaryKeyName: "mal_anime_id", poco: animeRow);
-                    Logging.Log.TraceFormat("Updated anime \"{0}\".", anime.AnimeInfo.Title);
+                    Logging.Log.TraceFormat("Already upserted anime \"{0}\" in this session, skipping.", anime.AnimeInfo.Title);
                 }
 
                 mal_list_entry rating = new mal_list_entry()
@@ -139,9 +160,21 @@ namespace AnimeRecs.FreshenMalDatabase
                     mal_list_entry_status_id = (int)anime.Status
                 };
 
-                Logging.Log.TraceFormat("Inserting list entry for user \"{0}\", anime \"{1}\"", userLookup.CanonicalUserName, anime.AnimeInfo.Title);
-                db.Insert(tableName: "mal_list_entry", primaryKeyName: "mal_list_entry_id", autoIncrement: true, poco: rating);
-                Logging.Log.TraceFormat("Inserted list entry for user \"{0}\", anime \"{1}\"", userLookup.CanonicalUserName, anime.AnimeInfo.Title);
+                // (mal_user_id, mal_anime_id, rating, mal_list_entry_status_id, num_episodes_watched)
+
+                if (!animeIter.IsFirst)
+                {
+                    insertListEntriesSql.Append(", ");
+                }
+                // PetaPoco's SQL builder will translate these into @5, @6, @7, @8, @9, etc for rows beyond the first row
+                insertListEntriesSql.Append("(@0, @1, @2, @3, @4)", userLookup.UserId, anime.AnimeInfo.AnimeId, anime.Score, (int)anime.Status, anime.NumEpisodesWatched);
+            }
+
+            if (userLookup.AnimeList.Count > 0)
+            {
+                Logging.Log.DebugFormat("Inserting {0} list entries for user \"{1}\".", userLookup.AnimeList.Count, userLookup.CanonicalUserName);
+                db.Execute(insertListEntriesSql);
+                Logging.Log.DebugFormat("Inserted {0} list entries for user \"{1}\".", userLookup.AnimeList.Count, userLookup.CanonicalUserName);
             }
 
             Logging.Log.DebugFormat("Done inserting anime and list entries for {0}.", userLookup.CanonicalUserName);
