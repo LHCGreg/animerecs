@@ -34,9 +34,7 @@ To set up a development environment you will need to install the following:
 
 Set up instructions for Linux assume Ubuntu. If you want to use a different distro, good luck, you're on your own. I have found Ubuntu to have good Mono support.
 
-**When building on Linux, ALWAYS use the MonoDebug/MonoRelease build configurations. If you're using MonoDevelop, set MonoDevelop to build using xbuild instead of MonoDevelop's build engine. Monodevelop does not use xbuild by default.**
-
-When building on Windows, always use Debug or Release, never MonoDebug or MonoRelease. To build for Mono on Linux, you must use xbuild (or MonoDevelop set to use xbuild) on Linux. Cross-compiling is not supported.
+To build for Mono on Linux, you must use xbuild (or MonoDevelop set to use xbuild) on Linux. Cross-compiling is not supported. Building for .NET vs. Mono has slight differences. Some libraries used have separate .NET and Mono builds, some assemblies need to be copy-local on one but not the other, some need to reference a local assembly when the other references one in the GAC. The only difference in run-time behavior is that when running on Windows recservice is existing by pressing any key, while on Linux it is terminated by sending a SIGINT (ctrl+c) or SIGTERM.
 
 Building on Linux with xbuild:
 $ xbuild /t:build /p:Configuration=MonoDebug /p:Platform=AnyCPU xyz.csproj
