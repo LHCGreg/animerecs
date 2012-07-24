@@ -11,7 +11,7 @@ namespace AnimeRecs.FreshenMalDatabase
 
         internal static void SetUpLogging()
         {
-            Log = global::Common.Logging.LogManager.GetLogger("AnimeRecs.UpdateUserDatabase");
+            Log = global::Common.Logging.LogManager.GetLogger("AnimeRecs.FreshenMalDatabase");
             WriteLogPrologue();
             AnimeRecs.MalApi.Logging.Initialize();
         }
