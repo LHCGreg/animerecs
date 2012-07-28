@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{85BC477F-4798-4006-A342-715E7565B3BB}</ProjectGuid>
+    <ProjectGuid>{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnimeRecs.MalApi</RootNamespace>
-    <AssemblyName>AnimeRecs.MalApi</AssemblyName>
+    <RootNamespace>AnimeRecs.MalApi.Tests</RootNamespace>
+    <AssemblyName>AnimeRecs.MalApi.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,33 +31,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\lib\Common.Logging\Common.Logging.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimeListCache.cs" />
-    <Compile Include="CachingMyAnimeListApi.cs" />
-    <Compile Include="CompletionStatus.cs" />
-    <Compile Include="IMyAnimeListApi.cs" />
-    <Compile Include="Logging.cs" />
-    <Compile Include="MalAnimeInfoFromUserLookup.cs" />
-    <Compile Include="MalAnimeType.cs" />
-    <Compile Include="MalSeriesStatus.cs" />
-    <Compile Include="MyAnimeListApi.cs" />
-    <Compile Include="MalApiException.cs" />
-    <Compile Include="MalUserLookupResults.cs" />
-    <Compile Include="MalUserNotFoundException.cs" />
-    <Compile Include="MyAnimeListEntry.cs" />
+    <Compile Include="MyAnimeListApiTests.cs" />
+    <Compile Include="MyAnimeListApiTests.xml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RateLimitingMyAnimeListApi.cs" />
-    <Compile Include="RecentUsersResults.cs" />
-    <Compile Include="RetryOnFailureMyAnimeListApi.cs" />
-    <Compile Include="UncertainDate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
+      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
+      <Name>AnimeRecs.MalApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

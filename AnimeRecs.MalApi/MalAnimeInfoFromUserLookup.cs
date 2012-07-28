@@ -15,6 +15,47 @@ namespace AnimeRecs.MalApi
         /// </summary>
         public MalAnimeType Type { get; set; }
 
+        public ICollection<string> Synonyms { get; set; }
+        public MalSeriesStatus Status { get; set; }
+
+        /// <summary>
+        /// Could be 0 for anime that hasn't aired yet or less than the planned number of episodes for a series currently airing.
+        /// </summary>
+        public int NumEpisodes { get; set; }
+
+        // Use special date
+        /// <summary>
+        /// Could be null if it hasn't started yet.
+        /// </summary>
+        public UncertainDate StartDate { get; set; }
+
+        // Use special date
+        /// <summary>
+        /// Could be null if it hasn't ended yet.
+        /// </summary>
+        public UncertainDate EndDate { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public MalAnimeInfoFromUserLookup()
+        {
+            Synonyms = new List<string>();
+        }
+
+        public MalAnimeInfoFromUserLookup(int animeId, string title, MalAnimeType type, ICollection<string> synonyms, MalSeriesStatus status,
+            int numEpisodes, UncertainDate startDate, UncertainDate endDate, string imageUrl)
+        {
+            AnimeId = animeId;
+            Title = title;
+            Type = type;
+            Synonyms = synonyms;
+            Status = status;
+            NumEpisodes = numEpisodes;
+            StartDate = startDate;
+            EndDate = endDate;
+            ImageUrl = imageUrl;
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as MalAnimeInfoFromUserLookup);

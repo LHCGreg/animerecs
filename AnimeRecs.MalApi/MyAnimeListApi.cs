@@ -6,7 +6,9 @@ using System.Net;
 using System.IO;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace AnimeRecs.MalApi
 {
@@ -125,97 +127,170 @@ namespace AnimeRecs.MalApi
             return parsedList;
         }
 
-        internal MalUserLookupResults ParseAnimeListXml(TextReader xml, string user)
+        private static readonly string[] SynonymSeparator = new string[] { "; " };
+
+        private XElement GetExpectedElement(XContainer container, string elementName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(myanimelist));
-            Logging.Log.Trace("Created XML deserializer.");
-
-            myanimelist animeList;
-            using (XmlReader reader = XmlReader.Create(xml))
+            XElement element = container.Element(elementName);
+            if (element == null)
             {
-                Logging.Log.Trace("Created XML reader.");
-                try
-                {
-                    animeList = (myanimelist)serializer.Deserialize(reader);
-                }
-                catch (Exception ex)
-                {
-                    throw new MalApiException(string.Format("Error deserializing anime list XML: {0}", ex.Message), ex);
-                }
+                throw new MalApiException(string.Format("Did not find element {0}.", elementName));
             }
-
-            Logging.Log.Trace("XML parsed.");
-
-            if (animeList.Error != null)
-            {
-                if (animeList.Error.Equals("Invalid username", StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new MalUserNotFoundException(string.Format("No MAL list exists for {0}.", user));
-                }
-                else
-                {
-                    throw new MalApiException(animeList.Error);
-                }
-            }
-
-            // Need to grab other stuff from XML here
-
-            myanimelistMyinfo userInfo = (myanimelistMyinfo)animeList.Items.Where(item => item is myanimelistMyinfo).FirstOrDefault();
-            if (userInfo == null)
-            {
-                throw new MalApiException("Error deserializing anime list XML: <myinfo> tag not present.");
-            }
-
-            MalUserLookupResults results = new MalUserLookupResults();
-
-            if (userInfo.UserId == null)
-            {
-                throw new MalApiException("Error deserializing anime list XML: user id was not present.");
-            }
-            results.UserId = userInfo.UserId.Value;
-
-            if (userInfo.Username == null)
-            {
-                throw new MalApiException("Error deserializing anime list XML: user name was not present.");
-            }
-            results.CanonicalUserName = userInfo.Username;
-
-            HashSet<MyAnimeListEntry> parsedList = new HashSet<MyAnimeListEntry>(from anime in animeList.Items
-                                                                                 where anime is myanimelistAnime
-                                                                                 select XmlEntryToRegularEntry((myanimelistAnime)anime));
-
-            results.AnimeList = parsedList;
-
-            return results;
+            return element;
         }
 
-        private MyAnimeListEntry XmlEntryToRegularEntry(myanimelistAnime xmlEntry)
+        private string GetElementValueString(XContainer container, string elementName)
         {
-            MyAnimeListEntry regularEntry = new MyAnimeListEntry();
+            XElement element = GetExpectedElement(container, elementName);
 
-            if (xmlEntry.SeriesAnimeDbId == null)
-                throw new MalApiException("Error deserializing anime list XML: series id was not present.");
-            regularEntry.AnimeInfo.AnimeId = xmlEntry.SeriesAnimeDbId.Value;
+            try
+            {
+                return (string)element;
+            }
+            catch (FormatException ex)
+            {
+                throw new MalApiException(string.Format("Unexpected value \"{0}\" for element {1}.", element.Value, elementName), ex);
+            }
+        }
 
-            if (xmlEntry.series_title == null)
-                throw new MalApiException("Error deserializing anime list XML: series title was not present.");
-            regularEntry.AnimeInfo.Title = xmlEntry.series_title;
+        private int GetElementValueInt(XContainer container, string elementName)
+        {
+            XElement element = GetExpectedElement(container, elementName);
 
-            if (xmlEntry.SeriesType == null)
-                throw new MalApiException("Error deserializing anime list XML: series type was not present.");
-            regularEntry.AnimeInfo.Type = (MalAnimeType)xmlEntry.SeriesType.Value;
+            try
+            {
+                return (int)element;
+            }
+            catch (FormatException ex)
+            {
+                throw new MalApiException(string.Format("Unexpected value \"{0}\" for element {1}.", element.Value, elementName), ex);
+            }
+        }
 
-            regularEntry.Score = xmlEntry.MyScore;
+        private long GetElementValueLong(XContainer container, string elementName)
+        {
+            XElement element = GetExpectedElement(container, elementName);
 
-            if (xmlEntry.Status == null)
-                throw new MalApiException("Error deserializing anime list XML: status not present.");
-            regularEntry.Status = (CompletionStatus)xmlEntry.Status.Value;
+            try
+            {
+                return (long)element;
+            }
+            catch (FormatException ex)
+            {
+                throw new MalApiException(string.Format("Unexpected value \"{0}\" for element {1}.", element.Value, elementName), ex);
+            }
+        }
 
-            if (xmlEntry.NumEpisodesWatched == null)
-                throw new MalApiException("Error deserializing anime list XML: number of episodes watched not present.");
-            regularEntry.NumEpisodesWatched = xmlEntry.NumEpisodesWatched.Value;
+        private decimal GetElementValueDecimal(XContainer container, string elementName)
+        {
+            XElement element = GetExpectedElement(container, elementName);
 
-            return regularEntry;
+            try
+            {
+                return (decimal)element;
+            }
+            catch (FormatException ex)
+            {
+                throw new MalApiException(string.Format("Unexpected value \"{0}\" for element {1}.", element.Value, elementName), ex);
+            }
+        }
+
+        private DateTime? GetElementMalDate(XContainer container, string elementName)
+        {
+            XElement element = GetExpectedElement(container, elementName);
+
+            try
+            {
+                string value = (string)element;
+                if (value == "0000-00-00")
+                    return null;
+
+                return DateTime.ParseExact(value, "yyyy'-'MM'-'dd", CultureInfo.InvariantCulture);
+            }
+            catch (FormatException ex)
+            {
+                throw new MalApiException(string.Format("Unexpected value \"{0}\" for element {1}.", element.Value, elementName), ex);
+            }
+        }
+
+        // internal for unit testing
+        internal MalUserLookupResults ParseAnimeListXml(TextReader xml, string user)
+        {
+            Logging.Log.Trace("Parsing XML");
+
+            XDocument doc = XDocument.Load(xml);
+
+            XElement error = doc.Root.Element("error");
+            if (error != null && (string)error == "Invalid username")
+            {
+                throw new MalUserNotFoundException(string.Format("No MAL list exists for {0}.", user));
+            }
+            else if (error != null)
+            {
+                throw new MalApiException((string)error);
+            }
+
+            XElement myinfo = GetExpectedElement(doc.Root, "myinfo");
+            int userId = GetElementValueInt(myinfo, "user_id");
+            string canonicalUserName = GetElementValueString(myinfo, "user_name");
+
+            List<MyAnimeListEntry> entries = new List<MyAnimeListEntry>();
+
+            IEnumerable<XElement> animes = doc.Root.Elements("anime");
+            foreach (XElement anime in animes)
+            {
+                int animeId = GetElementValueInt(anime, "series_animedb_id");
+                string title = GetElementValueString(anime, "series_title");
+
+                string synonymList = GetElementValueString(anime, "series_synonyms");
+                string[] rawSynonyms = synonymList.Split(SynonymSeparator, StringSplitOptions.RemoveEmptyEntries);
+
+                // filter out synonyms that are the same as the main title
+                List<string> synonyms = rawSynonyms.Where(synonym => !synonym.Equals(title, StringComparison.Ordinal)).ToList();
+
+                int seriesTypeInt = GetElementValueInt(anime, "series_type");
+                MalAnimeType seriesType = (MalAnimeType)seriesTypeInt;
+
+                int numEpisodes = GetElementValueInt(anime, "series_episodes");
+
+                int seriesStatusInt = GetElementValueInt(anime, "series_status");
+                MalSeriesStatus seriesStatus = (MalSeriesStatus)seriesStatusInt;
+
+                string seriesStartString = GetElementValueString(anime, "series_start");
+                UncertainDate seriesStart = UncertainDate.FromMalDateString(seriesStartString);
+
+                string seriesEndString = GetElementValueString(anime, "series_end");
+                UncertainDate seriesEnd = UncertainDate.FromMalDateString(seriesEndString);
+                
+                string seriesImage = GetElementValueString(anime, "series_image");
+
+                MalAnimeInfoFromUserLookup animeInfo = new MalAnimeInfoFromUserLookup(animeId: animeId, title: title,
+                    type: seriesType, synonyms: synonyms, status: seriesStatus, numEpisodes: numEpisodes, startDate: seriesStart,
+                    endDate: seriesEnd, imageUrl: seriesImage);
+
+
+                int numEpisodesWatched = GetElementValueInt(anime, "my_watched_episodes");
+                DateTime? myStartDate = GetElementMalDate(anime, "my_start_date");
+                DateTime? myFinishDate = GetElementMalDate(anime, "my_finish_date");
+
+                decimal rawScore = GetElementValueDecimal(anime, "my_score");
+                decimal? myScore = rawScore == 0 ? (decimal?)null : rawScore;
+
+                int completionStatusInt = GetElementValueInt(anime, "my_status");
+                CompletionStatus completionStatus = (CompletionStatus)completionStatusInt;
+
+                long lastUpdatedUnixTimestamp = GetElementValueLong(anime, "my_last_updated");
+                DateTime lastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) + TimeSpan.FromSeconds(lastUpdatedUnixTimestamp);
+
+                MyAnimeListEntry entry = new MyAnimeListEntry(score: myScore, status: completionStatus, numEpisodesWatched: numEpisodesWatched,
+                    myStartDate: myStartDate, myFinishDate: myFinishDate, myLastUpdate: lastUpdated, animeInfo: animeInfo);
+
+                entries.Add(entry);
+            }
+
+            MalUserLookupResults results = new MalUserLookupResults(userId: userId, canonicalUserName: canonicalUserName, animeList: entries);
+            Logging.Log.Trace("Parsed XML.");
+            return results;
         }
 
         public RecentUsersResults GetRecentOnlineUsers()

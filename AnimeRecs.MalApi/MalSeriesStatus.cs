@@ -5,18 +5,11 @@ using System.Text;
 
 namespace AnimeRecs.MalApi
 {
-    public class MalUserLookupResults
+    public enum MalSeriesStatus
     {
-        public ICollection<MyAnimeListEntry> AnimeList { get; set; }
-        public int UserId { get; set; }
-        public string CanonicalUserName { get; set; }
-
-        public MalUserLookupResults(int userId, string canonicalUserName, ICollection<MyAnimeListEntry> animeList)
-        {
-            UserId = userId;
-            CanonicalUserName = canonicalUserName;
-            AnimeList = animeList;
-        }
+        Airing = 1,
+        FinishedAiring = 2,
+        NotYetAired = 3
     }
 }
 

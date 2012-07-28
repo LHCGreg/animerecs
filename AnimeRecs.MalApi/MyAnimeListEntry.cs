@@ -10,11 +10,26 @@ namespace AnimeRecs.MalApi
         public decimal? Score { get; set; }
         public CompletionStatus Status { get; set; }
         public int NumEpisodesWatched { get; set; }
+        public DateTime? MyStartDate { get; set; }
+        public DateTime? MyFinishDate { get; set; }
+        public DateTime MyLastUpdate { get; set; }
         public MalAnimeInfoFromUserLookup AnimeInfo { get; set; }
 
         public MyAnimeListEntry()
         {
             AnimeInfo = new MalAnimeInfoFromUserLookup();
+        }
+
+        public MyAnimeListEntry(decimal? score, CompletionStatus status, int numEpisodesWatched, DateTime? myStartDate,
+            DateTime? myFinishDate, DateTime myLastUpdate, MalAnimeInfoFromUserLookup animeInfo)
+        {
+            Score = score;
+            Status = status;
+            NumEpisodesWatched = numEpisodesWatched;
+            MyStartDate = myStartDate;
+            MyFinishDate = myFinishDate;
+            MyLastUpdate = myLastUpdate;
+            AnimeInfo = animeInfo;
         }
 
         public bool Equals(MyAnimeListEntry other)
