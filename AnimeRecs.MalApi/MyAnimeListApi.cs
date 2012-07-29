@@ -282,8 +282,12 @@ namespace AnimeRecs.MalApi
                 long lastUpdatedUnixTimestamp = GetElementValueLong(anime, "my_last_updated");
                 DateTime lastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) + TimeSpan.FromSeconds(lastUpdatedUnixTimestamp);
 
+                string rawTagsString = GetElementValueString(anime, "my_tags");
+                string[] untrimmedTags = rawTagsString.Split(TagSeparator, StringSplitOptions.RemoveEmptyEntries);
+                HashSet<string> tags = new HashSet<string>(untrimmedTags.Select(tag => tag.Trim()));
+
                 MyAnimeListEntry entry = new MyAnimeListEntry(score: myScore, status: completionStatus, numEpisodesWatched: numEpisodesWatched,
-                    myStartDate: myStartDate, myFinishDate: myFinishDate, myLastUpdate: lastUpdated, animeInfo: animeInfo);
+                    myStartDate: myStartDate, myFinishDate: myFinishDate, myLastUpdate: lastUpdated, animeInfo: animeInfo, tags: tags);
 
                 entries.Add(entry);
             }
@@ -292,6 +296,8 @@ namespace AnimeRecs.MalApi
             Logging.Log.Trace("Parsed XML.");
             return results;
         }
+
+        private static char[] TagSeparator = new char[] { ',' };
 
         public RecentUsersResults GetRecentOnlineUsers()
         {

@@ -29,6 +29,7 @@ namespace AnimeRecs.MalApi.Tests
                 Assert.That(entry.NumEpisodesWatched, Is.EqualTo(7));
                 Assert.That(entry.Score, Is.EqualTo(7));
                 Assert.That(entry.Status, Is.EqualTo(CompletionStatus.Watching));
+                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>() { "Duck", "Goose" }));
 
                 entry = results.AnimeList.Where(anime => anime.AnimeInfo.AnimeId == 7311).First();
                 Assert.That(entry.AnimeInfo.Title, Is.EqualTo("Suzumiya Haruhi no Shoushitsu"));
@@ -53,6 +54,7 @@ namespace AnimeRecs.MalApi.Tests
                 Assert.That(entry.MyStartDate, Is.EqualTo((DateTime?)null));
                 Assert.That(entry.MyFinishDate, Is.EqualTo((DateTime?)null));
                 Assert.That(entry.MyLastUpdate, Is.EqualTo(new DateTime(year: 2011, month: 4, day: 2, hour: 22, minute: 50, second: 58, kind: DateTimeKind.Utc)));
+                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>()));
             }
         }
     }

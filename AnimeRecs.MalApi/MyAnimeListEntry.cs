@@ -14,6 +14,7 @@ namespace AnimeRecs.MalApi
         public DateTime? MyFinishDate { get; set; }
         public DateTime MyLastUpdate { get; set; }
         public MalAnimeInfoFromUserLookup AnimeInfo { get; set; }
+        public ICollection<string> Tags { get; set; }
 
         public MyAnimeListEntry()
         {
@@ -21,7 +22,7 @@ namespace AnimeRecs.MalApi
         }
 
         public MyAnimeListEntry(decimal? score, CompletionStatus status, int numEpisodesWatched, DateTime? myStartDate,
-            DateTime? myFinishDate, DateTime myLastUpdate, MalAnimeInfoFromUserLookup animeInfo)
+            DateTime? myFinishDate, DateTime myLastUpdate, MalAnimeInfoFromUserLookup animeInfo, ICollection<string> tags)
         {
             Score = score;
             Status = status;
@@ -30,6 +31,7 @@ namespace AnimeRecs.MalApi
             MyFinishDate = myFinishDate;
             MyLastUpdate = myLastUpdate;
             AnimeInfo = animeInfo;
+            Tags = tags;
         }
 
         public bool Equals(MyAnimeListEntry other)
