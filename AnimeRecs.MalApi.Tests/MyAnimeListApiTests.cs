@@ -29,7 +29,7 @@ namespace AnimeRecs.MalApi.Tests
                 Assert.That(entry.NumEpisodesWatched, Is.EqualTo(7));
                 Assert.That(entry.Score, Is.EqualTo(7));
                 Assert.That(entry.Status, Is.EqualTo(CompletionStatus.Watching));
-                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>() { "Duck", "Goose" }));
+                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>() { "duck", "goose" }));
 
                 entry = results.AnimeList.Where(anime => anime.AnimeInfo.AnimeId == 7311).First();
                 Assert.That(entry.AnimeInfo.Title, Is.EqualTo("Suzumiya Haruhi no Shoushitsu"));
