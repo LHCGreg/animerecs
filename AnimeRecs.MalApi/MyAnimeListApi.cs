@@ -246,7 +246,7 @@ namespace AnimeRecs.MalApi
                 string[] rawSynonyms = synonymList.Split(SynonymSeparator, StringSplitOptions.RemoveEmptyEntries);
 
                 // filter out synonyms that are the same as the main title
-                List<string> synonyms = rawSynonyms.Where(synonym => !synonym.Equals(title, StringComparison.Ordinal)).ToList();
+                HashSet<string> synonyms = new HashSet<string>(rawSynonyms.Where(synonym => !synonym.Equals(title, StringComparison.Ordinal)));
 
                 int seriesTypeInt = GetElementValueInt(anime, "series_type");
                 MalAnimeType seriesType = (MalAnimeType)seriesTypeInt;
