@@ -29,7 +29,7 @@ namespace AnimeRecs.MalApi
             m_ownApi = ownApi;
         }
 
-        private void SleepIfNeededAndSetStopwatch()
+        private void SleepIfNeeded()
         {
             lock (m_syncHandle)
             {
@@ -43,26 +43,51 @@ namespace AnimeRecs.MalApi
                         Thread.Sleep(timeToWait);
                     }
                 }
+            }
+        }
 
+        private void SetStopwatch()
+        {
+            lock (m_syncHandle)
+            {
                 if (m_stopwatchStartedAtLastRequest == null)
                 {
                     m_stopwatchStartedAtLastRequest = new Stopwatch();
                 }
-
                 m_stopwatchStartedAtLastRequest.Restart();
             }
         }
     
         public MalUserLookupResults GetAnimeListForUser(string user)
         {
-            SleepIfNeededAndSetStopwatch();
-            return m_underlyingApi.GetAnimeListForUser(user);
+            lock (m_syncHandle)
+            {
+                SleepIfNeeded();
+                try
+                {
+                    return m_underlyingApi.GetAnimeListForUser(user);
+                }
+                finally
+                {
+                    SetStopwatch();
+                }
+            }
         }
 
         public RecentUsersResults GetRecentOnlineUsers()
         {
-            SleepIfNeededAndSetStopwatch();
-            return m_underlyingApi.GetRecentOnlineUsers();
+            lock (m_syncHandle)
+            {
+                SleepIfNeeded();
+                try
+                {
+                    return m_underlyingApi.GetRecentOnlineUsers();
+                }
+                finally
+                {
+                    SetStopwatch();
+                }
+            }
         }
 
         public void Dispose()
