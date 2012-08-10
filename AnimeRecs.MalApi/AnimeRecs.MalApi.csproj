@@ -47,6 +47,7 @@
     <Compile Include="Logging.cs" />
     <Compile Include="MalAnimeInfoFromUserLookup.cs" />
     <Compile Include="MalAnimeType.cs" />
+    <Compile Include="MalApiRequestException.cs" />
     <Compile Include="MalSeriesStatus.cs" />
     <Compile Include="MyAnimeListApi.cs" />
     <Compile Include="MalApiException.cs" />
