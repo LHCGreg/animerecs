@@ -8,43 +8,40 @@ namespace AnimeRecs.MalApi
     public struct UncertainDate : IEquatable<UncertainDate>
     {
         public int? Year { get; private set; }
-        public int? Month { get; private set; }
-        public int? Day { get; private set; }
 
-        public UncertainDate(int year)
-            : this()
+        private int? m_month;
+        public int? Month
         {
-            Year = year;
-            Month = null;
-            Day = null;
+            get { return m_month; }
+            set
+            {
+                if (value < 1 || value > 12)
+                {
+                    throw new ArgumentOutOfRangeException(string.Format("Month cannot be {0}.", value));
+                }
+                m_month = value;
+            }
         }
 
-        public UncertainDate(int year, int month)
-            : this()
+        private int? m_day;
+        public int? Day
         {
-            Year = year;
-            if (month < 1 || month > 12)
+            get { return m_day; }
+            set
             {
-                throw new ArgumentOutOfRangeException("month", string.Format("Month cannot be {0}.", month));
+                if (value < 1 || value > 31)
+                {
+                    throw new ArgumentOutOfRangeException(string.Format("Day cannot be {0}.", value));
+                }
+                m_day = value;
             }
-            Month = month;
-            Day = null;
         }
 
-        public UncertainDate(int year, int month, int day)
+        public UncertainDate(int? year, int? month, int? day)
             : this()
         {
             Year = year;
-            if (month < 1 || month > 12)
-            {
-                throw new ArgumentOutOfRangeException("month", string.Format("Month cannot be {0}.", month));
-            }
             Month = month;
-
-            if (day < 1 || day > 31)
-            {
-                throw new ArgumentOutOfRangeException("day", string.Format("Day cannot be {0}.", day));
-            }
             Day = day;
         }
 
@@ -58,18 +55,16 @@ namespace AnimeRecs.MalApi
                 throw new FormatException(string.Format("{0} is not in YYYY-MM-DD format.", malDateString));
             }
 
-            int year = int.Parse(yearMonthDay[0]);
-            int month = int.Parse(yearMonthDay[1]);
-            int day = int.Parse(yearMonthDay[2]);
+            int? year = int.Parse(yearMonthDay[0]);
+            if (year == 0) year = null;
 
-            if (year == 0)
-                return UncertainDate.Unknown;
-            if (month == 0)
-                return new UncertainDate(year);
-            if (day == 0)
-                return new UncertainDate(year: year, month: month);
-            else
-                return new UncertainDate(year: year, month: month, day: day);
+            int? month = int.Parse(yearMonthDay[1]);
+            if (month == 0) month = null;
+
+            int? day = int.Parse(yearMonthDay[2]);
+            if (day == 0) day = null;
+
+            return new UncertainDate(year: year, month: month, day: day);
         }
 
         public bool Equals(UncertainDate other)

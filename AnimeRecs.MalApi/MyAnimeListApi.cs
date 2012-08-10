@@ -54,6 +54,8 @@ namespace AnimeRecs.MalApi
 
         private TReturn ProcessRequest<TReturn>(HttpWebRequest request, Func<string, TReturn> processingFunc, string baseErrorMessage)
         {
+            // TODO: Distinguish between error with the actual request, which may possibly be solved with a retry,
+            // and error processing the response, which would not be solved with a retry.
             string responseBody = null;
             try
             {
@@ -195,24 +197,6 @@ namespace AnimeRecs.MalApi
             }
         }
 
-        private DateTime? GetElementMalDate(XContainer container, string elementName)
-        {
-            XElement element = GetExpectedElement(container, elementName);
-
-            try
-            {
-                string value = (string)element;
-                if (value == "0000-00-00")
-                    return null;
-
-                return DateTime.ParseExact(value, "yyyy'-'MM'-'dd", CultureInfo.InvariantCulture);
-            }
-            catch (FormatException ex)
-            {
-                throw new MalApiException(string.Format("Unexpected value \"{0}\" for element {1}.", element.Value, elementName), ex);
-            }
-        }
-
         // internal for unit testing
         internal MalUserLookupResults ParseAnimeListXml(TextReader xml, string user)
         {
@@ -270,8 +254,12 @@ namespace AnimeRecs.MalApi
 
 
                 int numEpisodesWatched = GetElementValueInt(anime, "my_watched_episodes");
-                DateTime? myStartDate = GetElementMalDate(anime, "my_start_date");
-                DateTime? myFinishDate = GetElementMalDate(anime, "my_finish_date");
+
+                string myStartDateString = GetElementValueString(anime, "my_start_date");
+                UncertainDate myStartDate = UncertainDate.FromMalDateString(myStartDateString);
+
+                string myFinishDateString = GetElementValueString(anime, "my_finish_date");
+                UncertainDate myFinishDate = UncertainDate.FromMalDateString(myFinishDateString);
 
                 decimal rawScore = GetElementValueDecimal(anime, "my_score");
                 decimal? myScore = rawScore == 0 ? (decimal?)null : rawScore;

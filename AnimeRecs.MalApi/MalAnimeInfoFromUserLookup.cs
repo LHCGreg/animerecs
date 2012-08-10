@@ -23,24 +23,9 @@ namespace AnimeRecs.MalApi
         /// </summary>
         public int NumEpisodes { get; set; }
 
-        // Use special date
-        /// <summary>
-        /// Could be null if it hasn't started yet.
-        /// </summary>
         public UncertainDate StartDate { get; set; }
-
-        // Use special date
-        /// <summary>
-        /// Could be null if it hasn't ended yet.
-        /// </summary>
         public UncertainDate EndDate { get; set; }
-
         public string ImageUrl { get; set; }
-
-        public MalAnimeInfoFromUserLookup()
-        {
-            Synonyms = new List<string>();
-        }
 
         public MalAnimeInfoFromUserLookup(int animeId, string title, MalAnimeType type, ICollection<string> synonyms, MalSeriesStatus status,
             int numEpisodes, UncertainDate startDate, UncertainDate endDate, string imageUrl)

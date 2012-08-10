@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Common.Logging\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
     </Reference>
@@ -56,17 +60,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMalTrainingDataLoader.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="MalListEntryJoined.cs" />
     <Compile Include="mal_anime.cs" />
+    <Compile Include="mal_anime_synonym.cs" />
     <Compile Include="mal_anime_type.cs" />
     <Compile Include="mal_list_entry.cs" />
     <Compile Include="mal_list_entry_status.cs" />
+    <Compile Include="mal_list_entry_tag.cs" />
     <Compile Include="mal_user.cs" />
-    <Compile Include="PetaPoco.cs" />
     <Compile Include="PgMalDataLoader.cs" />
     <Compile Include="PgMyAnimeListApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="row_count.cs" />
+    <Compile Include="SqlMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CreateDb_linux.sql" />

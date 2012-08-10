@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Npgsql;
+using Dapper;
 
 namespace AnimeRecs.DAL
 {
@@ -10,6 +12,34 @@ namespace AnimeRecs.DAL
         public int mal_user_id { get; set; }
         public string mal_name { get; set; }
         public DateTime time_added { get; set; }
+
+        public mal_user()
+        {
+            ;
+        }
+
+        public mal_user(int _mal_user_id, string _mal_name, DateTime _time_added)
+        {
+            mal_user_id = _mal_user_id;
+            mal_name = _mal_name;
+            time_added = _time_added;
+        }
+
+        public void Insert(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            string sql = "INSERT INTO mal_user (mal_user_id, mal_name, time_added) VALUES (:MalUserId, :MalName, :TimeAdded)";
+            int rowsAffected = conn.Execute(sql, new { MalUserId = mal_user_id, MalName = mal_name, TimeAdded = time_added }, transaction);
+        }
+
+        public static IEnumerable<mal_user> GetAll(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            string sql = @"
+SELECT mal_user_id, mal_name, time_added
+FROM mal_user
+";
+            // This will buffer all rows in memory before returning
+            return conn.Query<mal_user>(sql, transaction: transaction);
+        }
     }
 }
 

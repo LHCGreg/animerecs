@@ -14,7 +14,7 @@ NLog is copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net> and is li
 
 Npgsql is copyright (c) 2002-2007, The Npgsql Development Team. The license for Npgsql is in lib/Npgsql/license.txt.
 
-Petapoco is Copyright © 2011 Topten Software and is licensed under the Apache License 2.0 (licenses/PetaPoco_license.txt).
+Dapper is Copyright (c) 2012 Sam Saffron and Marc Gravell and is licensed under the Apache License 2.0 (licenses/dapper_license.txt).
 
 modernizr is copyright modernizr.com and is licensed under the MIT license (licenses/modernizr_license.txt).
 

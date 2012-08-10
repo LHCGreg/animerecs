@@ -51,8 +51,8 @@ namespace AnimeRecs.MalApi.Tests
                 Assert.That(entry.AnimeInfo.StartDate, Is.EqualTo(new UncertainDate(2010, 2, 6)));
                 Assert.That(entry.AnimeInfo.EndDate, Is.EqualTo(UncertainDate.Unknown));
                 Assert.That(entry.AnimeInfo.ImageUrl, Is.EqualTo("http://cdn.myanimelist.net/images/anime/9/24646.jpg"));
-                Assert.That(entry.MyStartDate, Is.EqualTo((DateTime?)null));
-                Assert.That(entry.MyFinishDate, Is.EqualTo((DateTime?)null));
+                Assert.That(entry.MyStartDate, Is.EqualTo(new UncertainDate(year: null, month: 2, day: null)));
+                Assert.That(entry.MyFinishDate, Is.EqualTo(UncertainDate.Unknown));
                 Assert.That(entry.MyLastUpdate, Is.EqualTo(new DateTime(year: 2011, month: 4, day: 2, hour: 22, minute: 50, second: 58, kind: DateTimeKind.Utc)));
                 Assert.That(entry.Tags, Is.EquivalentTo(new List<string>()));
             }

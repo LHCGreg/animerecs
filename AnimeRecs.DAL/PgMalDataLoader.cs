@@ -4,82 +4,145 @@ using System.Linq;
 using System.Text;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.MalApi;
+using Npgsql;
+using Dapper;
 
 namespace AnimeRecs.DAL
 {
     public class PgMalDataLoader : IMalTrainingDataLoader, IDisposable
     {
-        private PetaPoco.Database m_db;
-        private bool m_disposeDb;
+        private string m_connectionString;
 
-        public PgMalDataLoader(PetaPoco.Database db, bool disposeDb = false)
+        public PgMalDataLoader(string connectionString)
         {
-            m_db = db;
-            m_disposeDb = disposeDb;
+            m_connectionString = connectionString;
         }
 
-        public PgMalDataLoader(string pgConnectionString)
+        private class UserListEntry
         {
-            m_db = new PetaPoco.Database(pgConnectionString, Npgsql.NpgsqlFactory.Instance);
-            m_disposeDb = true;
+            public int mal_anime_id { get; set; }
+            public string title { get; set; }
+            public int mal_anime_type_id { get; set; }
+            public int num_episodes { get; set; }
+            public int mal_anime_status_id { get; set; }
+            public int? start_year { get; set; }
+            public int? start_month { get; set; }
+            public int? start_day { get; set; }
+            public int? end_year { get; set; }
+            public int? end_month { get; set; }
+            public int? end_day { get; set; }
+            public string image_url { get; set; }
+            public IEnumerable<string> synonyms { get; set; } // ignore any nulls in this
+
+            public decimal? rating { get; set; }
+            public int mal_list_entry_status_id { get; set; }
+            public int num_episodes_watched { get; set; }
+            public int? started_watching_year { get; set; }
+            public int? started_watching_month { get; set; }
+            public int? started_watching_day { get; set; }
+            public int? finished_watching_year { get; set; }
+            public int? finished_watching_month { get; set; }
+            public int? finished_watching_day { get; set; }
+            public DateTime last_mal_update { get; set; }
+            public IEnumerable<string> tags { get; set; } // ignore any nulls in this
         }
 
-        public void Dispose()
+        private class mal_list_entry_slim
         {
-            if (m_db != null && m_disposeDb)
-            {
-                m_db.Dispose();
-            }
+            public int mal_user_id { get; set; }
+            public int mal_anime_id { get; set; }
+            public decimal? rating { get; set; }
+            public int mal_list_entry_status_id { get; set; }
+            public int num_episodes_watched { get; set; }
         }
 
         public MalTrainingData LoadMalTrainingData()
         {
-            //public int mal_anime_id { get; set; }
-            //public int mal_user_id { get; set; }
-            //public decimal? rating { get; set; }
-            //public int mal_list_entry_status_id { get; set; }
-            //public int num_episodes_watched { get; set; }
-            //public int mal_anime_type_id { get; set; }
-            //public string title { get; set; }
-            //public string mal_name { get; set; }
-
-            string sql = @"
-SELECT rating.mal_anime_id, rating.mal_user_id, rating.rating, rating.mal_list_entry_status_id, rating.num_episodes_watched,
-mal_anime.mal_anime_type_id, mal_anime.title, mal_user.mal_name
-FROM mal_list_entry AS rating
-JOIN mal_anime ON rating.mal_anime_id = mal_anime.mal_anime_id
-JOIN mal_user ON rating.mal_user_id = mal_user.mal_user_id
-";
+            // Load all anime, then all users, then all entries
 
             Dictionary<int, MalAnime> animes = new Dictionary<int, MalAnime>();
+            Dictionary<int, Dictionary<int, MalListEntry>> userAnimeLists = new Dictionary<int, Dictionary<int, MalListEntry>>();
 
-            Dictionary<int, IDictionary<int, MalListEntry>> users = new Dictionary<int, IDictionary<int, MalListEntry>>();
-            Dictionary<int, string> usernames = new Dictionary<int, string>();
+            Dictionary<int, mal_user> dbUsers = new Dictionary<int, mal_user>();
 
-            foreach (MalListEntryJoined listEntry in m_db.Query<MalListEntryJoined>(sql))
+            Logging.Log.Debug("Connecting to PostgreSQL.");
+            using (NpgsqlConnection conn = new NpgsqlConnection(m_connectionString))
             {
-                if (!animes.ContainsKey(listEntry.mal_anime_id))
+                conn.Open();
+                Logging.Log.Debug("Connected to PostgreSQL.");
+
+                Logging.Log.Debug("Slurping anime from the database.");
+                IEnumerable<mal_anime> dbAnimeSlurp = mal_anime.GetAll(conn, transaction: null);
+                Logging.Log.Debug("Processing anime from the database.");
+                foreach (mal_anime dbAnime in dbAnimeSlurp)
                 {
-                    animes[listEntry.mal_anime_id] = new MalAnime(listEntry.mal_anime_id, (MalAnimeType)listEntry.mal_anime_type_id, listEntry.title);
+                    MalAnime anime = new MalAnime(
+                        malAnimeId: dbAnime.mal_anime_id,
+                        type: (MalAnimeType)dbAnime.mal_anime_type_id,
+                        title: dbAnime.title
+                    );
+                    animes[dbAnime.mal_anime_type_id] = anime;
+                }
+                Logging.Log.DebugFormat("Done processing {0} anime from the database.", animes.Count);
+
+                Logging.Log.Debug("Slurping users from the database.");
+                IEnumerable<mal_user> dbUserSlurp = mal_user.GetAll(conn, transaction: null);
+                Logging.Log.Debug("Processing users from the database.");
+                foreach (mal_user dbUser in dbUserSlurp)
+                {
+                    dbUsers[dbUser.mal_user_id] = dbUser;
+                }
+                Logging.Log.DebugFormat("Done processing {0} users from the database.", dbUsers.Count);
+
+                string allEntriesSlimSql = @"
+SELECT mal_user_id, mal_anime_id, rating, mal_list_entry_status_id, num_episodes_watched
+FROM mal_list_entry
+";
+
+                Logging.Log.Debug("Slurping list entries from the database.");
+                // This will buffer all rows in memory before returning
+                IEnumerable<mal_list_entry_slim> dbEntrySlurp = conn.Query<mal_list_entry_slim>(allEntriesSlimSql, commandTimeout: 60);
+                Logging.Log.Debug("Processing list entries from the database.");
+                long entryCount = 0;
+                foreach (mal_list_entry_slim dbEntry in conn.Query<mal_list_entry_slim>(allEntriesSlimSql, commandTimeout: 60))
+                {
+                    entryCount++;
+                    Dictionary<int, MalListEntry> userList;
+                    mal_user dbUser;
+                    if(!dbUsers.TryGetValue(dbEntry.mal_user_id, out dbUser) || !animes.ContainsKey(dbEntry.mal_anime_id))
+                    {
+                        // Entry for an anime or user that wasn't in the database...there must have been an update going on between the time we got users, anime, and list entries
+                        continue;
+                    }
+                    
+                    if (!userAnimeLists.TryGetValue(dbEntry.mal_user_id, out userList))
+                    {
+                        userList = new Dictionary<int, MalListEntry>();
+                        userAnimeLists[dbEntry.mal_user_id] = userList;
+                    }
+                    userList[dbEntry.mal_anime_id] = new MalListEntry(
+                        rating: dbEntry.rating,
+                        status: (CompletionStatus)dbEntry.mal_list_entry_status_id,
+                        numEpisodesWatched: dbEntry.num_episodes_watched
+                    );
+                }
+                Logging.Log.DebugFormat("Done processing {0} list entries.", entryCount);
+
+                Dictionary<int, MalUserListEntries> users = new Dictionary<int, MalUserListEntries>();
+                foreach (KeyValuePair<int, Dictionary<int, MalListEntry>> userIdListPair in userAnimeLists)
+                {
+                    int userId = userIdListPair.Key;
+                    Dictionary<int, MalListEntry> animeList = userIdListPair.Value;
+                    users[userId] = new MalUserListEntries(animeList, animes, dbUsers[userId].mal_name);
                 }
 
-                if (!users.ContainsKey(listEntry.mal_user_id))
-                {
-                    users[listEntry.mal_user_id] = new Dictionary<int, MalListEntry>();
-                    usernames[listEntry.mal_user_id] = listEntry.mal_name;
-                }
-
-                users[listEntry.mal_user_id][listEntry.mal_anime_id] = new MalListEntry(listEntry.rating, (CompletionStatus)listEntry.mal_list_entry_status_id,
-                    listEntry.num_episodes_watched);
+                return new MalTrainingData(users, animes);
             }
+        }
 
-            Dictionary<int, MalUserListEntries> ratings = new Dictionary<int, MalUserListEntries>();
-            foreach (int userId in users.Keys)
-            {
-                ratings[userId] = new MalUserListEntries(ratings: users[userId], animes: animes, malUsername: usernames[userId]);
-            }
-
-            return new MalTrainingData(ratings, animes);
+        public void Dispose()
+        {
+            ;
         }
     }
 }
