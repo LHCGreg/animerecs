@@ -33,12 +33,7 @@ namespace AnimeRecs.MalApi
                 {
                     userLookup = m_underlyingApi.GetAnimeListForUser(user);
                 }
-                catch (MalUserNotFoundException)
-                {
-                    // This is not a "failure" that should cause a retry
-                    throw;
-                }
-                catch (Exception ex)
+                catch (MalApiException ex)
                 {
                     numTries++;
                     Logging.Log.ErrorFormat("Error getting anime list for user {0} (failure {1}): {2}", ex, user, numTries, ex.Message);
@@ -69,7 +64,7 @@ namespace AnimeRecs.MalApi
                 {
                     recentMalUsers = m_underlyingApi.GetRecentOnlineUsers();
                 }
-                catch (Exception ex)
+                catch (MalApiRequestException ex)
                 {
                     numTries++;
                     Logging.Log.ErrorFormat("Error getting recently active MAL users (failure {0}): {1}", ex, numTries, ex.Message);

@@ -64,7 +64,7 @@ namespace AnimeRecs.MalApi
                 Logging.Log.DebugFormat("Got response. Status code = {0}.", response.StatusCode);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    throw new MalApiException(string.Format("{0} Status code was {1}.", baseErrorMessage, response.StatusCode));
+                    throw new MalApiRequestException(string.Format("{0} Status code was {1}.", baseErrorMessage, response.StatusCode));
                 }
 
                 using (Stream responseBodyStream = response.GetResponseStream())
@@ -96,9 +96,15 @@ namespace AnimeRecs.MalApi
             {
                 if (responseBody != null)
                 {
+                    // Since we read the response, the error was in processing the response, not with doing the request/response.
                     Logging.Log.DebugFormat("Response body:{0}{1}", Environment.NewLine, responseBody);
+                    throw new MalApiException(string.Format("{0} {1}", baseErrorMessage, ex.Message), ex);
                 }
-                throw new MalApiException(string.Format("{0} {1}", baseErrorMessage, ex.Message), ex);
+                else
+                {
+                    // If we didn't read a response, then there was an error with the request/response that may be fixable with a retry.
+                    throw new MalApiRequestException(string.Format("{0} {1}", baseErrorMessage, ex.Message), ex);
+                }
             }
         }
 
@@ -198,11 +204,11 @@ namespace AnimeRecs.MalApi
         }
 
         // internal for unit testing
-        internal MalUserLookupResults ParseAnimeListXml(TextReader xml, string user)
+        internal MalUserLookupResults ParseAnimeListXml(TextReader xmlTextReader, string user)
         {
             Logging.Log.Trace("Parsing XML");
 
-            XDocument doc = XDocument.Load(xml);
+            XDocument doc = XDocument.Load(xmlTextReader);
 
             XElement error = doc.Root.Element("error");
             if (error != null && (string)error == "Invalid username")
