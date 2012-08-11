@@ -17,9 +17,6 @@ namespace AnimeRecs.MalApi
         private const string m_malAppInfoUri = "http://myanimelist.net/malappinfo.php?status=all&type=anime";
         private const string m_recentOnlineUsersUri = "http://myanimelist.net/users.php";
 
-        private static Regex RecentOnlineUsersRegex = new Regex("myanimelist.net/profile/(?<Username>[^\"]+)\">\\k<Username>",
-            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
-
         /// <summary>
         /// What to set the user agent http header to in API requests. Null to use the default .NET user agent.
         /// </summary>
@@ -54,8 +51,6 @@ namespace AnimeRecs.MalApi
 
         private TReturn ProcessRequest<TReturn>(HttpWebRequest request, Func<string, TReturn> processingFunc, string baseErrorMessage)
         {
-            // TODO: Distinguish between error with the actual request, which may possibly be solved with a retry,
-            // and error processing the response, which would not be solved with a retry.
             string responseBody = null;
             try
             {
@@ -203,95 +198,128 @@ namespace AnimeRecs.MalApi
             }
         }
 
-        // internal for unit testing
-        internal MalUserLookupResults ParseAnimeListXml(TextReader xmlTextReader, string user)
+        // Rumor has it that compiled regexes are far more performant than non-compiled regexes on large pieces of text.
+        // I haven't profiled it though.
+        private static Lazy<Regex> s_tagElementContentsRegex =
+            new Lazy<Regex>(() => new Regex("<my_tags>(?<TagText>.*?)</my_tags>", RegexOptions.Compiled));
+        private static Regex TagElementContentsRegex { get { return s_tagElementContentsRegex.Value; } }
+
+        private static MatchEvaluator TagElementContentsReplacer = (Match match) => string.Format("<my_tags>{0}</my_tags>",
+                match.Groups["TagText"].Value.Replace("&", "&amp;").Replace("<", "&lt;"));
+
+        /// <summary>
+        /// Sanitizes anime list XML which is not always well-formed. If a user uses &amp; or &lt; characters in their tags,
+        /// they will not be escaped in the XML.
+        /// </summary>
+        /// <param name="xmlTextReader"></param>
+        /// <returns></returns>
+        private TextReader SanitizeAnimeListXml(TextReader xmlTextReader)
         {
-            Logging.Log.Trace("Parsing XML");
-
-            XDocument doc = XDocument.Load(xmlTextReader);
-
-            XElement error = doc.Root.Element("error");
-            if (error != null && (string)error == "Invalid username")
-            {
-                throw new MalUserNotFoundException(string.Format("No MAL list exists for {0}.", user));
-            }
-            else if (error != null)
-            {
-                throw new MalApiException((string)error);
-            }
-
-            XElement myinfo = GetExpectedElement(doc.Root, "myinfo");
-            int userId = GetElementValueInt(myinfo, "user_id");
-            string canonicalUserName = GetElementValueString(myinfo, "user_name");
-
-            List<MyAnimeListEntry> entries = new List<MyAnimeListEntry>();
-
-            IEnumerable<XElement> animes = doc.Root.Elements("anime");
-            foreach (XElement anime in animes)
-            {
-                int animeId = GetElementValueInt(anime, "series_animedb_id");
-                string title = GetElementValueString(anime, "series_title");
-
-                string synonymList = GetElementValueString(anime, "series_synonyms");
-                string[] rawSynonyms = synonymList.Split(SynonymSeparator, StringSplitOptions.RemoveEmptyEntries);
-
-                // filter out synonyms that are the same as the main title
-                HashSet<string> synonyms = new HashSet<string>(rawSynonyms.Where(synonym => !synonym.Equals(title, StringComparison.Ordinal)));
-
-                int seriesTypeInt = GetElementValueInt(anime, "series_type");
-                MalAnimeType seriesType = (MalAnimeType)seriesTypeInt;
-
-                int numEpisodes = GetElementValueInt(anime, "series_episodes");
-
-                int seriesStatusInt = GetElementValueInt(anime, "series_status");
-                MalSeriesStatus seriesStatus = (MalSeriesStatus)seriesStatusInt;
-
-                string seriesStartString = GetElementValueString(anime, "series_start");
-                UncertainDate seriesStart = UncertainDate.FromMalDateString(seriesStartString);
-
-                string seriesEndString = GetElementValueString(anime, "series_end");
-                UncertainDate seriesEnd = UncertainDate.FromMalDateString(seriesEndString);
-                
-                string seriesImage = GetElementValueString(anime, "series_image");
-
-                MalAnimeInfoFromUserLookup animeInfo = new MalAnimeInfoFromUserLookup(animeId: animeId, title: title,
-                    type: seriesType, synonyms: synonyms, status: seriesStatus, numEpisodes: numEpisodes, startDate: seriesStart,
-                    endDate: seriesEnd, imageUrl: seriesImage);
-
-
-                int numEpisodesWatched = GetElementValueInt(anime, "my_watched_episodes");
-
-                string myStartDateString = GetElementValueString(anime, "my_start_date");
-                UncertainDate myStartDate = UncertainDate.FromMalDateString(myStartDateString);
-
-                string myFinishDateString = GetElementValueString(anime, "my_finish_date");
-                UncertainDate myFinishDate = UncertainDate.FromMalDateString(myFinishDateString);
-
-                decimal rawScore = GetElementValueDecimal(anime, "my_score");
-                decimal? myScore = rawScore == 0 ? (decimal?)null : rawScore;
-
-                int completionStatusInt = GetElementValueInt(anime, "my_status");
-                CompletionStatus completionStatus = (CompletionStatus)completionStatusInt;
-
-                long lastUpdatedUnixTimestamp = GetElementValueLong(anime, "my_last_updated");
-                DateTime lastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) + TimeSpan.FromSeconds(lastUpdatedUnixTimestamp);
-
-                string rawTagsString = GetElementValueString(anime, "my_tags");
-                string[] untrimmedTags = rawTagsString.Split(TagSeparator, StringSplitOptions.RemoveEmptyEntries);
-                HashSet<string> tags = new HashSet<string>(untrimmedTags.Select(tag => tag.Trim()));
-
-                MyAnimeListEntry entry = new MyAnimeListEntry(score: myScore, status: completionStatus, numEpisodesWatched: numEpisodesWatched,
-                    myStartDate: myStartDate, myFinishDate: myFinishDate, myLastUpdate: lastUpdated, animeInfo: animeInfo, tags: tags);
-
-                entries.Add(entry);
-            }
-
-            MalUserLookupResults results = new MalUserLookupResults(userId: userId, canonicalUserName: canonicalUserName, animeList: entries);
-            Logging.Log.Trace("Parsed XML.");
-            return results;
+            string rawXml = xmlTextReader.ReadToEnd();
+            string sanitizedXml = TagElementContentsRegex.Replace(rawXml, TagElementContentsReplacer);
+            return new StringReader(sanitizedXml);
         }
 
         private static char[] TagSeparator = new char[] { ',' };
+
+        // internal for unit testing
+        internal MalUserLookupResults ParseAnimeListXml(TextReader xmlTextReader, string user)
+        {
+            Logging.Log.Trace("Parsing XML.");
+
+            Logging.Log.Trace("Sanitizing XML.");
+            using (xmlTextReader = SanitizeAnimeListXml(xmlTextReader))
+            {
+                Logging.Log.Trace("XML sanitized.");
+
+                XDocument doc = XDocument.Load(xmlTextReader);
+
+                XElement error = doc.Root.Element("error");
+                if (error != null && (string)error == "Invalid username")
+                {
+                    throw new MalUserNotFoundException(string.Format("No MAL list exists for {0}.", user));
+                }
+                else if (error != null)
+                {
+                    throw new MalApiException((string)error);
+                }
+
+                XElement myinfo = GetExpectedElement(doc.Root, "myinfo");
+                int userId = GetElementValueInt(myinfo, "user_id");
+                string canonicalUserName = GetElementValueString(myinfo, "user_name");
+
+                List<MyAnimeListEntry> entries = new List<MyAnimeListEntry>();
+
+                IEnumerable<XElement> animes = doc.Root.Elements("anime");
+                foreach (XElement anime in animes)
+                {
+                    int animeId = GetElementValueInt(anime, "series_animedb_id");
+                    string title = GetElementValueString(anime, "series_title");
+
+                    string synonymList = GetElementValueString(anime, "series_synonyms");
+                    string[] rawSynonyms = synonymList.Split(SynonymSeparator, StringSplitOptions.RemoveEmptyEntries);
+
+                    // filter out synonyms that are the same as the main title
+                    HashSet<string> synonyms = new HashSet<string>(rawSynonyms.Where(synonym => !synonym.Equals(title, StringComparison.Ordinal)));
+
+                    int seriesTypeInt = GetElementValueInt(anime, "series_type");
+                    MalAnimeType seriesType = (MalAnimeType)seriesTypeInt;
+
+                    int numEpisodes = GetElementValueInt(anime, "series_episodes");
+
+                    int seriesStatusInt = GetElementValueInt(anime, "series_status");
+                    MalSeriesStatus seriesStatus = (MalSeriesStatus)seriesStatusInt;
+
+                    string seriesStartString = GetElementValueString(anime, "series_start");
+                    UncertainDate seriesStart = UncertainDate.FromMalDateString(seriesStartString);
+
+                    string seriesEndString = GetElementValueString(anime, "series_end");
+                    UncertainDate seriesEnd = UncertainDate.FromMalDateString(seriesEndString);
+
+                    string seriesImage = GetElementValueString(anime, "series_image");
+
+                    MalAnimeInfoFromUserLookup animeInfo = new MalAnimeInfoFromUserLookup(animeId: animeId, title: title,
+                        type: seriesType, synonyms: synonyms, status: seriesStatus, numEpisodes: numEpisodes, startDate: seriesStart,
+                        endDate: seriesEnd, imageUrl: seriesImage);
+
+
+                    int numEpisodesWatched = GetElementValueInt(anime, "my_watched_episodes");
+
+                    string myStartDateString = GetElementValueString(anime, "my_start_date");
+                    UncertainDate myStartDate = UncertainDate.FromMalDateString(myStartDateString);
+
+                    string myFinishDateString = GetElementValueString(anime, "my_finish_date");
+                    UncertainDate myFinishDate = UncertainDate.FromMalDateString(myFinishDateString);
+
+                    decimal rawScore = GetElementValueDecimal(anime, "my_score");
+                    decimal? myScore = rawScore == 0 ? (decimal?)null : rawScore;
+
+                    int completionStatusInt = GetElementValueInt(anime, "my_status");
+                    CompletionStatus completionStatus = (CompletionStatus)completionStatusInt;
+
+                    long lastUpdatedUnixTimestamp = GetElementValueLong(anime, "my_last_updated");
+                    DateTime lastUpdated = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) + TimeSpan.FromSeconds(lastUpdatedUnixTimestamp);
+
+                    string rawTagsString = GetElementValueString(anime, "my_tags");
+                    string[] untrimmedTags = rawTagsString.Split(TagSeparator, StringSplitOptions.RemoveEmptyEntries);
+                    HashSet<string> tags = new HashSet<string>(untrimmedTags.Select(tag => tag.Trim()));
+
+                    MyAnimeListEntry entry = new MyAnimeListEntry(score: myScore, status: completionStatus, numEpisodesWatched: numEpisodesWatched,
+                        myStartDate: myStartDate, myFinishDate: myFinishDate, myLastUpdate: lastUpdated, animeInfo: animeInfo, tags: tags);
+
+                    entries.Add(entry);
+                }
+
+                MalUserLookupResults results = new MalUserLookupResults(userId: userId, canonicalUserName: canonicalUserName, animeList: entries);
+                Logging.Log.Trace("Parsed XML.");
+                return results;
+            }
+        }
+
+        private static Lazy<Regex> s_recentOnlineUsersRegex =
+            new Lazy<Regex>(() => new Regex("myanimelist.net/profile/(?<Username>[^\"]+)\">\\k<Username>",
+                RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase));
+        public static Regex RecentOnlineUsersRegex { get { return s_recentOnlineUsersRegex.Value; } }
 
         public RecentUsersResults GetRecentOnlineUsers()
         {

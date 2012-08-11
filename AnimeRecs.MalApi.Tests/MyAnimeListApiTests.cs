@@ -38,6 +38,7 @@ namespace AnimeRecs.MalApi.Tests
                 Assert.That(entry.Score, Is.EqualTo((decimal?)null));
                 Assert.That(entry.NumEpisodesWatched, Is.EqualTo(0));
                 Assert.That(entry.Status, Is.EqualTo(CompletionStatus.PlanToWatch));
+                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>()));
 
                 entry = results.AnimeList.Where(anime => anime.AnimeInfo.AnimeId == 889).First();
                 Assert.That(entry.AnimeInfo.Title, Is.EqualTo("Black Lagoon"));
@@ -54,7 +55,7 @@ namespace AnimeRecs.MalApi.Tests
                 Assert.That(entry.MyStartDate, Is.EqualTo(new UncertainDate(year: null, month: 2, day: null)));
                 Assert.That(entry.MyFinishDate, Is.EqualTo(UncertainDate.Unknown));
                 Assert.That(entry.MyLastUpdate, Is.EqualTo(new DateTime(year: 2011, month: 4, day: 2, hour: 22, minute: 50, second: 58, kind: DateTimeKind.Utc)));
-                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>()));
+                Assert.That(entry.Tags, Is.EquivalentTo(new List<string>() { "test&test", "< less than" }));
             }
         }
     }
