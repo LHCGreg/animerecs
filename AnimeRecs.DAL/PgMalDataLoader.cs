@@ -81,7 +81,7 @@ namespace AnimeRecs.DAL
                         type: (MalAnimeType)dbAnime.mal_anime_type_id,
                         title: dbAnime.title
                     );
-                    animes[dbAnime.mal_anime_type_id] = anime;
+                    animes[dbAnime.mal_anime_id] = anime;
                 }
                 Logging.Log.DebugFormat("Done processing {0} anime from the database.", animes.Count);
 
