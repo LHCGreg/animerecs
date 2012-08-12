@@ -7,7 +7,7 @@ using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecEngine;
 using Newtonsoft.Json;
 
-namespace AnimeRecs.RecService.RecSources
+namespace AnimeRecs.RecService.Registrations.RecSources
 {
     internal abstract class TrainableJsonRecSource<TMalRecSource, TInput, TRecommendationResults, TRecommendation, TResponse, TDtoRec> : ITrainableJsonRecSource
         where TMalRecSource : ITrainableRecSource<MalTrainingData, TInput, TRecommendationResults,  TRecommendation>

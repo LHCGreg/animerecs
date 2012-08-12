@@ -26,28 +26,70 @@ namespace AnimeRecs.RecService
 
         private IMalTrainingDataLoaderFactory m_trainingDataLoaderFactory;
 
+        public IDictionary<string, Type> JsonRecSourceTypes { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="trainingDataLoaderFactory">Must be thread-safe.</param>
         public RecServiceState(IMalTrainingDataLoaderFactory trainingDataLoaderFactory)
         {
+            m_trainingDataLoaderFactory = trainingDataLoaderFactory;
+            JsonRecSourceTypes = GetJsonRecSourceTypes();
+            m_trainingData = LoadTrainingDataOnInit(trainingDataLoaderFactory);
+            m_trainingDataLock = new ReaderWriterLockSlim();
+            m_recSourcesLock = new ReaderWriterLockSlim();
+        }
+
+        private IDictionary<string, Type> GetJsonRecSourceTypes()
+        {
+            Logging.Log.Debug("Searching for types that implement ITrainableJsonRecSource and have at least one [JsonRecSource] attribute.");
+            Type[] typesInThisAssembly = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();
+            Type jsonRecSourceInterface = typeof(ITrainableJsonRecSource);
+            Type jsonRecSourceAttribute = typeof(JsonRecSourceAttribute);
+
+            Dictionary<string, Type> jsonRecSourceTypes = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (Type type in typesInThisAssembly)
+            {
+                if (jsonRecSourceInterface.IsAssignableFrom(type) && type.IsClass && !type.IsAbstract)
+                {
+                    List<string> recSourceTypesDeclaredFor = new List<string>();
+                    object[] jsonRecSourceAttributes = type.GetCustomAttributes(jsonRecSourceAttribute, inherit: false);
+                    foreach(JsonRecSourceAttribute attribute in jsonRecSourceAttributes.Select(attributeObj => (JsonRecSourceAttribute)attributeObj))
+                    {
+                        recSourceTypesDeclaredFor.Add(attribute.RecSourceName);
+                        jsonRecSourceTypes[attribute.RecSourceName] = type;
+                    }
+
+                    Logging.Log.DebugFormat("{0} registered for: {1}", type.Name, string.Join(", ", recSourceTypesDeclaredFor));
+                }
+            }
+
+            Logging.Log.DebugFormat("Done searching for JSON rec sources.");
+
+            return jsonRecSourceTypes;
+        }
+
+        private MalTrainingData LoadTrainingDataOnInit(IMalTrainingDataLoaderFactory trainingDataLoaderFactory)
+        {
             Logging.Log.Info("Loading training data.");
             Stopwatch timer = Stopwatch.StartNew();
+            MalTrainingData trainingData;
+
             using (IMalTrainingDataLoader trainingDataLoader = trainingDataLoaderFactory.GetTrainingDataLoader())
             {
                 Logging.Log.Debug("Created training data loader.");
-                m_trainingData = trainingDataLoader.LoadMalTrainingData();
+                trainingData = trainingDataLoader.LoadMalTrainingData();
                 timer.Stop();
             }
+
             Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
-                m_trainingData.Users.Count, m_trainingData.Animes.Count,
-                m_trainingData.Users.Keys.Sum(userId => m_trainingData.Users[userId].Entries.Count),
+                trainingData.Users.Count, trainingData.Animes.Count,
+                trainingData.Users.Keys.Sum(userId => trainingData.Users[userId].Entries.Count),
                 timer.Elapsed);
 
-            m_trainingDataLock = new ReaderWriterLockSlim();
-            m_recSourcesLock = new ReaderWriterLockSlim();
-            m_trainingDataLoaderFactory = trainingDataLoaderFactory;
+            return trainingData;
         }
 
         public void LoadRecSource(ITrainableJsonRecSource recSource, string name, bool replaceExisting)

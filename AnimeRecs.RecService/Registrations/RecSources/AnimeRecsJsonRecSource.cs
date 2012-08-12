@@ -6,15 +6,25 @@ using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecService.DTO;
 
-namespace AnimeRecs.RecService.RecSources
+namespace AnimeRecs.RecService.Registrations.RecSources
 {
+    [JsonRecSource(RecSourceTypes.AnimeRecs)]
     internal class AnimeRecsJsonRecSource : TrainableJsonRecSource<MalAnimeRecsRecSource, MalAnimeRecsInput, MalAnimeRecsResults,
         RecEngine.AnimeRecsRecommendation, GetMalRecsResponse<DTO.AnimeRecsRecommendation, MalAnimeRecsExtraResponseData>, DTO.AnimeRecsRecommendation>
     {
-        public AnimeRecsJsonRecSource(MalAnimeRecsRecSource underlyingRecSource)
-            : base(underlyingRecSource)
+        public AnimeRecsJsonRecSource(LoadRecSourceRequest<AnimeRecsRecSourceParams> request)
+            : base(CreateRecSourceFromRequest(request))
         {
             ;
+        }
+
+        private static MalAnimeRecsRecSource CreateRecSourceFromRequest(LoadRecSourceRequest<AnimeRecsRecSourceParams> request)
+        {
+            return new MalAnimeRecsRecSource(
+                numRecommendersToUse: request.Params.NumRecommendersToUse,
+                fractionConsideredRecommended: request.Params.FractionConsideredRecommended,
+                minEpisodesToClassifyIncomplete: request.Params.MinEpisodesToClassifyIncomplete
+            );
         }
 
         protected override MalAnimeRecsInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest)

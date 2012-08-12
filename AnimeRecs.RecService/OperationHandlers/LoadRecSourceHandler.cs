@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnimeRecs.RecService.DTO;
-using AnimeRecs.RecService.RecSources;
 using AnimeRecs.RecEngine.MAL;
 using MyMediaLite.RatingPrediction;
 
@@ -21,72 +20,18 @@ namespace AnimeRecs.RecService.OperationHandlers
             if (operation.Payload.Type == null)
                 return GetArgumentNotSetError("Payload.Type");
 
-            ITrainableJsonRecSource recSource;
-
-            if (operation.Payload.Type.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
+            if (state.JsonRecSourceTypes.ContainsKey(operation.Payload.Type))
             {
-                LoadRecSourceRequest<AverageScoreRecSourceParams> request = (LoadRecSourceRequest<AverageScoreRecSourceParams>)operation.Payload;
-                AverageScoreRecSourceParams recSourceParams = request.Params;
-                MalAverageScoreRecSource underlyingRecSource = new MalAverageScoreRecSource(
-                    minEpisodesToCountIncomplete: recSourceParams.MinEpisodesToCountIncomplete,
-                    useDropped: recSourceParams.UseDropped,
-                    minUsersToCountAnime: recSourceParams.MinUsersToCountAnime
-                );
-                recSource = new AverageScoreJsonRecSource(underlyingRecSource);
-            }
-            else if (operation.Payload.Type.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
-            {
-                LoadRecSourceRequest<MostPopularRecSourceParams> request = (LoadRecSourceRequest<MostPopularRecSourceParams>)operation.Payload;
-                MostPopularRecSourceParams recSourceParams = request.Params;
-                MalMostPopularRecSource underlyingRecSource = new MalMostPopularRecSource(
-                    minEpisodesToCountIncomplete: recSourceParams.MinEpisodesToCountIncomplete,
-                    useDropped: recSourceParams.UseDropped
-                );
-                recSource = new MostPopularJsonRecSource(underlyingRecSource);
-            }
-            else if (operation.Payload.Type.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
-            {
-                LoadRecSourceRequest<AnimeRecsRecSourceParams> request = (LoadRecSourceRequest<AnimeRecsRecSourceParams>)operation.Payload;
-                AnimeRecsRecSourceParams recSourceParams = request.Params;
-                MalAnimeRecsRecSource underlyingRecSource = new MalAnimeRecsRecSource(
-                    numRecommendersToUse: recSourceParams.NumRecommendersToUse,
-                    fractionConsideredRecommended: recSourceParams.FractionConsideredRecommended,
-                    minEpisodesToClassifyIncomplete: recSourceParams.MinEpisodesToClassifyIncomplete
-                );
-                recSource = new AnimeRecsJsonRecSource(underlyingRecSource);
-            }
-            else if (operation.Payload.Type.Equals(RecSourceTypes.BiasedMatrixFactorization, StringComparison.OrdinalIgnoreCase))
-            {
-                LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams> request = (LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>)operation.Payload;
-                BiasedMatrixFactorizationRecSourceParams recSourceParams = request.Params;
-                BiasedMatrixFactorization underlyingRecSource = new BiasedMatrixFactorization();
+                Type jsonRecSourceType = state.JsonRecSourceTypes[operation.Payload.Type];
 
-                if (recSourceParams.BiasLearnRate != null)
-                    underlyingRecSource.BiasLearnRate = recSourceParams.BiasLearnRate.Value;
-                if (recSourceParams.BiasReg != null)
-                    underlyingRecSource.BiasReg = recSourceParams.BiasReg.Value;
-                if (recSourceParams.BoldDriver != null)
-                    underlyingRecSource.BoldDriver = recSourceParams.BoldDriver.Value;
-                if (recSourceParams.FrequencyRegularization != null)
-                    underlyingRecSource.FrequencyRegularization = recSourceParams.FrequencyRegularization.Value;
-                if (recSourceParams.LearnRate != null)
-                    underlyingRecSource.LearnRate = recSourceParams.LearnRate.Value;
-                if (recSourceParams.NumFactors != null)
-                    underlyingRecSource.NumFactors = recSourceParams.NumFactors.Value;
-                if (recSourceParams.NumIter != null)
-                    underlyingRecSource.NumIter = recSourceParams.NumIter.Value;
-                if (recSourceParams.OptimizationTarget != null)
-                    underlyingRecSource.Loss = (OptimizationTarget)Enum.Parse(typeof(OptimizationTarget), recSourceParams.OptimizationTarget);
-                if (recSourceParams.RegI != null)
-                    underlyingRecSource.RegI = recSourceParams.RegI.Value;
-                if (recSourceParams.RegU != null)
-                    underlyingRecSource.RegU = recSourceParams.RegU.Value;
+                // operation.Payload's static type is LoadRecSourceRequest.
+                // Its real type will be something like LoadRecSourceRequest<AverageScoreRecSourceParams> thanks to the custom JsonConverter.
+                // A json rec source is expected to have one or more constructors taking types derived from LoadRecSourceRequest.
+                object recSourceObj = Activator.CreateInstance(jsonRecSourceType, operation.Payload);
+                ITrainableJsonRecSource recSource = (ITrainableJsonRecSource)recSourceObj;
 
-                MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization> malRecSource =
-                    new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>(underlyingRecSource,
-                        recSourceParams.MinEpisodesToCountIncomplete, recSourceParams.UseDropped);
-
-                recSource = new BiasedMatrixFactorizationJsonRecSource(malRecSource);
+                state.LoadRecSource(recSource, operation.Payload.Name, operation.Payload.ReplaceExisting);
+                return new Response();
             }
             else
             {
@@ -95,10 +40,6 @@ namespace AnimeRecs.RecService.OperationHandlers
                     message: string.Format("{0} is not a valid rec source type.", operation.Payload.Type)
                 );
             }
-
-            state.LoadRecSource(recSource, operation.Payload.Name, operation.Payload.ReplaceExisting);
-
-            return new Response();
         }
     }
 }

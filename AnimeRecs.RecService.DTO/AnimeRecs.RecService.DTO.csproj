@@ -46,7 +46,7 @@
     <Compile Include="JsonConverters\LoadRecSourceRequestJsonConverter.cs" />
     <Compile Include="MalAnimeRecsExtraResponseData.cs" />
     <Compile Include="MalAnime.cs" />
-    <Compile Include="Recommendation.cs" />
+    <Compile Include="Registrations\RecommendationTypes\Recommendation.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ErrorCodes.cs" />
     <Compile Include="LoadRecSourceRequest.cs" />
@@ -59,10 +59,10 @@
     <Compile Include="PingRequest.cs" />
     <Compile Include="PingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecommendationTypes.cs" />
+    <Compile Include="Registrations\RecommendationTypes\RecommendationTypes.cs" />
     <Compile Include="RecServiceErrorException.cs" />
-    <Compile Include="RecSourceParams.cs" />
-    <Compile Include="RecSourceTypes.cs" />
+    <Compile Include="Registrations\RecSources\RecSourceParams.cs" />
+    <Compile Include="Registrations\RecSources\RecSourceTypes.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="UnloadRecSourceRequest.cs" />
   </ItemGroup>

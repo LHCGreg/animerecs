@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnimeRecs.RecService.DTO;
-using AnimeRecs.RecService.RecSources;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {

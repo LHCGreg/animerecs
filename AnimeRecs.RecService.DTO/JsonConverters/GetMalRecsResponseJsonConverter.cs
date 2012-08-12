@@ -11,16 +11,13 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
         {
             string recType = jObject.Value<string>("RecommendationType");
 
-            if (recType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
-                return new GetMalRecsResponse<AverageScoreRecommendation>();
-            else if (recType.Equals(RecommendationTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
-                return new GetMalRecsResponse<MostPopularRecommendation>();
-            else if (recType.Equals(RecommendationTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
-                return new GetMalRecsResponse<AnimeRecsRecommendation, MalAnimeRecsExtraResponseData>();
-            else if (recType.Equals(RecommendationTypes.RatingPrediction, StringComparison.OrdinalIgnoreCase))
-                return new GetMalRecsResponse<RatingPredictionRecommendation>();
-            else
+            if (!RecommendationTypes.GetMalRecsResponseFactories.ContainsKey(recType))
+            {
+                // fallback
                 return new GetMalRecsResponse<Recommendation>();
+            }
+
+            return RecommendationTypes.GetMalRecsResponseFactories[recType]();
         }
     }
 }

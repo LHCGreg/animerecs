@@ -12,17 +12,13 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
         protected override LoadRecSourceRequest Create(Type objectType, JObject jObject)
         {
  	        string recSourceType = jObject.Value<string>("Type");
-            
-            if(recSourceType.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
-                return new LoadRecSourceRequest<AverageScoreRecSourceParams>();
-            else if(recSourceType.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
-                return new LoadRecSourceRequest<MostPopularRecSourceParams>();
-            else if(recSourceType.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
-                return new LoadRecSourceRequest<AnimeRecsRecSourceParams>();
-            else if(recSourceType.Equals(RecSourceTypes.BiasedMatrixFactorization, StringComparison.OrdinalIgnoreCase))
-                return new LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>();
-            else
+
+            if (!RecSourceTypes.LoadRecSourceRequestFactories.ContainsKey(recSourceType))
+            {
                 throw new Newtonsoft.Json.JsonException(string.Format("Rec source type {0} not recognized.", recSourceType));
+            }
+
+            return RecSourceTypes.LoadRecSourceRequestFactories[recSourceType]();
         }
     }
 }

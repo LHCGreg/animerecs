@@ -6,16 +6,25 @@ using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
 
-namespace AnimeRecs.RecService.RecSources
+namespace AnimeRecs.RecService.Registrations.RecSources
 {
+    [JsonRecSource(RecSourceTypes.MostPopular)]
     internal class MostPopularJsonRecSource : TrainableJsonRecSource<MalMostPopularRecSource, MalUserListEntries,
         IEnumerable<RecEngine.MostPopularRecommendation>, RecEngine.MostPopularRecommendation, GetMalRecsResponse<DTO.MostPopularRecommendation>,
         DTO.MostPopularRecommendation>
     {
-        public MostPopularJsonRecSource(MalMostPopularRecSource underlyingRecSource)
-            : base(underlyingRecSource)
+        public MostPopularJsonRecSource(LoadRecSourceRequest<MostPopularRecSourceParams> request)
+            : base(CreateRecSourceFromRequest(request))
         {
             ;
+        }
+
+        private static MalMostPopularRecSource CreateRecSourceFromRequest(LoadRecSourceRequest<MostPopularRecSourceParams> request)
+        {
+            return new MalMostPopularRecSource(
+                minEpisodesToCountIncomplete: request.Params.MinEpisodesToCountIncomplete,
+                useDropped: request.Params.UseDropped
+            );
         }
 
         protected override MalUserListEntries GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest)
