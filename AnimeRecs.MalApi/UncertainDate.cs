@@ -87,7 +87,7 @@ namespace AnimeRecs.MalApi
                 int hash = 23;
                 if (Year != null) hash = hash * 17 + Year.Value;
                 if (Month != null) hash = hash * 17 + Month.Value;
-                if (Day != null) hash += hash * 17 + Day.Value;
+                if (Day != null) hash = hash * 17 + Day.Value;
                 return hash;
             }
         }
