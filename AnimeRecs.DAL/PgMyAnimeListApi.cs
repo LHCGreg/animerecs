@@ -62,6 +62,7 @@ namespace AnimeRecs.DAL
         {
             using (NpgsqlConnection conn = new NpgsqlConnection(m_connectionString))
             {
+                conn.Open();
                 // ILIKE does a table scan. :( The ideal way of doing a case-insensitive search would be to use the citext
                 // data type, but that's an add-on and not part of a standard Postgres install.
                 // This class is only intended to be used for development anyway.
@@ -75,8 +76,9 @@ mal_anime.mal_anime_id, mal_anime.title, mal_anime.mal_anime_type_id, mal_anime.
 mal_anime.start_year, mal_anime.start_month, mal_anime.start_day, mal_anime.end_year, mal_anime.end_month, mal_anime.end_day,
 mal_anime.image_url,
 
-mal_list_entry.rating, mal_list_entry.mal_list_entry_status_id, mal_list_entry.num_episodes_watched, mal_list_entry.started_watching_date,
-mal_list_entry.finished_watching_date, mal_list_entry.last_mal_update,
+mal_list_entry.rating, mal_list_entry.mal_list_entry_status_id, mal_list_entry.num_episodes_watched,
+mal_list_entry.started_watching_year, mal_list_entry.started_watching_month, mal_list_entry.started_watching_day,
+mal_list_entry.finished_watching_year, finished_watching_month, finished_watching_day, mal_list_entry.last_mal_update,
 
 mal_list.synonyms, mal_list.tags
 
