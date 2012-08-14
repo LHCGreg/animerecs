@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.Net.Sockets;
-using AnimeRecs.RecService.DTO;
 using Newtonsoft.Json;
 using MiscUtil.IO;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
-using System.Net;
+using AnimeRecs.RecService.DTO;
+using AnimeRecs.RecService.ClientLib.Registrations;
+using System.Reflection;
 
 namespace AnimeRecs.RecService.ClientLib
 {
@@ -17,9 +19,11 @@ namespace AnimeRecs.RecService.ClientLib
     /// </summary>
     public class AnimeRecsClient : IDisposable
     {
-        private int PortNumber { get; set; }
+        public int PortNumber { get; private set; }
 
         public static readonly int DefaultPort = 5541;
+
+        private ResponseToRecsConverter m_responseToRecs = new ResponseToRecsConverter();
 
         public AnimeRecsClient()
         {
@@ -137,87 +141,21 @@ namespace AnimeRecs.RecService.ClientLib
             // MalRecResultsExtensions.cs contains extension methods for "casting" MalRecResults to a strongly-typed MalRecResults.
             IEnumerable<IRecommendation> results;
 
-            if (response.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
+            Type responseType = response.GetType();
+            // check if m_responseToRecs implements IResponseToRecsConverter<responseType>
+            Type converterInterfaceOpenType = typeof(IResponseToRecsConverter<>);
+            Type converterInterfaceClosedType = converterInterfaceOpenType.MakeGenericType(responseType);
+            if (converterInterfaceClosedType.IsInstanceOfType(m_responseToRecs))
             {
-                GetMalRecsResponse<DTO.AverageScoreRecommendation> specificResponse = (GetMalRecsResponse<DTO.AverageScoreRecommendation>)response;
-
-                List<RecEngine.AverageScoreRecommendation> recommendations = new List<RecEngine.AverageScoreRecommendation>();
-                foreach (DTO.AverageScoreRecommendation dtoRec in specificResponse.Recommendations)
-                {
-                    recommendations.Add(new AnimeRecs.RecEngine.AverageScoreRecommendation(dtoRec.MalAnimeId, dtoRec.NumRatings, dtoRec.AverageScore));
-                }
-
-                results = recommendations;
-            }
-            else if (response.RecommendationType.Equals(RecommendationTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
-            {
-                GetMalRecsResponse<DTO.MostPopularRecommendation> specificResponse = (GetMalRecsResponse<DTO.MostPopularRecommendation>)response;
-
-                List<RecEngine.MostPopularRecommendation> recommendations = new List<RecEngine.MostPopularRecommendation>();
-                foreach (DTO.MostPopularRecommendation dtoRec in specificResponse.Recommendations)
-                {
-                    recommendations.Add(new AnimeRecs.RecEngine.MostPopularRecommendation(
-                        itemId: dtoRec.MalAnimeId,
-                        popularityRank: dtoRec.PopularityRank,
-                        numRatings: dtoRec.NumRatings
-                    ));
-                }
-
-                results = recommendations;
-            }
-            else if (response.RecommendationType.Equals(RecommendationTypes.RatingPrediction, StringComparison.OrdinalIgnoreCase))
-            {
-                GetMalRecsResponse<DTO.RatingPredictionRecommendation> specificResponse = (GetMalRecsResponse<DTO.RatingPredictionRecommendation>)response;
-
-                List<RecEngine.RatingPredictionRecommendation> recommendations = new List<RecEngine.RatingPredictionRecommendation>();
-                foreach (DTO.RatingPredictionRecommendation dtoRec in specificResponse.Recommendations)
-                {
-                    recommendations.Add(new RecEngine.RatingPredictionRecommendation(
-                        itemId: dtoRec.MalAnimeId,
-                        predictedRating: dtoRec.PredictedRating
-                    ));
-                }
-
-                results = recommendations;
-            }
-            else if (response.RecommendationType.Equals(RecommendationTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
-            {
-                GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData> specificResponse = (GetMalRecsResponse<DTO.AnimeRecsRecommendation, DTO.MalAnimeRecsExtraResponseData>)response;
-
-                List<RecEngine.AnimeRecsRecommendation> recommendations = new List<RecEngine.AnimeRecsRecommendation>();
-                foreach (DTO.AnimeRecsRecommendation dtoRec in specificResponse.Recommendations)
-                {
-                    recommendations.Add(new RecEngine.AnimeRecsRecommendation(dtoRec.RecommenderUserId, itemId: dtoRec.MalAnimeId));
-                }
-
-                List<MalAnimeRecsRecommenderUser> recommenders = new List<MalAnimeRecsRecommenderUser>();
-                foreach (DTO.MalAnimeRecsRecommender dtoRecommender in specificResponse.Data.Recommenders)
-                {
-                    HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
-                            dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == true)
-                            .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
-
-                    HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsNotLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
-                            dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == false)
-                            .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
-
-                    recommenders.Add(new MalAnimeRecsRecommenderUser(
-                        userId: dtoRecommender.UserId,
-                        username: dtoRecommender.Username,
-                        recsLiked: recsLiked,
-                        recsNotLiked: recsNotLiked,
-                        allRecommendations: new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
-                            dtoRecommender.Recs.Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore))),
-                        compatibility: dtoRecommender.Compatibility,
-                        compatibilityLowEndpoint: dtoRecommender.CompatibilityLowEndpoint,
-                        compatibilityHighEndpoint: dtoRecommender.CompatibilityHighEndpoint
-                    ));
-                }
-
-                results = new RecEngine.MAL.MalAnimeRecsResults(recommendations, recommenders, specificResponse.Data.TargetScoreUsed);
+                // Good, we have a handler.
+                MethodInfo converterMethod = converterInterfaceClosedType.GetMethod(ResponseToRecsConverter.ConvertMethodName);
+                object conversionResultObj = converterMethod.Invoke(m_responseToRecs, new object[] { response });
+                results = (IEnumerable<IRecommendation>)conversionResultObj;
             }
             else
             {
+                // Fallback. This will throw an exception if the recommendation DTO type is registered in the DTO assembly
+                // but no handler is registered in this assembly.
                 GetMalRecsResponse<DTO.Recommendation> specificResponse = (GetMalRecsResponse<DTO.Recommendation>)response;
                 List<IRecommendation> recommendations = new List<IRecommendation>();
                 foreach (DTO.Recommendation dtoRec in specificResponse.Recommendations)
