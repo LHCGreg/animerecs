@@ -37,6 +37,8 @@ namespace AnimeRecs.Web.Controllers
             Logging.Log.Info("Started processing GetRecs request.");
 
             // Can't have [Required] on input because Mono's RequiredAttribute is not permitted on parameters.
+            // Fixed in Mono trunk - https://bugzilla.xamarin.com/show_bug.cgi?id=6230
+            // But it'll be some time before you can count on that fix being in Mono installations. :(
             if (input == null || !ModelState.IsValid)
             {
                 Logging.Log.Info("Invalid input.");
