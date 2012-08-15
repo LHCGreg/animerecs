@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimeRecsClient.cs" />
-    <Compile Include="IResponseToRecommendationConverter.cs" />
+    <Compile Include="IResponseToRecsConverter.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MalRecResults.cs" />
     <Compile Include="MalRecResultsExtensions.cs" />

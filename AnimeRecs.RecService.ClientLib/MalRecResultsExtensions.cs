@@ -9,6 +9,12 @@ namespace AnimeRecs.RecService.ClientLib
 {
     public static class MalRecResultsExtensions
     {
+        public static MalRecResults<T> CastRecs<T>(this MalRecResults<IEnumerable<IRecommendation>> basicResults)
+            where T : IEnumerable<IRecommendation>
+        {
+            return new MalRecResults<T>((T)basicResults.Results, basicResults.AnimeInfo, basicResults.RecommendationType);
+        }
+        
         public static MalRecResults<IEnumerable<RecEngine.AverageScoreRecommendation>> AsAverageScoreResults(this MalRecResults<IEnumerable<IRecommendation>> basicResults)
         {
             if (basicResults.RecommendationType.Equals(RecommendationTypes.AverageScore, StringComparison.OrdinalIgnoreCase))

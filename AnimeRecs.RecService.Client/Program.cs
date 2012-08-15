@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Net.Sockets;
+using System.Reflection;
 using MiscUtil.IO;
 using Newtonsoft.Json;
-using AnimeRecs.RecService.ClientLib;
-using AnimeRecs.RecService.DTO;
 using AnimeRecs.MalApi;
 using AnimeRecs.DAL;
-using System.Globalization;
+using AnimeRecs.RecService.ClientLib;
+using AnimeRecs.RecService.DTO;
+using AnimeRecs.RecService.Client.Registrations.Output;
 
 namespace AnimeRecs.RecService.Client
 {
@@ -151,154 +153,14 @@ namespace AnimeRecs.RecService.Client
 
         private static void PrintRecs(MalRecResults<IEnumerable<RecEngine.IRecommendation>> recs, IDictionary<int, RecEngine.MAL.MalListEntry> animeList, decimal targetScore)
         {
-            if(recs.AsAnimeRecsResults() != null)
-            {
-                PrintAnimeRecsResults(recs.AsAnimeRecsResults(), animeList, targetScore);
-                return;
-            }
-
             if (!recs.Results.Any())
             {
                 Console.WriteLine("No recommendations.");
                 return;
             }
 
-            int recNumber = 1;
-            foreach (RecEngine.IRecommendation generalRec in recs.Results)
-            {
-                if (generalRec is RecEngine.AverageScoreRecommendation)
-                {
-                    if (recNumber == 1)
-                    {
-                        Console.WriteLine("     {0,-52} {1,-6} {2}", "Anime", "Avg", "# ratings");
-                    }
-
-                    RecEngine.AverageScoreRecommendation rec = (RecEngine.AverageScoreRecommendation)generalRec;
-                    Console.WriteLine("{0,3}. {1,-52} {2,-6:f2} {3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.AverageScore, rec.NumRatings);
-                }
-                else if (generalRec is RecEngine.MostPopularRecommendation)
-                {
-                    if (recNumber == 1)
-                    {
-                        Console.WriteLine("     {0,-52} {1,4} {2}", "Anime", "Rank", "# ratings");
-                    }
-
-                    RecEngine.MostPopularRecommendation rec = (RecEngine.MostPopularRecommendation)generalRec;
-                    Console.WriteLine("{0,3}. {1,-52} {2,4} {3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.PopularityRank, rec.NumRatings);
-
-                }
-                else if (generalRec is RecEngine.RatingPredictionRecommendation)
-                {
-                    if (recNumber == 1)
-                    {
-                        Console.WriteLine("     {0,-60} {1}", "Anime", "Prediction");
-                    }
-
-                    RecEngine.RatingPredictionRecommendation rec = (RecEngine.RatingPredictionRecommendation)generalRec;
-                    Console.WriteLine("{0,3}. {1,-60} {2:F3}", recNumber, recs.AnimeInfo[rec.ItemId].Title, rec.PredictedRating);
-                }
-                else
-                {
-                    if (recNumber == 1)
-                    {
-                        Console.WriteLine("     {0,-65}", "Anime");
-                    }
-
-                    Console.WriteLine("{0,3}. {1.-65}", recNumber, recs.AnimeInfo[generalRec.ItemId].Title);
-                }
-
-                recNumber++;
-            }
-        }
-
-        private static void PrintAnimeRecsResults(MalRecResults<RecEngine.MAL.MalAnimeRecsResults> results, IDictionary<int, RecEngine.MAL.MalListEntry> animeList, decimal targetScore)
-        {
-            int numRecommendersPrinted = 0;
-            
-            foreach (RecEngine.MAL.MalAnimeRecsRecommenderUser recommender in results.Results.Recommenders)
-            {
-                if (numRecommendersPrinted > 10)
-                {
-                    break;
-                }
-                
-                string recsLikedString;
-
-                if (recommender.NumRecsInCommon > 0)
-                {
-                    recsLikedString = string.Format("{0:P2}", (double) recommender.RecsLiked.Count / recommender.NumRecsInCommon);
-                }
-                else
-                {
-                    recsLikedString = string.Format("{0:P2}", 0);
-                }
-
-                Console.WriteLine("{0}'s recommendations ({1}/{2} {3} recs liked, {4:P2} - {5:P2} estimated compatibility",
-                    recommender.Username, recommender.RecsLiked.Count, recommender.NumRecsInCommon, recsLikedString,
-                    recommender.CompatibilityLowEndpoint ?? 0, recommender.CompatibilityHighEndpoint ?? 0);
-
-                Console.WriteLine("{0,-52} {1,-5} {2,-4} {3,-5} {4,-4} {5}", "Anime", "State", "Like", "Their", "Your", "Avg");
-
-                foreach (RecEngine.MAL.MalAnimeRecsRecommenderRecommendation recommendation in recommender.AllRecommendations.OrderBy(
-                    rec => !recommender.RecsLiked.Contains(rec) && !recommender.RecsNotLiked.Contains(rec) ? 0 :
-                        recommender.RecsLiked.Contains(rec) ? 1 :
-                        2
-                    )
-                    .ThenByDescending(rec => rec.RecommenderScore)
-                    .ThenByDescending(rec => rec.AverageScore))
-                {
-                    string status;
-                    decimal? yourRating = null;
-                    if (!animeList.ContainsKey(recommendation.MalAnimeId))
-                    {
-                        status = "-"; // not watched, not in list
-                    }
-                    else
-                    {
-                        if (animeList[recommendation.MalAnimeId].Status == CompletionStatus.Completed)
-                            status = "comp";
-                        else if (animeList[recommendation.MalAnimeId].Status == CompletionStatus.Dropped)
-                            status = "drop";
-                        else if (animeList[recommendation.MalAnimeId].Status == CompletionStatus.OnHold)
-                            status = "hold";
-                        else if (animeList[recommendation.MalAnimeId].Status == CompletionStatus.PlanToWatch)
-                            status = "plan";
-                        else if (animeList[recommendation.MalAnimeId].Status == CompletionStatus.Watching)
-                            status = "watch";
-                        else
-                            status = "?";
-
-                        yourRating = animeList[recommendation.MalAnimeId].Rating;
-                    }
-
-                    string yourRatingString;
-                    if (yourRating != null)
-                    {
-                        yourRatingString = yourRating.Value.ToString(CultureInfo.CurrentCulture);
-                    }
-                    else
-                    {
-                        yourRatingString = "-";
-                    }
-
-                    string likedString;
-                    if (recommender.RecsLiked.Contains(recommendation))
-                        likedString = "+";
-                    else if (recommender.RecsNotLiked.Contains(recommendation))
-                        likedString = "-";
-                    else
-                        likedString = "?";
-
-                    Console.WriteLine("{0,-52} {1,-5} {2,-4} {3,-5:F0} {4,-4:F0} {5:F2}",
-                        results.AnimeInfo[recommendation.MalAnimeId].Title, status, likedString, recommendation.RecommenderScore,
-                        yourRatingString, recommendation.AverageScore);
-                }
-
-                Console.WriteLine();
-                Console.WriteLine();
-
-                numRecommendersPrinted++;
-            }
+            ResultsPrinter resultsPrinter = new ResultsPrinter();
+            resultsPrinter.PrintResults(recs, animeList, targetScore);
         }
     }
 }
