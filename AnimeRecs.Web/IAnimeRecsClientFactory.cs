@@ -9,7 +9,7 @@ namespace AnimeRecs.Web
     // Must be thread-safe and return a thread-safe object
     public interface IAnimeRecsClientFactory : IDisposable
     {
-        AnimeRecsClient GetClient();
+        AnimeRecsClient GetClient(string recSourceName);
     }
 }
 

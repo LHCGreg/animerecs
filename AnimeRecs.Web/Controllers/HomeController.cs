@@ -29,7 +29,7 @@ namespace AnimeRecs.Web.Controllers
 
             string recSourceType = null;
 
-            using (AnimeRecsClient client = m_recClientFactory.GetClient())
+            using (AnimeRecsClient client = m_recClientFactory.GetClient(algorithm))
             {
                 try
                 {

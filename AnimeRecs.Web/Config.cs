@@ -5,6 +5,7 @@ using System.Web;
 using MiscUtil.Extensions;
 using System.Configuration;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace AnimeRecs.Web
 {
@@ -22,10 +23,12 @@ namespace AnimeRecs.Web
         public string OwnerMalLink { get; private set; }
         public string HtmlBeforeBodyEnd { get; private set; }
         public string PostgresConnectionString { get; private set; }
+        public IDictionary<string, int> SpecialRecSourcePorts { get; private set; }
 
         public Config(TimeSpan animeListCacheExpiration, int? recServicePort, string defaultRecSource, int maximumRecommendersToReturn,
             int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, int malTimeoutInMs,
-            bool useLocalDbMalApi, string ownerMalLink, string htmlBeforeBodyEnd, string postgresConnectionString)
+            bool useLocalDbMalApi, string ownerMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
+            IDictionary<string, int> specialRecSourcePorts)
         {
             AnimeListCacheExpiration = animeListCacheExpiration;
             RecServicePort = recServicePort;
@@ -52,6 +55,8 @@ namespace AnimeRecs.Web
             OwnerMalLink = ownerMalLink;
 
             HtmlBeforeBodyEnd = htmlBeforeBodyEnd ?? "";
+
+            SpecialRecSourcePorts = specialRecSourcePorts;
         }
 
         public static Config FromWebConfig()
@@ -92,6 +97,19 @@ namespace AnimeRecs.Web
                 htmlBeforeBodyEnd = ConfigurationManager.AppSettings["HtmlBeforeBodyEnd"];
             }
 
+            Dictionary<string, int> specialRecSourcePorts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+            Regex specialRecSourcePortConfigKeyRegex = new Regex(@"RecService\.(?<RecSource>.+)\.Port");
+            foreach (string configKey in ConfigurationManager.AppSettings.AllKeys)
+            {
+                Match m = specialRecSourcePortConfigKeyRegex.Match(configKey);
+                if (m.Success)
+                {
+                    string recSourceName = m.Groups["RecSource"].Value;
+                    specialRecSourcePorts[recSourceName] = int.Parse(ConfigurationManager.AppSettings[configKey]);
+                }
+            }
+
             return new Config
             (
                 animeListCacheExpiration: malCacheExpiration,
@@ -105,7 +123,8 @@ namespace AnimeRecs.Web
                 useLocalDbMalApi: useLocalDbMalApi,
                 ownerMalLink: ownerMalLink,
                 htmlBeforeBodyEnd: htmlBeforeBodyEnd,
-                postgresConnectionString: postgresConnectionString
+                postgresConnectionString: postgresConnectionString,
+                specialRecSourcePorts: specialRecSourcePorts
             );
         }
     }

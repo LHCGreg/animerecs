@@ -8,22 +8,32 @@ namespace AnimeRecs.Web
 {
     public class RecClientFactory : IAnimeRecsClientFactory
     {
-        private int? Port { get; set; }
+        private int? DefaultPort { get; set; }
+        private IDictionary<string, int> SpecialRecSourcePorts { get; set; }
 
-        public RecClientFactory(int? port = null)
+        public RecClientFactory(int? defaultPort, IDictionary<string, int> specialRecSourcePorts)
         {
-            Port = port;
+            DefaultPort = defaultPort;
+            SpecialRecSourcePorts = specialRecSourcePorts;
         }
 
-        public AnimeRecsClient GetClient()
+        public AnimeRecsClient GetClient(string recSourceName)
         {
-            if (Port == null)
+            if (recSourceName != null && SpecialRecSourcePorts.ContainsKey(recSourceName))
             {
-                return new AnimeRecsClient();
+                int port = SpecialRecSourcePorts[recSourceName];
+                return new AnimeRecsClient(port);
             }
             else
             {
-                return new AnimeRecsClient(Port.Value);
+                if (DefaultPort == null)
+                {
+                    return new AnimeRecsClient();
+                }
+                else
+                {
+                    return new AnimeRecsClient(DefaultPort.Value);
+                }
             }
         }
 

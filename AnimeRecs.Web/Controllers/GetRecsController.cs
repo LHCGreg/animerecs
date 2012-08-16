@@ -69,7 +69,7 @@ namespace AnimeRecs.Web.Controllers
                     animeList[listEntry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry(listEntry.Score, listEntry.Status, listEntry.NumEpisodesWatched);
                 }
 
-                using (AnimeRecsClient recClient = m_recClientFactory.GetClient())
+                using (AnimeRecsClient recClient = m_recClientFactory.GetClient(input.RecSourceName))
                 {
                     MalRecResults<IEnumerable<IRecommendation>> recResults;
                     if (input.GoodPercentile != null)

@@ -47,7 +47,7 @@ namespace AnimeRecs.Web
                 ModelBinders.Binders.Add(typeof(decimal?), new NullableDecimalModelBinder());
 
                 AppGlobals.Config = Config.FromWebConfig();
-                AppGlobals.RecClientFactory = new RecClientFactory(AppGlobals.Config.RecServicePort);
+                AppGlobals.RecClientFactory = new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts);
                 disposablesInitialized.Add(AppGlobals.RecClientFactory);
 
                 IMyAnimeListApi api;
