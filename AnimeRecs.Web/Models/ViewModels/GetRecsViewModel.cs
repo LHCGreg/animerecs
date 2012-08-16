@@ -8,31 +8,14 @@ using AnimeRecs.RecService.ClientLib;
 
 namespace AnimeRecs.Web.Models.ViewModels
 {
-    public class GetRecsViewModel<TResults>
-        where TResults : IEnumerable<IRecommendation>
+    public class GetRecsViewModel
     {
-        /// <summary>
-        /// Contains title, anime type, etc of any anime referred to by Results.
-        /// </summary>
-        public IDictionary<int, MalAnime> AnimeInfo { get; private set; }
-        public string RecommendationType { get; private set; }
-        public TResults Results { get; private set; }
+        public MalRecResults<IEnumerable<IRecommendation>> Results { get; private set; }
         public IDictionary<int, MalListEntry> UserAnimeList { get; private set; }
 
-        public GetRecsViewModel(IDictionary<int, MalAnime> animeInfo, string recommendationType, TResults results,
-            IDictionary<int, MalListEntry> userAnimeList)
+        public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, IDictionary<int, MalListEntry> userAnimeList)
         {
-            AnimeInfo = animeInfo;
-            RecommendationType = recommendationType;
             Results = results;
-            UserAnimeList = userAnimeList;
-        }
-
-        public GetRecsViewModel(MalRecResults<TResults> resultsFromService, IDictionary<int, MalListEntry> userAnimeList)
-        {
-            AnimeInfo = resultsFromService.AnimeInfo;
-            RecommendationType = resultsFromService.RecommendationType;
-            Results = resultsFromService.Results;
             UserAnimeList = userAnimeList;
         }
     }

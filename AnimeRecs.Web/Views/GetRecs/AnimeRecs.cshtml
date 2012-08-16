@@ -3,15 +3,17 @@
 @using AnimeRecs.RecEngine.MAL
 @using AnimeRecs.Web
 @using AnimeRecs.Web.Models.ViewModels
-@model GetRecsViewModel<MalAnimeRecsResults>
+@model GetRecsViewModel
            
-@* The warning about conditional compilation on @Model can be safely ignored. *@
+@{ MalRecResults<MalAnimeRecsResults> results = Model.Results.CastRecs<MalAnimeRecsResults>(); }
+           
+@* The warning about conditional compilation on @results can be safely ignored. *@
 <script type="text/javascript">
-    $(".datainput .good").val(@Model.Results.TargetScoreUsed);
+    $(".datainput .good").val(@results.Results.TargetScoreUsed);
 </script>
 Your best matches are
 <ol class="matchList">
-    @foreach (MalAnimeRecsRecommenderUser recommender in Model.Results.Recommenders.Take(AppGlobals.Config.MaximumRecommendersToReturn))
+    @foreach (MalAnimeRecsRecommenderUser recommender in results.Results.Recommenders.Take(AppGlobals.Config.MaximumRecommendersToReturn))
     {
         string percentLiked = ((double)recommender.RecsLiked.Count / recommender.NumRecsInCommon).ToString("P2");
         string lowerBound = (recommender.CompatibilityLowEndpoint ?? 0.0).ToString("P2");
@@ -62,7 +64,7 @@ Your best matches are
                             rowClass = "class=\"badRec\"";
                         }
                         <tr @Html.Raw(rowClass)>
-                            <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model.AnimeInfo[recommendation.MalAnimeId].Title)
+                            <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, results.AnimeInfo[recommendation.MalAnimeId].Title)
                             </td>
                             <td>
                                 @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId))

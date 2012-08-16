@@ -2,7 +2,7 @@
 @using AnimeRecs.RecEngine
 @using AnimeRecs.Web
 @using AnimeRecs.Web.Models.ViewModels
-@model GetRecsViewModel<IEnumerable<MostPopularRecommendation>>
+@model GetRecsViewModel
 
 <table class="recsTable">
     <thead>
@@ -22,14 +22,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (MostPopularRecommendation rec in Model.Results)
+        @foreach (MostPopularRecommendation rec in Model.Results.Results.Cast<MostPopularRecommendation>())
         {
             <tr>
                 <td>
-                    @Html.GetRecommendedMalAnimeHtml(rec.ItemId, Model.AnimeInfo[rec.ItemId].Title)
+                    @Html.GetRecommendedMalAnimeHtml(rec.ItemId, Model.Results.AnimeInfo[rec.ItemId].Title)
                 </td>
                 <td>
-                    @Html.MalAnimeTypeAsString(Model.AnimeInfo[rec.ItemId].Type)
+                    @Html.MalAnimeTypeAsString(Model.Results.AnimeInfo[rec.ItemId].Type)
                 </td>
                 <td>
                     @rec.NumRatings

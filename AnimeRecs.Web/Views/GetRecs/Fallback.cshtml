@@ -2,7 +2,7 @@
 @using AnimeRecs.RecEngine
 @using AnimeRecs.Web
 @using AnimeRecs.Web.Models.ViewModels
-@model GetRecsViewModel<IEnumerable<IRecommendation>>
+@model GetRecsViewModel
 
 <table class="recsTable">
     <thead>
@@ -16,14 +16,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (IRecommendation rec in Model.Results)
+        @foreach (IRecommendation rec in Model.Results.Results)
         {
             <tr>
                 <td>
-                    @Html.GetRecommendedMalAnimeHtml(rec.ItemId, Model.AnimeInfo[rec.ItemId].Title)
+                    @Html.GetRecommendedMalAnimeHtml(rec.ItemId, Model.Results.AnimeInfo[rec.ItemId].Title)
                 </td>
                 <td>
-                    @Html.MalAnimeTypeAsString(Model.AnimeInfo[rec.ItemId].Type)
+                    @Html.MalAnimeTypeAsString(Model.Results.AnimeInfo[rec.ItemId].Type)
                 </td>
             </tr>
         }

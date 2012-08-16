@@ -106,41 +106,18 @@ namespace AnimeRecs.Web.Controllers
 
         private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, IDictionary<int, MalListEntry> userAnimeList)
         {
-            if (basicResults.AsAverageScoreResults() != null)
+            ViewEngineResult viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, basicResults.RecommendationType);
+            if (viewSearchResult.View == null)
             {
-                var viewModel = new GetRecsViewModel<IEnumerable<AverageScoreRecommendation>>(basicResults.AsAverageScoreResults(), userAnimeList);
-                return RenderResults(viewModel, "AverageScore");
+                var viewModel = new GetRecsViewModel(basicResults, userAnimeList);
+                viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, "Fallback");
             }
-            else if (basicResults.AsMostPopularResults() != null)
-            {
-                var viewModel = new GetRecsViewModel<IEnumerable<MostPopularRecommendation>>(basicResults.AsMostPopularResults(), userAnimeList);
-                return RenderResults(viewModel, "MostPopular");
-            }
-            else if (basicResults.AsRatingPredictionResults() != null)
-            {
-                var viewModel = new GetRecsViewModel<IEnumerable<RatingPredictionRecommendation>>(basicResults.AsRatingPredictionResults(), userAnimeList);
-                return RenderResults(viewModel, "RatingPrediction");
-            }
-            else if (basicResults.AsAnimeRecsResults() != null)
-            {
-                var viewModel = new GetRecsViewModel<MalAnimeRecsResults>(basicResults.AsAnimeRecsResults(), userAnimeList);
-                return RenderResults(viewModel, "AnimeRecs");
-            }
-            else
-            {
-                var viewModel = new GetRecsViewModel<IEnumerable<IRecommendation>>(basicResults, userAnimeList);
-                return RenderResults(viewModel, "Fallback");
-            }
-        }
 
-        private RecResultsAsHtml RenderResults(object malRecResults, string viewName)
-        {
             using (StringWriter htmlWriter = new StringWriter())
             {
-                ViewData.Model = malRecResults;
-                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
-                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, htmlWriter);
-                viewResult.View.Render(viewContext, htmlWriter);
+                ViewData.Model = new GetRecsViewModel(basicResults, userAnimeList);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewSearchResult.View, ViewData, TempData, htmlWriter);
+                viewSearchResult.View.Render(viewContext, htmlWriter);
 
                 return new RecResultsAsHtml(htmlWriter.ToString());
             }
