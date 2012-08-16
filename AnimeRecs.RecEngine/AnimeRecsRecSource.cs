@@ -117,7 +117,6 @@ namespace AnimeRecs.RecEngine
                 {
                     if (!recIds.Contains(rec) && input.ItemIsOkToRecommend(rec))
                     {
-                        //recs.Add(new AnimeRecsRecommendation(recommender, rec));
                         recs.Add(new AnimeRecsRecommendation(recommenderUserId: recommender.UserId, itemId: rec));
                         recIds.Add(rec);
                         if (recs.Count >= numRecommendationsToTryToGet)
