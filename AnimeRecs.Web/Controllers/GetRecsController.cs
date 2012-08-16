@@ -96,7 +96,7 @@ namespace AnimeRecs.Web.Controllers
 
                     Logging.Log.InfoFormat("Got results from rec service for {0}.", input.MalName);
 
-                    RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, animeList);
+                    RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, userLookup.UserId, userLookup.CanonicalUserName, animeList);
                     Logging.Log.Debug("Converted results to return value.");
 
                     return Json(resultsJson);
@@ -104,18 +104,18 @@ namespace AnimeRecs.Web.Controllers
             }
         }
 
-        private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, IDictionary<int, MalListEntry> userAnimeList)
+        private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, int userId, string userName, IDictionary<int, MalListEntry> userAnimeList)
         {
             ViewEngineResult viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, basicResults.RecommendationType);
             if (viewSearchResult.View == null)
             {
-                var viewModel = new GetRecsViewModel(basicResults, userAnimeList);
+                var viewModel = new GetRecsViewModel(basicResults, userId, userName, userAnimeList);
                 viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, "Fallback");
             }
 
             using (StringWriter htmlWriter = new StringWriter())
             {
-                ViewData.Model = new GetRecsViewModel(basicResults, userAnimeList);
+                ViewData.Model = new GetRecsViewModel(basicResults, userId, userName, userAnimeList);
                 ViewContext viewContext = new ViewContext(ControllerContext, viewSearchResult.View, ViewData, TempData, htmlWriter);
                 viewSearchResult.View.Render(viewContext, htmlWriter);
 

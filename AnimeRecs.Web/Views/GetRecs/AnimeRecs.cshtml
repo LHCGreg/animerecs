@@ -13,7 +13,9 @@
 </script>
 Your best matches are
 <ol class="matchList">
-    @foreach (MalAnimeRecsRecommenderUser recommender in results.Results.Recommenders.Take(AppGlobals.Config.MaximumRecommendersToReturn))
+    @foreach (MalAnimeRecsRecommenderUser recommender in results.Results.Recommenders
+        .Where(recUser => recUser.RecsNotInCommon.Count > 0 && recUser.UserId != Model.UserId)
+        .Take(AppGlobals.Config.MaximumRecommendersToReturn))
     {
         string percentLiked = ((double)recommender.RecsLiked.Count / recommender.NumRecsInCommon).ToString("P2");
         string lowerBound = (recommender.CompatibilityLowEndpoint ?? 0.0).ToString("P2");

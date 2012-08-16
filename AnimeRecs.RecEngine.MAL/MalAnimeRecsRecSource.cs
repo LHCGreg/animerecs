@@ -282,6 +282,7 @@ namespace AnimeRecs.RecEngine.MAL
         public double? CompatibilityLowEndpoint { get; private set; }
         public double? CompatibilityHighEndpoint { get; private set; }
         public ICollection<MalAnimeRecsRecommenderRecommendation> AllRecommendations { get; private set; }
+        public ICollection<MalAnimeRecsRecommenderRecommendation> RecsNotInCommon { get; private set; }
 
         public MalAnimeRecsRecommenderUser(int userId, string username, ICollection<MalAnimeRecsRecommenderRecommendation> recsLiked,
             ICollection<MalAnimeRecsRecommenderRecommendation> recsNotLiked, double? compatibility,
@@ -296,6 +297,9 @@ namespace AnimeRecs.RecEngine.MAL
             CompatibilityLowEndpoint = compatibilityLowEndpoint;
             CompatibilityHighEndpoint = compatibilityHighEndpoint;
             AllRecommendations = allRecommendations;
+
+            RecsNotInCommon = new HashSet<MalAnimeRecsRecommenderRecommendation>(
+                AllRecommendations.Where(rec => !RecsLiked.Contains(rec) && !RecsNotLiked.Contains(rec)));
         }
     }
 

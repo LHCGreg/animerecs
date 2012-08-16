@@ -11,11 +11,15 @@ namespace AnimeRecs.Web.Models.ViewModels
     public class GetRecsViewModel
     {
         public MalRecResults<IEnumerable<IRecommendation>> Results { get; private set; }
+        public int UserId { get; private set; }
+        public string UserName { get; private set; }
         public IDictionary<int, MalListEntry> UserAnimeList { get; private set; }
 
-        public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, IDictionary<int, MalListEntry> userAnimeList)
+        public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, int userId, string userName, IDictionary<int, MalListEntry> userAnimeList)
         {
             Results = results;
+            UserId = userId;
+            UserName = userName;
             UserAnimeList = userAnimeList;
         }
     }
