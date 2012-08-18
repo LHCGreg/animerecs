@@ -481,6 +481,10 @@ tr.badRec {
     background-color: #FFB2B2;
 }
 
+tr.inconclusiveRec {
+    background-color: #DDDDDD;
+}
+
 .footer a {
     color: #3a6dad;
 	text-decoration: none;

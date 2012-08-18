@@ -180,27 +180,29 @@ namespace AnimeRecs.RecEngine.MAL
                 malRecommenders.Add(new MalAnimeRecsRecommenderUser(
                     userId: baseRecommender.UserId,
                     username: m_trainingData.Users[baseRecommender.UserId].MalUsername,
-                    recsLiked: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.RecsLiked.OrderBy(
-                        malAnimeId => new Tuple<int, int>(baseRecommender.UserId, malAnimeId), new DelegateComparer<Tuple<int, int>>(CompareRecs))
+                    recsLiked: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.RecsLiked
                         .Select(malAnimeId => new MalAnimeRecsRecommenderRecommendation(malAnimeId,
                             m_trainingData.Users[baseRecommender.UserId].Entries[malAnimeId].Rating, m_itemAverages[malAnimeId])
                         )
                     ),
-                    recsNotLiked: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.RecsNotLiked.OrderBy(
-                        malAnimeId => new Tuple<int, int>(baseRecommender.UserId, malAnimeId), new DelegateComparer<Tuple<int, int>>(CompareRecs))
+                    recsNotLiked: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.RecsNotLiked
+                        .Select(malAnimeId => new MalAnimeRecsRecommenderRecommendation(malAnimeId,
+                            m_trainingData.Users[baseRecommender.UserId].Entries[malAnimeId].Rating, m_itemAverages[malAnimeId])
+                        )
+                    ),
+                    recsInconclusive: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.RecsInconclusive
+                        .Select(malAnimeId => new MalAnimeRecsRecommenderRecommendation(malAnimeId,
+                            m_trainingData.Users[baseRecommender.UserId].Entries[malAnimeId].Rating, m_itemAverages[malAnimeId])
+                        )
+                    ),
+                    recsNotInCommon: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.RecsNotInCommon
                         .Select(malAnimeId => new MalAnimeRecsRecommenderRecommendation(malAnimeId,
                             m_trainingData.Users[baseRecommender.UserId].Entries[malAnimeId].Rating, m_itemAverages[malAnimeId])
                         )
                     ),
                     compatibility: baseRecommender.Compatibility,
                     compatibilityLowEndpoint: baseRecommender.CompatibilityLowEndpoint,
-                    compatibilityHighEndpoint: baseRecommender.CompatibilityHighEndpoint,
-                    
-                    allRecommendations: new HashSet<MalAnimeRecsRecommenderRecommendation>(baseRecommender.AllRecommendations
-                        .Select(malAnimeId => new MalAnimeRecsRecommenderRecommendation(malAnimeId,
-                            m_trainingData.Users[baseRecommender.UserId].Entries[malAnimeId].Rating, m_itemAverages[malAnimeId])
-                        )
-                    )
+                    compatibilityHighEndpoint: baseRecommender.CompatibilityHighEndpoint
                 ));
             }
 
@@ -277,29 +279,29 @@ namespace AnimeRecs.RecEngine.MAL
         public string Username { get; private set; }
         public ICollection<MalAnimeRecsRecommenderRecommendation> RecsLiked { get; private set; }
         public ICollection<MalAnimeRecsRecommenderRecommendation> RecsNotLiked { get; private set; }
-        public int NumRecsInCommon { get { return RecsLiked.Count + RecsNotLiked.Count; } }
+        public ICollection<MalAnimeRecsRecommenderRecommendation> RecsInconclusive { get; private set; }
+        public ICollection<MalAnimeRecsRecommenderRecommendation> RecsNotInCommon { get; private set; }
+        public int NumRecsWithJudgment { get { return RecsLiked.Count + RecsNotLiked.Count; } }
         public double? Compatibility { get; private set; }
         public double? CompatibilityLowEndpoint { get; private set; }
         public double? CompatibilityHighEndpoint { get; private set; }
         public ICollection<MalAnimeRecsRecommenderRecommendation> AllRecommendations { get; private set; }
-        public ICollection<MalAnimeRecsRecommenderRecommendation> RecsNotInCommon { get; private set; }
-
+        
         public MalAnimeRecsRecommenderUser(int userId, string username, ICollection<MalAnimeRecsRecommenderRecommendation> recsLiked,
-            ICollection<MalAnimeRecsRecommenderRecommendation> recsNotLiked, double? compatibility,
-            double? compatibilityLowEndpoint, double? compatibilityHighEndpoint,
-            ICollection<MalAnimeRecsRecommenderRecommendation> allRecommendations)
+            ICollection<MalAnimeRecsRecommenderRecommendation> recsNotLiked, ICollection<MalAnimeRecsRecommenderRecommendation> recsInconclusive,
+            ICollection<MalAnimeRecsRecommenderRecommendation> recsNotInCommon, double? compatibility, double? compatibilityLowEndpoint,
+            double? compatibilityHighEndpoint)
         {
             UserId = userId;
             Username = username;
             RecsLiked = recsLiked;
             RecsNotLiked = recsNotLiked;
+            RecsInconclusive = recsInconclusive;
+            RecsNotInCommon = recsNotInCommon;
+            AllRecommendations = new HashSet<MalAnimeRecsRecommenderRecommendation>(recsLiked.Concat(recsNotLiked).Concat(recsInconclusive).Concat(recsNotInCommon));
             Compatibility = compatibility;
             CompatibilityLowEndpoint = compatibilityLowEndpoint;
             CompatibilityHighEndpoint = compatibilityHighEndpoint;
-            AllRecommendations = allRecommendations;
-
-            RecsNotInCommon = new HashSet<MalAnimeRecsRecommenderRecommendation>(
-                AllRecommendations.Where(rec => !RecsLiked.Contains(rec) && !RecsNotLiked.Contains(rec)));
         }
     }
 

@@ -5,6 +5,7 @@ using System.Web;
 using System.Globalization;
 using AnimeRecs.MalApi;
 using System.Web.Mvc;
+using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.Web
 {
@@ -71,6 +72,46 @@ namespace AnimeRecs.Web
                     return "???";
             }
         }
+
+        public static AnimeRecsRecommendationType GetRecommendationType(MalAnimeRecsRecommenderUser recommender,
+            MalAnimeRecsRecommenderRecommendation rec, IDictionary<int, MalListEntry> userAnimeList)
+        {
+            if (recommender.RecsNotInCommon.Contains(rec))
+            {
+                return AnimeRecsRecommendationType.UsefulRecommendation;
+            }
+            else if (recommender.RecsInconclusive.Contains(rec))
+            {
+                if (userAnimeList.ContainsKey(rec.MalAnimeId) &&
+                    (userAnimeList[rec.MalAnimeId].Status == CompletionStatus.Watching
+                    || userAnimeList[rec.MalAnimeId].Status == CompletionStatus.PlanToWatch
+                    || userAnimeList[rec.MalAnimeId].Status == CompletionStatus.OnHold))
+                {
+                    return AnimeRecsRecommendationType.UsefulRecommendation;
+                }
+                else
+                {
+                    return AnimeRecsRecommendationType.Inconclusive;
+                }
+            }
+            else if (recommender.RecsLiked.Contains(rec))
+            {
+                return AnimeRecsRecommendationType.Liked;
+            }
+            else
+            {
+                return AnimeRecsRecommendationType.NotLiked;
+            }
+        }
+    }
+
+    public enum AnimeRecsRecommendationType
+    {
+        // Useful recommendations include "plan to watch", "watching", and "on hold"
+        UsefulRecommendation = 0,
+        Liked = 1,
+        Inconclusive = 2,
+        NotLiked = 3
     }
 }
 

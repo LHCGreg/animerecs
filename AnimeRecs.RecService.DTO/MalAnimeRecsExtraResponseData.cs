@@ -49,10 +49,18 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    public enum AnimeRecsRecommendationJudgment
+    {
+        Liked,
+        NotLiked,
+        Inconclusive,
+        NotInCommon
+    }
+
     public class MalAnimeRecsRecommenderRecommendation
     {
         public int MalAnimeId { get; set; }
-        public bool? Liked { get; set; }
+        public AnimeRecsRecommendationJudgment Judgment { get; set; }
         public decimal? RecommenderScore { get; set; }
         public double AverageScore { get; set; }
 
@@ -61,10 +69,10 @@ namespace AnimeRecs.RecService.DTO
             ;
         }
 
-        public MalAnimeRecsRecommenderRecommendation(int malAnimeId, bool? liked, decimal? recommenderScore, double averageScore)
+        public MalAnimeRecsRecommenderRecommendation(int malAnimeId, AnimeRecsRecommendationJudgment judgment, decimal? recommenderScore, double averageScore)
         {
             MalAnimeId = malAnimeId;
-            Liked = liked;
+            Judgment = judgment;
             RecommenderScore = recommenderScore;
             AverageScore = averageScore;
         }

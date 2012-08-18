@@ -17,14 +17,14 @@ Your best matches are
         .Where(recUser => recUser.RecsNotInCommon.Count > 0 && recUser.UserId != Model.UserId)
         .Take(AppGlobals.Config.MaximumRecommendersToReturn))
     {
-        string percentLiked = ((double)recommender.RecsLiked.Count / recommender.NumRecsInCommon).ToString("P2");
+        string percentLiked = ((double)recommender.RecsLiked.Count / recommender.NumRecsWithJudgment).ToString("P2");
         string lowerBound = (recommender.CompatibilityLowEndpoint ?? 0.0).ToString("P2");
         string upperBound = (recommender.CompatibilityHighEndpoint ?? 0.0).ToString("P2");
         
         <li>
             <div class="userhead">
                 <a href="@Html.AttributeEncode(ViewHelpers.GetMalListUrl(recommender.Username))" class="recommender">@recommender.Username</a>'s
-                recommendations <span class="compatibilityRating">(@recommender.RecsLiked.Count/@recommender.NumRecsInCommon
+                recommendations <span class="compatibilityRating">(@recommender.RecsLiked.Count/@recommender.NumRecsWithJudgment
                     @percentLiked recs liked, @lowerBound - @upperBound estimated compatibility)</span>
             </div>
             <table class="recsTable">
@@ -49,21 +49,23 @@ Your best matches are
                 </thead>
                 <tbody>
                     @foreach (MalAnimeRecsRecommenderRecommendation recommendation in recommender.AllRecommendations.OrderBy(
-                    rec => !recommender.RecsLiked.Contains(rec) && !recommender.RecsNotLiked.Contains(rec) ? 0 :
-                        recommender.RecsLiked.Contains(rec) ? 1 :
-                        2
-                    )
+                    rec => ViewHelpers.GetRecommendationType(recommender, rec, Model.UserAnimeList))
                     .ThenByDescending(rec => rec.RecommenderScore)
                     .ThenByDescending(rec => rec.AverageScore))
                     {
+                        AnimeRecsRecommendationType recType = ViewHelpers.GetRecommendationType(recommender, recommendation, Model.UserAnimeList);
                         string rowClass = "";
-                        if (recommender.RecsLiked.Contains(recommendation))
+                        if (recType == AnimeRecsRecommendationType.Liked)
                         {
                             rowClass = "class=\"goodRec\"";
                         }
-                        else if (recommender.RecsNotLiked.Contains(recommendation))
+                        else if (recType == AnimeRecsRecommendationType.NotLiked)
                         {
                             rowClass = "class=\"badRec\"";
+                        }
+                        else if(recType == AnimeRecsRecommendationType.Inconclusive)
+                        {
+                            rowClass = "class=\"inconclusiveRec\"";
                         }
                         <tr @Html.Raw(rowClass)>
                             <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, results.AnimeInfo[recommendation.MalAnimeId].Title)

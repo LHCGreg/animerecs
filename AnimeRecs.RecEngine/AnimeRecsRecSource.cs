@@ -78,7 +78,9 @@ namespace AnimeRecs.RecEngine
             foreach (Recommender recommender in Recommenders)
             {
                 ICollection<int> recsLiked = new HashSet<int>();
-                ICollection<int> recsDisliked = new HashSet<int>();
+                ICollection<int> recsNotLiked = new HashSet<int>();
+                ICollection<int> recsInconclusive = new HashSet<int>();
+                ICollection<int> recsNotInCommon = new HashSet<int>();
                 foreach (int recItemId in recommender.Recommendations)
                 {
                     if (input.ClassifiedInput.Liked.ContainsItem(recItemId))
@@ -87,11 +89,25 @@ namespace AnimeRecs.RecEngine
                     }
                     else if (input.ClassifiedInput.NotLiked.ContainsItem(recItemId))
                     {
-                        recsDisliked.Add(recItemId);
+                        recsNotLiked.Add(recItemId);
+                    }
+                    else if (input.OriginalInput.ContainsItem(recItemId))
+                    {
+                        recsInconclusive.Add(recItemId);
+                    }
+                    else
+                    {
+                        recsNotInCommon.Add(recItemId);
                     }
                 }
 
-                recommendersWithCompatibility.Add(new AnimeRecsRecommenderUser(recommender.UserId, recsLiked, recsDisliked, recommender.Recommendations));
+                recommendersWithCompatibility.Add(new AnimeRecsRecommenderUser(
+                    userId: recommender.UserId,
+                    recsLiked: recsLiked,
+                    recsNotLiked: recsNotLiked,
+                    recsInconclusive: recsInconclusive,
+                    recsNotInCommon: recsNotInCommon
+                    ));
             }
 
             recommendersWithCompatibility.Sort((x, y) => y.CompatibilityLowEndpoint.GetValueOrDefault().CompareTo(x.CompatibilityLowEndpoint.GetValueOrDefault()));
@@ -231,20 +247,24 @@ namespace AnimeRecs.RecEngine
         public int UserId { get; private set; }
         public ICollection<int> RecsLiked { get; private set; }
         public ICollection<int> RecsNotLiked { get; private set; }
-        public int NumRecsInCommon { get { return RecsLiked.Count + RecsNotLiked.Count; } }
-        public double? Compatibility { get { return NumRecsInCommon > 0 ? ((double)RecsLiked.Count) / NumRecsInCommon : (double?)null; } }
+        public ICollection<int> RecsInconclusive { get; private set; }
+        public ICollection<int> RecsNotInCommon { get; private set; }
+        public int NumRecsWithJudgment { get { return RecsLiked.Count + RecsNotLiked.Count; } }
+        public double? Compatibility { get { return NumRecsWithJudgment > 0 ? ((double)RecsLiked.Count) / NumRecsWithJudgment : (double?)null; } }
         public double? CompatibilityLowEndpoint { get; private set; }
         public double? CompatibilityHighEndpoint { get; private set; }
         public ICollection<int> AllRecommendations { get; private set; }
 
-        public AnimeRecsRecommenderUser(int userId, ICollection<int> recsLiked, ICollection<int> recsNotLiked, ICollection<int> allRecommendations)
+        public AnimeRecsRecommenderUser(int userId, ICollection<int> recsLiked, ICollection<int> recsNotLiked, ICollection<int> recsInconclusive, ICollection<int> recsNotInCommon)
         {
             UserId = userId;
             RecsLiked = recsLiked;
             RecsNotLiked = recsNotLiked;
-            AllRecommendations = allRecommendations;
+            RecsInconclusive = recsInconclusive;
+            RecsNotInCommon = recsNotInCommon;
+            AllRecommendations = new HashSet<int>(RecsLiked.Concat(RecsNotLiked).Concat(RecsInconclusive).Concat(RecsNotInCommon));
 
-            if (NumRecsInCommon == 0)
+            if (NumRecsWithJudgment == 0)
             {
                 CompatibilityLowEndpoint = null;
                 CompatibilityHighEndpoint = null;
@@ -252,7 +272,7 @@ namespace AnimeRecs.RecEngine
             else
             {
                 Tuple<double, double> confidenceInterval95Percent =
-                    ConfidenceInterval.Get95PercentConfidenceInterval(Compatibility.Value, NumRecsInCommon);
+                    ConfidenceInterval.Get95PercentConfidenceInterval(Compatibility.Value, NumRecsWithJudgment);
                 CompatibilityLowEndpoint = confidenceInterval95Percent.Item1;
                 CompatibilityHighEndpoint = confidenceInterval95Percent.Item2;
             }
@@ -260,7 +280,7 @@ namespace AnimeRecs.RecEngine
 
         public override string ToString()
         {
-            return string.Format("{0}/{1} {2:P2} ({3:P2}-{4:P2})", RecsLiked.Count, NumRecsInCommon,
+            return string.Format("{0}/{1} {2:P2} ({3:P2}-{4:P2})", RecsLiked.Count, NumRecsWithJudgment,
                 Compatibility, CompatibilityLowEndpoint, CompatibilityHighEndpoint);
         }
     }

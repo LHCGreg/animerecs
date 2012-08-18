@@ -22,21 +22,37 @@ namespace AnimeRecs.RecService.ClientLib.Registrations
             List<MalAnimeRecsRecommenderUser> recommenders = new List<MalAnimeRecsRecommenderUser>();
             foreach (DTO.MalAnimeRecsRecommender dtoRecommender in response.Data.Recommenders)
             {
-                HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
-                        dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == true)
-                        .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
-
-                HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsNotLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
-                        dtoRecommender.Recs.Where(rec => rec.Liked.HasValue && rec.Liked.Value == false)
-                        .Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore)));
+                HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>();
+                HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsNotLiked = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>();
+                HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsInconclusive = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>();
+                HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation> recsNotInCommon = new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>();
+                
+                foreach (DTO.MalAnimeRecsRecommenderRecommendation rec in dtoRecommender.Recs)
+                {
+                    switch (rec.Judgment)
+                    {
+                        case AnimeRecsRecommendationJudgment.Liked:
+                            recsLiked.Add(new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore));
+                            break;
+                        case AnimeRecsRecommendationJudgment.NotLiked:
+                            recsNotLiked.Add(new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore));
+                            break;
+                        case AnimeRecsRecommendationJudgment.Inconclusive:
+                            recsInconclusive.Add(new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore));
+                            break;
+                        case AnimeRecsRecommendationJudgment.NotInCommon:
+                            recsNotInCommon.Add(new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore));
+                            break;
+                    }
+                }
 
                 recommenders.Add(new MalAnimeRecsRecommenderUser(
                     userId: dtoRecommender.UserId,
                     username: dtoRecommender.Username,
                     recsLiked: recsLiked,
                     recsNotLiked: recsNotLiked,
-                    allRecommendations: new HashSet<RecEngine.MAL.MalAnimeRecsRecommenderRecommendation>(
-                        dtoRecommender.Recs.Select(rec => new RecEngine.MAL.MalAnimeRecsRecommenderRecommendation(rec.MalAnimeId, rec.RecommenderScore, rec.AverageScore))),
+                    recsInconclusive: recsInconclusive,
+                    recsNotInCommon: recsNotInCommon,
                     compatibility: dtoRecommender.Compatibility,
                     compatibilityLowEndpoint: dtoRecommender.CompatibilityLowEndpoint,
                     compatibilityHighEndpoint: dtoRecommender.CompatibilityHighEndpoint

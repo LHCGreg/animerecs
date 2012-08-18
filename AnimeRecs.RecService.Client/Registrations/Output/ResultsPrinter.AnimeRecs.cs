@@ -28,9 +28,9 @@ namespace AnimeRecs.RecService.Client.Registrations.Output
 
                 string recsLikedString;
 
-                if (recommender.NumRecsInCommon > 0)
+                if (recommender.NumRecsWithJudgment > 0)
                 {
-                    recsLikedString = string.Format("{0:P2}", (double)recommender.RecsLiked.Count / recommender.NumRecsInCommon);
+                    recsLikedString = string.Format("{0:P2}", (double)recommender.RecsLiked.Count / recommender.NumRecsWithJudgment);
                 }
                 else
                 {
@@ -38,7 +38,7 @@ namespace AnimeRecs.RecService.Client.Registrations.Output
                 }
 
                 Console.WriteLine("{0}'s recommendations ({1}/{2} {3} recs liked, {4:P2} - {5:P2} estimated compatibility",
-                    recommender.Username, recommender.RecsLiked.Count, recommender.NumRecsInCommon, recsLikedString,
+                    recommender.Username, recommender.RecsLiked.Count, recommender.NumRecsWithJudgment, recsLikedString,
                     recommender.CompatibilityLowEndpoint ?? 0, recommender.CompatibilityHighEndpoint ?? 0);
 
                 Console.WriteLine("{0,-52} {1,-5} {2,-4} {3,-5} {4,-4} {5}", "Anime", "State", "Like", "Their", "Your", "Avg");
