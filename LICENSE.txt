@@ -1,10 +1,10 @@
-AnimeRecs.MalApi copyright 2012 Greg Najda, licensed under the Apache License 2.0 (AnimeRecs.MalApi/LICENSE.txt).
-
-All other code copyright 2012 Greg Najda, licensed under the GPL version 3 (<project name>/COPYING.txt).
+All code copyright 2012 Greg Najda, licensed under the GPL version 3 (<project name>/COPYING.txt).
 
 
 AnimeRecs uses the following libraries:
 
+
+MalApi is copyright Greg Najda and is licensed under the Apache License 2.0 (lib/MalApi/license.txt).
 
 NDesk.Options is copyright NDesk.org and is licensed under the MIT/X11 license (lib/NDesk.Options/license.txt).
 

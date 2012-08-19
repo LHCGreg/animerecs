@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.RecEngine.MAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.DAL", "AnimeRecs.DAL\AnimeRecs.DAL.csproj", "{F7463E78-C746-4D37-A869-759FB38B247B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.MalApi", "AnimeRecs.MalApi\AnimeRecs.MalApi.csproj", "{85BC477F-4798-4006-A342-715E7565B3BB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.FreshenMalDatabase", "AnimeRecs.FreshenMalDatabase\AnimeRecs.FreshenMalDatabase.csproj", "{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.MalEvaluationRunner", "AnimeRecs.MalEvaluationRunner\AnimeRecs.MalEvaluationRunner.csproj", "{5C76DAA8-1A14-48B9-98F1-C075209C324C}"
@@ -22,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.RecService.DTO", "AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj", "{2E870408-2BC8-404F-BCAC-98289C1F489E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.RecService.ClientLib", "AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj", "{052C3459-C8BF-44A3-AFE1-8B587B023044}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.MalApi.Tests", "AnimeRecs.MalApi.Tests\AnimeRecs.MalApi.Tests.csproj", "{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,18 +79,6 @@ Global
 		{F7463E78-C746-4D37-A869-759FB38B247B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F7463E78-C746-4D37-A869-759FB38B247B}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7463E78-C746-4D37-A869-759FB38B247B}.Release|x86.Build.0 = Release|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Debug|x86.Build.0 = Debug|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Release|x86.ActiveCfg = Release|Any CPU
-		{85BC477F-4798-4006-A342-715E7565B3BB}.Release|x86.Build.0 = Release|Any CPU
 		{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CE53D3D-9FEB-44D2-8ED9-E499EADDC1B5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -167,18 +151,6 @@ Global
 		{052C3459-C8BF-44A3-AFE1-8B587B023044}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{052C3459-C8BF-44A3-AFE1-8B587B023044}.Release|x86.ActiveCfg = Release|Any CPU
 		{052C3459-C8BF-44A3-AFE1-8B587B023044}.Release|x86.Build.0 = Release|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Debug|x86.Build.0 = Debug|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Release|x86.ActiveCfg = Release|Any CPU
-		{0D4FDB3D-1EBF-4242-B9DF-5650B846095C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

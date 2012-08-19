@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AnimeRecs.RecEngine.MAL;
-using AnimeRecs.MalApi;
+using MalApi;
 using Npgsql;
 using Dapper;
 

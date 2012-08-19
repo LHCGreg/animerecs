@@ -52,6 +52,13 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Common.Logging\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="MalApi">
+      <HintPath>..\lib\MalApi\MalApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MiscUtil, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -83,10 +90,6 @@
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">
       <Project>{F7463E78-C746-4D37-A869-759FB38B247B}</Project>
       <Name>AnimeRecs.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
-      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
-      <Name>AnimeRecs.MalApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
       <Project>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</Project>

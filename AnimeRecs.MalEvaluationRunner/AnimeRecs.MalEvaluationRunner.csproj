@@ -91,10 +91,6 @@
       <Project>{F7463E78-C746-4D37-A869-759FB38B247B}</Project>
       <Name>AnimeRecs.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
-      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
-      <Name>AnimeRecs.MalApi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
       <Project>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</Project>
       <Name>AnimeRecs.RecEngine.MAL</Name>

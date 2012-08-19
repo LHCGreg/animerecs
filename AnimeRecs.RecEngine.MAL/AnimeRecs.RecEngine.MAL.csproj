@@ -35,6 +35,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\MyMediaLite\C5.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Common.Logging\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="MalApi">
+      <HintPath>..\lib\MalApi\MalApi.dll</HintPath>
+    </Reference>
     <Reference Include="MathNet.Numerics, Version=2011.4.17.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\MyMediaLite\MathNet.Numerics.dll</HintPath>
@@ -65,10 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
-      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
-      <Name>AnimeRecs.MalApi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj">
       <Project>{2B67526A-EBD8-43F6-8A65-26F64453C0BD}</Project>
       <Name>AnimeRecs.RecEngine.MyMediaLite</Name>

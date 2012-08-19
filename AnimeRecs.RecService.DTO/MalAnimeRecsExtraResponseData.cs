@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.MalApi;
+using MalApi;
 
 namespace AnimeRecs.RecService.DTO
 {

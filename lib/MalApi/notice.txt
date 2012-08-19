@@ -1,0 +1,11 @@
+MalApi
+Copyright 2012 Greg Najda, licensed under the Apache License 2.0 (license.txt)
+
+
+MalApi uses the following libraries:
+
+Common.Logging is copyright by the Common.Logging developers and is licensed under the Apache License 2.0.
+
+NLog is copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net> and is licensed under the BSD license.
+
+NUnit Copyright © 2002-2012 Charlie Poole, Copyright © 2002-2004 James W. Newkirk, Michael C. Two, Alexei A. Vorontsov, Copyright © 2000-2002 Philip A. Craig. See http://nunit.org/index.php?p=license&r=2.6

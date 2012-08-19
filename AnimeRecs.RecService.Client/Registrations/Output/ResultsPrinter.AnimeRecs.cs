@@ -6,7 +6,7 @@ using MiscUtil.Collections.Extensions;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.ClientLib;
-using AnimeRecs.MalApi;
+using MalApi;
 using System.Globalization;
 
 namespace AnimeRecs.RecService.Client.Registrations.Output

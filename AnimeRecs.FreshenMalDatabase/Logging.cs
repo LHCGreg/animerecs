@@ -13,7 +13,6 @@ namespace AnimeRecs.FreshenMalDatabase
         {
             Log = global::Common.Logging.LogManager.GetLogger("AnimeRecs.FreshenMalDatabase");
             WriteLogPrologue();
-            AnimeRecs.MalApi.Logging.Initialize();
         }
 
         private static void WriteLogPrologue()

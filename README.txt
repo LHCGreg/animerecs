@@ -1,8 +1,6 @@
 ﻿AnimeRecs is a project that aims to provide accurate and useful anime recommendations. It contains several components, some of which may be useful outside this project. All components ultimately serve the needs of AnimeRecs.Web, an ASP.NET MVC web application for giving anime recommendations based on the user's myanimelist.net account.
 
-AnimeRecs.MalApi is licensed under the Apache 2.0 license. All other components are licensed under the GPL version 3. See LICENSE.txt for license information.
-
-AnimeRecs.MalApi: Provides a .NET binding to the API of myanimelist.net and methods for scraping information where no official API is available. This library is primarily concerned with the needs of the AnimeRecs project but patches adding more functionality are welcome.
+All components are licensed under the GPL version 3. See LICENSE.txt for license information.
 
 AnimeRecs.RecEngine: Core interfaces and classes forming a generic top-N recommendation framework and some basic generic recommendation algorithms. Flexibility is favored over efficiency or simplicity. Algorithms here make as few assumptions about their training data and input as possible. For example, it is possible to make recommendation algorithms that use a different form of input from the usual (user, item, rating) triples, produce more detailed output than a simple list of recommendations, or that avoid making recommendations based on certain criteria (for example, do not recommend an anime that is a sequel if the user has not seen the first anime yet). Also included is code for evaluating the effectiveness of recommendation algorithms. Rec sources defined here are domain-agnostic.
 

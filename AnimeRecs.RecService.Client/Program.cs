@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using MiscUtil.IO;
 using Newtonsoft.Json;
-using AnimeRecs.MalApi;
+using MalApi;
 using AnimeRecs.DAL;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.RecService.DTO;

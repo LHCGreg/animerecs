@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.MalApi;
+using MalApi;
 using AnimeRecs.RecEngine.Utils;
 
 namespace AnimeRecs.RecEngine.MAL

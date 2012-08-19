@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MiscUtil.Extensions;
 using MiscUtil.Collections.Extensions;
-using AnimeRecs.MalApi;
+using MalApi;
 using Npgsql;
 using Dapper;
 
