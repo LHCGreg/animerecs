@@ -131,51 +131,6 @@ CREATE TABLE mal_list_entry_tag
 CREATE INDEX index_mal_list_entry_tag__mal_user_id__mal_anime_id
   ON mal_list_entry_tag (mal_user_id, mal_anime_id);
 
--- Keep a row count table because a SELECT count(*) FROM some_table does a table scan in Postgres.
--- Don't bother for tables like mal_anime_type because they're tiny.
-CREATE TABLE row_count
-(
-  table_id int NOT NULL PRIMARY KEY,
-  table_name text NOT NULL,
-  num_rows bigint NOT NULL
-);
-
-INSERT INTO row_count
-(table_id, table_name, num_rows)
-VALUES
-(1, 'mal_user', 0),
-(2, 'mal_anime', 0);
-
-CREATE FUNCTION update_row_count()
-  RETURNS trigger AS
-$BODY$
-BEGIN
-    IF TG_OP = 'INSERT' THEN
-        UPDATE row_count
-            SET num_rows = num_rows + 1
-            WHERE table_name = TG_RELNAME;
-    ELSIF TG_OP = 'DELETE' THEN
-        UPDATE row_count
-            SET num_rows = num_rows - 1
-            WHERE table_name = TG_RELNAME;
-    END IF;
-    RETURN NULL;
-END
-$BODY$
-  LANGUAGE plpgsql VOLATILE;
-
-CREATE TRIGGER trigger_update_row_count
-  AFTER INSERT OR DELETE
-  ON mal_user
-  FOR EACH ROW
-  EXECUTE PROCEDURE update_row_count();
-
-CREATE TRIGGER trigger_update_row_count
-  AFTER INSERT OR DELETE
-  ON mal_anime
-  FOR EACH ROW
-  EXECUTE PROCEDURE update_row_count();
-
 -- Not used by any code, just useful to check.
 CREATE VIEW mal_average_ratings
 (mal_anime_id, title, average, num_ratings)
@@ -188,6 +143,6 @@ WHERE entry.rating IS NOT NULL
 AND (entry.mal_list_entry_status_id = 2 OR entry.num_episodes_watched > 26)
 GROUP BY anime.mal_anime_id
 ORDER BY average DESC) AS averageStuff
-WHERE average IS NOT NULL AND num_ratings >= ((SELECT num_rows FROM row_count WHERE table_id = 1) / 50); -- >= 2% of users have seen it
+WHERE average IS NOT NULL AND num_ratings >= ((SELECT count(*) FROM mal_user) / 50); -- >= 2% of users have seen it
 
 COMMIT TRANSACTION;

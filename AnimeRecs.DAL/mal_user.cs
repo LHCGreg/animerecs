@@ -40,6 +40,43 @@ FROM mal_user
             // This will buffer all rows in memory before returning
             return conn.Query<mal_user>(sql, transaction: transaction);
         }
+
+        public static bool UserIsInDbCaseSensitive(string username, NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            long count = conn.Query<long>(@"SELECT Count(*) FROM mal_user WHERE mal_name = :Username", new { Username = username }, transaction).First();
+            return count > 0;
+        }
+
+        public static bool UserIsInDb(int userId, NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            long count = conn.Query<long>(@"SELECT Count(*) FROM mal_user WHERE mal_user_id = :UserId", new { UserId = userId }, transaction).First();
+            return count > 0;
+        }
+
+        public static long Count(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            long count = conn.Query<long>("SELECT Count(*) FROM mal_user", transaction: transaction).First();
+            return count;
+        }
+
+        public static void DeleteOldestUsers(long numUsers, NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            if (numUsers == 0)
+            {
+                return;
+            }
+            if (numUsers < 0)
+            {
+                throw new ArgumentOutOfRangeException("numUsers", numUsers, string.Format("Cannot delete {0} oldest users", numUsers));
+            }
+
+            string deleteSql = @"DELETE FROM mal_user WHERE mal_user_id IN
+(SELECT mal_user_id FROM mal_user
+ORDER BY time_added
+LIMIT :NumToDelete)";
+
+            int numRowsDeleted = conn.Execute(deleteSql, new { NumToDelete = numUsers }, transaction);
+        }
     }
 }
 

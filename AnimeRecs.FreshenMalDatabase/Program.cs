@@ -92,8 +92,7 @@ namespace AnimeRecs.FreshenMalDatabase
         static bool UserIsInDatabase(string username, NpgsqlConnection conn, NpgsqlTransaction transaction)
         {
             Logging.Log.DebugFormat("Checking if {0} is in the database.", username);
-            long count = conn.Query<long>(@"SELECT Count(*) FROM mal_user WHERE mal_name = :Username", new { Username = username }, transaction).First();
-            bool isInDb = count > 0;
+            bool isInDb = mal_user.UserIsInDbCaseSensitive(username, conn, transaction);
             Logging.Log.DebugFormat("{0} in database = {1}", username, isInDb);
             return isInDb;
         }
@@ -108,9 +107,9 @@ namespace AnimeRecs.FreshenMalDatabase
             }
 
             Logging.Log.DebugFormat("Really checking if {0} is in the database by user id.", userLookup.CanonicalUserName);
-            long count = conn.Query<long>(@"SELECT Count(*) FROM mal_user WHERE mal_user_id = :UserId", new { UserId = userLookup.UserId }, transaction).First();
-            Logging.Log.DebugFormat("{0} in really in database = {1}", userLookup.CanonicalUserName, count > 0);
-            return count == 0;
+            bool isInDb = mal_user.UserIsInDb(userLookup.UserId, conn, transaction);
+            Logging.Log.DebugFormat("{0} really in database = {1}", userLookup.CanonicalUserName, isInDb);
+            return !isInDb;
         }
 
         // Only insert/update an anime once per run to save on trips to the DB
@@ -199,9 +198,8 @@ namespace AnimeRecs.FreshenMalDatabase
             foreach (mal_anime animeToUpsert in animesToUpsert)
             {
                 Logging.Log.TraceFormat("Checking if anime \"{0}\" is in the database.", animeToUpsert.title);
-                long oneIfAnimeIsInDb = conn.Query<long>("SELECT Count(*) FROM mal_anime WHERE mal_anime_id = :AnimeId",
-                    new { AnimeId = animeToUpsert.mal_anime_id }, transaction).First();
-                if (oneIfAnimeIsInDb < 1)
+                bool animeIsInDb = mal_anime.IsInDatabase(animeToUpsert.mal_anime_id, conn, transaction);
+                if (!animeIsInDb)
                 {
                     // Not worth optimizing this by batching inserts because once there are a couple hundred users in the database,
                     // inserts will be relatively few in number.
@@ -272,21 +270,15 @@ namespace AnimeRecs.FreshenMalDatabase
         static void TrimDatabaseToMaxUsers(long maxUsersInDatabase, NpgsqlConnection conn, NpgsqlTransaction transaction)
         {
             Logging.Log.InfoFormat("Trimming database to {0} users.", maxUsersInDatabase);
-            long numUsers = conn.Query<long>("SELECT num_rows FROM row_count WHERE table_name = 'mal_user' LIMIT 1", transaction: transaction).First();
+            long numUsers = mal_user.Count(conn, transaction);
             Logging.Log.DebugFormat("{0} users are in the database.", numUsers);
 
             if (numUsers > maxUsersInDatabase)
             {
                 long numUsersToDelete = numUsers - maxUsersInDatabase;
+
                 Logging.Log.DebugFormat("Deleting {0} users.", numUsersToDelete);
-
-                string deleteSql = @"DELETE FROM mal_user WHERE mal_user_id IN
-(SELECT mal_user_id FROM mal_user
-ORDER BY time_added
-LIMIT :NumToDelete)";
-
-                int numRowsDeleted = conn.Execute(deleteSql, new { NumToDelete = numUsersToDelete }, transaction);
-
+                mal_user.DeleteOldestUsers(numUsersToDelete, conn, transaction);
                 Logging.Log.InfoFormat("Deleted {0} users.", numUsersToDelete);
             }
             else

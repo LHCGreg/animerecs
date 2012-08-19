@@ -122,6 +122,13 @@ FROM mal_anime
             // This buffers all the rows in memory before returning
             return conn.Query<mal_anime>(sql, transaction: transaction);
         }
+
+        public static bool IsInDatabase(int animeId, NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            long count = conn.Query<long>("SELECT Count(*) FROM mal_anime WHERE mal_anime_id = :AnimeId",
+                    new { AnimeId = animeId }, transaction).First();
+            return count > 0;
+        }
     }
 }
 
