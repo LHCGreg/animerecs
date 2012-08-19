@@ -6,15 +6,53 @@ using System.Globalization;
 using MalApi;
 using System.Web.Mvc;
 using AnimeRecs.RecEngine.MAL;
+using AnimeRecs.Web.Models.ViewModels;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.Web
 {
     public static class ViewHelpers
     {
-        public static IHtmlString GetRecommendedMalAnimeHtml(this HtmlHelper html, int malAnimeId, string animeTitle)
+        public static IHtmlString GetRecommendedMalAnimeHtml(this HtmlHelper html, int malAnimeId, GetRecsViewModel model, UrlHelper url)
         {
-            // TODO: Could add icon links to Crunchyroll, Hulu, Funimation, Anime Network, etc if the anime is available for streaming on one of those sites
-            string encodedString = string.Format(@"<a href=""{0}"" class=""recommendation"">{1}</a>", html.AttributeEncode(GetMalAnimeUrl(malAnimeId, animeTitle)), html.Encode(animeTitle));
+            List<string> streamLinks = new List<string>();
+            if (model.StreamsByAnime.ContainsKey(malAnimeId))
+            {
+                foreach (streaming_service_anime_map serviceMap in model.StreamsByAnime[malAnimeId]
+                    .OrderBy(map => map.streaming_service_id)
+                    .ThenBy(map => map.requires_subscription))
+                {
+                    StreamingService service = (StreamingService)serviceMap.streaming_service_id;
+                    string imagePath;
+                    string altText;
+                    string titleText;
+                    switch (service)
+                    {
+                        case StreamingService.Crunchyroll:
+                            imagePath = url.Content("~/Content/crunchyroll_icon.png");
+                            altText = "Crunchyroll";
+                            titleText = "Watch on Crunchyroll";
+                            break;
+                        case StreamingService.Funimation:
+                            imagePath = url.Content("~/Content/funimation_icon.png");
+                            altText = "Funimation";
+                            titleText = "Watch on Funimation";
+                            break;
+                        default:
+                            continue;
+                    }
+
+                    string imgHtml = string.Format(@"<img src=""{0}"" title=""{1}"" alt=""{2}"" />",
+                        html.AttributeEncode(imagePath), html.AttributeEncode(titleText), html.AttributeEncode(altText));
+
+                    string linkHtml = string.Format(@"<a href=""{0}"">{1}</a>", serviceMap.streaming_url, imgHtml);
+                    streamLinks.Add(linkHtml);
+                }
+            }
+
+            string animeTitle = model.Results.AnimeInfo[malAnimeId].Title;
+            string encodedString = string.Format(@"<a href=""{0}"" class=""recommendation"">{1}</a>{2}",
+                html.AttributeEncode(GetMalAnimeUrl(malAnimeId, animeTitle)), html.Encode(animeTitle), string.Join(" ", streamLinks));
             return new HtmlString(encodedString);
         }
         

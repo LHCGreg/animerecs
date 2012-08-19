@@ -5,7 +5,15 @@
 @using AnimeRecs.Web.Models.ViewModels
 @model GetRecsViewModel
            
-@{ MalRecResults<MalAnimeRecsResults> results = Model.Results.CastRecs<MalAnimeRecsResults>(); }
+@{
+    MalRecResults<MalAnimeRecsResults> results = Model.Results.CastRecs<MalAnimeRecsResults>();
+    Model.DeclareAnimeToBeDisplayed(results.Results.Recommenders
+        .Where(recUser => recUser.RecsNotInCommon.Count > 0 && recUser.UserId != Model.UserId)
+        .Take(AppGlobals.Config.MaximumRecommendersToReturn)
+        .SelectMany(recUser => recUser.AllRecommendations.Select(rec => rec.MalAnimeId))
+        .Distinct()
+    );
+ }
            
 @* The warning about conditional compilation on @results can be safely ignored. *@
 <script type="text/javascript">
@@ -68,7 +76,7 @@ Your best matches are
                             rowClass = "class=\"inconclusiveRec\"";
                         }
                         <tr @Html.Raw(rowClass)>
-                            <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, results.AnimeInfo[recommendation.MalAnimeId].Title)
+                            <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model, Url)
                             </td>
                             <td>
                                 @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId))

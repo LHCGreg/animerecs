@@ -62,7 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimeRecsDbConnection.cs" />
+    <Compile Include="AnimeRecsDbConnectionFactory.cs" />
+    <Compile Include="IAnimeRecsDbConnection.cs" />
     <Compile Include="IMalTrainingDataLoader.cs" />
+    <Compile Include="IAnimeRecsDbConnectionFactory.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="MalListEntryJoined.cs" />
     <Compile Include="mal_anime.cs" />
@@ -76,6 +80,9 @@
     <Compile Include="PgMyAnimeListApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlMapper.cs" />
+    <Compile Include="StreamingService.cs" />
+    <Compile Include="streaming_service.cs" />
+    <Compile Include="streaming_service_anime_map.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CreateDb_linux.sql" />

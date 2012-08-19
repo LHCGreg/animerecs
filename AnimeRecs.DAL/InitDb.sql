@@ -145,4 +145,38 @@ GROUP BY anime.mal_anime_id
 ORDER BY average DESC) AS averageStuff
 WHERE average IS NOT NULL AND num_ratings >= ((SELECT count(*) FROM mal_user) / 50); -- >= 2% of users have seen it
 
+CREATE TABLE streaming_service
+(
+	streaming_service_id int NOT NULL PRIMARY KEY,
+	name text NOT NULL,
+	url text NOT NULL
+);
+
+INSERT INTO streaming_service
+(streaming_service_id, name, url)
+VALUES
+(1, 'Crunchyroll', 'http://www.crunchyroll.com/'),
+(2, 'Funimation', 'http://www.funimation.com/videos');
+
+CREATE TABLE streaming_service_anime_map
+(
+	streaming_service_anime_map_id serial NOT NULL PRIMARY KEY,
+	mal_anime_id int NOT NULL, -- No foreign key in order to allow anime that is not in the database but is on MAL
+	streaming_service_id int NOT NULL REFERENCES streaming_service (streaming_service_id),
+	streaming_url text NOT NULL,
+	requires_subscription boolean NOT NULL
+);
+
+CREATE UNIQUE INDEX index_anime_service_subscription
+  ON streaming_service_anime_map
+  (mal_anime_id, streaming_service_id, requires_subscription);
+  
+CREATE INDEX index_service_subscription
+  ON streaming_service_anime_map
+  (streaming_service_id, requires_subscription);
+  
+CREATE INDEX index_subscription
+  ON streaming_service_anime_map
+  (requires_subscription);
+
 COMMIT TRANSACTION;

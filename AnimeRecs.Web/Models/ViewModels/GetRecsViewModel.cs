@@ -5,6 +5,7 @@ using System.Web;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.ClientLib;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.Web.Models.ViewModels
 {
@@ -15,12 +16,30 @@ namespace AnimeRecs.Web.Models.ViewModels
         public string UserName { get; private set; }
         public IDictionary<int, MalListEntry> UserAnimeList { get; private set; }
 
-        public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, int userId, string userName, IDictionary<int, MalListEntry> userAnimeList)
+        private IAnimeRecsDbConnectionFactory DbConnectionFactory { get; set; }
+
+        /// <summary>
+        /// You must call DeclareAnimeToBeDisplayed() to populate this.
+        /// </summary>
+        public IDictionary<int, ICollection<streaming_service_anime_map>> StreamsByAnime { get; set; }
+
+        public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, int userId, string userName,
+            IDictionary<int, MalListEntry> userAnimeList, IAnimeRecsDbConnectionFactory dbConnectionFactory)
         {
             Results = results;
             UserId = userId;
             UserName = userName;
             UserAnimeList = userAnimeList;
+            DbConnectionFactory = dbConnectionFactory;
+            StreamsByAnime = new Dictionary<int, ICollection<streaming_service_anime_map>>();
+        }
+
+        public void DeclareAnimeToBeDisplayed(IEnumerable<int> malAnimeIds)
+        {
+            using (IAnimeRecsDbConnection conn = DbConnectionFactory.GetConnection())
+            {
+                StreamsByAnime = conn.GetStreams(malAnimeIds);
+            }
         }
     }
 }

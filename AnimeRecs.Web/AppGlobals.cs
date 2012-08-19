@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AnimeRecs.RecService.ClientLib;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.Web
 {
@@ -11,6 +12,7 @@ namespace AnimeRecs.Web
         public static Config Config { get; set; }
         public static IAnimeRecsClientFactory RecClientFactory { get; set; }
         public static IMyAnimeListApiFactory MalApiFactory { get; set; }
+        public static IAnimeRecsDbConnectionFactory DbConnectionFactory { get; set; }
     }
 }
 

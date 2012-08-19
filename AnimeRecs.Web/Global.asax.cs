@@ -70,6 +70,9 @@ namespace AnimeRecs.Web
                 disposablesInitialized.Add(cachingApi);
 
                 AppGlobals.MalApiFactory = new SingleMyAnimeListApiFactory(cachingApi);
+                disposablesInitialized.Add(AppGlobals.MalApiFactory);
+
+                AppGlobals.DbConnectionFactory = new AnimeRecsDbConnectionFactory(AppGlobals.Config.PostgresConnectionString);
             }
             catch
             {

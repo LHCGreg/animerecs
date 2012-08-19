@@ -11,6 +11,7 @@ using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.RecEngine;
 using AnimeRecs.Web.Models.ViewModels;
 using AnimeRecs.RecEngine.MAL;
+using AnimeRecs.DAL;
 
 namespace AnimeRecs.Web.Controllers
 {
@@ -18,17 +19,20 @@ namespace AnimeRecs.Web.Controllers
     {
         private IMyAnimeListApiFactory m_malApiFactory;
         private IAnimeRecsClientFactory m_recClientFactory;
+        private IAnimeRecsDbConnectionFactory m_dbConnectionFactory;
         
         public GetRecsController()
-            : this(AppGlobals.MalApiFactory, AppGlobals.RecClientFactory)
+            : this(AppGlobals.MalApiFactory, AppGlobals.RecClientFactory, AppGlobals.DbConnectionFactory)
         {
             ;
         }
 
-        public GetRecsController(IMyAnimeListApiFactory malApiFactory, IAnimeRecsClientFactory recClientFactory)
+        public GetRecsController(IMyAnimeListApiFactory malApiFactory, IAnimeRecsClientFactory recClientFactory,
+            IAnimeRecsDbConnectionFactory dbConnectionFactory)
         {
             m_malApiFactory = malApiFactory;
             m_recClientFactory = recClientFactory;
+            m_dbConnectionFactory = dbConnectionFactory;
         }
 
         [HttpPost]
@@ -109,13 +113,13 @@ namespace AnimeRecs.Web.Controllers
             ViewEngineResult viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, basicResults.RecommendationType);
             if (viewSearchResult.View == null)
             {
-                var viewModel = new GetRecsViewModel(basicResults, userId, userName, userAnimeList);
+                var viewModel = new GetRecsViewModel(basicResults, userId, userName, userAnimeList, m_dbConnectionFactory);
                 viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, "Fallback");
             }
 
             using (StringWriter htmlWriter = new StringWriter())
             {
-                ViewData.Model = new GetRecsViewModel(basicResults, userId, userName, userAnimeList);
+                ViewData.Model = new GetRecsViewModel(basicResults, userId, userName, userAnimeList, m_dbConnectionFactory);
                 ViewContext viewContext = new ViewContext(ControllerContext, viewSearchResult.View, ViewData, TempData, htmlWriter);
                 viewSearchResult.View.Render(viewContext, htmlWriter);
 

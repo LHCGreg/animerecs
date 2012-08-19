@@ -127,6 +127,8 @@
     <Compile Include="ViewHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\crunchyroll_icon.png" />
+    <Content Include="Content\funimation_icon.png" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\style.css" />
     <None Include="csproj_manually_modified.txt" />
