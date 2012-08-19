@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using AnimeRecs.MalApi;
+using MalApi;
 
 namespace AnimeRecs.Web
 {

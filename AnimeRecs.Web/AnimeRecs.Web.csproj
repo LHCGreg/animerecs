@@ -41,6 +41,9 @@
     <Reference Include="Common.Logging.NLog">
       <HintPath>..\lib\Common.Logging\Common.Logging.NLog.dll</HintPath>
     </Reference>
+    <Reference Include="MalApi">
+      <HintPath>..\lib\MalApi\MalApi.dll</HintPath>
+    </Reference>
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
     </Reference>
@@ -159,10 +162,6 @@
       <Project>{052C3459-C8BF-44A3-AFE1-8B587B023044}</Project>
       <Name>AnimeRecs.RecService.ClientLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj">
-      <Project>{85BC477F-4798-4006-A342-715E7565B3BB}</Project>
-      <Name>AnimeRecs.MalApi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
       <Project>{C1154B01-E3AF-48D2-AD2E-3F09B5DAF842}</Project>
       <Name>AnimeRecs.RecEngine.MAL</Name>
@@ -230,8 +229,6 @@
   <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' And '$(BuildSystem)' == 'MSBuild'">
     <PreBuildEvent>C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(ConfigurationName)" "/p:Platform=$(PlatformName)" "$(ProjectDir)..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj"
 
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.MalApi\AnimeRecs.MalApi.csproj"
-
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj"
 
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:Configuration=$(Configuration)" "/p:Platform=$(Platform)" "$(ProjectDir)..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj"
@@ -243,8 +240,6 @@ C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /nologo /t:Build "/p:C
   <!-- Building inside MonoDevelop behaves like building inside Visual Studio. -->
   <PropertyGroup Condition=" '$(BuildingInsideVisualStudio)' == 'true' And '$(BuildSystem)' != 'MSBuild'">
     <PreBuildEvent>xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecService.ClientLib/AnimeRecs.RecService.ClientLib.csproj"
-
-xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.MalApi/AnimeRecs.MalApi.csproj"
 
 xbuild /t:Build "/p:Configuration=$(ConfigurationName);Platform=$(Platform)" "$(MSBuildThisFileDirectory)/../AnimeRecs.RecEngine.MAL/AnimeRecs.RecEngine.MAL.csproj"
 

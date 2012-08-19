@@ -6,7 +6,7 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using AnimeRecs.Web.Models.Json;
-using AnimeRecs.MalApi;
+using MalApi;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.RecEngine;
 using AnimeRecs.Web.Models.ViewModels;

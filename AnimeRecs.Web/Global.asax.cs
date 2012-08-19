@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.Web.MvcExtensions;
-using AnimeRecs.MalApi;
+using MalApi;
 using AnimeRecs.DAL;
 
 namespace AnimeRecs.Web
