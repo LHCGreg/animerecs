@@ -1,0 +1,5 @@
+﻿This program goes to streaming sites, gets the available anime streams, and writes the available streams to a .csv file specified with the -o option. You can then edit the .csv file to fill in the MAL anime ids. Then run the program again with the -sql option, passing the .csv file as the input file using the -i option and specifying an output .sql file with the -o option. This will create a SQL script for clearing the streaming_service_anime_map table and populating it with the data you just filled out.
+
+After initially filling it out, you can run it with the -i option passing in the filled-out .csv so you don't have to start from scratch when updating to the latest streams.
+
+You can enter n/a as the MAL anime id for a stream that isn't actually an anime. You can copy and paste a row and give it more than one MAL anime id if the stream corresponds to more than one MAL anime. For example, a Fate/Zero stream that covers both season 1 and season 2.

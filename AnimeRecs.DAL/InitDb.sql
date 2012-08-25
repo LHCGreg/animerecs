@@ -167,9 +167,9 @@ CREATE TABLE streaming_service_anime_map
 	requires_subscription boolean NOT NULL
 );
 
-CREATE UNIQUE INDEX index_anime_service_subscription
+CREATE UNIQUE INDEX index_anime_service_url
   ON streaming_service_anime_map
-  (mal_anime_id, streaming_service_id, requires_subscription);
+  (mal_anime_id, streaming_service_id, streaming_url);
   
 CREATE INDEX index_service_subscription
   ON streaming_service_anime_map

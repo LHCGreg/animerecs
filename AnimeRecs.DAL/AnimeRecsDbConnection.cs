@@ -43,6 +43,12 @@ namespace AnimeRecs.DAL
             return streamsByAnime;
         }
 
+        public ICollection<streaming_service_anime_map> GetAllStreams()
+        {
+            string sql = "SELECT * FROM streaming_service_anime_map";
+            return m_conn.Query<streaming_service_anime_map>(sql).ToList();
+        }
+
         public void Dispose()
         {
             m_conn.Dispose();

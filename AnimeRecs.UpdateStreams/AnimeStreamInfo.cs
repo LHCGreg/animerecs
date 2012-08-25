@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using AnimeRecs.DAL;
+
+namespace AnimeRecs.UpdateStreams
+{
+    class AnimeStreamInfo : IEquatable<AnimeStreamInfo>
+    {
+        public string AnimeName { get; private set; }
+        public string Url { get; private set; }
+        public StreamingService Service { get; private set; }
+        public bool SubscriptionRequired { get; private set; }
+
+        public AnimeStreamInfo(string animeName, string url, StreamingService service, bool subscriptionRequired)
+        {
+            AnimeName = animeName;
+            Url = url;
+            Service = service;
+            SubscriptionRequired = subscriptionRequired;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as AnimeStreamInfo);
+        }
+
+        public bool Equals(AnimeStreamInfo other)
+        {
+            if (other == null) return false;
+            return this.AnimeName == other.AnimeName && this.Url == other.Url && this.Service == other.Service && this.SubscriptionRequired == other.SubscriptionRequired;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 23;
+                hash = hash * 17 + AnimeName.GetHashCode();
+                hash = hash * 17 + Url.GetHashCode();
+                hash = hash * 17 + Service.GetHashCode();
+                hash = hash * 17 + SubscriptionRequired.GetHashCode();
+                return hash;
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("AnimeName=\"{0}\" Url={1} Service={2} SubscriptionRequired={3}", AnimeName, Url, Service, SubscriptionRequired);
+        }
+    }
+}
+
+// Copyright (C) 2012 Greg Najda
+//
+// This file is part of AnimeRecs.UpdateStreams
+//
+// AnimeRecs.UpdateStreams is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// AnimeRecs.UpdateStreams is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.

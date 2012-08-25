@@ -12,6 +12,8 @@ AnimeRecs.DAL: SQL scripts for initializing a PostgreSQL database of myanimelist
 
 AnimeRecs.FreshenMalDatabase: Program that gets N users that are not in the PostgreSQL database and inserts their anime list. The number of users in the database is capped. If the cap is 5000 users, there are 5000 users in the database, and you tell the program to get 100 new users, it will put 100 new users in the database and delete the 100 users that have been in the database the longest. This allows you to maintain a database with a fixed number of users that does not get stale.
 
+AnimeRecs.UpdateStreams: Tool for maintaining the streaming_service_anime_map table.
+
 AnimeRecs.MalEvaluationRunner: Program for evaluating MAL recommendation sources.
 
 AnimeRecs.RecService: Service that listens on a socket and responds to requests for anime recommendations and commands to load/unload recommendation sources.

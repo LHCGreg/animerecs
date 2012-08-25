@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data;
 
 namespace AnimeRecs.DAL
 {
-    public interface IAnimeRecsDbConnection : IDisposable
+    internal static class PgHelpers
     {
-        IDbConnection Conn { get; }
-
-        IDictionary<int, ICollection<streaming_service_anime_map>> GetStreams(IEnumerable<int> malAnimeIds);
-        ICollection<streaming_service_anime_map> GetAllStreams();
+        /// <summary>
+        /// Creates a string literal suitable for use with PostgreSQL by placing the string in "double quotes" and replacing
+        /// any quote characters (') with two quote characters ('').
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string QuotePgString(string str)
+        {
+            return "'" + str.Replace("'", "''") + "'";
+        }
     }
 }
 

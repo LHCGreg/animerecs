@@ -76,6 +76,7 @@
     <Compile Include="mal_list_entry_status.cs" />
     <Compile Include="mal_list_entry_tag.cs" />
     <Compile Include="mal_user.cs" />
+    <Compile Include="PgHelpers.cs" />
     <Compile Include="PgMalDataLoader.cs" />
     <Compile Include="PgMyAnimeListApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
