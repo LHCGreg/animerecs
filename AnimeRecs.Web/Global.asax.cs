@@ -8,6 +8,7 @@ using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.Web.MvcExtensions;
 using MalApi;
 using AnimeRecs.DAL;
+using AnimeRecs.Web.Controllers;
 
 namespace AnimeRecs.Web
 {
@@ -19,6 +20,8 @@ namespace AnimeRecs.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            //IExceptionFilter
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -35,6 +38,10 @@ namespace AnimeRecs.Web
 
         protected void Application_Start()
         {
+            MvcHandler.DisableMvcResponseHeader = true;
+
+            GlobalFilters.Filters.Add(new LoggingExceptionFilter());
+            
             List<IDisposable> disposablesInitialized = new List<IDisposable>();
             try
             {
@@ -96,6 +103,29 @@ namespace AnimeRecs.Web
             {
                 AppGlobals.MalApiFactory.Dispose();
             }
+        }
+
+        protected void Application_Error()
+        {
+            Exception exception = Server.GetLastError();
+            HttpException httpException = exception as HttpException;
+            Response.Clear();
+            Server.ClearError();
+            RouteData routeData = new RouteData();
+            routeData.Values["controller"] = "Error";
+            routeData.Values["action"] = "Error";
+            routeData.Values["exception"] = exception;
+            Response.StatusCode = 500;
+            if (httpException != null)
+            {
+                Response.StatusCode = httpException.GetHttpCode();
+            }
+            routeData.Values["statusCode"] = Response.StatusCode;
+            Response.TrySkipIisCustomErrors = true;
+            IController errorsController = new ErrorController();
+            HttpContextWrapper wrapper = new HttpContextWrapper(Context);
+            RequestContext requestContext = new RequestContext(wrapper, routeData);
+            errorsController.Execute(requestContext);
         }
 
         protected void Application_BeginRequest()
