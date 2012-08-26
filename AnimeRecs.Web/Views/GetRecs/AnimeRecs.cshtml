@@ -42,6 +42,9 @@ Your best matches are
                             Anime
                         </td>
                         <td>
+                            Streams
+                        </td>
+                        <td>
                             Status
                         </td>
                         <td>
@@ -76,7 +79,11 @@ Your best matches are
                             rowClass = "class=\"inconclusiveRec\"";
                         }
                         <tr @Html.Raw(rowClass)>
-                            <td>@Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model, Url)
+                            <td>
+                                @Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model)
+                            </td>
+                            <td>
+                                @Html.GetStreamLinksHtml(recommendation.MalAnimeId, Model, Url)
                             </td>
                             <td>
                                 @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId))

@@ -13,7 +13,7 @@ namespace AnimeRecs.Web
 {
     public static class ViewHelpers
     {
-        public static IHtmlString GetRecommendedMalAnimeHtml(this HtmlHelper html, int malAnimeId, GetRecsViewModel model, UrlHelper url)
+        public static IHtmlString GetStreamLinksHtml(this HtmlHelper html, int malAnimeId, GetRecsViewModel model, UrlHelper url)
         {
             List<string> streamLinks = new List<string>();
             if (model.StreamsByAnime.ContainsKey(malAnimeId))
@@ -50,9 +50,15 @@ namespace AnimeRecs.Web
                 }
             }
 
+            string linksHtml = string.Join(" ", streamLinks);
+            return new HtmlString(linksHtml);
+        }
+        
+        public static IHtmlString GetRecommendedMalAnimeHtml(this HtmlHelper html, int malAnimeId, GetRecsViewModel model)
+        {
             string animeTitle = model.Results.AnimeInfo[malAnimeId].Title;
-            string encodedString = string.Format(@"<a href=""{0}"" class=""recommendation"">{1}</a>{2}",
-                html.AttributeEncode(GetMalAnimeUrl(malAnimeId, animeTitle)), html.Encode(animeTitle), string.Join(" ", streamLinks));
+            string encodedString = string.Format(@"<a href=""{0}"" class=""recommendation"">{1}</a>",
+                html.AttributeEncode(GetMalAnimeUrl(malAnimeId, animeTitle)), html.Encode(animeTitle));
             return new HtmlString(encodedString);
         }
         
