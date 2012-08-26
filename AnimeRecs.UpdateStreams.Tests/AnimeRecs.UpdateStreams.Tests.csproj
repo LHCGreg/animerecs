@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="CrunchyrollStreamInfoSourceTests.cs" />
     <Compile Include="CrunchyrollStreamInfoSourceTests.html.cs" />
+    <Compile Include="FunimationStreamInfoSourceTests.cs" />
+    <Compile Include="FunimationStreamInfoSourceTests.html.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

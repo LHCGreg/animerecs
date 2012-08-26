@@ -7,7 +7,7 @@ namespace AnimeRecs.UpdateStreams.Tests
 {
     public partial class CrunchyrollStreamInfoSourceTests
     {
-        public static string testHtml = @"
+        public static string TestHtml = @"
 
 <!DOCTYPE html>
 <html lang=""en"">

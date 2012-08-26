@@ -200,6 +200,7 @@ namespace AnimeRecs.UpdateStreams
         {
             List<IAnimeStreamInfoSource> streamInfoSources = new List<IAnimeStreamInfoSource>();
             streamInfoSources.Add(new CrunchyrollStreamInfoSource());
+            streamInfoSources.Add(new FunimationStreamInfoSource());
             return streamInfoSources;
         }
     }

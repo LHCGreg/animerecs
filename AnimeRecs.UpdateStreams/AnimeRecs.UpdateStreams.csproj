@@ -76,6 +76,7 @@
     <Compile Include="CommandLineArgs.cs" />
     <Compile Include="CrunchyrollStreamInfoSource.cs" />
     <Compile Include="CsvRow.cs" />
+    <Compile Include="FunimationStreamInfoSource.cs" />
     <Compile Include="HttpRegexAnimeStreamInfoSource.cs" />
     <Compile Include="HttpRegexContext.cs" />
     <Compile Include="IAnimeStreamInfoSouce.cs" />
