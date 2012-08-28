@@ -28,18 +28,6 @@ namespace AnimeRecs.RecEngine.MAL
             MalUsername = malUsername;
         }
 
-        public MalUserListEntries(MalUserLookupResults apiLookup, IDictionary<int, MalAnime> animes)
-        {
-            MalUsername = apiLookup.CanonicalUserName;
-            AnimesEligibleForRecommendation = animes;
-            Entries = new Dictionary<int, MalListEntry>();
-
-            foreach (MyAnimeListEntry entry in apiLookup.AnimeList)
-            {
-                Entries[entry.AnimeInfo.AnimeId] = new MalListEntry(entry.Score, entry.Status, entry.NumEpisodesWatched);
-            }
-        }
-
         public IBasicInputForUser AsBasicInput(int minEpisodesWatchedToCount, bool includeDropped)
         {
             Dictionary<int, float> basicRatings = new Dictionary<int,float>();

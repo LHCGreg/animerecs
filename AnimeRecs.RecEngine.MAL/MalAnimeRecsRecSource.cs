@@ -55,7 +55,7 @@ namespace AnimeRecs.RecEngine.MAL
 
         public void Train(MalTrainingData trainingData)
         {
-            trainingData = FilterOutSpecials(trainingData);
+            trainingData = FilterOutSpecialsAndTrim(trainingData);
 
             m_trainingData = trainingData;
 
@@ -67,10 +67,10 @@ namespace AnimeRecs.RecEngine.MAL
             m_recommender.Train(trainingDataWithParameters);
         }
 
-        private MalTrainingData FilterOutSpecials(MalTrainingData trainingData)
+        private MalTrainingData FilterOutSpecialsAndTrim(MalTrainingData trainingData)
         {
             Dictionary<int, MalUserListEntries> filteredUsers = new Dictionary<int, MalUserListEntries>();
-            foreach (int userId in trainingData.Users.Keys)
+            foreach (int userId in trainingData.Users.Keys.Take(m_recommender.NumRecommenders))
             {
                 Dictionary<int, MalListEntry> filteredEntries = new Dictionary<int, MalListEntry>();
                 foreach (int animeId in trainingData.Users[userId].Entries.Keys)
@@ -80,6 +80,9 @@ namespace AnimeRecs.RecEngine.MAL
                         filteredEntries[animeId] = trainingData.Users[userId].Entries[animeId];
                     }
                 }
+                //IDictionary<int, MalListEntry> filteredEntries = new FilteredDictionary<int, MalListEntry>(
+                //    trainingData.Users[userId].Entries, kvPair => trainingData.Animes[kvPair.Key].Type != MalAnimeType.Special);
+
 
                 MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].AnimesEligibleForRecommendation, trainingData.Users[userId].MalUsername);
                 filteredUsers[userId] = filteredUser;

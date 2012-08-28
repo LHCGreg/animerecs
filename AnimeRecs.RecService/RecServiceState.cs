@@ -120,6 +120,9 @@ namespace AnimeRecs.RecService
                     m_recSources[name] = recSource;
                 }
                 Logging.Log.InfoFormat("Loaded rec source {0}.", name);
+
+                GC.Collect();
+                Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
             }
         }
 
@@ -145,6 +148,9 @@ namespace AnimeRecs.RecService
             }
 
             Logging.Log.InfoFormat("Rec source {0} unloaded.", name);
+
+            GC.Collect();
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
         }
 
         public string GetRecSourceType(string recSourceName)
@@ -227,6 +233,9 @@ namespace AnimeRecs.RecService
 
             totalTimer.Stop();
             Logging.Log.InfoFormat("All rec sources retrained with the latest data. Total time: {0}", totalTimer.Elapsed);
+
+            GC.Collect();
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
         }
 
         public GetMalRecsResponse GetMalRecs(GetMalRecsRequest request)

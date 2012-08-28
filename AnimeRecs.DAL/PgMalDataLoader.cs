@@ -18,42 +18,13 @@ namespace AnimeRecs.DAL
             m_connectionString = connectionString;
         }
 
-        private class UserListEntry
-        {
-            public int mal_anime_id { get; set; }
-            public string title { get; set; }
-            public int mal_anime_type_id { get; set; }
-            public int num_episodes { get; set; }
-            public int mal_anime_status_id { get; set; }
-            public int? start_year { get; set; }
-            public int? start_month { get; set; }
-            public int? start_day { get; set; }
-            public int? end_year { get; set; }
-            public int? end_month { get; set; }
-            public int? end_day { get; set; }
-            public string image_url { get; set; }
-            public IEnumerable<string> synonyms { get; set; } // ignore any nulls in this
-
-            public decimal? rating { get; set; }
-            public int mal_list_entry_status_id { get; set; }
-            public int num_episodes_watched { get; set; }
-            public int? started_watching_year { get; set; }
-            public int? started_watching_month { get; set; }
-            public int? started_watching_day { get; set; }
-            public int? finished_watching_year { get; set; }
-            public int? finished_watching_month { get; set; }
-            public int? finished_watching_day { get; set; }
-            public DateTime last_mal_update { get; set; }
-            public IEnumerable<string> tags { get; set; } // ignore any nulls in this
-        }
-
         private class mal_list_entry_slim
         {
             public int mal_user_id { get; set; }
             public int mal_anime_id { get; set; }
-            public decimal? rating { get; set; }
-            public int mal_list_entry_status_id { get; set; }
-            public int num_episodes_watched { get; set; }
+            public short? rating { get; set; }
+            public short mal_list_entry_status_id { get; set; }
+            public short num_episodes_watched { get; set; }
         }
 
         public MalTrainingData LoadMalTrainingData()
@@ -104,7 +75,7 @@ FROM mal_list_entry
                 IEnumerable<mal_list_entry_slim> dbEntrySlurp = conn.Query<mal_list_entry_slim>(allEntriesSlimSql, commandTimeout: 60);
                 Logging.Log.Debug("Processing list entries from the database.");
                 long entryCount = 0;
-                foreach (mal_list_entry_slim dbEntry in conn.Query<mal_list_entry_slim>(allEntriesSlimSql, commandTimeout: 60))
+                foreach (mal_list_entry_slim dbEntry in dbEntrySlurp)
                 {
                     entryCount++;
                     Dictionary<int, MalListEntry> userList;
@@ -121,7 +92,7 @@ FROM mal_list_entry
                         userAnimeLists[dbEntry.mal_user_id] = userList;
                     }
                     userList[dbEntry.mal_anime_id] = new MalListEntry(
-                        rating: dbEntry.rating,
+                        rating: (byte?)dbEntry.rating,
                         status: (CompletionStatus)dbEntry.mal_list_entry_status_id,
                         numEpisodesWatched: dbEntry.num_episodes_watched
                     );

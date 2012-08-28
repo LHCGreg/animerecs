@@ -121,7 +121,7 @@ namespace AnimeRecs.RecService.Client
                     Dictionary<int, RecEngine.MAL.MalListEntry> animeListEntries = new Dictionary<int, RecEngine.MAL.MalListEntry>();
                     foreach (MyAnimeListEntry entry in lookup.AnimeList)
                     {
-                        animeListEntries[entry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry(entry.Score, entry.Status, entry.NumEpisodesWatched);
+                        animeListEntries[entry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry((byte?)entry.Score, entry.Status, (short)entry.NumEpisodesWatched);
                     }
 
                     MalRecResults<IEnumerable<RecEngine.IRecommendation>> recs = client.GetMalRecommendations(

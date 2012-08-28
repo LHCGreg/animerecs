@@ -12,15 +12,15 @@ namespace AnimeRecs.DAL
         public int mal_list_entry_id { get; set; }
         public int mal_user_id { get; set; }
         public int mal_anime_id { get; set; }
-        public decimal? rating { get; set; }
-        public int mal_list_entry_status_id { get; set; }
-        public int num_episodes_watched { get; set; }
-        public int? started_watching_year { get; set; }
-        public int? started_watching_month { get; set; }
-        public int? started_watching_day { get; set; }
-        public int? finished_watching_year { get; set; }
-        public int? finished_watching_month { get; set; }
-        public int? finished_watching_day { get; set; }
+        public short? rating { get; set; }
+        public short mal_list_entry_status_id { get; set; }
+        public short num_episodes_watched { get; set; }
+        public short? started_watching_year { get; set; }
+        public short? started_watching_month { get; set; }
+        public short? started_watching_day { get; set; }
+        public short? finished_watching_year { get; set; }
+        public short? finished_watching_month { get; set; }
+        public short? finished_watching_day { get; set; }
         public DateTime last_mal_update { get; set; }
 
         public mal_list_entry()
@@ -28,9 +28,9 @@ namespace AnimeRecs.DAL
             ;
         }
 
-        public mal_list_entry(int _mal_user_id, int _mal_anime_id, decimal? _rating, int _mal_list_entry_status_id,
-            int _num_episodes_watched, int? _started_watching_year, int? _started_watching_month, int? _started_watching_day,
-            int? _finished_watching_year, int? _finished_watching_month, int? _finished_watching_day, DateTime _last_mal_update)
+        public mal_list_entry(int _mal_user_id, int _mal_anime_id, short? _rating, short _mal_list_entry_status_id,
+            short _num_episodes_watched, short? _started_watching_year, short? _started_watching_month, short? _started_watching_day,
+            short? _finished_watching_year, short? _finished_watching_month, short? _finished_watching_day, DateTime _last_mal_update)
         {
             mal_user_id = _mal_user_id;
             mal_anime_id = _mal_anime_id;

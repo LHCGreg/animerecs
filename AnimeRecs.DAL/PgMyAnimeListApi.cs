@@ -30,24 +30,24 @@ namespace AnimeRecs.DAL
             public int mal_anime_type_id { get; set; }
             public int num_episodes { get; set; }
             public int mal_anime_status_id { get; set; }
-            public int? start_year { get; set; }
-            public int? start_month { get; set; }
-            public int? start_day { get; set; }
-            public int? end_year { get; set; }
-            public int? end_month { get; set; }
-            public int? end_day { get; set; }
+            public short? start_year { get; set; }
+            public short? start_month { get; set; }
+            public short? start_day { get; set; }
+            public short? end_year { get; set; }
+            public short? end_month { get; set; }
+            public short? end_day { get; set; }
             public string image_url { get; set; }
             public IEnumerable<string> synonyms { get; set; } // ignore any nulls in this
 
-            public decimal? rating { get; set; }
-            public int mal_list_entry_status_id { get; set; }
-            public int num_episodes_watched { get; set; }
-            public int? started_watching_year { get; set; }
-            public int? started_watching_month { get; set; }
-            public int? started_watching_day { get; set; }
-            public int? finished_watching_year { get; set; }
-            public int? finished_watching_month { get; set; }
-            public int? finished_watching_day { get; set; }
+            public short? rating { get; set; }
+            public short mal_list_entry_status_id { get; set; }
+            public short num_episodes_watched { get; set; }
+            public short? started_watching_year { get; set; }
+            public short? started_watching_month { get; set; }
+            public short? started_watching_day { get; set; }
+            public short? finished_watching_year { get; set; }
+            public short? finished_watching_month { get; set; }
+            public short? finished_watching_day { get; set; }
             public DateTime last_mal_update { get; set; }
             public IEnumerable<string> tags { get; set; } // ignore any nulls in this
         }

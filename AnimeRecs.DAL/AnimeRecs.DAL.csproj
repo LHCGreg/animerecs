@@ -68,7 +68,6 @@
     <Compile Include="IMalTrainingDataLoader.cs" />
     <Compile Include="IAnimeRecsDbConnectionFactory.cs" />
     <Compile Include="Logging.cs" />
-    <Compile Include="MalListEntryJoined.cs" />
     <Compile Include="mal_anime.cs" />
     <Compile Include="mal_anime_synonym.cs" />
     <Compile Include="mal_anime_type.cs" />

@@ -14,12 +14,12 @@ namespace AnimeRecs.DAL
         public int mal_anime_type_id { get; set; }
         public int num_episodes { get; set; }
         public int mal_anime_status_id { get; set; }
-        public int? start_year { get; set; }
-        public int? start_month { get; set; }
-        public int? start_day { get; set; }
-        public int? end_year { get; set; }
-        public int? end_month { get; set; }
-        public int? end_day { get; set; }
+        public short? start_year { get; set; }
+        public short? start_month { get; set; }
+        public short? start_day { get; set; }
+        public short? end_year { get; set; }
+        public short? end_month { get; set; }
+        public short? end_day { get; set; }
         public string image_url { get; set; }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace AnimeRecs.DAL
         }
 
         public mal_anime(int _mal_anime_id, string _title, int _mal_anime_type_id, int _num_episodes, int _mal_anime_status_id,
-            int? _start_year, int? _start_month, int? _start_day, int? _end_year, int? _end_month, int? _end_day, string _image_url,
+            short? _start_year, short? _start_month, short? _start_day, short? _end_year, short? _end_month, short? _end_day, string _image_url,
             DateTime _last_updated)
         {
             mal_anime_id = _mal_anime_id;

@@ -51,13 +51,13 @@ CREATE TABLE mal_anime
   num_episodes int NOT NULL,
   mal_anime_status_id int NOT NULL, -- not a foreign key because MAL could add new status types,
 
-  start_year int NULL,
-  start_month int NULL,
-  start_day int NULL,
+  start_year smallint NULL,
+  start_month smallint NULL,
+  start_day smallint NULL,
 
-  end_year int NULL,
-  end_month int NULL,
-  end_day int NULL,
+  end_year smallint NULL,
+  end_month smallint NULL,
+  end_day smallint NULL,
 
   image_url text NOT NULL,
   last_updated timestamp with time zone NOT NULL
@@ -75,7 +75,7 @@ CREATE INDEX index_mal_anime_synonym__mal_anime_id
 
 CREATE TABLE mal_list_entry_status
 (
-  mal_list_entry_status_id int NOT NULL PRIMARY KEY,
+  mal_list_entry_status_id smallint NOT NULL PRIMARY KEY,
   status_name text
 );
 
@@ -93,15 +93,15 @@ CREATE TABLE mal_list_entry
   mal_list_entry_id serial NOT NULL PRIMARY KEY,
   mal_user_id int NOT NULL REFERENCES mal_user (mal_user_id) ON DELETE CASCADE,
   mal_anime_id int NOT NULL REFERENCES mal_anime (mal_anime_id),
-  rating numeric NULL,
-  mal_list_entry_status_id int NOT NULL, -- Not a foreign key because MAL could add more statuses
-  num_episodes_watched int NOT NULL,
-  started_watching_year int NULL,
-  started_watching_month int NULL,
-  started_watching_day int NULL,
-  finished_watching_year int NULL,
-  finished_watching_month int NULL,
-  finished_watching_day int NULL,
+  rating smallint NULL,
+  mal_list_entry_status_id smallint NOT NULL, -- Not a foreign key because MAL could add more statuses
+  num_episodes_watched smallint NOT NULL,
+  started_watching_year smallint NULL,
+  started_watching_month smallint NULL,
+  started_watching_day smallint NULL,
+  finished_watching_year smallint NULL,
+  finished_watching_month smallint NULL,
+  finished_watching_day smallint NULL,
   last_mal_update timestamp with time zone NOT NULL
 );
 
@@ -110,15 +110,6 @@ CREATE INDEX index_mal_list_entry__mal_anime_id
 
 CREATE UNIQUE INDEX index_mal_list_entry__mal_user_id__mal_anime_id
   ON mal_list_entry (mal_user_id, mal_anime_id);
-
-CREATE INDEX index_mal_list_entry__rating
-  ON mal_list_entry (rating);
-
-CREATE INDEX index_mal_list_entry__mal_list_entry_status_id
-  ON mal_list_entry (mal_list_entry_status_id);
-
-CREATE INDEX index_mal_list_entry__num_episodes_watched
-  ON mal_list_entry (num_episodes_watched);
 
 CREATE TABLE mal_list_entry_tag
 (
@@ -130,20 +121,6 @@ CREATE TABLE mal_list_entry_tag
 
 CREATE INDEX index_mal_list_entry_tag__mal_user_id__mal_anime_id
   ON mal_list_entry_tag (mal_user_id, mal_anime_id);
-
--- Not used by any code, just useful to check.
-CREATE VIEW mal_average_ratings
-(mal_anime_id, title, average, num_ratings)
-AS
-SELECT * FROM
-(SELECT anime.mal_anime_id, anime.title, avg(entry.rating) AS average, count(*) AS num_ratings
-FROM mal_list_entry AS entry
-JOIN mal_anime AS anime ON anime.mal_anime_id = entry.mal_anime_id
-WHERE entry.rating IS NOT NULL
-AND (entry.mal_list_entry_status_id = 2 OR entry.num_episodes_watched > 26)
-GROUP BY anime.mal_anime_id
-ORDER BY average DESC) AS averageStuff
-WHERE average IS NOT NULL AND num_ratings >= ((SELECT count(*) FROM mal_user) / 50); -- >= 2% of users have seen it
 
 CREATE TABLE streaming_service
 (

@@ -7,7 +7,7 @@ namespace AnimeRecs.DAL
 {
     public class mal_list_entry_status
     {
-        public int mal_list_entry_status_id { get; set; }
+        public short mal_list_entry_status_id { get; set; }
         public string status_name { get; set; }
     }
 }

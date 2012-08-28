@@ -9,16 +9,16 @@ namespace AnimeRecs.RecService.DTO
     public class MalListEntry
     {
         public int MalAnimeId { get; set; }
-        public decimal? Rating { get; set; }
+        public byte? Rating { get; set; }
         public CompletionStatus Status { get; set; }
-        public int NumEpisodesWatched { get; set; }
+        public short NumEpisodesWatched { get; set; }
 
         public MalListEntry()
         {
             ;
         }
 
-        public MalListEntry(int malAnimeId, decimal? rating, CompletionStatus status, int numEpisodesWatched)
+        public MalListEntry(int malAnimeId, byte? rating, CompletionStatus status, short numEpisodesWatched)
         {
             MalAnimeId = malAnimeId;
             Rating = rating;

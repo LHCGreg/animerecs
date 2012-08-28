@@ -140,12 +140,12 @@ namespace AnimeRecs.FreshenMalDatabase
                         _mal_anime_type_id: (int)anime.AnimeInfo.Type,
                         _num_episodes: anime.AnimeInfo.NumEpisodes,
                         _mal_anime_status_id: (int)anime.AnimeInfo.Status,
-                        _start_year: anime.AnimeInfo.StartDate.Year,
-                        _start_month: anime.AnimeInfo.StartDate.Month,
-                        _start_day: anime.AnimeInfo.StartDate.Day,
-                        _end_year: anime.AnimeInfo.EndDate.Year,
-                        _end_month: anime.AnimeInfo.EndDate.Month,
-                        _end_day: anime.AnimeInfo.EndDate.Day,
+                        _start_year: (short?)anime.AnimeInfo.StartDate.Year,
+                        _start_month: (short?)anime.AnimeInfo.StartDate.Month,
+                        _start_day: (short?)anime.AnimeInfo.StartDate.Day,
+                        _end_year: (short?)anime.AnimeInfo.EndDate.Year,
+                        _end_month: (short?)anime.AnimeInfo.EndDate.Month,
+                        _end_day: (short?)anime.AnimeInfo.EndDate.Day,
                         _image_url: anime.AnimeInfo.ImageUrl,
                         _last_updated: DateTime.UtcNow
                     );
@@ -168,15 +168,15 @@ namespace AnimeRecs.FreshenMalDatabase
                 mal_list_entry dbListEntry = new mal_list_entry(
                     _mal_user_id: userLookup.UserId,
                     _mal_anime_id: anime.AnimeInfo.AnimeId,
-                    _rating: anime.Score,
-                    _mal_list_entry_status_id: (int)anime.Status,
-                    _num_episodes_watched: anime.NumEpisodesWatched,
-                    _started_watching_year: anime.MyStartDate.Year,
-                    _started_watching_month: anime.MyStartDate.Month,
-                    _started_watching_day: anime.MyStartDate.Day,
-                    _finished_watching_year: anime.MyFinishDate.Year,
-                    _finished_watching_month: anime.MyFinishDate.Month,
-                    _finished_watching_day: anime.MyFinishDate.Day,
+                    _rating: (short?)anime.Score,
+                    _mal_list_entry_status_id: (short)anime.Status,
+                    _num_episodes_watched: (short)anime.NumEpisodesWatched,
+                    _started_watching_year: (short?)anime.MyStartDate.Year,
+                    _started_watching_month: (short?)anime.MyStartDate.Month,
+                    _started_watching_day: (short?)anime.MyStartDate.Day,
+                    _finished_watching_year: (short?)anime.MyFinishDate.Year,
+                    _finished_watching_month: (short?)anime.MyFinishDate.Month,
+                    _finished_watching_day: (short?)anime.MyFinishDate.Day,
                     _last_mal_update: anime.MyLastUpdate
                 );
 

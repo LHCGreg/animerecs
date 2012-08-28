@@ -6,13 +6,54 @@ using MalApi;
 
 namespace AnimeRecs.RecEngine.MAL
 {
-    public class MalListEntry
+    public struct MalListEntry
     {
-        public decimal? Rating { get; private set; }
-        public CompletionStatus Status { get; private set; }
-        public int NumEpisodesWatched { get; private set; }
+        // 255 means null rating
+        private byte m_rating;
 
-        public MalListEntry(decimal? rating, CompletionStatus status, int numEpisodesWatched)
+        public byte? Rating
+        {
+            get
+            {
+                if (m_rating == 255)
+                {
+                    return null;
+                }
+                else
+                {
+                    return m_rating;
+                }
+            }
+            private set
+            {
+                if (value == null)
+                {
+                    m_rating = 255;
+                }
+                else
+                {
+                    m_rating = value.Value;
+                }
+            }
+        }
+
+        private byte m_status;
+        public CompletionStatus Status
+        {
+            get
+            {
+                return (CompletionStatus)m_status;
+            }
+            private set
+            {
+                m_status = (byte)value;
+            }
+        }
+
+        public short NumEpisodesWatched { get; private set; }
+
+        public MalListEntry(byte? rating, CompletionStatus status, short numEpisodesWatched)
+            : this()
         {
             Rating = rating;
             Status = status;

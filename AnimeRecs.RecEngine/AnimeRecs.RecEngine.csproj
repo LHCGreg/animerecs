@@ -65,6 +65,7 @@
     <Compile Include="RatingPredictionRecommendation.cs" />
     <Compile Include="RecUtils.cs" />
     <Compile Include="Utils\DelegateComparer.cs" />
+    <Compile Include="Utils\FilteredDictionary.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
