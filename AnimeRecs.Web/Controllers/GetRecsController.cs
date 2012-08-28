@@ -70,7 +70,7 @@ namespace AnimeRecs.Web.Controllers
 
                 foreach (MyAnimeListEntry listEntry in userLookup.AnimeList)
                 {
-                    animeList[listEntry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry(listEntry.Score, listEntry.Status, listEntry.NumEpisodesWatched);
+                    animeList[listEntry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry((byte?)listEntry.Score, listEntry.Status, (short)listEntry.NumEpisodesWatched);
                 }
 
                 using (AnimeRecsClient recClient = m_recClientFactory.GetClient(input.RecSourceName))
