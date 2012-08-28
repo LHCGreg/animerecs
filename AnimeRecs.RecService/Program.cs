@@ -50,9 +50,6 @@ namespace AnimeRecs.RecService
                         }
                     }
 
-                    GC.Collect();
-                    Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
-
                     if (Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX)
                     {
                         UnixSignal[] signals = new UnixSignal[]
