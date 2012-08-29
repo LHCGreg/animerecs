@@ -24,6 +24,7 @@ CREATE TABLE mal_anime_type
 INSERT INTO mal_anime_type
 (mal_anime_type_id, type_name)
 VALUES
+(0, 'Unknown'),
 (1, 'TV'),
 (2, 'OVA'),
 (3, 'Movie'),
