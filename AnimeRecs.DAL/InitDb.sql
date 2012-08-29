@@ -28,7 +28,8 @@ VALUES
 (2, 'OVA'),
 (3, 'Movie'),
 (4, 'Special'),
-(5, 'ONA');
+(5, 'ONA'),
+(6, 'Music');
 
 CREATE TABLE mal_anime_status
 (
