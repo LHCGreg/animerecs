@@ -80,9 +80,6 @@ namespace AnimeRecs.RecEngine.MAL
                         filteredEntries[animeId] = trainingData.Users[userId].Entries[animeId];
                     }
                 }
-                //IDictionary<int, MalListEntry> filteredEntries = new FilteredDictionary<int, MalListEntry>(
-                //    trainingData.Users[userId].Entries, kvPair => trainingData.Animes[kvPair.Key].Type != MalAnimeType.Special);
-
 
                 MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].AnimesEligibleForRecommendation, trainingData.Users[userId].MalUsername);
                 filteredUsers[userId] = filteredUser;
