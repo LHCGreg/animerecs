@@ -12,7 +12,6 @@ namespace AnimeRecs.DAL
         public int streaming_service_anime_map_id { get; set; }
         public int mal_anime_id { get; set; }
         public int streaming_service_id { get; set; }
-        public bool requires_subscription { get; set; }
         public string streaming_url { get; set; }
 
         public streaming_service_anime_map()
@@ -20,11 +19,10 @@ namespace AnimeRecs.DAL
             ;
         }
 
-        public streaming_service_anime_map(int _mal_anime_id, int _streaming_service_id, bool _requires_subscription, string _streaming_url)
+        public streaming_service_anime_map(int _mal_anime_id, int _streaming_service_id, string _streaming_url)
         {
             mal_anime_id = _mal_anime_id;
             streaming_service_id = _streaming_service_id;
-            requires_subscription = _requires_subscription;
             streaming_url = _streaming_url;
         }
 
@@ -41,7 +39,7 @@ namespace AnimeRecs.DAL
             sql.AppendLine("DELETE FROM streaming_service_anime_map WHERE 1 = 1;");
             sql.AppendLine();
             sql.AppendLine("INSERT INTO streaming_service_anime_map");
-            sql.AppendLine("(mal_anime_id, streaming_service_id, streaming_url, requires_subscription)");
+            sql.AppendLine("(mal_anime_id, streaming_service_id, streaming_url)");
             sql.AppendLine("VALUES");
 
             foreach (var streamMapIt in streamMaps.AsSmartEnumerable())
@@ -51,11 +49,10 @@ namespace AnimeRecs.DAL
                 {
                     sql.AppendLine(",");
                 }
-                sql.AppendFormat("({0}, {1}, {2}, {3})",
+                sql.AppendFormat("({0}, {1}, {2})",
                     streamMap.mal_anime_id.ToString(CultureInfo.InvariantCulture),
                     streamMap.streaming_service_id.ToString(CultureInfo.InvariantCulture),
-                    PgHelpers.QuotePgString(streamMap.streaming_url),
-                    streamMap.requires_subscription.ToString()
+                    PgHelpers.QuotePgString(streamMap.streaming_url)
                 );
             }
             sql.AppendLine(";");

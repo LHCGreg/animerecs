@@ -11,14 +11,12 @@ namespace AnimeRecs.UpdateStreams
         public string AnimeName { get; private set; }
         public string Url { get; private set; }
         public StreamingService Service { get; private set; }
-        public bool SubscriptionRequired { get; private set; }
 
-        public AnimeStreamInfo(string animeName, string url, StreamingService service, bool subscriptionRequired)
+        public AnimeStreamInfo(string animeName, string url, StreamingService service)
         {
             AnimeName = animeName;
             Url = url;
             Service = service;
-            SubscriptionRequired = subscriptionRequired;
         }
 
         public override bool Equals(object obj)
@@ -29,7 +27,7 @@ namespace AnimeRecs.UpdateStreams
         public bool Equals(AnimeStreamInfo other)
         {
             if (other == null) return false;
-            return this.AnimeName == other.AnimeName && this.Url == other.Url && this.Service == other.Service && this.SubscriptionRequired == other.SubscriptionRequired;
+            return this.AnimeName == other.AnimeName && this.Url == other.Url && this.Service == other.Service;
         }
 
         public override int GetHashCode()
@@ -40,14 +38,13 @@ namespace AnimeRecs.UpdateStreams
                 hash = hash * 17 + AnimeName.GetHashCode();
                 hash = hash * 17 + Url.GetHashCode();
                 hash = hash * 17 + Service.GetHashCode();
-                hash = hash * 17 + SubscriptionRequired.GetHashCode();
                 return hash;
             }
         }
 
         public override string ToString()
         {
-            return string.Format("AnimeName=\"{0}\" Url={1} Service={2} SubscriptionRequired={3}", AnimeName, Url, Service, SubscriptionRequired);
+            return string.Format("AnimeName=\"{0}\" Url={1} Service={2}", AnimeName, Url, Service);
         }
     }
 }

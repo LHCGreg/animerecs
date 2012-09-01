@@ -16,8 +16,8 @@ namespace AnimeRecs.UpdateStreams.Tests
         {
             CrunchyrollStreamInfoSource cr = new CrunchyrollStreamInfoSource();
             ICollection<AnimeStreamInfo> streams = cr.GetAnimeStreamInfo(CrunchyrollStreamInfoSourceTests.TestHtml);
-            Assert.That(streams, Contains.Item(new AnimeStreamInfo("Mobile Suit Zeta Gundam", "http://www.crunchyroll.com/mobile-suit-zeta-gundam", StreamingService.Crunchyroll, false)));
-            Assert.That(streams, Contains.Item(new AnimeStreamInfo("NARUTO Spin-Off: Rock Lee & His Ninja Pals", "http://www.crunchyroll.com/naruto-spin-off-rock-lee-his-ninja-pals", StreamingService.Crunchyroll, false)));
+            Assert.That(streams, Contains.Item(new AnimeStreamInfo("Mobile Suit Zeta Gundam", "http://www.crunchyroll.com/mobile-suit-zeta-gundam", StreamingService.Crunchyroll)));
+            Assert.That(streams, Contains.Item(new AnimeStreamInfo("NARUTO Spin-Off: Rock Lee & His Ninja Pals", "http://www.crunchyroll.com/naruto-spin-off-rock-lee-his-ninja-pals", StreamingService.Crunchyroll)));
         }
     }
 }

@@ -84,7 +84,7 @@ namespace AnimeRecs.UpdateStreams
                     absoluteUrl = new Uri(animeListUri, rawUri).ToString();
                 }
 
-                streams.Add(new AnimeStreamInfo(animeName: animeName, url: absoluteUrl, service: Service, subscriptionRequired: false));
+                streams.Add(new AnimeStreamInfo(animeName: animeName, url: absoluteUrl, service: Service));
 
                 match = match.NextMatch();
             }

@@ -19,8 +19,7 @@ namespace AnimeRecs.Web
             if (model.StreamsByAnime.ContainsKey(malAnimeId))
             {
                 foreach (streaming_service_anime_map serviceMap in model.StreamsByAnime[malAnimeId]
-                    .OrderBy(map => map.streaming_service_id)
-                    .ThenBy(map => map.requires_subscription))
+                    .OrderBy(map => map.streaming_service_id))
                 {
                     StreamingService service = (StreamingService)serviceMap.streaming_service_id;
                     string imagePath;

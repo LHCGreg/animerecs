@@ -16,7 +16,7 @@ namespace AnimeRecs.UpdateStreams.Tests
         {
             FunimationStreamInfoSource funi = new FunimationStreamInfoSource();
             ICollection<AnimeStreamInfo> streams = funi.GetAnimeStreamInfo(FunimationStreamInfoSourceTests.TestHtml);
-            Assert.That(streams, Contains.Item(new AnimeStreamInfo("Haibane Renmei", "http://www.funimation.com/haibane-renmei/episodes", StreamingService.Funimation, false)));
+            Assert.That(streams, Contains.Item(new AnimeStreamInfo("Haibane Renmei", "http://www.funimation.com/haibane-renmei/episodes", StreamingService.Funimation)));
         }
     }
 }

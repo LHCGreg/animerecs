@@ -142,20 +142,11 @@ CREATE TABLE streaming_service_anime_map
 	streaming_service_anime_map_id serial NOT NULL PRIMARY KEY,
 	mal_anime_id int NOT NULL, -- No foreign key in order to allow anime that is not in the database but is on MAL
 	streaming_service_id int NOT NULL REFERENCES streaming_service (streaming_service_id),
-	streaming_url text NOT NULL,
-	requires_subscription boolean NOT NULL
+	streaming_url text NOT NULL
 );
 
 CREATE UNIQUE INDEX index_anime_service_url
   ON streaming_service_anime_map
   (mal_anime_id, streaming_service_id, streaming_url);
-  
-CREATE INDEX index_service_subscription
-  ON streaming_service_anime_map
-  (streaming_service_id, requires_subscription);
-  
-CREATE INDEX index_subscription
-  ON streaming_service_anime_map
-  (requires_subscription);
 
 COMMIT TRANSACTION;

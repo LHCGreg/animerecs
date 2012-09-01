@@ -41,6 +41,7 @@ namespace AnimeRecs.UpdateStreams
         /// <param name="outputFile"></param>
         static void CreateCsv(string inputFile, string outputFile)
         {
+            // Read in existing mapping from the input csv. If no input csv was specified, treat it as an empty csv.
             List<CsvRow> inputCsvRows;
             if (inputFile == null)
             {
@@ -51,6 +52,7 @@ namespace AnimeRecs.UpdateStreams
                 inputCsvRows = LoadCsv(inputFile);
             }
 
+            // Index streams available by the streaming service and the anime name used by the streaming service.
             Dictionary<StreamingService, Dictionary<string, List<CsvRow>>> rowsByServiceAndAnime = new Dictionary<StreamingService, Dictionary<string, List<CsvRow>>>();
 
             foreach (CsvRow csvRow in inputCsvRows)
@@ -66,6 +68,9 @@ namespace AnimeRecs.UpdateStreams
                 rowsByServiceAndAnime[csvRow.Service][csvRow.AnimeName].Add(csvRow);
             }
 
+            // Write a new csv mapping to the output file. If MAL anime ids or n/a was present in the input file for a certain
+            // streaming service/anime name/URL combination, use them. Otherwise, leave the MAL anime id column blank
+            // for a human operator to fill in.
             using (StreamWriter output = new StreamWriter(outputFile))
             {
                 List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
@@ -78,16 +83,19 @@ namespace AnimeRecs.UpdateStreams
                     streams.AddRange(streamsFromThisSource);
                 }
 
-                string header = "Service,Anime,URL,Subscription Required?,MAL ID (or n/a)";
+                string header = "Service,Anime,URL,MAL ID (or n/a)";
                 output.Write(header);
 
-                foreach (AnimeStreamInfo streamInfo in streams.OrderBy(stream => stream.Service).ThenBy(stream => stream.AnimeName).ThenBy(stream => stream.SubscriptionRequired).ThenBy(stream => stream.Url))
+                foreach (AnimeStreamInfo streamInfo in streams
+                    .OrderBy(stream => stream.Service.ToString())
+                    .ThenBy(stream => stream.AnimeName)
+                    .ThenBy(stream => stream.Url))
                 {
                     List<CsvRow> existingCsvRows = new List<CsvRow>();
                     if (rowsByServiceAndAnime.ContainsKey(streamInfo.Service) && rowsByServiceAndAnime[streamInfo.Service].ContainsKey(streamInfo.AnimeName))
                     {
                         List<CsvRow> rowsForThisServiceAndAnime = rowsByServiceAndAnime[streamInfo.Service][streamInfo.AnimeName];
-                        existingCsvRows = rowsForThisServiceAndAnime.Where(row => row.Url == streamInfo.Url && row.SubscriptionRequired == streamInfo.SubscriptionRequired).ToList();
+                        existingCsvRows = rowsForThisServiceAndAnime.Where(row => row.Url == streamInfo.Url).ToList();
                     }
 
                     output.Write("\r\n"); // not WriteLine() - this should be \r\n regardless of what platform this is run on per the CSV RFC
@@ -101,15 +109,16 @@ namespace AnimeRecs.UpdateStreams
                             {
                                 output.Write("\r\n");
                             }
-                            output.Write("{0},{1},{2},{3},{4}", QuoteForCsv(existingRow.Service.ToString()),
+                            output.Write("{0},{1},{2},{3}", QuoteForCsv(existingRow.Service.ToString()),
                                 QuoteForCsv(existingRow.AnimeName), QuoteForCsv(existingRow.Url),
-                                QuoteForCsv(existingRow.SubscriptionRequired.ToString()), existingRow.MalAnimeId.ToString());
+                                existingRow.MalAnimeId.ToString());
                         }
                     }
                     else
                     {
-                        output.Write("{0},{1},{2},{3},", QuoteForCsv(streamInfo.Service.ToString()), QuoteForCsv(streamInfo.AnimeName),
-                            QuoteForCsv(streamInfo.Url), QuoteForCsv(streamInfo.SubscriptionRequired.ToString()));
+                        // Notice the comma at the end - leave MAL anime id blank for a human operator to fill in.
+                        output.Write("{0},{1},{2},", QuoteForCsv(streamInfo.Service.ToString()), QuoteForCsv(streamInfo.AnimeName),
+                            QuoteForCsv(streamInfo.Url));
                     }
                 }
             }
@@ -130,19 +139,23 @@ namespace AnimeRecs.UpdateStreams
                 while (!csvReader.EndOfData)
                 {
                     string[] fields = csvReader.ReadFields();
+                    // Skip blank lines
                     if (fields.Length == 0)
                     {
                         continue;
                     }
 
                     string serviceString = fields[0];
+                    if (string.IsNullOrWhiteSpace(serviceString))
+                    {
+                        continue; // Skip blank lines
+                    }
+
                     string animeName = fields[1];
                     string url = fields[2];
-                    string subscriptionRequiredString = fields[3];
-                    string malIdString = fields[4];
+                    string malIdString = fields[3];
 
                     StreamingService service = (StreamingService)Enum.Parse(typeof(StreamingService), serviceString);
-                    bool subscriptionRequired = bool.Parse(subscriptionRequiredString);
                     MalId malId;
 
                     // could be blank
@@ -152,6 +165,8 @@ namespace AnimeRecs.UpdateStreams
                     }
                     else if (malIdString.Equals("n/a", StringComparison.OrdinalIgnoreCase))
                     {
+                        // n/a means the stream does not correspond to a MAL anime. Maybe it's a stream of anime reviews
+                        // or maybe it's something incredibly obscure.
                         malId = new MalId(malAnimeId: null, specified: true);
                     }
                     else
@@ -160,7 +175,7 @@ namespace AnimeRecs.UpdateStreams
                         malId = new MalId(malAnimeId: malIdInt, specified: true);
                     }
 
-                    inputCsvRows.Add(new CsvRow(service: service, animeName: animeName, url: url, subscriptionRequired: subscriptionRequired, malAnimeId: malId));
+                    inputCsvRows.Add(new CsvRow(service: service, animeName: animeName, url: url, malAnimeId: malId));
                 }
             }
 
@@ -182,7 +197,6 @@ namespace AnimeRecs.UpdateStreams
                     .Select(csvRow => new streaming_service_anime_map(
                         _mal_anime_id: csvRow.MalAnimeId.MalAnimeId.Value,
                         _streaming_service_id: (int)csvRow.Service,
-                        _requires_subscription: csvRow.SubscriptionRequired,
                         _streaming_url: csvRow.Url
                     ));
 
@@ -193,6 +207,7 @@ namespace AnimeRecs.UpdateStreams
 
         static string QuoteForCsv(string str)
         {
+            // Enclose in quotes and replace quote with quote-quote
             return "\"" + str.Replace("\"", "\"\"") + "\"";
         }
 
