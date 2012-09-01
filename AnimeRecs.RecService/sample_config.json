@@ -31,7 +31,8 @@
 			Type: "BiasedMatrixFactorization",
 			Params: {
 				MinEpisodesToCountIncomplete: 26,
-				UseDropped: true
+				UseDropped: true,
+				BoldDriver: true
 			}
 		}
 	]
