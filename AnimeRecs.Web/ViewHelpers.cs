@@ -37,6 +37,11 @@ namespace AnimeRecs.Web
                             altText = "Funimation";
                             titleText = "Watch on Funimation";
                             break;
+                        case StreamingService.Viz:
+                            imagePath = url.Content("~/Content/viz_icon.png");
+                            altText = "Viz";
+                            titleText = "Watch on Viz";
+                            break;
                         default:
                             continue;
                     }

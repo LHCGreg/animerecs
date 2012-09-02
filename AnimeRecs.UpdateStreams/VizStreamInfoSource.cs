@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
+using HtmlAgilityPack;
 using AnimeRecs.DAL;
-using System.Text.RegularExpressions;
 
 namespace AnimeRecs.UpdateStreams
 {
-    class FunimationStreamInfoSource : HtmlRegexAnimeStreamInfoSource
+    class VizStreamInfoSource : HtmlParsingAnimeStreamInfoSource
     {
-        public FunimationStreamInfoSource()
-            : base(url: "http://www.funimation.com/videos", service: StreamingService.Funimation,
-            animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute,
-            animeRegex: new Regex("<span class=\"field-content\"><a href=\"(?<Url>[^\"]*)?\">(?<AnimeName>.*?)</a>",
-                RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
+        private const string Url = "http://www.vizanime.com/";
+        private const string XPath = @"//ol[@class=""allshows_link_list allshows_link_list_red""]//a";
+        
+        public VizStreamInfoSource()
+            : base(Url, XPath)
         {
             ;
+        }
+
+        protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
+        {
+            string possiblyRelativeUrl = matchingNode.Attributes["href"].Value;
+            string animeName = matchingNode.InnerText;
+            return new AnimeStreamInfo(animeName, possiblyRelativeUrl, StreamingService.Viz);
         }
     }
 }

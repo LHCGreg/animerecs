@@ -6,13 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace AnimeRecs.UpdateStreams
 {
-    class CrunchyrollStreamInfoSource : HttpRegexAnimeStreamInfoSource
+    class CrunchyrollStreamInfoSource : HtmlRegexAnimeStreamInfoSource
     {
         private const string AnimeListUrl = "http://www.crunchyroll.com/videos/anime/alpha?group=all";
         
         public CrunchyrollStreamInfoSource()
             : base(url: AnimeListUrl, service: AnimeRecs.DAL.StreamingService.Crunchyroll,
-            animeNameContext: HttpRegexContext.Body, urlContext: HttpRegexContext.Attribute,
+            animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute,
             animeRegex: new Regex("<a title=\"[^\"]*?\" token=\"shows-portraits\" itemprop=\"url\" href=\"(?<Url>[^\"]*?)\" [^>]*?>\\s*(?<AnimeName>.*?)\\s*?</a>", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
         {
             ;
@@ -36,3 +36,11 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
+//
+//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
+//  or combining it with HTML Agility Pack (or a modified version of that 
+//  library), containing parts covered by the terms of the Microsoft Public 
+//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
+//  permission to convey the resulting work. Corresponding Source for a non-
+//  source form of such a combination shall include the source code for the parts 
+//  of HTML Agility Pack used as well as that of the covered work.

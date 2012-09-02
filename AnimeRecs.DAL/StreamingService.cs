@@ -8,7 +8,8 @@ namespace AnimeRecs.DAL
     public enum StreamingService
     {
         Crunchyroll = 1,
-        Funimation = 2
+        Funimation = 2,
+        Viz = 3
     }
 }
 

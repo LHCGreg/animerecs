@@ -9,20 +9,20 @@ using AnimeRecs.DAL;
 
 namespace AnimeRecs.UpdateStreams
 {
-    abstract class HttpRegexAnimeStreamInfoSource : IAnimeStreamInfoSource
+    abstract class HtmlRegexAnimeStreamInfoSource : IAnimeStreamInfoSource
     {
         protected string Url { get; private set; }
         protected Regex AnimeRegex { get; private set; }
         protected StreamingService Service { get; private set; }
-        protected HttpRegexContext AnimeNameContext { get; private set; }
-        protected HttpRegexContext UrlContext { get; private set; }
+        protected HtmlRegexContext AnimeNameContext { get; private set; }
+        protected HtmlRegexContext UrlContext { get; private set; }
 
         /// <summary>
         /// Regex must have a named capture group called AnimeName and Url
         /// </summary>
         /// <param name="url"></param>
         /// <param name="regex"></param>
-        protected HttpRegexAnimeStreamInfoSource(string url, Regex animeRegex, StreamingService service, HttpRegexContext animeNameContext, HttpRegexContext urlContext)
+        protected HtmlRegexAnimeStreamInfoSource(string url, Regex animeRegex, StreamingService service, HtmlRegexContext animeNameContext, HtmlRegexContext urlContext)
         {
             Url = url;
             AnimeRegex = animeRegex;
@@ -96,13 +96,13 @@ namespace AnimeRecs.UpdateStreams
             return streams;
         }
 
-        private string DecodeString(string str, HttpRegexContext context)
+        private string DecodeString(string str, HtmlRegexContext context)
         {
             switch (context)
             {
-                case HttpRegexContext.Body:
+                case HtmlRegexContext.Body:
                     return WebUtility.HtmlDecode(str);
-                case HttpRegexContext.Attribute:
+                case HtmlRegexContext.Attribute:
                     return str.Replace("&quot;", "\"").Replace("&apos;", "'").Replace("&lt;", "<").Replace("&gt;", ">").Replace("&amp;", "&");
                 default:
                     return str;
@@ -127,3 +127,11 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
+//
+//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
+//  or combining it with HTML Agility Pack (or a modified version of that 
+//  library), containing parts covered by the terms of the Microsoft Public 
+//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
+//  permission to convey the resulting work. Corresponding Source for a non-
+//  source form of such a combination shall include the source code for the parts 
+//  of HTML Agility Pack used as well as that of the covered work.

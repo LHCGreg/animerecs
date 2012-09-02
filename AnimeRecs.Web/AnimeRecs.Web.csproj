@@ -134,6 +134,7 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\style.css" />
     <None Include="csproj_manually_modified.txt" />
+    <Content Include="Content\viz_icon.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\libs\jquery-1.7.1.min.js" />

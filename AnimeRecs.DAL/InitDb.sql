@@ -135,7 +135,8 @@ INSERT INTO streaming_service
 (streaming_service_id, name, url)
 VALUES
 (1, 'Crunchyroll', 'http://www.crunchyroll.com/'),
-(2, 'Funimation', 'http://www.funimation.com/videos');
+(2, 'Funimation', 'http://www.funimation.com/videos'),
+(3, 'Viz', 'http://www.vizanime.com/');
 
 CREATE TABLE streaming_service_anime_map
 (

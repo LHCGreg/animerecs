@@ -29,3 +29,5 @@ Json.NET is copyright 2007 James Newton-King and is licensed under the MIT/X11 l
 MyMediaLite is Copyright (C) 2011, 2012 Zeno Gantner, Copyright (C) 2010 Zeno Gantner, Steffen Rendle, Christoph Freudenthaler and is licensed under the GPL version 3 (lib/mymedialite/mymedialite_license.txt).
 
 MyMediaLite uses C5 (see lib/mymedialite/C5_license.txt), MathNet.Numerics (see lib/mymedialite/MathNet.Numerics.License.txt), and SVM.NET (see lib/mymedialite/SVMNET_license.txt), a port of LIBSVM (see lib/mymedialite/libsvm_license.txt).
+
+HTML Agility Pack is copyright Simon Mourier and is licensed under the Microsoft Public License (lib/HtmlAgilityPack/license.txt).

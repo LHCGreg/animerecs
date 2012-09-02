@@ -55,6 +55,9 @@
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\lib\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MiscUtil, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -65,24 +68,27 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimeStreamInfo.cs" />
     <Compile Include="CommandLineArgs.cs" />
+    <Compile Include="CompressionWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrunchyrollStreamInfoSource.cs" />
     <Compile Include="CsvRow.cs" />
     <Compile Include="FunimationStreamInfoSource.cs" />
-    <Compile Include="HttpRegexAnimeStreamInfoSource.cs" />
-    <Compile Include="HttpRegexContext.cs" />
+    <Compile Include="HtmlParsingAnimeStreamInfoSource.cs" />
+    <Compile Include="HtmlRegexAnimeStreamInfoSource.cs" />
+    <Compile Include="HtmlRegexContext.cs" />
     <Compile Include="IAnimeStreamInfoSouce.cs" />
     <Compile Include="MalId.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="VizStreamInfoSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">

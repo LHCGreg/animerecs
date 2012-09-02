@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.DAL;
-using System.Text.RegularExpressions;
 
 namespace AnimeRecs.UpdateStreams
 {
-    class FunimationStreamInfoSource : HtmlRegexAnimeStreamInfoSource
+    static class Utils
     {
-        public FunimationStreamInfoSource()
-            : base(url: "http://www.funimation.com/videos", service: StreamingService.Funimation,
-            animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute,
-            animeRegex: new Regex("<span class=\"field-content\"><a href=\"(?<Url>[^\"]*)?\">(?<AnimeName>.*?)</a>",
-                RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
+        public static string PossiblyRelativeUrlToAbsoluteUrl(string possiblyRelativeUrl, string sourceUrl)
         {
-            ;
+            Uri possiblyRelativeUri = new Uri(possiblyRelativeUrl, UriKind.RelativeOrAbsolute);
+            if (possiblyRelativeUri.IsAbsoluteUri)
+            {
+                return possiblyRelativeUri.ToString();
+            }
+            else
+            {
+                return new Uri(new Uri(sourceUrl), possiblyRelativeUrl).ToString();
+            }
         }
     }
 }

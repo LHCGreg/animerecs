@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.DAL;
-using System.Text.RegularExpressions;
+using System.Net;
 
 namespace AnimeRecs.UpdateStreams
 {
-    class FunimationStreamInfoSource : HtmlRegexAnimeStreamInfoSource
+    /// <summary>
+    /// WebClient that can accept compressed responses
+    /// </summary>
+    class CompressionWebClient : WebClient
     {
-        public FunimationStreamInfoSource()
-            : base(url: "http://www.funimation.com/videos", service: StreamingService.Funimation,
-            animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute,
-            animeRegex: new Regex("<span class=\"field-content\"><a href=\"(?<Url>[^\"]*)?\">(?<AnimeName>.*?)</a>",
-                RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
+        protected override WebRequest GetWebRequest(Uri address)
         {
-            ;
+            HttpWebRequest request = (HttpWebRequest)base.GetWebRequest(address);
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            return request;
         }
     }
 }
