@@ -42,6 +42,12 @@ namespace AnimeRecs.UpdateStreams
             OptionSet optionSet = GetOptionSet();
             optionSet.Parse(args);
 
+            if (ShowHelp)
+            {
+                DisplayHelp(Console.Out);
+                Environment.Exit(0);
+            }
+
             if (OutputFile == null)
             {
                 throw new OptionException("Output file not specified.", "o");

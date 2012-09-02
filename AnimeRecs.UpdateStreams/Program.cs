@@ -14,11 +14,6 @@ namespace AnimeRecs.UpdateStreams
         static void Main(string[] args)
         {
             CommandLineArgs commandLine = new CommandLineArgs(args);
-            if (commandLine.ShowHelp)
-            {
-                commandLine.DisplayHelp(Console.Out);
-                return;
-            }
 
             if (commandLine.Op == Operation.CreateCsv)
             {
