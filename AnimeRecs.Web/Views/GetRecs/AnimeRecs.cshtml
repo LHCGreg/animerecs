@@ -39,13 +39,10 @@ Your best matches are
                 <thead>
                     <tr>
                         <td>
-                            Anime
-                        </td>
-                        <td>
                             Streams
                         </td>
                         <td>
-                            Status
+                            Anime
                         </td>
                         <td>
                             Their Rating
@@ -77,20 +74,10 @@ Your best matches are
                         }
                         <tr @Html.Raw(rowClass)>
                             <td>
-                                @Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model)
-                            </td>
-                            <td>
                                 @Html.GetStreamLinksHtml(recommendation.MalAnimeId, Model, Url)
                             </td>
                             <td>
-                                @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId))
-                                {
-                                    @Html.MalAnimeStatusAsString(Model.UserAnimeList[recommendation.MalAnimeId].Status)
-                                }
-                                else
-                                {
-                                    @:-
-                                }
+                                @Html.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model)
                             </td>
                             <td>
                                 @(recommendation.RecommenderScore.HasValue ? recommendation.RecommenderScore.Value.ToString("F0") : "-")

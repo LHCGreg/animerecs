@@ -12,10 +12,10 @@
     <thead>
         <tr>
             <td>
-                Anime
+                Streams
             </td>
             <td>
-                Streams
+                Anime
             </td>
             <td>
                 Type
@@ -30,10 +30,10 @@
         {
             <tr>
                 <td>
-                    @Html.GetRecommendedMalAnimeHtml(rec.ItemId, Model)
+                    @Html.GetStreamLinksHtml(rec.ItemId, Model, Url)
                 </td>
                 <td>
-                    @Html.GetStreamLinksHtml(rec.ItemId, Model, Url)
+                    @Html.GetRecommendedMalAnimeHtml(rec.ItemId, Model)
                 </td>
                 <td>
                     @Html.MalAnimeTypeAsString(Model.Results.AnimeInfo[rec.ItemId].Type)
