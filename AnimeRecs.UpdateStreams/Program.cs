@@ -63,21 +63,19 @@ namespace AnimeRecs.UpdateStreams
                 rowsByServiceAndAnime[csvRow.Service][csvRow.AnimeName].Add(csvRow);
             }
 
+            List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources();
+            List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
+            foreach (IAnimeStreamInfoSource streamInfoSource in streamInfoSources)
+            {
+                ICollection<AnimeStreamInfo> streamsFromThisSource = streamInfoSource.GetAnimeStreamInfo();
+                streams.AddRange(streamsFromThisSource);
+            }
+
             // Write a new csv mapping to the output file. If MAL anime ids or n/a was present in the input file for a certain
             // streaming service/anime name/URL combination, use them. Otherwise, leave the MAL anime id column blank
             // for a human operator to fill in.
             using (StreamWriter output = new StreamWriter(outputFile))
             {
-                List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
-
-                List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources();
-
-                foreach (IAnimeStreamInfoSource streamInfoSource in streamInfoSources)
-                {
-                    ICollection<AnimeStreamInfo> streamsFromThisSource = streamInfoSource.GetAnimeStreamInfo();
-                    streams.AddRange(streamsFromThisSource);
-                }
-
                 string header = "Service,Anime,URL,MAL ID (or n/a)";
                 output.Write(header);
 
