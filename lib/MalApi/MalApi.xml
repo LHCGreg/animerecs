@@ -9,6 +9,11 @@
             Generic exception for errors 
             </summary>
         </member>
+        <member name="F:MalApi.MalAnimeType.Unknown">
+            <summary>
+            The type has not been entered in MAL's database yet.
+            </summary>
+        </member>
         <member name="T:MalApi.RetryOnFailureMyAnimeListApi">
             <summary>
             Retries failed requests after waiting for a short period. After a certain number of failures, it gives up and propagates the

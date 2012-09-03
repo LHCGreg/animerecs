@@ -97,6 +97,8 @@ namespace AnimeRecs.Web
                     return "ONA";
                 case MalAnimeType.Special:
                     return "Special";
+                case MalAnimeType.Music:
+                    return "Music";
                 default:
                     return "???";
             }
