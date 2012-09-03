@@ -85,6 +85,7 @@
     <Compile Include="streaming_service_anime_map.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="StreamMappings.sql" />
     <None Include="CreateDb_linux.sql" />
     <None Include="CreateDb_windows.sql" />
     <Content Include="csproj_manually_modified.txt" />
