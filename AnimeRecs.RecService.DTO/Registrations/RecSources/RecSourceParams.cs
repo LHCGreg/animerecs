@@ -92,6 +92,7 @@ namespace AnimeRecs.RecService.DTO
     {
         public int MinEpisodesToCountIncomplete { get; set; }
         public bool UseDropped { get; set; }
+        public int MinUsersToCountAnime { get; set; }
 
         public float? BiasLearnRate { get; set; }
         public float? BiasReg { get; set; }
@@ -108,12 +109,14 @@ namespace AnimeRecs.RecService.DTO
         {
             MinEpisodesToCountIncomplete = 26;
             UseDropped = true;
+            MinUsersToCountAnime = 50;
         }
 
-        public BiasedMatrixFactorizationRecSourceParams(int minEpisodesToCountIncomplete, bool useDropped)
+        public BiasedMatrixFactorizationRecSourceParams(int minEpisodesToCountIncomplete, bool useDropped, int minUsersToCountAnime)
         {
             MinEpisodesToCountIncomplete = minEpisodesToCountIncomplete;
             UseDropped = useDropped;
+            MinUsersToCountAnime = minUsersToCountAnime;
         }
 
         public override string GetRecSourceTypeName()
@@ -126,6 +129,7 @@ namespace AnimeRecs.RecService.DTO
     {
         public int MinEpisodesToCountIncomplete { get; set; }
         public bool UseDropped { get; set; }
+        public int MinUsersToCountAnime { get; set; }
 
         public float? Shrinkage { get; set; }
         public uint? K { get; set; }
@@ -137,6 +141,7 @@ namespace AnimeRecs.RecService.DTO
         {
             MinEpisodesToCountIncomplete = 26;
             UseDropped = true;
+            MinUsersToCountAnime = 50;
         }
 
         public override string GetRecSourceTypeName()

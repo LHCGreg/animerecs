@@ -30,7 +30,12 @@ namespace AnimeRecs.RecEngine.MAL
 
         public IBasicInputForUser AsBasicInput(int minEpisodesWatchedToCount, bool includeDropped)
         {
-            Dictionary<int, float> basicRatings = new Dictionary<int,float>();
+            return AsBasicInput(minEpisodesWatchedToCount, includeDropped, null);
+        }
+
+        public IBasicInputForUser AsBasicInput(int minEpisodesWatchedToCount, bool includeDropped, Predicate<int> additionalOkToRecommendPredicate)
+        {
+            Dictionary<int, float> basicRatings = new Dictionary<int, float>();
             foreach (KeyValuePair<int, MalListEntry> malListEntry in Entries)
             {
                 int malAnimeId = malListEntry.Key;
@@ -40,13 +45,21 @@ namespace AnimeRecs.RecEngine.MAL
 
                 if (entry.Rating != null
                     && ((entry.Status == CompletionStatus.Completed || entry.NumEpisodesWatched >= minEpisodesWatchedToCount)
-                    ||  (includeDropped && entry.Status == CompletionStatus.Dropped)))
+                    || (includeDropped && entry.Status == CompletionStatus.Dropped)))
                 {
                     basicRatings[malAnimeId] = (float)entry.Rating.Value;
                 }
             }
 
-            return new BasicInputForUserWithOkToRecommendPredicate(basicRatings, ItemIsOkToRecommend);
+            if (additionalOkToRecommendPredicate == null)
+            {
+                return new BasicInputForUserWithOkToRecommendPredicate(basicRatings, ItemIsOkToRecommend);
+            }
+            else
+            {
+                return new BasicInputForUserWithOkToRecommendPredicate(basicRatings, (itemId) =>
+                    ItemIsOkToRecommend(itemId) && additionalOkToRecommendPredicate(itemId));
+            }
         }
 
         public bool ItemIsOkToRecommend(int itemId)

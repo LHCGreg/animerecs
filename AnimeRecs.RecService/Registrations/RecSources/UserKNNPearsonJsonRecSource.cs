@@ -37,7 +37,8 @@ namespace AnimeRecs.RecService.Registrations.RecSources
             return new MalMyMediaLiteRatingPredictionRecSource<UserKNNPearson>(
                 recommender: underlyingRecSource,
                 minEpisodesToCountIncomplete: request.Params.MinEpisodesToCountIncomplete,
-                useDropped: request.Params.UseDropped
+                useDropped: request.Params.UseDropped,
+                minUsersToCountAnime: request.Params.MinUsersToCountAnime
             );
         }
         

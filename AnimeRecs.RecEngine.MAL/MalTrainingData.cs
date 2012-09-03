@@ -15,7 +15,7 @@ namespace AnimeRecs.RecEngine.MAL
             Users = new Dictionary<int, MalUserListEntries>();
             Animes = new Dictionary<int, MalAnime>();
         }
-        
+
         public MalTrainingData(IDictionary<int, MalUserListEntries> users, IDictionary<int, MalAnime> animes)
         {
             Users = users;

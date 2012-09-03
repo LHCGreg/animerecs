@@ -29,15 +29,15 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             var mostPopularRecSourceWithoutDropped = new MalMostPopularRecSource(minEpisodesToCountIncomplete, useDropped: false);
             var mostPopularRecSourceWithDropped = new MalMostPopularRecSource(minEpisodesToCountIncomplete, useDropped: true);
             var defaultBiasedMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
-                (new BiasedMatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true);
+                (new BiasedMatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
             var biasedMatrixFactorizationRecSourceWithFactors = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
                 (new BiasedMatrixFactorization() { BoldDriver = true, FrequencyRegularization = true, NumFactors = 50 },
-                minEpisodesToCountIncomplete, useDropped: true);
+                minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
             var biasedMatrixFactorizationRecSourceWithFactorsAndIters = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
                 (new BiasedMatrixFactorization() { BoldDriver = true, FrequencyRegularization = true, NumFactors = 50, NumIter = 50 },
-                minEpisodesToCountIncomplete, useDropped: true);
+                minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
             var defaultMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<MatrixFactorization>
-                (new MatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true);
+                (new MatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
             var animeRecsRecSource35 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
                 numRecommendersToUse: 100,
                 fractionConsideredRecommended: 0.35,
@@ -51,9 +51,9 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
                 minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
             );
             var userKNNCosineRecSource = new MalMyMediaLiteRatingPredictionRecSource<UserKNNCosine>
-                (new UserKNNCosine(), minEpisodesToCountIncomplete, useDropped: true);
+                (new UserKNNCosine(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
             var userKNNPearsonRecSource = new MalMyMediaLiteRatingPredictionRecSource<UserKNNPearson>
-                (new UserKNNPearson(), minEpisodesToCountIncomplete, useDropped: true);
+                (new UserKNNPearson(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
 
             recommendersUnderTest.Add(averageScoreRecSourceWithoutDropped);
             recommendersUnderTest.Add(averageScoreRecSourceWithDropped);

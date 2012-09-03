@@ -48,7 +48,8 @@ namespace AnimeRecs.RecService.Registrations.RecSources
             MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization> recSource = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>(
                 recommender: underlyingRecSource,
                 minEpisodesToCountIncomplete: request.Params.MinEpisodesToCountIncomplete,
-                useDropped: request.Params.UseDropped
+                useDropped: request.Params.UseDropped,
+                minUsersToCountAnime: request.Params.MinUsersToCountAnime
             );
 
             return recSource;
