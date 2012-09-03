@@ -89,6 +89,14 @@ Populating the database with ratings
 
 
 
+Populating the database with stream mappings
+--------------------------------------------
+Connect to the animerecs database and run /AnimeRecs.DAL/StreamMappings.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f StreamMappings.sql
+
+These mappings are not kept up to date in the hg repository.
+
+
+
 Running the web site
 -----------------------
 1. Edit App.config in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
