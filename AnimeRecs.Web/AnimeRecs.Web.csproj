@@ -155,6 +155,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\GetRecs\AnimeRecs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GetRecs\Fallback.cshtml" />
@@ -195,7 +196,7 @@
     <Content Include="Views\GetRecs\RatingPrediction.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\GetRecs\AnimeRecs.cshtml" />
+    <Content Include="Views\GetRecs\AnimeRecs_complex.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Condition=" '$(BuildSystem)' == 'MSBuild' " Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

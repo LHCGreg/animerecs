@@ -10,12 +10,14 @@ namespace AnimeRecs.Web.Models.ViewModels
         public string Algorithm { get; set; }
         public bool AlgorithmAvailable { get; set; }
         public bool TargetScoreNeeded { get; set; }
+        public bool DisplayDetailedResults { get; set; }
 
-        public HomeViewModel(string algorithm, bool algorithmAvailable, bool targetScoreNeeded)
+        public HomeViewModel(string algorithm, bool algorithmAvailable, bool targetScoreNeeded, bool displayDetailedResults)
         {
             Algorithm = algorithm;
             AlgorithmAvailable = algorithmAvailable;
             TargetScoreNeeded = targetScoreNeeded;
+            DisplayDetailedResults = displayDetailedResults;
         }
     }
 }

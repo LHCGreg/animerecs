@@ -33,6 +33,7 @@
             </div>
         }
         @Html.Hidden("RecSourceName", Model.Algorithm, new Dictionary<string, object>() { { "id", "recSourceName" } })
+        @Html.Hidden("DisplayDetailedResults", Model.DisplayDetailedResults, new { id = "displayDetailedResults" })
     </div>
     <div id="results">
     </div>

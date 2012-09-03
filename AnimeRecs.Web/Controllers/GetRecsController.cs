@@ -100,7 +100,13 @@ namespace AnimeRecs.Web.Controllers
 
                     Logging.Log.InfoFormat("Got results from rec service for {0}.", input.MalName);
 
-                    RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, userLookup.UserId, userLookup.CanonicalUserName, animeList);
+                    string viewSuffix = null;
+                    if(recResults.RecommendationType.Equals(AnimeRecs.RecService.DTO.RecommendationTypes.AnimeRecs) && input.DisplayDetailedResults)
+                    {
+                        viewSuffix = "complex";
+                    }
+
+                    RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, userLookup.UserId, userLookup.CanonicalUserName, animeList, viewSuffix);
                     Logging.Log.Debug("Converted results to return value.");
 
                     return Json(resultsJson);
@@ -108,9 +114,20 @@ namespace AnimeRecs.Web.Controllers
             }
         }
 
-        private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, int userId, string userName, IDictionary<int, MalListEntry> userAnimeList)
+        private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, int userId,
+            string userName, IDictionary<int, MalListEntry> userAnimeList, string viewSuffix)
         {
-            ViewEngineResult viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, basicResults.RecommendationType);
+            string viewName;
+            if (viewSuffix == null)
+            {
+                viewName = basicResults.RecommendationType;
+            }
+            else
+            {
+                viewName = basicResults.RecommendationType + "_" + viewSuffix;
+            }
+            
+            ViewEngineResult viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
             if (viewSearchResult.View == null)
             {
                 var viewModel = new GetRecsViewModel(basicResults, userId, userName, userAnimeList, m_dbConnectionFactory);

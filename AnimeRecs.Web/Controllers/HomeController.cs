@@ -23,9 +23,10 @@ namespace AnimeRecs.Web.Controllers
             m_recClientFactory = recClientFactory;
         }
         
-        public ViewResult Index(string algorithm)
+        public ViewResult Index(string algorithm, bool? detailedResults)
         {
             algorithm = algorithm ?? AppGlobals.Config.DefaultRecSource;
+            bool displayDetailedResults = detailedResults ?? false;
 
             string recSourceType = null;
 
@@ -44,12 +45,17 @@ namespace AnimeRecs.Web.Controllers
             bool algorithmAvailable = recSourceType != null;
 
             bool targetScoreNeeded = false;
-            if (AnimeRecs.RecService.DTO.RecSourceTypes.AnimeRecs.Equals(recSourceType, StringComparison.OrdinalIgnoreCase))
+            if (AnimeRecs.RecService.DTO.RecSourceTypes.AnimeRecs.Equals(recSourceType, StringComparison.OrdinalIgnoreCase) && displayDetailedResults)
             {
                 targetScoreNeeded = true;
             }
 
-            ViewData.Model = new HomeViewModel(algorithm: algorithm, algorithmAvailable: algorithmAvailable, targetScoreNeeded: targetScoreNeeded);
+            ViewData.Model = new HomeViewModel(
+                algorithm: algorithm,
+                algorithmAvailable: algorithmAvailable,
+                targetScoreNeeded: targetScoreNeeded,
+                displayDetailedResults: displayDetailedResults
+            );
             return View();
         }
     }

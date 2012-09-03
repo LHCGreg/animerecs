@@ -31,6 +31,7 @@
     var results = $("#results");
 
     var field_algorithm = $("#recSourceName");
+    var field_detailedResults = $("#displayDetailedResults");
 
     // Interactivity
     $("div.autoscores").click(function () {
@@ -64,12 +65,13 @@
         }
 
         var algorithm = field_algorithm.val();
+        var displayDetailedResults = field_detailedResults.val() === "True";
 
         if (username) {
             if (field_good != null && autoscoretoggle.attr("checked"))
-                app.displayUserdata(username, algorithm, undefined);
+                app.displayUserdata(username, algorithm, displayDetailedResults, undefined);
             else
-                app.displayUserdata(username, algorithm, good);
+                app.displayUserdata(username, algorithm, displayDetailedResults, good);
         }
     }
 
@@ -91,7 +93,7 @@
             results.html("");
         }
 
-        this.displayUserdata = function (username, algorithm, rec) {
+        this.displayUserdata = function (username, algorithm, displayDetailedResults, rec) {
             if (waitingForResponse)
                 return;
 
@@ -99,7 +101,7 @@
             gobutton.addClass("loading");
             results.html("");
 
-            var cancelGetData = getData(username, rec, algorithm, function (status, result) {
+            var cancelGetData = getData(username, rec, algorithm, displayDetailedResults, function (status, result) {
                 waitingForResponse = false;
                 gobutton.removeClass("loading");
 
@@ -131,14 +133,11 @@
         };
 
 
-        function getData(username, rec, algorithm, callback) {
+        function getData(username, rec, algorithm, displayDetailedResults, callback) {
 
-            var data;
-
-            if (rec != undefined) { // Specified scores
-                data = { "MalName": username, "GoodCutoff": rec, "RecSourceName": algorithm };
-            } else { // figure out scores or rec source does not use a target score
-                data = { "MalName": username, "RecSourceName": algorithm };
+            var data = { "MalName": username, "RecSourceName": algorithm, "DisplayDetailedResults": displayDetailedResults };
+            if (rec != undefined) {
+                data.GoodCutoff = rec;
             }
 
             var rq = $.ajax({

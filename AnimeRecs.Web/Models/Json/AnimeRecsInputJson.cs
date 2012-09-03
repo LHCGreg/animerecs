@@ -18,7 +18,15 @@ namespace AnimeRecs.Web.Models.Json
         [Range(0, 100)]
         public decimal? GoodPercentile { get; set; }
 
+        // Only applicable for AnimeRecs...should think about how to take parameter specific to a rec source type.
+        public bool DisplayDetailedResults { get; set; }
+
         public string RecSourceName { get; set; }
+
+        public AnimeRecsInputJson()
+        {
+            ;
+        }
 
         public override string ToString()
         {
