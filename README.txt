@@ -61,7 +61,7 @@ $ sudo service procps start
 4. Set a password for the "postgres" PostgreSQL user and allow Linux users other than postgres to log in as the "postgres" PostgreSQL user. Using the postgres user is not necessarily ideal in a production environment, but it's easiest to set up for development.
 
 $ su - postgres
-$ psql -d template1 -c "ALTER USER postgres WTIH PASSWORD 'testpw';"
+$ psql -d template1 -c "ALTER USER postgres WITH PASSWORD 'testpw';"
 $ exit
 
 edit /etc/postgresql/9.1/main/pg_hba.conf
