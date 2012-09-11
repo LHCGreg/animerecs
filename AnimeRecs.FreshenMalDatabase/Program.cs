@@ -24,8 +24,7 @@ namespace AnimeRecs.FreshenMalDatabase
                 config = new Config();
 
                 using (IMyAnimeListApi basicApi = new MyAnimeListApi() { TimeoutInMs = config.MalTimeoutInMs, UserAgent = config.MalApiUserAgentString })
-                using (IMyAnimeListApi cachingApi = new CachingMyAnimeListApi(basicApi, expiration: null))
-                using (IMyAnimeListApi rateLimitingApi = new RateLimitingMyAnimeListApi(cachingApi, TimeSpan.FromMilliseconds(config.DelayBetweenRequestsInMs)))
+                using (IMyAnimeListApi rateLimitingApi = new RateLimitingMyAnimeListApi(basicApi, TimeSpan.FromMilliseconds(config.DelayBetweenRequestsInMs)))
                 using (IMyAnimeListApi malApi = new RetryOnFailureMyAnimeListApi(rateLimitingApi, config.NumMalRequestFailuresBeforeGivingUp, config.DelayAfterMalRequestFailureInMs))
                 using (NpgsqlConnection conn = new NpgsqlConnection(config.PostgresConnectionString))
                 {
