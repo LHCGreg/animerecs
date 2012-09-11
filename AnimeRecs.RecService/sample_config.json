@@ -8,6 +8,33 @@
 				FractionConsideredRecommended: 0.35,
 				MinEpisodesToClassifyIncomplete: 26
 			}
+		},
+		{
+			Name: "AverageScore",
+			Type: "AverageScore",
+			Params: {
+				MinEpisodesToCountIncomplete: 26,
+				MinUsersToCountAnime: 50,
+				UseDropped: true
+			}
+		},
+		{
+			Name: "MostPopular",
+			Type: "MostPopular",
+			Params: {
+				MinEpisodesToCountIncomplete: 26,
+				UseDropped: false
+			}
+		},
+		{
+			Name: "BiasedMatrixFactorization",
+			Type: "BiasedMatrixFactorization",
+			Params: {
+				MinEpisodesToCountIncomplete: 26,
+				UseDropped: true,
+				MinUsersToCountAnime: 50,
+				BoldDriver: true
+			}
 		}
 	]
 }
