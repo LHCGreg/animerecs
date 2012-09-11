@@ -215,6 +215,29 @@ h2, h3{font-weight:normal;}
 
 
 
+/* css sticky footer */
+
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+	height: 50px; /* .push must be the same height as .footer */
+}
+
+
+
+
+
+
 #header {
 	background: #2e2e2e;
 	height: 40px;
@@ -485,6 +508,31 @@ tr.inconclusiveRec {
     background-color: #DDDDDD;
 }
 
+
+.footer {
+	width: 850px;
+	margin: 0 auto;
+}
+
+
+.footer-left {
+	width: 425px; /* 850/2 */
+	float: left;
+}
+
+.footer-right {
+	padding-left: 10px;
+	width: 415px; /* 850/2-10 */
+	float: left;
+}
+
+.footer .footer-item {
+	color: grey;
+	font-size: 12px;
+	line-height: 16px;
+	margin: 0 10px 5px 0;
+}
+
 .footer a {
     color: #3a6dad;
 	text-decoration: none;
@@ -494,6 +542,8 @@ tr.inconclusiveRec {
     color: #5478a6;
 	text-decoration: underline;
 }
+
+
 
 /* =============================================================================
    Non-semantic helper classes
