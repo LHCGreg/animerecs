@@ -73,43 +73,60 @@ namespace AnimeRecs.Web.Controllers
                     animeList[listEntry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry((byte?)listEntry.Score, listEntry.Status, (short)listEntry.NumEpisodesWatched);
                 }
 
-                using (AnimeRecsClient recClient = m_recClientFactory.GetClient(input.RecSourceName))
+                try
                 {
-                    MalRecResults<IEnumerable<IRecommendation>> recResults;
-                    if (input.GoodPercentile != null)
+                    using (AnimeRecsClient recClient = m_recClientFactory.GetClient(input.RecSourceName))
                     {
-                        Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
-                            input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodPercentile.Value);
-                        recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
-                            input.GoodPercentile.Value);
+                        MalRecResults<IEnumerable<IRecommendation>> recResults;
+                        if (input.GoodPercentile != null)
+                        {
+                            Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
+                                input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodPercentile.Value);
+                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
+                                input.GoodPercentile.Value);
+                        }
+                        else if (input.GoodCutoff != null)
+                        {
+                            Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of {3}.",
+                                input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodCutoff.Value);
+                            recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
+                                input.GoodCutoff.Value);
+                        }
+                        else
+                        {
+                            Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
+                                input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
+                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
+                                AppGlobals.Config.DefaultTargetPercentile);
+                        }
+
+                        Logging.Log.InfoFormat("Got results from rec service for {0}.", input.MalName);
+
+                        string viewSuffix = null;
+                        if (recResults.RecommendationType.Equals(AnimeRecs.RecService.DTO.RecommendationTypes.AnimeRecs) && input.DisplayDetailedResults)
+                        {
+                            viewSuffix = "complex";
+                        }
+
+                        RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, userLookup.UserId, userLookup.CanonicalUserName, animeList, viewSuffix);
+                        Logging.Log.Debug("Converted results to return value.");
+
+                        return Json(resultsJson);
                     }
-                    else if (input.GoodCutoff != null)
+                }
+                catch (AnimeRecs.RecService.DTO.RecServiceErrorException ex)
+                {
+                    if (ex.Error.ErrorCode == AnimeRecs.RecService.DTO.ErrorCodes.Maintenance)
                     {
-                        Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of {3}.",
-                            input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodCutoff.Value);
-                        recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
-                            input.GoodCutoff.Value);
+                        Logging.Log.Info("Could not service recommendation request for {0}. The rec service is currently undergoing maintenance.");
+                        AjaxError error = new AjaxError("The site is currently undergoing scheduled maintenance. Check back in a few minutes.");
+                        Response.StatusCode = 500;
+                        return Json(error);
                     }
                     else
                     {
-                        Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
-                            input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
-                        recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
-                            AppGlobals.Config.DefaultTargetPercentile);
+                        throw;
                     }
-
-                    Logging.Log.InfoFormat("Got results from rec service for {0}.", input.MalName);
-
-                    string viewSuffix = null;
-                    if(recResults.RecommendationType.Equals(AnimeRecs.RecService.DTO.RecommendationTypes.AnimeRecs) && input.DisplayDetailedResults)
-                    {
-                        viewSuffix = "complex";
-                    }
-
-                    RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, userLookup.UserId, userLookup.CanonicalUserName, animeList, viewSuffix);
-                    Logging.Log.Debug("Converted results to return value.");
-
-                    return Json(resultsJson);
                 }
             }
         }
