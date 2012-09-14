@@ -15,7 +15,7 @@ namespace AnimeRecs.RecService
     /// </summary>
     internal class ConnectionServicer
     {
-        private Dictionary<string, OperationDescription> Operations = new Dictionary<string, OperationDescription>(StringComparer.OrdinalIgnoreCase)
+        private static Dictionary<string, OperationDescription> Operations = new Dictionary<string, OperationDescription>(StringComparer.OrdinalIgnoreCase)
         {
             { OpNames.Ping, new OperationDescription
                 (

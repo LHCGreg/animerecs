@@ -21,6 +21,8 @@ namespace AnimeRecs.RecService
 
         private MalTrainingData m_trainingData;
         private ReaderWriterLockSlim m_trainingDataLock;
+
+        private Dictionary<string, Func<ITrainableJsonRecSource>> m_recSourceFactories = new Dictionary<string, Func<ITrainableJsonRecSource>>(StringComparer.OrdinalIgnoreCase);
         private Dictionary<string, ITrainableJsonRecSource> m_recSources = new Dictionary<string, ITrainableJsonRecSource>(StringComparer.OrdinalIgnoreCase);
         private ReaderWriterLockSlim m_recSourcesLock;
 
@@ -56,7 +58,7 @@ namespace AnimeRecs.RecService
                 {
                     List<string> recSourceTypesDeclaredFor = new List<string>();
                     object[] jsonRecSourceAttributes = type.GetCustomAttributes(jsonRecSourceAttribute, inherit: false);
-                    foreach(JsonRecSourceAttribute attribute in jsonRecSourceAttributes.Select(attributeObj => (JsonRecSourceAttribute)attributeObj))
+                    foreach (JsonRecSourceAttribute attribute in jsonRecSourceAttributes.Select(attributeObj => (JsonRecSourceAttribute)attributeObj))
                     {
                         recSourceTypesDeclaredFor.Add(attribute.RecSourceName);
                         jsonRecSourceTypes[attribute.RecSourceName] = type;
@@ -92,8 +94,9 @@ namespace AnimeRecs.RecService
             return trainingData;
         }
 
-        public void LoadRecSource(ITrainableJsonRecSource recSource, string name, bool replaceExisting)
+        public void LoadRecSource(Func<ITrainableJsonRecSource> recSourceFactory, string name, bool replaceExisting)
         {
+            ITrainableJsonRecSource recSource = recSourceFactory();
             Logging.Log.InfoFormat("Loading rec source with name \"{0}\", replaceExisting={1}: {2}", name, replaceExisting, recSource);
 
             // Need to hold read lock on training data while training so that a retrain can't happen while we're training here.
@@ -101,6 +104,12 @@ namespace AnimeRecs.RecService
             using (var trainingDataReadLock = m_trainingDataLock.ScopedReadLock())
             using (var recSourcesUpgradeableReadLock = m_recSourcesLock.ScopedUpgradeableReadLock())
             {
+                if (m_trainingData == null)
+                {
+                    throw new RecServiceErrorException(new Error(errorCode: ErrorCodes.NoTrainingData,
+                        message: "A reload/retrain in low memory mode failed, leaving the rec service without training data or rec sources. Issue a ReloadTrainingData command to load training data, then load rec sources."));
+                }
+                
                 if (m_recSources.ContainsKey(name) && !replaceExisting)
                 {
                     throw new RecServiceErrorException(new Error(errorCode: ErrorCodes.Unknown,
@@ -118,6 +127,7 @@ namespace AnimeRecs.RecService
                 using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
                 {
                     m_recSources[name] = recSource;
+                    m_recSourceFactories[name] = recSourceFactory;
                 }
                 Logging.Log.InfoFormat("Loaded rec source {0}.", name);
 
@@ -144,6 +154,7 @@ namespace AnimeRecs.RecService
                 else
                 {
                     m_recSources.Remove(name);
+                    m_recSourceFactories.Remove(name);
                 }
             }
 
@@ -179,56 +190,147 @@ namespace AnimeRecs.RecService
             }
         }
 
-        public void ReloadTrainingData()
+        public void ReloadTrainingData(ReloadBehavior behavior)
         {
-            Logging.Log.Info("Reloading training data and retraining rec sources.");
-            Stopwatch timer = Stopwatch.StartNew();
-            Stopwatch totalTimer = Stopwatch.StartNew();
-            
-            MalTrainingData newData;
-            // Load new training data first
-            using (IMalTrainingDataLoader malTrainingDataLoader = m_trainingDataLoaderFactory.GetTrainingDataLoader())
+            switch (behavior)
             {
-                Logging.Log.Debug("Created training data loader.");
-                newData = malTrainingDataLoader.LoadMalTrainingData();
-                timer.Stop();
+                case ReloadBehavior.LowMemory:
+                    ReloadTrainingDataLowMemory();
+                    break;
+                case ReloadBehavior.HighAvailability:
+                    ReloadTrainingDataHighAvailability();
+                    break;
+                default:
+                    throw new Exception(string.Format("Unexpected ReloadBehavior: {0}", behavior));
             }
+        }
 
-            Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
-                m_trainingData.Users.Count, m_trainingData.Animes.Count,
-                m_trainingData.Users.Keys.Sum(userId => m_trainingData.Users[userId].Entries.Count),
-                timer.Elapsed);
-
-            // Then swap out training data and retrain all loaded rec sources
+        private void ReloadTrainingDataLowMemory()
+        {
             using (var trainingDataWriteLock = m_trainingDataLock.ScopedWriteLock())
             using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
             {
-                // ToList() so we can unload a rec source as we iterate if it errors while training.
-                foreach(string recSourceName in m_recSources.Keys.ToList()) 
+                Logging.Log.Info("Reloading training data and retraining rec sources. Rec sources will not be available until retraining all rec sources is complete.");
+                Stopwatch totalTimer = Stopwatch.StartNew();
+
+                m_recSources.Clear();
+                m_trainingData = null;
+
+                GC.Collect();
+                Logging.Log.Info("Rec sources cleared.");
+                Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
+
+                Stopwatch timer = Stopwatch.StartNew();
+                
+                // Load new training data
+                // If this throws an error, m_trainingData is left null. Methods that use m_trainingData should check it for null.
+                using (IMalTrainingDataLoader malTrainingDataLoader = m_trainingDataLoaderFactory.GetTrainingDataLoader())
                 {
-                    ITrainableJsonRecSource recSource = m_recSources[recSourceName];
+                    Logging.Log.Debug("Created training data loader.");
+
+                    m_trainingData = malTrainingDataLoader.LoadMalTrainingData();
+                    timer.Stop();
+                }
+
+                Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
+                    m_trainingData.Users.Count, m_trainingData.Animes.Count,
+                    m_trainingData.Users.Keys.Sum(userId => m_trainingData.Users[userId].Entries.Count),
+                    timer.Elapsed);
+
+                // Then retrain all loaded rec sources.
+                // ToList() so we can unload a rec source as we iterate if it errors while training.
+                foreach (string recSourceName in m_recSourceFactories.Keys.ToList())
+                {
+                    ITrainableJsonRecSource recSource = m_recSourceFactories[recSourceName]();
                     try
                     {
                         Logging.Log.InfoFormat("Retraining rec source {0} ({1}).", recSourceName, recSource);
                         timer.Restart();
 
-                        // XXX: Recommendation requests block while retraining the rec sources.
-                        // This could be in the seconds to minutes range depending on the size of the dataset and how
-                        // computationally intensive the rec sources are.
-                        recSource.Train(newData);
+                        recSource.Train(m_trainingData);
+                        m_recSources[recSourceName] = recSource;
 
                         timer.Stop();
                         Logging.Log.InfoFormat("Trained rec source {0} ({1}). Took {2}.", recSourceName, recSource, timer.Elapsed);
+                        GC.Collect();
+                        Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
                     }
                     catch (Exception ex)
                     {
                         Logging.Log.ErrorFormat("Error retraining rec source {0} ({1}): {2} Unloading it.",
                             ex, recSourceName, recSource, ex.Message);
-                        m_recSources.Remove(recSourceName);
+                        m_recSourceFactories.Remove(recSourceName);
                     }
                 }
 
-                m_trainingData = newData;
+                totalTimer.Stop();
+                Logging.Log.InfoFormat("All rec sources retrained with the latest data. Total time: {0}", totalTimer.Elapsed);
+            }
+
+            GC.Collect();
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
+        }
+
+        private void ReloadTrainingDataHighAvailability()
+        {
+            Logging.Log.Info("Reloading training data and retraining rec sources. Rec sources will remain available.");
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
+
+            Stopwatch timer = Stopwatch.StartNew();
+            Stopwatch totalTimer = Stopwatch.StartNew();
+
+            // Load new training data
+            MalTrainingData newData;
+            using (IMalTrainingDataLoader malTrainingDataLoader = m_trainingDataLoaderFactory.GetTrainingDataLoader())
+            {
+                Logging.Log.Debug("Created training data loader.");
+
+                newData = malTrainingDataLoader.LoadMalTrainingData();
+                timer.Stop();
+            }
+
+            Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
+                newData.Users.Count, newData.Animes.Count,
+                newData.Users.Keys.Sum(userId => newData.Users[userId].Entries.Count),
+                timer.Elapsed);
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
+
+            using (var trainingDataWriteLock = m_trainingDataLock.ScopedWriteLock())
+            using (var recSourcesUpgradeableLock = m_recSourcesLock.ScopedUpgradeableReadLock())
+            {
+                // clone the json rec sources without the training state and train each one with the new data.
+                Dictionary<string, ITrainableJsonRecSource> newRecSources = new Dictionary<string, ITrainableJsonRecSource>(StringComparer.OrdinalIgnoreCase);
+                Dictionary<string, Func<ITrainableJsonRecSource>> newRecSourceFactories = new Dictionary<string,Func<ITrainableJsonRecSource>>(m_recSourceFactories, StringComparer.OrdinalIgnoreCase);
+                foreach (string recSourceName in newRecSourceFactories.Keys)
+                {
+                    ITrainableJsonRecSource recSource = newRecSourceFactories[recSourceName]();
+                    Logging.Log.InfoFormat("Retraining rec source {0} ({1}).", recSourceName, recSource);
+                    timer.Restart();
+                    try
+                    {
+                        recSource.Train(newData);
+                        timer.Stop();
+                        Logging.Log.InfoFormat("Trained rec source {0} ({1}). Took {2}.", recSourceName, recSource, timer.Elapsed);
+                        newRecSources[recSourceName] = recSource;
+
+                        GC.Collect();
+                        Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
+                    }
+                    catch(Exception ex)
+                    {
+                        Logging.Log.ErrorFormat("Error retraining rec source {0} ({1}): {2} Unloading it.",
+                            ex, recSourceName, recSource, ex.Message);
+                        newRecSourceFactories.Remove(recSourceName);
+                    }
+                }
+
+                // Swap in the newly trained rec sources.
+                using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
+                {
+                    m_recSources = newRecSources;
+                    m_recSourceFactories = newRecSourceFactories;
+                    m_trainingData = newData;
+                }
             }
 
             totalTimer.Stop();
@@ -270,13 +372,13 @@ namespace AnimeRecs.RecService
             using (var recSourcesReadLock = m_recSourcesLock.ScopedReadLock(lockTimeoutInMs, out enteredLock))
             {
                 // If we couldn't get a read lock within 3 seconds, a reload/retrain is probably going on
-                if(!enteredLock)
+                if (!enteredLock)
                 {
                     Error error = new Error(errorCode: ErrorCodes.Maintenance,
                         message: "The rec service is currently undergoing maintenance and cannot respond to rec requests.");
                     throw new RecServiceErrorException(error);
                 }
-                
+
                 // Get rec source by name
                 if (!m_recSources.ContainsKey(request.RecSourceName))
                 {

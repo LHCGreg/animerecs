@@ -70,6 +70,8 @@
     <Compile Include="RecServiceErrorException.cs" />
     <Compile Include="Registrations\RecSources\RecSourceParams.cs" />
     <Compile Include="Registrations\RecSources\RecSourceTypes.cs" />
+    <Compile Include="ReloadBehavior.cs" />
+    <Compile Include="ReloadTrainingDataRequest.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="UnloadRecSourceRequest.cs" />
   </ItemGroup>

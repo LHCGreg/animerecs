@@ -5,19 +5,23 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public static class ErrorCodes
+    public enum ReloadBehavior
     {
-        public static string InvalidMessage { get { return "InvalidMessage"; } }
-        public static string NoSuchOp { get { return "NoSuchOp"; } }
-        public static string InvalidArgument { get { return "InvalidArgument"; } }
-        public static string NoSuchRecSource { get { return "NoSuchRecSource"; } }
-        public static string Maintenance { get { return "Maintenance"; } }
-        public static string NoTrainingData { get { return "NoTrainingData"; } }
-        
         /// <summary>
-        /// Used for any errors that do not have their own error code.
+        /// Old loaded data is discarded before reloading from the database and retraining.
+        /// This avoids having to double memory usage but blocks all other operations for the duration of the reload and retrain.
+        /// If an error occurs reloading the data from the database, no rec sources will be loaded.
+        /// If an error occurs retraining a rec source, that rec source will be dropped.
         /// </summary>
-        public static string Unknown { get { return "Unknown"; } }
+        LowMemory,
+
+        /// <summary>
+        /// Keep old rec sources around during a reload/retrain.
+        /// This requires double the memory of normal use but keeps the rec service responsive while the reload/retrain is going on.
+        /// If an error occurs reloading the data from the database, all rec sources remain loaded.
+        /// If an error occurs retraining a rec source, that rec source will be dropped.
+        /// </summary>
+        HighAvailability
     }
 }
 

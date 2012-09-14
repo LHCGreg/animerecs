@@ -28,7 +28,7 @@ namespace AnimeRecs.RecService.Client
             RecSourceTypes.AnimeRecs,
             RecSourceTypes.BiasedMatrixFactorization
         };
-        
+
         private bool m_showHelp = false;
         public bool ShowHelp { get { return m_showHelp; } set { m_showHelp = value; } }
 
@@ -56,11 +56,11 @@ namespace AnimeRecs.RecService.Client
         {
             get
             {
-                if(m_useDropped.HasValue)
+                if (m_useDropped.HasValue)
                     return m_useDropped.Value;
                 else
                 {
-                    if(RecSourceType.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
+                    if (RecSourceType.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
                         return false;
                     else
                         return true;
@@ -96,6 +96,9 @@ namespace AnimeRecs.RecService.Client
             set { m_biasedMatrixFactorizationParams = value; }
         }
 
+        private ReloadBehavior m_reloadMode = ReloadBehavior.HighAvailability;
+        public ReloadBehavior ReloadMode { get { return m_reloadMode; } set { m_reloadMode = value; } }
+
         public string RawJson { get; set; }
 
         public OptionSet GetOptionSet()
@@ -107,6 +110,7 @@ namespace AnimeRecs.RecService.Client
                 { "p|port=", "Port the rec service is listening on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
                 { "ping_message=", "Message to send with a ping command. Used with the Ping command. Defaults to \"ping\".", arg => PingMessage = arg },
                 { "name|rec_source_name=", "Rec source name. Used with the LoadRecSource, GetRecSourceType, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
+                { "reload_mode=", "Used with ReloadTrainingData. Possible values are HighAvailability and LowMemory. Defaults to HighAvailability. HighAvailability: Keep the old training data and rec sources in memory while the reload/retrain is going on to keep the rec service serving requests. Requires around twice the amount of memory normally consumed. LowMemory: Drop the old training data and rec sources before starting the reload/retrain. This avoids using double normal memory but means the rec service cannot give recommendations while the reload/retrain is going on.", arg => SetReloadMode(arg) },
                 { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
                 { "type|rec_source_type=", "Rec source type. Required for LoadRecSource command", arg => SetRecSourceType(arg) },
                 { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with the LoadRecSource command with the AverageScore, MostPopular, and AnimeRecs rec source types. Defaults to 26.",
@@ -141,7 +145,7 @@ namespace AnimeRecs.RecService.Client
 
         private void SetCommand(string command)
         {
-            if(AllowedCommands.Contains(command))
+            if (AllowedCommands.Contains(command))
             {
                 Operation = command;
             }
@@ -153,7 +157,7 @@ namespace AnimeRecs.RecService.Client
 
         private void SetRecSourceType(string type)
         {
-            if(AllowedRecSourceTypes.Contains(type))
+            if (AllowedRecSourceTypes.Contains(type))
             {
                 RecSourceType = type;
             }
@@ -177,9 +181,17 @@ namespace AnimeRecs.RecService.Client
             }
         }
 
+        private void SetReloadMode(string mode)
+        {
+            if (!Enum.TryParse<ReloadBehavior>(mode, out m_reloadMode))
+            {
+                throw new OptionException(string.Format("{0} is not a recognized reload mode.", mode), "reload_mode");
+            }
+        }
+
         private void SetRaw(string rawJson)
         {
-            if(Operation != null && Operation.Equals("Raw", StringComparison.OrdinalIgnoreCase))
+            if (Operation != null && Operation.Equals("Raw", StringComparison.OrdinalIgnoreCase))
             {
                 RawJson = rawJson;
             }
@@ -199,17 +211,17 @@ namespace AnimeRecs.RecService.Client
                 throw new OptionException("Command was not specified.", "command");
             }
 
-            if(!ShowHelp && Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase) && RecSourceType == null)
+            if (!ShowHelp && Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase) && RecSourceType == null)
             {
                 throw new OptionException("Rec source type was not specified", "rec_source_type");
             }
 
-            if(!ShowHelp && Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase) && MalUsername == null)
+            if (!ShowHelp && Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase) && MalUsername == null)
             {
                 throw new OptionException("MAL username was not specified.", "username");
             }
 
-            if(!ShowHelp && Operation.Equals("raw", StringComparison.OrdinalIgnoreCase) && RawJson == null)
+            if (!ShowHelp && Operation.Equals("raw", StringComparison.OrdinalIgnoreCase) && RawJson == null)
             {
                 throw new OptionException("No raw json specified.", "<>");
             }

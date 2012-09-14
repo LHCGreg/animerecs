@@ -27,10 +27,9 @@ namespace AnimeRecs.RecService.OperationHandlers
                 // operation.Payload's static type is LoadRecSourceRequest.
                 // Its real type will be something like LoadRecSourceRequest<AverageScoreRecSourceParams> thanks to the custom JsonConverter.
                 // A json rec source is expected to have one or more constructors taking types derived from LoadRecSourceRequest.
-                object recSourceObj = Activator.CreateInstance(jsonRecSourceType, operation.Payload);
-                ITrainableJsonRecSource recSource = (ITrainableJsonRecSource)recSourceObj;
+                Func<ITrainableJsonRecSource> recSourceFactory = () => (ITrainableJsonRecSource)(Activator.CreateInstance(jsonRecSourceType, operation.Payload));
 
-                state.LoadRecSource(recSource, operation.Payload.Name, operation.Payload.ReplaceExisting);
+                state.LoadRecSource(recSourceFactory, operation.Payload.Name, operation.Payload.ReplaceExisting);
                 return new Response();
             }
             else

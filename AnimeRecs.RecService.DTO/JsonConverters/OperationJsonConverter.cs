@@ -21,7 +21,7 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
             else if (opName.Equals(OpNames.Ping, StringComparison.OrdinalIgnoreCase))
                 return new Operation<PingRequest>();
             else if (opName.Equals(OpNames.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
-                return new Operation();
+                return new Operation<ReloadTrainingDataRequest>();
             else if (opName.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
                 return new Operation<UnloadRecSourceRequest>();
             else throw new Newtonsoft.Json.JsonException(string.Format("Operation {0} not recognized.", opName));

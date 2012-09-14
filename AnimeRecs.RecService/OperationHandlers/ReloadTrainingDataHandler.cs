@@ -10,7 +10,9 @@ namespace AnimeRecs.RecService.OperationHandlers
     {
         public static Response ReloadTrainingData(Operation baseOperation, RecServiceState state)
         {
-            state.ReloadTrainingData();
+            Operation<ReloadTrainingDataRequest> operation = (Operation<ReloadTrainingDataRequest>)baseOperation;
+            ReloadBehavior behavior = (ReloadBehavior)Enum.Parse(typeof(ReloadBehavior), operation.Payload.Mode);
+            state.ReloadTrainingData(behavior);
             return new Response();
         }
     }

@@ -90,9 +90,12 @@ namespace AnimeRecs.RecService.ClientLib
             return responseBody.RecSourceType;
         }
 
-        public void ReloadTrainingData(int receiveTimeoutInMs = 0)
+        public void ReloadTrainingData(ReloadBehavior behavior, int receiveTimeoutInMs = 0)
         {
-            Operation operation = new Operation(OpNames.ReloadTrainingData);
+            Operation<ReloadTrainingDataRequest> operation = new Operation<ReloadTrainingDataRequest>(
+                opName: OpNames.ReloadTrainingData,
+                payload: new ReloadTrainingDataRequest(behavior)
+            );
             DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
         }
 
