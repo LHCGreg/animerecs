@@ -52,7 +52,7 @@ namespace AnimeRecs.RecService
             { OpNames.ReloadTrainingData, new OperationDescription
                 (
                 operationHandler: OpHandlers.ReloadTrainingData,
-                operationType: typeof(Operation),
+                operationType: typeof(Operation<ReloadTrainingDataRequest>),
                 responseType: typeof(Response)
                 )
             },
@@ -62,6 +62,14 @@ namespace AnimeRecs.RecService
                 operationHandler: OpHandlers.GetMalRecs,
                 operationType: typeof(Operation<GetMalRecsRequest>),
                 responseType: typeof(Response<GetMalRecsResponse>)
+                )
+            },
+
+            { OpNames.FinalizeRecSources, new OperationDescription
+                (
+                operationHandler: OpHandlers.FinalizeRecSources,
+                operationType: typeof(Operation<FinalizeRecSourcesRequest>),
+                responseType: typeof(Response)
                 )
             }
         };

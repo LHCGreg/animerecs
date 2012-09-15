@@ -10,15 +10,18 @@ namespace AnimeRecs.RecService.Configuration
 {
     class ConfigRoot
     {
+        public bool FinalizeAfterLoad { get; set; }
         public IList<LoadRecSourceRequest> RecSources { get; set; }
 
         public ConfigRoot()
         {
+            FinalizeAfterLoad = false;
             RecSources = new List<LoadRecSourceRequest>();
         }
 
-        public ConfigRoot(IList<LoadRecSourceRequest> recSources)
+        public ConfigRoot(IList<LoadRecSourceRequest> recSources, bool finalizeAfterLoad)
         {
+            FinalizeAfterLoad = finalizeAfterLoad;
             RecSources = recSources;
         }
 

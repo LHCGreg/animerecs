@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FinalizeRecSourcesRequest.cs" />
     <Compile Include="GetRecSourceTypeRequest.cs" />
     <Compile Include="GetRecSourceTypeResponse.cs" />
     <Compile Include="JsonConverters\GetMalRecsResponseJsonConverter.cs" />

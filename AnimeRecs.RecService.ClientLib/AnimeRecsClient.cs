@@ -90,13 +90,22 @@ namespace AnimeRecs.RecService.ClientLib
             return responseBody.RecSourceType;
         }
 
-        public void ReloadTrainingData(ReloadBehavior behavior, int receiveTimeoutInMs = 0)
+        public void ReloadTrainingData(ReloadBehavior behavior, bool finalize, int receiveTimeoutInMs = 0)
         {
             Operation<ReloadTrainingDataRequest> operation = new Operation<ReloadTrainingDataRequest>(
                 opName: OpNames.ReloadTrainingData,
-                payload: new ReloadTrainingDataRequest(behavior)
+                payload: new ReloadTrainingDataRequest(behavior, finalize)
             );
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs);
+        }
+
+        public void FinalizeRecSources(int receiveTimeoutInMs = 0)
+        {
+            Operation<FinalizeRecSourcesRequest> operation = new Operation<FinalizeRecSourcesRequest>(
+                opName: OpNames.FinalizeRecSources,
+                payload: new FinalizeRecSourcesRequest()
+            );
+            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs);
         }
 
         public MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(IDictionary<int, RecEngine.MAL.MalListEntry> animeList,

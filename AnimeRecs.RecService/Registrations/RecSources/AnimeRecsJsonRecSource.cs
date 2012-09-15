@@ -54,7 +54,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
                 targetScoreUsed: recResults.TargetScoreUsed,
                 recommenders: recResults.Recommenders.Select(recommender => new DTO.MalAnimeRecsRecommender(
                     userId: recommender.UserId,
-                    username: TrainingData.Users[recommender.UserId].MalUsername,
+                    username: UsernamesByUserId[recommender.UserId],
                     recs: recommender.AllRecommendations.Select(recommendedAnime => new DTO.MalAnimeRecsRecommenderRecommendation(
                         malAnimeId: recommendedAnime.MalAnimeId,
                         judgment: recommender.RecsLiked.Contains(recommendedAnime) ? DTO.AnimeRecsRecommendationJudgment.Liked

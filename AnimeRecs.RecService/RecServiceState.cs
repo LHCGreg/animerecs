@@ -19,7 +19,10 @@ namespace AnimeRecs.RecService
     {
         // When locking, always lock in the order the members are listed here.
 
+        private bool m_finalized = false;
         private MalTrainingData m_trainingData;
+        private IDictionary<int, string> m_usernames; // Always update this when updating m_trainingData. Is null when rec sources are finalized.
+        private IDictionary<int, RecEngine.MAL.MalAnime> m_animes; // Always update this when updating m_trainingData. Remains when rec sources are finalized.
         private ReaderWriterLockSlim m_trainingDataLock;
 
         private Dictionary<string, Func<ITrainableJsonRecSource>> m_recSourceFactories = new Dictionary<string, Func<ITrainableJsonRecSource>>(StringComparer.OrdinalIgnoreCase);
@@ -28,6 +31,7 @@ namespace AnimeRecs.RecService
 
         private IMalTrainingDataLoaderFactory m_trainingDataLoaderFactory;
 
+        // Thread-safe because it doesn't change after construction
         public IDictionary<string, Type> JsonRecSourceTypes { get; private set; }
 
         /// <summary>
@@ -39,6 +43,8 @@ namespace AnimeRecs.RecService
             m_trainingDataLoaderFactory = trainingDataLoaderFactory;
             JsonRecSourceTypes = GetJsonRecSourceTypes();
             m_trainingData = LoadTrainingDataOnInit(trainingDataLoaderFactory);
+            m_usernames = GetUsernamesFromTrainingData(m_trainingData);
+            m_animes = m_trainingData.Animes;
             m_trainingDataLock = new ReaderWriterLockSlim();
             m_recSourcesLock = new ReaderWriterLockSlim();
         }
@@ -104,10 +110,15 @@ namespace AnimeRecs.RecService
             using (var trainingDataReadLock = m_trainingDataLock.ScopedReadLock())
             using (var recSourcesUpgradeableReadLock = m_recSourcesLock.ScopedUpgradeableReadLock())
             {
-                if (m_trainingData == null)
+                if (m_trainingData == null && !m_finalized)
                 {
                     throw new RecServiceErrorException(new Error(errorCode: ErrorCodes.NoTrainingData,
                         message: "A reload/retrain in low memory mode failed, leaving the rec service without training data or rec sources. Issue a ReloadTrainingData command to load training data, then load rec sources."));
+                }
+                else if (m_trainingData == null && m_finalized)
+                {
+                    throw new RecServiceErrorException(new Error(errorCode: ErrorCodes.Finalized,
+                        message: "Rec sources have been finalized. A non-finalized retrain must be invoked to be able to add rec sources."));
                 }
                 
                 if (m_recSources.ContainsKey(name) && !replaceExisting)
@@ -119,7 +130,7 @@ namespace AnimeRecs.RecService
                 Logging.Log.InfoFormat("Training rec source {0}.", name);
                 Stopwatch timer = Stopwatch.StartNew();
 
-                recSource.Train(m_trainingData);
+                recSource.Train(m_trainingData, m_usernames);
 
                 timer.Stop();
                 Logging.Log.InfoFormat("Trained rec source {0}. Took {1}", name, timer.Elapsed);
@@ -134,6 +145,16 @@ namespace AnimeRecs.RecService
                 GC.Collect();
                 Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
             }
+        }
+
+        private static IDictionary<int, string> GetUsernamesFromTrainingData(MalTrainingData trainingData)
+        {
+            Dictionary<int, string> usernames = new Dictionary<int, string>(trainingData.Users.Count);
+            foreach (int userId in trainingData.Users.Keys)
+            {
+                usernames[userId] = trainingData.Users[userId].MalUsername;
+            }
+            return usernames;
         }
 
         public void UnloadRecSource(string name)
@@ -190,22 +211,22 @@ namespace AnimeRecs.RecService
             }
         }
 
-        public void ReloadTrainingData(ReloadBehavior behavior)
+        public void ReloadTrainingData(ReloadBehavior behavior, bool finalize)
         {
             switch (behavior)
             {
                 case ReloadBehavior.LowMemory:
-                    ReloadTrainingDataLowMemory();
+                    ReloadTrainingDataLowMemory(finalize);
                     break;
                 case ReloadBehavior.HighAvailability:
-                    ReloadTrainingDataHighAvailability();
+                    ReloadTrainingDataHighAvailability(finalize);
                     break;
                 default:
                     throw new Exception(string.Format("Unexpected ReloadBehavior: {0}", behavior));
             }
         }
 
-        private void ReloadTrainingDataLowMemory()
+        private void ReloadTrainingDataLowMemory(bool finalize)
         {
             using (var trainingDataWriteLock = m_trainingDataLock.ScopedWriteLock())
             using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
@@ -215,6 +236,9 @@ namespace AnimeRecs.RecService
 
                 m_recSources.Clear();
                 m_trainingData = null;
+                m_usernames = null;
+                m_animes = null;
+                m_finalized = false;
 
                 GC.Collect();
                 Logging.Log.Info("Rec sources cleared.");
@@ -229,6 +253,8 @@ namespace AnimeRecs.RecService
                     Logging.Log.Debug("Created training data loader.");
 
                     m_trainingData = malTrainingDataLoader.LoadMalTrainingData();
+                    m_usernames = GetUsernamesFromTrainingData(m_trainingData);
+                    m_animes = m_trainingData.Animes;
                     timer.Stop();
                 }
 
@@ -247,7 +273,7 @@ namespace AnimeRecs.RecService
                         Logging.Log.InfoFormat("Retraining rec source {0} ({1}).", recSourceName, recSource);
                         timer.Restart();
 
-                        recSource.Train(m_trainingData);
+                        recSource.Train(m_trainingData, m_usernames);
                         m_recSources[recSourceName] = recSource;
 
                         timer.Stop();
@@ -263,6 +289,14 @@ namespace AnimeRecs.RecService
                     }
                 }
 
+                if (finalize)
+                {
+                    m_trainingData = null;
+                    m_usernames = null;
+                    m_finalized = true;
+                    Logging.Log.Info("Finalized rec sources.");
+                }
+
                 totalTimer.Stop();
                 Logging.Log.InfoFormat("All rec sources retrained with the latest data. Total time: {0}", totalTimer.Elapsed);
             }
@@ -271,7 +305,7 @@ namespace AnimeRecs.RecService
             Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
         }
 
-        private void ReloadTrainingDataHighAvailability()
+        private void ReloadTrainingDataHighAvailability(bool finalize)
         {
             Logging.Log.Info("Reloading training data and retraining rec sources. Rec sources will remain available.");
             Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
@@ -281,11 +315,13 @@ namespace AnimeRecs.RecService
 
             // Load new training data
             MalTrainingData newData;
+            IDictionary<int, string> newUsernames;
             using (IMalTrainingDataLoader malTrainingDataLoader = m_trainingDataLoaderFactory.GetTrainingDataLoader())
             {
                 Logging.Log.Debug("Created training data loader.");
 
                 newData = malTrainingDataLoader.LoadMalTrainingData();
+                newUsernames = GetUsernamesFromTrainingData(newData);
                 timer.Stop();
             }
 
@@ -308,7 +344,7 @@ namespace AnimeRecs.RecService
                     timer.Restart();
                     try
                     {
-                        recSource.Train(newData);
+                        recSource.Train(newData, newUsernames);
                         timer.Stop();
                         Logging.Log.InfoFormat("Trained rec source {0} ({1}). Took {2}.", recSourceName, recSource, timer.Elapsed);
                         newRecSources[recSourceName] = recSource;
@@ -329,7 +365,22 @@ namespace AnimeRecs.RecService
                 {
                     m_recSources = newRecSources;
                     m_recSourceFactories = newRecSourceFactories;
-                    m_trainingData = newData;
+
+                    m_animes = newData.Animes;
+
+                    if (finalize)
+                    {
+                        m_trainingData = null;
+                        m_usernames = null;
+                        m_finalized = true;
+                        Logging.Log.Info("Finalized rec sources.");
+                    }
+                    else
+                    {
+                        m_trainingData = newData;
+                        m_usernames = newUsernames;
+                        m_finalized = false;
+                    }
                 }
             }
 
@@ -369,7 +420,7 @@ namespace AnimeRecs.RecService
             // Acquire read lock on rec sources
             bool enteredLock;
             const int lockTimeoutInMs = 3000;
-            using (var recSourcesReadLock = m_recSourcesLock.ScopedReadLock(lockTimeoutInMs, out enteredLock))
+            using (var trainingDataReadLock = m_trainingDataLock.ScopedReadLock(lockTimeoutInMs, out enteredLock))
             {
                 // If we couldn't get a read lock within 3 seconds, a reload/retrain is probably going on
                 if (!enteredLock)
@@ -379,32 +430,48 @@ namespace AnimeRecs.RecService
                     throw new RecServiceErrorException(error);
                 }
 
-                // Get rec source by name
-                if (!m_recSources.ContainsKey(request.RecSourceName))
+                using (var recSourcesReadLock = m_recSourcesLock.ScopedReadLock())
                 {
-                    Error error = new Error(errorCode: ErrorCodes.NoSuchRecSource,
-                        message: string.Format("No rec source called \"{0}\" is loaded.", request.RecSourceName));
-                    throw new RecServiceErrorException(error);
+                    // Get rec source by name
+                    if (!m_recSources.ContainsKey(request.RecSourceName))
+                    {
+                        Error error = new Error(errorCode: ErrorCodes.NoSuchRecSource,
+                            message: string.Format("No rec source called \"{0}\" is loaded.", request.RecSourceName));
+                        throw new RecServiceErrorException(error);
+                    }
+                    ITrainableJsonRecSource recSource = m_recSources[request.RecSourceName];
+
+                    // Convert DTO anime list to RecEngine anime list
+
+                    Dictionary<int, AnimeRecs.RecEngine.MAL.MalListEntry> entries = new Dictionary<int, RecEngine.MAL.MalListEntry>();
+                    foreach (AnimeRecs.RecService.DTO.MalListEntry dtoEntry in request.AnimeList.Entries)
+                    {
+                        AnimeRecs.RecEngine.MAL.MalListEntry recEngineEntry = new RecEngine.MAL.MalListEntry(dtoEntry.Rating, dtoEntry.Status, dtoEntry.NumEpisodesWatched);
+                        entries[dtoEntry.MalAnimeId] = recEngineEntry;
+                    }
+                    MalUserListEntries animeList = new MalUserListEntries(ratings: entries, animes: m_animes, malUsername: null);
+
+                    Stopwatch timer = Stopwatch.StartNew();
+                    GetMalRecsResponse response = recSource.GetRecommendations(animeList, request);
+                    timer.Stop();
+
+                    Logging.Log.InfoFormat("Got recommendations from rec source {0}. Took {1}.", request.RecSourceName, timer.Elapsed);
+                    return response;
                 }
-                ITrainableJsonRecSource recSource = m_recSources[request.RecSourceName];
-
-                // Convert DTO anime list to RecEngine anime list
-
-                Dictionary<int, AnimeRecs.RecEngine.MAL.MalListEntry> entries = new Dictionary<int, RecEngine.MAL.MalListEntry>();
-                foreach (AnimeRecs.RecService.DTO.MalListEntry dtoEntry in request.AnimeList.Entries)
-                {
-                    AnimeRecs.RecEngine.MAL.MalListEntry recEngineEntry = new RecEngine.MAL.MalListEntry(dtoEntry.Rating, dtoEntry.Status, dtoEntry.NumEpisodesWatched);
-                    entries[dtoEntry.MalAnimeId] = recEngineEntry;
-                }
-                MalUserListEntries animeList = new MalUserListEntries(ratings: entries, animes: m_trainingData.Animes, malUsername: null);
-
-                Stopwatch timer = Stopwatch.StartNew();
-                GetMalRecsResponse response = recSource.GetRecommendations(animeList, request);
-                timer.Stop();
-
-                Logging.Log.InfoFormat("Got recommendations from rec source {0}. Took {1}.", request.RecSourceName, timer.Elapsed);
-                return response;
             }
+        }
+
+        public void FinalizeRecSources()
+        {
+            using (var trainingDataWriteLock = m_trainingDataLock.ScopedWriteLock())
+            {
+                m_trainingData = null;
+                m_usernames = null;
+                m_finalized = true;
+            }
+            GC.Collect();
+            Logging.Log.Info("Finalized rec sources.");
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
         }
 
         public void Dispose()

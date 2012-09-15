@@ -54,8 +54,13 @@ namespace AnimeRecs.RecService.Client
                 }
                 else if (commandLine.Operation.Equals(OpNames.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
                 {
-                    client.ReloadTrainingData(commandLine.ReloadMode);
+                    client.ReloadTrainingData(commandLine.ReloadMode, commandLine.Finalize);
                     Console.WriteLine("Training data reloaded.");
+                }
+                else if (commandLine.Operation.Equals(OpNames.FinalizeRecSources, StringComparison.OrdinalIgnoreCase))
+                {
+                    client.FinalizeRecSources();
+                    Console.WriteLine("Rec sources finalized.");
                 }
                 else if (commandLine.Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase))
                 {

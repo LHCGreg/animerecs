@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 
 namespace AnimeRecs.RecService.Registrations.RecSources
 {
-    internal abstract class TrainableJsonRecSource<TMalRecSource, TInput, TRecommendationResults, TRecommendation, TResponse, TDtoRec> : ITrainableJsonRecSource
+    internal abstract class TrainableJsonRecSource<TMalRecSource, TInput, TRecommendationResults, TRecommendation, TResponse, TDtoRec>
+        : ITrainableJsonRecSource
+
         where TMalRecSource : ITrainableRecSource<MalTrainingData, TInput, TRecommendationResults,  TRecommendation>
         where TRecommendationResults : IEnumerable<TRecommendation>
         where TInput : IInputForUser
@@ -19,18 +21,22 @@ namespace AnimeRecs.RecService.Registrations.RecSources
     {
         protected TMalRecSource UnderlyingRecSource { get; private set; }
 
-        private MalTrainingData m_trainingData = new MalTrainingData();
-        protected MalTrainingData TrainingData { get { return m_trainingData; } private set { m_trainingData = value; } }
+        private IDictionary<int, string> m_usernamesByUserId = new Dictionary<int, string>();
+        protected IDictionary<int, string> UsernamesByUserId { get { return m_usernamesByUserId; } private set { m_usernamesByUserId = value; } }
+
+        private IDictionary<int, RecEngine.MAL.MalAnime> m_animes = new Dictionary<int, RecEngine.MAL.MalAnime>();
+        protected IDictionary<int, RecEngine.MAL.MalAnime> Animes { get { return m_animes; } private set { m_animes = value; } }
 
         public TrainableJsonRecSource(TMalRecSource underlyingRecSource)
         {
             UnderlyingRecSource = underlyingRecSource;
         }
 
-        public void Train(MalTrainingData trainingData)
+        public void Train(MalTrainingData trainingData, IDictionary<int, string> usernamesByUserId)
         {
             UnderlyingRecSource.Train(trainingData);
-            TrainingData = trainingData;
+            Animes = trainingData.Animes;
+            UsernamesByUserId = usernamesByUserId;
         }
 
         public DTO.GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
@@ -46,7 +52,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
                 {
                     MalAnimeId = rec.ItemId,
                 };
-                animes[rec.ItemId] = new DTO.MalAnime(rec.ItemId, TrainingData.Animes[rec.ItemId].Title, TrainingData.Animes[rec.ItemId].Type);
+                animes[rec.ItemId] = new DTO.MalAnime(rec.ItemId, Animes[rec.ItemId].Title, Animes[rec.ItemId].Type);
 
                 SetSpecializedRecommendationProperties(dtoRec, rec);
 
@@ -63,7 +69,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
             {
                 if (!animes.ContainsKey(extraAnimeId))
                 {
-                    animes[extraAnimeId] = new DTO.MalAnime(extraAnimeId, TrainingData.Animes[extraAnimeId].Title, TrainingData.Animes[extraAnimeId].Type);
+                    animes[extraAnimeId] = new DTO.MalAnime(extraAnimeId, Animes[extraAnimeId].Title, Animes[extraAnimeId].Type);
                 }
             }
 

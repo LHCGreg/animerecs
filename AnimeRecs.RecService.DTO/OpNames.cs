@@ -13,6 +13,7 @@ namespace AnimeRecs.RecService.DTO
         public static string ReloadTrainingData { get { return "ReloadTrainingData"; } }
         public static string GetMalRecs { get { return "GetMalRecs"; } }
         public static string GetRecSourceType { get { return "GetRecSourceType"; } }
+        public static string FinalizeRecSources { get { return "FinalizeRecSources"; } }
     }
 }
 

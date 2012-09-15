@@ -24,7 +24,10 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
                 return new Operation<ReloadTrainingDataRequest>();
             else if (opName.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
                 return new Operation<UnloadRecSourceRequest>();
-            else throw new Newtonsoft.Json.JsonException(string.Format("Operation {0} not recognized.", opName));
+            else if (opName.Equals(OpNames.FinalizeRecSources, StringComparison.OrdinalIgnoreCase))
+                return new Operation<FinalizeRecSourcesRequest>();
+            else
+                throw new Newtonsoft.Json.JsonException(string.Format("Operation {0} not recognized.", opName));
         }
     }
 }

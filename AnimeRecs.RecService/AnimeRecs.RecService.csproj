@@ -121,6 +121,7 @@
     <Compile Include="OperationDescription.cs" />
     <Compile Include="OperationHandler.cs" />
     <Compile Include="OperationHandlers\Common.cs" />
+    <Compile Include="OperationHandlers\FinalizeRecSourcesHandler.cs" />
     <Compile Include="OperationHandlers\GetMalRecsHandler.cs" />
     <Compile Include="OperationHandlers\GetRecSourceTypeHandler.cs" />
     <Compile Include="OperationHandlers\LoadRecSourceHandler.cs" />

@@ -9,14 +9,15 @@ namespace AnimeRecs.RecService
 {
     internal interface ITrainableJsonRecSource
     {
-        void Train(MalTrainingData trainingData);
+        // Pass in usernames even though it could be derived from trainingData so that the same reference can be shared across rec sources
+        void Train(MalTrainingData trainingData, IDictionary<int, string> usernamesByUserId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="recRequest"></param>
         /// <returns></returns>
-        /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">Throw to return an rec service error to the client.</exception>
+        /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">Throw to return a rec service error to the client.</exception>
         GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest);
 
         string RecSourceType { get; }

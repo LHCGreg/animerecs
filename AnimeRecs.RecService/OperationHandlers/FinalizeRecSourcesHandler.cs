@@ -8,11 +8,10 @@ namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response ReloadTrainingData(Operation baseOperation, RecServiceState state)
+        public static Response FinalizeRecSources(Operation baseOperation, RecServiceState state)
         {
-            Operation<ReloadTrainingDataRequest> operation = (Operation<ReloadTrainingDataRequest>)baseOperation;
-            ReloadBehavior behavior = (ReloadBehavior)Enum.Parse(typeof(ReloadBehavior), operation.Payload.Mode);
-            state.ReloadTrainingData(behavior, operation.Payload.Finalize);
+            Operation<FinalizeRecSourcesRequest> operation = (Operation<FinalizeRecSourcesRequest>)baseOperation;
+            state.FinalizeRecSources();
             return new Response();
         }
     }

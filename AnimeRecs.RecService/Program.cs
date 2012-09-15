@@ -47,6 +47,11 @@ namespace AnimeRecs.RecService
                             {
                                 client.LoadRecSource(recSourceToLoad);
                             }
+
+                            if (config.FinalizeAfterLoad)
+                            {
+                                client.FinalizeRecSources();
+                            }
                         }
                     }
 

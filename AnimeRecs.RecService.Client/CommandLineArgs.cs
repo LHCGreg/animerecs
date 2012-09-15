@@ -18,6 +18,7 @@ namespace AnimeRecs.RecService.Client
             OpNames.GetRecSourceType,
             OpNames.ReloadTrainingData,
             OpNames.GetMalRecs,
+            OpNames.FinalizeRecSources,
             "Raw"
         };
 
@@ -99,6 +100,9 @@ namespace AnimeRecs.RecService.Client
         private ReloadBehavior m_reloadMode = ReloadBehavior.HighAvailability;
         public ReloadBehavior ReloadMode { get { return m_reloadMode; } set { m_reloadMode = value; } }
 
+        private bool m_finalize = false;
+        public bool Finalize { get { return m_finalize; } set { m_finalize = value; } }
+
         public string RawJson { get; set; }
 
         public OptionSet GetOptionSet()
@@ -106,9 +110,10 @@ namespace AnimeRecs.RecService.Client
             OptionSet optionSet = new OptionSet()
             {
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
-                { "c|command=", "Command. Possible commands are Ping, LoadRecSource, GetRecSourceType, GetMalRecs, ReloadTrainingData, and UnloadRecSource.", arg => SetCommand(arg) },
+                { "c|command=", "Command. Possible commands are Ping, LoadRecSource, GetRecSourceType, GetMalRecs, ReloadTrainingData, FinalizeRecSources, and UnloadRecSource.", arg => SetCommand(arg) },
                 { "p|port=", "Port the rec service is listening on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
                 { "ping_message=", "Message to send with a ping command. Used with the Ping command. Defaults to \"ping\".", arg => PingMessage = arg },
+                { "finalize", "Finalize the rec sources loaded after the reload is complete to reduce memory usage. Used with the ReloadTrainingData command.", argExistence => Finalize = (argExistence != null) },
                 { "name|rec_source_name=", "Rec source name. Used with the LoadRecSource, GetRecSourceType, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
                 { "reload_mode=", "Used with ReloadTrainingData. Possible values are HighAvailability and LowMemory. Defaults to HighAvailability. HighAvailability: Keep the old training data and rec sources in memory while the reload/retrain is going on to keep the rec service serving requests. Requires around twice the amount of memory normally consumed. LowMemory: Drop the old training data and rec sources before starting the reload/retrain. This avoids using double normal memory but means the rec service cannot give recommendations while the reload/retrain is going on.", arg => SetReloadMode(arg) },
                 { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
