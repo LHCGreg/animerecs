@@ -1,4 +1,4 @@
-﻿AnimeRecs is a project that aims to provide accurate and useful anime recommendations. It contains several components, some of which may be useful outside this project. All components ultimately serve the needs of AnimeRecs.Web, an ASP.NET MVC web application for giving anime recommendations based on the user's myanimelist.net account.
+﻿AnimeRecs is a project that aims to provide accurate and useful anime recommendations. It contains several components. All components ultimately serve the needs of AnimeRecs.Web, an ASP.NET MVC web application for giving anime recommendations based on the user's myanimelist.net account.
 
 All components are licensed under the GPL version 3. See LICENSE.txt for license information.
 
@@ -92,8 +92,6 @@ Populating the database with ratings
 Populating the database with stream mappings
 --------------------------------------------
 Connect to the animerecs database and run /AnimeRecs.DAL/StreamMappings.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f StreamMappings.sql
-
-These mappings are not kept up to date in the hg repository.
 
 
 
