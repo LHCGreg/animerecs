@@ -20,14 +20,14 @@ namespace AnimeRecs.Web
         public string MalApiUserAgentString { get; private set; }
         public int MalTimeoutInMs { get; private set; }
         public bool UseLocalDbMalApi { get; private set; }
-        public string OwnerMalLink { get; private set; }
+        public string ClubMalLink { get; private set; }
         public string HtmlBeforeBodyEnd { get; private set; }
         public string PostgresConnectionString { get; private set; }
         public IDictionary<string, int> SpecialRecSourcePorts { get; private set; }
 
         public Config(TimeSpan animeListCacheExpiration, int? recServicePort, string defaultRecSource, int maximumRecommendersToReturn,
             int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, int malTimeoutInMs,
-            bool useLocalDbMalApi, string ownerMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
+            bool useLocalDbMalApi, string clubMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
             IDictionary<string, int> specialRecSourcePorts)
         {
             AnimeListCacheExpiration = animeListCacheExpiration;
@@ -51,8 +51,8 @@ namespace AnimeRecs.Web
             }
             PostgresConnectionString = postgresConnectionString;
 
-            ownerMalLink.ThrowIfNull("ownerMalLink");
-            OwnerMalLink = ownerMalLink;
+            clubMalLink.ThrowIfNull("clubMalLink");
+            ClubMalLink = clubMalLink;
 
             HtmlBeforeBodyEnd = htmlBeforeBodyEnd ?? "";
 
@@ -83,7 +83,7 @@ namespace AnimeRecs.Web
             {
                 useLocalDbMalApi = true;
             }
-            string ownerMalLink = ConfigurationManager.AppSettings["OwnerMalLink"];
+            string clubMalLink = ConfigurationManager.AppSettings["ClubMalLink"];
 
             string postgresConnectionString = null;
             if (ConfigurationManager.ConnectionStrings["Postgres"] != null)
@@ -121,7 +121,7 @@ namespace AnimeRecs.Web
                 malApiUserAgentString: malApiUserAgentString,
                 malTimeoutInMs: malTimeoutInMs,
                 useLocalDbMalApi: useLocalDbMalApi,
-                ownerMalLink: ownerMalLink,
+                clubMalLink: clubMalLink,
                 htmlBeforeBodyEnd: htmlBeforeBodyEnd,
                 postgresConnectionString: postgresConnectionString,
                 specialRecSourcePorts: specialRecSourcePorts
