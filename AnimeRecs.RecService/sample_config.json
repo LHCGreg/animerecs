@@ -1,6 +1,15 @@
 ﻿{
 	FinalizeAfterLoad: false,
 	RecSources: [
+ 		{
+			Name: "default",
+			Type: "AnimeRecs",
+			Params: {
+				NumRecommendersToUse: 100,
+				FractionConsideredRecommended: 0.35,
+				MinEpisodesToClassifyIncomplete: 26
+			}
+		},
 		{
 			Name: "AverageScore",
 			Type: "AverageScore",

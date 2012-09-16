@@ -72,14 +72,16 @@ namespace AnimeRecs.RecEngine.MAL
             Dictionary<int, MalUserListEntries> filteredUsers = new Dictionary<int, MalUserListEntries>();
             foreach (int userId in trainingData.Users.Keys.Take(m_recommender.NumRecommenders))
             {
-                Dictionary<int, MalListEntry> filteredEntries = new Dictionary<int, MalListEntry>();
+                List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId> filteredEntryList = new List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId>();
                 foreach (int animeId in trainingData.Users[userId].Entries.Keys)
                 {
                     if (trainingData.Animes[animeId].Type != MalAnimeType.Special)
                     {
-                        filteredEntries[animeId] = trainingData.Users[userId].Entries[animeId];
+                        filteredEntryList.Add(new ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId(animeId, trainingData.Users[userId].Entries[animeId]));
                     }
                 }
+
+                ReadOnlyMalListEntryDictionary filteredEntries = new ReadOnlyMalListEntryDictionary(filteredEntryList);
 
                 MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].AnimesEligibleForRecommendation, trainingData.Users[userId].MalUsername);
                 filteredUsers[userId] = filteredUser;

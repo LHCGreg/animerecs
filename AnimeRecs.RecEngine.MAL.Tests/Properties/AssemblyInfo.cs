@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AnimeRecs.RecEngine.MAL")]
-[assembly: AssemblyDescription("MAL-specific proxies to generic recommendation sources")]
+[assembly: AssemblyTitle("AnimeRecs.RecEngine.MAL.Tests")]
+[assembly: AssemblyDescription("Unit tests for AnimeRecs.RecEngine.MAL")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AnimeRecs")]
@@ -14,15 +14,13 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: InternalsVisibleTo("AnimeRecs.RecEngine.MAL.Tests")]
-
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("853abf47-24b3-41ab-9177-fba2068bd544")]
+[assembly: Guid("d3f0df39-90d9-440f-b36b-4bd5e1938bcf")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -89,13 +89,15 @@ namespace AnimeRecs.RecService
             {
                 Logging.Log.Debug("Created training data loader.");
                 trainingData = trainingDataLoader.LoadMalTrainingData();
-                timer.Stop();
             }
+            GC.Collect();
+            timer.Stop();
 
             Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
                 trainingData.Users.Count, trainingData.Animes.Count,
                 trainingData.Users.Keys.Sum(userId => trainingData.Users[userId].Entries.Count),
                 timer.Elapsed);
+            Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
 
             return trainingData;
         }
@@ -255,13 +257,15 @@ namespace AnimeRecs.RecService
                     m_trainingData = malTrainingDataLoader.LoadMalTrainingData();
                     m_usernames = GetUsernamesFromTrainingData(m_trainingData);
                     m_animes = m_trainingData.Animes;
-                    timer.Stop();
                 }
+                GC.Collect();
+                timer.Stop();
 
                 Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
                     m_trainingData.Users.Count, m_trainingData.Animes.Count,
                     m_trainingData.Users.Keys.Sum(userId => m_trainingData.Users[userId].Entries.Count),
                     timer.Elapsed);
+                Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
 
                 // Then retrain all loaded rec sources.
                 // ToList() so we can unload a rec source as we iterate if it errors while training.
@@ -322,8 +326,9 @@ namespace AnimeRecs.RecService
 
                 newData = malTrainingDataLoader.LoadMalTrainingData();
                 newUsernames = GetUsernamesFromTrainingData(newData);
-                timer.Stop();
             }
+            GC.Collect();
+            timer.Stop();
 
             Logging.Log.InfoFormat("Training data loaded. {0} users, {1} animes, {2} entries. Took {3}.",
                 newData.Users.Count, newData.Animes.Count,

@@ -31,7 +31,6 @@ namespace AnimeRecs.DAL
         {
             // Load all anime, then all users, then all entries
 
-            Dictionary<int, MalAnime> animes = new Dictionary<int, MalAnime>();
             Dictionary<int, Dictionary<int, MalListEntry>> userAnimeLists = new Dictionary<int, Dictionary<int, MalListEntry>>();
 
             Dictionary<int, mal_user> dbUsers = new Dictionary<int, mal_user>();
@@ -45,6 +44,7 @@ namespace AnimeRecs.DAL
                 Logging.Log.Debug("Slurping anime from the database.");
                 IEnumerable<mal_anime> dbAnimeSlurp = mal_anime.GetAll(conn, transaction: null);
                 Logging.Log.Debug("Processing anime from the database.");
+                Dictionary<int, MalAnime> animes = new Dictionary<int, MalAnime>(dbAnimeSlurp.Count());
                 foreach (mal_anime dbAnime in dbAnimeSlurp)
                 {
                     MalAnime anime = new MalAnime(
@@ -71,41 +71,50 @@ FROM mal_list_entry
 ";
 
                 Logging.Log.Debug("Slurping list entries from the database.");
-                // This will buffer all rows in memory before returning
-                IEnumerable<mal_list_entry_slim> dbEntrySlurp = conn.Query<mal_list_entry_slim>(allEntriesSlimSql, commandTimeout: 60);
+                // Do not buffer list entries
+                IEnumerable<mal_list_entry_slim> dbEntrySlurp = conn.Query<mal_list_entry_slim>(allEntriesSlimSql, buffered: false, commandTimeout: 60);
                 Logging.Log.Debug("Processing list entries from the database.");
                 long entryCount = 0;
+
+                Dictionary<int, List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId>> entriesByUser
+                    = new Dictionary<int, List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId>>();
+
                 foreach (mal_list_entry_slim dbEntry in dbEntrySlurp)
                 {
                     entryCount++;
-                    Dictionary<int, MalListEntry> userList;
                     mal_user dbUser;
                     if(!dbUsers.TryGetValue(dbEntry.mal_user_id, out dbUser) || !animes.ContainsKey(dbEntry.mal_anime_id))
                     {
                         // Entry for an anime or user that wasn't in the database...there must have been an update going on between the time we got users, anime, and list entries
                         continue;
                     }
-                    
-                    if (!userAnimeLists.TryGetValue(dbEntry.mal_user_id, out userList))
+                    List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId> animeList;
+                    if (!entriesByUser.TryGetValue(dbEntry.mal_user_id, out animeList))
                     {
-                        userList = new Dictionary<int, MalListEntry>();
-                        userAnimeLists[dbEntry.mal_user_id] = userList;
+                        animeList = new List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId>();
+                        entriesByUser[dbEntry.mal_user_id] = animeList;
                     }
-                    userList[dbEntry.mal_anime_id] = new MalListEntry(
-                        rating: (byte?)dbEntry.rating,
-                        status: (CompletionStatus)dbEntry.mal_list_entry_status_id,
-                        numEpisodesWatched: dbEntry.num_episodes_watched
-                    );
-                }
-                Logging.Log.DebugFormat("Done processing {0} list entries.", entryCount);
 
-                Dictionary<int, MalUserListEntries> users = new Dictionary<int, MalUserListEntries>();
-                foreach (KeyValuePair<int, Dictionary<int, MalListEntry>> userIdListPair in userAnimeLists)
-                {
-                    int userId = userIdListPair.Key;
-                    Dictionary<int, MalListEntry> animeList = userIdListPair.Value;
-                    users[userId] = new MalUserListEntries(animeList, animes, dbUsers[userId].mal_name);
+                    animeList.Add(new ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId(
+                        animeId: dbEntry.mal_anime_id,
+                        entry: new MalListEntry(
+                            rating: (byte?)dbEntry.rating,
+                            status: (CompletionStatus)dbEntry.mal_list_entry_status_id,
+                            numEpisodesWatched: dbEntry.num_episodes_watched
+                        )
+                    ));
                 }
+
+                Dictionary<int, MalUserListEntries> users = new Dictionary<int, MalUserListEntries>(dbUserSlurp.Count());
+                foreach (int userId in entriesByUser.Keys)
+                {
+                    List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId> animeList = entriesByUser[userId];
+                    animeList.Capacity = animeList.Count;
+                    ReadOnlyMalListEntryDictionary listEntries = new ReadOnlyMalListEntryDictionary(animeList);
+                    users[userId] = new MalUserListEntries(listEntries, animes, dbUsers[userId].mal_name);
+                }
+
+                Logging.Log.DebugFormat("Done processing {0} list entries.", entryCount);
 
                 return new MalTrainingData(users, animes);
             }

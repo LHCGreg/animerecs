@@ -70,6 +70,7 @@
     <Compile Include="MalTrainingData.cs" />
     <Compile Include="MalUserListEntries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadOnlyMalListEntryDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj">

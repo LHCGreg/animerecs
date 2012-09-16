@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.UpdateStreams", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.UpdateStreams.Tests", "AnimeRecs.UpdateStreams.Tests\AnimeRecs.UpdateStreams.Tests.csproj", "{D354A612-DB25-4EFD-9916-200DE54C94C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.RecEngine.MAL.Tests", "AnimeRecs.RecEngine.MAL.Tests\AnimeRecs.RecEngine.MAL.Tests.csproj", "{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,16 @@ Global
 		{D354A612-DB25-4EFD-9916-200DE54C94C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D354A612-DB25-4EFD-9916-200DE54C94C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{D354A612-DB25-4EFD-9916-200DE54C94C7}.Release|x86.Build.0 = Release|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
