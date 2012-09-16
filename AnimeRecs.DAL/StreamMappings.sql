@@ -1,6 +1,4 @@
-﻿-- This file will not be kept up to date in the hg repository. This is just to get some streams in for testing.
-
-BEGIN TRANSACTION;
+﻿BEGIN TRANSACTION;
 
 DELETE FROM streaming_service_anime_map WHERE 1 = 1;
 
@@ -21,6 +19,7 @@ VALUES
 (9736, 1, 'http://www.crunchyroll.com/astarottes-toy'),
 (5342, 1, 'http://www.crunchyroll.com/asura-cryin'),
 (6676, 1, 'http://www.crunchyroll.com/asura-cryin'),
+(5081, 1, 'http://www.crunchyroll.com/bakemonogatari'),
 (10308, 1, 'http://www.crunchyroll.com/battle-girls-time-paradox'),
 (9513, 1, 'http://www.crunchyroll.com/beelzebub'),
 (2213, 1, 'http://www.crunchyroll.com/black-jack'),
@@ -88,6 +87,7 @@ VALUES
 (1448, 1, 'http://www.crunchyroll.com/go-lion'),
 (2494, 1, 'http://www.crunchyroll.com/good-luck-ninomiya-kun'),
 (8425, 1, 'http://www.crunchyroll.com/gosick'),
+(5041, 1, 'http://www.crunchyroll.com/guin-saga'),
 (3299, 1, 'http://www.crunchyroll.com/h2o-footprints-in-the-sand'),
 (13115, 1, 'http://www.crunchyroll.com/hakuoki-reimeiroku'),
 (6574, 1, 'http://www.crunchyroll.com/hanamaru-kindergarten'),
@@ -131,6 +131,7 @@ VALUES
 (3392, 1, 'http://www.crunchyroll.com/la-maison-en-petits-cubes'),
 (5717, 1, 'http://www.crunchyroll.com/la-maison-en-petits-cubes'),
 (12967, 1, 'http://www.crunchyroll.com/la-storia-della-arcana-famiglia'),
+(4549, 1, 'http://www.crunchyroll.com/legends-of-the-dark-king'),
 (12677, 1, 'http://www.crunchyroll.com/leiji-matsumotos-ozma'),
 (9834, 1, 'http://www.crunchyroll.com/level-e'),
 (8206, 1, 'http://www.crunchyroll.com/lilpri'),
@@ -299,6 +300,7 @@ VALUES
 (1583, 2, 'http://www.funimation.com/009-1/episodes'),
 (3234, 2, 'http://www.funimation.com/009-1/episodes'),
 (4654, 2, 'http://www.funimation.com/a-certain-magical-index/episodes'),
+(6213, 2, 'http://www.funimation.com/a-certain-scientific-railgun/episodes'),
 (13161, 2, 'http://www.funimation.com/aesthetica-of-a-rogue-hero/episodes'),
 (880, 2, 'http://www.funimation.com/ah-my-goddess-flights-of-fancy/episodes'),
 (2198, 2, 'http://www.funimation.com/ah-my-goddess-flights-of-fancy/episodes'),
