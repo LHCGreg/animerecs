@@ -124,31 +124,6 @@ namespace AnimeRecs.RecService.DTO
             return RecSourceTypes.BiasedMatrixFactorization;
         }
     }
-
-    public class UserKNNPearsonRecSourceParams : RecSourceParams
-    {
-        public int MinEpisodesToCountIncomplete { get; set; }
-        public bool UseDropped { get; set; }
-        public int MinUsersToCountAnime { get; set; }
-
-        public float? Shrinkage { get; set; }
-        public uint? K { get; set; }
-        public float? RegU { get; set; }
-        public float? RegI { get; set; }
-        public uint? NumIter { get; set; }
-
-        public UserKNNPearsonRecSourceParams()
-        {
-            MinEpisodesToCountIncomplete = 26;
-            UseDropped = true;
-            MinUsersToCountAnime = 50;
-        }
-
-        public override string GetRecSourceTypeName()
-        {
-            return RecSourceTypes.UserKNNPearson;
-        }
-    }
 }
 
 // Copyright (C) 2012 Greg Najda

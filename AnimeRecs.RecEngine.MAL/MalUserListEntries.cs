@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MalApi;
 using AnimeRecs.RecEngine.Evaluation;
-using MyMediaLite.Util;
+using MyMediaLite;
 
 namespace AnimeRecs.RecEngine.MAL
 {

@@ -74,7 +74,7 @@ namespace AnimeRecs.RecEngine
 
         public IEnumerable<RatingPredictionRecommendation> GetRecommendations(IBasicInputForUser userRatings, int numRecommendationsToTryToGet)
         {
-            IList<MyMediaLite.DataType.Pair<int, float>> userMediaLiteRatings = new List<MyMediaLite.DataType.Pair<int, float>>();
+            IList<Tuple<int, float>> userMediaLiteRatings = new List<Tuple<int, float>>();
             foreach (KeyValuePair<int, float> realRating in userRatings.Ratings)
             {
                 int realItemId = realRating.Key;
@@ -84,17 +84,17 @@ namespace AnimeRecs.RecEngine
                 if (m_realItemIdToMediaLiteItemId.ContainsKey(realItemId))
                 {
                     int mediaLiteItemId = m_realItemIdToMediaLiteItemId[realItemId];
-                    userMediaLiteRatings.Add(new MyMediaLite.DataType.Pair<int, float>(mediaLiteItemId, score));
+                    userMediaLiteRatings.Add(new Tuple<int, float>(mediaLiteItemId, score));
                 }
             }
 
-            IList<MyMediaLite.DataType.Pair<int, float>> mediaLitePredictions = m_recommender.ScoreItems(userMediaLiteRatings);
+            IList<Tuple<int, float>> mediaLitePredictions = m_recommender.ScoreItems(userMediaLiteRatings);
 
             List<RatingPredictionRecommendation> recs = new List<RatingPredictionRecommendation>();
-            foreach (MyMediaLite.DataType.Pair<int, float> prediction in mediaLitePredictions.OrderByDescending(p => p.Second))
+            foreach (Tuple<int, float> prediction in mediaLitePredictions.OrderByDescending(p => p.Item2))
             {
-                int mediaLiteItemId = prediction.First;
-                float predictedScore = prediction.Second;
+                int mediaLiteItemId = prediction.Item1;
+                float predictedScore = prediction.Item2;
 
                 int realItemId = m_mediaLiteItemIdToRealItemId[mediaLiteItemId];
                 if (userRatings.ItemIsOkToRecommend(realItemId))

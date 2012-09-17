@@ -11,7 +11,6 @@ namespace AnimeRecs.RecService.DTO
         public const string MostPopular = "MostPopular";
         public const string AnimeRecs = "AnimeRecs";
         public const string BiasedMatrixFactorization = "BiasedMatrixFactorization";
-        public const string UserKNNPearson = "UserKNNPearson";
 
         private static IDictionary<string, Func<LoadRecSourceRequest>> s_LoadRecSourceRequestFactories =
             new Dictionary<string, Func<LoadRecSourceRequest>>(StringComparer.OrdinalIgnoreCase)
@@ -19,8 +18,7 @@ namespace AnimeRecs.RecService.DTO
                 { AverageScore, () => new LoadRecSourceRequest<AverageScoreRecSourceParams>() },
                 { MostPopular, () => new LoadRecSourceRequest<MostPopularRecSourceParams>() },
                 { AnimeRecs, () => new LoadRecSourceRequest<AnimeRecsRecSourceParams>() },
-                { BiasedMatrixFactorization, () => new LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>() },
-                { UserKNNPearson, () => new LoadRecSourceRequest<UserKNNPearsonRecSourceParams>() }
+                { BiasedMatrixFactorization, () => new LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>() }
             };
         public static IDictionary<string, Func<LoadRecSourceRequest>> LoadRecSourceRequestFactories { get { return s_LoadRecSourceRequestFactories; } }
     }
