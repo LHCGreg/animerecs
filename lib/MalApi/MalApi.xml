@@ -99,7 +99,7 @@
             The user name as it appears in MAL. This might differ in capitalization from the username that was searched for.
             </summary>
         </member>
-        <member name="T:MalApi.MyAnimeListCache">
+        <member name="T:MalApi.AnimeListCache">
             <summary>
             Thread-safe cache with an optional expiration time. If the expiration time is null, anime lists are cached for the lifetime of
             the object. Expired cache entries are only actually removed when a new anime list is inserted into the cache. Cache expiration
