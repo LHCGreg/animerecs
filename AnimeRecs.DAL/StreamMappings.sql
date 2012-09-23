@@ -1,4 +1,4 @@
-﻿BEGIN TRANSACTION;
+BEGIN TRANSACTION;
 
 DELETE FROM streaming_service_anime_map WHERE 1 = 1;
 
@@ -61,6 +61,7 @@ VALUES
 (6746, 1, 'http://www.crunchyroll.com/durarara'),
 (8408, 1, 'http://www.crunchyroll.com/durarara'),
 (12445, 1, 'http://www.crunchyroll.com/dusk-maiden-of-amnesia'),
+(2924, 1, 'http://www.crunchyroll.com/ef-a-tale-of-memories'),
 (5420, 1, 'http://www.crunchyroll.com/erin'),
 (237, 1, 'http://www.crunchyroll.com/eureka-seven'),
 (15, 1, 'http://www.crunchyroll.com/eyeshield-21'),
@@ -517,8 +518,10 @@ VALUES
 (390, 2, 'http://www.funimation.com/suzuka/episodes'),
 (11751, 2, 'http://www.funimation.com/symphogear/episodes'),
 (1133, 2, 'http://www.funimation.com/tenchi-muyo-gxp/episodes'),
-(539, 2, 'http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes'),
-(1146, 2, 'http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes'),
+(539, 2, 'http://www.funimation.com/tenchi-muyo-ova-series/episodes'),
+(540, 2, 'http://www.funimation.com/tenchi-muyo-ova-series/episodes'),
+(1146, 2, 'http://www.funimation.com/tenchi-muyo-ova-series/episodes'),
+(696, 2, 'http://www.funimation.com/tenchi-muyo-tenchi-universe/episodes'),
 (26, 2, 'http://www.funimation.com/texhnolyze/episodes'),
 (239, 2, 'http://www.funimation.com/the-count-of-monte-cristo-gankutsuou/episodes'),
 (10620, 2, 'http://www.funimation.com/the-future-diary/episodes'),

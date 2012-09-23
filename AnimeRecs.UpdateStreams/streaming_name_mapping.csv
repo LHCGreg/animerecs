@@ -64,6 +64,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Durarara","http://www.crunchyroll.com/durarara",6746
 "Crunchyroll","Durarara","http://www.crunchyroll.com/durarara",8408
 "Crunchyroll","Dusk Maiden of Amnesia","http://www.crunchyroll.com/dusk-maiden-of-amnesia",12445
+"Crunchyroll","Ef - A Tale of Memories","http://www.crunchyroll.com/ef-a-tale-of-memories",2924
 "Crunchyroll","Egg Man","http://www.crunchyroll.com/egg-man",n/a
 "Crunchyroll","Erin","http://www.crunchyroll.com/erin",5420
 "Crunchyroll","Eureka Seven","http://www.crunchyroll.com/eureka-seven",237
@@ -124,6 +125,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Kanamemo","http://www.crunchyroll.com/kanamemo",5914
 "Crunchyroll","Kanokon","http://www.crunchyroll.com/kanokon",3503
 "Crunchyroll","Kemeko DX","http://www.crunchyroll.com/kemeko-dx",3464
+"Crunchyroll","Kid Kosmo","http://www.crunchyroll.com/kid-kosmo",n/a
 "Crunchyroll","Kiddy GiRL-AND","http://www.crunchyroll.com/kiddy-girl-and",3349
 "Crunchyroll","Kids on the Slope","http://www.crunchyroll.com/kids-on-the-slope",12531
 "Crunchyroll","Kigurumikku","http://www.crunchyroll.com/kigurumikku",6318
@@ -533,8 +535,10 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Suzuka","http://www.funimation.com/suzuka/episodes",390
 "Funimation","Symphogear","http://www.funimation.com/symphogear/episodes",11751
 "Funimation","Tenchi Muyo! GXP","http://www.funimation.com/tenchi-muyo-gxp/episodes",1133
-"Funimation","Tenchi Muyo! Ryo Ohki","http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes",539
-"Funimation","Tenchi Muyo! Ryo Ohki","http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes",1146
+"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",539
+"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",540
+"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",1146
+"Funimation","Tenchi Muyo! Tenchi Universe","http://www.funimation.com/tenchi-muyo-tenchi-universe/episodes",696
 "Funimation","Texhnolyze","http://www.funimation.com/texhnolyze/episodes",26
 "Funimation","The Count of Monte Cristo: Gankutsuou","http://www.funimation.com/the-count-of-monte-cristo-gankutsuou/episodes",239
 "Funimation","The Future Diary","http://www.funimation.com/the-future-diary/episodes",10620
