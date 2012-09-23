@@ -124,6 +124,43 @@ namespace AnimeRecs.RecService.DTO
             return RecSourceTypes.BiasedMatrixFactorization;
         }
     }
+
+    public class BPRMFRecSourceParams : RecSourceParams
+    {
+        public double FractionConsideredRecommended { get; set; }
+        public int MinEpisodesToClassifyIncomplete { get; set; }
+        public int MinUsersToCountAnime { get; set; }
+
+        public uint? NumFactors { get; set; }
+        public float? BiasReg { get; set; }
+        public float? RegU { get; set; }
+        public float? RegI { get; set; }
+        public float? RegJ { get; set; }
+        public uint? NumIter { get; set; }
+        public float? LearnRate { get; set; }
+        public bool? UniformUserSampling { get; set; }
+        public bool? WithReplacement { get; set; }
+        public bool? UpdateJ { get; set; }
+
+        public BPRMFRecSourceParams()
+        {
+            FractionConsideredRecommended = 0.35;
+            MinEpisodesToClassifyIncomplete = 26;
+            MinUsersToCountAnime = 50;
+        }
+
+        public BPRMFRecSourceParams(double fractionConsideredRecommended, int minEpisodesToClassifyIncomplete, int minUsersToCountAnime)
+        {
+            FractionConsideredRecommended = fractionConsideredRecommended;
+            MinEpisodesToClassifyIncomplete = minEpisodesToClassifyIncomplete;
+            MinUsersToCountAnime = minUsersToCountAnime;
+        }
+
+        public override string GetRecSourceTypeName()
+        {
+            return RecSourceTypes.BPRMF;
+        }
+    }
 }
 
 // Copyright (C) 2012 Greg Najda

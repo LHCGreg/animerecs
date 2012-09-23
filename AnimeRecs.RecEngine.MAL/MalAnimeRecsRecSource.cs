@@ -158,7 +158,7 @@ namespace AnimeRecs.RecEngine.MAL
                 MalPercentageRatingClassifier inputClassifier = new MalPercentageRatingClassifier(inputForUser.TargetFraction.Value, m_minEpisodesToClassifyIncomplete);
                 classifiedInput = inputClassifier.Classify(inputForUser.AnimeList);
 
-                // target score used is the minimum score a liked anime.
+                // target score used is the minimum score a liked anime has.
                 targetScoreUsed = classifiedInput.Liked.Entries.Values.Min(entry => entry.Rating) ?? 10m;
             }
             else

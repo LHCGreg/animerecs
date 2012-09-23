@@ -52,8 +52,9 @@
     <Compile Include="JsonConverters\OperationJsonConverter.cs" />
     <Compile Include="JsonConverters\JsonCreationConverter.cs" />
     <Compile Include="JsonConverters\LoadRecSourceRequestJsonConverter.cs" />
-    <Compile Include="MalAnimeRecsExtraResponseData.cs" />
+    <Compile Include="Registrations\RecommendationTypes\MalAnimeRecsExtraResponseData.cs" />
     <Compile Include="MalAnime.cs" />
+    <Compile Include="Registrations\RecommendationTypes\MalPositiveFeedbackExtraResponseData.cs" />
     <Compile Include="Registrations\RecommendationTypes\Recommendation.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ErrorCodes.cs" />

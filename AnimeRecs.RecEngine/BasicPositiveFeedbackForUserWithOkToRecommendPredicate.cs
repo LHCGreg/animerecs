@@ -5,17 +5,26 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
-    /// <summary>
-    /// Simple training data containing only a set of users that each have some sort of ratings.
-    /// </summary>
-    /// <typeparam name="TTrainingUserInput"></typeparam>
-    public class BasicTrainingData<TTrainingUserInput> : IBasicTrainingData<TTrainingUserInput>
+    public class BasicPositiveFeedbackForUserWithOkToRecommendPredicate : IPositiveFeedbackForUser
     {
-        public IDictionary<int, TTrainingUserInput> Users { get; private set; }
+        public ICollection<int> Items { get; private set; }
 
-        public BasicTrainingData(IDictionary<int, TTrainingUserInput> users)
+        private Predicate<int> m_okToRecommendItemFunc;
+
+        public BasicPositiveFeedbackForUserWithOkToRecommendPredicate(ICollection<int> items, Predicate<int> okToRecommendItemFunc)
         {
-            Users = users;
+            Items = items;
+            m_okToRecommendItemFunc = okToRecommendItemFunc;
+        }
+
+        public bool ItemIsOkToRecommend(int itemId)
+        {
+            return !Items.Contains(itemId) && m_okToRecommendItemFunc(itemId);
+        }
+
+        public bool ContainsItem(int itemId)
+        {
+            return Items.Contains(itemId);
         }
     }
 }

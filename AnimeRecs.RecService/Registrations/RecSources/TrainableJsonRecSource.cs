@@ -79,8 +79,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
         }
 
         /// <summary>
-        /// Converts the user's anime list into the input used by the rec source. If you need more than the anime list, you can use
-        /// <paramref name="caster"/> to cast <paramref name="recRequest"/> to a more specialized DTO.
+        /// Converts the user's anime list into the input used by the rec source.
         /// </summary>
         /// <param name="animeList"></param>
         /// <param name="recRequest"></param>

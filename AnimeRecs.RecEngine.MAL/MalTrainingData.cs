@@ -33,6 +33,17 @@ namespace AnimeRecs.RecEngine.MAL
             return new BasicTrainingData<IBasicInputForUser>(basicUsers);
         }
 
+        public IBasicTrainingData<IPositiveFeedbackForUser> AsPositiveFeedback(IUserInputClassifier<MalUserListEntries> classifier)
+        {
+            Dictionary<int, IPositiveFeedbackForUser> basicUsers = new Dictionary<int, IPositiveFeedbackForUser>();
+            foreach(int userId in Users.Keys)
+            {
+                basicUsers[userId] = Users[userId].AsPositiveFeedback(classifier);
+            }
+
+            return new BasicTrainingData<IPositiveFeedbackForUser>(basicUsers);
+        }
+
         public override string ToString()
         {
             return string.Format("{0} users", Users.Count);

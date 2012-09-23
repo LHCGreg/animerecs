@@ -62,6 +62,27 @@ namespace AnimeRecs.RecEngine.MAL
             }
         }
 
+        public IPositiveFeedbackForUser AsPositiveFeedback(IUserInputClassifier<MalUserListEntries> classifier)
+        {
+            return AsPositiveFeedback(classifier, null);
+        }
+
+        public IPositiveFeedbackForUser AsPositiveFeedback(IUserInputClassifier<MalUserListEntries> classifier, Predicate<int> additionalOkToRecommendPredicate)
+        {
+            ClassifiedUserInput<MalUserListEntries> classified = classifier.Classify(this);
+            HashSet<int> basicFeedback = new HashSet<int>(classified.Liked.Entries.Select(itemIdEntryPair => itemIdEntryPair.Key));
+
+            if (additionalOkToRecommendPredicate == null)
+            {
+                return new BasicPositiveFeedbackForUserWithOkToRecommendPredicate(basicFeedback, ItemIsOkToRecommend);
+            }
+            else
+            {
+                return new BasicPositiveFeedbackForUserWithOkToRecommendPredicate(basicFeedback, (itemId) =>
+                    ItemIsOkToRecommend(itemId) && additionalOkToRecommendPredicate(itemId));
+            }
+        }
+
         public bool ItemIsOkToRecommend(int itemId)
         {
             return (!Entries.ContainsKey(itemId) || Entries[itemId].Status == CompletionStatus.PlanToWatch)

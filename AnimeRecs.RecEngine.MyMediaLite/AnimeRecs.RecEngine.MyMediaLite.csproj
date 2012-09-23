@@ -51,6 +51,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyMediaLiteItemRecommendationRecSource.cs" />
     <Compile Include="MyMediaLiteRatingPredictionRecSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

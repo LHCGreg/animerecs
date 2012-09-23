@@ -14,7 +14,7 @@ namespace AnimeRecs.RecEngine.MAL
         private Dictionary<int, int> m_userCountByAnime;
         private int m_minEpisodesToCountIncomplete;
         private bool m_useDropped;
-        public int m_minUsersToCountAnime;
+        private int m_minUsersToCountAnime;
 
         public MalMyMediaLiteRatingPredictionRecSource(TRecommender recommender, int minEpisodesToCountIncomplete, bool useDropped,
             int minUsersToCountAnime)

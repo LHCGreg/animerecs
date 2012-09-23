@@ -136,6 +136,7 @@
     <Compile Include="Registrations\RecSources\AnimeRecsJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\AverageScoreJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\BiasedMatrixFactorizationJsonRecSource.cs" />
+    <Compile Include="Registrations\RecSources\BPRMFJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\MostPopularJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\TrainableJsonRecSource.cs" />
     <Compile Include="TcpRecService.cs" />

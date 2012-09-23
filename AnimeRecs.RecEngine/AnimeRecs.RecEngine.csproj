@@ -41,6 +41,8 @@
     <Compile Include="BasicInputForUser.cs" />
     <Compile Include="BasicInputForUserPercentageClassifier.cs" />
     <Compile Include="BasicInputForUserWithOkToRecommendPredicate.cs" />
+    <Compile Include="BasicPositiveFeedbackForUser.cs" />
+    <Compile Include="BasicPositiveFeedbackForUserWithOkToRecommendPredicate.cs" />
     <Compile Include="BasicRecommendation.cs" />
     <Compile Include="BasicTrainingData.cs" />
     <Compile Include="ClassifiedUserInput.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="IBasicTrainingData.cs" />
     <Compile Include="IInputForUser.cs" />
     <Compile Include="IInputForUserWithItemIds.cs" />
+    <Compile Include="IPositiveFeedbackForUser.cs" />
     <Compile Include="IRecommendation.cs" />
     <Compile Include="IRecommendationSource.cs" />
     <Compile Include="ITrainable.cs" />

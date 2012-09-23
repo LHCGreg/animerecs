@@ -5,18 +5,12 @@ using System.Text;
 
 namespace AnimeRecs.RecEngine
 {
-    /// <summary>
-    /// Simple training data containing only a set of users that each have some sort of ratings.
-    /// </summary>
-    /// <typeparam name="TTrainingUserInput"></typeparam>
-    public class BasicTrainingData<TTrainingUserInput> : IBasicTrainingData<TTrainingUserInput>
+    public interface IPositiveFeedbackForUser : IInputForUser
     {
-        public IDictionary<int, TTrainingUserInput> Users { get; private set; }
-
-        public BasicTrainingData(IDictionary<int, TTrainingUserInput> users)
-        {
-            Users = users;
-        }
+        /// <summary>
+        /// Item ids with positive feedback
+        /// </summary>
+        ICollection<int> Items { get; }
     }
 }
 

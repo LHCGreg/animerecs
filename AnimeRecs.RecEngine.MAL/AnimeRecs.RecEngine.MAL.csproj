@@ -65,8 +65,11 @@
     <Compile Include="MalListEntry.cs" />
     <Compile Include="MalMinimumScoreRatingClassifier.cs" />
     <Compile Include="MalMostPopularRecSource.cs" />
+    <Compile Include="MalMyMediaLiteItemRecommenderRecSource.cs" />
     <Compile Include="MalMyMediaLiteRatingPredictionRecSource.cs" />
     <Compile Include="MalPercentageRatingClassifier.cs" />
+    <Compile Include="MalPositiveFeedbackInput.cs" />
+    <Compile Include="MalPositiveFeedbackRecResults.cs" />
     <Compile Include="MalTrainingData.cs" />
     <Compile Include="MalUserListEntries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

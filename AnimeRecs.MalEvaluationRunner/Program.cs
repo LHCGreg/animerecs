@@ -7,8 +7,9 @@ using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecEngine.Evaluation;
 using AnimeRecs.DAL;
-using MyMediaLite.Util;
+using MyMediaLite;
 using MyMediaLite.RatingPrediction;
+using MyMediaLite.ItemRecommendation;
 
 namespace AnimeRecs.RecEngine.MalEvaluationRunner
 {
@@ -24,49 +25,51 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             const int minEpisodesToCountIncomplete = 26;
             const double targetPercentile = 0.25;
 
-            var averageScoreRecSourceWithoutDropped = new MalAverageScoreRecSource(minEpisodesToCountIncomplete, useDropped: false, minUsersToCountAnime: 20);
-            var averageScoreRecSourceWithDropped = new MalAverageScoreRecSource(minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 20);
-            var mostPopularRecSourceWithoutDropped = new MalMostPopularRecSource(minEpisodesToCountIncomplete, useDropped: false);
-            var mostPopularRecSourceWithDropped = new MalMostPopularRecSource(minEpisodesToCountIncomplete, useDropped: true);
-            var defaultBiasedMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
-                (new BiasedMatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
-            var biasedMatrixFactorizationRecSourceWithFactors = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
-                (new BiasedMatrixFactorization() { BoldDriver = true, FrequencyRegularization = true, NumFactors = 50 },
-                minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
-            var biasedMatrixFactorizationRecSourceWithFactorsAndIters = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
-                (new BiasedMatrixFactorization() { BoldDriver = true, FrequencyRegularization = true, NumFactors = 50, NumIter = 50 },
-                minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
-            var defaultMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<MatrixFactorization>
-                (new MatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
-            var animeRecsRecSource35 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
-                numRecommendersToUse: 100,
-                fractionConsideredRecommended: 0.35,
-                targetFraction: 0.35,
-                minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
-            );
-            var animeRecsRecSource25 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
-                numRecommendersToUse: 100,
-                fractionConsideredRecommended: 0.25,
-                targetFraction: 0.25,
-                minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
-            );
-            var userKNNCosineRecSource = new MalMyMediaLiteRatingPredictionRecSource<UserKNNCosine>
-                (new UserKNNCosine(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
-            var userKNNPearsonRecSource = new MalMyMediaLiteRatingPredictionRecSource<UserKNNPearson>
-                (new UserKNNPearson(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
+            //var averageScoreRecSourceWithoutDropped = new MalAverageScoreRecSource(minEpisodesToCountIncomplete, useDropped: false, minUsersToCountAnime: 50);
+            //var mostPopularRecSourceWithoutDropped = new MalMostPopularRecSource(minEpisodesToCountIncomplete, useDropped: false);
+            //var defaultBiasedMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
+            //    (new BiasedMatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
+            //var biasedMatrixFactorizationRecSourceWithBoldDriver = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
+            //    (new BiasedMatrixFactorization() { BoldDriver = true }, minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
+            //var biasedMatrixFactorizationRecSourceWithFactors = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
+            //    (new BiasedMatrixFactorization() { BoldDriver = true, FrequencyRegularization = true, NumFactors = 50 },
+            //    minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
+            //var biasedMatrixFactorizationRecSourceWithFactorsAndIters = new MalMyMediaLiteRatingPredictionRecSource<BiasedMatrixFactorization>
+            //    (new BiasedMatrixFactorization() { BoldDriver = true, FrequencyRegularization = true, NumFactors = 50, NumIter = 50 },
+            //    minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
+            //var defaultMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<MatrixFactorization>
+            //    (new MatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
+            //var animeRecsRecSource35 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
+            //    numRecommendersToUse: 100,
+            //    fractionConsideredRecommended: 0.35,
+            //    targetFraction: 0.35,
+            //    minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
+            //);
+            //var animeRecsRecSource25 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
+            //    numRecommendersToUse: 100,
+            //    fractionConsideredRecommended: 0.25,
+            //    targetFraction: 0.25,
+            //    minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
+            //);
 
-            recommendersUnderTest.Add(averageScoreRecSourceWithoutDropped);
-            recommendersUnderTest.Add(averageScoreRecSourceWithDropped);
-            recommendersUnderTest.Add(mostPopularRecSourceWithoutDropped);
-            recommendersUnderTest.Add(mostPopularRecSourceWithDropped);
-            recommendersUnderTest.Add(defaultBiasedMatrixFactorizationRecSource);
+            var bprmfRecSource = new MalMyMediaLiteItemRecommenderRecSourceWithConstantPercentTarget<BPRMF>(
+                new BPRMF() { BiasReg = .01f },
+                fractionConsideredRecommended: 0.25,
+                minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete,
+                minUsersToCountAnime: 30,
+                targetFraction: 0.25
+            );
+
+            //recommendersUnderTest.Add(averageScoreRecSourceWithoutDropped);
+            //recommendersUnderTest.Add(mostPopularRecSourceWithoutDropped);
+            //recommendersUnderTest.Add(defaultBiasedMatrixFactorizationRecSource);
+            //recommendersUnderTest.Add(biasedMatrixFactorizationRecSourceWithBoldDriver);
             //recommendersUnderTest.Add(biasedMatrixFactorizationRecSourceWithFactors);
             //recommendersUnderTest.Add(biasedMatrixFactorizationRecSourceWithFactorsAndIters);
             //recommendersUnderTest.Add(defaultMatrixFactorizationRecSource);
             //recommendersUnderTest.Add(animeRecsRecSource35);
             //recommendersUnderTest.Add(animeRecsRecSource25);
-            recommendersUnderTest.Add(userKNNCosineRecSource);
-            recommendersUnderTest.Add(userKNNPearsonRecSource);
+            recommendersUnderTest.Add(bprmfRecSource);
 
             for (int i = 0; i < recommendersUnderTest.Count; i++)
             {
