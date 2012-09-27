@@ -77,8 +77,9 @@ $ sudo service postgresql restart
 
 Initializing the database
 -------------------------
-1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/CreateDb_windows.sql. On Linux, psql -U postgres -f AnimeRecs.DAL/CreateDb_linux.sql
-2. Connect to the new database and run the SQL in /AnimeRecs.DAL/InitDb.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.sql
+1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/DB Init Scripts/CreateDb_windows.sql. On Linux, psql -U postgres -f 'AnimeRecs.DAL/DB Init Scripts/CreateDb_linux.sql
+2. Connect to the new database and run the SQL in /AnimeRecs.DAL/B Init Scripts/InitDb.000.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.000.sql.
+3. Likewise, run all InitDb.###.sql scripts in order.
 
 
 
@@ -117,13 +118,13 @@ recclient.exe -c LoadRecSource -type AverageScore -name avg -f --min_users_to_co
 [Get anime recommendations for the myanimelist.net user "LordHighCaptain" using the loaded rec source called "avg"]
 recclient.exe -c GetMalRecs -name avg -u LordHighCaptain
 
-[Load a rec source that uses MyMediaLite's BiasedMatrixFactorization algorithm. Since we don't specify -name, it uses the name "default".
+[Load a rec source that uses MyMediaLite's BiasedMatrixFactorization algorithm. Since we don't specify -name, it uses the name "default".]
 recclient.exe -c LoadRecSource -type BiasedMatrixFactorization
 
 [Get anime recommendations using the loaded rec source called "default"]
 recclient.exe -c GetMalRecs -u LordHighCaptain
 
-[Let's try reloading it with some non-default option. Use recclient.exe -h to see all possible tunable parameters]
+[Let's try reloading it with some non-default options. Use recclient.exe -h to see all possible tunable parameters]
 recclient.exe -c LoadRecSource -type BiasedMatrixFactorization -f -bold_driver --bias_learn_rate=0.5
 recclient.exe -c GetMalRecs -u LordHighCaptain
 

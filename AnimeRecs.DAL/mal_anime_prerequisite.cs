@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.RecEngine.MAL;
+using Npgsql;
+using Dapper;
 
 namespace AnimeRecs.DAL
 {
-    public interface IMalTrainingDataLoader : IDisposable
+    public class mal_anime_prerequisite
     {
-        MalTrainingData LoadMalTrainingData();
+        public int mal_anime_prerequisite_id { get; set; }
+        public int mal_anime_id { get; set; }
+        public int prerequisite_mal_anime_id { get; set; }
 
-        /// <summary>
-        /// Returns a dictionary where the key is the MAL anime id of an anime and the value is a list of MAL anime ids of prerequisites
-        /// for that anime. If a key is not in the dictionary, that anime has no known prerequisites.
-        /// </summary>
-        /// <returns></returns>
-        IDictionary<int, IList<int>> LoadPrerequisites();
+        public static IEnumerable<mal_anime_prerequisite> GetAll(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        {
+            string sql = "SELECT * FROM mal_anime_prerequisite";
+            return conn.Query<mal_anime_prerequisite>(sql, transaction: transaction);
+        }
     }
 }
 

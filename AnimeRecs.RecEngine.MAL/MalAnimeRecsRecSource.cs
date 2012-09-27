@@ -83,7 +83,8 @@ namespace AnimeRecs.RecEngine.MAL
 
                 ReadOnlyMalListEntryDictionary filteredEntries = new ReadOnlyMalListEntryDictionary(filteredEntryList);
 
-                MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].AnimesEligibleForRecommendation, trainingData.Users[userId].MalUsername);
+                MalUserListEntries filteredUser = new MalUserListEntries(filteredEntries, trainingData.Users[userId].AnimesEligibleForRecommendation,
+                    trainingData.Users[userId].MalUsername, trainingData.Users[userId].OkToRecommendPredicate);
                 filteredUsers[userId] = filteredUser;
             }
 

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FilterHelpers.cs" />
+    <Compile Include="AnimeOkToRecommendPredicate.cs" />
     <Compile Include="MalAnime.cs" />
     <Compile Include="MalAnimeRecsRecSource.cs" />
     <Compile Include="MalAverageScoreRecSource.cs" />

@@ -21,11 +21,55 @@ namespace AnimeRecs.RecEngine.MAL
 
         ICollection<int> IInputForUserWithItemIds.ItemIds { get { return Entries.Keys; } }
 
-        public MalUserListEntries(IDictionary<int, MalListEntry> ratings, IDictionary<int, MalAnime> animes, string malUsername)
+        public AnimeOkToRecommendPredicate OkToRecommendPredicate { get; private set; }
+
+        public MalUserListEntries(IDictionary<int, MalListEntry> ratings, IDictionary<int, MalAnime> animes, string malUsername,
+            IDictionary<int, IList<int>> prerequisites)
+            : this(ratings, animes, malUsername, MakeDefaultOkToRecommendPredicate(prerequisites))
+        {
+            ;
+        }
+
+        private static AnimeOkToRecommendPredicate MakeDefaultOkToRecommendPredicate(IDictionary<int, IList<int>> prereqs)
+        {
+            return (MalUserListEntries userAnimeList, int animeId) =>
+                // Anime is not on the user's anime list, or it is but "planned to watch"
+                (!userAnimeList.Entries.ContainsKey(animeId) || userAnimeList.Entries[animeId].Status == CompletionStatus.PlanToWatch)
+
+                // And it's not a special
+                && userAnimeList.AnimesEligibleForRecommendation[animeId].Type != MalAnimeType.Special
+
+                // And the user has seen all of its prerequisites
+                && AnimeListContainsPrerequisitesFor(userAnimeList, prereqs, animeId);
+        }
+
+        private static bool AnimeListContainsPrerequisitesFor(MalUserListEntries userAnimeList, IDictionary<int, IList<int>> prereqs,
+            int animeId)
+        {
+            IList<int> animePrereqs;
+            if(!prereqs.TryGetValue(animeId, out animePrereqs))
+            {
+                // No prereqs
+                return true;
+            }
+            foreach (int prereqId in animePrereqs)
+            {
+                // For each prereq, user must have it on their list as completed
+                if (!userAnimeList.Entries.ContainsKey(animeId) || userAnimeList.Entries[animeId].Status != CompletionStatus.Completed)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public MalUserListEntries(IDictionary<int, MalListEntry> ratings, IDictionary<int, MalAnime> animes, string malUsername,
+            AnimeOkToRecommendPredicate okToRecommendPredicate)
         {
             Entries = ratings;
             AnimesEligibleForRecommendation = animes;
             MalUsername = malUsername;
+            OkToRecommendPredicate = okToRecommendPredicate;
         }
 
         public IBasicInputForUser AsBasicInput(int minEpisodesWatchedToCount, bool includeDropped)
@@ -85,8 +129,14 @@ namespace AnimeRecs.RecEngine.MAL
 
         public bool ItemIsOkToRecommend(int itemId)
         {
-            return (!Entries.ContainsKey(itemId) || Entries[itemId].Status == CompletionStatus.PlanToWatch)
-                && AnimesEligibleForRecommendation[itemId].Type != MalAnimeType.Special;
+            if (OkToRecommendPredicate != null)
+            {
+                return OkToRecommendPredicate(this, itemId);
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool ContainsItem(int itemId)
@@ -136,7 +186,8 @@ namespace AnimeRecs.RecEngine.MAL
 
             return new ItemsForInputAndEvaluation<MalUserListEntries>()
             {
-                ItemsForInput = new MalUserListEntries(entriesForInput, classifiedInput.Liked.AnimesEligibleForRecommendation, classifiedInput.Liked.MalUsername),
+                ItemsForInput = new MalUserListEntries(entriesForInput, classifiedInput.Liked.AnimesEligibleForRecommendation,
+                    classifiedInput.Liked.MalUsername, classifiedInput.Liked.OkToRecommendPredicate),
                 LikedItemsForEvaluation = likedAnimesForEvaluation,
                 UnlikedItemsForEvaluation = unlikedAnimesForEvaluation
             };
