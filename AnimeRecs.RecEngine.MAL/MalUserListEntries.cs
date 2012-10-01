@@ -11,7 +11,7 @@ namespace AnimeRecs.RecEngine.MAL
     public class MalUserListEntries : IInputForUser, IInputForUserWithItemIds
     {
         public IDictionary<int, MalListEntry> Entries { get; private set; }
-        
+
         /// <summary>
         /// Can be null if not known.
         /// </summary>
@@ -47,7 +47,7 @@ namespace AnimeRecs.RecEngine.MAL
             int animeId)
         {
             IList<int> animePrereqs;
-            if(!prereqs.TryGetValue(animeId, out animePrereqs))
+            if (!prereqs.TryGetValue(animeId, out animePrereqs))
             {
                 // No prereqs
                 return true;
@@ -55,7 +55,7 @@ namespace AnimeRecs.RecEngine.MAL
             foreach (int prereqId in animePrereqs)
             {
                 // For each prereq, user must have it on their list as completed
-                if (!userAnimeList.Entries.ContainsKey(animeId) || userAnimeList.Entries[animeId].Status != CompletionStatus.Completed)
+                if (!userAnimeList.Entries.ContainsKey(prereqId) || userAnimeList.Entries[prereqId].Status != CompletionStatus.Completed)
                 {
                     return false;
                 }
