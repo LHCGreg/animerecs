@@ -78,7 +78,7 @@ $ sudo service postgresql restart
 Initializing the database
 -------------------------
 1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/DB Init Scripts/CreateDb_windows.sql. On Linux, psql -U postgres -f 'AnimeRecs.DAL/DB Init Scripts/CreateDb_linux.sql
-2. Connect to the new database and run the SQL in /AnimeRecs.DAL/B Init Scripts/InitDb.000.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.000.sql.
+2. Connect to the new database and run the SQL in AnimeRecs.DAL/DB Init Scripts/InitDb.000.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.000.sql.
 3. Likewise, run all InitDb.###.sql scripts in order.
 
 
@@ -92,7 +92,13 @@ Populating the database with ratings
 
 Populating the database with stream mappings
 --------------------------------------------
-Connect to the animerecs database and run /AnimeRecs.DAL/StreamMappings.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f StreamMappings.sql
+Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/StreamMappings.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f StreamMappings.sql
+
+
+
+Populating the database with prerequisite mappings
+--------------------------------------------------
+Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/Prereqs.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f Prereqs.sql
 
 
 

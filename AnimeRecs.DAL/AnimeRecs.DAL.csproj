@@ -87,7 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DB Init Scripts\InitDb.001.sql" />
-    <Content Include="StreamMappings.sql" />
+    <Content Include="DB Init Scripts\Prereqs.sql" />
+    <Content Include="DB Init Scripts\StreamMappings.sql" />
     <None Include="DB Init Scripts\CreateDb_linux.sql" />
     <None Include="DB Init Scripts\CreateDb_windows.sql" />
     <Content Include="csproj_manually_modified.txt" />
