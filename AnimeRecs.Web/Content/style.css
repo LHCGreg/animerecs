@@ -270,7 +270,6 @@ html, body {
 	top: 50%;
 	left: 50%;
 	margin: -50px 0 0 -175px;
-	/*background: #ddd;*/
 }
 
 .splash .title {
@@ -347,18 +346,12 @@ html, body {
 	display: none;
 }
 
-
-.datainput .scores {
-	height: 38px;
-}
-
 .datainput .scoretitle {
 	margin: 0 0 4px 0;
 }
 
 .datainput .scoreinput, .datainput .scoreinput input, .datainput .scoreinput span {
 	display: block;
-	float: left;
 }
 
 .datainput .scoreinput span {
@@ -371,7 +364,7 @@ html, body {
 }
 
 .datainput .autoscores {
-	margin: 0 0 8px 0;
+	margin: 8px 0 8px 0;
 }
 
 

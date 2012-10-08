@@ -6,6 +6,7 @@ using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.DAL;
+using MalApi;
 
 namespace AnimeRecs.Web.Models.ViewModels
 {
@@ -14,7 +15,10 @@ namespace AnimeRecs.Web.Models.ViewModels
         public MalRecResults<IEnumerable<IRecommendation>> Results { get; private set; }
         public int UserId { get; private set; }
         public string UserName { get; private set; }
+        public MalUserLookupResults UserLookup { get; private set; }
         public IDictionary<int, MalListEntry> UserAnimeList { get; private set; }
+        public IDictionary<int, MalListEntry> AnimeWithheld { get; private set; }
+        
 
         private IAnimeRecsDbConnectionFactory DbConnectionFactory { get; set; }
 
@@ -24,14 +28,17 @@ namespace AnimeRecs.Web.Models.ViewModels
         public IDictionary<int, ICollection<streaming_service_anime_map>> StreamsByAnime { get; set; }
 
         public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, int userId, string userName,
-            IDictionary<int, MalListEntry> userAnimeList, IAnimeRecsDbConnectionFactory dbConnectionFactory)
+            MalUserLookupResults userLookup, IDictionary<int, MalListEntry> userAnimeList,
+            IDictionary<int, MalListEntry> animeWithheld, IAnimeRecsDbConnectionFactory dbConnectionFactory)
         {
             Results = results;
             UserId = userId;
             UserName = userName;
+            UserLookup = userLookup;
             UserAnimeList = userAnimeList;
             DbConnectionFactory = dbConnectionFactory;
             StreamsByAnime = new Dictionary<int, ICollection<streaming_service_anime_map>>();
+            AnimeWithheld = animeWithheld;
         }
 
         public void DeclareAnimeToBeDisplayed(IEnumerable<int> malAnimeIds)

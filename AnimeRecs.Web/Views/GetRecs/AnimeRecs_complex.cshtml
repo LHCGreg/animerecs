@@ -3,17 +3,99 @@
 @using AnimeRecs.RecEngine.MAL
 @using AnimeRecs.Web
 @using AnimeRecs.Web.Models.ViewModels
+@using MalApi
 @model GetRecsViewModel
            
 @{
     MalRecResults<MalAnimeRecsResults> results = Model.Results.CastRecs<MalAnimeRecsResults>();
-    Model.DeclareAnimeToBeDisplayed(results.Results.Recommenders
+    IEnumerable<int> animeIdsShownInMainResults = results.Results.Recommenders
         .Where(recUser => recUser.RecsNotInCommon.Count > 0 && recUser.UserId != Model.UserId)
         .Take(AppGlobals.Config.MaximumRecommendersToReturn)
-        .SelectMany(recUser => recUser.AllRecommendations.Select(rec => rec.MalAnimeId))
-        .Distinct()
-    );
+        .SelectMany(recUser => recUser.AllRecommendations.Select(rec => rec.MalAnimeId));
+    HashSet<int> animeIdsShown = new HashSet<int>(animeIdsShownInMainResults);
+    animeIdsShown.UnionWith(Model.AnimeWithheld.Keys);
+    Model.DeclareAnimeToBeDisplayed(animeIdsShown);
  }
+
+ @if (Model.AnimeWithheld.Count > 0)
+{
+    Dictionary<int, MyAnimeListEntry> animeInUsersList = new Dictionary<int, MyAnimeListEntry>();
+    foreach(MyAnimeListEntry entry in Model.UserLookup.AnimeList)
+    {
+        animeInUsersList[entry.AnimeInfo.AnimeId] = entry;  
+    }
+
+    List<int> animeWithheld = Model.AnimeWithheld.Keys
+        .OrderByDescending(animeId => Model.AnimeWithheld[animeId].Rating ?? 0)
+        .ThenBy(animeId => animeInUsersList[animeId].AnimeInfo.Title)
+        .ToList();
+
+    Dictionary<int, int> rankInRecListByAnimeId = new Dictionary<int, int>();
+    int rank = 1;
+    foreach (int animeId in Model.Results.Results.Select(rec => rec.ItemId))
+    {
+        rankInRecListByAnimeId[animeId] = rank;
+        rank++;
+    }
+    
+    
+    <table class="recsTable">
+        <thead>
+            <tr>
+                <td>
+                    Streams
+                </td>
+                <td>
+                    Anime withheld
+                </td>
+                <td>
+                    Type
+                </td>
+                <td>
+                    Status
+                </td>
+                <td>
+                    Actual rating
+                </td>
+                <td>
+                    Rank in recommendations
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (int animeId in animeWithheld)
+            {
+                <tr>
+                    <td>
+                        @Html.GetStreamLinksHtml(animeId, Model, Url)
+                    </td>
+                    <td>
+                        @Html.GetWithheldMalAnimeHtml(animeId, animeInUsersList[animeId].AnimeInfo.Title)
+                    </td>
+                    <td>
+                        @Html.MalAnimeTypeAsString(animeInUsersList[animeId].AnimeInfo.Type)
+                    </td>
+                    <td>
+                        @Html.MalAnimeStatusAsString(animeInUsersList[animeId].Status)
+                    </td>
+                    <td>
+                        @Html.GetMalRatingString(animeInUsersList[animeId].Score)
+                    </td>
+                    <td>
+                        @if (rankInRecListByAnimeId.ContainsKey(animeId))
+                        {
+                            <text>@rankInRecListByAnimeId[animeId]</text>
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
            
 @* The warning about conditional compilation on @results can be safely ignored. *@
 <script type="text/javascript">

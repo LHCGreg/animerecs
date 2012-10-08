@@ -65,6 +65,13 @@ namespace AnimeRecs.Web
                 html.AttributeEncode(GetMalAnimeUrl(malAnimeId, animeTitle)), html.Encode(animeTitle));
             return new HtmlString(encodedString);
         }
+
+        public static IHtmlString GetWithheldMalAnimeHtml(this HtmlHelper html, int malAnimeId, string animeTitle)
+        {
+            string encodedString = string.Format(@"<a href=""{0}"" class=""recommendation"">{1}</a>",
+                html.AttributeEncode(GetMalAnimeUrl(malAnimeId, animeTitle)), html.Encode(animeTitle));
+            return new HtmlString(encodedString);
+        }
         
         public static string GetMalAnimeUrl(int malAnimeId, string animeTitle)
         {
@@ -76,6 +83,18 @@ namespace AnimeRecs.Web
         {
             string encodedString = string.Format(@"<a href=""{0}"" class=""recommender"">{1}</a>", html.AttributeEncode(GetMalListUrl(username)), html.Encode(username));
             return new HtmlString(encodedString);
+        }
+
+        public static string GetMalRatingString(this HtmlHelper html, decimal? num)
+        {
+            if (num == null)
+            {
+                return "-";
+            }
+            else
+            {
+                return ((int)num.Value).ToString(CultureInfo.InvariantCulture);
+            }
         }
 
         public static string GetMalListUrl(string username)

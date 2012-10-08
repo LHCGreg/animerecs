@@ -33,6 +33,16 @@
     var field_algorithm = $("#recSourceName");
     var field_detailedResults = $("#displayDetailedResults");
 
+    var field_withholdIds = $("#withholdIds");
+    if (field_withholdIds.length == 0) {
+        field_withholdIds = null;
+    }
+
+    var field_withholdPercent = $("#withholdPercent");
+    if (field_withholdPercent.length == 0) {
+        field_withholdPercent = null;
+    }
+
     // Interactivity
     $("div.autoscores").click(function () {
         var autoscores = autoscoretoggle.attr("checked");
@@ -55,28 +65,38 @@
     })
 
     function handleDataSubmit(datainputdiv) {
-        var username = field_username.val();
+        var inputJson = new Object();
+        inputJson.MalName = field_username.val();
 
-        var good = undefined;
-        if (field_good != null) {
-            good = parseInt(field_good.val());
-            if (isNaN(good))
-                good = reccomendedDefault;
+        if (field_good != null && !autoscoretoggle.attr("checked")) {
+            var goodCutoff = parseInt(field_good.val());
+            if (!isNaN(goodCutoff)) {
+                inputJson.GoodCutoff = goodCutoff;
+            }
         }
 
-        var algorithm = field_algorithm.val();
-        var displayDetailedResults = field_detailedResults.val() === "True";
+        inputJson.RecSourceName = field_algorithm.val();
+        inputJson.DisplayDetailedResults = field_detailedResults.val() === "True";
 
-        if (username) {
-            if (field_good != null && autoscoretoggle.attr("checked"))
-                app.displayUserdata(username, algorithm, displayDetailedResults, undefined);
-            else
-                app.displayUserdata(username, algorithm, displayDetailedResults, good);
+        if (field_withholdIds != null) {
+            var animeIdsToWithholdString = field_withholdIds.val();
+            var animeIdsToWithholdStrings = animeIdsToWithholdString.split(",");
+            var animeIdsWithholdStringsNoEmpties = animeIdsToWithholdStrings.filter(function (str) { return !/^\s*$/.test(str); });
+            var animeIdsToWithhold = animeIdsWithholdStringsNoEmpties.map(function (str) { return parseInt(str, 10); });
+            inputJson.AnimeIdsToWithhold = animeIdsToWithhold;
+        }
+
+        if (field_withholdPercent != null) {
+            var withholdPercent = parseFloat(field_withholdPercent.val());
+            if (!isNaN(withholdPercent)) {
+                inputJson.PercentOfAnimeToWithhold = withholdPercent;
+            }
+        }
+
+        if (inputJson.MalName) {
+            app.displayUserdata(inputJson);
         }
     }
-
-
-
 
 
     // Page handling / app logic
@@ -93,7 +113,7 @@
             results.html("");
         }
 
-        this.displayUserdata = function (username, algorithm, displayDetailedResults, rec) {
+        this.displayUserdata = function (inputJson) {
             if (waitingForResponse)
                 return;
 
@@ -101,7 +121,7 @@
             gobutton.addClass("loading");
             results.html("");
 
-            var cancelGetData = getData(username, rec, algorithm, displayDetailedResults, function (status, result) {
+            var cancelGetData = getData(inputJson, function (status, result) {
                 waitingForResponse = false;
                 gobutton.removeClass("loading");
 
@@ -133,18 +153,13 @@
         };
 
 
-        function getData(username, rec, algorithm, displayDetailedResults, callback) {
-
-            var data = { "MalName": username, "RecSourceName": algorithm, "DisplayDetailedResults": displayDetailedResults };
-            if (rec != undefined) {
-                data.GoodCutoff = rec;
-            }
-
+        function getData(inputJson, callback) {
             var rq = $.ajax({
                 // send
                 url: apiendpoint,
                 type: "POST",
-                data: data,
+                data: JSON.stringify(inputJson),
+                contentType: "application/json",
 
                 // recieve
                 dataType: "json",

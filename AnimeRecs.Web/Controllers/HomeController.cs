@@ -23,10 +23,11 @@ namespace AnimeRecs.Web.Controllers
             m_recClientFactory = recClientFactory;
         }
         
-        public ViewResult Index(string algorithm, bool? detailedResults)
+        public ViewResult Index(string algorithm, bool? detailedResults, bool? debugMode)
         {
             algorithm = algorithm ?? AppGlobals.Config.DefaultRecSource;
             bool displayDetailedResults = detailedResults ?? false;
+            bool debugModeOn = debugMode ?? false;
 
             string recSourceType = null;
 
@@ -54,7 +55,8 @@ namespace AnimeRecs.Web.Controllers
                 algorithm: algorithm,
                 algorithmAvailable: algorithmAvailable,
                 targetScoreNeeded: targetScoreNeeded,
-                displayDetailedResults: displayDetailedResults
+                displayDetailedResults: displayDetailedResults,
+                debugModeOn: debugModeOn
             );
             return View();
         }

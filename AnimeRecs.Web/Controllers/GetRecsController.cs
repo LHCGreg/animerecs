@@ -49,6 +49,11 @@ namespace AnimeRecs.Web.Controllers
                 return new HttpStatusCodeResult(400);
             }
 
+            if (input.RecSourceName == null)
+            {
+                input.RecSourceName = AppGlobals.Config.DefaultRecSource;
+            }
+
             using (IMyAnimeListApi malApi = m_malApiFactory.GetMalApi())
             {
                 Logging.Log.InfoFormat("Getting MAL list for user {0}.", input.MalName);
@@ -67,10 +72,32 @@ namespace AnimeRecs.Web.Controllers
                 }
 
                 Dictionary<int, MalListEntry> animeList = new Dictionary<int, MalListEntry>();
+                Dictionary<int, MalListEntry> animeWithheld = new Dictionary<int, MalListEntry>();
 
                 foreach (MyAnimeListEntry listEntry in userLookup.AnimeList)
                 {
                     animeList[listEntry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry((byte?)listEntry.Score, listEntry.Status, (short)listEntry.NumEpisodesWatched);
+                }
+
+                foreach (int animeIdToWithhold in input.AnimeIdsToWithhold)
+                {
+                    if (animeList.ContainsKey(animeIdToWithhold))
+                    {
+                        animeWithheld[animeIdToWithhold] = animeList[animeIdToWithhold];
+                        animeList.Remove(animeIdToWithhold);
+                    }
+                }
+
+                if (input.PercentOfAnimeToWithhold > 0m)
+                {
+                    int numAnimesToWithhold = (int)(animeList.Count * (input.PercentOfAnimeToWithhold / 100));
+                    Random rng = new Random();
+                    List<int> animeIdsToWithhold = animeList.Keys.OrderBy(animeId => rng.Next()).Take(numAnimesToWithhold).ToList();
+                    foreach (int animeIdToWithhold in animeIdsToWithhold)
+                    {
+                        animeWithheld[animeIdToWithhold] = animeList[animeIdToWithhold];
+                        animeList.Remove(animeIdToWithhold);
+                    }
                 }
 
                 try
@@ -78,25 +105,32 @@ namespace AnimeRecs.Web.Controllers
                     using (AnimeRecsClient recClient = m_recClientFactory.GetClient(input.RecSourceName))
                     {
                         MalRecResults<IEnumerable<IRecommendation>> recResults;
+                        int numRecsToTryToGet = AppGlobals.Config.MaximumRecommendationsToReturn;
+                        if (animeWithheld.Count > 0)
+                        {
+                            // Get rating prediction information about all anime if in debug mode and withholding anime.
+                            // For all currently implemented algorithms, this does not cause a performance problem.
+                            numRecsToTryToGet = 100000;
+                        }
                         if (input.GoodPercentile != null)
                         {
                             Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
                                 input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodPercentile.Value);
-                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
+                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
                                 input.GoodPercentile.Value);
                         }
                         else if (input.GoodCutoff != null)
                         {
                             Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of {3}.",
                                 input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodCutoff.Value);
-                            recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
+                            recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, numRecsToTryToGet,
                                 input.GoodCutoff.Value);
                         }
                         else
                         {
                             Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
                                 input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
-                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn,
+                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
                                 AppGlobals.Config.DefaultTargetPercentile);
                         }
 
@@ -108,7 +142,17 @@ namespace AnimeRecs.Web.Controllers
                             viewSuffix = "complex";
                         }
 
-                        RecResultsAsHtml resultsJson = ResultsToReturnValue(recResults, userLookup.UserId, userLookup.CanonicalUserName, animeList, viewSuffix);
+                        GetRecsViewModel viewModel = new GetRecsViewModel(
+                            results: recResults,
+                            userId: userLookup.UserId,
+                            userName: userLookup.CanonicalUserName,
+                            userLookup: userLookup,
+                            userAnimeList: animeList,
+                            animeWithheld: animeWithheld,
+                            dbConnectionFactory: m_dbConnectionFactory
+                        );
+
+                        RecResultsAsHtml resultsJson = ResultsToReturnValue(viewModel, viewSuffix);
                         Logging.Log.Debug("Converted results to return value.");
 
                         return Json(resultsJson);
@@ -131,29 +175,29 @@ namespace AnimeRecs.Web.Controllers
             }
         }
 
-        private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, int userId,
-            string userName, IDictionary<int, MalListEntry> userAnimeList, string viewSuffix)
+        //private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, int userId,
+            //string userName, IDictionary<int, MalListEntry> userAnimeList, string viewSuffix)
+        private RecResultsAsHtml ResultsToReturnValue(GetRecsViewModel viewModel, string viewSuffix)
         {
             string viewName;
             if (viewSuffix == null)
             {
-                viewName = basicResults.RecommendationType;
+                viewName = viewModel.Results.RecommendationType;
             }
             else
             {
-                viewName = basicResults.RecommendationType + "_" + viewSuffix;
+                viewName = viewModel.Results.RecommendationType + "_" + viewSuffix;
             }
             
             ViewEngineResult viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
             if (viewSearchResult.View == null)
             {
-                var viewModel = new GetRecsViewModel(basicResults, userId, userName, userAnimeList, m_dbConnectionFactory);
                 viewSearchResult = ViewEngines.Engines.FindPartialView(ControllerContext, "Fallback");
             }
 
             using (StringWriter htmlWriter = new StringWriter())
             {
-                ViewData.Model = new GetRecsViewModel(basicResults, userId, userName, userAnimeList, m_dbConnectionFactory);
+                ViewData.Model = viewModel;
                 ViewContext viewContext = new ViewContext(ControllerContext, viewSearchResult.View, ViewData, TempData, htmlWriter);
                 viewSearchResult.View.Render(viewContext, htmlWriter);
 

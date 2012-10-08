@@ -11,6 +11,19 @@ namespace AnimeRecs.Web.Models.Json
         [Required]
         public string MalName { get; set; }
 
+        /// <summary>
+        /// Ids of anime to remove from the user's anime list before passing it to the recommendation engine.
+        /// This is useful for subjectively evaluating a rec source. If I remove my absolute favorite anime, does the
+        /// rec source put it high in the recommendations?
+        /// </summary>
+        public IList<int> AnimeIdsToWithhold { get; set; }
+
+        /// <summary>
+        /// If non-zero, removes the given percentage of the user's anime list randomly before passing it to the recommendation engine.
+        /// This is useful for subjectively evaluating a rec source.
+        /// </summary>
+        public decimal PercentOfAnimeToWithhold { get; set; }
+
         // If both GoodCutoff and GoodPercentile are null, use a default
         
         public decimal? GoodCutoff { get; set; }
@@ -25,7 +38,8 @@ namespace AnimeRecs.Web.Models.Json
 
         public AnimeRecsInputJson()
         {
-            ;
+            AnimeIdsToWithhold = new List<int>();
+            PercentOfAnimeToWithhold = 0m;
         }
 
         public override string ToString()

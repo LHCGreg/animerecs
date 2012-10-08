@@ -33,7 +33,19 @@
                         <input class="good textinput smalltextinput" type="text" value="8" maxlength="2" /></div>
                 </div>
             }
-            @Html.Hidden("RecSourceName", Model.Algorithm, new Dictionary<string, object>() { { "id", "recSourceName" } })
+            @if (Model.DebugModeOn)
+            {
+                <label for="recSourceName">Rec Source</label>
+                @Html.TextBox("RecSourceName", Model.Algorithm, new { id = "recSourceName", @class = "textinput" })
+                <label for="withholdIds">Withhold anime ids (comma-separated)</label>
+                <input id="withholdIds" class="textinput" type="text" value="" />
+                <label for="withholdPercent">Withhold percent</label>
+                <input class="textinput smalltextinput" id="withholdPercent" type="text" value="0"/>
+            }
+            @if (!Model.DebugModeOn)
+            {
+                @Html.Hidden("RecSourceName", Model.Algorithm, new Dictionary<string, object>() { { "id", "recSourceName" } })
+            }
             @Html.Hidden("DisplayDetailedResults", Model.DisplayDetailedResults, new { id = "displayDetailedResults" })
         </div>
         <div id="results"></div>
