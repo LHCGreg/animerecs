@@ -175,8 +175,6 @@ namespace AnimeRecs.Web.Controllers
             }
         }
 
-        //private RecResultsAsHtml ResultsToReturnValue(MalRecResults<IEnumerable<IRecommendation>> basicResults, int userId,
-            //string userName, IDictionary<int, MalListEntry> userAnimeList, string viewSuffix)
         private RecResultsAsHtml ResultsToReturnValue(GetRecsViewModel viewModel, string viewSuffix)
         {
             string viewName;
