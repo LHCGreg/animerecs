@@ -370,7 +370,7 @@ namespace AnimeRecs.RecService
             GC.Collect();
             Logging.Log.InfoFormat("Memory use: {0} bytes", GC.GetTotalMemory(forceFullCollection: false));
 
-            using (var trainingDataWriteLock = m_trainingDataLock.ScopedWriteLock())
+            using (var trainingDataUpgradeableLock = m_trainingDataLock.ScopedUpgradeableReadLock())
             using (var recSourcesUpgradeableLock = m_recSourcesLock.ScopedUpgradeableReadLock())
             {
                 // clone the json rec sources without the training state and train each one with the new data.
@@ -400,6 +400,7 @@ namespace AnimeRecs.RecService
                 }
 
                 // Swap in the newly trained rec sources.
+                using (var trainingDatariteLock = m_trainingDataLock.ScopedWriteLock())
                 using (var recSourcesWriteLock = m_recSourcesLock.ScopedWriteLock())
                 {
                     m_recSources = newRecSources;
