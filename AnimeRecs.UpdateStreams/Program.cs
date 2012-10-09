@@ -210,7 +210,8 @@ namespace AnimeRecs.UpdateStreams
             {
                 new CrunchyrollStreamInfoSource(),
                 new FunimationStreamInfoSource(),
-                new VizStreamInfoSource()
+                new VizStreamInfoSource(),
+                new HuluStreamInfoSource()
             };
         }
     }

@@ -66,6 +66,9 @@
     <Reference Include="NDesk.Options">
       <HintPath>..\lib\NDesk.Options\NDesk.Options.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Json.NET\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +86,7 @@
     <Compile Include="HtmlParsingAnimeStreamInfoSource.cs" />
     <Compile Include="HtmlRegexAnimeStreamInfoSource.cs" />
     <Compile Include="HtmlRegexContext.cs" />
+    <Compile Include="HuluStreamInfoSource.cs" />
     <Compile Include="IAnimeStreamInfoSouce.cs" />
     <Compile Include="MalId.cs" />
     <Compile Include="Program.cs" />

@@ -42,6 +42,11 @@ namespace AnimeRecs.Web
                             altText = "Viz";
                             titleText = "Watch on Viz";
                             break;
+                        case StreamingService.Hulu:
+                            imagePath = url.Content("~/Content/hulu_icon.png");
+                            altText = "Hulu";
+                            titleText = "Watch on Hulu";
+                            break;
                         default:
                             continue;
                     }
