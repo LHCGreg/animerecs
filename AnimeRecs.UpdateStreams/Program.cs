@@ -83,7 +83,7 @@ namespace AnimeRecs.UpdateStreams
                     .OrderBy(stream => stream.Service.ToString())
                     .ThenBy(stream => stream.AnimeName)
                     .ThenBy(stream => stream.Url))
-                {
+                {               
                     List<CsvRow> existingCsvRows = new List<CsvRow>();
                     if (rowsByServiceAndAnime.ContainsKey(streamInfo.Service) && rowsByServiceAndAnime[streamInfo.Service].ContainsKey(streamInfo.AnimeName))
                     {
@@ -125,6 +125,7 @@ namespace AnimeRecs.UpdateStreams
                 csvReader.TextFieldType = FieldType.Delimited;
                 csvReader.HasFieldsEnclosedInQuotes = true;
                 csvReader.Delimiters = new string[] { "," };
+                csvReader.TrimWhiteSpace = false;
 
                 // Skip header line
                 csvReader.ReadFields();
