@@ -253,6 +253,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Saki","http://www.crunchyroll.com/saki",5671
 "Crunchyroll","Saki Episode of Side A","http://www.crunchyroll.com/saki-episode-of-side-a",10884
 "Crunchyroll","Sasameki Koto","http://www.crunchyroll.com/sasameki-koto",6203
+"Crunchyroll","Say ""I love you""","http://www.crunchyroll.com/say-i-love-you",14289
 "Crunchyroll","School Days","http://www.crunchyroll.com/school-days",2476
 "Crunchyroll","Seitokai No Ichizon - Student Councils Discretion","http://www.crunchyroll.com/seitokai-no-ichizon-student-councils-discretion",5909
 "Crunchyroll","Sekai Ichi Hatsukoi - World's Greatest First Love","http://www.crunchyroll.com/sekai-ichi-hatsukoi-worlds-greatest-first-love",9926
@@ -575,6 +576,8 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",539
 "Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",540
 "Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",1146
+"Funimation","Tenchi Muyo! Ryo Ohki","http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes",541
+"Funimation","Tenchi Muyo! Ryo Ohki","http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes",1147
 "Funimation","Tenchi Muyo! Tenchi in Tokyo","http://www.funimation.com/tenchi-muyo-tenchi-in-tokyo/episodes",538
 "Funimation","Tenchi Muyo! Tenchi Universe","http://www.funimation.com/tenchi-muyo-tenchi-universe/episodes",696
 "Funimation","Tenchi Muyo! War on Geminar","http://www.funimation.com/tenchi-muyo-war-on-geminar/episodes",5781
@@ -623,7 +626,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","A Town Called Panic","http://www.hulu.com/a-town-called-panic",n/a
 "Hulu","Accel World","http://www.hulu.com/accel-world",11759
 "Hulu","A-Channel","http://www.hulu.com/a-channel",9776
-"Hulu","Aeon Flux","http://www.hulu.com/aeon-flux",n/a
 "Hulu","Aesthetica of a Rogue Hero","http://www.hulu.com/aesthetica-of-a-rogue-hero",13161
 "Hulu","Ah! My Goddess","http://www.hulu.com/ah-my-goddess",50
 "Hulu","Ah! My Goddess","http://www.hulu.com/ah-my-goddess",1003
@@ -753,6 +755,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","D. Gray Man","http://www.hulu.com/d-gray-man",1482
 "Hulu","Dance in the Vampire Bund","http://www.hulu.com/dance-in-the-vampire-bund",6747
 "Hulu","Danger Mouse","http://www.hulu.com/danger-mouse",n/a
+"Hulu","Dante's Inferno","http://www.hulu.com/dantes-inferno",n/a
 "Hulu","Daphne in the Brilliant Blue","http://www.hulu.com/daphne-in-the-brilliant-blue",1082
 "Hulu","Daphne in the Brilliant Blue","http://www.hulu.com/daphne-in-the-brilliant-blue",1898
 "Hulu","Daria","http://www.hulu.com/daria",n/a
@@ -760,10 +763,12 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Darker Than Black","http://www.hulu.com/darker-than-black",4182
 "Hulu","Darker Than Black","http://www.hulu.com/darker-than-black",6573
 "Hulu","Dead Leaves","http://www.hulu.com/dead-leaves",974
+"Hulu","Dead Space: Aftermath","http://www.hulu.com/dead-space-aftermath",n/a
 "Hulu","Dead Space: Downfall","http://www.hulu.com/dead-space-downfall",n/a
 "Hulu","Deadman Wonderland","http://www.hulu.com/deadman-wonderland",6880
 "Hulu","Dear Brother","http://www.hulu.com/dear-brother",795
 "Hulu","Death Note","http://www.hulu.com/death-note",1535
+"Hulu","Death Note (Español)","http://www.hulu.com/death-note-espanol",n/a
 "Hulu","Defenders of the Earth","http://www.hulu.com/defenders-of-the-earth",n/a
 "Hulu","Demon King Daimao","http://www.hulu.com/demon-king-daimao",7088
 "Hulu","Denver The Last Dinosaur","http://www.hulu.com/denver-the-last-dinosaur",n/a
@@ -816,7 +821,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Fractale","http://www.hulu.com/fractale",9314
 "Hulu","Fractured Fairy Tales","http://www.hulu.com/fractured-fairy-tales",n/a
 "Hulu","Frances: Bedtime for Frances","http://www.hulu.com/frances-bedtime-for-frances",n/a
-"Hulu","Freak Show","http://www.hulu.com/freak-show",n/a
 "Hulu","Freezing","http://www.hulu.com/freezing",9367
 "Hulu","Fruits Basket","http://www.hulu.com/fruits-basket",120
 "Hulu","Full Metal Panic!","http://www.hulu.com/full-metal-panic",71
@@ -973,6 +977,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Linebarrels of Iron","http://www.hulu.com/linebarrels-of-iron",3653
 "Hulu","Listen to Me, Girls. I Am Your Father!","http://www.hulu.com/listen-to-me-girls-i-am-your-father",11179
 "Hulu","Little Norse Prince Valiant","http://www.hulu.com/little-norse-prince-valiant",1044
+"Hulu","Little Red Riding Hood","http://www.hulu.com/little-red-riding-hood",n/a
 "Hulu","Living for the Day After Tomorrow","http://www.hulu.com/living-for-the-day-after-tomorrow",1554
 "Hulu","Log Jam","http://www.hulu.com/log-jam",n/a
 "Hulu","Loups=Garous","http://www.hulu.com/loupsgarous",7598
@@ -1225,6 +1230,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Tenchi Muyo!","http://www.hulu.com/tenchi-muyo",539
 "Hulu","Tenchi Muyo!","http://www.hulu.com/tenchi-muyo",540
 "Hulu","Tenchi Muyo!","http://www.hulu.com/tenchi-muyo",1146
+"Hulu","Tenchi Muyo! Ryo Ohki","http://www.hulu.com/tenchi-muyo-ryo-ohki",541
 "Hulu","Tenchi Muyo! War on Geminar","http://www.hulu.com/tenchi-muyo-war-on-geminar",5781
 "Hulu","Tenchi Universe","http://www.hulu.com/tenchi-universe",696
 "Hulu","Texhnolyze","http://www.hulu.com/texhnolyze",26
