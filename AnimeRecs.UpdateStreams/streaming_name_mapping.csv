@@ -230,7 +230,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Phi Brain","http://www.crunchyroll.com/phi-brain",9981
 "Crunchyroll","Phi Brain","http://www.crunchyroll.com/phi-brain",12753
 "Crunchyroll","Polar Bear Cafe","http://www.crunchyroll.com/polar-bear-cafe",12815
-"Crunchyroll","Poyopoyo","http://www.crunchyroll.com/poyopoyo",12021
 "Crunchyroll","Pretty Cure","http://www.crunchyroll.com/pretty-cure",603
 "Crunchyroll","Puella Magi Madoka Magica","http://www.crunchyroll.com/puella-magi-madoka-magica",9756
 "Crunchyroll","Queen's Blade","http://www.crunchyroll.com/queens-blade",4719
@@ -327,7 +326,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","White Album","http://www.crunchyroll.com/white-album",6165
 "Crunchyroll","Wonder Beat Scramble","http://www.crunchyroll.com/wonder-beat-scramble",4083
 "Crunchyroll","Xamd: Lost Memories","http://www.crunchyroll.com/xamd-lost-memories",4177
-"Crunchyroll","Yatler  Matler Space Tyrants","http://www.crunchyroll.com/yatler-matler-space-tyrants",n/a
 "Crunchyroll","Yokuwakaru Gendai Maho","http://www.crunchyroll.com/yokuwakaru-gendai-maho",5454
 "Crunchyroll","Yonna in the Solitary Fortress","http://www.crunchyroll.com/yonna-in-the-solitary-fortress",1031
 "Crunchyroll","You and Me","http://www.crunchyroll.com/you-and-me",10460
@@ -378,6 +376,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Black Lagoon","http://www.funimation.com/black-lagoon/episodes",4901
 "Funimation","Blassreiter","http://www.funimation.com/blassreiter/episodes",3407
 "Funimation","Blessing of the Campanella","http://www.funimation.com/blessing-of-the-campanella/episodes",6979
+"Funimation","BLOOD-C","http://www.funimation.com/blood-c/episodes",10490
 "Funimation","Blue Gender","http://www.funimation.com/blue-gender/episodes",58
 "Funimation","Bubblegum Crisis: Tokyo 2040","http://www.funimation.com/bubblegum-crisis-tokyo-2040/episodes",568
 "Funimation","Burst Angel","http://www.funimation.com/burst-angel/episodes",109
@@ -484,7 +483,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Linebarrels of Iron","http://www.funimation.com/linebarrels-of-iron/episodes",3653
 "Funimation","Lupin the Third, Fujiko Mine","http://www.funimation.com/lupin-the-third-fujiko-mine/episodes",13203
 "Funimation","Magikano","http://www.funimation.com/magikano/episodes",576
-"Funimation","Maken-ki! Battling Venus","http://www.funimation.com/maken-ki-battling-venus/episodes",9936
+"Funimation","Maken-ki!","http://www.funimation.com/maken-ki/episodes",9936
 "Funimation","Moeyo Ken","http://www.funimation.com/moeyo-ken/episodes",511
 "Funimation","Mongolian Chop Squad","http://www.funimation.com/mongolian-chop-squad/episodes",57
 "Funimation","MoonPhase","http://www.funimation.com/moonphase/episodes",343
@@ -680,6 +679,8 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Black Butler","http://www.hulu.com/black-butler",4898
 "Hulu","Black Butler II","http://www.hulu.com/black-butler-ii",6707
 "Hulu","Black Cat","http://www.hulu.com/black-cat",68
+"Hulu","Black Jack 21","http://www.hulu.com/black-jack-21",2214
+"Hulu","Black Jack OVA","http://www.hulu.com/black-jack-ova",1520
 "Hulu","Black Jack TV","http://www.hulu.com/black-jack-tv",2213
 "Hulu","Black Lagoon","http://www.hulu.com/black-lagoon",889
 "Hulu","Black Lagoon","http://www.hulu.com/black-lagoon",1519
@@ -689,6 +690,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Bleach","http://www.hulu.com/bleach",269
 "Hulu","Blessing of the Campanella","http://www.hulu.com/blessing-of-the-campanella",6979
 "Hulu","Blood+","http://www.hulu.com/blood",150
+"Hulu","Blood-C","http://www.hulu.com/blood-c",10490
 "Hulu","Blue Dragon Uncut","http://www.hulu.com/blue-dragon-uncut",2142
 "Hulu","Blue Dragon: Trials of the Seven Shadows","http://www.hulu.com/blue-dragon-trials-of-the-seven-shadows",4197
 "Hulu","Blue Drop","http://www.hulu.com/blue-drop",2964
@@ -705,6 +707,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Brighter Than the Dawning Blue","http://www.hulu.com/brighter-than-the-dawning-blue",1543
 "Hulu","Bubble Gum Crisis Tokyo 2040","http://www.hulu.com/bubble-gum-crisis-tokyo-2040",568
 "Hulu","Bubblegum Crisis","http://www.hulu.com/bubblegum-crisis",1347
+"Hulu","Bunny Drop","http://www.hulu.com/bunny-drop",10162
 "Hulu","Burst Angel","http://www.hulu.com/burst-angel",109
 "Hulu","Buso Renkin","http://www.hulu.com/buso-renkin",1536
 "Hulu","C3","http://www.hulu.com/c3",10578
@@ -791,7 +794,10 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Durarara!!","http://www.hulu.com/durarara",6746
 "Hulu","Dusk Maiden of Amnesia","http://www.hulu.com/dusk-maiden-of-amnesia",12445
 "Hulu","Eden of the East","http://www.hulu.com/eden-of-the-east",5630
+"Hulu","ef: A Tale of Memories","http://www.hulu.com/ef-a-tale-of-memories",2924
 "Hulu","El Cazador de la Bruja","http://www.hulu.com/el-cazador-de-la-bruja",2030
+"Hulu","Emma: A Victorian Romance","http://www.hulu.com/emma-a-victorian-romance",345
+"Hulu","Emma: A Victorian Romance","http://www.hulu.com/emma-a-victorian-romance",2035
 "Hulu","Ergo Proxy","http://www.hulu.com/ergo-proxy",790
 "Hulu","Eureka Seven","http://www.hulu.com/eureka-seven",237
 "Hulu","Eureka Seven: Astral Ocean","http://www.hulu.com/eureka-seven-astral-ocean",12471
@@ -817,6 +823,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Fractured Fairy Tales","http://www.hulu.com/fractured-fairy-tales",n/a
 "Hulu","Frances: Bedtime for Frances","http://www.hulu.com/frances-bedtime-for-frances",n/a
 "Hulu","Freezing","http://www.hulu.com/freezing",9367
+"Hulu","From the New World","http://www.hulu.com/from-the-new-world",13125
 "Hulu","Fruits Basket","http://www.hulu.com/fruits-basket",120
 "Hulu","Full Metal Panic!","http://www.hulu.com/full-metal-panic",71
 "Hulu","Full Metal Panic! The Second Raid","http://www.hulu.com/full-metal-panic-the-second-raid",73
@@ -838,6 +845,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Ghost In The Shell: Individual Eleven","http://www.hulu.com/ghost-in-the-shell-individual-eleven",2448
 "Hulu","Ghost In The Shell: Solid State Society ","http://www.hulu.com/ghost-in-the-shell-solid-state-society",1566
 "Hulu","Ghost in The Shell: Stand Alone Complex","http://www.hulu.com/ghost-in-the-shell-stand-alone-complex",467
+"Hulu","Ghost in The Shell: Stand Alone Complex","http://www.hulu.com/ghost-in-the-shell-stand-alone-complex",801
 "Hulu","Ghost In The Shell: The Laughing Man","http://www.hulu.com/ghost-in-the-shell-the-laughing-man",2449
 "Hulu","Ghost Slayers Ayashi","http://www.hulu.com/ghost-slayers-ayashi",1587
 "Hulu","Ghost Slayers Ayashi","http://www.hulu.com/ghost-slayers-ayashi",3248
@@ -1077,6 +1085,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Phantom:  Requiem for the Phantom","http://www.hulu.com/phantom-requiem-for-the-phantom",5682
 "Hulu","Phi-Brain","http://www.hulu.com/phi-brain",9981
 "Hulu","Phi-Brain","http://www.hulu.com/phi-brain",12753
+"Hulu","Piano: The Melody of a Young Girl's Heart","http://www.hulu.com/piano-the-melody-of-a-young-girls-heart",328
 "Hulu","Pocahontas (1994)","http://www.hulu.com/pocahontas-1994",n/a
 "Hulu","Polyphonica","http://www.hulu.com/polyphonica",1727
 "Hulu","Popeye the Sailor","http://www.hulu.com/popeye-the-sailor",n/a
@@ -1115,6 +1124,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Rick & Steve: The Happiest Gay Couple In All The World","http://www.hulu.com/rick-and-steve-the-happiest-gay-couple-in-all-the-world",n/a
 "Hulu","RideBack","http://www.hulu.com/rideback",4618
 "Hulu","Riding Bean","http://www.hulu.com/riding-bean",917
+"Hulu","Rob Zombie Presents The Haunted World of El Superbeasto","http://www.hulu.com/rob-zombie-presents-the-haunted-world-of-el-superbeasto",n/a
 "Hulu","RoboCop: Alpha Commando","http://www.hulu.com/robocop-alpha-commando",n/a
 "Hulu","Robot And Monster","http://www.hulu.com/robot-and-monster",n/a
 "Hulu","Robotech: Macross Saga","http://www.hulu.com/robotech-macross-saga",n/a
@@ -1269,6 +1279,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Tatami Galaxy","http://www.hulu.com/the-tatami-galaxy",7785
 "Hulu","The Velveteen Rabbit","http://www.hulu.com/the-velveteen-rabbit",n/a
 "Hulu","The Wallflower","http://www.hulu.com/the-wallflower",1562
+"Hulu","The World God Only Knows","http://www.hulu.com/the-world-god-only-knows",8525
 "Hulu","Thumbelina","http://www.hulu.com/thumbelina",n/a
 "Hulu","Tiger & Bunny","http://www.hulu.com/tiger-and-bunny",9941
 "Hulu","Tijuana Toads","http://www.hulu.com/tijuana-toads",n/a
