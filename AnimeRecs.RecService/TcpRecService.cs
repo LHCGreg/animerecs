@@ -95,15 +95,12 @@ namespace AnimeRecs.RecService
             {
                 try
                 {  
-                    using (NetworkStream clientStream = client.GetStream())
-                    {
-                        const int readTimeout = 3000;
-                        const int writeTimeout = 3000;
-                        clientStream.ReadTimeout = readTimeout;
-                        clientStream.WriteTimeout = writeTimeout;
-                        ConnectionServicer servicer = new ConnectionServicer(clientStream, m_state);
-                        servicer.ServiceConnection();
-                    }
+                    const int readTimeout = 3000;
+                    const int writeTimeout = 3000;
+                    client.ReceiveTimeout = readTimeout;
+                    client.SendTimeout = writeTimeout;
+                    ConnectionServicer servicer = new ConnectionServicer(client, m_state);
+                    servicer.ServiceConnection();
                 }
                 catch (Exception ex)
                 {

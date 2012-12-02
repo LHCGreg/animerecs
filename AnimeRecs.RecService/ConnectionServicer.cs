@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using AnimeRecs.RecService.DTO;
+using System.Net;
+using System.Net.Sockets;
 using MiscUtil.IO;
 using Newtonsoft.Json;
+using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecService.OperationHandlers;
 
 namespace AnimeRecs.RecService
@@ -74,12 +76,12 @@ namespace AnimeRecs.RecService
             }
         };
         
-        private Stream ClientStream { get; set; }
+        private TcpClient Client { get; set; }
         private RecServiceState State { get; set; }
         
-        public ConnectionServicer(Stream clientStream, RecServiceState state)
+        public ConnectionServicer(TcpClient client, RecServiceState state)
         {
-            ClientStream = clientStream;
+            Client = client;
             State = state;
         }
 
@@ -107,7 +109,14 @@ namespace AnimeRecs.RecService
         private void ServiceConnectionCore()
         {
             Logging.Log.Debug("Reading message from client.");
-            byte[] messageBytes = StreamUtil.ReadFully(ClientStream);
+            byte[] messageBytes;
+            using (NetworkStream clientStream = new NetworkStream(Client.Client, ownsSocket: false))
+            {
+                byte[] messageLengthBytes = StreamUtil.ReadExactly(clientStream, 4);
+                int messageLengthNetworkOrder = BitConverter.ToInt32(messageLengthBytes, 0);
+                int messageLength = IPAddress.NetworkToHostOrder(messageLengthNetworkOrder);
+                messageBytes = StreamUtil.ReadExactly(clientStream, messageLength);
+            }
 
             Logging.Log.Debug("Converting message bytes into string.");
             string messageString = Encoding.UTF8.GetString(messageBytes);
@@ -213,14 +222,18 @@ namespace AnimeRecs.RecService
                 Logging.Log.InfoFormat("Sending error response with message: {0}", response.Error.Message);
             }
             
-            Logging.Log.Debug("Serializing response.");
+            Logging.Log.Trace("Serializing response.");
             string responseJsonString = JsonConvert.SerializeObject(response);
 
-            Logging.Log.Debug("Turning response string into bytes.");
+            Logging.Log.Trace("Turning response string into bytes.");
             byte[] responseJsonBytes = Encoding.UTF8.GetBytes(responseJsonString);
+            int responseLength = responseJsonBytes.Length;
+            int responseLengthNetworkOrder = IPAddress.HostToNetworkOrder(responseLength);
+            byte[] responseLengthBytes = BitConverter.GetBytes(responseLengthNetworkOrder);
 
-            Logging.Log.Debug("Writing response.");
-            ClientStream.Write(responseJsonBytes, 0, responseJsonBytes.Length);
+            Logging.Log.Trace("Writing response.");
+            Client.Client.Send(responseLengthBytes);
+            Client.Client.Send(responseJsonBytes);
             Logging.Log.Debug("Response written.");
         }
     }

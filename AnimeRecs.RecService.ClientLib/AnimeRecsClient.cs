@@ -216,16 +216,19 @@ namespace AnimeRecs.RecService.ClientLib
 
             using (TcpClient socket = CreateTcpClient(receiveTimeoutInMs))
             {
+                int length = operationJsonBytes.Length;
+                int lengthNetworkOrder = IPAddress.HostToNetworkOrder(length);
+                byte[] lengthBytes = BitConverter.GetBytes(lengthNetworkOrder);
                 Logging.Log.Trace("Sending bytes.");
+                socket.Client.Send(lengthBytes);
                 socket.Client.Send(operationJsonBytes);
                 Logging.Log.Trace("Sent bytes.");
                 using (NetworkStream socketStream = socket.GetStream())
                 {
-                    // The half-close must be after getting the NetworkStream. GetStream() will throw an exception if the connection is half-closed.
-                    // The half-close must also be before reading the response. The service will not start processing the message
-                    // until the connection is half-closed.
-                    socket.Client.Shutdown(SocketShutdown.Send);
-                    responseJsonBytes = StreamUtil.ReadFully(socketStream);
+                    byte[] responseLengthBytes = StreamUtil.ReadExactly(socketStream, 4);
+                    int responseLengthNetworkOrder = BitConverter.ToInt32(responseLengthBytes, 0);
+                    int responseLength = IPAddress.NetworkToHostOrder(responseLengthNetworkOrder);
+                    responseJsonBytes = StreamUtil.ReadExactly(socketStream, responseLength);
                     Logging.Log.Trace("Got response.");
                 }
             }
@@ -258,11 +261,11 @@ namespace AnimeRecs.RecService.ClientLib
         private TcpClient CreateTcpClient(int receiveTimeoutInMs)
         {
             TcpClient client = new TcpClient();
+            client.SendTimeout = 3000;
+            client.ReceiveTimeout = receiveTimeoutInMs;
             Logging.Log.Trace("Connecting to rec service.");
             client.Connect(IPAddress.Loopback, PortNumber);
             Logging.Log.Trace("Connected to rec service.");
-            client.SendTimeout = 3000;
-            client.ReceiveTimeout = receiveTimeoutInMs;
             return client;
         }
 
