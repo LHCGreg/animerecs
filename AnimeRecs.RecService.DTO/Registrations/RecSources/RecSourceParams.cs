@@ -99,6 +99,7 @@ namespace AnimeRecs.RecService.DTO
         public bool? BoldDriver { get; set; }
         public bool? FrequencyRegularization { get; set; }
         public float? LearnRate { get; set; }
+        public float? LearnRateDecay { get; set; }
         public string OptimizationTarget { get; set; }
         public uint? NumFactors { get; set; }
         public uint? NumIter { get; set; }
@@ -122,6 +123,51 @@ namespace AnimeRecs.RecService.DTO
         public override string GetRecSourceTypeName()
         {
             return RecSourceTypes.BiasedMatrixFactorization;
+        }
+    }
+
+    public class SVDPlusPlusRecSourceParams : RecSourceParams
+    {
+        public int MinEpisodesToCountIncomplete { get; set; }
+        public bool UseDropped { get; set; }
+        public int MinUsersToCountAnime { get; set; }
+
+        public float? BiasLearnRate { get; set; }
+        public float? BiasReg { get; set; }
+        public bool? FrequencyRegularization { get; set; }
+        public float? LearnRate { get; set; }
+        public float? LearnRateDecay { get; set; }
+        public uint? NumFactors { get; set; }
+        public uint? NumIter { get; set; }
+        public float? Regularization { get; set; }
+
+        public SVDPlusPlusRecSourceParams()
+        {
+            MinEpisodesToCountIncomplete = 26;
+            UseDropped = true;
+            MinUsersToCountAnime = 50;
+        }
+    }
+
+    public class ItemKNNRecSourceParams : RecSourceParams
+    {
+        public int MinEpisodesToCountIncomplete { get; set; }
+        public bool UseDropped { get; set; }
+        public int MinUsersToCountAnime { get; set; }
+
+        public float? Alpha { get; set; }
+        public string Correlation { get; set; }
+        public uint? K { get; set; }
+        public uint? NumIter { get; set; }
+        public float? RegI { get; set; }
+        public float? RegU { get; set; }
+        public bool? WeightedBinary { get; set; }
+
+        public ItemKNNRecSourceParams()
+        {
+            MinEpisodesToCountIncomplete = 26;
+            UseDropped = true;
+            MinUsersToCountAnime = 50;
         }
     }
 

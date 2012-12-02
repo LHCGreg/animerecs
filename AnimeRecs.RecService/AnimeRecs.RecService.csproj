@@ -55,8 +55,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="C5, Version=1.1.1.0, Culture=neutral, PublicKeyToken=06a1b38866503b69, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="C5">
       <HintPath>..\lib\MyMediaLite\C5.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -69,15 +68,13 @@
     <Reference Include="MalApi">
       <HintPath>..\lib\MalApi\MalApi.dll</HintPath>
     </Reference>
-    <Reference Include="MathNet.Numerics, Version=2011.4.17.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MathNet.Numerics">
       <HintPath>..\lib\MyMediaLite\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
     </Reference>
-    <Reference Include="MyMediaLite, Version=3.0.4525.38436, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MyMediaLite">
       <HintPath>..\lib\MyMediaLite\MyMediaLite.dll</HintPath>
     </Reference>
     <Reference Include="NDesk.Options">
@@ -86,8 +83,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\lib\Json.NET\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SVM, Version=1.99.4525.38435, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="SVM">
       <HintPath>..\lib\MyMediaLite\SVM.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -137,7 +133,9 @@
     <Compile Include="Registrations\RecSources\AverageScoreJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\BiasedMatrixFactorizationJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\BPRMFJsonRecSource.cs" />
+    <Compile Include="Registrations\RecSources\ItemKNNJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\MostPopularJsonRecSource.cs" />
+    <Compile Include="Registrations\RecSources\SVDPlusPlusJsonRecSource.cs" />
     <Compile Include="Registrations\RecSources\TrainableJsonRecSource.cs" />
     <Compile Include="TcpRecService.cs" />
     <Compile Include="ValidationExtensions.cs" />

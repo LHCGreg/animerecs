@@ -11,6 +11,8 @@ namespace AnimeRecs.RecService.DTO
         public const string MostPopular = "MostPopular";
         public const string AnimeRecs = "AnimeRecs";
         public const string BiasedMatrixFactorization = "BiasedMatrixFactorization";
+        public const string SVDPlusPlus = "SVDPlusPlus";
+        public const string ItemKNN = "ItemKNN";
         public const string BPRMF = "BPRMF";
 
         private static IDictionary<string, Func<LoadRecSourceRequest>> s_LoadRecSourceRequestFactories =
@@ -20,6 +22,8 @@ namespace AnimeRecs.RecService.DTO
                 { MostPopular, () => new LoadRecSourceRequest<MostPopularRecSourceParams>() },
                 { AnimeRecs, () => new LoadRecSourceRequest<AnimeRecsRecSourceParams>() },
                 { BiasedMatrixFactorization, () => new LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>() },
+                { SVDPlusPlus, () => new LoadRecSourceRequest<SVDPlusPlusRecSourceParams>() },
+                { ItemKNN, () => new LoadRecSourceRequest<ItemKNNRecSourceParams>() },
                 { BPRMF, () => new LoadRecSourceRequest<BPRMFRecSourceParams>() }
             };
         public static IDictionary<string, Func<LoadRecSourceRequest>> LoadRecSourceRequestFactories { get { return s_LoadRecSourceRequestFactories; } }

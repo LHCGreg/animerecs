@@ -34,6 +34,8 @@ namespace AnimeRecs.RecService.Registrations.RecSources
                 underlyingRecSource.FrequencyRegularization = request.Params.FrequencyRegularization.Value;
             if (request.Params.LearnRate != null)
                 underlyingRecSource.LearnRate = request.Params.LearnRate.Value;
+            if (request.Params.LearnRateDecay != null)
+                underlyingRecSource.LearnRateDecay = request.Params.LearnRateDecay.Value;
             if (request.Params.NumFactors != null)
                 underlyingRecSource.NumFactors = request.Params.NumFactors.Value;
             if (request.Params.NumIter != null)
