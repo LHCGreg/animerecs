@@ -5,6 +5,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","A Dark Rabbit has Seven Lives","http://www.crunchyroll.com/a-dark-rabbit-has-seven-lives",9750
 "Crunchyroll","Abunai Sisters","http://www.crunchyroll.com/abunai-sisters",5877
 "Crunchyroll","Adventures in Voice Acting","http://www.crunchyroll.com/adventures-in-voice-acting",n/a
+"Crunchyroll","Ai-Mai-Mi","http://www.crunchyroll.com/ai-mai-mi",16169
 "Crunchyroll","Air Master","http://www.crunchyroll.com/air-master",230
 "Crunchyroll","Angel Beats","http://www.crunchyroll.com/angel-beats",6547
 "Crunchyroll","AniView","http://www.crunchyroll.com/aniview",n/a
@@ -56,7 +57,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Cobra the Animation","http://www.crunchyroll.com/cobra-the-animation",5032
 "Crunchyroll","Cobra the Animation","http://www.crunchyroll.com/cobra-the-animation",4646
 "Crunchyroll","Cobra the Animation","http://www.crunchyroll.com/cobra-the-animation",5031
-"Crunchyroll","CODE GEASS Lelouch of the Rebellion","http://www.crunchyroll.com/code-geass-lelouch-of-the-rebellion",1575
 "Crunchyroll","Cosplay Complex OVA","http://www.crunchyroll.com/cosplay-complex-ova",982
 "Crunchyroll","Culture Japan","http://www.crunchyroll.com/culture-japan",n/a
 "Crunchyroll","Dark Side Cat","http://www.crunchyroll.com/dark-side-cat",6721
@@ -78,6 +78,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Ef - A Tale of Melodies","http://www.crunchyroll.com/ef-a-tale-of-melodies",4789
 "Crunchyroll","Ef - A Tale of Memories","http://www.crunchyroll.com/ef-a-tale-of-memories",2924
 "Crunchyroll","Egg Man","http://www.crunchyroll.com/egg-man",n/a
+"Crunchyroll","Encouragement Of Climb","http://www.crunchyroll.com/encouragement-of-climb",14355
 "Crunchyroll","Erin","http://www.crunchyroll.com/erin",5420
 "Crunchyroll","Eyeshield 21","http://www.crunchyroll.com/eyeshield-21",15
 "Crunchyroll","Fairy Musketeers","http://www.crunchyroll.com/fairy-musketeers",607
@@ -151,7 +152,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Koihime Musou","http://www.crunchyroll.com/koihime-musou",4262
 "Crunchyroll","Kokoro Connect","http://www.crunchyroll.com/kokoro-connect",11887
 "Crunchyroll","Kono Aozora ni Yakusoku wo","http://www.crunchyroll.com/kono-aozora-ni-yakusoku-wo",2155
-"Crunchyroll","Kurokami The Animation","http://www.crunchyroll.com/kurokami-the-animation",5079
 "Crunchyroll","Kuroko's Basketball","http://www.crunchyroll.com/kurokos-basketball",11771
 "Crunchyroll","La Corda d'Oro ~primo passo~ and ~secondo passo~","http://www.crunchyroll.com/la-corda-doro-primo-passo-and-secondo-passo",1579
 "Crunchyroll","La Corda d'Oro ~primo passo~ and ~secondo passo~","http://www.crunchyroll.com/la-corda-doro-primo-passo-and-secondo-passo",3392
@@ -168,6 +168,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Linebarrels of Iron","http://www.crunchyroll.com/linebarrels-of-iron",3653
 "Crunchyroll","Listen to Me, Girls, I’m Your Father!","http://www.crunchyroll.com/listen-to-me-girls-im-your-father",11179
 "Crunchyroll","Little Nemo: Adventures in Slumberland","http://www.crunchyroll.com/little-nemo-adventures-in-slumberland",2286
+"Crunchyroll","Love Live! School Idol Project","http://www.crunchyroll.com/love-live-school-idol-project",15051
 "Crunchyroll","Lucky Star","http://www.crunchyroll.com/lucky-star",1887
 "Crunchyroll","Lychee Light Club","http://www.crunchyroll.com/lychee-light-club",15045
 "Crunchyroll","Maburaho","http://www.crunchyroll.com/maburaho",193
@@ -176,18 +177,13 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Magical Play","http://www.crunchyroll.com/magical-play",2278
 "Crunchyroll","Magicians Academy","http://www.crunchyroll.com/magicians-academy",3654
 "Crunchyroll","Majikoi Oh! Samurai Girls","http://www.crunchyroll.com/majikoi-oh-samurai-girls",10213
+"Crunchyroll","Mangirl!","http://www.crunchyroll.com/mangirl",14045
 "Crunchyroll","Mashiroiro Symphony","http://www.crunchyroll.com/mashiroiro-symphony",10397
 "Crunchyroll","Medaka Box","http://www.crunchyroll.com/medaka-box",11761
 "Crunchyroll","Miracle Train","http://www.crunchyroll.com/miracle-train",7103
 "Crunchyroll","Mitsudomoe","http://www.crunchyroll.com/mitsudomoe",7627
 "Crunchyroll","Mitsudomoe","http://www.crunchyroll.com/mitsudomoe",9510
 "Crunchyroll","Mizu no Kotoba","http://www.crunchyroll.com/mizu-no-kotoba",2235
-"Crunchyroll","Mobile Suit Gundam","http://www.crunchyroll.com/mobile-suit-gundam",80
-"Crunchyroll","MOBILE SUIT GUNDAM 00","http://www.crunchyroll.com/mobile-suit-gundam-00",2581
-"Crunchyroll","MOBILE SUIT GUNDAM 00","http://www.crunchyroll.com/mobile-suit-gundam-00",3927
-"Crunchyroll","Mobile Suit Gundam UC (Unicorn)","http://www.crunchyroll.com/mobile-suit-gundam-uc-unicorn",6336
-"Crunchyroll","Mobile Suit Gundam Wing","http://www.crunchyroll.com/mobile-suit-gundam-wing",90
-"Crunchyroll","Mobile Suit Zeta Gundam","http://www.crunchyroll.com/mobile-suit-zeta-gundam",85
 "Crunchyroll","Moribito","http://www.crunchyroll.com/moribito",1827
 "Crunchyroll","Moritasan wa Mukuchi","http://www.crunchyroll.com/moritasan-wa-mukuchi",10671
 "Crunchyroll","Moritasan wa Mukuchi","http://www.crunchyroll.com/moritasan-wa-mukuchi",11615
@@ -693,6 +689,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Black Lagoon: Roberta's Blood Trail","http://www.hulu.com/black-lagoon-robertas-blood-trail",4901
 "Hulu","Blade of the Immortal","http://www.hulu.com/blade-of-the-immortal",4151
 "Hulu","Blassreiter","http://www.hulu.com/blassreiter",3407
+"Hulu","Blast of Tempest","http://www.hulu.com/blast-of-tempest",14075
 "Hulu","Bleach","http://www.hulu.com/bleach",269
 "Hulu","Blessing of the Campanella","http://www.hulu.com/blessing-of-the-campanella",6979
 "Hulu","Blood+","http://www.hulu.com/blood",150
@@ -884,6 +881,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Haganai","http://www.hulu.com/haganai",10719
 "Hulu","Haibane Renmei","http://www.hulu.com/haibane-renmei",387
 "Hulu","Hakuoki: Demon of the Fleeting Blossom","http://www.hulu.com/hakuoki-demon-of-the-fleeting-blossom",13115
+"Hulu","Happy New Year, Charlie Brown!","http://www.hulu.com/happy-new-year-charlie-brown",n/a
 "Hulu","Happy the Littlest Bunny","http://www.hulu.com/happy-the-littlest-bunny",n/a
 "Hulu","Happy Tree Friends","http://www.hulu.com/happy-tree-friends",n/a
 "Hulu","Heat Guy J","http://www.hulu.com/heat-guy-j",958
