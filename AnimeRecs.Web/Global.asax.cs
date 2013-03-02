@@ -9,6 +9,7 @@ using AnimeRecs.Web.MvcExtensions;
 using MalApi;
 using AnimeRecs.DAL;
 using AnimeRecs.Web.Controllers;
+using StackExchange.Profiling;
 
 namespace AnimeRecs.Web
 {
@@ -79,7 +80,9 @@ namespace AnimeRecs.Web
                 AppGlobals.MalApiFactory = new SingleMyAnimeListApiFactory(cachingApi);
                 disposablesInitialized.Add(AppGlobals.MalApiFactory);
 
-                AppGlobals.DbConnectionFactory = new AnimeRecsDbConnectionFactory(AppGlobals.Config.PostgresConnectionString);
+                IAnimeRecsDbConnectionFactory rawConnectionFactory = new AnimeRecsDbConnectionFactory(AppGlobals.Config.PostgresConnectionString);
+                IAnimeRecsDbConnectionFactory profiledConnectionFactory = new MiniProfilerAnimeRecsDbConnectionFactory(rawConnectionFactory);
+                AppGlobals.DbConnectionFactory = profiledConnectionFactory;
             }
             catch
             {
@@ -136,6 +139,18 @@ namespace AnimeRecs.Web
                 Response.Write("Oops! Something went terribly wrong. A site admin will fix this problem shortly.");
                 Response.End();
             }
+            else
+            {
+                if (Request.IsLocal)
+                {
+                    MiniProfiler.Start();
+                }
+            }
+        }
+
+        protected void Application_EndRequest()
+        {
+            MiniProfiler.Stop();
         }
     }
 }

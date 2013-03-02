@@ -10,13 +10,21 @@ namespace AnimeRecs.DAL
 {
     public class AnimeRecsDbConnection : IAnimeRecsDbConnection
     {
-        private NpgsqlConnection m_conn;
-        public IDbConnection Conn { get { return m_conn; } }
+        public IDbConnection Conn { get; private set; }
         
         public AnimeRecsDbConnection(string pgConnectionString)
         {
-            m_conn = new NpgsqlConnection(pgConnectionString);
-            m_conn.Open();
+            Conn = new NpgsqlConnection(pgConnectionString);
+            Conn.Open();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pgConnection">An *already open* connection</param>
+        public AnimeRecsDbConnection(IDbConnection pgConnection)
+        {
+            Conn = pgConnection;
         }
 
         public IDictionary<int, ICollection<streaming_service_anime_map>> GetStreams(IEnumerable<int> malAnimeIds)
@@ -31,7 +39,7 @@ namespace AnimeRecs.DAL
             string malAnimeIdList = string.Join(", ", malAnimeIds);
 
             string sql = string.Format(@"SELECT * FROM streaming_service_anime_map WHERE mal_anime_id IN ({0})", malAnimeIdList);
-            foreach (streaming_service_anime_map map in m_conn.Query<streaming_service_anime_map>(sql))
+            foreach (streaming_service_anime_map map in Conn.Query<streaming_service_anime_map>(sql))
             {
                 if (!streamsByAnime.ContainsKey(map.mal_anime_id))
                 {
@@ -46,12 +54,12 @@ namespace AnimeRecs.DAL
         public ICollection<streaming_service_anime_map> GetAllStreams()
         {
             string sql = "SELECT * FROM streaming_service_anime_map";
-            return m_conn.Query<streaming_service_anime_map>(sql).ToList();
+            return Conn.Query<streaming_service_anime_map>(sql).ToList();
         }
 
         public void Dispose()
         {
-            m_conn.Dispose();
+            Conn.Dispose();
         }
     }
 }

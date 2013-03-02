@@ -46,6 +46,9 @@
     <Reference Include="MalApi">
       <HintPath>..\lib\MalApi\MalApi.dll</HintPath>
     </Reference>
+    <Reference Include="MiniProfiler">
+      <HintPath>..\packages\MiniProfiler.2.0.2\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
     <Reference Include="MiscUtil">
       <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
     </Reference>
@@ -116,6 +119,7 @@
     <Compile Include="IMyAnimeListApiFactory.cs" />
     <Compile Include="IAnimeRecsClientFactory.cs" />
     <Compile Include="Logging.cs" />
+    <Compile Include="MiniProfilerAnimeRecsDbConnectionFactory.cs" />
     <Compile Include="Models\Json\AjaxError.cs" />
     <Compile Include="Models\Json\AnimeRecsInputJson.cs" />
     <Compile Include="Models\Json\RecResultsAsHtml.cs" />
@@ -159,6 +163,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\GetRecs\AnimeRecs.cshtml" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GetRecs\Fallback.cshtml" />

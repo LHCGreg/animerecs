@@ -31,3 +31,5 @@ MyMediaLite is Copyright (C) 2011, 2012 Zeno Gantner, Copyright (C) 2010 Zeno Ga
 MyMediaLite uses C5 (see lib/mymedialite/C5_license.txt), MathNet.Numerics (see lib/mymedialite/MathNet.Numerics.License.txt), and SVM.NET (see lib/mymedialite/SVMNET_license.txt), a port of LIBSVM (see lib/mymedialite/libsvm_license.txt).
 
 HTML Agility Pack is copyright Simon Mourier and is licensed under the Microsoft Public License (lib/HtmlAgilityPack/license.txt).
+
+MiniProfiler is copyright Sam Saffron and is licensed under the Apache License 2.0 (licenses/miniprofiler_license.txt)

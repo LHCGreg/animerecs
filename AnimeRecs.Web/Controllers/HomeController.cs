@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using StackExchange.Profiling;
 using AnimeRecs.Web.Models.ViewModels;
 using AnimeRecs.RecService.ClientLib;
 
@@ -25,21 +26,25 @@ namespace AnimeRecs.Web.Controllers
         
         public ViewResult Index(string algorithm, bool? detailedResults, bool? debugMode)
         {
+            var profiler = MiniProfiler.Current;
             algorithm = algorithm ?? AppGlobals.Config.DefaultRecSource;
             bool displayDetailedResults = detailedResults ?? false;
             bool debugModeOn = debugMode ?? false;
 
             string recSourceType = null;
 
-            using (AnimeRecsClient client = m_recClientFactory.GetClient(algorithm))
+            using (profiler.Step("Checking the rec source type."))
             {
-                try
+                using (AnimeRecsClient client = m_recClientFactory.GetClient(algorithm))
                 {
-                    recSourceType = client.GetRecSourceType(algorithm);
-                }
-                catch
-                {
-                    ;
+                    try
+                    {
+                        recSourceType = client.GetRecSourceType(algorithm);
+                    }
+                    catch
+                    {
+                        ;
+                    }
                 }
             }
 

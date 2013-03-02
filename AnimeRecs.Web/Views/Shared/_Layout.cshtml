@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
+@using StackExchange.Profiling;
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -18,6 +19,7 @@
 <body>
     @RenderBody()
     @Html.Raw(AnimeRecs.Web.AppGlobals.Config.HtmlBeforeBodyEnd)
+    @MiniProfiler.RenderIncludes()
 </body>
 </html>
 

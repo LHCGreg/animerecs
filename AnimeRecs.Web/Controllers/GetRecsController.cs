@@ -12,6 +12,7 @@ using AnimeRecs.RecEngine;
 using AnimeRecs.Web.Models.ViewModels;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.DAL;
+using StackExchange.Profiling;
 
 namespace AnimeRecs.Web.Controllers
 {
@@ -60,7 +61,10 @@ namespace AnimeRecs.Web.Controllers
                 MalUserLookupResults userLookup;
                 try
                 {
-                    userLookup = malApi.GetAnimeListForUser(input.MalName);
+                    using (MiniProfiler.Current.Step("Getting MAL list"))
+                    {
+                        userLookup = malApi.GetAnimeListForUser(input.MalName);
+                    }
                     Logging.Log.InfoFormat("Got MAL list for user {0}.", input.MalName);
                 }
                 catch (MalUserNotFoundException)
@@ -112,26 +116,29 @@ namespace AnimeRecs.Web.Controllers
                             // For all currently implemented algorithms, this does not cause a performance problem.
                             numRecsToTryToGet = 100000;
                         }
-                        if (input.GoodPercentile != null)
+                        using (MiniProfiler.Current.Step("Calculating recommendations"))
                         {
-                            Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
-                                input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodPercentile.Value);
-                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
-                                input.GoodPercentile.Value);
-                        }
-                        else if (input.GoodCutoff != null)
-                        {
-                            Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of {3}.",
-                                input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodCutoff.Value);
-                            recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, numRecsToTryToGet,
-                                input.GoodCutoff.Value);
-                        }
-                        else
-                        {
-                            Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
-                                input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
-                            recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
-                                AppGlobals.Config.DefaultTargetPercentile);
+                            if (input.GoodPercentile != null)
+                            {
+                                Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
+                                    input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodPercentile.Value);
+                                recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
+                                    input.GoodPercentile.Value);
+                            }
+                            else if (input.GoodCutoff != null)
+                            {
+                                Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using target of {3}.",
+                                    input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, input.GoodCutoff.Value);
+                                recResults = recClient.GetMalRecommendations(animeList, input.RecSourceName, numRecsToTryToGet,
+                                    input.GoodCutoff.Value);
+                            }
+                            else
+                            {
+                                Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
+                                    input.RecSourceName, AppGlobals.Config.MaximumRecommendationsToReturn, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
+                                recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
+                                    AppGlobals.Config.DefaultTargetPercentile);
+                            }
                         }
 
                         Logging.Log.InfoFormat("Got results from rec service for {0}.", input.MalName);
@@ -152,7 +159,11 @@ namespace AnimeRecs.Web.Controllers
                             dbConnectionFactory: m_dbConnectionFactory
                         );
 
-                        RecResultsAsHtml resultsJson = ResultsToReturnValue(viewModel, viewSuffix);
+                        RecResultsAsHtml resultsJson;
+                        using (MiniProfiler.Current.Step("Rendering results as HTML"))
+                        {
+                            resultsJson = ResultsToReturnValue(viewModel, viewSuffix);
+                        }
                         Logging.Log.Debug("Converted results to return value.");
 
                         return Json(resultsJson);
