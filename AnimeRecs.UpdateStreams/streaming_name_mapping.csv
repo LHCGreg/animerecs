@@ -71,6 +71,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Cuticle Detective Inaba","http://www.crunchyroll.com/cuticle-detective-inaba",15109
 "Crunchyroll","Da Capo III","http://www.crunchyroll.com/da-capo-iii",14827
 "Crunchyroll","Dark Side Cat","http://www.crunchyroll.com/dark-side-cat",6721
+"Crunchyroll","DD Fist of the North Star","http://www.crunchyroll.com/dd-fist-of-the-north-star",17705
 "Crunchyroll","Dear Boys","http://www.crunchyroll.com/dear-boys",292
 "Crunchyroll","DEMIAN","http://www.crunchyroll.com/demian",n/a
 "Crunchyroll","Demon King Daimao","http://www.crunchyroll.com/demon-king-daimao",7088
@@ -562,12 +563,18 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Samurai Champloo","http://www.funimation.com/samurai-champloo/episodes",205
 "Funimation","Sands of Destruction","http://www.funimation.com/sands-of-destruction/episodes",4415
 "Funimation","Sankarea","http://www.funimation.com/sankarea/episodes",11499
+"Funimation","Sasami Magical Girls Club","http://www.funimation.com/sasami-magical-girls-club/episodes",1881
+"Funimation","Sasami Magical Girls Club","http://www.funimation.com/sasami-magical-girls-club/episodes",1882
 "Funimation","Save Me! Lollipop","http://www.funimation.com/save-me-lollipop/episodes",1509
 "Funimation","School Rumble","http://www.funimation.com/school-rumble/episodes",24
 "Funimation","School Rumble","http://www.funimation.com/school-rumble/episodes",517
 "Funimation","School Rumble","http://www.funimation.com/school-rumble/episodes",846
 "Funimation","Sekirei","http://www.funimation.com/sekirei/episodes",4063
 "Funimation","Sekirei","http://www.funimation.com/sekirei/episodes",5277
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/sengoku-basara-samurai-kings/episodes",5355
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/sengoku-basara-samurai-kings/episodes",6634
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/sengoku-basara-samurai-kings/episodes",10483
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/sengoku-basara-samurai-kings/episodes",18549
 "Funimation","Senran Kagura","http://www.funimation.com/senran-kagura/episodes",15119
 "Funimation","Serial Experiments Lain","http://www.funimation.com/serial-experiments-lain/episodes",339
 "Funimation","Sgt. Frog","http://www.funimation.com/sgt-frog/episodes",516
@@ -577,9 +584,13 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Shangri-la","http://www.funimation.com/shangri-la/episodes",5220
 "Funimation","Shiki","http://www.funimation.com/shiki/episodes",7724
 "Funimation","Shin chan","http://www.funimation.com/shin-chan/episodes",966
+"Funimation","Slayers","http://www.funimation.com/slayers/episodes",534
+"Funimation","Slayers","http://www.funimation.com/slayers/episodes",535
+"Funimation","Slayers","http://www.funimation.com/slayers/episodes",1172
 "Funimation","Slayers Revolution","http://www.funimation.com/slayers-revolution/episodes",4028
 "Funimation","Slayers Revolution","http://www.funimation.com/slayers-revolution/episodes",5233
 "Funimation","Soul Eater","http://www.funimation.com/soul-eater/episodes",3588
+"Funimation","Speed Grapher","http://www.funimation.com/speed-grapher/episodes",198
 "Funimation","Spice and Wolf","http://www.funimation.com/spice-and-wolf/episodes",2966
 "Funimation","Spice and Wolf","http://www.funimation.com/spice-and-wolf/episodes",5341
 "Funimation","Spice and Wolf","http://www.funimation.com/spice-and-wolf/episodes",6007
@@ -592,6 +603,8 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",539
 "Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",540
 "Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/tenchi-muyo-ova-series/episodes",1146
+"Funimation","Tenchi Muyo! Ryo Ohki","http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes",541
+"Funimation","Tenchi Muyo! Ryo Ohki","http://www.funimation.com/tenchi-muyo-ryo-ohki/episodes",1147
 "Funimation","Tenchi Muyo! Tenchi in Tokyo","http://www.funimation.com/tenchi-muyo-tenchi-in-tokyo/episodes",538
 "Funimation","Tenchi Muyo! Tenchi Universe","http://www.funimation.com/tenchi-muyo-tenchi-universe/episodes",696
 "Funimation","Tenchi Muyo! War on Geminar","http://www.funimation.com/tenchi-muyo-war-on-geminar/episodes",5781
@@ -659,7 +672,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Alien Racers","http://www.hulu.com/alien-racers",n/a
 "Hulu","All About Santa Claus","http://www.hulu.com/all-about-santa-claus",n/a
 "Hulu","All Dogs Go To Heaven (1996)","http://www.hulu.com/all-dogs-go-to-heaven-1996",n/a
-"Hulu","Allen Gregory","http://www.hulu.com/allen-gregory",n/a
 "Hulu","Allison and Lillia","http://www.hulu.com/allison-and-lillia",3549
 "Hulu","Alvin and the Chipmunks","http://www.hulu.com/alvin-and-the-chipmunks",n/a
 "Hulu","Amagami SS","http://www.hulu.com/amagami-ss",8676
@@ -672,6 +684,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Angry Birds Cinematic Trailers","http://www.hulu.com/angry-birds-cinematic-trailers",n/a
 "Hulu","Angry Birds Seasons Stories","http://www.hulu.com/angry-birds-seasons-stories",n/a
 "Hulu","Animal Farm","http://www.hulu.com/animal-farm",n/a
+"Hulu","anohana: The Flower We Saw That Day","http://www.hulu.com/anohana-the-flower-we-saw-that-day",9989
 "Hulu","Another","http://www.hulu.com/another",11111
 "Hulu","Appleseed XIII","http://www.hulu.com/appleseed-xiii",9737
 "Hulu","Aquarion","http://www.hulu.com/aquarion",478
@@ -791,6 +804,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Cyberchase (Español)","http://www.hulu.com/cyberchase-espanol",n/a
 "Hulu","Cybersix","http://www.hulu.com/cybersix",2383
 "Hulu","D. Gray Man","http://www.hulu.com/d-gray-man",1482
+"Hulu","Dan Vs.","http://www.hulu.com/dan-vs",n/a
 "Hulu","Dance in the Vampire Bund","http://www.hulu.com/dance-in-the-vampire-bund",6747
 "Hulu","Danger Mouse","http://www.hulu.com/danger-mouse",n/a
 "Hulu","Dante's Inferno","http://www.hulu.com/dantes-inferno",n/a
@@ -817,6 +831,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Devil May Cry","http://www.hulu.com/devil-may-cry",1726
 "Hulu","Devil Survivor 2 The Animation","http://www.hulu.com/devil-survivor-2-the-animation",16512
 "Hulu","Diamond Daydreams","http://www.hulu.com/diamond-daydreams",148
+"Hulu","Digimon Adventure","http://www.hulu.com/digimon-adventure",552
 "Hulu","Dilbert","http://www.hulu.com/dilbert",n/a
 "Hulu","Dilbert Animated Cartoons","http://www.hulu.com/dilbert-animated-cartoons",n/a
 "Hulu","Dinosaur King","http://www.hulu.com/dinosaur-king",3576
@@ -1007,6 +1022,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Jormungand","http://www.hulu.com/jormungand",12413
 "Hulu","Journey to the Center of the Earth (1996)","http://www.hulu.com/journey-to-the-center-of-the-earth-1996",n/a
 "Hulu","Jungle Emperor Leo","http://www.hulu.com/jungle-emperor-leo",2264
+"Hulu","Junjou Romantica","http://www.hulu.com/junjou-romantica",3092
 "Hulu","Jyu-Oh-Sei","http://www.hulu.com/jyu-oh-sei",953
 "Hulu","K","http://www.hulu.com/k",14467
 "Hulu","Kaleido Star","http://www.hulu.com/kaleido-star",427
@@ -1026,7 +1042,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","King of Thorn","http://www.hulu.com/king-of-thorn",6610
 "Hulu","Kingdom (2012)","http://www.hulu.com/kingdom-2012",12031
 "Hulu","Kino's Journey","http://www.hulu.com/kinos-journey",486
-"Hulu","KITE:  Liberator","http://www.hulu.com/kite-liberator",3323
+"Hulu","KITE: Liberator","http://www.hulu.com/kite-liberator",3323
 "Hulu","Knight Hunters: Eternity","http://www.hulu.com/knight-hunters-eternity",446
 "Hulu","Kobato","http://www.hulu.com/kobato",5678
 "Hulu","Koi Koi Seven","http://www.hulu.com/koi-koi-seven",668
@@ -1051,6 +1067,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Leiji Matsumoto's OZMA","http://www.hulu.com/leiji-matsumotos-ozma",12677
 "Hulu","Leo The Lion","http://www.hulu.com/leo-the-lion",n/a
 "Hulu","Level E","http://www.hulu.com/level-e",9834
+"Hulu","Leviatan","http://www.hulu.com/leviatan",17681
 "Hulu","Linebarrels of Iron","http://www.hulu.com/linebarrels-of-iron",3653
 "Hulu","Listen to Me, Girls. I Am Your Father!","http://www.hulu.com/listen-to-me-girls-i-am-your-father",11179
 "Hulu","Little Busters!","http://www.hulu.com/little-busters",13655
@@ -1184,6 +1201,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Popeye the Sailor","http://www.hulu.com/popeye-the-sailor",n/a
 "Hulu","Popotan","http://www.hulu.com/popotan",610
 "Hulu","Pororo the Little Penguin","http://www.hulu.com/pororo-the-little-penguin",n/a
+"Hulu","Postman Pat: Special Delivery Service","http://www.hulu.com/postman-pat-special-delivery-service",n/a
 "Hulu","Pretear","http://www.hulu.com/pretear",100
 "Hulu","Pretty Cure","http://www.hulu.com/pretty-cure",603
 "Hulu","Prince And The Pauper","http://www.hulu.com/prince-and-the-pauper",n/a
@@ -1226,7 +1244,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Ring of Fire (2000)","http://www.hulu.com/ring-of-fire-2000",n/a
 "Hulu","Rob Zombie Presents The Haunted World of El Superbeasto","http://www.hulu.com/rob-zombie-presents-the-haunted-world-of-el-superbeasto",n/a
 "Hulu","RoboCop: Alpha Commando","http://www.hulu.com/robocop-alpha-commando",n/a
-"Hulu","Robot And Monster","http://www.hulu.com/robot-and-monster",n/a
 "Hulu","Robotics;Notes","http://www.hulu.com/roboticsnotes",13599
 "Hulu","Robots","http://www.hulu.com/robots",n/a
 "Hulu","Rocket Monkeys","http://www.hulu.com/rocket-monkeys",n/a
@@ -1242,6 +1259,8 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Rumbling Hearts","http://www.hulu.com/rumbling-hearts",147
 "Hulu","Saber Rider and the Star Sheriffs","http://www.hulu.com/saber-rider-and-the-star-sheriffs",2361
 "Hulu","Sabrina the Teenage Witch: The Complete Animated Series","http://www.hulu.com/sabrina-the-teenage-witch-the-complete-animated-series",n/a
+"Hulu","Saint Seiya: The Lost Canvas","http://www.hulu.com/saint-seiya-the-lost-canvas",6171
+"Hulu","Saint Seiya: The Lost Canvas","http://www.hulu.com/saint-seiya-the-lost-canvas",9130
 "Hulu","Samurai 7","http://www.hulu.com/samurai-7",166
 "Hulu","Samurai Bride","http://www.hulu.com/samurai-bride",15377
 "Hulu","Samurai Champloo","http://www.hulu.com/samurai-champloo",205
@@ -1335,7 +1354,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Tales of Vesperia: The First Strike","http://www.hulu.com/tales-of-vesperia-the-first-strike",6046
 "Hulu","Tari Tari","http://www.hulu.com/tari-tari",13333
 "Hulu","Tayutama: Kiss on My Deity","http://www.hulu.com/tayutama-kiss-on-my-deity",5734
-"Hulu","Tears to Tiara","http://www.hulu.com/tears-to-tiara",3594
 "Hulu","Technotise: Edit and I","http://www.hulu.com/technotise-edit-and-i",n/a
 "Hulu","Teenage Mutant Ninja Turtles","http://www.hulu.com/teenage-mutant-ninja-turtles",n/a
 "Hulu","Tenchi in Tokyo","http://www.hulu.com/tenchi-in-tokyo",538
@@ -1343,10 +1361,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Tenchi Muyo!","http://www.hulu.com/tenchi-muyo",539
 "Hulu","Tenchi Muyo!","http://www.hulu.com/tenchi-muyo",540
 "Hulu","Tenchi Muyo!","http://www.hulu.com/tenchi-muyo",1146
-"Hulu","Tenchi Muyo! Movie: The Daughter of Darkness","http://www.hulu.com/tenchi-muyo-movie-the-daughter-of-darkness",1101
 "Hulu","Tenchi Muyo! Ryo Ohki","http://www.hulu.com/tenchi-muyo-ryo-ohki",541
-"Hulu","Tenchi Muyo! Tenchi in Love","http://www.hulu.com/tenchi-muyo-tenchi-in-love",1006
-"Hulu","Tenchi Muyo! Tenchi in Love 2","http://www.hulu.com/tenchi-muyo-tenchi-in-love-2",1144
 "Hulu","Tenchi Muyo! War on Geminar","http://www.hulu.com/tenchi-muyo-war-on-geminar",5781
 "Hulu","Tenchi Universe","http://www.hulu.com/tenchi-universe",696
 "Hulu","Texhnolyze","http://www.hulu.com/texhnolyze",26
@@ -1369,6 +1384,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Dick Tracy Show","http://www.hulu.com/the-dick-tracy-show",n/a
 "Hulu","The Fairly OddParents","http://www.hulu.com/the-fairly-oddparents",n/a
 "Hulu","The Future Diary","http://www.hulu.com/the-future-diary",10620
+"Hulu","The House","http://www.hulu.com/the-house",n/a
 "Hulu","The Jackson 5ive","http://www.hulu.com/the-jackson-5ive",n/a
 "Hulu","The Legend of Prince Valiant","http://www.hulu.com/the-legend-of-prince-valiant",n/a
 "Hulu","The Legend of the Legendary Heroes","http://www.hulu.com/the-legend-of-the-legendary-heroes",8086
@@ -1378,7 +1394,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Mr. Magoo Show","http://www.hulu.com/the-mr-magoo-show",n/a
 "Hulu","The New Three Stooges","http://www.hulu.com/the-new-three-stooges",n/a
 "Hulu","The New Yorker Animated Cartoons","http://www.hulu.com/the-new-yorker-animated-cartoons",n/a
-"Hulu","The Penguins of Madagascar","http://www.hulu.com/the-penguins-of-madagascar",n/a
 "Hulu","The Pet Girl of Sakurasou","http://www.hulu.com/the-pet-girl-of-sakurasou",13759
 "Hulu","The Prince of Tennis","http://www.hulu.com/the-prince-of-tennis",22
 "Hulu","The Romance of Betty Boop","http://www.hulu.com/the-romance-of-betty-boop",n/a
@@ -1449,6 +1464,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Viva Pinata","http://www.hulu.com/viva-pinata",n/a
 "Hulu","Vividred Operation","http://www.hulu.com/vividred-operation",14283
 "Hulu","Voltron: Defender of the Universe","http://www.hulu.com/voltron-defender-of-the-universe",1448
+"Hulu","WAGNARIA!!","http://www.hulu.com/wagnaria",6956
 "Hulu","Waiting in the Summer","http://www.hulu.com/waiting-in-the-summer",11433
 "Hulu","Wallace & Gromit: Cracking Contraptions","http://www.hulu.com/wallace-and-gromit-cracking-contraptions",n/a
 "Hulu","Wave Twisters","http://www.hulu.com/wave-twisters",n/a
@@ -1468,7 +1484,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","xxxHolic","http://www.hulu.com/xxxholic",861
 "Hulu","Yam Roll","http://www.hulu.com/yam-roll",n/a
 "Hulu","Yamataro Comes Back","http://www.hulu.com/yamataro-comes-back",11537
-"Hulu","Yesterday","http://www.hulu.com/yesterday",n/a
 "Hulu","Yobi, The Five-Tailed Fox","http://www.hulu.com/yobi-the-five-tailed-fox",2756
 "Hulu","You're Under Arrest","http://www.hulu.com/youre-under-arrest",1372
 "Hulu","Yozakura Quartet","http://www.hulu.com/yozakura-quartet",4548
