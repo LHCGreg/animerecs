@@ -81,6 +81,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Digimon Tamers","http://www.crunchyroll.com/digimon-tamers",874
 "Crunchyroll","Digimon Xros Wars - The Young Hunters Who Leapt Through Time","http://www.crunchyroll.com/digimon-xros-wars-the-young-hunters-who-leapt-through-time",8624
 "Crunchyroll","Digimon Xros Wars - The Young Hunters Who Leapt Through Time","http://www.crunchyroll.com/digimon-xros-wars-the-young-hunters-who-leapt-through-time",11385
+"Crunchyroll","Dog & Scissors","http://www.crunchyroll.com/dog-scissors",17831
 "Crunchyroll","Dog Days","http://www.crunchyroll.com/dog-days",10155
 "Crunchyroll","Dororo Motion Magazine","http://www.crunchyroll.com/dororo-motion-magazine",n/a
 "Crunchyroll","Dragon Crisis","http://www.crunchyroll.com/dragon-crisis",9330
@@ -103,6 +104,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Flowers of Evil","http://www.crunchyroll.com/flowers-of-evil",16201
 "Crunchyroll","Folktales from Japan","http://www.crunchyroll.com/folktales-from-japan",13163
 "Crunchyroll","Fortune Arterial","http://www.crunchyroll.com/fortune-arterial",8536
+"Crunchyroll","Free! - Iwatobi Swim Club","http://www.crunchyroll.com/free-iwatobi-swim-club",18507
 "Crunchyroll","GA Geijutsuka Art Design Class","http://www.crunchyroll.com/ga-geijutsuka-art-design-class",5670
 "Crunchyroll","GA Geijutsuka Art Design Class","http://www.crunchyroll.com/ga-geijutsuka-art-design-class",6959
 "Crunchyroll","Gaiking: Legend of Daiku-Maryu","http://www.crunchyroll.com/gaiking-legend-of-daiku-maryu",1845
@@ -148,8 +150,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","House of Five Leaves","http://www.crunchyroll.com/house-of-five-leaves",7588
 "Crunchyroll","Humanity Has Declined","http://www.crunchyroll.com/humanity-has-declined",10357
 "Crunchyroll","Hunter x Hunter","http://www.crunchyroll.com/hunter-x-hunter",11061
-"Crunchyroll","Ikkitousen","http://www.crunchyroll.com/ikkitousen",257
-"Crunchyroll","Ikkitousen","http://www.crunchyroll.com/ikkitousen",1956
 "Crunchyroll","Interlude","http://www.crunchyroll.com/interlude",1085
 "Crunchyroll","Inu X Boku Secret Service","http://www.crunchyroll.com/inu-x-boku-secret-service",11013
 "Crunchyroll","Ishida & Asakura","http://www.crunchyroll.com/ishida-asakura",16317
@@ -288,6 +288,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Sekai Ichi Hatsukoi - World's Greatest First Love","http://www.crunchyroll.com/sekai-ichi-hatsukoi-worlds-greatest-first-love",11123
 "Crunchyroll","Sengoku Collection (Parallel World Samurai)","http://www.crunchyroll.com/sengoku-collection-parallel-world-samurai",12611
 "Crunchyroll","Senyu","http://www.crunchyroll.com/senyu",15751
+"Crunchyroll","Servant x Service","http://www.crunchyroll.com/servant-x-service",18119
 "Crunchyroll","Sherlock Hound","http://www.crunchyroll.com/sherlock-hound",1972
 "Crunchyroll","Shin Koihime Musou","http://www.crunchyroll.com/shin-koihime-musou",6112
 "Crunchyroll","Shin Koihime Musou - Otome Tairan","http://www.crunchyroll.com/shin-koihime-musou-otome-tairan",8057
@@ -546,6 +547,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Okami-san and Her Seven Companions","http://www.funimation.com/okami-san-and-her-seven-companions/episodes",7769
 "Funimation","One Piece","http://www.funimation.com/one-piece/episodes",21
 "Funimation","OniAi","http://www.funimation.com/oniai/episodes",14199
+"Funimation","Ouran High School Host Club","http://www.funimation.com/ouran-high-school-host-club/episodes",853
 "Funimation","Panty & Stocking with Garterbelt","http://www.funimation.com/panty-stocking-with-garterbelt/episodes",8795
 "Funimation","Peacemaker","http://www.funimation.com/peacemaker/episodes",161
 "Funimation","Phantom","http://www.funimation.com/phantom/episodes",5682
@@ -902,6 +904,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Fullmetal Alchemist: Brotherhood","http://www.hulu.com/fullmetal-alchemist-brotherhood",5114
 "Hulu","Fullmetal Alchemist: The Conqueror of Shamballa","http://www.hulu.com/fullmetal-alchemist-the-conqueror-of-shamballa",430
 "Hulu","Fullmetal Alchemist: The Sacred Star of Milos","http://www.hulu.com/fullmetal-alchemist-the-sacred-star-of-milos",9135
+"Hulu","Fuse: Memoirs of the Hunter Girl","http://www.hulu.com/fuse-memoirs-of-the-hunter-girl",13335
 "Hulu","Futurama","http://www.hulu.com/futurama",n/a
 "Hulu","Gad Guard","http://www.hulu.com/gad-guard",271
 "Hulu","Gaiking","http://www.hulu.com/gaiking",1845
@@ -936,6 +939,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Godkiller","http://www.hulu.com/godkiller",n/a
 "Hulu","Godzilla: The Original Animated Series","http://www.hulu.com/godzilla-the-original-animated-series",n/a
 "Hulu","Golgo 13","http://www.hulu.com/golgo-13",4039
+"Hulu","Gravitation","http://www.hulu.com/gravitation",243
 "Hulu","Guilty Crown","http://www.hulu.com/guilty-crown",10793
 "Hulu","Guin Saga","http://www.hulu.com/guin-saga",5041
 "Hulu","Gulliver's Travels","http://www.hulu.com/gullivers-travels",n/a
@@ -946,7 +950,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Gunslinger Girl: Il Teatrino","http://www.hulu.com/gunslinger-girl-il-teatrino",3231
 "Hulu","Gunslinger Girl: Il Teatrino","http://www.hulu.com/gunslinger-girl-il-teatrino",4765
 "Hulu","Gurren Lagann","http://www.hulu.com/gurren-lagann",2001
-"Hulu","Gustafer Yellowgold's Infinity Sock","http://www.hulu.com/gustafer-yellowgolds-infinity-sock",n/a
 "Hulu","Guyver: The Bioboosted Armor","http://www.hulu.com/guyver-the-bioboosted-armor",1374
 "Hulu","Haganai","http://www.hulu.com/haganai",10719
 "Hulu","Haibane Renmei","http://www.hulu.com/haibane-renmei",387
@@ -959,6 +962,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Heat Guy J","http://www.hulu.com/heat-guy-j",958
 "Hulu","Heaven's Lost Property","http://www.hulu.com/heavens-lost-property",5958
 "Hulu","Heaven's Lost Property","http://www.hulu.com/heavens-lost-property",8407
+"Hulu","Heaven's Lost Property: The Angeloid of Clockwork","http://www.hulu.com/heavens-lost-property-the-angeloid-of-clockwork",9790
 "Hulu","Heaven's Memo Pad","http://www.hulu.com/heavens-memo-pad",10568
 "Hulu","Hell Girl","http://www.hulu.com/hell-girl",1594
 "Hulu","Hell Girl","http://www.hulu.com/hell-girl",3713
@@ -972,6 +976,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Hero Tales","http://www.hulu.com/hero-tales",2772
 "Hulu","Heroic Age","http://www.hulu.com/heroic-age",2002
 "Hulu","Hetalia: Axis Powers","http://www.hulu.com/hetalia-axis-powers",5060
+"Hulu","Hetalia: Axis Powers: Paint It, White!","http://www.hulu.com/hetalia-axis-powers-paint-it-white",7337
 "Hulu","Hetalia: The Beautiful World","http://www.hulu.com/hetalia-the-beautiful-world",15195
 "Hulu","Hetalia: World Series","http://www.hulu.com/hetalia-world-series",8479
 "Hulu","Hidamari Sketch","http://www.hulu.com/hidamari-sketch",1852
@@ -1303,6 +1308,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Short Animated Films from the National Film Board of Canada","http://www.hulu.com/short-animated-films-from-the-national-film-board-of-canada",n/a
 "Hulu","Shuffle","http://www.hulu.com/shuffle",79
 "Hulu","Silver Scorpion","http://www.hulu.com/silver-scorpion",n/a
+"Hulu","Sister Princess","http://www.hulu.com/sister-princess",836
 "Hulu","Sita Sings the Blues","http://www.hulu.com/sita-sings-the-blues",n/a
 "Hulu","Sitting Ducks","http://www.hulu.com/sitting-ducks",n/a
 "Hulu","Slam Dunk","http://www.hulu.com/slam-dunk",170
@@ -1353,6 +1359,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Taisho Baseball Girls","http://www.hulu.com/taisho-baseball-girls",5141
 "Hulu","Tales of Vesperia: The First Strike","http://www.hulu.com/tales-of-vesperia-the-first-strike",6046
 "Hulu","Tari Tari","http://www.hulu.com/tari-tari",13333
+"Hulu","Tayo the Little Bus","http://www.hulu.com/tayo-the-little-bus",n/a
 "Hulu","Tayutama: Kiss on My Deity","http://www.hulu.com/tayutama-kiss-on-my-deity",5734
 "Hulu","Technotise: Edit and I","http://www.hulu.com/technotise-edit-and-i",n/a
 "Hulu","Teenage Mutant Ninja Turtles","http://www.hulu.com/teenage-mutant-ninja-turtles",n/a
@@ -1390,9 +1397,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Legend of the Legendary Heroes","http://www.hulu.com/the-legend-of-the-legendary-heroes",8086
 "Hulu","The Lionhearts","http://www.hulu.com/the-lionhearts",n/a
 "Hulu","The Mark","http://www.hulu.com/the-mark",n/a
-"Hulu","The Mr. Bill Show","http://www.hulu.com/the-mr-bill-show",n/a
 "Hulu","The Mr. Magoo Show","http://www.hulu.com/the-mr-magoo-show",n/a
-"Hulu","The New Three Stooges","http://www.hulu.com/the-new-three-stooges",n/a
 "Hulu","The New Yorker Animated Cartoons","http://www.hulu.com/the-new-yorker-animated-cartoons",n/a
 "Hulu","The Pet Girl of Sakurasou","http://www.hulu.com/the-pet-girl-of-sakurasou",13759
 "Hulu","The Prince of Tennis","http://www.hulu.com/the-prince-of-tennis",22
@@ -1437,6 +1442,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Trigun","http://www.hulu.com/trigun",6
 "Hulu","Trigun: Badlands Rumble","http://www.hulu.com/trigun-badlands-rumble",4106
 "Hulu","Trinity Blood","http://www.hulu.com/trinity-blood",27
+"Hulu","True Tears","http://www.hulu.com/true-tears",2129
 "Hulu","Tsubasa: Spring Thunder Chronicles","http://www.hulu.com/tsubasa-spring-thunder-chronicles",4938
 "Hulu","Tsubasa: Tokyo Revelations","http://www.hulu.com/tsubasa-tokyo-revelations",2685
 "Hulu","Tsuritama","http://www.hulu.com/tsuritama",12883
