@@ -9,2062 +9,2557 @@ namespace AnimeRecs.UpdateStreams.Tests
     {
         public static string TestHtml = @"
 
-<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"">
-<html xmlns=""http://www.w3.org/1999/xhtml"" xml:lang=""en"" lang=""en"" dir=""ltr"">
-<head><script type=""text/javascript"">
+
+<!DOCTYPE html>
+<html lang=""en-us"">
+<head>
+<meta charset=""utf-8""/>
+<meta http-equiv=""X-UA-Compatible"" content=""IE=edge,chrome=1"">
+<script type=""text/javascript"">
 //<![CDATA[
-try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:0,byc:0,owlid:""cf"",mirage:{responsive:1,lazy:1},oracle:0,paths:{cloudflare:""/cdn-cgi/nexp/aav=366183412/""},atok:""78431078c0a258159ad9b0733f2eee1b"",zone:""funimation.com"",rocket:""0"",apps:{}}];var a=document.createElement(""script""),b=document.getElementsByTagName(""script"")[0];a.async=!0;a.src=""//ajax.cloudflare.com/cdn-cgi/nexp/aav=4114775854/cloudflare.min.js"";b.parentNode.insertBefore(a,b);}}catch(e){};
+try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:1382128629,byc:0,owlid:""cf"",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:""/cdn-cgi/nexp/abv=1309062649/""},atok:""e0abdfdd0d740e488cfb38c89144de06"",petok:""0e98875f0f43feef28d198dce6a9a256-1382237409-1800"",zone:""funimation.com"",rocket:""a"",apps:{}}];document.write('<script type=""text/javascript"" src=""//ajax.cloudflare.com/cdn-cgi/nexp/abv=3224043168/cloudflare.min.js""><'+'\/script>')}}catch(e){};
 //]]>
 </script>
-<meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8""/>
-<title>Watch FUNimation Streaming Anime Episodes, Movies, Clips, &amp; Trailers | Watch Anime at the Official FUNimation Anime Online Community</title>
-<meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8""/>
-<link rel=""shortcut icon"" href=""http://www.funimation.com/sites/default/files/funimation2_favicon_0.ico"" type=""image/x-icon""/>
-<meta name=""description"" content=""The official site to watch online streaming anime &amp; live action J-drama episodes, movies, trailers, &amp; clips online. English dub or English subtitles.""/>
-<meta property=""fb:app_id"" content=""127623643993595""/>
-<meta property=""og:site_name"" content=""Funimation""/>
+<script type=""text/rocketscript"">var NREUMQ=NREUMQ||[];NREUMQ.push([""mark"",""firstbyte"",new Date().getTime()]);</script><link rel=""shortcut icon"" href=""http://www.funimation.com/assets/img/funimation2_favicon_0.ico"" type=""image/x-icon"">
+ 
 <meta property=""og:url"" content=""http://www.funimation.com/videos""/>
-<link type=""text/css"" rel=""stylesheet"" media=""all"" href=""http://www.funimation.com/sites/default/files/css/css_e8625ce5312a0d7a6cd182e26af72384.css""/>
-<link href=""/sites/all/themes/funimation2/css/slider.css"" type=""text/css"" rel=""stylesheet"" media=""all"">
-<style type=""text/css"">div.container{width:980px;}.two-sidebars .content-inner{margin-left:240px;margin-right:300px;}.sidebar-first .content-inner{margin-left:240px;margin-right:0;}.sidebar-last .content-inner{margin-right:300px;margin-left:0;}#sidebar-first{width:240px;margin-left:-100%;}#sidebar-last{width:300px;margin-left:-300px;}</style> <script type=""text/javascript"" src=""/sites/all/modules/jquery_update/replace/jquery.js?C""></script>
-<script type=""text/javascript"" src=""/misc/drupal.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/loginlogout/loginlogout.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/ad_flash/scripts/AC_RunActiveContent.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/ahah_page_storage/ahah_page_storage.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/fivestar/js/fivestar.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/google_analytics/googleanalytics.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/gridselect/gridselect.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/ignore_user/ignore_user.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/jquery_aop/misc/jquery.aop.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/mollom/mollom.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/nice_menus/superfish/js/superfish.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/nice_menus/superfish/js/jquery.bgiframe.min.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/nice_menus/superfish/js/jquery.hoverIntent.minified.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/nice_menus/nice_menus.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/og/og.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/panels/js/panels.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/spoiler/spoiler.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/user_relationships/user_relationships_ui/user_relationships_ui.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/_funi_custom/funi_ajax/funi_ajax.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/_funi_custom/funi_forms/funi_forms.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/_patched/meebo/meebo.admin.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/extlink/extlink.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/_patched/views/js/base.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/_patched/views/js/ajax_view.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/viewsdisplaytabs/viewsdisplaytabs.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/libraries/jquery.ui/ui/ui.core.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/libraries/jquery.ui/ui/ui.dialog.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/libraries/jquery.ui/ui/ui.resizable.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/modules/jquery_update/replace/jquery.form.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/themes/funimation2/js/at-scripts.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/themes/funimation2/js/nhgubexvex.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/themes/funimation2/js/swfobject.js?C""></script>
-<script type=""text/javascript"" src=""/sites/all/themes/funimation2/js/modalsimple.js?C""></script>
-<script type=""text/javascript"">
-<!--//--><![CDATA[//><!--
-jQuery.extend(Drupal.settings, {""basePath"":""\/"",""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}},""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""},""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""},""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""},""nice_menus_options"":{""delay"":""800"",""speed"":""1""},""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}},""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0},""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""},""views"":{""ajax_path"":[""\/views\/ajax"",""\/views\/ajax"",""\/views\/ajax"",""\/views\/ajax""],""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0},{""view_name"":""videos_landing_clips"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/clips"",""view_dom_id"":3,""pager_element"":0},{""view_name"":""videos_landing_trailers"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/trailers"",""view_dom_id"":4,""pager_element"":0},{""view_name"":""schedule_table"",""view_display_id"":""block_2"",""view_args"":"""",""view_path"":""node\/27"",""view_base_path"":null,""view_dom_id"":2,""pager_element"":0}]},""0"":{""basePath"":""\/""},""1"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""2"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""3"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""4"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""5"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""6"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""7"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""8"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""9"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""viewsdisplaytabs"":{""views"":{""videos_landing_episodes"":""videos_landing_episodes"",""videos_landing_clips"":""videos_landing_clips"",""videos_landing_trailers"":""videos_landing_trailers"",""schedule_table"":""schedule_table""},""default_display"":{""videos_landing_episodes"":""block_3"",""videos_landing_clips"":""block_3"",""videos_landing_trailers"":""block_3"",""schedule_table"":""block_2""},""view_throbber"":{""videos_landing_episodes"":1,""videos_landing_clips"":1,""videos_landing_trailers"":1,""schedule_table"":0}},""10"":{""basePath"":""\/""},""11"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""12"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""13"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""14"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""15"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""16"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""17"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""18"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""19"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""20"":{""0"":{""basePath"":""\/""},""1"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""2"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""3"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""4"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""5"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""6"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""7"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""8"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""9"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""viewsdisplaytabs"":{""views"":{""videos_landing_episodes"":""videos_landing_episodes""},""default_display"":{""videos_landing_episodes"":""block_3""},""view_throbber"":{""videos_landing_episodes"":1}}},""21"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_clips"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/clips"",""view_dom_id"":3,""pager_element"":0}]}},""22"":{""basePath"":""\/""},""23"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""24"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""25"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""26"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""27"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""28"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""29"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""30"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""31"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""32"":{""0"":{""basePath"":""\/""},""1"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""2"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""3"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""4"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""5"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""6"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""7"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""8"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""9"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""viewsdisplaytabs"":{""views"":{""videos_landing_episodes"":""videos_landing_episodes""},""default_display"":{""videos_landing_episodes"":""block_3""},""view_throbber"":{""videos_landing_episodes"":1}}},""33"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_clips"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/clips"",""view_dom_id"":3,""pager_element"":0}]}},""34"":{""0"":{""basePath"":""\/""},""1"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""2"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""3"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""4"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""5"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""6"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""7"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""8"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""9"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""10"":{""0"":{""basePath"":""\/""},""1"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F1059"",""\/logout"":""\/logout?destination=node%2F1059"",""\/user"":""\/user?destination=node%2F1059""}}},""2"":{""ahahPageStorage"":{""pageBuildId"":""page-2dee19cd5b6e20019450b8c7a9f9ff8c""}},""3"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""4"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""5"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""6"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""7"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""8"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""9"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_episodes"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/episodes"",""view_dom_id"":2,""pager_element"":0}]}},""viewsdisplaytabs"":{""views"":{""videos_landing_episodes"":""videos_landing_episodes""},""default_display"":{""videos_landing_episodes"":""block_3""},""view_throbber"":{""videos_landing_episodes"":1}}},""11"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_clips"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/clips"",""view_dom_id"":3,""pager_element"":0}]}},""viewsdisplaytabs"":{""views"":{""videos_landing_clips"":""videos_landing_clips""},""default_display"":{""videos_landing_clips"":""block_3""},""view_throbber"":{""videos_landing_clips"":1}}},""35"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""videos_landing_trailers"",""view_display_id"":""block_3"",""view_args"":"""",""view_path"":""node\/1059"",""view_base_path"":""videos\/trailers"",""view_dom_id"":4,""pager_element"":0}]}},""36"":{""basePath"":""\/""},""37"":{""loginlogout"":{""urls"":{""\/user\/login"":""\/user\/login?destination=node%2F27"",""\/logout"":""\/logout?destination=node%2F27"",""\/user"":""\/user?destination=node%2F27""}}},""38"":{""ahahPageStorage"":{""pageBuildId"":""page-06b9de3a704be3544029ba09f6e6503e""}},""39"":{""fivestar"":{""titleUser"":""Your rating: "",""titleAverage"":""Average: "",""feedbackSavingVote"":""Saving your vote..."",""feedbackVoteSaved"":""Your vote has been saved."",""feedbackDeletingVote"":""Deleting your vote..."",""feedbackVoteDeleted"":""Your vote has been deleted.""}},""40"":{""googleanalytics"":{""trackOutgoing"":1,""trackMailto"":1,""trackDownload"":1,""trackDownloadExtensions"":""7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip""}},""41"":{""nice_menus_options"":{""delay"":""800"",""speed"":""1""}},""42"":{""user_relationships_ui"":{""loadingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/loadingAnimation.gif"",""savingimage"":""\/sites\/all\/modules\/user_relationships\/user_relationships_ui\/images\/savingimage.gif"",""position"":{""position"":""absolute"",""left"":""0"",""top"":""0""}}},""43"":{""extlink"":{""extTarget"":""_blank"",""extClass"":0,""extSubdomains"":1,""extExclude"":"""",""extInclude"":"""",""extAlert"":0,""extAlertText"":""This link will take you to an external web site. We are not responsible for their content."",""mailtoClass"":0}},""44"":{""facebook_status"":{""autofocus"":false,""noautoclear"":false,""lang_prefix"":"""",""maxlength"":""140"",""refreshLink"":true,""ttype"":""textarea""}},""45"":{""quicktabs"":{""qt_1"":{""tabs"":[0,0,0]}}},""46"":{""views"":{""ajax_path"":""\/views\/ajax"",""ajaxViews"":[{""view_name"":""schedule_table"",""view_display_id"":""block_2"",""view_args"":"""",""view_path"":""node\/27"",""view_base_path"":null,""view_dom_id"":2,""pager_element"":0}]}}});
-//--><!]]>
-</script>
-<script type=""text/javascript"">
-<!--//--><![CDATA[//><!--
-window.google_analytics_uacct = ""UA-8100530-9"";
-//--><!]]>
-</script>
-<script type=""text/javascript"">
-<!--//--><![CDATA[//><!--
-window.Meebo||function(c){function p(){return[""<"",i,' onload=""var d=',g,"";d.getElementsByTagName('head')[0]."",
-			j,""(d."",h,""('script'))."",k,""='//cim.meebo.com/cim?iv="",a.v,""&"",q,""="",c[q],c[l]?
-			""&""+l+""=""+c[l]:"""",c[e]?""&""+e+""=""+c[e]:"""",""'\""></"",i,"">""].join("""")}var f=window,
-			a=f.Meebo=f.Meebo||function(){(a._=a._||[]).push(arguments)},d=document,i=""body"",
-			m=d[i],r;if(!m){r=arguments.callee;return setTimeout(function(){r(c)},100)}a.$=
-			{0:+new Date};a.T=function(u){a.$[u]=new Date-a.$[0]};a.v=5;var j=""appendChild"",
-			h=""createElement"",k=""src"",l=""lang"",q=""network"",e=""domain"",n=d[h](""div""),v=n[j](d[h](""m"")),
-			b=d[h](""iframe""),g=""document"",o,s=function(){a.T(""load"");a(""load"")};f.addEventListener?
-			f.addEventListener(""load"",s,false):f.attachEvent(""onload"",s);n.style.display=""none"";
-			m.insertBefore(n,m.firstChild).id=""meebo"";b.frameBorder=""0"";b.name=b.id=""meebo-iframe"";
-			b.allowTransparency=""true"";v[j](b);try{b.contentWindow[g].open()}catch(w){c[e]=
-			d[e];o=""javascript:var d=""+g+"".open();d.domain='""+d.domain+""';"";b[k]=o+""void(0);""}try{var t=
-			b.contentWindow[g];t.write(p());t.close()}catch(x){b[k]=o+'d.write(""'+p().replace(/""/g,
-			'\""')+'"");d.close();'}a.T(1)}({network:""funimation""});
-//--><!]]>
-</script>
-<script type=""text/javascript"">
-<!--//--><![CDATA[//><!--
-Meebo('discoverSharable', {
-});
-//--><!]]>
-</script>
-<script type=""text/javascript"" src=""/sites/all/libraries/js/jquery.nivo.slider.pack.js""></script>
-<meta name=""title"" content=""Videos""/>
-</head>
-<body class=""not-front not-logged-in page-type-page one-sidebar sidebar-last section-videos"">
- 
-<div id=""lights""></div>
-<div id=""page"" class=""container"">
-<div id=""leaderboard"" class=""clearfix"">
-<div id=""branding"">
-<div class=""logo-site-name"">
-<strong>
-<a href=""/"" rel=""home""><img style=""display:none;visibility:hidden;"" data-cfsrc=""/sites/all/themes/funimation2/css/images/funimation-logo.jpg"" alt=""Funimation logo"" title=""Home page""/><noscript><img src=""/sites/all/themes/funimation2/css/images/funimation-logo.jpg"" alt=""Funimation logo"" title=""Home page""/></noscript></a> </strong>
-</div>
-<div id=""leaderboard-region"">
-<div id=""block-menu-menu-account-menu"" class=""block accountNavBlock leaderboard-accountNavBlock clear-block"">
-<div class=""block-inner"">
-<ul class=""menu""><li class=""leaf first menu-item-log-in""><a href=""/user/login"">Log In</a></li><li class=""leaf last menu-item-join-now-""><a href=""/user/register"">Join Now!</a></li></ul>
-</div>
-</div>  
-</div>
-</div> 
-<div id=""site-slogan"">
-<img id=""slogan-img"" style=""display:none;visibility:hidden;"" data-cfsrc=""/sites/all/themes/funimation2/css/images/slogan.jpg"" alt=""YOUR ANIME VIDEO COMMUNITY""/><noscript><img id=""slogan-img"" src=""/sites/all/themes/funimation2/css/images/slogan.jpg"" alt=""YOUR ANIME VIDEO COMMUNITY""/></noscript> </div>
-</div>  
-<div id=""header"" class=""clearfix"">
-<div id=""primary"" class=""nav"">
-<div id=""search-box"" class=""subscribe-menu""><form action=""/videos"" accept-charset=""UTF-8"" method=""post"" id=""search-theme-form"">
-<div><div id=""search"" class=""container-inline"">
-<div class=""form-item"" id=""edit-search-theme-form-1-wrapper"">
-<div class=""description""></div>
-<input type=""text"" maxlength=""128"" name=""search_theme_form"" id=""edit-search-theme-form-1"" size=""15"" value=""Search..."" onblur=""if (this.value == &#039;&#039;) {this.value = &#039;Search...&#039;;}"" onfocus=""if (this.value == &#039;Search...&#039;) {this.value = &#039;&#039;;}"" class=""form-text""/>
-</div>
-<input type=""image"" name=""op"" id=""edit-submit"" class=""form-submit"" src=""/sites/all/themes/funimation/css/images/nav-prime/search-box-spacer.gif""/>
-<input type=""hidden"" name=""form_build_id"" id=""form-0fe53164a0cee0196776c475304853eb"" value=""form-0fe53164a0cee0196776c475304853eb""/>
-<input type=""hidden"" name=""form_id"" id=""edit-search-theme-form"" value=""search_theme_form""/>
-</div>
-</div></form>
-</div>  
-<ul id=""primary-menu"" class=""drop-menu nice-menu nice-menu-down subscribe-menu""> 
-<li class=""menu-path-shows"" id=""menu-152117""><a href=""/subscribe"">Subscribe Now</a></li>
-<li class=""menu-path-user"" id=""menu-3031""><a href=""/user"">Profile</a></li>
-<li class=""menu-path-shows"" id=""menu-20629""><a href=""/shows"">Shows</a></li>
-<li class=""menuparent menu-path-node-1059"" id=""menu-6498"">
-<a href=""/videos"">videos</a>
-<ul>
-<li class=""menu-path-videos-simulcast"" id=""menu-49123""><a href=""/videos/simulcast"">Simulcast</a></li>
-<li class=""menu-path-videos-episodes"" id=""menu-28774""><a href=""/videos/episodes"">Episodes</a></li>
-<li class=""menu-path-videos-movies"" id=""menu-28774""><a href=""/videos/movies"">Movies</a></li>
-<li class=""menu-path-videos-trailers"" id=""menu-28826""><a href=""/videos/trailers"">Trailers</a></li>
-<li class=""menu-path-videos-clips"" id=""menu-28825""><a href=""/videos/clips"">Clips</a></li>
-<li class=""menu-path-schedule-free-streaming-coming-soon"" id=""menu-49512""><a title=""Schedule"" href=""/schedule/subscription/coming-soon"">Schedule</a></li>
-</ul>
-</li>
- 
-<li class=""menu-path-forum"" id=""menu-27087"">
-<a href=""/forum"">Forum</a>
-</li>
-<li class=""menu-path-node-games"" id=""menu-27088"">
-<a href=""/games"">Games</a>
-</li>
-<li class=""menuparent menu-path-news"" id=""menu-25635"">
-<a href=""/news"">News</a>
-<ul>
-<li class=""menu-path-news-events"" id=""menu-23175"">
-<a href=""/news/events"">Events</a>
-</li>
-</ul>
-</li>
-<li class=""menuparent menu-path-front"" id=""menu-6501"">
-<a title=""More"" href=""/"">more</a>
-<ul>
-<li class=""menu-path-node-588"" id=""menu-6415"">
-<a href=""/tv"">tv</a>
-</li>
-<li class=""menu-path-funimationfilms.com-"" id=""menu-49735""><a href=""http://funimationfilms.com/"">Films</a></li>
-<li class=""menu-path-news-events-conventions"" id=""menu-49736""><a href=""/news/events/conventions"">Conventions</a></li>
-<li class=""menu-path-www.rightstuf.com-catalog-browse-link-tcategory,cright-stuf,vright-stuf,gdvdpub-FUNIMATION,afunimationcom"" id=""menu-49738""><a href=""http://www.rightstuf.com/catalog/browse/link/t=toc,c=zstore,a=funimationcom"" target=""_blank"">Shop</a></li>
-<li class=""menu-anime-shop-locator"" id=""menu-49736""><a href=""/anime-shop-locator"">Store Finder</a></li>
-</ul>
-</li></ul></div>
-<div id=""header-region"">
-<div id=""block-ad-2227"" class=""block skinAd adBlock header-skinAd adBlock clear-block"">
-<div class=""block-inner"">
-<div class=""html-advertisement"" id=""ad-79860""><div>
-<a href=""/shangri-la/products""><img alt="""" style=""display:none;visibility:hidden;"" data-cfsrc=""/sites/default/files/editorial_content/_site_ad_skin/shangrilaad.png"" height=""140"" width=""980"" border=""0""/><noscript><img alt="""" src=""/sites/default/files/editorial_content/_site_ad_skin/shangrilaad.png"" height=""140"" width=""980"" border=""0""/></noscript></a>
-</div>
-<script type=""text/javascript"">
-	/*<![CDATA[*/
-	$(document).ready(function() {
-	  $('body').css({""backgroundImage"" : ""url(/sites/default/files/editorial_content/_site_ad_skin/shangrilabg.jpg)"",""backgroundColor"" : ""#4267ab""}); 
-});
-	/*]]>*/
-</script></div><div class=""ad-image-counter""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/all/modules/_funi_custom/ad/serve.php?o=image&amp;a=79860"" height=""0"" width=""0"" alt=""view counter""/><noscript><img src=""http://www.funimation.com/sites/all/modules/_funi_custom/ad/serve.php?o=image&amp;a=79860"" height=""0"" width=""0"" alt=""view counter""/></noscript></div>
-</div>
-</div>  
-</div>
-</div>  
-<div id=""columns"">
-<div class=""columns-inner clearfix"">
-<div id=""content-column"">
-<div id=""mini-spotlight"" style=""text-align:center;"">
-<div id=""alternate-content"">
-<noscript>
-<span>Please enable Javascript and reload this page.</span>
-</noscript>
-</div>
-</div>
-<script type=""text/javascript"">
-		funimation.swf( '/sites/all/themes/funimation2/carousels/mini/mini-header.swf', 'mini-spotlight', '670', '270', {dir:""/sites/all/themes/funimation2/carousels/mini/"",page:""videos""} );
+<meta property=""og:site_name"" content=""Funimation"">
+<script data-rocketsrc=""http://www.funimation.com/assets/js/head.load.min.js"" type=""text/rocketscript""></script>
+<script type='text/rocketscript'>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function() {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') +
+                '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
+<script type='text/rocketscript'>
+
+            googletag.cmd.push(function() {
+                googletag.defineSlot('/82442012/funimation_big_box', [300, 250], 'div-gpt-ad-1374328695293-0').addService(googletag.pubads());
+                googletag.defineSlot('/82442012/funimation_big_box_2', [300, 250], 'div-gpt-ad-1377114716006-1').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+
+    </script>
+<script type=""text/rocketscript"">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-39725952-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
 	</script>
-<div class=""content-inner"">
-<div id=""main-content"" class=""clear-block"">
-<div id=""article-1059"" class=""article article-type-page"">
-</div>  
-<div id=""block-views-videos_landing_episodes-block_3"" class=""block blockAlone blkHead content-blockAlone blkHead clear-block"">
-<h2>Episodes</h2>
-<div class=""block-inner"">
-<div class=""view view-block-display view-videos-landing-episodes view-id-videos_landing_episodes view-display-id-block_3 view-dom-id-2  subTabs"">
+<link type=""text/css"" rel=""stylesheet"" href=""http://www.funimation.com/assets/css/styles.css""/><link type=""text/css"" rel=""stylesheet"" href=""http://www.funimation.com/assets/css/widget_show_featured_product.css""/><meta property=""og:image"" content=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7555862/2_thumbnail/EUR0001.jpg""/><meta property=""og:image"" content=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7555922/2_thumbnail/FMB0001.jpg""/><meta property=""og:image"" content=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7555978/2_thumbnail/GTC0001.jpg""/><title>Watch Anime at FUNimation - Watch Streaming Anime Episodes Free</title>
+<meta name=""description"" content=""Watch One Piece, DBZ, Hetalia anime episodes online free at FUNimation English dubbed and subtitled. Watch anime movies and trailers in HD."">
+<meta property=""og:title"" content=""Watch Anime at FUNimation - Watch Streaming Anime Episodes Free"">
+<meta property=""og:description"" content=""Watch One Piece, DBZ, Hetalia anime episodes online free at FUNimation English dubbed and subtitled. Watch anime movies and trailers in HD."">
+<meta property=""og:type"" content=""article"">
+</head>
+<body id=""video-page"">
  
-<div class=""view-header"">
-<div class=""view-all-wrapper""><a href=""/videos/episodes"">View All</a></div><div class=""viewsdisplaytabs-wrapper""><div class=""viewsdisplaytabs-group-wrapper""><div class=""item-list""><ul class=""viewsdisplaytabs-tab-group item-list""><li class=""even first""><a href=""/videos?vdt=videos_landing_episodes%7Cblock_3"" class=""viewsdisplaytabs-tab viewsdisplaytabs-active active"" rel=""block_3"">Recently Added</a></li><li class=""odd last""><a href=""/videos?vdt=videos_landing_episodes%7Cblock_5"" class=""viewsdisplaytabs-tab active"" rel=""block_5"">Top Rated</a></li></ul></div></div></div><div class=""viewsdisplaytabs-wrapper-closure""></div> </div>
-<div class=""view-content"">
-<table class=""views-view-grid"">
-<tbody>
-<tr class=""row-1 row-first"">
-<td class=""col-1"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/shangri-la/special/voice-actor-commentary/dub"" title=""Voice Actor commentary"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_10_1.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_10_1.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Dub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Shangri-la
+<div id=""unlogged-opened"">
+<header>
+<section class=""center-layout"">
+<article class=""left"">
+<span class=""white left"">Log in to watch free streaming video, <br>
+post in the forums, peep behind the <br>
+scenes exclusives, and so much more!
+</span>
+</article>
+<form action=""http://www.funimation.com/login"" method=""post"" accept-charset=""utf-8"" class=""right loginForm""> <input type=""hidden"" name=""return"" value=""http%3A%2F%2Fwww.funimation.com%2Fvideos""/>
+<input type=""hidden"" name=""logged"" value=""1""/>
+<div style=""float:left;"">
+<div class=""login_error"">
+<label for=""email_field"" class=""white"">Email</label>
+<input type=""text"" name=""email_field"" tabindex=""1""/>
 </div>
-<a href=""/shangri-la/special/voice-actor-commentary/dub"" title=""Voice Actor commentary""><span class=""episode-no"">episode - - <span class=""sub-dub"">Dub</span>
-<div class=""episode-name"">Voice Actor commentary</div>
-</span></a>
-</div>  
-</div> </span>
+<div class=""login_error"">
+<label for=""password_field"" class=""white"">Password</label>
+<input type=""password"" name=""password_field"" tabindex=""2""/>
 </div>
-</td>
-<td class=""col-2"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/binbogami-ga/episode/call-me-by-my-name/sub"" title=""Call Me By My Name"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/es_binbogami_ga_08_jpn_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/es_binbogami_ga_08_jpn_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""not-exclusive""></div>
-<div class=""Sub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Binbogami ga!
+<div class=""login_error_show"">
+<p>
+<a href=""http://www.funimation.com/loadModal/index/forgot_password_modal"" data-fancybox-width='630' class=""white fs12 fancybox fancybox.iframe"">Forgot password?</a>
+</p>
 </div>
-<a href=""/binbogami-ga/episode/call-me-by-my-name/sub"" title=""Call Me By My Name""><span class=""episode-no"">episode - 8 - <span class=""sub-dub"">Sub</span>
-<div class=""episode-name"">Call Me By My Name</div>
-</span></a>
-</div>  
-</div> </span>
 </div>
-</td>
-<td class=""col-3"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/black-lagoon/episode/eagle-hunting-and-hunting-eagles/sub"" title=""Eagle Hunting and Hunting Eagles"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/black_lagoon_05.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/black_lagoon_05.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Sub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Black Lagoon
+<span class=""left"">
+<button class=""btn-red size3 left buttonLogin"" type="""" tabindex=""3"">Log In</button>
+</span>
+</form> </section>
+</header>
 </div>
-<a href=""/black-lagoon/episode/eagle-hunting-and-hunting-eagles/sub"" title=""Eagle Hunting and Hunting Eagles""><span class=""episode-no"">episode - 5 - <span class=""sub-dub"">Sub</span>
-<div class=""episode-name"">Eagle Hunting and Hunting Eagles</div>
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-4 last"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/black-lagoon/episode/moonlit-hunting-grounds/sub"" title=""Moonlit Hunting Grounds"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/black_lagoon_06.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/black_lagoon_06.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Sub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Black Lagoon
-</div>
-<a href=""/black-lagoon/episode/moonlit-hunting-grounds/sub"" title=""Moonlit Hunting Grounds""><span class=""episode-no"">episode - 6 - <span class=""sub-dub"">Sub</span>
-<div class=""episode-name"">Moonlit Hunting Grounds</div>
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-</tr>
-<tr class=""row-2 row-last"">
-<td class=""col-1"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/shangri-la/episode/sad-thoughts-of-love-and-hate/sub"" title=""Sad Thoughts of Love and Hate"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_07_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_07_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Sub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Shangri-la
-</div>
-<a href=""/shangri-la/episode/sad-thoughts-of-love-and-hate/sub"" title=""Sad Thoughts of Love and Hate""><span class=""episode-no"">episode - 7 - <span class=""sub-dub"">Sub</span>
-<div class=""episode-name"">Sad Thoughts of Love and Hate</div>
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-2"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/shangri-la/episode/lipstick-cruelty/sub"" title=""Lipstick Cruelty"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_08_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_08_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Sub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Shangri-la
-</div>
-<a href=""/shangri-la/episode/lipstick-cruelty/sub"" title=""Lipstick Cruelty""><span class=""episode-no"">episode - 8 - <span class=""sub-dub"">Sub</span>
-<div class=""episode-name"">Lipstick Cruelty</div>
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-3"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/shakugan-no-shana/episode/respective-thoughts/dub"" title=""Respective Thoughts"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/es_shana_05_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/es_shana_05_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Dub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Shakugan no Shana
-</div>
-<a href=""/shakugan-no-shana/episode/respective-thoughts/dub"" title=""Respective Thoughts""><span class=""episode-no"">episode - 5 - <span class=""sub-dub"">Dub</span>
-<div class=""episode-name"">Respective Thoughts</div>
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-4 last"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<a href=""/shakugan-no-shana/episode/complication-activation-confrontation/dub"" title=""Complication, Activation, Confrontation"">
-<img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/es_shana_06_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/es_shana_06_0.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript>
-<div class=""exclusive""></div>
-<div class=""Dub""></div>
-</a>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Shakugan no Shana
-</div>
-<a href=""/shakugan-no-shana/episode/complication-activation-confrontation/dub"" title=""Complication, Activation, Confrontation""><span class=""episode-no"">episode - 6 - <span class=""sub-dub"">Dub</span>
-<div class=""episode-name"">Complication, Activation, Confrontation</div>
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>  
-</div>
-</div>  
-<div id=""block-views-videos_landing_clips-block_3"" class=""block blockAlone blkHead content-blockAlone blkHead clear-block"">
-<h2>Clips</h2>
-<div class=""block-inner"">
-<div class=""view view-block-display view-videos-landing-clips view-id-videos_landing_clips view-display-id-block_3 view-dom-id-3  "">
  
-<div class=""view-header"">
-<div class=""view-all-wrapper""><a href=""/videos/clips"">View All</a></div><div class=""viewsdisplaytabs-wrapper""><div class=""viewsdisplaytabs-group-wrapper""><div class=""item-list""><ul class=""viewsdisplaytabs-tab-group item-list""><li class=""even first""><a href=""/videos?vdt=videos_landing_clips%7Cblock_3"" class=""viewsdisplaytabs-tab viewsdisplaytabs-active active"" rel=""block_3"">Recently Added</a></li><li class=""odd last""><a href=""/videos?vdt=videos_landing_clips%7Cblock_5"" class=""viewsdisplaytabs-tab active"" rel=""block_5"">Top Rated</a></li></ul></div></div></div><div class=""viewsdisplaytabs-wrapper-closure""></div> </div>
-<div class=""view-content"">
-<table class=""views-view-grid"">
-<tbody>
-<tr class=""row-1 row-first"">
-<td class=""col-1"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/steinsgate_clip5.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/steinsgate_clip5.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">Steins; Gate</div>
-<a href=""/steins-gate/clip/fortune-favors-the-bold/4888391"" title=""Fortune Favors the Bold""><span class=""episode-no"">Clip - Fortune Favors the Bold</span></a>
-</div>
-</div></span>
-</div>
-</td>
-<td class=""col-2"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shiki_clip7.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shiki_clip7.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">Shiki</div>
-<a href=""/shiki/clip/clip-7/4888341"" title=""Clip 7""><span class=""episode-no"">Clip - Clip 7</span></a>
-</div>
-</div></span>
-</div>
-</td>
-<td class=""col-3"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_clip5.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/shangri-la_clip5.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">Shangri-la</div>
-<a href=""/shangri-la/clip/clip-5/4888311"" title=""Clip 5""><span class=""episode-no"">Clip - Clip 5</span></a>
-</div>
-</div></span>
-</div>
-</td>
-<td class=""col-4 last"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/to_clip4.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/to_clip4.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">TO Movie</div>
-<a href=""/to-movie/clip/clip-4/4888271"" title=""Clip 4""><span class=""episode-no"">Clip - Clip 4</span></a>
-</div>
-</div></span>
-</div>
-</td>
-</tr>
-<tr class=""row-2 row-last"">
-<td class=""col-1"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/oblivisland_clip6.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/oblivisland_clip6.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">Oblivion Island</div>
-<a href=""/oblivion-island/clip/clip-6/4888241"" title=""Clip 6""><span class=""episode-no"">Clip - Clip 6</span></a>
-</div>
-</div></span>
-</div>
-</td>
-<td class=""col-2"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/womanknight_clip6.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/womanknight_clip6.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">The Woman Knight of Mirror Lake</div>
-<a href=""/the-woman-knight-of-mirror-lake/clip/clip-6/4888171"" title=""Clip 6""><span class=""episode-no"">Clip - Clip 6</span></a>
-</div>
-</div></span>
-</div>
-</td>
-<td class=""col-3"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/ergoproxy_clip-4.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/ergoproxy_clip-4.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">Ergo Proxy</div>
-<a href=""/ergo-proxy/clip/clip-4/4888071"" title=""Clip 4""><span class=""episode-no"">Clip - Clip 4</span></a>
-</div>
-</div></span>
-</div>
-</td>
-<td class=""col-4 last"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box"">
-<div class=""video-box-thumb""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/texhnolyze_clip-4.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/texhnolyze_clip-4.png"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-default imagecache-81h_X_144w_typical_video_thumbnail_default"" width=""144"" height=""81""/></noscript></div>
-<div class=""video-box-words"">
-<div class=""show-name"">Texhnolyze</div>
-<a href=""/texhnolyze/clip/clip-4/4887971"" title=""Clip 4""><span class=""episode-no"">Clip - Clip 4</span></a>
-</div>
-</div></span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>  
-</div>
-</div>  
-<div id=""block-views-videos_landing_trailers-block_3"" class=""block blockAlone blkHead content-blockAlone blkHead clear-block"">
-<h2>Trailers</h2>
-<div class=""block-inner"">
-<div class=""view view-block-display view-videos-landing-trailers view-id-videos_landing_trailers view-display-id-block_3 view-dom-id-4  "">
+<script type=""text/rocketscript"">
+        head.ready(function(e){
+            $('.buttonLogin').on('click', function(e){
+                e.preventDefault();
+                var error = false;
+                if ($('.loginForm input[name=""email_field""]').val() == ''){
+                    alertify.error('Please enter your email to login!');
+                    error = true;
+                }
+                if ($('.loginForm input[name=""password_field""]').val() == ''){
+                    alertify.error('Please enter your password to login!');
+                    error = true;
+                }
+                if (error == false){
+                    $('.loginForm').submit();
+                }
+
+            })
+
+        })
+    </script>
+<section class=""top-main-section"">
  
-<div class=""view-header"">
-<div class=""view-all-wrapper""><a href=""/videos/trailers"">View All</a></div>
-<div class=""viewsdisplaytabs-wrapper""><div class=""viewsdisplaytabs-group-wrapper""><div class=""item-list""><ul class=""viewsdisplaytabs-tab-group item-list""><li class=""even first""><a href=""/videos?vdt=videos_landing_trailers%7Cblock_3"" class=""viewsdisplaytabs-tab viewsdisplaytabs-active active"" rel=""block_3"">Recently Added</a></li><li class=""odd last""><a href=""/videos?vdt=videos_landing_trailers%7Cblock_5"" class=""viewsdisplaytabs-tab active"" rel=""block_5"">Top Rated</a></li></ul></div></div></div><div class=""viewsdisplaytabs-wrapper-closure""></div> </div>
-<div class=""view-content"">
-<table class=""views-view-grid"">
-<tbody>
-<tr class=""row-1 row-first"">
-<td class=""col-1"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/one-piece/trailer/season-four-voyage-two/4886871"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/op_s4v2_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/op_s4v2_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> One Piece
-</div>
-<a href=""/one-piece/trailer/season-four-voyage-two/4886871"" title=""Season Four Voyage Two""><span class=""episode-no"">Trailer - Season Four Voyage Two
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-2"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/fafner/trailer/heaven-and-earth-movie/4885561"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/fafner_movie_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/fafner_movie_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Fafner
-</div>
-<a href=""/fafner/trailer/heaven-and-earth-movie/4885561"" title=""Heaven and Earth - Movie""><span class=""episode-no"">Trailer - Heaven and Earth - Movie
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-3"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/c-control/trailer/the-money-and-soul-of-possibility-complete-series-limited-edition/4885201"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/c-control_complete_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/c-control_complete_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> [C] - CONTROL
-</div>
-<a href=""/c-control/trailer/the-money-and-soul-of-possibility-complete-series-limited-edition/4885201"" title=""The Money and Soul of Possibility - Complete Series - Limited Edition""><span class=""episode-no"">Trailer - The Money and Soul of Possibility - Complete Series - Limited Edition
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-4 last"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/aria-the-scarlet-ammo/trailer/complete-series-limited-edition/4800151"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/aria_complete_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/aria_complete_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Aria the Scarlet Ammo
-</div>
-<a href=""/aria-the-scarlet-ammo/trailer/complete-series-limited-edition/4800151"" title=""Complete Series - Limited Edition""><span class=""episode-no"">Trailer - Complete Series - Limited Edition
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-</tr>
-<tr class=""row-2 row-last"">
-<td class=""col-1"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/athena-goddess-of-war/trailer/movie/4779051"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/athena_combo_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/athena_combo_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Athena: Goddess of War
-</div>
-<a href=""/athena-goddess-of-war/trailer/movie/4779051"" title=""Movie""><span class=""episode-no"">Trailer - Movie
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-2"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/strike-witches/trailer/season-two-limited-edition/4778151"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/strikewitches_s2_le_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/strikewitches_s2_le_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Strike Witches
-</div>
-<a href=""/strike-witches/trailer/season-two-limited-edition/4778151"" title=""Season Two - Limited Edition""><span class=""episode-no"">Trailer - Season Two - Limited Edition
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-3"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/hellsing-ultimate/trailer/volumes-1-4-box-set/4661271"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/hellsingult_1-4_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/hellsingult_1-4_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Hellsing Ultimate
-</div>
-<a href=""/hellsing-ultimate/trailer/volumes-1-4-box-set/4661271"" title=""Volumes 1-4 Box Set""><span class=""episode-no"">Trailer - Volumes 1-4 Box Set
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-<td class=""col-4 last"">
-<div class=""views-field-markup"">
-<span class=""field-content""><div class=""video-box clearfix"">
-<div class=""video-box-thumb""><a href=""/ga-rei-zero/trailer/complete-series-box-set/4660741"" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail imagecache-linked imagecache-81h_X_144w_typical_video_thumbnail_linked""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/gareizero_cs-combo_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/><noscript><img src=""http://www.funimation.com/sites/default/files/imagecache/81h_X_144w_typical_video_thumbnail/gareizero_cs-combo_cs.jpg"" alt="""" title="""" class=""imagecache imagecache-81h_X_144w_typical_video_thumbnail"" width=""144"" height=""81""/></noscript></a></div>
-<div class=""video-box-words clearfix"">
-<div class=""show-name""> Ga-Rei-Zero
-</div>
-<a href=""/ga-rei-zero/trailer/complete-series-box-set/4660741"" title=""Complete Series Box Set""><span class=""episode-no"">Trailer - Complete Series Box Set
-</span></a>
-</div>  
-</div> </span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>  
-</div>
-</div>  
-</div>
-<div id=""content-bottom"">
-<div id=""block-views-schedule_table-block_2"" class=""block blockAlone blkHead content-bottom-blockAlone blkHead clear-block"">
-<h2>Schedule</h2>
-<div class=""block-inner"">
-<div class=""view view-block-display view-schedule-table view-id-schedule_table view-display-id-block_2 view-dom-id-2  contentTable"">
- 
-<div class=""view-header"">
-<div class=""viewsdisplaytabs-wrapper""><div class=""viewsdisplaytabs-group-wrapper""><div class=""item-list""><ul class=""viewsdisplaytabs-tab-group item-list""><li class=""even first""><a href=""/home?vdt=schedule_table%7Cblock_2"" class=""viewsdisplaytabs-tab viewsdisplaytabs-active active"" rel=""block_2"">DVD and Blu-ray</a></li><li class=""odd""><a href=""/home?vdt=schedule_table%7Cblock_3"" class=""viewsdisplaytabs-tab active"" rel=""block_3"">Free Streaming</a></li><li class=""even last""><a href=""/home?vdt=schedule_table%7Cblock_4"" class=""viewsdisplaytabs-tab active"" rel=""block_4"">Subscription</a></li></ul></div></div></div><div class=""viewsdisplaytabs-wrapper-closure""></div> </div>
-<div class=""view-content"">
-<table class=""views-table cols-7"">
-<thead>
-<tr>
-<th class=""views-field views-field-title"">
-Title </th>
-<th class=""views-field views-field-field-episode-range-value"">
-Episodes </th>
-<th class=""views-field views-field-field-maturity-rating-value"">
-Rating </th>
-<th class=""views-field views-field-phpcode-2"">
-Format </th>
-<th class=""views-field views-field-field-release-date-value"">
-Date </th>
-<th class=""views-field views-field-phpcode"">
-Trailer </th>
-<th class=""views-field views-field-phpcode-1"">
-Buy </th>
-</tr>
-</thead>
-<tbody>
-<tr class=""odd views-row-first"">
-<td class=""views-field views-field-title"">
-<a href=""/ergo-proxy/products/dvd/box-set-classics""><a href=""/ergo-proxy"">Ergo Proxy</a> - Box Set - Classics</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-23 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-MA </td>
-<td class=""views-field views-field-phpcode-2"">
-DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-08/28/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/3153831"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun08663,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""even"">
-<td class=""views-field views-field-title"">
-<a href=""/texhnolyze/products/dvd/complete-box-set-classics""><a href=""/texhnolyze"">Texhnolyze</a> - Complete Box Set - Classics</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-22 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-MA </td>
-<td class=""views-field views-field-phpcode-2"">
-DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-08/28/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/3768661"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun09391,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""odd"">
-<td class=""views-field views-field-title"">
-<a href=""/freezing/products/bd-dvd/complete-series-limited-edition""><a href=""/freezing"">Freezing</a> - Complete Series - Limited Edition</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-12 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-MA </td>
-<td class=""views-field views-field-phpcode-2"">
-BD+DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-08/28/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/3884141"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun09515,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""even"">
-<td class=""views-field views-field-title"">
-<a href=""/kaleido-star/products/dvd/season-one-save""><a href=""/kaleido-star"">Kaleido Star</a> - Season One (S.A.V.E)</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-26 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-14 </td>
-<td class=""views-field views-field-phpcode-2"">
-DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-08/28/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/3886401"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun06772,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""odd"">
-<td class=""views-field views-field-title"">
-<a href=""/haibane-renmei/products/dvd/complete-box-set-classics""><a href=""/haibane-renmei"">Haibane Renmei</a> - Complete Box Set - Classics</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-13 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-14 </td>
-<td class=""views-field views-field-phpcode-2"">
-DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-09/04/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/3883181"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun09010,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""even"">
-<td class=""views-field views-field-title"">
-<a href=""/spice-and-wolf/products/bd-dvd/complete-series""><a href=""/spice-and-wolf"">Spice and Wolf</a> - Complete Series</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-26 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-14 </td>
-<td class=""views-field views-field-phpcode-2"">
-BD+DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-09/11/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/4105631"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun01185,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""odd"">
-<td class=""views-field views-field-title"">
-<a href=""/dragon-ball-z-kai/products/dvd/season-three""><a href=""/dragon-ball-z-kai"">Dragon Ball Z Kai</a> - Season Three</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-53-77 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-PG </td>
-<td class=""views-field views-field-phpcode-2"">
-DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-09/11/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""no-trailer""></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun08798,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""even"">
-<td class=""views-field views-field-title"">
-<a href=""/dragon-ball-z-kai/products/blu-ray/season-three""><a href=""/dragon-ball-z-kai"">Dragon Ball Z Kai</a> - Season Three</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-53-77 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-PG </td>
-<td class=""views-field views-field-phpcode-2"">
-Blu-ray </td>
-<td class=""views-field views-field-field-release-date-value"">
-09/11/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""no-trailer""></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun08799,a=funimationcom"">Buy</a></div> </td>
-</tr>
-<tr class=""odd views-row-last"">
-<td class=""views-field views-field-title"">
-<a href=""/tower-of-druaga/products/dvd/box-set-save""><a href=""/tower-of-druaga"">Tower of Druaga</a> - Box Set (S.A.V.E)</a> </td>
-<td class=""views-field views-field-field-episode-range-value"">
-1-12 </td>
-<td class=""views-field views-field-field-maturity-rating-value"">
-TV-14 </td>
-<td class=""views-field views-field-phpcode-2"">
-DVD </td>
-<td class=""views-field views-field-field-release-date-value"">
-09/18/12 </td>
-<td class=""views-field views-field-phpcode"">
-<div class=""with-trailer""><a href=""/node/4335211"">View Trailer</a></div> </td>
-<td class=""views-field views-field-phpcode-1"">
-<div class=""with-buy""><a href=""http://www.rightstuf.com/catalog/browse/link/t=item,c=right-stuf,v=right-stuf,i=fun01203,a=funimationcom"">Buy</a></div> </td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class=""view-footer"">
-<p><a class=""more-link"" href=""/schedule/dvd-blu-ray/coming-soon"" title=""Full Schedule"">See Full Schedule</a></p>
-</div>
-</div>  
-</div>
-</div>  
-</div>
-</div>  
-</div>  
-<div id=""sidebar-last"" class=""sidebar""><div id=""block-ad-2228"" class=""block adBlock sidebar-last-adBlock clear-block"">
-<div class=""block-inner"">
-<div class=""html-advertisement"" id=""ad-4802281""><object classid=""clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"" width=""300"" height=""250"" codebase=""http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"">
-<param name=""allowscriptaccess"" value=""always"">
-<param name=""src"" value=""http://www.funimation.com/sites/default/files/editorial_content/banners/haibane_8_28/3002.swf"">
-<embed type=""application/x-shockwave-flash"" width=""300"" height=""250"" src=""http://www.funimation.com/sites/default/files/editorial_content/banners/haibane_8_28/3002.swf"" allowscriptaccess=""always""></embed>
-</object>
-</div><div class=""ad-image-counter""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/all/modules/_funi_custom/ad/serve.php?o=image&amp;a=4802281"" height=""0"" width=""0"" alt=""view counter""/><noscript><img src=""http://www.funimation.com/sites/all/modules/_funi_custom/ad/serve.php?o=image&amp;a=4802281"" height=""0"" width=""0"" alt=""view counter""/></noscript></div>
-</div>
-</div>  
-<div id=""block-block-5"" class=""sharethis block blockAlone blkHead sidebar-last-blockAlone blkHead clearfix"">
-<h2 class=""title block-title"">Share This</h2>
-<div class=""block-inner clearfix"">
-<ul id=""share-this"">
-<li id=""facebook"">
-<div id=""fb-root""></div>
-<script src=""http://connect.facebook.net/en_US/all.js#appId=127623643993595&amp;xfbml=1""></script>
-<fb:like href="""" send=""false"" layout=""box_count"" width=""450"" show_faces=""false"" font=""""></fb:like>
+<div id=""video_top_slider""></div>
+<ul class=""coverflow-control-nav center"">
+</ul>
+<ul class=""coverflow-direction-nav"">
+<li class=""left"">
+<a href=""javascript:;"" onClick=""coverflow().prev();"" class=""previous"">Previous</a>
 </li>
-<li id=""twitter"">
-<a href=""http://twitter.com/share"" class=""twitter-share-button"" data-count=""vertical"" data-url="""">Tweet</a><script type=""text/javascript"" src=""http://platform.twitter.com/widgets.js""></script>
-</li>
-<li id=""sharethis"">
-<span class='st_sharethis_vcount' displayText='Share'></span><script type=""text/javascript"">var switchTo5x=true;</script><script type=""text/javascript"" src=""http://w.sharethis.com/button/buttons.js""></script><script type=""text/javascript"">stLight.options({publisher:'89040fad-5a92-41fb-bd34-09eb891ab3a7'});</script>
-</li>
-<li id=""gplus"">
- 
-<g:plusone size=""tall""></g:plusone>
- 
-<script type=""text/javascript"">
-				  (function() {
-				    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-				    po.src = 'https://apis.google.com/js/plusone.js';
-				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-				  })();
-				</script>
+<li class=""right"">
+<a href=""javascript:;"" onClick=""coverflow().next();"" class=""next"">Next</a>
 </li>
 </ul>
-</div>
-</div> <div id=""block-block-26"" class=""block blockAlone blkHead sidebar-last-blockAlone blkHead clear-block"">
-<h2>Simulcast Schedule</h2>
-<div class=""block-inner"">
-<div class=""simulcast-group"">
-<span class=""simulcast-title"">Mondays</span><br/>
-<span class=""simulcast-show""><a href=""/kingdom"">Kingdom</a></span><br/>
-11:00AM EST<br/>
-<span class=""simulcast-show""><a href=""/aesthetica-of-a-rogue-hero"">Aesthetica of a Rogue Hero</a></span><br/>
-11:30PM EST</div>
-<br/>
-<div class=""simulcast-group"">
-<span class=""simulcast-title"">Wednesdays</span><br/>
-<span class=""simulcast-show""><a href=""/toriko"">Toriko</a></span><br/></div>
-<br/>
-<div class=""simulcast-group"">
-<span class=""simulcast-title"">Thursdays</span><br/>
-<span class=""simulcast-show""><a href=""/eureka-seven-astral-ocean"">Eureka Seven: Astral Ocean</a></span><br/>
-11:00AM EST</div>
-<br/>
-<div class=""simulcast-group"">
-<span class=""simulcast-title"">Fridays</span><br/>
-<span class=""simulcast-show""><a href=""/jormungand"">Jormungand</a></span><br/>
-11:30AM EST<br/>
-<span class=""simulcast-show""><a href=""/binbogami-ga"">Binbogami ga!</a></span><br/>
-12:50PM EST</div>
-<br/>
-<div class=""simulcast-group last"">
-<span class=""simulcast-title"">Saturdays</span><br/>
-<span class=""simulcast-show""><a href=""/one-piece"">One Piece</a></span><br/>
-10:00PM EST</div>
-</div>
-</div>  
-<div id=""block-views-watch_full_episodes-block_1"" class=""block blockAlone blkHead sidebar-last-blockAlone blkHead clear-block"">
-<h2>Watch Full Episodes</h2>
-<div class=""block-inner"">
-<div class=""view view-block-display view-watch-full-episodes view-id-watch_full_episodes view-display-id-block_1 view-dom-id-3  alternatingList"">
- 
-<div class=""view-content"">
-<div class=""item-list"">
-<ul>
-<li class=""views-row-item views-row views-row-1 views-row-odd views-row-first"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/hackquantum/episodes"">.hack//Quantum</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-2 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/009-1/episodes"">009-1</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-3 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/a-certain-magical-index/episodes"">A Certain Magical Index</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-4 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/aesthetica-of-a-rogue-hero/episodes"">Aesthetica of a Rogue Hero</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-5 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ah-my-goddess-flights-of-fancy/episodes"">Ah! My Goddess: Flights of Fancy</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-6 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ai-yori-aoshi/episodes"">Ai Yori Aoshi</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-7 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/air/episodes"">Air</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-8 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/air-gear/episodes"">Air Gear</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-9 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/air-master/episodes"">Air Master</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-10 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/aquarion/episodes"">Aquarion</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-11 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/aria-the-scarlet-ammo/episodes"">Aria the Scarlet Ammo</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-12 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/armitage-iii/episodes"">Armitage III</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-13 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/b-gata-h-kei-yamada-s-first-time/episodes"">B Gata H Kei Yamada’s First Time</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-14 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/baccano/episodes"">Baccano!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-15 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/baka-and-test-summon-the-beasts/episodes"">Baka and Test - Summon the Beasts -</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-16 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/baldr-force-exe/episodes"">Baldr Force EXE</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-17 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/bamboo-blade/episodes"">Bamboo Blade</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-18 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/basilisk/episodes"">Basilisk</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-19 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/big-windup/episodes"">Big Windup!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-20 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/binbogami-ga/episodes"">Binbogami ga!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-21 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/birdy-the-mighty-decode/episodes"">Birdy the Mighty: Decode</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-22 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/black-blood-brothers/episodes"">Black Blood Brothers</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-23 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/black-butler/episodes"">Black Butler</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-24 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/black-cat/episodes"">Black Cat</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-25 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/blassreiter/episodes"">Blassreiter</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-26 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/blessing-of-the-campanella/episodes"">Blessing of the Campanella</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-27 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/blue-gender/episodes"">Blue Gender</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-28 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/bubblegum-crisis-tokyo-2040/episodes"">Bubblegum Crisis: Tokyo 2040</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-29 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/burst-angel/episodes"">Burst Angel</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-30 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/c3-anime/episodes"">C3 Anime</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-31 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/captain-harlock/episodes"">Captain Harlock</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-32 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/casshern-sins/episodes"">Casshern Sins</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-33 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/cat-planet-cuties/episodes"">Cat Planet Cuties</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-34 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/chaos-head/episodes"">Chaos; HEAd</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-35 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/chobits/episodes"">Chobits</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-36 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/chrome-shelled-regios/episodes"">Chrome Shelled Regios</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-37 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/chrono-crusade/episodes"">Chrono Crusade</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-38 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/claymore/episodes"">Claymore</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-39 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/comic-party-revolution/episodes"">Comic Party Revolution</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-40 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/corpse-princess-shikabane-hime/episodes"">Corpse Princess: Shikabane Hime</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-41 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/coyote-ragtime-show/episodes"">Coyote Ragtime Show</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-42 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/dgray-man/episodes"">D.Gray-man</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-43 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/dance-in-the-vampire-bund/episodes"">Dance in the Vampire Bund</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-44 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/darker-than-black/episodes"">Darker Than Black</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-45 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/deadman-wonderland/episodes"">Deadman Wonderland</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-46 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/desert-punk/episodes"">Desert Punk</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-47 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/detective-opera-milky-holmes-2/episodes"">Detective Opera Milky Holmes 2</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-48 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/devil-may-cry/episodes"">Devil May Cry</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-49 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/digimon-adventure-02/episodes"">Digimon Adventure 02</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-50 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/digimon-tamers/episodes"">Digimon Tamers</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-51 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/disgaea/episodes"">Disgaea</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-52 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/dragon-ball-z/episodes"">Dragon Ball Z</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-53 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/dragonaut-the-resonance/episodes"">Dragonaut -THE RESONANCE-</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-54 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/eden-of-the-east/episodes"">Eden of the East</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-55 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/el-cazador-de-la-bruja/episodes"">El Cazador de la Bruja</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-56 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ergo-proxy/episodes"">Ergo Proxy</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-57 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/eureka-seven-astral-ocean/episodes"">Eureka Seven: Astral Ocean</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-58 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/excel-saga/episodes"">Excel Saga</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-59 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fafner/episodes"">Fafner</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-60 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fairy-tail/episodes"">Fairy Tail</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-61 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fist-of-the-north-star/episodes"">Fist of the North Star</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-62 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/flcl/episodes"">FLCL</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-63 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fractale/episodes"">Fractale</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-64 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/freezing/episodes"">Freezing</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-65 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fruits-basket/episodes"">Fruits Basket</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-66 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/full-metal-panic/episodes"">Full Metal Panic!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-67 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/full-metal-panic-the-second-raid/episodes"">Full Metal Panic! The Second Raid</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-68 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/full-metal-panic-fumoffu/episodes"">Full Metal Panic? Fumoffu</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-69 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fullmetal-alchemist/episodes"">Fullmetal Alchemist</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-70 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/fullmetal-alchemist-brotherhood/episodes"">Fullmetal Alchemist: Brotherhood</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-71 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ga-rei-zero/episodes"">Ga-Rei-Zero</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-72 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/gad-guard/episodes"">Gad Guard</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-73 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/gaiking/episodes"">Gaiking</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-74 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/galaxy-express-999/episodes"">Galaxy Express 999</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-75 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ghost-hunt/episodes"">Ghost Hunt</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-76 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/girls-bravo/episodes"">Girls Bravo</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-77 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/glass-fleet/episodes"">Glass Fleet</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-78 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/guilty-crown/episodes"">Guilty Crown</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-79 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/gun-x-sword/episodes"">Gun X Sword</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-80 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/gungrave/episodes"">Gungrave</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-81 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/gunslinger-girl/episodes"">Gunslinger Girl</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-82 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/gunslinger-girl-il-teatrino/episodes"">Gunslinger Girl IL Teatrino</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-83 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/guyver-the-bioboosted-armor/episodes"">Guyver: The Bioboosted Armor</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-84 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/haganai/episodes"">Haganai</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-85 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/haibane-renmei/episodes"">Haibane Renmei</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-86 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/heat-guy-j/episodes"">Heat Guy J</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-87 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/heavens-lost-property/episodes"">Heaven&#039;s Lost Property</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-88 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/hell-girl/episodes"">Hell Girl</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-89 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/hellsing/episodes"">Hellsing</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-90 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/hellsing-ultimate/episodes"">Hellsing Ultimate</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-91 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/hero-tales/episodes"">Hero Tales</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-92 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/heroic-age/episodes"">Heroic Age</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-93 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/hetalia/episodes"">Hetalia</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-94 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/high-school-dxd/episodes"">High School DxD</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-95 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/house-of-five-leaves/episodes"">House of Five Leaves</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-96 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/initial-d/episodes"">Initial D</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-97 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/interlude/episodes"">Interlude</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-98 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/is-this-a-zombie/episodes"">Is this a Zombie?</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-99 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/jing-king-of-bandits/episodes"">Jing King of Bandits</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-100 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/jinki-extend/episodes"">Jinki: Extend</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-101 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/jormungand/episodes"">Jormungand</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-102 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/jyu-oh-sei/episodes"">Jyu-Oh-Sei</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-103 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kaleido-star/episodes"">Kaleido Star</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-104 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kanon/episodes"">Kanon</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-105 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kaze-no-stigma/episodes"">Kaze No Stigma</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-106 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kenichi-the-mightiest-disciple/episodes"">Kenichi The Mightiest Disciple</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-107 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kiddy-grade/episodes"">Kiddy Grade</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-108 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kingdom/episodes"">Kingdom</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-109 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/kurau-phantom-memory/episodes"">Kurau Phantom Memory</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-110 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/last-exile/episodes"">Last Exile</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-111 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/lastexile-fam-the-silver-wing/episodes"">LASTEXILE -Fam, The Silver Wing-</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-112 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/le-chevalier-deon/episodes"">Le Chevalier D&#039;Eon</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-113 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/level-e/episodes"">Level E</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-114 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/linebarrels-of-iron/episodes"">Linebarrels of Iron</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-115 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/lupin-the-third-fujiko-mine/episodes"">Lupin the Third, Fujiko Mine</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-116 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/magikano/episodes"">Magikano</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-117 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/maken-ki-battling-venus/episodes"">Maken-ki! Battling Venus</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-118 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/moeyo-ken/episodes"">Moeyo Ken</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-119 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/mongolian-chop-squad/episodes"">Mongolian Chop Squad</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-120 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/moonphase/episodes"">MoonPhase</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-121 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/moyashimon-tales-of-agriculture/episodes"">Moyashimon: Tales of Agriculture</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-122 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/mr-stain-on-junk-alley/episodes"">Mr. Stain on Junk Alley</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-123 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/murder-princess/episodes"">Murder Princess</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-124 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/mushi-shi/episodes"">Mushi-Shi</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-125 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/my-bride-is-a-mermaid/episodes"">My Bride is a Mermaid</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-126 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/my-santa/episodes"">My Santa!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-127 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/nabari-no-ou/episodes"">Nabari no Ou</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-128 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/negima/episodes"">Negima!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-129 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/negima-magister-negi-magi/episodes"">Negima!? Magister Negi Magi</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-130 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/nerima-daikon-brothers/episodes"">Nerima Daikon Brothers</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-131 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/noir/episodes"">Noir</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-132 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/oh-edo-rocket/episodes"">Oh! Edo Rocket</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-133 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/okami-san-and-her-seven-companions/episodes"">Okami-san and Her Seven Companions</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-134 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/one-piece/episodes"">One Piece</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-135 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ouran-high-school-host-club/episodes"">Ouran High School Host Club</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-136 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/pani-poni-dash/episodes"">Pani Poni Dash!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-137 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/panty-stocking-with-garterbelt/episodes"">Panty &amp; Stocking with Garterbelt</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-138 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/peacemaker/episodes"">Peacemaker</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-139 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/phantom/episodes"">Phantom</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-140 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/pretear/episodes"">Pretear</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-141 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/pretty-cure/episodes"">Pretty Cure</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-142 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/princess-jellyfish/episodes"">Princess Jellyfish</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-143 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/project-blue-earth-sos/episodes"">Project Blue Earth SOS</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-144 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/pumpkin-scissors/episodes"">Pumpkin Scissors</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-145 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ragnarok-the-animation/episodes"">Ragnarok - The Animation</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-146 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/rainbow/episodes"">Rainbow</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-147 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/red-garden/episodes"">Red Garden</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-148 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/rideback/episodes"">RideBack</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-149 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/romeo-x-juliet/episodes"">Romeo X Juliet</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-150 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/rosario-vampire/episodes"">Rosario + Vampire</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-151 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/rumbling-hearts/episodes"">Rumbling Hearts</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-152 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/samurai-7/episodes"">Samurai 7</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-153 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/samurai-champloo/episodes"">Samurai Champloo</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-154 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/sands-of-destruction/episodes"">Sands of Destruction</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-155 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/sankarea/episodes"">Sankarea</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-156 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/sasami-magical-girls-club/episodes"">Sasami Magical Girls Club</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-157 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/save-me-lollipop/episodes"">Save Me! Lollipop</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-158 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/school-rumble/episodes"">School Rumble</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-159 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/sekirei/episodes"">Sekirei</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-160 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/sengoku-basara-samurai-kings/episodes"">Sengoku BASARA: Samurai Kings</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-161 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/serial-experiments-lain/episodes"">Serial Experiments Lain</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-162 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/sgt-frog/episodes"">Sgt. Frog</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-163 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shakugan-no-shana/episodes"">Shakugan no Shana</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-164 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shangri-la/episodes"">Shangri-la</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-165 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shattered-angels/episodes"">Shattered Angels</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-166 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shigurui-death-frenzy/episodes"">Shigurui: Death Frenzy</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-167 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shiki/episodes"">Shiki</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-168 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shin-chan/episodes"">Shin chan</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-169 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shuffle/episodes"">Shuffle!</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-170 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/slam-dunk/episodes"">Slam Dunk</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-171 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/slayers/episodes"">Slayers</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-172 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/slayers-revolution/episodes"">Slayers Revolution</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-173 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/soul-eater/episodes"">Soul Eater</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-174 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/speed-grapher/episodes"">Speed Grapher</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-175 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/spice-and-wolf/episodes"">Spice and Wolf</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-176 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/strain-strategic-armored-infantry/episodes"">STRAIN: Strategic Armored Infantry</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-177 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/strike-witches/episodes"">Strike Witches</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-178 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/suzuka/episodes"">Suzuka</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-179 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/symphogear/episodes"">Symphogear</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-180 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/tenchi-muyo-gxp/episodes"">Tenchi Muyo! GXP</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-181 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/tenchi-muyo-ryo-ohki/episodes"">Tenchi Muyo! Ryo Ohki</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-182 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/texhnolyze/episodes"">Texhnolyze</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-183 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-count-of-monte-cristo-gankutsuou/episodes"">The Count of Monte Cristo: Gankutsuou</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-184 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-future-diary/episodes"">The Future Diary</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-185 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-galaxy-railways/episodes"">The Galaxy Railways</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-186 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-legend-of-legendary-heroes/episodes"">The Legend of Legendary Heroes</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-187 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-sacred-blacksmith/episodes"">The Sacred Blacksmith</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-188 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-tatami-galaxy/episodes"">The Tatami Galaxy</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-189 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/the-wallflower/episodes"">The Wallflower</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-190 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/to-movie/episodes"">TO Movie</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-191 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/tokyo-majin/episodes"">Tokyo Majin</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-192 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/toriko/episodes"">Toriko</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-193 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/tower-of-druaga/episodes"">Tower of Druaga</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-194 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/trigun/episodes"">Trigun</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-195 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/trinity-blood/episodes"">Trinity Blood</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-196 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/tsubasa-reservoir-chronicle/episodes"">Tsubasa RESERVoir CHRoNiCLE</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-197 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/ufo-ultramaiden-valkyrie/episodes"">UFO Ultramaiden Valkyrie</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-198 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/utawarerumono/episodes"">Utawarerumono</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-199 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/vandread/episodes"">Vandread</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-200 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/venus-versus-virus/episodes"">Venus Versus Virus</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-201 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/we-without-wings/episodes"">We Without Wings</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-202 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/welcome-to-the-n-h-k/episodes"">Welcome to the N-H-K</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-203 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/witchblade/episodes"">Witchblade</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-204 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/x/episodes"">X</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-205 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/xenosaga/episodes"">Xenosaga</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-206 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/xxxholic/episodes"">xxxHOLiC</a></span>
-</div>
-</li>
-<li class=""views-row-item views-row views-row-207 views-row-odd views-row-last"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/c-control/episodes"">[C] - CONTROL</a></span>
-</div>
+ </section>
+<nav id=""main-nav-module"">
+<section class=""header"">
+<a class=""logo left"" href=""http://www.funimation.com/""></a>
+<span class=""main-tagline left bold"">YOU SHOULD BE WATCHING</span>
+<article class=""social-lnks left"">
+<a href=""http://www.facebook.com/funimation"" target=""_blank"" class=""left""><span class=""social foundicon-facebook""></span></a>
+<a href=""http://www.twitter.com/funimation"" target=""_blank"" class=""left""><span class=""social foundicon-twitter""></span></a>
+<a href=""https://www.youtube.com/funimation"" target=""_blank"" class=""left""><span class=""social foundicon-youtube""></span></a>
+</article>
+<a href=""#"" id=""login-btn"" class=""login-btn t-center bold white"">Log In</a>
+<a href=""http://www.funimation.com/join_now"" class=""btn-red size3 right"">Join Now</a>
+</section> <section class=""main-navigation-1"">
+<ul class=""main-nav bold left"">
+<li>
+<a href=""http://www.funimation.com/shows"" class=""white "">Shows</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos"" class=""white current"">Videos</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/schedule"" class=""white "">Schedule</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/blog"" class=""white "">Blog</a>
+</li>
+<li>
+<a href=""http://shop.funimation.com/Shop/ShopMain.html"" class=""white "">Shop</a>
 </li>
 </ul>
-<div class=""clear-block""></div>
-</div>  
-</div>
-</div>  
-</div>
-</div>  
-<div id=""block-block-29"" class=""block blockAlone blkHead alternatingList padMoreLink sidebar-last-blockAlone blkHead alternatingList padMoreLink clear-block"">
-<div class=""block-inner"">
-<div id=""block-views-e292f6bc64606ed15c348fcee13486f4"">
-<h2 class=""title block-title"">
-Forums</h2>
-<div class=""view view-block-display view-advanced-forum-active-topics view-id-advanced_forum_active_topics view-display-id-block_1 view-dom-id-6  "">
- 
-<div class=""view-header"">
-<div class=""more-link""><a href=""/forum"">View All</a></div>
-</div>
-<div class=""view-content"">
-<div class=""item-list"">
-<ul>
-<li class=""views-row-item views-row views-row-1 views-row-odd views-row-first"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/meaty-competition-forum/forum/funimation-social/meaty-competition-forum/2012-best-voice-actor"" title=""[teaser]"">2012 Best Voice Actor Tournament Discussion Thread</a></span>
-</div>
-<div class=""views-field-timestamp"">
-<span class=""field-content""></span>
-</div>
-<div class=""views-field-name-1"">
-<span class=""field-content"">Posted by: <span class=""name""><a href=""/user/gyt-kaliba"" title=""View user profile."">Gyt Kaliba</a> </span></span>
-</div>
-<div class=""views-field-created"">
-<span class=""field-content"">Date: 7/1/2012</span>
-</div>
+<a href=""http://shop.funimation.com/Shop/cart.ssp"" class=""icon-shopping-cart right""><span class=""fs12 condensed bold""></span></a>
+<form class=""search-box right"" action=""http://www.funimation.com/search"" method=""get"">
+<input class=""field left"" type=""text"" name=""q"" value="""" placeholder=""Search""/>
+<input class=""button right"" type=""submit"" value=""Search""/>
+</form>
+<ul class=""basic-nav bold right"">
+<li>
+<a href=""http://www.funimation.com/apps/anime"" class="""">Apps</a>
 </li>
-<li class=""views-row-item views-row views-row-2 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/role-play/forum/general-forum/role-play/highschool-rp/3597261"" title=""[teaser]"">Highschool RP</a></span>
-</div>
-<div class=""views-field-timestamp"">
-<span class=""field-content""></span>
-</div>
-<div class=""views-field-name-1"">
-<span class=""field-content"">Posted by: <span class=""name""><a href=""/user/hellbound428"" title=""View user profile."">Hellbound428</a> </span></span>
-</div>
-<div class=""views-field-created"">
-<span class=""field-content"">Date: 6/1/2012</span>
-</div>
+<li>
+<a href=""http://www.funimation.com/forum/forum.php""> Forum</a>
 </li>
-<li class=""views-row-item views-row views-row-3 views-row-odd"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/role-play/forum/general-forum/role-play/high-school-of-loverp/4874371"" title=""[teaser]"">High- school of love(RP)</a></span>
-</div>
-<div class=""views-field-timestamp"">
-<span class=""field-content""></span>
-</div>
-<div class=""views-field-name-1"">
-<span class=""field-content"">Posted by: <span class=""name""><a href=""/user/renybaby"" title=""View user profile."">Renybaby</a> </span></span>
-</div>
-<div class=""views-field-created"">
-<span class=""field-content"">Date: 8/20/2012</span>
-</div>
+<li>
+<a href=""http://www.funimation.com/games/anime"" class="""">Games</a>
 </li>
-<li class=""views-row-item views-row views-row-4 views-row-even"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/shangri-la/forum/funimation-shows/and-more/shangri-la/site-skin/4908951"" title=""[teaser]"">Site skin</a></span>
-</div>
-<div class=""views-field-timestamp"">
-<span class=""field-content""></span>
-</div>
-<div class=""views-field-name-1"">
-<span class=""field-content"">Posted by: <span class=""name""><a href=""/user/shiroi-hane"" title=""View user profile."">Shiroi Hane</a> </span></span>
-</div>
-<div class=""views-field-created"">
-<span class=""field-content"">Date: 8/24/2012</span>
-</div>
+<li>
+<a href=""http://www.funimation.com/tv/anime"" class="""">TV</a>
 </li>
-<li class=""views-row-item views-row views-row-5 views-row-odd views-row-last"">
-<div class=""views-field-title"">
-<span class=""field-content""><a href=""/role-play/forum/general-forum/role-play/a-world-without-hope-is-no-world-worth-living-rp/4694151"" title=""[teaser]"">a world without hope is no world worth living RP</a></span>
-</div>
-<div class=""views-field-timestamp"">
-<span class=""field-content""></span>
-</div>
-<div class=""views-field-name-1"">
-<span class=""field-content"">Posted by: <span class=""name""><a href=""/user/nightmare-and-souledge"" title=""View user profile."">Nightmare and s...</a> </span></span>
-</div>
-<div class=""views-field-created"">
-<span class=""field-content"">Date: 8/9/2012</span>
-</div>
+<li>
+<a class=""subscribe-lnk "" href=""http://www.funimation.com/subscribe/anime"">Subscribe</a>
 </li>
 </ul>
-<div class=""clear-block""></div>
-</div>  
+</section>
+<div class=""main-navigation-2"">
+<section class=""navigation_videos clearfix"">
+<span id=""arrow""></span>
+<ul class=""main-nav left fs14 bold"">
+<li>
+<a href=""http://www.funimation.com/videos/episodes"" class=""white "">Episodes</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos/movies"" class=""white "">Movies</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos/trailers"" class=""white "">Trailers</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos/clips"" class=""white "">Clips</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos/extras"" class=""white "">Extras</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos/playlists"" class=""white "">Playlists</a>
+</li>
+<li>
+<a href=""http://www.funimation.com/videos/simulcasts"" class=""white "">Simulcasts</a>
+</li>
+</ul>
+<ul class=""basic-nav right"">
+<li>
+<p>Spend $50, USA FREE SHIPPING</p>
+</li>
+</ul>
+</section>
 </div>
-</div>  
+</nav>
+<section id=""main-wrapper"" class=""center-layout"">
+<section id=""main-content"">
+ 
+<article class=""column_2 shadow-line normal-slider double-row flexslider"">
+<div class=""basic-heading"">
+<h2>EPISODES</h2>
+<a href=""http://www.funimation.com/videos/episodes"" class=""btn size1 viewAll"" data-showid="""" data-section=""episodes"">View All</a>
+<img src=""http://www.funimation.com/assets/img/loading.gif"" class=""loading"" style=""display: none"">
 </div>
-</div>
-</div>  
-</div>
-</div>  
-</div>  
-<div id=""tertiary-content""><div id=""block-ad-2226"" class=""block adBlock tertiary-content-adBlock clear-block"">
-<div class=""block-inner"">
-<div class=""html-advertisement"" id=""ad-4801841"">
-<object classid=""clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"" width=""728"" height=""90"" codebase=""http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"">
-<param name=""allowscriptaccess"" value=""always"">
-<param name=""src"" value=""http://www.funimation.com/sites/default/files/editorial_content/banners/save_q3/728.swf"">
-<embed type=""application/x-shockwave-flash"" width=""728"" height=""90"" src=""http://www.funimation.com/sites/default/files/editorial_content/banners/save_q3/728.swf"" allowscriptaccess=""always""></embed>
-</object></div><div class=""ad-image-counter""><img style=""display:none;visibility:hidden;"" data-cfsrc=""http://www.funimation.com/sites/all/modules/_funi_custom/ad/serve.php?o=image&amp;a=4801841"" height=""0"" width=""0"" alt=""view counter""/><noscript><img src=""http://www.funimation.com/sites/all/modules/_funi_custom/ad/serve.php?o=image&amp;a=4801841"" height=""0"" width=""0"" alt=""view counter""/></noscript></div>
-</div>
-</div>  
-</div>
-<div id=""footer"" class=""clear-block"">
-<div id=""footer-region""><div id=""block-menu-menu-video"" class=""block clear-block"">
-<h2>Video</h2>
-<div class=""block-inner"">
-<ul class=""menu""><li class=""leaf first menu-item-shows""><a href=""/shows"">Shows</a></li><li class=""leaf menu-item-simulcast""><a href=""/videos/simulcast"">Simulcast</a></li><li class=""leaf menu-item-episodes""><a href=""/videos/episodes"">Episodes</a></li><li class=""leaf menu-item-trailers""><a href=""/videos/trailers"">Trailers</a></li><li class=""leaf menu-item-clips""><a href=""/videos/clips"">Clips</a></li><li class=""leaf last menu-item-schedule""><a href=""/schedule/subscription/coming-soon"">Schedule</a></li></ul>
-</div>
-</div>  
-<div id=""block-menu-menu-community"" class=""block clear-block"">
-<h2>Community</h2>
-<div class=""block-inner"">
-<ul class=""menu""><li class=""leaf first menu-item-forum""><a href=""/forum"">Forum</a></li><li class=""leaf menu-item-news""><a href=""/news"">News</a></li><li class=""leaf menu-item-events""><a href=""/news/events"">Events</a></li><li class=""leaf menu-item-cosplay""><a href=""/community/cosplay"">Cosplay</a></li><li class=""leaf menu-item-fan-art""><a href=""/community/fan-art"">Fan Art</a></li><li class=""leaf last menu-item-extras""><a href=""/community/extras"">Extras</a></li></ul>
-</div>
-</div>  
-<div id=""block-menu-menu-support"" class=""block clear-block"">
-<h2>Support</h2>
-<div class=""block-inner"">
-<ul class=""menu""><li class=""leaf first menu-item-support-faq""><a href=""/faq"">Support/FAQ</a></li><li class=""leaf menu-item-about-us""><a href=""/about-us"">About Us</a></li><li class=""leaf menu-item-privacy-policy""><a href=""/privacy-policy"">Privacy Policy</a></li><li class=""leaf menu-item-terms-of-use""><a href=""/terms-of-use"">Terms of Use</a></li><li class=""leaf menu-item-careers""><a href=""http://funimation.myexacthire.com"">Careers</a></li><li class=""leaf last menu-item-press-releases""><a href=""/news/press-release"">Press Releases</a></li></ul>
-</div>
-</div>  
-<div id=""foot-signup"" class=""block block-footer"" style=""width:370px;margin:0;"">
-<h2 class=""title block-title"">
-Newsletter Signup</h2>
 <div>
-<div id=""newsletter-signup-description"">
-Sign up for the <strong>FUNimation Newsletter</strong> and get info on releases, new products, contests and more!
+<ul class=""items-row slides clearfix"">
+<li><ul> <li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/eureka-seven-astral-ocean/deep-blue"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
 </div>
-<div id=""newsletter-signup-form"">
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/official/deep-blue/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7555862/2_thumbnail/EUR0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/anime"" class=""item-title"">Eureka Seven AO</a>
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/official/deep-blue/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+deep blue </a>
+</div>
  
-<a href=""https://app.streamsend.com/public/S8G1/Zvb/subscribe"" target=""_blank""><img style=""display:none;visibility:hidden;"" data-cfsrc=""/sites/all/themes/funimation2/images/btn-go.jpg""/><noscript><img src=""/sites/all/themes/funimation2/images/btn-go.jpg""/></noscript></a>
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/anime"" class=""item-title"">Eureka Seven AO</a>
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/official/deep-blue/anime"" class=""item-title"">Episode 1 - deep blue</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 24:37</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
 </div>
 </div>
-<div id=""newsletter_follow_us"">
-<a href=""http://www.facebook.com/FUNimation"" target=""_blank""><img alt="""" style=""display:none;visibility:hidden;"" data-cfsrc=""/sites/all/themes/funimation2/images/follow-facebook.jpg""/><noscript><img alt="""" src=""/sites/all/themes/funimation2/images/follow-facebook.jpg""/></noscript></a><a href=""http://twitter.com/funimation"" target=""_blank""><img alt="""" style=""display:none;visibility:hidden;"" data-cfsrc=""/sites/all/themes/funimation2/images/follow-twitter.jpg""/><noscript><img alt="""" src=""/sites/all/themes/funimation2/images/follow-twitter.jpg""/></noscript></a></div>
-</div></div>
-<div id=""footer-message""><a href=""/copyright"">&copy; 2011 FUNimation Productions, LTD. All Rights Reserved.</a></div>
+<p>Ao is one day away from starting middle school when his world begins to change. Scub Coral activity leads to Scub Bursts and mysterious G-Monsters. And when he picks up an odd bracelet, he finds himself drawn even deeper into these events.</p>
+<p>
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/official/deep-blue/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/official/deep-blue/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
 </div>
-</div>  
-<div id=""user_relationships_popup_form"" class=""user_relationships_ui_popup_form""></div><script type=""text/javascript"">
-<!--//--><![CDATA[//><!--
-Meebo(""domReady"");
-//--><!]]>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/fullmetal-alchemist-brotherhood/fullmetal-alchemist"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/official/fullmetal-alchemist/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7555922/2_thumbnail/FMB0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/anime"" class=""item-title"">Fullmetal Alchemist: Brotherhood</a>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/official/fullmetal-alchemist/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+Fullmetal Alchemist </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/anime"" class=""item-title"">Fullmetal Alchemist: Brotherhood</a>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/official/fullmetal-alchemist/anime"" class=""item-title"">Episode 1 - Fullmetal Alchemist</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 24:40</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>The Elric brothers adjust to military life and take part in a manhunt for the dangerous Isaac the Freezer, a former State Alchemist bent on bringing Fuhrer Bradley down.</p>
+<p>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/official/fullmetal-alchemist/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/official/fullmetal-alchemist/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/guilty-crown/genesis-outbreak"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/official/genesis-outbreak/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7555978/2_thumbnail/GTC0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/guilty-crown/anime"" class=""item-title"">Guilty Crown</a>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/official/genesis-outbreak/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+genesis (Outbreak) </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/guilty-crown/anime"" class=""item-title"">Guilty Crown</a>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/official/genesis-outbreak/anime"" class=""item-title"">Episode 1 - genesis (Outbreak)</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 23:01</p>
+<div class=""rank rank-4-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Shu enters his hideout for a quiet lunch only to find Inori, his #1 musical crush, bleeding on the floor. After he fails to stop her pursuers from hurting her more, his one shot at self-respect is to deliver a strange vial she stole to her terrorist pals.</p>
+<p>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/official/genesis-outbreak/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/official/genesis-outbreak/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/haganai/we-cant-make-any-friends"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/haganai/videos/official/we-cant-make-any-friends/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556002/2_thumbnail/HAA0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/haganai/anime"" class=""item-title"">Haganai</a>
+<a href=""http://www.funimation.com/shows/haganai/videos/official/we-cant-make-any-friends/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+We Can't Make Any Friends </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/haganai/anime"" class=""item-title"">Haganai</a>
+<a href=""http://www.funimation.com/shows/haganai/videos/official/we-cant-make-any-friends/anime"" class=""item-title"">Episode 1 - We Can't Make Any Friends</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 24:26</p>
+<div class=""rank rank-4-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Yozora and Kodoka are loners at school. In order to make friends with other misfits, they start the Neighbors Club. Soon, a third member joins the club: Sena, a popular girl who annoys Yozora to no end.</p>
+<p>
+<a href=""http://www.funimation.com/shows/haganai/videos/official/we-cant-make-any-friends/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/haganai/videos/official/we-cant-make-any-friends/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/high-school-dxd/i-got-a-girlfriend"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/official/i-got-a-girlfriend/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556046/2_thumbnail/DXD0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/high-school-dxd/anime"" class=""item-title"">High School DxD</a>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/official/i-got-a-girlfriend/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+I Got a Girlfriend! </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/high-school-dxd/anime"" class=""item-title"">High School DxD</a>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/official/i-got-a-girlfriend/anime"" class=""item-title"">Episode 1 - I Got a Girlfriend!</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 23:55</p>
+<div class=""rank rank-4-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Issei Hyodo's first date with his new girlfriend ends poorly when she turns into a devil and stabs him in the stomach. Luckily, he's saved by Rias, the buxom president of his school's Occult Research Club. And then, things really start to get weird…</p>
+<p>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/official/i-got-a-girlfriend/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/official/i-got-a-girlfriend/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/lupin-the-third-fujiko-mine/master-thief-vs-lady-looter"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/official/master-thief-vs-lady-looter/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556182/2_thumbnail/LPN0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/anime"" class=""item-title"">Lupin the Third - The Woman Called Fujiko Mine</a>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/official/master-thief-vs-lady-looter/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+Master Thief vs. Lady Looter </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/anime"" class=""item-title"">Lupin the Third - The Woman Called Fujiko Mine</a>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/official/master-thief-vs-lady-looter/anime"" class=""item-title"">Episode 1 - Master Thief vs. Lady Looter</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 23:11</p>
+<div class=""rank rank-6-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Fujiko Mine, the devastatingly sexy lady thief who'll stop at nothing to make her steal, has her sights set on a religious cult's secret treasure when a new man waltzes into her life: Lupin the Third. Has our luscious looter finally met her match?</p>
+<p>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/official/master-thief-vs-lady-looter/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/official/master-thief-vs-lady-looter/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<span class=""e"">e</span>
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/michiko-hatchin/farewell-cruel-paradise"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/michiko-hatchin/videos/official/farewell-cruel-paradise/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556202/2_thumbnail/MNH0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/michiko-hatchin/anime"" class=""item-title"">Michiko & Hatchin</a>
+<a href=""http://www.funimation.com/shows/michiko-hatchin/videos/official/farewell-cruel-paradise/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+Farewell, Cruel Paradise! </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/michiko-hatchin/anime"" class=""item-title"">Michiko & Hatchin</a>
+<a href=""http://www.funimation.com/shows/michiko-hatchin/videos/official/farewell-cruel-paradise/anime"" class=""item-title"">Episode 1 - Farewell, Cruel Paradise!</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 22:42</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Michiko Malandro breaks out of a high-security prison to see her long-lost love, Hiroshi. Elsewhere, Hiroshi's daughter, Hana Morenos, lives the life of Cinderella among her adoptive family, waiting for someone to come and take her away from them.</p>
+<p>
+<a href=""http://www.funimation.com/shows/michiko-hatchin/videos/official/farewell-cruel-paradise/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/michiko-hatchin/videos/official/farewell-cruel-paradise/anime?watch=dub"" class=""elite"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/ouran-high-school-host-club/starting-today-you-are-a-host"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/official/starting-today-you-are-a-host/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556294/2_thumbnail/OUR0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/anime"" class=""item-title"">Ouran High School Host Club</a>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/official/starting-today-you-are-a-host/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+Starting Today, You Are a Host! </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/anime"" class=""item-title"">Ouran High School Host Club</a>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/official/starting-today-you-are-a-host/anime"" class=""item-title"">Episode 1 - Starting Today, You Are a Host!</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 23:27</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>After Haruhi literally stumbles in on the Ouran Host Club and breaks an expensive vase, she discovers there’s only one way she’ll ever be able to pay for the damage - working as a Host!</p>
+<p>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/official/starting-today-you-are-a-host/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/official/starting-today-you-are-a-host/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+</ul> </li>
+<li><ul> <li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/the-future-diary/sign-up"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/official/sign-up/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556582/2_thumbnail/FDY0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/the-future-diary/anime"" class=""item-title"">The Future Diary</a>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/official/sign-up/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+Sign Up </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/the-future-diary/anime"" class=""item-title"">The Future Diary</a>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/official/sign-up/anime"" class=""item-title"">Episode 1 - Sign Up</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 24:09</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Yukiteru spends his days writing into his cell phone ""diary,"" a listing of the things that happen around him. When it suddenly starts telling him everything that is going to happen before it does, he's thrilled. Until it tells him he's going to die!</p>
+<p>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/official/sign-up/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/official/sign-up/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/we-without-wings/for-example-that-kind-of-fairytale"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/official/for-example-that-kind-of-fairytale/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556674/2_thumbnail/WWW0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/we-without-wings/anime"" class=""item-title"">We Without Wings</a>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/official/for-example-that-kind-of-fairytale/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+For Example, That Kind of Fairytale </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/we-without-wings/anime"" class=""item-title"">We Without Wings</a>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/official/for-example-that-kind-of-fairytale/anime"" class=""item-title"">Episode 1 - For Example, That Kind of Fairytale</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 24:41</p>
+<div class=""rank rank-4-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>DJ Condor is your guide as the everyday lives of several young city-dwellers come into focus on the streets of Yanagihara, a bustling metropolis where there’s no shortage of stories.</p>
+<p>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/official/for-example-that-kind-of-fairytale/anime?watch=sub"">Watch Sub</a>
+|
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/official/for-example-that-kind-of-fairytale/anime?watch=dub"">Watch Dub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/the-devil-is-a-part-timer/the-devil-arrives-in-sasazuka"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/official/the-devil-arrives-in-sasazuka/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/recap_thumbnails/7556737/2_thumbnail/DPT0001.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/anime"" class=""item-title"">The Devil is a Part-Timer!</a>
+<a href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/official/the-devil-arrives-in-sasazuka/anime"" class=""brief with-middle-line"">
+<span>Episode 1</span>
+The Devil Arrives in Sasazuka </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/anime"" class=""item-title"">The Devil is a Part-Timer!</a>
+<a href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/official/the-devil-arrives-in-sasazuka/anime"" class=""item-title"">Episode 1 - The Devil Arrives in Sasazuka</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 23:45</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>When the lord of demons and his horde waged war against the humans in their realm, a hero vanquished their army. Cornered, the Devil fled through an interdimensional portal to Earth. He vows to one day reign again, but until then... he needs a job!
+</p>
+<p>
+<a href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/official/the-devil-arrives-in-sasazuka/anime?watch=sub"">Watch Sub</a>
+</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+</ul>
+</div>
+</article>
+ 
+ 
+<article class=""column_2 shadow-line normal-slider flexslider"">
+<div class=""basic-heading"">
+<h2>CLIPS</h2>
+<a href=""http://www.funimation.com/videos/clips"" class=""btn size1 viewAll"" data-showid="""" data-section=""clips"">View All</a>
+<img src=""http://www.funimation.com/assets/img/loading.gif"" class=""loading"" style=""display: none"">
+</div>
+<ul class=""items-row slides clearfix"">
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/lastexile-fam-the-silver-wing/skydiving"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/promotional/skydiving/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556154/2_thumbnail/6789abcdefghijklmnopqrstuvwxyzABCDEFGHI_k81399y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Skydiving""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/anime"" class=""item-title"">LASTEXILE -Fam, the Silver Wing</a>
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/promotional/skydiving/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+Skydiving </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/anime"" class=""item-title"">LASTEXILE -Fam, the Silver Wing</a>
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/promotional/skydiving/anime"" class=""item-title"">Clip - Skydiving</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:30</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>The Next Chapter in the Last Exile Saga.
+Years ago, humanity abandoned the ruined Earth. Generations later, with the planet again capable of sustaining life, mankind returned. In the skies above the reborn world, rebell...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/wolf-children/raising-wolves-english"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/wolf-children/videos/promotional/raising-wolves-english/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556686/2_thumbnail/cdefghijklmnopqr_k48882y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Raising Wolves (English)""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/wolf-children/anime"" class=""item-title"">Wolf Children</a>
+<a href=""http://www.funimation.com/shows/wolf-children/videos/promotional/raising-wolves-english/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+Raising Wolves (English) </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/wolf-children/anime"" class=""item-title"">Wolf Children</a>
+<a href=""http://www.funimation.com/shows/wolf-children/videos/promotional/raising-wolves-english/anime"" class=""item-title"">Clip - Raising Wolves (English)</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-PG | 02:21</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Experience the latest masterpiece from the internationally-acclaimed, award-winning director of Summer Wars. Now showing in select film festivals and conventions. For locations and show dates, consult the official w...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/high-school-dxd/the-house-of-gremory"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/promotional/the-house-of-gremory/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556046/2_thumbnail/tuvwxyz_k25317y.png"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""The House of Gremory""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/high-school-dxd/anime"" class=""item-title"">High School DxD</a>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/promotional/the-house-of-gremory/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+The House of Gremory </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/high-school-dxd/anime"" class=""item-title"">High School DxD</a>
+<a href=""http://www.funimation.com/shows/high-school-dxd/videos/promotional/the-house-of-gremory/anime"" class=""item-title"">Clip - The House of Gremory</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:43</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+A war between heaven and hell is raging on Earth &ndash; and a hot mess of hormonal fury is raging in Issei&rsquo;s pants. The guy is dying to get some action. Which is funny, since his first date ever turns into a...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/fairy-tail/character-spot-erza"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/character-spot-erza/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555878/2_thumbnail/_k73696y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Character Spot - Erza""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/fairy-tail/anime"" class=""item-title"">Fairy Tail</a>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/character-spot-erza/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+Character Spot - Erza </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/fairy-tail/anime"" class=""item-title"">Fairy Tail</a>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/character-spot-erza/anime"" class=""item-title"">Clip - Character Spot - Erza</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 00:15</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>This isn't your kid sister's dress-up. Erza's ""requip"" magic makes her a force to be reckoned with-- and then some</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/black-lagoon/roberta-s-blood-trail-clip-or-else"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/black-lagoon/videos/promotional/roberta-s-blood-trail-clip-or-else/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555674/2_thumbnail/klmnopqrstuvwxyzABCDEFGHIJKLMN_k58868y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Roberta's Blood Trail Clip: Or Else...""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/black-lagoon/anime"" class=""item-title"">Black Lagoon</a>
+<a href=""http://www.funimation.com/shows/black-lagoon/videos/promotional/roberta-s-blood-trail-clip-or-else/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+Roberta's Blood Trail Clip: Or Else..... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/black-lagoon/anime"" class=""item-title"">Black Lagoon</a>
+<a href=""http://www.funimation.com/shows/black-lagoon/videos/promotional/roberta-s-blood-trail-clip-or-else/anime"" class=""item-title"">Clip - Roberta's Blood Trail Clip: Or Else...</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:23</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>They killed her master. Now she'll kill everyone.
+Welcome back to the criminal paradise of Roanapur. Fasten your seatbelts for a violent ride: mad maid Roberta is back in town with a thirst for revenge.
+This tour de vio...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/haganai/dating-sims-for-loners"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/haganai/videos/promotional/dating-sims-for-loners/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556002/2_thumbnail/defghijklmnopqrstuvwxyzABCDEFGHIJ_k22734y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Dating Sims for Loners""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/haganai/anime"" class=""item-title"">Haganai</a>
+<a href=""http://www.funimation.com/shows/haganai/videos/promotional/dating-sims-for-loners/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+Dating Sims for Loners </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/haganai/anime"" class=""item-title"">Haganai</a>
+<a href=""http://www.funimation.com/shows/haganai/videos/promotional/dating-sims-for-loners/anime"" class=""item-title"">Clip - Dating Sims for Loners</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 03:19</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Sena needs to learn to make real-life friends-- and decides to pick up these skills by playing a dating sim. This can't end well.
+Forever alone? Join the Club!
+Yozora's an abrasive loudmouth whose only friend at school...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/guilty-crown/drawing-out-the-void"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/promotional/drawing-out-the-void/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555978/2_thumbnail/klmnopq_k13563y.png"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Drawing Out the Void""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/guilty-crown/anime"" class=""item-title"">Guilty Crown</a>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/promotional/drawing-out-the-void/anime"" class=""brief with-middle-line"">
+<span>Clip</span>
+Drawing Out the Void </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/guilty-crown/anime"" class=""item-title"">Guilty Crown</a>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/promotional/drawing-out-the-void/anime"" class=""item-title"">Clip - Drawing Out the Void</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 02:58</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Shu receives a mysterious ability-- to draw out the hearts of people and use them as weapons. The beautiful songstress Inori will be his sword.</p>
+<p>
+Order the limited edition box set, with two gorgeous 108-page...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+</ul>
+</article>
+ 
+ 
+<article class=""column_2 shadow-line normal-slider flexslider"">
+<div class=""basic-heading"">
+<h2>TRAILERS</h2>
+<a href=""http://www.funimation.com/videos/trailers"" class=""btn size1 viewAll"" data-showid="""" data-section=""trailers"">View All</a>
+<img src=""http://www.funimation.com/assets/img/loading.gif"" class=""loading"" style=""display: none"">
+</div>
+<div>
+<ul class=""items-row slides clearfix"">
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/guilty-crown/complete-series-parts-one-and-two-blu-ray-dvd-combo-limited-edition"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/promotional/complete-series-parts-one-and-two-blu-ray-dvd-combo-limited-edition/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555978/2_thumbnail/9abcdefghijklmnopqrstuvwxyzAB_k31840y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Complete Series - Parts One and Two - Blu-Ray/DVD Combo- Limited Edition""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/guilty-crown/anime"" class=""item-title"">
+Guilty Crown </a>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/promotional/complete-series-parts-one-and-two-blu-ray-dvd-combo-limited-edition/anime"" class=""brief"">
+Complete Series - Parts One and Two -... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/guilty-crown/anime"" class=""item-title"">Guilty Crown</a>
+<a href=""http://www.funimation.com/shows/guilty-crown/videos/promotional/complete-series-parts-one-and-two-blu-ray-dvd-combo-limited-edition/anime"" class=""item-title"">Trailer - Complete Series - Parts One and Two - Blu-Ray/DVD Combo- Limited Edition</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:53</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Shu&#39;s entire world was shattered after a meteorite crashed into Japan, unleashing the lethal Apocalypse Virus. The chaos and anarchy born of the outbreak cost Shu his family and reduced him to a timid, fearful s...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/fairy-tail/part-6-blu-ray-dvd-combo"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/part-6-blu-ray-dvd-combo/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555878/2_thumbnail/bcdefghijk_k44205y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Part 6- Blu-ray/DVD Combo""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/fairy-tail/anime"" class=""item-title"">
+Fairy Tail </a>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/part-6-blu-ray-dvd-combo/anime"" class=""brief"">
+Part 6- Blu-ray/DVD Combo </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/fairy-tail/anime"" class=""item-title"">Fairy Tail</a>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/part-6-blu-ray-dvd-combo/anime"" class=""item-title"">Trailer - Part 6- Blu-ray/DVD Combo</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:08</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Nirvana continues its march to destroy Wendy&#39;s guild along with a dark secret. Team Natsu and the coalition - as well as an unexpected ally - go full-force against the top sorcerers of Oracion Seis to expel the...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/lupin-the-third-fujiko-mine/the-woman-called-fujiko-mine-blu-ray-dvd-combo-limited-edition"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/promotional/the-woman-called-fujiko-mine-blu-ray-dvd-combo-limited-edition/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556182/2_thumbnail/tuvwxyzABCDEFGHIJKL_k23406y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""The Woman Called Fujiko Mine - Blu-ray/DVD Combo – Limited Edition""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/anime"" class=""item-title"">
+Lupin the Third - The Woman Called Fujiko Mine </a>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/promotional/the-woman-called-fujiko-mine-blu-ray-dvd-combo-limited-edition/anime"" class=""brief"">
+The Woman Called Fujiko Mine - Blu-ra... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/anime"" class=""item-title"">Lupin the Third - The Woman Called Fujiko Mine</a>
+<a href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/promotional/the-woman-called-fujiko-mine-blu-ray-dvd-combo-limited-edition/anime"" class=""item-title"">Trailer - The Woman Called Fujiko Mine - Blu-ray/DVD Combo – Limited Edition</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:32</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+She&#39;s a thief. A killer. A saint and a scandal. She&#39;s whatever you need her to be to get the job done. After sizing you up with one sinful glance, she disarms you with a touch. You&#39;re powerless to resist...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/master-of-martial-hearts/complete-series"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/master-of-martial-hearts/videos/promotional/complete-series/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556198/2_thumbnail/6789abcdefghijklm_k71084y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Complete Series""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/master-of-martial-hearts/anime"" class=""item-title"">
+Master of Martial Hearts </a>
+<a href=""http://www.funimation.com/shows/master-of-martial-hearts/videos/promotional/complete-series/anime"" class=""brief"">
+Complete Series </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/master-of-martial-hearts/anime"" class=""item-title"">Master of Martial Hearts</a>
+<a href=""http://www.funimation.com/shows/master-of-martial-hearts/videos/promotional/complete-series/anime"" class=""item-title"">Trailer - Complete Series</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:07</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Aya Iseshima's carefree existence takes a bone-crushingly violent turn when she wanders into the midst of a sadistic, girl-on-girl martial arts tournament. Her freshly pressed school uniform doesn't stand a chance of sur...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/black-lagoon/roberta-s-blood-trail-ova-blu-ray-dvd-combo"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/black-lagoon/videos/promotional/roberta-s-blood-trail-ova-blu-ray-dvd-combo/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555674/2_thumbnail/defghijklmnopqrstuvwxyzABCDEFGHIJKLM_k50553y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Roberta's Blood Trail OVA - Blu-ray/DVD Combo""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/black-lagoon/anime"" class=""item-title"">
+Black Lagoon </a>
+<a href=""http://www.funimation.com/shows/black-lagoon/videos/promotional/roberta-s-blood-trail-ova-blu-ray-dvd-combo/anime"" class=""brief"">
+Roberta's Blood Trail OVA - Blu-ray/D... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/black-lagoon/anime"" class=""item-title"">Black Lagoon</a>
+<a href=""http://www.funimation.com/shows/black-lagoon/videos/promotional/roberta-s-blood-trail-ova-blu-ray-dvd-combo/anime"" class=""item-title"">Trailer - Roberta's Blood Trail OVA - Blu-ray/DVD Combo</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:15</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Deadly assassin-turned-maid Roberta returns to the criminal&#39;s paradise of Roanapur, dead set on revenge - no matter the cost. In a backdrop of violent chaos, the smugglers of the Lagoon Company team up with Robe...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/lastexile-fam-the-silver-wing/parts-one-and-two-blu-ray-dvd-combo-limited-edition"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/promotional/parts-one-and-two-blu-ray-dvd-combo-limited-edition/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556154/2_thumbnail/hijklmnopqrs_k4237y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Parts One and Two - Blu-ray/DVD Combo - Limited Edition""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/anime"" class=""item-title"">
+LASTEXILE -Fam, the Silver Wing </a>
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/promotional/parts-one-and-two-blu-ray-dvd-combo-limited-edition/anime"" class=""brief"">
+Parts One and Two - Blu-ray/DVD Combo... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/anime"" class=""item-title"">LASTEXILE -Fam, the Silver Wing</a>
+<a href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/promotional/parts-one-and-two-blu-ray-dvd-combo-limited-edition/anime"" class=""item-title"">Trailer - Parts One and Two - Blu-ray/DVD Combo - Limited Edition</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:49</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Years ago, humanity abandoned the ruined Earth. Generations later, with the planet again capable of sustaining life, mankind returned. In the skies above the reborn world, rebellious young Fam and her best friend Gi...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/the-future-diary/part-one-limited-edition"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/promotional/part-one-limited-edition/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556582/2_thumbnail/9abcdefghijklmnopqrstuvwxyzABCDEFGHI_k14981y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Part One - Limited Edition""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/the-future-diary/anime"" class=""item-title"">
+The Future Diary </a>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/promotional/part-one-limited-edition/anime"" class=""brief"">
+Part One - Limited Edition </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/the-future-diary/anime"" class=""item-title"">The Future Diary</a>
+<a href=""http://www.funimation.com/shows/the-future-diary/videos/promotional/part-one-limited-edition/anime"" class=""item-title"">Trailer - Part One - Limited Edition</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:31</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+One day, Yukiteru discovers that his cell phone &quot;diary&quot; can now tell him the events of the future. The problem is, eleven others also have similar diaries, and only one can win this Survival Game. The winn...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/one-piece/season-five-voyage-two"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/one-piece/videos/promotional/season-five-voyage-two/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556282/2_thumbnail/ij_k96377y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Season Five Voyage Two""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/one-piece/anime"" class=""item-title"">
+One Piece </a>
+<a href=""http://www.funimation.com/shows/one-piece/videos/promotional/season-five-voyage-two/anime"" class=""brief"">
+Season Five Voyage Two </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/one-piece/anime"" class=""item-title"">One Piece</a>
+<a href=""http://www.funimation.com/shows/one-piece/videos/promotional/season-five-voyage-two/anime"" class=""item-title"">Trailer - Season Five Voyage Two</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:16</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Monkey D. Luffy refuses to let anyone or anything stand in the way of his quest to become King of All Pirates. With a course charted for the treacherous waters of the Grand Line, this is one captain who&#39;ll never...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/sankarea/complete-series-blu-ray-dvd-combo-limited-edition"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/sankarea/videos/promotional/complete-series-blu-ray-dvd-combo-limited-edition/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556406/2_thumbnail/hijklmnopqrstuvwxyzABCDEFGHIJ_k61955y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Complete Series - Blu-ray/DVD Combo - Limited Edition""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/sankarea/anime"" class=""item-title"">
+Sankarea </a>
+<a href=""http://www.funimation.com/shows/sankarea/videos/promotional/complete-series-blu-ray-dvd-combo-limited-edition/anime"" class=""brief"">
+Complete Series - Blu-ray/DVD Combo -... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/sankarea/anime"" class=""item-title"">Sankarea</a>
+<a href=""http://www.funimation.com/shows/sankarea/videos/promotional/complete-series-blu-ray-dvd-combo-limited-edition/anime"" class=""item-title"">Trailer - Complete Series - Blu-ray/DVD Combo - Limited Edition</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:09</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+Furuya&#39;s not interested in the living, he&#39;s got zombies on the brain! When Furuya&#39;s cat dies, he decides he&#39;s going to try and bring it back to life. In the process, he stumbles across a girl whose f...</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/we-without-wings/official-redband-trailer"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/promotional/official-redband-trailer/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556674/2_thumbnail/jklmnopqrstuvwxy_k37803y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Official Redband Trailer""/>
+</a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/we-without-wings/anime"" class=""item-title"">
+We Without Wings </a>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/promotional/official-redband-trailer/anime"" class=""brief"">
+Official Redband Trailer </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/we-without-wings/anime"" class=""item-title"">We Without Wings</a>
+<a href=""http://www.funimation.com/shows/we-without-wings/videos/promotional/official-redband-trailer/anime"" class=""item-title"">Trailer - Official Redband Trailer</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 01:35</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+We Without Wings Official Redband Trailer</p></p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+</ul>
+</div>
+</article>
+ 
+<article class=""column_2 shadow-line normal-slider flexslider"">
+<div class=""basic-heading"">
+<h2>EXTRAS</h2>
+<a href=""http://www.funimation.com/videos/extras"" class=""btn size1 viewAll"" data-showid="""" data-section=""extras"">View All</a>
+<img src=""http://www.funimation.com/assets/img/loading.gif"" class=""loading"" style=""display: none"">
+</div>
+<div>
+<ul class=""items-row slides clearfix"">
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/fullmetal-alchemist/english-voice-actor-commentary"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist/videos/promotional/english-voice-actor-commentary/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555918/2_thumbnail/6789abcdefghijklmnopqrstuvw_k78103y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""English Voice Actor Commentary""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist/anime"" class=""item-title"">Fullmetal Alchemist</a>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist/videos/promotional/english-voice-actor-commentary/anime"" class=""brief with-middle-line"">
+<span>Commentary</span>
+English Voice Actor Commentary </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist/anime"" class=""item-title"">Fullmetal Alchemist</a>
+<a href=""http://www.funimation.com/shows/fullmetal-alchemist/videos/promotional/english-voice-actor-commentary/anime"" class=""item-title"">Commentary - English Voice Actor Commentary</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:45:04</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Voice Actor commentary for Fullmetal Alchemist: Conqueror of Shamballa</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/flcl/ride-on-shooting-star-video-by-the-pillows"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/flcl/videos/promotional/ride-on-shooting-star-video-by-the-pillows/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555890/2_thumbnail/cdefghijklmnopqrstuvwxyzABC_k79711y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Ride on Shooting Star Video by The Pillows""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/flcl/anime"" class=""item-title"">FLCL</a>
+<a href=""http://www.funimation.com/shows/flcl/videos/promotional/ride-on-shooting-star-video-by-the-pillows/anime"" class=""brief with-middle-line"">
+<span>Extra Feature</span>
+Ride on Shooting Star Video by The Pi... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/flcl/anime"" class=""item-title"">FLCL</a>
+<a href=""http://www.funimation.com/shows/flcl/videos/promotional/ride-on-shooting-star-video-by-the-pillows/anime"" class=""item-title"">Extra Feature - Ride on Shooting Star Video by The Pillows</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 02:32</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Ride on Shooting Star Video by The Pillows</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/ouran-high-school-host-club/outtakes-part-1"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/promotional/outtakes-part-1/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556294/2_thumbnail/qrstuvwxyzABCDEFGHIJ_k40646y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Outtakes Part 1""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/anime"" class=""item-title"">Ouran High School Host Club</a>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/promotional/outtakes-part-1/anime"" class=""brief with-middle-line"">
+<span>Extra Feature</span>
+Outtakes Part 1 </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/anime"" class=""item-title"">Ouran High School Host Club</a>
+<a href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/promotional/outtakes-part-1/anime"" class=""item-title"">Extra Feature - Outtakes Part 1</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 15:11</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+N/A</p></p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/shin-chan/season-1-from-the-bowels-of-the-booth-1"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/shin-chan/videos/promotional/season-1-from-the-bowels-of-the-booth-1/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556462/2_thumbnail/456789abcdefghijklmnopqrstuvwxyzABCDEFGH_k34859y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Season 1 - From the Bowels of the Booth 1""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/shin-chan/anime"" class=""item-title"">Shin chan</a>
+<a href=""http://www.funimation.com/shows/shin-chan/videos/promotional/season-1-from-the-bowels-of-the-booth-1/anime"" class=""brief with-middle-line"">
+<span>Extra Feature</span>
+Season 1 - From the Bowels of the Boo... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/shin-chan/anime"" class=""item-title"">Shin chan</a>
+<a href=""http://www.funimation.com/shows/shin-chan/videos/promotional/season-1-from-the-bowels-of-the-booth-1/anime"" class=""item-title"">Extra Feature - Season 1 - From the Bowels of the Booth 1</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 11:08</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+<span class=""field-content"">&nbsp;Alternate/Deleted Scenes, Bloopers</span></p></p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/soul-eater/episode-7-voice-actor-commentary"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/soul-eater/videos/promotional/episode-7-voice-actor-commentary/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7556490/2_thumbnail/tuvwxyzABCDEFGH_k27270y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Episode 7 Voice Actor Commentary""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/soul-eater/anime"" class=""item-title"">Soul Eater</a>
+<a href=""http://www.funimation.com/shows/soul-eater/videos/promotional/episode-7-voice-actor-commentary/anime"" class=""brief with-middle-line"">
+<span>Commentary</span>
+Episode 7 Voice Actor Commentary </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/soul-eater/anime"" class=""item-title"">Soul Eater</a>
+<a href=""http://www.funimation.com/shows/soul-eater/videos/promotional/episode-7-voice-actor-commentary/anime"" class=""item-title"">Commentary - Episode 7 Voice Actor Commentary</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 23:50</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p><p>
+<span class=""field-content"">Episode 7 Commentary (Zach Bolton &ndash; ADR Director, Laura Bailey - Maka, Micah Solusod - Soul)</span></p></p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/fairy-tail/textless-opening-part-1"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/textless-opening-part-1/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555878/2_thumbnail/ijklmnopqrstuvwxyzABCDE_k66236y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Textless Opening Part 1""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/fairy-tail/anime"" class=""item-title"">Fairy Tail</a>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/textless-opening-part-1/anime"" class=""brief with-middle-line"">
+<span>Extra Feature</span>
+Textless Opening Part 1 </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/fairy-tail/anime"" class=""item-title"">Fairy Tail</a>
+<a href=""http://www.funimation.com/shows/fairy-tail/videos/promotional/textless-opening-part-1/anime"" class=""item-title"">Extra Feature - Textless Opening Part 1</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-14 | 01:30</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>Part 1 Opening Song - SNOW FAIRY</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/fruits-basket/fruits-basket-voice-actor-video-commentary"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/fruits-basket/videos/promotional/fruits-basket-voice-actor-video-commentary/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555902/2_thumbnail/lmnopqrstuvwxyzABCDE_k3989y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Fruits Basket Voice Actor Video Commentary""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/fruits-basket/anime"" class=""item-title"">Fruits Basket</a>
+<a href=""http://www.funimation.com/shows/fruits-basket/videos/promotional/fruits-basket-voice-actor-video-commentary/anime"" class=""brief with-middle-line"">
+<span>Commentary</span>
+Fruits Basket Voice Actor Video Comme... </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/fruits-basket/anime"" class=""item-title"">Fruits Basket</a>
+<a href=""http://www.funimation.com/shows/fruits-basket/videos/promotional/fruits-basket-voice-actor-video-commentary/anime"" class=""item-title"">Commentary - Fruits Basket Voice Actor Video Commentary</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-PG | 23:19</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>We sat down with Laura Bailey (Tohru), Eric Vale (Yuki), Jerry Jewell (Kyo), and John Burgmeier (Shigure) to reminisce about their work on Fruits Basket, what recording was like, and what they’ve been up to since then</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+<li class=""item-cell pop elite simulcast"">
+<div href=""#"" class=""thumb clearfix"">
+<div class=""bottom-icons"">
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-heart fancybox fancybox.iframe"" title=""Add to Favorites""></a>
+<a href=""http://www.funimation.com/loadModal/index/join_now_modal"" data-fancybox-width=""500"" class=""icon-plus fancybox fancybox.iframe"" title=""Add to Queue""></a>
+<a href=""http://www.funimation.com/loadModal/index/share_modal_video/basilisk/cast-audition"" class=""icon-share fancybox fancybox.iframe"" data-fancybox-width=""630"" title=""Share This""></a>
+</div>
+<a href=""http://www.funimation.com/shows/basilisk/videos/promotional/cast-audition/anime"">
+<img data-original=""http://www.funimation.com/admin/uploads/default/promo_thumnails/7555646/2_thumbnail/3456789abcdefghijklmnopqrstuvwxyzABCD_k79958y.jpg"" src=""http://www.funimation.com/admin/uploads/default/default_images/2_thumbnail/VideoGuide.jpg"" border=""0"" width=""140"" height=""78"" alt=""Cast Audition""/></a>
+</div>
+<div class=""item-resume-info clearfix"">
+<a href=""http://www.funimation.com/shows/basilisk/anime"" class=""item-title"">Basilisk</a>
+<a href=""http://www.funimation.com/shows/basilisk/videos/promotional/cast-audition/anime"" class=""brief with-middle-line"">
+<span>Extra Feature</span>
+Cast Audition </a>
+</div>
+ 
+<div class=""hide"">
+<div class=""popup-heading"">
+<a href=""http://www.funimation.com/shows/basilisk/anime"" class=""item-title"">Basilisk</a>
+<a href=""http://www.funimation.com/shows/basilisk/videos/promotional/cast-audition/anime"" class=""item-title"">Extra Feature - Cast Audition</a>
+</div>
+<div class=""item-popup"">
+<div class=""pop-content"">
+<div class=""clearfix"">
+<p class=""left"">TV-MA | 23:52</p>
+<div class=""rank rank-5-stars right"">
+<ul>
+<li class=""star-one""></li>
+<li class=""star-two""></li>
+<li class=""star-three""></li>
+<li class=""star-four""></li>
+<li class=""star-five""></li>
+</ul>
+</div>
+</div>
+<p>US Cast Auditions (Gennosuke, Oboro, Akeginu, Kazamachi, Tenzen, Roudai, Ieyasu, Yashamaru, Saemon, Udono)</p>
+<p>
+<a href=""http://www.funimation.com/subscribe/anime"">Subscribe to watch episodes in HD commercial-free.</a>
+</p>
+</div>
+</div>
+</div>
+  </li>
+</ul>
+</div>
+</article>
+ 
+</section>
+<aside>
+ 
+<div class=""column_1 shadow-line sidebar-banner clearfix"">
+ 
+<div id='div-gpt-ad-1374328695293-0' class=""sidebar-banner"">
+<script type='text/rocketscript'>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1374328695293-0'); });
+        </script>
+</div>
+</div>
+   
+<article class=""share-funi-page column_1 shadow-line share four-items"">
+<div class=""basic-heading"">
+<h2>Share This</h2>
+</div>
+<ul>
+<li class=""t-center"">
+ 
+<a href=""#"" target=""_blank"" class=""google-count-urlh"">
+<span class=""t-center black foundicon-google-plus""></span>
+</a>
+</li>
+<li class=""t-center"">
+ 
+<a href=""#"" target=""_blank"" class=""twitter-count-urlh"">
+<span class=""t-center black foundicon-twitter""></span>
+</a>
+</li>
+<li class=""t-center"">
+ 
+<a href=""#"" target=""_blank"" class=""facebook-count-urlh"">
+<span class=""t-center black foundicon-facebook""></span>
+</a>
+</li>
+<li class=""t-center"">
+ 
+<a href=""#"" target=""_blank"" class=""tumblr-count-urlh"">
+<span class=""t-center black foundicon-tumblr""></span>
+</a>
+</li>
+ 
+ 
+ 
+ 
+ 
+ 
+</ul>
+</article>
+<script type=""text/rocketscript"">
+	head.ready(function() {
+
+        var page = 'videos';
+	    shareThis(document.URL);
+	    $('.tumblr-count-urlh').on('click',function(){ addParamTumblrWidgetLink(document.URL,document.title,'');});
+		$('.facebook-count-urlh').on('click',function(){addParamFacebookWidget( page );});
+		$('.twitter-count-urlh').on('click',function(event){addParamTwitterWidget(event);});
+		$('.google-count-urlh').on('click',function(){addParamGooglePlusWidget( page );});
+	});
 </script>
-<script type=""text/javascript"">
-<!--//--><![CDATA[//><!--
-var _gaq = _gaq || [];_gaq.push([""_setAccount"", ""UA-8100530-9""]);_gaq.push(['_setCustomVar', 1, ""User roles"", ""anonymous user"", 1]);_gaq.push([""_trackPageview""]);(function() {var ga = document.createElement(""script"");ga.type = ""text/javascript"";ga.async = true;ga.src = ""/sites/default/files/googleanalytics/ga.js?C"";var s = document.getElementsByTagName(""script"")[0];s.parentNode.insertBefore(ga, s);})();
-//--><!]]>
+ 
+ 
+<article class=""column_1 shadow-line table-type1"">
+<div class=""basic-heading"">
+<h2>WATCH FULL EPISODES</h2>
+</div>
+<ul class=""links-list"">
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/hackquantum/videos/episodes/anime"">.hack//Quantum</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/a-certain-magical-index/videos/episodes/anime"">A Certain Magical Index</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/a-certain-scientific-railgun/videos/episodes/anime"">A Certain Scientific Railgun</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/aesthetica-of-a-rogue-hero/videos/episodes/anime"">Aesthetica of a Rogue Hero</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/afro-samurai/videos/episodes/anime"">Afro Samurai</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ah-my-goddess-flights-of-fancy/videos/episodes/anime"">Ah! My Goddess: Flights of Fancy</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ai-yori-aoshi/videos/episodes/anime"">Ai Yori Aoshi</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/air/videos/episodes/anime"">Air</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/air-gear/videos/episodes/anime"">Air Gear</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/air-master/videos/episodes/anime"">Air Master</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/appleseed-xiii/videos/episodes/anime"">Appleseed XIII</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/aquarion/videos/episodes/anime"">Aquarion</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/aquarion-evol/videos/episodes/anime"">Aquarion EVOL</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/aria-the-scarlet-ammo/videos/episodes/anime"">Aria the Scarlet Ammo</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/armitage-iii/videos/episodes/anime"">Armitage III</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/attack-on-titan/videos/episodes/anime"">Attack on Titan</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/baccano/videos/episodes/anime"">Baccano!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes/anime"">Baka & Test - Summon the Beasts -</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/baldr-force-exe/videos/episodes/anime"">Baldr Force Exe</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/bamboo-blade/videos/episodes/anime"">Bamboo Blade</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/basilisk/videos/episodes/anime"">Basilisk</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/big-windup/videos/episodes/anime"">Big Windup!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes/anime"">Birdy the Mighty: Decode</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/black-blood-brothers/videos/episodes/anime"">Black Blood Brothers</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/black-butler/videos/episodes/anime"">Black Butler</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/black-cat/videos/episodes/anime"">Black Cat</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/black-lagoon/videos/episodes/anime"">Black Lagoon</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/blassreiter/videos/episodes/anime"">Blassreiter</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/blazblue/videos/episodes/anime"">BlazBlue: Alter Memory</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/blessing-of-the-campanella/videos/episodes/anime"">Blessing of the Campanella</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/blood-c/videos/episodes/anime"">BLOOD-C</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/blue-gender/videos/episodes/anime"">Blue Gender</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/brothers-conflict/videos/episodes/anime"">Brothers Conflict</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/bubblegum-crisis-tokyo-2040/videos/episodes/anime"">Bubblegum Crisis: Tokyo 2040</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/burst-angel/videos/episodes/anime"">Burst Angel</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/c-control/videos/episodes/anime"">C - Control</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/c3-anime/videos/episodes/anime"">C3 Anime</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/captain-harlock/videos/episodes/anime"">Captain Harlock</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/case-closed/videos/episodes/anime"">Case Closed</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/casshern-sins/videos/episodes/anime"">Casshern Sins</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/cat-planet-cuties/videos/episodes/anime"">Cat Planet Cuties</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/chaos-head/videos/episodes/anime"">Chaos;HEAd</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/chobits/videos/episodes/anime"">Chobits</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/chrome-shelled-regios/videos/episodes/anime"">Chrome Shelled Regios</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/chrono-crusade/videos/episodes/anime"">Chrono Crusade</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/claymore/videos/episodes/anime"">Claymore</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/code-breaker/videos/episodes/anime"">Code:Breaker</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/comic-party-revolution/videos/episodes/anime"">Comic Party Revolution</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/corpse-princess-shikabane-hime/videos/episodes/anime"">Corpse Princess: Shikabane Hime</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/coyote-ragtime-show/videos/episodes/anime"">Coyote Ragtime Show</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/dgray-man/videos/episodes/anime"">D.Gray-man</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/dance-in-the-vampire-bund/videos/episodes/anime"">Dance in the Vampire Bund</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/danganronpa-the-animation/videos/episodes/anime"">Danganronpa: The Animation</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/darker-than-black/videos/episodes/anime"">Darker Than Black</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/date-a-live/videos/episodes/anime"">Date A Live</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/deadman-wonderland/videos/episodes/anime"">Deadman Wonderland</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/desert-punk/videos/episodes/anime"">Desert Punk</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/detective-opera-milky-holmes-2/videos/episodes/anime"">Detective Opera Milky Holmes 2</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/devil-may-cry/videos/episodes/anime"">Devil May Cry</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/digimon-adventure-02/videos/episodes/anime"">Digimon Adventure 02</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/digimon-tamers/videos/episodes/anime"">Digimon Tamers</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/disgaea/videos/episodes/anime"">Disgaea</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/dragon-ball/videos/episodes/anime"">Dragon Ball</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/dragon-ball-z/videos/episodes/anime"">Dragon Ball Z</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/dragonaut-the-resonance/videos/episodes/anime"">Dragonaut -THE RESONANCE-</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/eden-of-the-east/videos/episodes/anime"">Eden of the East</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/el-cazador-de-la-bruja/videos/episodes/anime"">El Cazador de la Bruja</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ergo-proxy/videos/episodes/anime"">Ergo Proxy</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/episodes/anime"">Eureka Seven AO</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/excel-saga/videos/episodes/anime"">Excel Saga</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fafner/videos/episodes/anime"">Fafner</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fairy-tail/videos/episodes/anime"">Fairy Tail</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fist-of-the-north-star/videos/episodes/anime"">Fist of the North Star</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/flcl/videos/episodes/anime"">FLCL</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fractale/videos/episodes/anime"">Fractale</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/freezing/videos/episodes/anime"">Freezing</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fruits-basket/videos/episodes/anime"">Fruits Basket</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/full-metal-panic/videos/episodes/anime"">Full Metal Panic!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/full-metal-panic-the-second-raid/videos/episodes/anime"">Full Metal Panic! The Second Raid</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/full-metal-panic-fumoffu/videos/episodes/anime"">Full Metal Panic? Fumoffu</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fullmetal-alchemist/videos/episodes/anime"">Fullmetal Alchemist</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/episodes/anime"">Fullmetal Alchemist: Brotherhood</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ga-rei-zero/videos/episodes/anime"">Ga-Rei-Zero</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/gad-guard/videos/episodes/anime"">Gad Guard</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/gaiking/videos/episodes/anime"">Gaiking</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/galaxy-express-999/videos/episodes/anime"">Galaxy Express 999</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ghost-hunt/videos/episodes/anime"">Ghost Hunt</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/girls-bravo/videos/episodes/anime"">Girls Bravo</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/glass-fleet/videos/episodes/anime"">Glass Fleet</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/good-luck-girl/videos/episodes/anime"">Good Luck Girl</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/guilty-crown/videos/episodes/anime"">Guilty Crown</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/gun-x-sword/videos/episodes/anime"">Gun X Sword</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/gungrave/videos/episodes/anime"">Gungrave</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/gunslinger-girl/videos/episodes/anime"">Gunslinger Girl</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/gunslinger-girl-il-teatrino/videos/episodes/anime"">Gunslinger Girl - Il Teatrino</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/guyver-the-bioboosted-armor/videos/episodes/anime"">Guyver: The Bioboosted Armor</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/haganai/videos/episodes/anime"">Haganai</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/haibane-renmei/videos/episodes/anime"">Haibane Renmei</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/heat-guy-j/videos/episodes/anime"">Heat Guy J</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/heavens-lost-property/videos/episodes/anime"">Heaven's Lost Property</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/hellsing/videos/episodes/anime"">Hellsing</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/hellsing-ultimate/videos/episodes/anime"">Hellsing Ultimate</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/hero-tales/videos/episodes/anime"">Hero Tales</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/heroic-age/videos/episodes/anime"">Heroic Age</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/hetalia/videos/episodes/anime"">Hetalia</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/high-school-dxd/videos/episodes/anime"">High School DxD</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/house-of-five-leaves/videos/episodes/anime"">House of Five Leaves</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/hyperdimension-neptunia/videos/episodes/anime"">Hyperdimension Neptunia</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ikki-tousen/videos/episodes/anime"">Ikki Tousen</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/initial-d/videos/episodes/anime"">Initial D</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/inside-the-voice-actors-studio/videos/episodes/anime"">Inside The Voice Actors Studio</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/interlude/videos/episodes/anime"">Interlude</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/is-this-a-zombie/videos/episodes/anime"">Is this a Zombie?</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/jing-king-of-bandits/videos/episodes/anime"">Jing King of Bandits</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/jinki-extend/videos/episodes/anime"">Jinki: Extend</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/jormungand/videos/episodes/anime"">Jormungand</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/jyu-oh-sei/videos/episodes/anime"">Jyu-Oh-Sei</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kaleido-star/videos/episodes/anime"">Kaleido Star</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kamisama-kiss/videos/episodes/anime"">Kamisama Kiss</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kanon/videos/episodes/anime"">Kanon</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/karneval/videos/episodes/anime"">Karneval</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kaze-no-stigma/videos/episodes/anime"">Kaze No Stigma</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kenichi-the-mightiest-disciple/videos/episodes/anime"">Kenichi: The Mightiest Disciple</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kiddy-grade/videos/episodes/anime"">Kiddy Grade</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kingdom/videos/episodes/anime"">Kingdom</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/kurau-phantom-memory/videos/episodes/anime"">Kurau Phantom Memory</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/last-exile/videos/episodes/anime"">Last Exile</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/episodes/anime"">LASTEXILE -Fam, the Silver Wing</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/le-chevalier-deon/videos/episodes/anime"">Le Chevalier D'Eon</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/level-e/videos/episodes/anime"">Level E</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/linebarrels-of-iron/videos/episodes/anime"">Linebarrels of Iron</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/episodes/anime"">Lupin the Third - The Woman Called Fujiko Mine</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/magikano/videos/episodes/anime"">Magikano</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/maken-ki/videos/episodes/anime"">Maken-ki!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/master-of-martial-hearts/videos/episodes/anime"">Master of Martial Hearts</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/michiko-hatchin/videos/episodes/anime"">Michiko & Hatchin</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/minami-ke/videos/episodes/anime"">Minami-ke</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/mongolian-chop-squad/videos/episodes/anime"">Mongolian Chop Squad</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/moonphase/videos/episodes/anime"">MoonPhase</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/moyashimon-tales-of-agriculture/videos/episodes/anime"">Moyashimon: Tales of Agriculture</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/murder-princess/videos/episodes/anime"">Murder Princess</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/mushi-shi/videos/episodes/anime"">Mushi-Shi</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/my-bride-is-a-mermaid/videos/episodes/anime"">My Bride is a Mermaid</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/nabari-no-ou/videos/episodes/anime"">Nabari no Ou</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/negima-magister-negi-magi/videos/episodes/anime"">Negima!? Magister Negi Magi</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/noir/videos/episodes/anime"">Noir</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/oh-edo-rocket/videos/episodes/anime"">Oh! Edo Rocket</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/okami-san-and-her-seven-companions/videos/episodes/anime"">Okami-san and Her Seven Companions</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/one-piece/videos/episodes/anime"">One Piece</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/oniai/videos/episodes/anime"">OniAi</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ouran-high-school-host-club/videos/episodes/anime"">Ouran High School Host Club</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/pani-poni-dash/videos/episodes/anime"">Pani Poni Dash!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/panty-stocking-with-garterbelt/videos/episodes/anime"">Panty & Stocking with Garterbelt</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/peacemaker/videos/episodes/anime"">Peacemaker</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/phantom-requiem-for-the-phantom/videos/episodes/anime"">Phantom: Requiem for the Phantom</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/pretear/videos/episodes/anime"">Pretear</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/pretty-cure/videos/episodes/anime"">Pretty Cure</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/princess-jellyfish/videos/episodes/anime"">Princess Jellyfish</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/project-blue-earth-sos/videos/episodes/anime"">Project Blue Earth SOS</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/psycho-pass/videos/episodes/anime"">PSYCHO-PASS</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/puchims/videos/episodes/anime"">PUCHIM@S</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/pumpkin-scissors/videos/episodes/anime"">Pumpkin Scissors</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ragnarok-the-animation/videos/episodes/anime"">Ragnarok - The Animation</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/red-data-girl/videos/episodes/anime"">Red Data Girl</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/red-garden/videos/episodes/anime"">Red Garden</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/rideback/videos/episodes/anime"">RideBack</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/rin-daughters-of-mnemosyne/videos/episodes/anime"">RIN ~Daughters of Mnemosyne~</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/roboticsnotes/videos/episodes/anime"">Robotics;Notes</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/romeo-x-juliet/videos/episodes/anime"">Romeo x Juliet</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/rosario-vampire/videos/episodes/anime"">Rosario + Vampire</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/rumbling-hearts/videos/episodes/anime"">Rumbling Hearts</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/samurai-7/videos/episodes/anime"">Samurai 7</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/samurai-champloo/videos/episodes/anime"">Samurai Champloo</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/sands-of-destruction/videos/episodes/anime"">Sands of Destruction</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/sankarea/videos/episodes/anime"">Sankarea</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/sasami-magical-girls-club/videos/episodes/anime"">Sasami Magical Girls Club</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/save-me-lollipop/videos/episodes/anime"">Save Me! Lollipop</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/school-rumble/videos/episodes/anime"">School Rumble</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/sekirei/videos/episodes/anime"">Sekirei</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes/anime"">Sengoku BASARA: Samurai Kings</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/senran-kagura/videos/episodes/anime"">Senran Kagura</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/serial-experiments-lain/videos/episodes/anime"">Serial Experiments Lain</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/sgt-frog/videos/episodes/anime"">Sgt. Frog</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shakugan-no-shana/videos/episodes/anime"">Shakugan No Shana</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shangri-la/videos/episodes/anime"">Shangri-la</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shattered-angels/videos/episodes/anime"">Shattered Angels</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shigurui-death-frenzy/videos/episodes/anime"">Shigurui: Death Frenzy</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shiki/videos/episodes/anime"">Shiki</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shin-chan/videos/episodes/anime"">Shin chan</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/shuffle/videos/episodes/anime"">Shuffle!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/slam-dunk/videos/episodes/anime"">Slam Dunk</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/solty-rei/videos/episodes/anime"">Solty Rei</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/soul-eater/videos/episodes/anime"">Soul Eater</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/speed-grapher/videos/episodes/anime"">Speed Grapher</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/spice-and-wolf/videos/episodes/anime"">Spice and Wolf</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/steins-gate/videos/episodes/anime"">Steins;Gate</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/strain-strategic-armored-infantry/videos/episodes/anime"">STRAIN: Strategic Armored Infantry</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/strike-witches/videos/episodes/anime"">Strike Witches</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/suzuka/videos/episodes/anime"">Suzuka</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/symphogear/videos/episodes/anime"">Symphogear</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tenchi-muyo-gxp/videos/episodes/anime"">Tenchi Muyo! GXP</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes/anime"">Tenchi Muyo! OVA Series</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tenchi-muyo-ryo-ohki/videos/episodes/anime"">Tenchi Muyo! Ryo-Ohki</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tenchi-muyo-tenchi-in-tokyo/videos/episodes/anime"">Tenchi Muyo! Tenchi in Tokyo</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tenchi-muyo-tenchi-universe/videos/episodes/anime"">Tenchi Muyo! Tenchi Universe</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tenchi-muyo-war-on-geminar/videos/episodes/anime"">Tenchi Muyo! War on Geminar</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/texhnolyze/videos/episodes/anime"">Texhnolyze</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-count-of-monte-cristo-gankutsuou/videos/episodes/anime"">The Count of Monte Cristo: Gankutsuou</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/episodes/anime"">The Devil is a Part-Timer!</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-funimation-show/videos/episodes/anime"">The FUNimation Show</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-future-diary/videos/episodes/anime"">The Future Diary</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-galaxy-railways/videos/episodes/anime"">The Galaxy Railways</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-legend-of-the-legendary-heroes/videos/episodes/anime"">The Legend of the Legendary Heroes</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-sacred-blacksmith/videos/episodes/anime"">The Sacred Blacksmith</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-slayers/videos/episodes/anime"">The Slayers</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-slayers-revolution/videos/episodes/anime"">The Slayers Revolution</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-tatami-galaxy/videos/episodes/anime"">The Tatami Galaxy</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/the-wallflower/videos/episodes/anime"">The Wallflower</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/to-movie/videos/episodes/anime"">TO Movie</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tokyo-majin/videos/episodes/anime"">Tokyo Majin</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tokyo-ravens/videos/episodes/anime"">Tokyo Ravens</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/toriko/videos/episodes/anime"">Toriko</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tower-of-druaga/videos/episodes/anime"">Tower of Druaga</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/trigun/videos/episodes/anime"">Trigun</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/trinity-blood/videos/episodes/anime"">Trinity Blood</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/tsubasa-reservoir-chronicle/videos/episodes/anime"">Tsubasa RESERVoir CHRoNiCLE</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/ufo-ultramaiden-valkyrie/videos/episodes/anime"">UFO Ultramaiden Valkyrie</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/unbreakable-machine-doll/videos/episodes/anime"">Unbreakable Machine-Doll</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/utawarerumono/videos/episodes/anime"">Utawarerumono</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/vandread/videos/episodes/anime"">Vandread</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/venus-versus-virus/videos/episodes/anime"">Venus Versus Virus</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/we-without-wings/videos/episodes/anime"">We Without Wings</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/welcome-to-the-n-h-k/videos/episodes/anime"">Welcome to the N-H-K</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/witchblade/videos/episodes/anime"">Witchblade</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/x/videos/episodes/anime"">X</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/xxxholic/videos/episodes/anime"">xxxHOLiC</a></li>
+<li><a class=""fs16 bold"" href=""http://www.funimation.com/shows/yamadas-first-time-b-gata-h-kei/videos/episodes/anime"">Yamada's First Time: B Gata H Kei</a></li>
+</ul>
+</article>
+ 
+ 
+<div class=""column_1 shadow-line normal-slider with-tabs dvd-bd-schedule"">
+<div class=""basic-heading"">
+<h2>COMING SOON</h2>
+ 
+</div>
+ 
+<article class=""normal-slider flexslider"">
+<div class=""normal-slider-with-tabs"">
+<ul>
+<li>
+<div class=""basic-heading""><a href=""#normal-slider-with-tabs-1"">
+<h2>ELITE</h2>
+</a><a href=""http://www.funimation.com/schedule/subscription"" class=""btn size1"">View All</a></div>
+</li>
+<li>
+<div class=""basic-heading""><a href=""#normal-slider-with-tabs-2"">
+<h2>FREE</h2>
+</a><a href=""http://www.funimation.com/schedule/streaming"" class=""btn size1"">View All</a></div>
+</li>
+</ul>
+<div id=""normal-slider-with-tabs-1"">
+</div>
+<div id=""normal-slider-with-tabs-2"">
+</div>
+</div>
+</article>
+</div>
+  </aside>
+</section>
+<footer class=""clear"">
+<section class=""center-layout"">
+<article class=""main-footer left"">
+<ul class=""clearfix"">
+ 
+<li class=""left""><a href=""http://www.funimation.com/account""><span>Account</span></a></li>
+<li class=""left""><a href=""http://www.funimation.com/support""><span>Help</span></a></li>
+<li class=""left""><a href=""http://www.funimation.com/about-us/anime""><span>About Us</span></a></li>
+<li class=""left""><a href=""http://www.funimation.com/return-policy/anime""><span>Policies</span></a></li>
+ 
+<li class=""left""><a href=""http://www.funimation.com/terms-of-use/anime""><span>Terms</span></a></li>
+<li class=""left""><a href=""http://www.funimation.com/privacy-policy/anime""><span>Privacy</span></a></li>
+</ul>
+<span class=""copyright show"">&copy; 2014 FUNimation Productions, LTD. All Rights Reserved.</span>
+</article>
+<article class=""social-footer right"">
+<ul class=""clearfix"">
+<li class=""left fs14""><span class=""bold"">Follow us:</span></li>
+<li class=""left""><a href=""http://www.facebook.com/funimation"" target=""_blank""><span class=""social foundicon-facebook""></span></a></li>
+<li class=""left""><a href=""http://www.twitter.com/funimation"" target=""_blank""><span class=""social foundicon-twitter""></span></a></li>
+<li class=""left""><a href=""https://plus.google.com/+FUNimation"" target=""_blank""><span class=""social foundicon-google-plus""></span></a></li>
+<li class=""left""><a href=""https://www.youtube.com/funimation"" target=""_blank""><span class=""social foundicon-youtube""></span></a></li>
+<li class=""left""><a href=""http://www.pinterest.com/funimation"" target=""_blank""><span class=""social foundicon-pinterest""></span></a></li>
+<li class=""left""><a href=""http://funimation.tumblr.com"" target=""_blank""><span class=""social foundicon-tumblr""></span></a></li>
+</ul>
+</article>
+</section>
+</footer>
+<!--[if IE]>
+<script>
+	head.js({""jquery"":""http://www.funimation.com/assets/js/jquery-1.8.3.min.js""});
+    head.js({""jqueryui"":""http://www.funimation.com/assets/js/jquery-ui-1.9.2.min.js""});
+    head.js(""http://www.funimation.com/assets/js/default.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/alertify.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/bootstrap-dropdown.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/chosen.jquery.min.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/countdown.min.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/coverflow.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/filtrify.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/flexslider.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/hiddenElements.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/highlight.pack.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.carouFredSel-6.2.1-packed.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.dd.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.dotdotdot-1.5.9.min.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.fancybox.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.gridster.min.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jQuery.Hashtable-1.1.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.lazyload.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/jquery.ui.selectmenu.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/js-url.min.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/popover.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/spin.min.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/tooltip.js"");
+    head.js(""http://www.funimation.com/assets/js/libraries/zoom.js"");
 </script>
-</body>
+<![endif]-->
+<!--[if !IE]><!-->
+<script type=""text/rocketscript"">
+    head.js({""jquery"":""http://www.funimation.com/assets/js/jquery-1.8.3.min.js""});
+    head.js({""jqueryui"":""http://www.funimation.com/assets/js/jquery-ui-1.9.2.min.js""});
+    head.js(""http://www.funimation.com/assets/js/default.js"");
+</script>
+<!--<![endif]-->
+<script type=""text/rocketscript"">    
+	head.js(""http://www.funimation.com/assets/js/libraries/jPages.min.js"");
+    head.js({""global"":""http://www.funimation.com/assets/js/global.js""});
+    head.js(""http://w.sharethis.com/button/buttons.js"");
+    head.js({""share_funi"":""http://www.funimation.com/assets/js/share_funi_style.js""});
+    head.js(""http://www.funimation.com/assets/js/tiny_mce/tiny_mce_gzip.js"");
+</script>
+<input type=""hidden"" name=""bu"" id=""buShareFuni"" value=""http://www.funimation.com/""/>
+<script type=""text/rocketscript"">
+    (function () {
+        var newrelic = document.createElement(""script"");
+        var snewrelic = document.getElementsByTagName(""script"")[0];
+        newrelic.async = true;
+        newrelic.src = ""//s.btstatic.com/tag.js#site=VjnP9AP"";
+        snewrelic.parentNode.insertBefore(newrelic, snewrelic);
+    }());
+</script>
+<noscript>
+<iframe src=""//s.thebrighttag.com/iframe?c=VjnP9AP"" width=""1"" height=""1"" frameborder=""0"" scrolling=""no"" marginheight=""0"" marginwidth=""0""></iframe>
+</noscript>
+ <script type=""text/rocketscript"">
+var selectedTab = 2;
+var container = null;
+
+head.ready(function() {
+        global.initToggles();
+        global.initShowListToggle();
+        global.initVideoTopSlider();
+        global.slider();
+        global.tooltips();
+        global.popUp();
+        //global.initFancyBox();
+        global.initTabs();
+
+        $.getScript(base_url + ""assets/js/common.js"");
+
+        /*
+        $('body').on('click','.addToMyShows',function(e){
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: ""POST"",
+                data: {id: id},
+                url: '',
+                dataType: ""html"",
+                success: function(msg){
+                    if(parseInt(msg) == 1)
+                    {
+                        $('addshows [data-id=""'+id+'""]').removeClass('addToMyShows');
+                        $('addshows [data-id=""'+id+'""]').addClass('removeFromMyShows');
+
+
+                        $('addshows [data-id=""'+id+'""] span').removeClass();
+                        $('addshows [data-id=""'+id+'""] span').addClass('icon-minus bold');
+                        $('addshows [data-id=""'+id+'""] span').attr('data-original-title','Remove from My Shows');
+                    }
+                }
+            });
+        });
+
+        $('body').on('click','.removeFromMyShows',function(e){
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: ""POST"",
+                data: {id: id},
+                url: '',
+                dataType: ""html"",
+                success: function(msg){
+                    if(parseInt(msg) == 1)
+                    {
+                        $('addshows [data-id=""'+id+'""]').removeClass('removeFromMyShows');
+                        $('addshows [data-id=""'+id+'""]').addClass('addToMyShows');
+
+                        $('addshows [data-id=""'+id+'""] span').removeClass();
+                        $('addshows [data-id=""'+id+'""] span').addClass('icon-plus bold');
+                        $('addshows [data-id=""'+id+'""] span').attr('data-original-title','Add to My Shows');
+                    }
+                }
+            });
+        });
+
+
+        $('body').on('click','.addToFavorites',function(e){
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                type: ""POST"",
+                data: {id: id},
+                url: '',
+                dataType: ""html"",
+                success: function(msg){
+                    if(parseInt(msg) == 1)
+                    {
+                        $('addfavorites [data-id=""'+id+'""]').removeClass('addToFavorites');
+                        $('addfavorites [data-id=""'+id+'""]').addClass('removeFromFavorites');
+                        $('addfavorites [data-id=""'+id+'""] span').addClass('red');
+
+                        $('addfavorites [data-id=""'+id+'""] span').attr('data-original-title','Remove from Favorites');
+                    }
+                }
+            });
+        })*/
+
+        
+        <!-- End Add & remove shows from favorites -->
+
+       // sort
+        $('.sort-field').off('click').on('click', function(e){
+            sortItems(false, $(e.currentTarget));
+        });
+
+        sortItems(true, null);
+
+        $(""li[role='tab']"").click(function(e){
+            if($(e.currentTarget).attr('aria-controls').indexOf('tabs-1') > 0)
+                selectedTab = 2;
+            else
+                selectedTab = 1;        
+        });
+
+
+    });
+/*
+head.ready(""share_funi"",function() {
+	addTagsImages('videos');
+});*/
+
+function sortItems(firstLoad, e){
+    if (firstLoad){ 
+        //var column = $("".sort-field[data-field='date']"");
+        //scheduleByTypeSearch(column, 'date', 'asc', 1);
+        //scheduleByTypeSearch(column, 'date', 'asc', 2);
+        //scheduleBluRaySearch(null, null, null);
+        loadSchedules();
+    }
+    else
+        scheduleByTypeSearch(e, e.data('field'), e.data('order'), selectedTab);
+}
+
+function scheduleByTypeSearch(column, order_by, order_sort, type) {
+    $.ajax({    
+        type: ""GET"",
+        data: {order_by: order_by, order_sort: order_sort, type:type},
+        url: 'http://www.funimation.com/videos/schedule_streaming_subscription_search_ajax',
+        dataType: ""json"",
+        success: function(result){
+            //$('.container').html(result['items']);
+            var container = null;
+            if(type == 1)
+                container = '#normal-slider-with-tabs-2';        
+            else
+                container = '#normal-slider-with-tabs-1';                    
+            $(container).html(result['items']);   
+
+            // change sort order
+            if (order_sort == ""asc"")
+                $(container+"" .sort-field[data-field='""+order_by+""']"").data('order', 'desc');
+            else if (order_sort == ""desc"") 
+                $(container+"" .sort-field[data-field='""+order_by+""']"").data('order', 'asc');
+
+            // sort
+            $('.sort-field').off('click').on('click', function(e){
+                sortItems(false, $(e.currentTarget));
+            });
+
+            global.popUp();
+            global.slider();
+            //global.initFancyBox();
+        }
+    });
+}
+
+
+function loadSchedules() {
+	//Load schedule_streaming_subscription_search_ajax Type = 1
+    $.ajax({    
+        type: ""GET"",
+        data: {order_by: ""date"", order_sort: ""asc"", type:1},
+        url: 'http://www.funimation.com/videos/schedule_streaming_subscription_search_ajax',
+        dataType: ""json"",
+        success: function(result){
+            var container = null;
+			container = '#normal-slider-with-tabs-2';        
+            $(container).html(result['items']);   
+
+            //Load schedule_streaming_subscription_search_ajax Type = 2
+            $.ajax({    
+                type: ""GET"",
+                data: {order_by: ""date"", order_sort: ""asc"", type:2},
+                url: 'http://www.funimation.com/videos/schedule_streaming_subscription_search_ajax',
+                dataType: ""json"",
+                success: function(result){
+                    container = '#normal-slider-with-tabs-1';        
+                    $(container).html(result['items']);   
+
+                    // sort
+                    $('.sort-field').off('click').on('click', function(e){
+                        sortItems(false, $(e.currentTarget));
+                    });
+
+                    global.popUp();
+                    global.slider();
+                    //global.initFancyBox();
+                }
+            });
+        }
+    });
+}
+
+</script>
+<script type=""text/rocketscript"">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push([""load"",new Date().getTime()]);var e=document.createElement(""script"");e.type=""text/javascript"";e.src=((""http:""===document.location.protocol)?""http:"":""https:"")+""//""+""js-agent.newrelic.com/nr-100.js"";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push([""nrfj"",""beacon-5.newrelic.com"",""2b4c127a96"",""2420982"",""YABTYRRUCEpYBkcMCVlKcFYSXAlXFjNaAQNYFh5cCFEDQQ=="",0,233,new Date().getTime(),"""","""","""","""",""""]);</script></body>
 </html>";
     }
 }

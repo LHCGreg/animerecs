@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using AnimeRecs.DAL;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace AnimeRecs.UpdateStreams
 {
     class HuluStreamInfoSource : IAnimeStreamInfoSource
     {
+        private string _oauthToken;
+        
         class HuluAnimeResultsJsonRoot
         {
             public int total_count { get; set; }
@@ -34,6 +38,25 @@ namespace AnimeRecs.UpdateStreams
             ;
         }
 
+        private void EnsureOauthToken()
+        {
+            if(_oauthToken != null)
+                return;
+
+            using (CompressionWebClient webClient = new CompressionWebClient())
+            {
+                string huluPageHtml = webClient.DownloadString("http://www.hulu.com/tv/genres/anime");
+                Regex oathTokenRegex = new Regex("w.API_DONUT = '(?<Token>[^']*)'");
+                Match m = oathTokenRegex.Match(huluPageHtml);
+                if (!m.Success)
+                {
+                    throw new Exception("w.API_DONUT not found in Hulu HTML. The page probably changed and the code for getting Hulu anime needs to be updaed.");
+                }
+
+                _oauthToken = m.Groups["Token"].ToString();
+            }
+        }
+
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
@@ -44,19 +67,24 @@ namespace AnimeRecs.UpdateStreams
             // Ugh, Hulu puts some anime in "Animation and Cartoons" instead of "Anime".
             // And some in both!
 
-            ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("Animation+and+Cartoons");
+            ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("Animation and Cartoons");
             streams.AddRange(animationAndCartoonStreams.Where(stream => !urls.Contains(stream.Url)));
             return streams;
         }
 
         private ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string genre)
         {
-            // http://www.hulu.com/api/2.0/shows.json?genre=Anime&order=desc&sort=view_count_week&items_per_page=64&position=0
+            // http://www.hulu.com/mozart/v1.h2o/shows?exclude_hulu_content=1&genre={genre}&sort=popular_this_week&_language=en&_region=us&items_per_page=100&position=0&region=us&locale=en&language=en&access_token={oathtoken}
             // count is in total_count
             // process results:
             //   data[x].show.name, data[x].show.canonical_name
             // current position += num results processed
             // if current position < count, repeat
+            //
+            // data[x].show.name is the show's name.
+            // data[x].show.canonical_name is how you get the url for the show - http://www.hulu.com/{canonical_name}
+
+            EnsureOauthToken();
 
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
 
@@ -68,8 +96,9 @@ namespace AnimeRecs.UpdateStreams
                 while (position < numAnimes)
                 {
                     string url = string.Format(
-                        "http://www.hulu.com/api/2.0/shows.json?genre={0}&order=desc&sort=view_count_week&items_per_page=100&position={1}",
-                        genre, position);
+                        CultureInfo.InvariantCulture,
+                        "http://www.hulu.com/mozart/v1.h2o/shows?exclude_hulu_content=1&genre={0}&sort=popular_this_week&_language=en&_region=us&items_per_page=100&position={1}&region=us&locale=en&language=en&access_token={2}",
+                        Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
 
                     string jsonString = webClient.DownloadString(url);
                     HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);

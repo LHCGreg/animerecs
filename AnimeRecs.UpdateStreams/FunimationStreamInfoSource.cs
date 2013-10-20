@@ -9,10 +9,12 @@ namespace AnimeRecs.UpdateStreams
 {
     class FunimationStreamInfoSource : HtmlRegexAnimeStreamInfoSource
     {
+        // <li><a class="fs16 bold" href="http://www.funimation.com/shows/hackquantum/videos/episodes/anime">.hack//Quantum</a></li>
+
         public FunimationStreamInfoSource()
             : base(url: "http://www.funimation.com/videos", service: StreamingService.Funimation,
             animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute,
-            animeRegex: new Regex("<span class=\"field-content\"><a href=\"(?<Url>[^\"]*)?\">(?<AnimeName>.*?)</a>",
+            animeRegex: new Regex("<li><a class=\"fs16 bold\" href=\"(?<Url>[^\"]*)\">(?<AnimeName>.*?)</a>",
                 RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
         {
             ;

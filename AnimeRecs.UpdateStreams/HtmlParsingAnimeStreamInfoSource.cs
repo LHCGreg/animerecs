@@ -28,8 +28,7 @@ namespace AnimeRecs.UpdateStreams
             }
 
             // HTML Agility Pack does not convert "&Auml;" to an A with an umlaut
-            // It also has issues with the em dashes in "LAGRANGE – The Flower of Rin-ne –" from Viz. Not sure whose fault that is.
-            // But it doesn't really matter as long as it's readable by the human editing the csv and consistent across program runs.
+            // but it doesn't really matter as long as it's readable by the human editing the csv and consistent across program runs.
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseBody);
             HtmlNodeCollection matchingNodes = htmlDoc.DocumentNode.SelectNodes(XPath);

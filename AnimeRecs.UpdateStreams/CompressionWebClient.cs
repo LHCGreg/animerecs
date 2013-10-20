@@ -11,6 +11,13 @@ namespace AnimeRecs.UpdateStreams
     /// </summary>
     class CompressionWebClient : WebClient
     {
+        public CompressionWebClient()
+        {
+            // Are you serious, Microsoft? You can't use the information in the HTTP headers? AND you default to
+            // the system-wide default encoding instead of utf8? -_-
+            this.Encoding = Encoding.UTF8;
+        }
+        
         protected override WebRequest GetWebRequest(Uri address)
         {
             HttpWebRequest request = (HttpWebRequest)base.GetWebRequest(address);
