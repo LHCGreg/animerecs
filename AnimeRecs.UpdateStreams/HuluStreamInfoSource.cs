@@ -60,21 +60,33 @@ namespace AnimeRecs.UpdateStreams
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
-            ICollection<AnimeStreamInfo> animeStreams = GetAnimeStreamInfo("Anime");
+            ICollection<AnimeStreamInfo> animeStreams = GetAnimeStreamInfo("shows", "Anime");
             HashSet<string> urls = new HashSet<string>(animeStreams.Select(stream => stream.Url));
 
             streams.AddRange(animeStreams);
             // Ugh, Hulu puts some anime in "Animation and Cartoons" instead of "Anime".
             // And some in both!
 
-            ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("Animation and Cartoons");
+            ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("shows", "Animation and Cartoons");
             streams.AddRange(animationAndCartoonStreams.Where(stream => !urls.Contains(stream.Url)));
+
+            ICollection<AnimeStreamInfo> animeMovieStreams = GetAnimeStreamInfo("movies", "Anime");
+            streams.AddRange(animeMovieStreams.Where(stream => !urls.Contains(stream.Url)));
+
+            ICollection<AnimeStreamInfo> animationAndCartoonMovieStreams = GetAnimeStreamInfo("movies", "Animation and Cartoons");
+            streams.AddRange(animationAndCartoonMovieStreams.Where(stream => !urls.Contains(stream.Url)));
             return streams;
         }
 
-        private ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string genre)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type">movies or shows</param>
+        /// <param name="genre"></param>
+        /// <returns></returns>
+        private ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string type, string genre)
         {
-            // http://www.hulu.com/mozart/v1.h2o/shows?exclude_hulu_content=1&genre={genre}&sort=popular_this_week&_language=en&_region=us&items_per_page=100&position=0&region=us&locale=en&language=en&access_token={oathtoken}
+            // http://www.hulu.com/mozart/v1.h2o/shows?exclude_hulu_content=1&genre={genre}&sort=release_with_popularity&_language=en&_region=us&items_per_page=100&position=0&region=us&locale=en&language=en&access_token={oathtoken}
             // count is in total_count
             // process results:
             //   data[x].show.name, data[x].show.canonical_name
@@ -97,8 +109,8 @@ namespace AnimeRecs.UpdateStreams
                 {
                     string url = string.Format(
                         CultureInfo.InvariantCulture,
-                        "http://www.hulu.com/mozart/v1.h2o/shows?exclude_hulu_content=1&genre={0}&sort=popular_this_week&_language=en&_region=us&items_per_page=100&position={1}&region=us&locale=en&language=en&access_token={2}",
-                        Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
+                        "http://www.hulu.com/mozart/v1.h2o/{0}?exclude_hulu_content=1&genre={1}&sort=release_with_popularity&_language=en&_region=us&items_per_page=100&position={2}&region=us&locale=en&language=en&access_token={3}",
+                        type, Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
 
                     string jsonString = webClient.DownloadString(url);
                     HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);
