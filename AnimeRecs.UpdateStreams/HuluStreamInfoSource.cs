@@ -61,17 +61,19 @@ namespace AnimeRecs.UpdateStreams
         {
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
             ICollection<AnimeStreamInfo> animeStreams = GetAnimeStreamInfo("shows", "Anime");
+            streams.AddRange(animeStreams);
             HashSet<string> urls = new HashSet<string>(animeStreams.Select(stream => stream.Url));
 
-            streams.AddRange(animeStreams);
             // Ugh, Hulu puts some anime in "Animation and Cartoons" instead of "Anime".
             // And some in both!
 
             ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("shows", "Animation and Cartoons");
             streams.AddRange(animationAndCartoonStreams.Where(stream => !urls.Contains(stream.Url)));
+            urls.UnionWith(animationAndCartoonStreams.Select(stream => stream.Url));
 
             ICollection<AnimeStreamInfo> animeMovieStreams = GetAnimeStreamInfo("movies", "Anime");
             streams.AddRange(animeMovieStreams.Where(stream => !urls.Contains(stream.Url)));
+            urls.UnionWith(animeMovieStreams.Select(stream => stream.Url));
 
             ICollection<AnimeStreamInfo> animationAndCartoonMovieStreams = GetAnimeStreamInfo("movies", "Animation and Cartoons");
             streams.AddRange(animationAndCartoonMovieStreams.Where(stream => !urls.Contains(stream.Url)));
