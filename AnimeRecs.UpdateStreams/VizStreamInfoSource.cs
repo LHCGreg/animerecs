@@ -11,7 +11,7 @@ namespace AnimeRecs.UpdateStreams
     class VizStreamInfoSource : HtmlParsingAnimeStreamInfoSource
     {
         private const string Url = "http://www.vizanime.com/";
-        private const string XPath = @"//ol[@class=""allshows_link_list allshows_link_list_red""]//a";
+        private const string XPath = @"//ul[@id=""stream_drop""]//ul//a";
         
         public VizStreamInfoSource()
             : base(Url, XPath)
