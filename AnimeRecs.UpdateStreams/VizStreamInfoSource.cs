@@ -22,7 +22,7 @@ namespace AnimeRecs.UpdateStreams
         protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
         {
             string possiblyRelativeUrl = matchingNode.Attributes["href"].Value;
-            string animeName = matchingNode.InnerText;
+            string animeName = HtmlEntity.DeEntitize(matchingNode.InnerText);
             return new AnimeStreamInfo(animeName, possiblyRelativeUrl, StreamingService.Viz);
         }
     }
