@@ -4,6 +4,53 @@
         <name>MalApi</name>
     </assembly>
     <members>
+        <member name="T:MalApi.AnimeListCache">
+            <summary>
+            Thread-safe cache with an optional expiration time. If the expiration time is null, anime lists are cached for the lifetime of
+            the object. Expired cache entries are only actually removed when a new anime list is inserted into the cache. Cache expiration
+            measurement is susceptible to changes to the system clock.
+            </summary>
+        </member>
+        <member name="T:MalApi.CachingMyAnimeListApi">
+            <summary>
+            This class is thread-safe if the underlying API is. If the expiration time is null, anime lists are cached for the lifetime of
+            the object. Expired cache entries are only actually removed when a new anime list is inserted into the cache. Cache expiration
+            measurement is susceptible to changes to the system clock.
+            
+            This class only caches user anime lists from GetAnimeListForUser(). Other functions are not cached.
+            </summary>
+        </member>
+        <member name="M:MalApi.IMyAnimeListApi.GetAnimeListForUser(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+            <exception cref="T:MalApi.MalUserNotFoundException"></exception>
+            <exception cref="T:MalApi.MalApiException"></exception>
+        </member>
+        <member name="M:MalApi.IMyAnimeListApi.GetAnimeDetails(System.Int32)">
+            <summary>
+            Gets information from an anime's "details" page.
+            </summary>
+            <param name="animeId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MalApi.MalAnimeInfoFromUserLookup.Type">
+            <summary>
+            Could be something other than the enumerated values if MAL adds new types!
+            </summary>
+        </member>
+        <member name="P:MalApi.MalAnimeInfoFromUserLookup.NumEpisodes">
+            <summary>
+            Could be 0 for anime that hasn't aired yet or less than the planned number of episodes for a series currently airing.
+            </summary>
+        </member>
+        <member name="T:MalApi.MalAnimeNotFoundException">
+            <summary>
+            Indicates that the anime that was searched for does not exist.
+            </summary>
+        </member>
         <member name="T:MalApi.MalApiException">
             <summary>
             Generic exception for errors 
@@ -14,27 +61,26 @@
             The type has not been entered in MAL's database yet.
             </summary>
         </member>
-        <member name="T:MalApi.RetryOnFailureMyAnimeListApi">
+        <member name="T:MalApi.MalApiRequestException">
             <summary>
-            Retries failed requests after waiting for a short period. After a certain number of failures, it gives up and propagates the
-            thrown exception.
+            Thrown when there is an error communicating with MAL.
             </summary>
         </member>
-        <member name="M:MalApi.IMyAnimeListApi.GetAnimeListForUser(System.String)">
+        <!-- Badly formed XML comment ignored for member "M:MalApi.MalAppInfoXml.Parse(System.IO.TextReader)" -->
+        <member name="M:MalApi.MalAppInfoXml.SanitizeAnimeListXml(System.IO.TextReader)">
             <summary>
-            
+            Sanitizes anime list XML which is not always well-formed. If a user uses &amp; characters in their tags,
+            they will not be escaped in the XML.
             </summary>
-            <param name="user"></param>
+            <param name="xmlTextReader"></param>
             <returns></returns>
-            <exception cref="!:AnimeCompatibility.MalUserNotFoundException"></exception>
         </member>
-        <member name="T:MalApi.RateLimitingMyAnimeListApi">
+        <member name="M:MalApi.MalAppInfoXml.Parse(System.Xml.Linq.XDocument)">
             <summary>
-            Limits MAL requests by waiting a given time period betwen each request.
-            The time is measured from before one request is made to before the next request is made.
-            You might use this to be nice to MAL and avoid making requests as fast as possible.
-            This class is thread-safe if the underlying API is.
+            Parses XML obtained from malappinfo.php.
             </summary>
+            <param name="doc"></param>
+            <returns></returns>
         </member>
         <member name="T:MalApi.MyAnimeListApi">
             <summary>
@@ -47,22 +93,21 @@
             </summary>
             <param name="user"></param>
             <returns></returns>
-            <exception cref="!:AnimeCompatibility.MalUserNotFoundException"></exception>
-            <exception cref="!:AnimeCompatibility.MalApiException"></exception>
-        </member>
-        <member name="M:MalApi.MyAnimeListApi.SanitizeAnimeListXml(System.IO.TextReader)">
-            <summary>
-            Sanitizes anime list XML which is not always well-formed. If a user uses &amp; characters in their tags,
-            they will not be escaped in the XML.
-            </summary>
-            <param name="xmlTextReader"></param>
-            <returns></returns>
+            <exception cref="T:MalApi.MalUserNotFoundException"></exception>
+            <exception cref="T:MalApi.MalApiException"></exception>
         </member>
         <member name="M:MalApi.MyAnimeListApi.GetRecentOnlineUsers">
             <summary>
             Gets a list of users that have been on MAL recently. This scrapes the HTML on the recent users page and therefore
             can break if MAL changes the HTML on that page.
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MalApi.MyAnimeListApi.GetAnimeDetails(System.Int32)">
+            <summary>
+            Gets information from an anime's "details" page. This method uses HTML scraping and so may break if MAL changes the HTML.
+            </summary>
+            <param name="animeId"></param>
             <returns></returns>
         </member>
         <member name="P:MalApi.MyAnimeListApi.UserAgent">
@@ -73,6 +118,30 @@
         <member name="P:MalApi.MyAnimeListApi.TimeoutInMs">
             <summary>
             Timeout in milliseconds for requests to MAL. Defaults to 15000 (15s).
+            </summary>
+        </member>
+        <member name="P:MalApi.MalUserLookupResults.CanonicalUserName">
+            <summary>
+            The user name as it appears in MAL. This might differ in capitalization from the username that was searched for.
+            </summary>
+        </member>
+        <member name="T:MalApi.MalUserNotFoundException">
+            <summary>
+            Indicates that the user that was searched for does not exist.
+            </summary>
+        </member>
+        <member name="T:MalApi.RateLimitingMyAnimeListApi">
+            <summary>
+            Limits MAL requests by waiting a given time period betwen each request.
+            The time is measured from before one request is made to before the next request is made.
+            You might use this to be nice to MAL and avoid making requests as fast as possible.
+            This class is thread-safe if the underlying API is.
+            </summary>
+        </member>
+        <member name="T:MalApi.RetryOnFailureMyAnimeListApi">
+            <summary>
+            Retries failed requests after waiting for a short period. After a certain number of failures, it gives up and propagates the
+            thrown exception.
             </summary>
         </member>
         <member name="T:MalApi.UncertainDate">
@@ -88,45 +157,6 @@
             </summary>
             <param name="malDateString"></param>
             <returns></returns>
-        </member>
-        <member name="T:MalApi.MalUserNotFoundException">
-            <summary>
-            Indicates that the user tha was searched for does not exist.
-            </summary>
-        </member>
-        <member name="P:MalApi.MalUserLookupResults.CanonicalUserName">
-            <summary>
-            The user name as it appears in MAL. This might differ in capitalization from the username that was searched for.
-            </summary>
-        </member>
-        <member name="T:MalApi.AnimeListCache">
-            <summary>
-            Thread-safe cache with an optional expiration time. If the expiration time is null, anime lists are cached for the lifetime of
-            the object. Expired cache entries are only actually removed when a new anime list is inserted into the cache. Cache expiration
-            measurement is susceptible to changes to the system clock.
-            </summary>
-        </member>
-        <member name="T:MalApi.MalApiRequestException">
-            <summary>
-            Thrown when there is an error communicating with MAL.
-            </summary>
-        </member>
-        <member name="T:MalApi.CachingMyAnimeListApi">
-            <summary>
-            This class is thread-safe if the underlying API is. If the expiration time is null, anime lists are cached for the lifetime of
-            the object. Expired cache entries are only actually removed when a new anime list is inserted into the cache. Cache expiration
-            measurement is susceptible to changes to the system clock.
-            </summary>
-        </member>
-        <member name="P:MalApi.MalAnimeInfoFromUserLookup.Type">
-            <summary>
-            Could be something other than the enumerated values if MAL adds new types!
-            </summary>
-        </member>
-        <member name="P:MalApi.MalAnimeInfoFromUserLookup.NumEpisodes">
-            <summary>
-            Could be 0 for anime that hasn't aired yet or less than the planned number of episodes for a series currently airing.
-            </summary>
         </member>
     </members>
 </doc>
