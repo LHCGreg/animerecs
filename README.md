@@ -26,6 +26,10 @@ AnimeRecs.RecService.Client: Command-line rec service client application for con
 
 AnimeRecs.Web: ASP.NET MVC web application that gives recommendations based on a user's myanimelist.net account
 
+# Setting up
+
+**Note that myanimelist.net now blocks programmatic HTTP requests unless your application is whitelisted so you will not be able to populate a user database or test normally. What you can do is get a database from *somewhere* and enable the config option for getting users' anime list from the database instead of from myanimelist.net.**
+
 To set up a development environment you will need to install the following:
 
 - Microsoft Visual C# 2010 Express
@@ -42,8 +46,7 @@ $ xbuild /t:build /p:Configuration=Debug /p:Platform=AnyCPU xyz.csproj
 Building a web package with xbuild (note, this does not apply Web.config transforms!):
 $ xbuild /t:build "/p:Configuration=Debug;Platform=AnyCPU;OutDir=/home/greg/publish/" AnimeRecs.Web.csproj
 
-Setting up PostgreSQL in Ubuntu
--------------------------------
+## Setting up PostgreSQL in Ubuntu
 1. Set your locale to UTF-8. This ensures that Postgres that does not install with a default of ASCII and prevent you from creating a database that uses UTF-8 as its encoding.
 $ sudo update-locale LANG=en_US.UTF-8
 
@@ -64,46 +67,27 @@ $ su - postgres
 $ psql -d template1 -c "ALTER USER postgres WITH PASSWORD 'testpw';"
 $ exit
 
-edit /etc/postgresql/9.1/main/pg_hba.conf
+## Initializing the database
 
-edit the lines:
-local   all        postgres        peer
-local   all        all             peer
-
-change "peer" to "md5".
-
-$ sudo service postgresql restart
-
-
-Initializing the database
--------------------------
-1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/DB Init Scripts/CreateDb_windows.sql. On Linux, psql -U postgres -f 'AnimeRecs.DAL/DB Init Scripts/CreateDb_linux.sql
+1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/DB Init Scripts/CreateDb_windows.sql. On Linux, psql -U postgres -h localhost -f 'AnimeRecs.DAL/DB Init Scripts/CreateDb_linux.sql'
 2. Connect to the new database and run the SQL in AnimeRecs.DAL/DB Init Scripts/InitDb.000.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.000.sql.
 3. Likewise, run all InitDb.###.sql scripts in order.
 
+## Populating the database with ratings
 
-
-Populating the database with ratings
-------------------------------------
 1. Edit App.config in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
 2. Compile and run AnimeRecs.FreshenMalDatabase. This will populate the database with users from myanimelist.net's "recently online users" page. This will take some time to run.
 
+## Populating the database with stream mappings
 
-
-Populating the database with stream mappings
---------------------------------------------
 Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/StreamMappings.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f StreamMappings.sql
 
+## Populating the database with prerequisite mappings
 
-
-Populating the database with prerequisite mappings
---------------------------------------------------
 Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/Prereqs.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f Prereqs.sql
 
+## Running the web site
 
-
-Running the web site
------------------------
 1. Edit App.config in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
 2. Compile AnimeRecs.RecService.Client and load some rec sources, preferably at least one with the name "default". See the recclient tutorial below for how to use AnimeRecs.RecService.Client.
 3. Open AnimeRecs.Web.sln. Compile and run the web site locally. Try it out. You can use http://localhost:[port]/?algorithm=some_rec_source to use a non-default rec source.
