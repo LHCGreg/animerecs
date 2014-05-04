@@ -103,13 +103,13 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Ebiten","http://www.crunchyroll.com/ebiten",14073
 "Crunchyroll","Ef - A Tale of Melodies","http://www.crunchyroll.com/ef-a-tale-of-melodies",4789
 "Crunchyroll","Ef - A Tale of Memories","http://www.crunchyroll.com/ef-a-tale-of-memories",2924
-"Crunchyroll","Egg Man","http://www.crunchyroll.com/egg-man",n/a
 "Crunchyroll","Encouragement Of Climb","http://www.crunchyroll.com/encouragement-of-climb",14355
 "Crunchyroll","Engaged to the Unidentified","http://www.crunchyroll.com/engaged-to-the-unidentified",20541
 "Crunchyroll","Erin","http://www.crunchyroll.com/erin",5420
 "Crunchyroll","Eyeshield 21","http://www.crunchyroll.com/eyeshield-21",15
 "Crunchyroll","Fairy Musketeers","http://www.crunchyroll.com/fairy-musketeers",607
-"Crunchyroll","Fairy Tail Series 2","http://www.crunchyroll.com/fairy-tail-series-2",22043
+"Crunchyroll","Fairy Tail","http://www.crunchyroll.com/fairy-tail",6702
+"Crunchyroll","Fairy Tail","http://www.crunchyroll.com/fairy-tail",22043
 "Crunchyroll","Familiar of Zero F","http://www.crunchyroll.com/familiar-of-zero-f",11319
 "Crunchyroll","Fantasista Doll","http://www.crunchyroll.com/fantasista-doll",15883
 "Crunchyroll","Fate Zero","http://www.crunchyroll.com/fate-zero",10087
@@ -121,6 +121,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Folktales from Japan","http://www.crunchyroll.com/folktales-from-japan",13163
 "Crunchyroll","Fortune Arterial","http://www.crunchyroll.com/fortune-arterial",8536
 "Crunchyroll","Free! - Iwatobi Swim Club","http://www.crunchyroll.com/free-iwatobi-swim-club",18507
+"Crunchyroll","Future Card Buddyfight","http://www.crunchyroll.com/future-card-buddyfight",19067
 "Crunchyroll","GA Geijutsuka Art Design Class","http://www.crunchyroll.com/ga-geijutsuka-art-design-class",5670
 "Crunchyroll","GA Geijutsuka Art Design Class","http://www.crunchyroll.com/ga-geijutsuka-art-design-class",6959
 "Crunchyroll","Gaiking: Legend of Daiku-Maryu","http://www.crunchyroll.com/gaiking-legend-of-daiku-maryu",1845
@@ -200,6 +201,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Kanamemo","http://www.crunchyroll.com/kanamemo",5914
 "Crunchyroll","Kanojo ga Flag wo Oraretara (If Her Flag Breaks)","http://www.crunchyroll.com/kanojo-ga-flag-wo-oraretara-if-her-flag-breaks",19685
 "Crunchyroll","Kanokon","http://www.crunchyroll.com/kanokon",3503
+"Crunchyroll","Karasuma Kyoko no Jikenbo (Manga 2.5)","http://www.crunchyroll.com/karasuma-kyoko-no-jikenbo-manga-25",n/a
 "Crunchyroll","Kemeko DX","http://www.crunchyroll.com/kemeko-dx",3464
 "Crunchyroll","Kiddy GiRL-AND","http://www.crunchyroll.com/kiddy-girl-and",3349
 "Crunchyroll","Kids on the Slope","http://www.crunchyroll.com/kids-on-the-slope",12531
@@ -267,7 +269,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Monogatari","http://www.crunchyroll.com/monogatari",17074
 "Crunchyroll","Moritasan wa Mukuchi","http://www.crunchyroll.com/moritasan-wa-mukuchi",10671
 "Crunchyroll","Moritasan wa Mukuchi","http://www.crunchyroll.com/moritasan-wa-mukuchi",11615
-"Crunchyroll","Mouse","http://www.crunchyroll.com/mouse",624
 "Crunchyroll","Moyashimon","http://www.crunchyroll.com/moyashimon",3001
 "Crunchyroll","Moyashimon","http://www.crunchyroll.com/moyashimon",13409
 "Crunchyroll","Muromi-san","http://www.crunchyroll.com/muromi-san",16910
@@ -417,6 +418,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","The Melancholy of Haruhi Suzumiya","http://www.crunchyroll.com/the-melancholy-of-haruhi-suzumiya",5957
 "Crunchyroll","The Melody of Oblivion","http://www.crunchyroll.com/the-melody-of-oblivion",159
 "Crunchyroll","The Mystic Archives of Dantalian","http://www.crunchyroll.com/the-mystic-archives-of-dantalian",8915
+"Crunchyroll","The Mythical Detective Loki (Manga 2.5)","http://www.crunchyroll.com/the-mythical-detective-loki-manga-25",n/a
 "Crunchyroll","The Pet Girl of Sakurasou","http://www.crunchyroll.com/the-pet-girl-of-sakurasou",13759
 "Crunchyroll","The Pilot's Love Song","http://www.crunchyroll.com/the-pilots-love-song",19117
 "Crunchyroll","The Place Promised In Our Early Days","http://www.crunchyroll.com/the-place-promised-in-our-early-days",433
@@ -468,6 +470,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Wonder Momo","http://www.crunchyroll.com/wonder-momo",22377
 "Crunchyroll","Wooser's Hand-to-Mouth Life","http://www.crunchyroll.com/woosers-hand-to-mouth-life",15313
 "Crunchyroll","World Conquest Zvezda Plot","http://www.crunchyroll.com/world-conquest-zvezda-plot",20973
+"Crunchyroll","World Fool News","http://www.crunchyroll.com/world-fool-news",18205
 "Crunchyroll","Xamd: Lost Memories","http://www.crunchyroll.com/xamd-lost-memories",4177
 "Crunchyroll","Yamishibai: Japanese Ghost Stories","http://www.crunchyroll.com/yamishibai-japanese-ghost-stories",19383
 "Crunchyroll","Yokuwakaru Gendai Maho","http://www.crunchyroll.com/yokuwakaru-gendai-maho",5454
@@ -482,319 +485,320 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Z/X IGNITION","http://www.crunchyroll.com/zx-ignition",20533
 "Crunchyroll","Zapuni","http://www.crunchyroll.com/zapuni",n/a
 "Crunchyroll","Zettai Boei Leviatan","http://www.crunchyroll.com/zettai-boei-leviatan",17681
-"Funimation",".hack//Quantum","http://www.funimation.com/shows/hackquantum/videos/episodes/anime",9332
-"Funimation","A Certain Magical Index","http://www.funimation.com/shows/a-certain-magical-index/videos/episodes/anime",4654
-"Funimation","A Certain Scientific Railgun","http://www.funimation.com/shows/a-certain-scientific-railgun/videos/episodes/anime",6213
-"Funimation","Aesthetica of a Rogue Hero","http://www.funimation.com/shows/aesthetica-of-a-rogue-hero/videos/episodes/anime",13161
-"Funimation","Afro Samurai","http://www.funimation.com/shows/afro-samurai/videos/episodes/anime",1292
-"Funimation","Ah! My Goddess: Flights of Fancy","http://www.funimation.com/shows/ah-my-goddess-flights-of-fancy/videos/episodes/anime",880
-"Funimation","Ah! My Goddess: Flights of Fancy","http://www.funimation.com/shows/ah-my-goddess-flights-of-fancy/videos/episodes/anime",2198
-"Funimation","Ai Yori Aoshi","http://www.funimation.com/shows/ai-yori-aoshi/videos/episodes/anime",53
-"Funimation","Ai Yori Aoshi","http://www.funimation.com/shows/ai-yori-aoshi/videos/episodes/anime",394
-"Funimation","Air","http://www.funimation.com/shows/air/videos/episodes/anime",101
-"Funimation","Air Gear","http://www.funimation.com/shows/air-gear/videos/episodes/anime",857
-"Funimation","Appleseed XIII","http://www.funimation.com/shows/appleseed-xiii/videos/episodes/anime",9737
-"Funimation","Aquarion","http://www.funimation.com/shows/aquarion/videos/episodes/anime",478
-"Funimation","Aquarion EVOL","http://www.funimation.com/shows/aquarion-evol/videos/episodes/anime",10447
-"Funimation","Aria the Scarlet Ammo","http://www.funimation.com/shows/aria-the-scarlet-ammo/videos/episodes/anime",8630
-"Funimation","Armitage III","http://www.funimation.com/shows/armitage-iii/videos/episodes/anime",1079
-"Funimation","Attack on Titan","http://www.funimation.com/shows/attack-on-titan/videos/episodes/anime",16498
-"Funimation","Baccano!","http://www.funimation.com/shows/baccano/videos/episodes/anime",2251
-"Funimation","Baccano!","http://www.funimation.com/shows/baccano/videos/episodes/anime",3901
-"Funimation","Baka & Test - Summon the Beasts -","http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes/anime",6347
-"Funimation","Baka & Test - Summon the Beasts -","http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes/anime",7870
-"Funimation","Baka & Test - Summon the Beasts -","http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes/anime",8516
-"Funimation","Baldr Force Exe","http://www.funimation.com/shows/baldr-force-exe/videos/episodes/anime",1682
-"Funimation","Bamboo Blade","http://www.funimation.com/shows/bamboo-blade/videos/episodes/anime",2986
-"Funimation","Basilisk","http://www.funimation.com/shows/basilisk/videos/episodes/anime",67
-"Funimation","Ben-To","http://www.funimation.com/shows/ben-to/videos/episodes/anime",10396
-"Funimation","Big Windup!","http://www.funimation.com/shows/big-windup/videos/episodes/anime",2159
-"Funimation","Big Windup!","http://www.funimation.com/shows/big-windup/videos/episodes/anime",3887
-"Funimation","Birdy the Mighty: Decode","http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes/anime",3974
-"Funimation","Birdy the Mighty: Decode","http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes/anime",6380
-"Funimation","Birdy the Mighty: Decode","http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes/anime",5074
-"Funimation","Black Blood Brothers","http://www.funimation.com/shows/black-blood-brothers/videos/episodes/anime",1498
-"Funimation","Black Butler","http://www.funimation.com/shows/black-butler/videos/episodes/anime",4798
-"Funimation","Black Butler","http://www.funimation.com/shows/black-butler/videos/episodes/anime",6707
-"Funimation","Black Butler","http://www.funimation.com/shows/black-butler/videos/episodes/anime",9136
-"Funimation","Black Cat","http://www.funimation.com/shows/black-cat/videos/episodes/anime",68
-"Funimation","Black Lagoon","http://www.funimation.com/shows/black-lagoon/videos/episodes/anime",889
-"Funimation","Black Lagoon","http://www.funimation.com/shows/black-lagoon/videos/episodes/anime",1519
-"Funimation","Black Lagoon","http://www.funimation.com/shows/black-lagoon/videos/episodes/anime",4901
-"Funimation","Blassreiter","http://www.funimation.com/shows/blassreiter/videos/episodes/anime",3407
-"Funimation","BlazBlue: Alter Memory","http://www.funimation.com/shows/blazblue/videos/episodes/anime",18767
-"Funimation","Blessing of the Campanella","http://www.funimation.com/shows/blessing-of-the-campanella/videos/episodes/anime",6979
-"Funimation","BLOOD-C","http://www.funimation.com/shows/blood-c/videos/episodes/anime",10490
-"Funimation","Blue Gender","http://www.funimation.com/shows/blue-gender/videos/episodes/anime",58
-"Funimation","Brothers Conflict","http://www.funimation.com/shows/brothers-conflict/videos/episodes/anime",15605
-"Funimation","Bubblegum Crisis: Tokyo 2040","http://www.funimation.com/shows/bubblegum-crisis-tokyo-2040/videos/episodes/anime",568
-"Funimation","Buddy Complex","http://www.funimation.com/shows/buddy-complex/videos/episodes/anime",21437
-"Funimation","Burst Angel","http://www.funimation.com/shows/burst-angel/videos/episodes/anime",109
-"Funimation","C - Control","http://www.funimation.com/shows/c-control/videos/episodes/anime",10163
-"Funimation","C3 Anime","http://www.funimation.com/shows/c3-anime/videos/episodes/anime",10578
-"Funimation","Captain Harlock","http://www.funimation.com/shows/captain-harlock/videos/episodes/anime",1000
-"Funimation","Case Closed","http://www.funimation.com/shows/case-closed/videos/episodes/anime",235
-"Funimation","Casshern Sins","http://www.funimation.com/shows/casshern-sins/videos/episodes/anime",4981
-"Funimation","Cat Planet Cuties","http://www.funimation.com/shows/cat-planet-cuties/videos/episodes/anime",6166
-"Funimation","Chaos;HEAd","http://www.funimation.com/shows/chaos-head/videos/episodes/anime",4975
-"Funimation","Chobits","http://www.funimation.com/shows/chobits/videos/episodes/anime",59
-"Funimation","Chrome Shelled Regios","http://www.funimation.com/shows/chrome-shelled-regios/videos/episodes/anime",4186
-"Funimation","Chrono Crusade","http://www.funimation.com/shows/chrono-crusade/videos/episodes/anime",60
-"Funimation","Claymore","http://www.funimation.com/shows/claymore/videos/episodes/anime",1818
-"Funimation","Code:Breaker","http://www.funimation.com/shows/code-breaker/videos/episodes/anime",11703
-"Funimation","Comic Party Revolution","http://www.funimation.com/shows/comic-party-revolution/videos/episodes/anime",706
-"Funimation","Corpse Princess: Shikabane Hime","http://www.funimation.com/shows/corpse-princess-shikabane-hime/videos/episodes/anime",4581
-"Funimation","Corpse Princess: Shikabane Hime","http://www.funimation.com/shows/corpse-princess-shikabane-hime/videos/episodes/anime",5034
-"Funimation","Coyote Ragtime Show","http://www.funimation.com/shows/coyote-ragtime-show/videos/episodes/anime",1194
-"Funimation","D.Gray-man","http://www.funimation.com/shows/dgray-man/videos/episodes/anime",1482
-"Funimation","DAIMIDALER: PRINCE VS. PENGUIN EMPIRE","http://www.funimation.com/shows/daimidaler/videos/episodes/anime",21809
-"Funimation","Dance in the Vampire Bund","http://www.funimation.com/shows/dance-in-the-vampire-bund/videos/episodes/anime",6747
-"Funimation","Danganronpa: The Animation","http://www.funimation.com/shows/danganronpa-the-animation/videos/episodes/anime",16592
-"Funimation","Darker Than Black","http://www.funimation.com/shows/darker-than-black/videos/episodes/anime",2025
-"Funimation","Darker Than Black","http://www.funimation.com/shows/darker-than-black/videos/episodes/anime",4182
-"Funimation","Darker Than Black","http://www.funimation.com/shows/darker-than-black/videos/episodes/anime",6573
-"Funimation","Date A Live","http://www.funimation.com/shows/date-a-live/videos/episodes/anime",15583
-"Funimation","Deadman Wonderland","http://www.funimation.com/shows/deadman-wonderland/videos/episodes/anime",6880
-"Funimation","Desert Punk","http://www.funimation.com/shows/desert-punk/videos/episodes/anime",25
-"Funimation","Detective Opera Milky Holmes 2","http://www.funimation.com/shows/detective-opera-milky-holmes-2/videos/episodes/anime",11341
-"Funimation","Devil May Cry","http://www.funimation.com/shows/devil-may-cry/videos/episodes/anime",1726
-"Funimation","D-Fragments","http://www.funimation.com/shows/d-fragments/videos/episodes/anime",20031
-"Funimation","Digimon Adventure 02","http://www.funimation.com/shows/digimon-adventure-02/videos/episodes/anime",1313
-"Funimation","Disgaea","http://www.funimation.com/shows/disgaea/videos/episodes/anime",860
-"Funimation","Dragon Ball","http://www.funimation.com/shows/dragon-ball/videos/episodes/anime",223
-"Funimation","Dragon Ball GT","http://www.funimation.com/shows/dragon-ball-gt/videos/episodes/anime",225
-"Funimation","Dragon Ball Z","http://www.funimation.com/shows/dragon-ball-z/videos/episodes/anime",813
-"Funimation","Dragonar Academy","http://www.funimation.com/shows/dragonar-academy/videos/episodes/anime",21033
-"Funimation","Dragonaut -THE RESONANCE-","http://www.funimation.com/shows/dragonaut-the-resonance/videos/episodes/anime",2795
-"Funimation","Dragonaut -THE RESONANCE-","http://www.funimation.com/shows/dragonaut-the-resonance/videos/episodes/anime",5072
-"Funimation","Eden of the East","http://www.funimation.com/shows/eden-of-the-east/videos/episodes/anime",5630
-"Funimation","El Cazador de la Bruja","http://www.funimation.com/shows/el-cazador-de-la-bruja/videos/episodes/anime",2030
-"Funimation","Ergo Proxy","http://www.funimation.com/shows/ergo-proxy/videos/episodes/anime",790
-"Funimation","Eureka Seven","http://www.funimation.com/shows/eureka-seven/videos/episodes/anime",237
-"Funimation","Eureka Seven AO","http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/episodes/anime",12471
-"Funimation","Excel Saga","http://www.funimation.com/shows/excel-saga/videos/episodes/anime",379
-"Funimation","Fafner","http://www.funimation.com/shows/fafner/videos/episodes/anime",75
-"Funimation","Fairy Tail","http://www.funimation.com/shows/fairy-tail/videos/episodes/anime",6702
-"Funimation","Fist of the North Star","http://www.funimation.com/shows/fist-of-the-north-star/videos/episodes/anime",967
-"Funimation","Fist of the North Star","http://www.funimation.com/shows/fist-of-the-north-star/videos/episodes/anime",1356
-"Funimation","FLCL","http://www.funimation.com/shows/flcl/videos/episodes/anime",227
-"Funimation","Fractale","http://www.funimation.com/shows/fractale/videos/episodes/anime",9314
-"Funimation","Freezing","http://www.funimation.com/shows/freezing/videos/episodes/anime",9367
-"Funimation","Fruits Basket","http://www.funimation.com/shows/fruits-basket/videos/episodes/anime",120
-"Funimation","Full Metal Panic!","http://www.funimation.com/shows/full-metal-panic/videos/episodes/anime",71
-"Funimation","Full Metal Panic! The Second Raid","http://www.funimation.com/shows/full-metal-panic-the-second-raid/videos/episodes/anime",73
-"Funimation","Full Metal Panic! The Second Raid","http://www.funimation.com/shows/full-metal-panic-the-second-raid/videos/episodes/anime",1015
-"Funimation","Full Metal Panic? Fumoffu","http://www.funimation.com/shows/full-metal-panic-fumoffu/videos/episodes/anime",72
-"Funimation","Fullmetal Alchemist","http://www.funimation.com/shows/fullmetal-alchemist/videos/episodes/anime",121
-"Funimation","Fullmetal Alchemist: Brotherhood","http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/episodes/anime",5114
-"Funimation","Gad Guard","http://www.funimation.com/shows/gad-guard/videos/episodes/anime",271
-"Funimation","Galaxy Express 999","http://www.funimation.com/shows/galaxy-express-999/videos/episodes/anime",1491
-"Funimation","Ga-Rei-Zero","http://www.funimation.com/shows/ga-rei-zero/videos/episodes/anime",4725
-"Funimation","Ghost Hunt","http://www.funimation.com/shows/ghost-hunt/videos/episodes/anime",1571
-"Funimation","Girls Bravo","http://www.funimation.com/shows/girls-bravo/videos/episodes/anime",241
-"Funimation","Girls Bravo","http://www.funimation.com/shows/girls-bravo/videos/episodes/anime",487
-"Funimation","Glass Fleet","http://www.funimation.com/shows/glass-fleet/videos/episodes/anime",973
-"Funimation","Good Luck Girl","http://www.funimation.com/shows/good-luck-girl/videos/episodes/anime",13535
-"Funimation","Guilty Crown","http://www.funimation.com/shows/guilty-crown/videos/episodes/anime",10793
-"Funimation","Gun X Sword","http://www.funimation.com/shows/gun-x-sword/videos/episodes/anime",411
-"Funimation","Gun X Sword","http://www.funimation.com/shows/gun-x-sword/videos/episodes/anime",5501
-"Funimation","Gungrave","http://www.funimation.com/shows/gungrave/videos/episodes/anime",267
-"Funimation","Gunslinger Girl","http://www.funimation.com/shows/gunslinger-girl/videos/episodes/anime",134
-"Funimation","Gunslinger Girl - Il Teatrino","http://www.funimation.com/shows/gunslinger-girl-il-teatrino/videos/episodes/anime",3231
-"Funimation","Gunslinger Girl - Il Teatrino","http://www.funimation.com/shows/gunslinger-girl-il-teatrino/videos/episodes/anime",4765
-"Funimation","Guyver: The Bioboosted Armor","http://www.funimation.com/shows/guyver-the-bioboosted-armor/videos/episodes/anime",1374
-"Funimation","Haganai","http://www.funimation.com/shows/haganai/videos/episodes/anime",10719
-"Funimation","Haibane Renmei","http://www.funimation.com/shows/haibane-renmei/videos/episodes/anime",387
-"Funimation","Heat Guy J","http://www.funimation.com/shows/heat-guy-j/videos/episodes/anime",958
-"Funimation","Heaven's Lost Property","http://www.funimation.com/shows/heavens-lost-property/videos/episodes/anime",5958
-"Funimation","Heaven's Lost Property","http://www.funimation.com/shows/heavens-lost-property/videos/episodes/anime",8407
-"Funimation","Hellsing","http://www.funimation.com/shows/hellsing/videos/episodes/anime",270
-"Funimation","Hellsing Ultimate","http://www.funimation.com/shows/hellsing-ultimate/videos/episodes/anime",777
-"Funimation","Hero Tales","http://www.funimation.com/shows/hero-tales/videos/episodes/anime",2772
-"Funimation","Heroic Age","http://www.funimation.com/shows/heroic-age/videos/episodes/anime",2002
-"Funimation","Hetalia","http://www.funimation.com/shows/hetalia/videos/episodes/anime",5060
-"Funimation","Hetalia","http://www.funimation.com/shows/hetalia/videos/episodes/anime",8479
-"Funimation","High School DxD","http://www.funimation.com/shows/high-school-dxd/videos/episodes/anime",11617
-"Funimation","House of Five Leaves","http://www.funimation.com/shows/house-of-five-leaves/videos/episodes/anime",7588
-"Funimation","Hyperdimension Neptunia","http://www.funimation.com/shows/hyperdimension-neptunia/videos/episodes/anime",16157
-"Funimation","Ikki Tousen","http://www.funimation.com/shows/ikki-tousen/videos/episodes/anime",257
-"Funimation","Ikki Tousen","http://www.funimation.com/shows/ikki-tousen/videos/episodes/anime",4196
-"Funimation","Ikki Tousen","http://www.funimation.com/shows/ikki-tousen/videos/episodes/anime",7580
-"Funimation","Inari Kon Kon","http://www.funimation.com/shows/inari-kon-kon/videos/episodes/anime",20457
-"Funimation","Initial D","http://www.funimation.com/shows/initial-d/videos/episodes/anime",185
-"Funimation","Initial D","http://www.funimation.com/shows/initial-d/videos/episodes/anime",186
-"Funimation","Initial D","http://www.funimation.com/shows/initial-d/videos/episodes/anime",18
-"Funimation","Inside The Voice Actors Studio","http://www.funimation.com/shows/inside-the-voice-actors-studio/videos/episodes/anime",n/a
-"Funimation","Is this a Zombie?","http://www.funimation.com/shows/is-this-a-zombie/videos/episodes/anime",8841
-"Funimation","Is this a Zombie?","http://www.funimation.com/shows/is-this-a-zombie/videos/episodes/anime",10790
-"Funimation","Jing King of Bandits","http://www.funimation.com/shows/jing-king-of-bandits/videos/episodes/anime",107
-"Funimation","Jinki: Extend","http://www.funimation.com/shows/jinki-extend/videos/episodes/anime",141
-"Funimation","Jormungand","http://www.funimation.com/shows/jormungand/videos/episodes/anime",12413
-"Funimation","Jyu-Oh-Sei","http://www.funimation.com/shows/jyu-oh-sei/videos/episodes/anime",953
-"Funimation","Kaleido Star","http://www.funimation.com/shows/kaleido-star/videos/episodes/anime",427
-"Funimation","Kamisama Kiss","http://www.funimation.com/shows/kamisama-kiss/videos/episodes/anime",14713
-"Funimation","Kanon","http://www.funimation.com/shows/kanon/videos/episodes/anime",1530
-"Funimation","Karneval","http://www.funimation.com/shows/karneval/videos/episodes/anime",16035
-"Funimation","Kaze No Stigma","http://www.funimation.com/shows/kaze-no-stigma/videos/episodes/anime",1691
-"Funimation","Kenichi: The Mightiest Disciple","http://www.funimation.com/shows/kenichi-the-mightiest-disciple/videos/episodes/anime",1559
-"Funimation","Kiddy Grade","http://www.funimation.com/shows/kiddy-grade/videos/episodes/anime",274
-"Funimation","Kingdom","http://www.funimation.com/shows/kingdom/videos/episodes/anime",12031
-"Funimation","Kurau Phantom Memory","http://www.funimation.com/shows/kurau-phantom-memory/videos/episodes/anime",483
-"Funimation","Last Exile","http://www.funimation.com/shows/last-exile/videos/episodes/anime",97
-"Funimation","LASTEXILE -Fam, the Silver Wing","http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/episodes/anime",10336
-"Funimation","LASTEXILE -Fam, the Silver Wing","http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/episodes/anime",12429
-"Funimation","Le Chevalier D'Eon","http://www.funimation.com/shows/le-chevalier-deon/videos/episodes/anime",1013
-"Funimation","Level E","http://www.funimation.com/shows/level-e/videos/episodes/anime",9834
-"Funimation","Linebarrels of Iron","http://www.funimation.com/shows/linebarrels-of-iron/videos/episodes/anime",3653
-"Funimation","Lupin the Third - The Woman Called Fujiko Mine","http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/episodes/anime",13203
-"Funimation","Magikano","http://www.funimation.com/shows/magikano/videos/episodes/anime",576
-"Funimation","Maken-ki!","http://www.funimation.com/shows/maken-ki/videos/episodes/anime",9936
-"Funimation","Master of Martial Hearts","http://www.funimation.com/shows/master-of-martial-hearts/videos/episodes/anime",5020
-"Funimation","Michiko & Hatchin","http://www.funimation.com/shows/michiko-hatchin/videos/episodes/anime",4087
-"Funimation","Minami-ke","http://www.funimation.com/shows/minami-ke/videos/episodes/anime",14511
-"Funimation","Mongolian Chop Squad","http://www.funimation.com/shows/mongolian-chop-squad/videos/episodes/anime",57
-"Funimation","MoonPhase","http://www.funimation.com/shows/moonphase/videos/episodes/anime",343
-"Funimation","Moyashimon: Tales of Agriculture","http://www.funimation.com/shows/moyashimon-tales-of-agriculture/videos/episodes/anime",n/a
-"Funimation","Murder Princess","http://www.funimation.com/shows/murder-princess/videos/episodes/anime",1696
-"Funimation","Mushi-Shi","http://www.funimation.com/shows/mushi-shi/videos/episodes/anime",457
-"Funimation","My Bride is a Mermaid","http://www.funimation.com/shows/my-bride-is-a-mermaid/videos/episodes/anime",2104
-"Funimation","Nabari no Ou","http://www.funimation.com/shows/nabari-no-ou/videos/episodes/anime",3655
-"Funimation","Negima!","http://www.funimation.com/shows/negima/videos/episodes/anime",157
-"Funimation","Negima!? Magister Negi Magi","http://www.funimation.com/shows/negima-magister-negi-magi/videos/episodes/anime",1546
-"Funimation","Nobunagun","http://www.funimation.com/shows/nobunagun/videos/episodes/anime",19855
-"Funimation","Noir","http://www.funimation.com/shows/noir/videos/episodes/anime",272
-"Funimation","Noragami","http://www.funimation.com/shows/noragami/videos/episodes/anime",20507
-"Funimation","NO-RIN","http://www.funimation.com/shows/no-rin/videos/episodes/anime",18095
-"Funimation","Oh! Edo Rocket","http://www.funimation.com/shows/oh-edo-rocket/videos/episodes/anime",2152
-"Funimation","Okami-san and Her Seven Companions","http://www.funimation.com/shows/okami-san-and-her-seven-companions/videos/episodes/anime",7769
-"Funimation","One Piece","http://www.funimation.com/shows/one-piece/videos/episodes/anime",21
-"Funimation","OniAi","http://www.funimation.com/shows/oniai/videos/episodes/anime",14199
-"Funimation","Ouran High School Host Club","http://www.funimation.com/shows/ouran-high-school-host-club/videos/episodes/anime",853
-"Funimation","Pani Poni Dash!","http://www.funimation.com/shows/pani-poni-dash/videos/episodes/anime",490
-"Funimation","Panty & Stocking with Garterbelt","http://www.funimation.com/shows/panty-stocking-with-garterbelt/videos/episodes/anime",8795
-"Funimation","Peacemaker","http://www.funimation.com/shows/peacemaker/videos/episodes/anime",161
-"Funimation","Phantom: Requiem for the Phantom","http://www.funimation.com/shows/phantom-requiem-for-the-phantom/videos/episodes/anime",5682
-"Funimation","Ping Pong the Animation","http://www.funimation.com/shows/ping-pong-the-animation/videos/episodes/anime",22135
-"Funimation","Pretear","http://www.funimation.com/shows/pretear/videos/episodes/anime",100
-"Funimation","Pretty Cure","http://www.funimation.com/shows/pretty-cure/videos/episodes/anime",603
-"Funimation","Princess Jellyfish","http://www.funimation.com/shows/princess-jellyfish/videos/episodes/anime",8129
-"Funimation","Project Blue Earth SOS","http://www.funimation.com/shows/project-blue-earth-sos/videos/episodes/anime",1247
-"Funimation","PSYCHO-PASS","http://www.funimation.com/shows/psycho-pass/videos/episodes/anime",13601
-"Funimation","PUCHIM@S","http://www.funimation.com/shows/puchims/videos/episodes/anime",15649
-"Funimation","Pumpkin Scissors","http://www.funimation.com/shows/pumpkin-scissors/videos/episodes/anime",1538
-"Funimation","Ragnarok - The Animation","http://www.funimation.com/shows/ragnarok-the-animation/videos/episodes/anime",417
-"Funimation","Red Data Girl","http://www.funimation.com/shows/red-data-girl/videos/episodes/anime",14921
-"Funimation","Red Garden","http://www.funimation.com/shows/red-garden/videos/episodes/anime",1601
-"Funimation","Red Garden","http://www.funimation.com/shows/red-garden/videos/episodes/anime",2267
-"Funimation","Riddle Story of Devil","http://www.funimation.com/shows/riddle-story-of-devil/videos/episodes/anime",19429
-"Funimation","RideBack","http://www.funimation.com/shows/rideback/videos/episodes/anime",4618
-"Funimation","RIN ~Daughters of Mnemosyne~","http://www.funimation.com/shows/rin-daughters-of-mnemosyne/videos/episodes/anime",3342
-"Funimation","Robotics;Notes","http://www.funimation.com/shows/roboticsnotes/videos/episodes/anime",13599
-"Funimation","Romeo x Juliet","http://www.funimation.com/shows/romeo-x-juliet/videos/episodes/anime",1699
-"Funimation","Rosario + Vampire","http://www.funimation.com/shows/rosario-vampire/videos/episodes/anime",2933
-"Funimation","Rosario + Vampire","http://www.funimation.com/shows/rosario-vampire/videos/episodes/anime",4214
-"Funimation","Rumbling Hearts","http://www.funimation.com/shows/rumbling-hearts/videos/episodes/anime",147
-"Funimation","Samurai 7","http://www.funimation.com/shows/samurai-7/videos/episodes/anime",166
-"Funimation","Samurai Champloo","http://www.funimation.com/shows/samurai-champloo/videos/episodes/anime",205
-"Funimation","Sands of Destruction","http://www.funimation.com/shows/sands-of-destruction/videos/episodes/anime",4415
-"Funimation","Sankarea","http://www.funimation.com/shows/sankarea/videos/episodes/anime",11499
-"Funimation","Sasami Magical Girls Club","http://www.funimation.com/shows/sasami-magical-girls-club/videos/episodes/anime",1881
-"Funimation","Sasami Magical Girls Club","http://www.funimation.com/shows/sasami-magical-girls-club/videos/episodes/anime",1882
-"Funimation","Save Me! Lollipop","http://www.funimation.com/shows/save-me-lollipop/videos/episodes/anime",1509
-"Funimation","School Rumble","http://www.funimation.com/shows/school-rumble/videos/episodes/anime",24
-"Funimation","School Rumble","http://www.funimation.com/shows/school-rumble/videos/episodes/anime",517
-"Funimation","School Rumble","http://www.funimation.com/shows/school-rumble/videos/episodes/anime",846
-"Funimation","Sekirei","http://www.funimation.com/shows/sekirei/videos/episodes/anime",4063
-"Funimation","Sekirei","http://www.funimation.com/shows/sekirei/videos/episodes/anime",5277
-"Funimation","selector infected WIXOSS","http://www.funimation.com/shows/selector-infected-wixoss/videos/episodes/anime",22273
-"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes/anime",5355
-"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes/anime",6634
-"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes/anime",10483
-"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes/anime",18549
-"Funimation","Senran Kagura","http://www.funimation.com/shows/senran-kagura/videos/episodes/anime",15119
-"Funimation","Serial Experiments Lain","http://www.funimation.com/shows/serial-experiments-lain/videos/episodes/anime",339
-"Funimation","Sgt. Frog","http://www.funimation.com/shows/sgt-frog/videos/episodes/anime",516
-"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes/anime",355
-"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes/anime",2787
-"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes/anime",6572
-"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes/anime",6773
-"Funimation","Shangri-la","http://www.funimation.com/shows/shangri-la/videos/episodes/anime",5220
-"Funimation","Shattered Angels","http://www.funimation.com/shows/shattered-angels/videos/episodes/anime",1810
-"Funimation","Shigurui: Death Frenzy","http://www.funimation.com/shows/shigurui-death-frenzy/videos/episodes/anime",2216
-"Funimation","Shiki","http://www.funimation.com/shows/shiki/videos/episodes/anime",7724
-"Funimation","Shin chan","http://www.funimation.com/shows/shin-chan/videos/episodes/anime",966
-"Funimation","Shuffle!","http://www.funimation.com/shows/shuffle/videos/episodes/anime",79
-"Funimation","Slam Dunk","http://www.funimation.com/shows/slam-dunk/videos/episodes/anime",170
-"Funimation","Solty Rei","http://www.funimation.com/shows/solty-rei/videos/episodes/anime",152
-"Funimation","Solty Rei","http://www.funimation.com/shows/solty-rei/videos/episodes/anime",3138
-"Funimation","Soul Eater","http://www.funimation.com/shows/soul-eater/videos/episodes/anime",3588
-"Funimation","Soul Eater Not!","http://www.funimation.com/shows/soul-eater-not/videos/episodes/anime",21507
-"Funimation","Space Dandy","http://www.funimation.com/shows/space-dandy/videos/episodes/anime",20057
-"Funimation","Speed Grapher","http://www.funimation.com/shows/speed-grapher/videos/episodes/anime",198
-"Funimation","Spice and Wolf","http://www.funimation.com/shows/spice-and-wolf/videos/episodes/anime",2966
-"Funimation","Spice and Wolf","http://www.funimation.com/shows/spice-and-wolf/videos/episodes/anime",5341
-"Funimation","Spice and Wolf","http://www.funimation.com/shows/spice-and-wolf/videos/episodes/anime",6007
-"Funimation","Steins;Gate","http://www.funimation.com/shows/steins-gate/videos/episodes/anime",9253
-"Funimation","Steins;Gate","http://www.funimation.com/shows/steins-gate/videos/episodes/anime",10863
-"Funimation","STRAIN: Strategic Armored Infantry","http://www.funimation.com/shows/strain-strategic-armored-infantry/videos/episodes/anime",1602
-"Funimation","Strike Witches","http://www.funimation.com/shows/strike-witches/videos/episodes/anime",3667
-"Funimation","Strike Witches","http://www.funimation.com/shows/strike-witches/videos/episodes/anime",6381
-"Funimation","Suzuka","http://www.funimation.com/shows/suzuka/videos/episodes/anime",390
-"Funimation","Symphogear","http://www.funimation.com/shows/symphogear/videos/episodes/anime",11751
-"Funimation","Tenchi Muyo! GXP","http://www.funimation.com/shows/tenchi-muyo-gxp/videos/episodes/anime",1133
-"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes/anime",539
-"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes/anime",540
-"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes/anime",1146
-"Funimation","Tenchi Muyo! Ryo-Ohki","http://www.funimation.com/shows/tenchi-muyo-ryo-ohki/videos/episodes/anime",541
-"Funimation","Tenchi Muyo! Ryo-Ohki","http://www.funimation.com/shows/tenchi-muyo-ryo-ohki/videos/episodes/anime",1147
-"Funimation","Tenchi Muyo! Tenchi in Tokyo","http://www.funimation.com/shows/tenchi-muyo-tenchi-in-tokyo/videos/episodes/anime",538
-"Funimation","Tenchi Muyo! Tenchi Universe","http://www.funimation.com/shows/tenchi-muyo-tenchi-universe/videos/episodes/anime",696
-"Funimation","Tenchi Muyo! War on Geminar","http://www.funimation.com/shows/tenchi-muyo-war-on-geminar/videos/episodes/anime",5781
-"Funimation","Texhnolyze","http://www.funimation.com/shows/texhnolyze/videos/episodes/anime",26
-"Funimation","The Count of Monte Cristo: Gankutsuou","http://www.funimation.com/shows/the-count-of-monte-cristo-gankutsuou/videos/episodes/anime",239
-"Funimation","The Devil is a Part-Timer!","http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/episodes/anime",15809
-"Funimation","The FUNimation Show","http://www.funimation.com/shows/the-funimation-show/videos/episodes/anime",n/a
-"Funimation","The Future Diary","http://www.funimation.com/shows/the-future-diary/videos/episodes/anime",10620
-"Funimation","The Galaxy Railways","http://www.funimation.com/shows/the-galaxy-railways/videos/episodes/anime",1490
-"Funimation","The Legend of the Legendary Heroes","http://www.funimation.com/shows/the-legend-of-the-legendary-heroes/videos/episodes/anime",8086
-"Funimation","The Legend of the Legendary Heroes","http://www.funimation.com/shows/the-legend-of-the-legendary-heroes/videos/episodes/anime",9690
-"Funimation","The Sacred Blacksmith","http://www.funimation.com/shows/the-sacred-blacksmith/videos/episodes/anime",5940
-"Funimation","The Slayers","http://www.funimation.com/shows/the-slayers/videos/episodes/anime",534
-"Funimation","The Slayers","http://www.funimation.com/shows/the-slayers/videos/episodes/anime",535
-"Funimation","The Slayers","http://www.funimation.com/shows/the-slayers/videos/episodes/anime",1172
-"Funimation","The Slayers Revolution","http://www.funimation.com/shows/the-slayers-revolution/videos/episodes/anime",4028
-"Funimation","The Slayers Revolution","http://www.funimation.com/shows/the-slayers-revolution/videos/episodes/anime",5233
-"Funimation","The Tatami Galaxy","http://www.funimation.com/shows/the-tatami-galaxy/videos/episodes/anime",7785
-"Funimation","The Wallflower","http://www.funimation.com/shows/the-wallflower/videos/episodes/anime",1562
-"Funimation","TO Movie","http://www.funimation.com/shows/to-movie/videos/episodes/anime",7279
-"Funimation","Tokyo Majin","http://www.funimation.com/shows/tokyo-majin/videos/episodes/anime",1860
-"Funimation","Tokyo Majin","http://www.funimation.com/shows/tokyo-majin/videos/episodes/anime",2683
-"Funimation","Tokyo Ravens","http://www.funimation.com/shows/tokyo-ravens/videos/episodes/anime",16011
-"Funimation","Toriko","http://www.funimation.com/shows/toriko/videos/episodes/anime",10033
-"Funimation","Tower of Druaga","http://www.funimation.com/shows/tower-of-druaga/videos/episodes/anime",3230
-"Funimation","Tower of Druaga","http://www.funimation.com/shows/tower-of-druaga/videos/episodes/anime",4726
-"Funimation","Trigun","http://www.funimation.com/shows/trigun/videos/episodes/anime",6
-"Funimation","Trinity Blood","http://www.funimation.com/shows/trinity-blood/videos/episodes/anime",27
-"Funimation","Tsubasa RESERVoir CHRoNiCLE","http://www.funimation.com/shows/tsubasa-reservoir-chronicle/videos/episodes/anime",2685
-"Funimation","Tsubasa RESERVoir CHRoNiCLE","http://www.funimation.com/shows/tsubasa-reservoir-chronicle/videos/episodes/anime",4938
-"Funimation","UFO Ultramaiden Valkyrie","http://www.funimation.com/shows/ufo-ultramaiden-valkyrie/videos/episodes/anime",1514
-"Funimation","UFO Ultramaiden Valkyrie","http://www.funimation.com/shows/ufo-ultramaiden-valkyrie/videos/episodes/anime",1648
-"Funimation","Unbreakable Machine-Doll","http://www.funimation.com/shows/unbreakable-machine-doll/videos/episodes/anime",17247
-"Funimation","Utawarerumono","http://www.funimation.com/shows/utawarerumono/videos/episodes/anime",856
-"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes/anime",180
-"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes/anime",181
-"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes/anime",1111
-"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes/anime",1112
-"Funimation","Venus Versus Virus","http://www.funimation.com/shows/venus-versus-virus/videos/episodes/anime",1607
-"Funimation","We Without Wings","http://www.funimation.com/shows/we-without-wings/videos/episodes/anime",9922
-"Funimation","Welcome to the N-H-K","http://www.funimation.com/shows/welcome-to-the-n-h-k/videos/episodes/anime",1210
-"Funimation","Witchblade","http://www.funimation.com/shows/witchblade/videos/episodes/anime",935
-"Funimation","X","http://www.funimation.com/shows/x/videos/episodes/anime",156
-"Funimation","xxxHOLiC","http://www.funimation.com/shows/xxxholic/videos/episodes/anime",861
-"Funimation","Yamada's First Time: B Gata H Kei","http://www.funimation.com/shows/yamadas-first-time-b-gata-h-kei/videos/episodes/anime",7817
+"Funimation",".hack//Quantum","http://www.funimation.com/shows/hackquantum/videos/episodes",9332
+"Funimation","A Certain Magical Index","http://www.funimation.com/shows/a-certain-magical-index/videos/episodes",4654
+"Funimation","A Certain Scientific Railgun","http://www.funimation.com/shows/a-certain-scientific-railgun/videos/episodes",6213
+"Funimation","Aesthetica of a Rogue Hero","http://www.funimation.com/shows/aesthetica-of-a-rogue-hero/videos/episodes",13161
+"Funimation","Afro Samurai","http://www.funimation.com/shows/afro-samurai/videos/episodes",1292
+"Funimation","Ah! My Goddess: Flights of Fancy","http://www.funimation.com/shows/ah-my-goddess-flights-of-fancy/videos/episodes",880
+"Funimation","Ah! My Goddess: Flights of Fancy","http://www.funimation.com/shows/ah-my-goddess-flights-of-fancy/videos/episodes",2198
+"Funimation","Ai Yori Aoshi","http://www.funimation.com/shows/ai-yori-aoshi/videos/episodes",53
+"Funimation","Ai Yori Aoshi","http://www.funimation.com/shows/ai-yori-aoshi/videos/episodes",394
+"Funimation","Air","http://www.funimation.com/shows/air/videos/episodes",101
+"Funimation","Air Gear","http://www.funimation.com/shows/air-gear/videos/episodes",857
+"Funimation","Appleseed XIII","http://www.funimation.com/shows/appleseed-xiii/videos/episodes",9737
+"Funimation","Aquarion","http://www.funimation.com/shows/aquarion/videos/episodes",478
+"Funimation","Aquarion EVOL","http://www.funimation.com/shows/aquarion-evol/videos/episodes",10447
+"Funimation","Aria the Scarlet Ammo","http://www.funimation.com/shows/aria-the-scarlet-ammo/videos/episodes",8630
+"Funimation","Armitage III","http://www.funimation.com/shows/armitage-iii/videos/episodes",1079
+"Funimation","Attack on Titan","http://www.funimation.com/shows/attack-on-titan/videos/episodes",16498
+"Funimation","Baccano!","http://www.funimation.com/shows/baccano/videos/episodes",2251
+"Funimation","Baccano!","http://www.funimation.com/shows/baccano/videos/episodes",3901
+"Funimation","Baka & Test - Summon the Beasts -","http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes",6347
+"Funimation","Baka & Test - Summon the Beasts -","http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes",7870
+"Funimation","Baka & Test - Summon the Beasts -","http://www.funimation.com/shows/baka-and-test-summon-the-beasts/videos/episodes",8516
+"Funimation","Baldr Force Exe","http://www.funimation.com/shows/baldr-force-exe/videos/episodes",1682
+"Funimation","Bamboo Blade","http://www.funimation.com/shows/bamboo-blade/videos/episodes",2986
+"Funimation","Basilisk","http://www.funimation.com/shows/basilisk/videos/episodes",67
+"Funimation","Ben-To","http://www.funimation.com/shows/ben-to/videos/episodes",10396
+"Funimation","Big Windup!","http://www.funimation.com/shows/big-windup/videos/episodes",2159
+"Funimation","Big Windup!","http://www.funimation.com/shows/big-windup/videos/episodes",3887
+"Funimation","Birdy the Mighty: Decode","http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes",3974
+"Funimation","Birdy the Mighty: Decode","http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes",6380
+"Funimation","Birdy the Mighty: Decode","http://www.funimation.com/shows/birdy-the-mighty-decode/videos/episodes",5074
+"Funimation","Black Blood Brothers","http://www.funimation.com/shows/black-blood-brothers/videos/episodes",1498
+"Funimation","Black Butler","http://www.funimation.com/shows/black-butler/videos/episodes",4798
+"Funimation","Black Butler","http://www.funimation.com/shows/black-butler/videos/episodes",6707
+"Funimation","Black Butler","http://www.funimation.com/shows/black-butler/videos/episodes",9136
+"Funimation","Black Cat","http://www.funimation.com/shows/black-cat/videos/episodes",68
+"Funimation","Black Lagoon","http://www.funimation.com/shows/black-lagoon/videos/episodes",889
+"Funimation","Black Lagoon","http://www.funimation.com/shows/black-lagoon/videos/episodes",1519
+"Funimation","Black Lagoon","http://www.funimation.com/shows/black-lagoon/videos/episodes",4901
+"Funimation","Blassreiter","http://www.funimation.com/shows/blassreiter/videos/episodes",3407
+"Funimation","BlazBlue: Alter Memory","http://www.funimation.com/shows/blazblue/videos/episodes",18767
+"Funimation","Blessing of the Campanella","http://www.funimation.com/shows/blessing-of-the-campanella/videos/episodes",6979
+"Funimation","BLOOD-C","http://www.funimation.com/shows/blood-c/videos/episodes",10490
+"Funimation","Blue Gender","http://www.funimation.com/shows/blue-gender/videos/episodes",58
+"Funimation","Brothers Conflict","http://www.funimation.com/shows/brothers-conflict/videos/episodes",15605
+"Funimation","Bubblegum Crisis: Tokyo 2040","http://www.funimation.com/shows/bubblegum-crisis-tokyo-2040/videos/episodes",568
+"Funimation","Buddy Complex","http://www.funimation.com/shows/buddy-complex/videos/episodes",21437
+"Funimation","Burst Angel","http://www.funimation.com/shows/burst-angel/videos/episodes",109
+"Funimation","C - Control","http://www.funimation.com/shows/c-control/videos/episodes",10163
+"Funimation","C3 Anime","http://www.funimation.com/shows/c3-anime/videos/episodes",10578
+"Funimation","Captain Harlock","http://www.funimation.com/shows/captain-harlock/videos/episodes",1000
+"Funimation","Case Closed","http://www.funimation.com/shows/case-closed/videos/episodes",235
+"Funimation","Casshern Sins","http://www.funimation.com/shows/casshern-sins/videos/episodes",4981
+"Funimation","Cat Planet Cuties","http://www.funimation.com/shows/cat-planet-cuties/videos/episodes",6166
+"Funimation","Chaos;HEAd","http://www.funimation.com/shows/chaos-head/videos/episodes",4975
+"Funimation","Chobits","http://www.funimation.com/shows/chobits/videos/episodes",59
+"Funimation","Chrome Shelled Regios","http://www.funimation.com/shows/chrome-shelled-regios/videos/episodes",4186
+"Funimation","Chrono Crusade","http://www.funimation.com/shows/chrono-crusade/videos/episodes",60
+"Funimation","Claymore","http://www.funimation.com/shows/claymore/videos/episodes",1818
+"Funimation","Code:Breaker","http://www.funimation.com/shows/code-breaker/videos/episodes",11703
+"Funimation","Comic Party Revolution","http://www.funimation.com/shows/comic-party-revolution/videos/episodes",706
+"Funimation","Corpse Princess: Shikabane Hime","http://www.funimation.com/shows/corpse-princess-shikabane-hime/videos/episodes",4581
+"Funimation","Corpse Princess: Shikabane Hime","http://www.funimation.com/shows/corpse-princess-shikabane-hime/videos/episodes",5034
+"Funimation","Coyote Ragtime Show","http://www.funimation.com/shows/coyote-ragtime-show/videos/episodes",1194
+"Funimation","D.Gray-man","http://www.funimation.com/shows/dgray-man/videos/episodes",1482
+"Funimation","DAIMIDALER: PRINCE VS. PENGUIN EMPIRE","http://www.funimation.com/shows/daimidaler/videos/episodes",21809
+"Funimation","Dance in the Vampire Bund","http://www.funimation.com/shows/dance-in-the-vampire-bund/videos/episodes",6747
+"Funimation","Danganronpa: The Animation","http://www.funimation.com/shows/danganronpa-the-animation/videos/episodes",16592
+"Funimation","Darker Than Black","http://www.funimation.com/shows/darker-than-black/videos/episodes",2025
+"Funimation","Darker Than Black","http://www.funimation.com/shows/darker-than-black/videos/episodes",4182
+"Funimation","Darker Than Black","http://www.funimation.com/shows/darker-than-black/videos/episodes",6573
+"Funimation","Date A Live","http://www.funimation.com/shows/date-a-live/videos/episodes",15583
+"Funimation","Deadman Wonderland","http://www.funimation.com/shows/deadman-wonderland/videos/episodes",6880
+"Funimation","Desert Punk","http://www.funimation.com/shows/desert-punk/videos/episodes",25
+"Funimation","Detective Opera Milky Holmes 2","http://www.funimation.com/shows/detective-opera-milky-holmes-2/videos/episodes",11341
+"Funimation","Devil May Cry","http://www.funimation.com/shows/devil-may-cry/videos/episodes",1726
+"Funimation","D-Fragments","http://www.funimation.com/shows/d-fragments/videos/episodes",20031
+"Funimation","Digimon Adventure 02","http://www.funimation.com/shows/digimon-adventure-02/videos/episodes",1313
+"Funimation","Disgaea","http://www.funimation.com/shows/disgaea/videos/episodes",860
+"Funimation","Dragon Ball","http://www.funimation.com/shows/dragon-ball/videos/episodes",223
+"Funimation","Dragon Ball GT","http://www.funimation.com/shows/dragon-ball-gt/videos/episodes",225
+"Funimation","Dragon Ball Z","http://www.funimation.com/shows/dragon-ball-z/videos/episodes",813
+"Funimation","Dragonar Academy","http://www.funimation.com/shows/dragonar-academy/videos/episodes",21033
+"Funimation","Dragonaut -THE RESONANCE-","http://www.funimation.com/shows/dragonaut-the-resonance/videos/episodes",2795
+"Funimation","Dragonaut -THE RESONANCE-","http://www.funimation.com/shows/dragonaut-the-resonance/videos/episodes",5072
+"Funimation","Eden of the East","http://www.funimation.com/shows/eden-of-the-east/videos/episodes",5630
+"Funimation","El Cazador de la Bruja","http://www.funimation.com/shows/el-cazador-de-la-bruja/videos/episodes",2030
+"Funimation","Ergo Proxy","http://www.funimation.com/shows/ergo-proxy/videos/episodes",790
+"Funimation","Eureka Seven","http://www.funimation.com/shows/eureka-seven/videos/episodes",237
+"Funimation","Eureka Seven AO","http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/episodes",12471
+"Funimation","Excel Saga","http://www.funimation.com/shows/excel-saga/videos/episodes",379
+"Funimation","Fafner","http://www.funimation.com/shows/fafner/videos/episodes",75
+"Funimation","Fairy Tail","http://www.funimation.com/shows/fairy-tail/videos/episodes",6702
+"Funimation","Fist of the North Star","http://www.funimation.com/shows/fist-of-the-north-star/videos/episodes",967
+"Funimation","Fist of the North Star","http://www.funimation.com/shows/fist-of-the-north-star/videos/episodes",1356
+"Funimation","FLCL","http://www.funimation.com/shows/flcl/videos/episodes",227
+"Funimation","Fractale","http://www.funimation.com/shows/fractale/videos/episodes",9314
+"Funimation","Freezing","http://www.funimation.com/shows/freezing/videos/episodes",9367
+"Funimation","Fruits Basket","http://www.funimation.com/shows/fruits-basket/videos/episodes",120
+"Funimation","Full Metal Panic!","http://www.funimation.com/shows/full-metal-panic/videos/episodes",71
+"Funimation","Full Metal Panic! The Second Raid","http://www.funimation.com/shows/full-metal-panic-the-second-raid/videos/episodes",73
+"Funimation","Full Metal Panic! The Second Raid","http://www.funimation.com/shows/full-metal-panic-the-second-raid/videos/episodes",1015
+"Funimation","Full Metal Panic? Fumoffu","http://www.funimation.com/shows/full-metal-panic-fumoffu/videos/episodes",72
+"Funimation","Fullmetal Alchemist","http://www.funimation.com/shows/fullmetal-alchemist/videos/episodes",121
+"Funimation","Fullmetal Alchemist: Brotherhood","http://www.funimation.com/shows/fullmetal-alchemist-brotherhood/videos/episodes",5114
+"Funimation","Gad Guard","http://www.funimation.com/shows/gad-guard/videos/episodes",271
+"Funimation","Galaxy Express 999","http://www.funimation.com/shows/galaxy-express-999/videos/episodes",1491
+"Funimation","Ga-Rei-Zero","http://www.funimation.com/shows/ga-rei-zero/videos/episodes",4725
+"Funimation","Ghost Hunt","http://www.funimation.com/shows/ghost-hunt/videos/episodes",1571
+"Funimation","Girls Bravo","http://www.funimation.com/shows/girls-bravo/videos/episodes",241
+"Funimation","Girls Bravo","http://www.funimation.com/shows/girls-bravo/videos/episodes",487
+"Funimation","Glass Fleet","http://www.funimation.com/shows/glass-fleet/videos/episodes",973
+"Funimation","Good Luck Girl","http://www.funimation.com/shows/good-luck-girl/videos/episodes",13535
+"Funimation","Guilty Crown","http://www.funimation.com/shows/guilty-crown/videos/episodes",10793
+"Funimation","Gun X Sword","http://www.funimation.com/shows/gun-x-sword/videos/episodes",411
+"Funimation","Gun X Sword","http://www.funimation.com/shows/gun-x-sword/videos/episodes",5501
+"Funimation","Gungrave","http://www.funimation.com/shows/gungrave/videos/episodes",267
+"Funimation","Gunslinger Girl","http://www.funimation.com/shows/gunslinger-girl/videos/episodes",134
+"Funimation","Gunslinger Girl - Il Teatrino","http://www.funimation.com/shows/gunslinger-girl-il-teatrino/videos/episodes",3231
+"Funimation","Gunslinger Girl - Il Teatrino","http://www.funimation.com/shows/gunslinger-girl-il-teatrino/videos/episodes",4765
+"Funimation","Guyver: The Bioboosted Armor","http://www.funimation.com/shows/guyver-the-bioboosted-armor/videos/episodes",1374
+"Funimation","Haganai","http://www.funimation.com/shows/haganai/videos/episodes",10719
+"Funimation","Haibane Renmei","http://www.funimation.com/shows/haibane-renmei/videos/episodes",387
+"Funimation","Heat Guy J","http://www.funimation.com/shows/heat-guy-j/videos/episodes",958
+"Funimation","Heaven's Lost Property","http://www.funimation.com/shows/heavens-lost-property/videos/episodes",5958
+"Funimation","Heaven's Lost Property","http://www.funimation.com/shows/heavens-lost-property/videos/episodes",8407
+"Funimation","Hellsing","http://www.funimation.com/shows/hellsing/videos/episodes",270
+"Funimation","Hellsing Ultimate","http://www.funimation.com/shows/hellsing-ultimate/videos/episodes",777
+"Funimation","Hero Tales","http://www.funimation.com/shows/hero-tales/videos/episodes",2772
+"Funimation","Heroic Age","http://www.funimation.com/shows/heroic-age/videos/episodes",2002
+"Funimation","Hetalia","http://www.funimation.com/shows/hetalia/videos/episodes",5060
+"Funimation","Hetalia","http://www.funimation.com/shows/hetalia/videos/episodes",8479
+"Funimation","High School DxD","http://www.funimation.com/shows/high-school-dxd/videos/episodes",11617
+"Funimation","House of Five Leaves","http://www.funimation.com/shows/house-of-five-leaves/videos/episodes",7588
+"Funimation","Hyperdimension Neptunia","http://www.funimation.com/shows/hyperdimension-neptunia/videos/episodes",16157
+"Funimation","Ikki Tousen","http://www.funimation.com/shows/ikki-tousen/videos/episodes",257
+"Funimation","Ikki Tousen","http://www.funimation.com/shows/ikki-tousen/videos/episodes",4196
+"Funimation","Ikki Tousen","http://www.funimation.com/shows/ikki-tousen/videos/episodes",7580
+"Funimation","Inari Kon Kon","http://www.funimation.com/shows/inari-kon-kon/videos/episodes",20457
+"Funimation","Initial D","http://www.funimation.com/shows/initial-d/videos/episodes",185
+"Funimation","Initial D","http://www.funimation.com/shows/initial-d/videos/episodes",186
+"Funimation","Initial D","http://www.funimation.com/shows/initial-d/videos/episodes",18
+"Funimation","Inside The Voice Actors Studio","http://www.funimation.com/shows/inside-the-voice-actors-studio/videos/episodes",n/a
+"Funimation","Is this a Zombie?","http://www.funimation.com/shows/is-this-a-zombie/videos/episodes",8841
+"Funimation","Is this a Zombie?","http://www.funimation.com/shows/is-this-a-zombie/videos/episodes",10790
+"Funimation","Jing King of Bandits","http://www.funimation.com/shows/jing-king-of-bandits/videos/episodes",107
+"Funimation","Jinki: Extend","http://www.funimation.com/shows/jinki-extend/videos/episodes",141
+"Funimation","Jormungand","http://www.funimation.com/shows/jormungand/videos/episodes",12413
+"Funimation","Jyu-Oh-Sei","http://www.funimation.com/shows/jyu-oh-sei/videos/episodes",953
+"Funimation","Kaleido Star","http://www.funimation.com/shows/kaleido-star/videos/episodes",427
+"Funimation","Kamisama Kiss","http://www.funimation.com/shows/kamisama-kiss/videos/episodes",14713
+"Funimation","Kanon","http://www.funimation.com/shows/kanon/videos/episodes",1530
+"Funimation","Karneval","http://www.funimation.com/shows/karneval/videos/episodes",16035
+"Funimation","Kaze No Stigma","http://www.funimation.com/shows/kaze-no-stigma/videos/episodes",1691
+"Funimation","Kenichi: The Mightiest Disciple","http://www.funimation.com/shows/kenichi-the-mightiest-disciple/videos/episodes",1559
+"Funimation","Kiddy Grade","http://www.funimation.com/shows/kiddy-grade/videos/episodes",274
+"Funimation","Kingdom","http://www.funimation.com/shows/kingdom/videos/episodes",12031
+"Funimation","Kurau Phantom Memory","http://www.funimation.com/shows/kurau-phantom-memory/videos/episodes",483
+"Funimation","Last Exile","http://www.funimation.com/shows/last-exile/videos/episodes",97
+"Funimation","LASTEXILE -Fam, the Silver Wing","http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/episodes",10336
+"Funimation","LASTEXILE -Fam, the Silver Wing","http://www.funimation.com/shows/lastexile-fam-the-silver-wing/videos/episodes",12429
+"Funimation","Le Chevalier D'Eon","http://www.funimation.com/shows/le-chevalier-deon/videos/episodes",1013
+"Funimation","Level E","http://www.funimation.com/shows/level-e/videos/episodes",9834
+"Funimation","Linebarrels of Iron","http://www.funimation.com/shows/linebarrels-of-iron/videos/episodes",3653
+"Funimation","Lupin the Third - The Woman Called Fujiko Mine","http://www.funimation.com/shows/lupin-the-third-fujiko-mine/videos/episodes",13203
+"Funimation","Magikano","http://www.funimation.com/shows/magikano/videos/episodes",576
+"Funimation","Maken-ki!","http://www.funimation.com/shows/maken-ki/videos/episodes",9936
+"Funimation","Master of Martial Hearts","http://www.funimation.com/shows/master-of-martial-hearts/videos/episodes",5020
+"Funimation","Michiko & Hatchin","http://www.funimation.com/shows/michiko-hatchin/videos/episodes",4087
+"Funimation","Minami-ke","http://www.funimation.com/shows/minami-ke/videos/episodes",14511
+"Funimation","Mongolian Chop Squad","http://www.funimation.com/shows/mongolian-chop-squad/videos/episodes",57
+"Funimation","MoonPhase","http://www.funimation.com/shows/moonphase/videos/episodes",343
+"Funimation","Moyashimon: Tales of Agriculture","http://www.funimation.com/shows/moyashimon-tales-of-agriculture/videos/episodes",n/a
+"Funimation","Murder Princess","http://www.funimation.com/shows/murder-princess/videos/episodes",1696
+"Funimation","Mushi-Shi","http://www.funimation.com/shows/mushi-shi/videos/episodes",457
+"Funimation","My Bride is a Mermaid","http://www.funimation.com/shows/my-bride-is-a-mermaid/videos/episodes",2104
+"Funimation","Nabari no Ou","http://www.funimation.com/shows/nabari-no-ou/videos/episodes",3655
+"Funimation","Negima!","http://www.funimation.com/shows/negima/videos/episodes",157
+"Funimation","Negima!? Magister Negi Magi","http://www.funimation.com/shows/negima-magister-negi-magi/videos/episodes",1546
+"Funimation","Nobunagun","http://www.funimation.com/shows/nobunagun/videos/episodes",19855
+"Funimation","Noir","http://www.funimation.com/shows/noir/videos/episodes",272
+"Funimation","Noragami","http://www.funimation.com/shows/noragami/videos/episodes",20507
+"Funimation","NO-RIN","http://www.funimation.com/shows/no-rin/videos/episodes",18095
+"Funimation","Oh! Edo Rocket","http://www.funimation.com/shows/oh-edo-rocket/videos/episodes",2152
+"Funimation","Okami-san and Her Seven Companions","http://www.funimation.com/shows/okami-san-and-her-seven-companions/videos/episodes",7769
+"Funimation","One Piece","http://www.funimation.com/shows/one-piece/videos/episodes",21
+"Funimation","OniAi","http://www.funimation.com/shows/oniai/videos/episodes",14199
+"Funimation","Ouran High School Host Club","http://www.funimation.com/shows/ouran-high-school-host-club/videos/episodes",853
+"Funimation","Pani Poni Dash!","http://www.funimation.com/shows/pani-poni-dash/videos/episodes",490
+"Funimation","Panty & Stocking with Garterbelt","http://www.funimation.com/shows/panty-stocking-with-garterbelt/videos/episodes",8795
+"Funimation","Peacemaker","http://www.funimation.com/shows/peacemaker/videos/episodes",161
+"Funimation","Phantom: Requiem for the Phantom","http://www.funimation.com/shows/phantom-requiem-for-the-phantom/videos/episodes",5682
+"Funimation","Ping Pong the Animation","http://www.funimation.com/shows/ping-pong-the-animation/videos/episodes",22135
+"Funimation","Pretear","http://www.funimation.com/shows/pretear/videos/episodes",100
+"Funimation","Pretty Cure","http://www.funimation.com/shows/pretty-cure/videos/episodes",603
+"Funimation","Princess Jellyfish","http://www.funimation.com/shows/princess-jellyfish/videos/episodes",8129
+"Funimation","Project Blue Earth SOS","http://www.funimation.com/shows/project-blue-earth-sos/videos/episodes",1247
+"Funimation","PSYCHO-PASS","http://www.funimation.com/shows/psycho-pass/videos/episodes",13601
+"Funimation","PUCHIM@S","http://www.funimation.com/shows/puchims/videos/episodes",15649
+"Funimation","Pumpkin Scissors","http://www.funimation.com/shows/pumpkin-scissors/videos/episodes",1538
+"Funimation","Ragnarok - The Animation","http://www.funimation.com/shows/ragnarok-the-animation/videos/episodes",417
+"Funimation","Red Data Girl","http://www.funimation.com/shows/red-data-girl/videos/episodes",14921
+"Funimation","Red Garden","http://www.funimation.com/shows/red-garden/videos/episodes",1601
+"Funimation","Red Garden","http://www.funimation.com/shows/red-garden/videos/episodes",2267
+"Funimation","Riddle Story of Devil","http://www.funimation.com/shows/riddle-story-of-devil/videos/episodes",19429
+"Funimation","RideBack","http://www.funimation.com/shows/rideback/videos/episodes",4618
+"Funimation","RIN ~Daughters of Mnemosyne~","http://www.funimation.com/shows/rin-daughters-of-mnemosyne/videos/episodes",3342
+"Funimation","Robotics;Notes","http://www.funimation.com/shows/roboticsnotes/videos/episodes",13599
+"Funimation","Romeo x Juliet","http://www.funimation.com/shows/romeo-x-juliet/videos/episodes",1699
+"Funimation","Rosario + Vampire","http://www.funimation.com/shows/rosario-vampire/videos/episodes",2933
+"Funimation","Rosario + Vampire","http://www.funimation.com/shows/rosario-vampire/videos/episodes",4214
+"Funimation","Rumbling Hearts","http://www.funimation.com/shows/rumbling-hearts/videos/episodes",147
+"Funimation","Samurai 7","http://www.funimation.com/shows/samurai-7/videos/episodes",166
+"Funimation","Samurai Champloo","http://www.funimation.com/shows/samurai-champloo/videos/episodes",205
+"Funimation","Sands of Destruction","http://www.funimation.com/shows/sands-of-destruction/videos/episodes",4415
+"Funimation","Sankarea","http://www.funimation.com/shows/sankarea/videos/episodes",11499
+"Funimation","Sasami Magical Girls Club","http://www.funimation.com/shows/sasami-magical-girls-club/videos/episodes",1881
+"Funimation","Sasami Magical Girls Club","http://www.funimation.com/shows/sasami-magical-girls-club/videos/episodes",1882
+"Funimation","Save Me! Lollipop","http://www.funimation.com/shows/save-me-lollipop/videos/episodes",1509
+"Funimation","School Rumble","http://www.funimation.com/shows/school-rumble/videos/episodes",24
+"Funimation","School Rumble","http://www.funimation.com/shows/school-rumble/videos/episodes",517
+"Funimation","School Rumble","http://www.funimation.com/shows/school-rumble/videos/episodes",846
+"Funimation","Sekirei","http://www.funimation.com/shows/sekirei/videos/episodes",4063
+"Funimation","Sekirei","http://www.funimation.com/shows/sekirei/videos/episodes",5277
+"Funimation","selector infected WIXOSS","http://www.funimation.com/shows/selector-infected-wixoss/videos/episodes",22273
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes",5355
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes",6634
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes",10483
+"Funimation","Sengoku BASARA: Samurai Kings","http://www.funimation.com/shows/sengoku-basara-samurai-kings/videos/episodes",18549
+"Funimation","Senran Kagura","http://www.funimation.com/shows/senran-kagura/videos/episodes",15119
+"Funimation","Serial Experiments Lain","http://www.funimation.com/shows/serial-experiments-lain/videos/episodes",339
+"Funimation","Sgt. Frog","http://www.funimation.com/shows/sgt-frog/videos/episodes",516
+"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes",355
+"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes",2787
+"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes",6572
+"Funimation","Shakugan No Shana","http://www.funimation.com/shows/shakugan-no-shana/videos/episodes",6773
+"Funimation","Shangri-la","http://www.funimation.com/shows/shangri-la/videos/episodes",5220
+"Funimation","Shattered Angels","http://www.funimation.com/shows/shattered-angels/videos/episodes",1810
+"Funimation","Shigurui: Death Frenzy","http://www.funimation.com/shows/shigurui-death-frenzy/videos/episodes",2216
+"Funimation","Shiki","http://www.funimation.com/shows/shiki/videos/episodes",7724
+"Funimation","Shin chan","http://www.funimation.com/shows/shin-chan/videos/episodes",966
+"Funimation","Shuffle!","http://www.funimation.com/shows/shuffle/videos/episodes",79
+"Funimation","Slam Dunk","http://www.funimation.com/shows/slam-dunk/videos/episodes",170
+"Funimation","Solty Rei","http://www.funimation.com/shows/solty-rei/videos/episodes",152
+"Funimation","Solty Rei","http://www.funimation.com/shows/solty-rei/videos/episodes",3138
+"Funimation","Soul Eater","http://www.funimation.com/shows/soul-eater/videos/episodes",3588
+"Funimation","Soul Eater Not!","http://www.funimation.com/shows/soul-eater-not/videos/episodes",21507
+"Funimation","Space Dandy","http://www.funimation.com/shows/space-dandy/videos/episodes",20057
+"Funimation","Speed Grapher","http://www.funimation.com/shows/speed-grapher/videos/episodes",198
+"Funimation","Spice and Wolf","http://www.funimation.com/shows/spice-and-wolf/videos/episodes",2966
+"Funimation","Spice and Wolf","http://www.funimation.com/shows/spice-and-wolf/videos/episodes",5341
+"Funimation","Spice and Wolf","http://www.funimation.com/shows/spice-and-wolf/videos/episodes",6007
+"Funimation","Steins;Gate","http://www.funimation.com/shows/steins-gate/videos/episodes",9253
+"Funimation","Steins;Gate","http://www.funimation.com/shows/steins-gate/videos/episodes",10863
+"Funimation","STRAIN: Strategic Armored Infantry","http://www.funimation.com/shows/strain-strategic-armored-infantry/videos/episodes",1602
+"Funimation","Strike Witches","http://www.funimation.com/shows/strike-witches/videos/episodes",3667
+"Funimation","Strike Witches","http://www.funimation.com/shows/strike-witches/videos/episodes",6381
+"Funimation","Suzuka","http://www.funimation.com/shows/suzuka/videos/episodes",390
+"Funimation","Symphogear","http://www.funimation.com/shows/symphogear/videos/episodes",11751
+"Funimation","Tenchi Muyo! GXP","http://www.funimation.com/shows/tenchi-muyo-gxp/videos/episodes",1133
+"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes",539
+"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes",540
+"Funimation","Tenchi Muyo! OVA Series","http://www.funimation.com/shows/tenchi-muyo-ova-series/videos/episodes",1146
+"Funimation","Tenchi Muyo! Ryo-Ohki","http://www.funimation.com/shows/tenchi-muyo-ryo-ohki/videos/episodes",541
+"Funimation","Tenchi Muyo! Ryo-Ohki","http://www.funimation.com/shows/tenchi-muyo-ryo-ohki/videos/episodes",1147
+"Funimation","Tenchi Muyo! Tenchi in Tokyo","http://www.funimation.com/shows/tenchi-muyo-tenchi-in-tokyo/videos/episodes",538
+"Funimation","Tenchi Muyo! Tenchi Universe","http://www.funimation.com/shows/tenchi-muyo-tenchi-universe/videos/episodes",696
+"Funimation","Tenchi Muyo! War on Geminar","http://www.funimation.com/shows/tenchi-muyo-war-on-geminar/videos/episodes",5781
+"Funimation","Texhnolyze","http://www.funimation.com/shows/texhnolyze/videos/episodes",26
+"Funimation","The Count of Monte Cristo: Gankutsuou","http://www.funimation.com/shows/the-count-of-monte-cristo-gankutsuou/videos/episodes",239
+"Funimation","The Devil is a Part-Timer!","http://www.funimation.com/shows/the-devil-is-a-part-timer/videos/episodes",15809
+"Funimation","The FUNimation Show","http://www.funimation.com/shows/the-funimation-show/videos/episodes",n/a
+"Funimation","The Future Diary","http://www.funimation.com/shows/the-future-diary/videos/episodes",10620
+"Funimation","The Galaxy Railways","http://www.funimation.com/shows/the-galaxy-railways/videos/episodes",1490
+"Funimation","The Legend of the Legendary Heroes","http://www.funimation.com/shows/the-legend-of-the-legendary-heroes/videos/episodes",8086
+"Funimation","The Legend of the Legendary Heroes","http://www.funimation.com/shows/the-legend-of-the-legendary-heroes/videos/episodes",9690
+"Funimation","The Sacred Blacksmith","http://www.funimation.com/shows/the-sacred-blacksmith/videos/episodes",5940
+"Funimation","The Slayers","http://www.funimation.com/shows/the-slayers/videos/episodes",534
+"Funimation","The Slayers","http://www.funimation.com/shows/the-slayers/videos/episodes",535
+"Funimation","The Slayers","http://www.funimation.com/shows/the-slayers/videos/episodes",1172
+"Funimation","The Slayers Revolution","http://www.funimation.com/shows/the-slayers-revolution/videos/episodes",4028
+"Funimation","The Slayers Revolution","http://www.funimation.com/shows/the-slayers-revolution/videos/episodes",5233
+"Funimation","The Tatami Galaxy","http://www.funimation.com/shows/the-tatami-galaxy/videos/episodes",7785
+"Funimation","The Wallflower","http://www.funimation.com/shows/the-wallflower/videos/episodes",1562
+"Funimation","TO Movie","http://www.funimation.com/shows/to-movie/videos/episodes",7279
+"Funimation","Tokyo Majin","http://www.funimation.com/shows/tokyo-majin/videos/episodes",1860
+"Funimation","Tokyo Majin","http://www.funimation.com/shows/tokyo-majin/videos/episodes",2683
+"Funimation","Tokyo Ravens","http://www.funimation.com/shows/tokyo-ravens/videos/episodes",16011
+"Funimation","Toriko","http://www.funimation.com/shows/toriko/videos/episodes",10033
+"Funimation","Tower of Druaga","http://www.funimation.com/shows/tower-of-druaga/videos/episodes",3230
+"Funimation","Tower of Druaga","http://www.funimation.com/shows/tower-of-druaga/videos/episodes",4726
+"Funimation","Trigun","http://www.funimation.com/shows/trigun/videos/episodes",6
+"Funimation","Trinity Blood","http://www.funimation.com/shows/trinity-blood/videos/episodes",27
+"Funimation","Tsubasa RESERVoir CHRoNiCLE","http://www.funimation.com/shows/tsubasa-reservoir-chronicle/videos/episodes",2685
+"Funimation","Tsubasa RESERVoir CHRoNiCLE","http://www.funimation.com/shows/tsubasa-reservoir-chronicle/videos/episodes",4938
+"Funimation","UFO Ultramaiden Valkyrie","http://www.funimation.com/shows/ufo-ultramaiden-valkyrie/videos/episodes",1514
+"Funimation","UFO Ultramaiden Valkyrie","http://www.funimation.com/shows/ufo-ultramaiden-valkyrie/videos/episodes",1648
+"Funimation","Unbreakable Machine-Doll","http://www.funimation.com/shows/unbreakable-machine-doll/videos/episodes",17247
+"Funimation","Utawarerumono","http://www.funimation.com/shows/utawarerumono/videos/episodes",856
+"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes",180
+"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes",181
+"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes",1111
+"Funimation","Vandread","http://www.funimation.com/shows/vandread/videos/episodes",1112
+"Funimation","Venus Versus Virus","http://www.funimation.com/shows/venus-versus-virus/videos/episodes",1607
+"Funimation","We Without Wings","http://www.funimation.com/shows/we-without-wings/videos/episodes",9922
+"Funimation","Welcome to the N-H-K","http://www.funimation.com/shows/welcome-to-the-n-h-k/videos/episodes",1210
+"Funimation","Witchblade","http://www.funimation.com/shows/witchblade/videos/episodes",935
+"Funimation","X","http://www.funimation.com/shows/x/videos/episodes",156
+"Funimation","xxxHOLiC","http://www.funimation.com/shows/xxxholic/videos/episodes",861
+"Funimation","Yamada's First Time: B Gata H Kei","http://www.funimation.com/shows/yamadas-first-time-b-gata-h-kei/videos/episodes",7817
 "Hulu","[C] - Control","http://www.hulu.com/c-control",10163
 "Hulu","11 Eyes","http://www.hulu.com/11-eyes",6682
 "Hulu","3-2-1 Penguins!","http://www.hulu.com/3-2-1-penguins",n/a
+"Hulu","A Boy Named Charlie Brown","http://www.hulu.com/a-boy-named-charlie-brown",n/a
 "Hulu","A Certain Magical Index","http://www.hulu.com/a-certain-magical-index",4654
 "Hulu","A Certain Scientific Railgun","http://www.hulu.com/a-certain-scientific-railgun",6213
 "Hulu","A Little Princess (1996)","http://www.hulu.com/a-little-princess-1996",n/a
@@ -878,8 +882,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Beavis & Butt-Head","http://www.hulu.com/beavis-and-butt-head",n/a
 "Hulu","Ben Hur","http://www.hulu.com/ben-hur",n/a
 "Hulu","Bernard","http://www.hulu.com/bernard",n/a
-"Hulu","Berserk: The Golden Age Arc I - The Egg of the King","http://www.hulu.com/berserk-the-golden-age-arc-i-the-egg-of-the-king",10218
-"Hulu","Berserk: The Golden Age Arc II - The Battle for Doldrey","http://www.hulu.com/berserk-the-golden-age-arc-ii-the-battle-for-doldrey",12113
 "Hulu","Beyblade","http://www.hulu.com/beyblade",288
 "Hulu","Beyond the Boundary","http://www.hulu.com/beyond-the-boundary",18153
 "Hulu","Big Windup","http://www.hulu.com/big-windup",2159
@@ -995,7 +997,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Cybersix","http://www.hulu.com/cybersix",2383
 "Hulu","D. Gray Man","http://www.hulu.com/d-gray-man",1482
 "Hulu","Daily Lives of High School Boys","http://www.hulu.com/daily-lives-of-high-school-boys",11843
-"Hulu","Daimidaler: Prince vs. Penguin Empire","http://www.hulu.com/daimidaler-prince-vs-penguin-empire",21809
+"Hulu","Daimidaler: Prince V.S. Penguin Empire","http://www.hulu.com/daimidaler-prince-vs-penguin-empire",21809
 "Hulu","Dan Vs.","http://www.hulu.com/dan-vs",n/a
 "Hulu","Dance in the Vampire Bund","http://www.hulu.com/dance-in-the-vampire-bund",6747
 "Hulu","Danganronpa: The Animation","http://www.hulu.com/danganronpa-the-animation",16592
@@ -1046,6 +1048,9 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Dog and Scissors","http://www.hulu.com/dog-and-scissors",17831
 "Hulu","Dokkoida?!","http://www.hulu.com/dokkoida",1837
 "Hulu","Don Dracula","http://www.hulu.com/don-dracula",4853
+"Hulu","Dr. Seuss The Cat In The Hat","http://www.hulu.com/dr-seuss-the-cat-in-the-hat",n/a
+"Hulu","Dr. Seuss: Dr. Seuss On The Loose","http://www.hulu.com/dr-seuss-dr-seuss-on-the-loose",n/a
+"Hulu","Dr. Seuss: The Lorax","http://www.hulu.com/dr-seuss-the-lorax",n/a
 "Hulu","Dragon Age","http://www.hulu.com/dragon-age",11705
 "Hulu","Dragon Ball","http://www.hulu.com/dragon-ball",223
 "Hulu","Dragon Ball Z","http://www.hulu.com/dragon-ball-z",813
@@ -1091,11 +1096,13 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Fantasista Doll","http://www.hulu.com/fantasista-doll",15883
 "Hulu","Fantastic Four TV","http://www.hulu.com/fantastic-four-tv",n/a
 "Hulu","Fat Albert and the Cosby Kids","http://www.hulu.com/fat-albert-and-the-cosby-kids",n/a
+"Hulu","Fat Dog Mendoza","http://www.hulu.com/fat-dog-mendoza",n/a
 "Hulu","Fate / Stay Night","http://www.hulu.com/fate-stay-night",356
 "Hulu","Fate / Stay Night Unlimited Blade Works","http://www.hulu.com/fate-stay-night-unlimited-blade-works",6922
 "Hulu","Fate/Zero","http://www.hulu.com/fatezero",10087
 "Hulu","Fate/Zero","http://www.hulu.com/fatezero",11741
 "Hulu","Felix the Cat","http://www.hulu.com/felix-the-cat",n/a
+"Hulu","Felix the Cat: The Platinum Collection","http://www.hulu.com/felix-the-cat-the-platinum-collection",n/a
 "Hulu","Fireball XL-5","http://www.hulu.com/fireball-xl-5",n/a
 "Hulu","First Games With Sammy And Eve","http://www.hulu.com/first-games-with-sammy-and-eve",n/a
 "Hulu","First Squad","http://www.hulu.com/first-squad",5178
@@ -1123,6 +1130,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Future Card Buddyfight","http://www.hulu.com/future-card-buddyfight",19067
 "Hulu","Gad Guard","http://www.hulu.com/gad-guard",271
 "Hulu","Gaiking","http://www.hulu.com/gaiking",1845
+"Hulu","Gakuen Alice","http://www.hulu.com/gakuen-alice",74
 "Hulu","Galaxy Angel","http://www.hulu.com/galaxy-angel",383
 "Hulu","Galaxy Angel","http://www.hulu.com/galaxy-angel",13287
 "Hulu","Galaxy Angel Z","http://www.hulu.com/galaxy-angel-z",652
@@ -1131,6 +1139,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Galaxy Railways","http://www.hulu.com/galaxy-railways",1490
 "Hulu","Ga-Rei-Zero","http://www.hulu.com/ga-rei-zero",4725
 "Hulu","Garfield and Friends","http://www.hulu.com/garfield-and-friends",n/a
+"Hulu","Gargantia on the Verdurous Planet","http://www.hulu.com/gargantia-on-the-verdurous-planet",16524
 "Hulu","Gasaraki","http://www.hulu.com/gasaraki",782
 "Hulu","Gatchaman (TV)","http://www.hulu.com/gatchaman-tv",2389
 "Hulu","Gatchaman Crowds","http://www.hulu.com/gatchaman-crowds",18229
@@ -1149,7 +1158,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Ghost Slayers Ayashi","http://www.hulu.com/ghost-slayers-ayashi",1587
 "Hulu","Ghost Slayers Ayashi","http://www.hulu.com/ghost-slayers-ayashi",3248
 "Hulu","Ghostbusters: The Animated Series","http://www.hulu.com/ghostbusters-the-animated-series",n/a
-"Hulu","Gigantor","http://www.hulu.com/gigantor",2686
 "Hulu","Gintama: The Movie","http://www.hulu.com/gintama-the-movie",7472
 "Hulu","Girls Bravo","http://www.hulu.com/girls-bravo",241
 "Hulu","Girl's High","http://www.hulu.com/girls-high",863
@@ -1197,7 +1205,9 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Heat Guy J","http://www.hulu.com/heat-guy-j",958
 "Hulu","Heaven's Lost Property","http://www.hulu.com/heavens-lost-property",5958
 "Hulu","Heaven's Lost Property","http://www.hulu.com/heavens-lost-property",8407
+"Hulu","Heaven's Lost Property: The Angeloid of Clockwork","http://www.hulu.com/heavens-lost-property-the-angeloid-of-clockwork",9790
 "Hulu","Heaven's Memo Pad","http://www.hulu.com/heavens-memo-pad",10568
+"Hulu","Heavy Metal 2000","http://www.hulu.com/heavy-metal-2000",n/a
 "Hulu","Hell Girl","http://www.hulu.com/hell-girl",1594
 "Hulu","Hell Girl","http://www.hulu.com/hell-girl",3713
 "Hulu","Hellboy: Blood and Iron","http://www.hulu.com/hellboy-blood-and-iron",n/a
@@ -1239,7 +1249,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Hyperdimension Neptunia","http://www.hulu.com/hyperdimension-neptunia",16157
 "Hulu","ICE","http://www.hulu.com/ice",2169
 "Hulu","iDOLM@ster Xenoglossia","http://www.hulu.com/idolmster-xenoglossia",1694
-"Hulu","Ikki Tousen","http://www.hulu.com/ikki-tousen",257
 "Hulu","Inari Konkon","http://www.hulu.com/inari-konkon",20457
 "Hulu","Inazuma Eleven","http://www.hulu.com/inazuma-eleven",5231
 "Hulu","Inazuma Eleven (Español)","http://www.hulu.com/inazuma-eleven-espanol",5231
@@ -1257,6 +1266,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Inuyasha - The Final Act","http://www.hulu.com/inuyasha-the-final-act",6811
 "Hulu","Is This a Zombie?","http://www.hulu.com/is-this-a-zombie",8841
 "Hulu","Is This a Zombie?","http://www.hulu.com/is-this-a-zombie",10790
+"Hulu","It's The Easter Beagle, Charlie Brown","http://www.hulu.com/its-the-easter-beagle-charlie-brown",n/a
 "Hulu","Jackboots on Whitehall","http://www.hulu.com/jackboots-on-whitehall",n/a
 "Hulu","Jackie Chan Adventures","http://www.hulu.com/jackie-chan-adventures",n/a
 "Hulu","Jin Roh","http://www.hulu.com/jin-roh",570
@@ -1293,6 +1303,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Kingdom (2012)","http://www.hulu.com/kingdom-2012",12031
 "Hulu","Kinmoza!","http://www.hulu.com/kinmoza",16732
 "Hulu","Kino's Journey","http://www.hulu.com/kinos-journey",486
+"Hulu","Knight Hunters: Eternity","http://www.hulu.com/knight-hunters-eternity",446
 "Hulu","Kobato","http://www.hulu.com/kobato",5678
 "Hulu","Koihime Musou","http://www.hulu.com/koihime-musou",4262
 "Hulu","Kokoro Connect","http://www.hulu.com/kokoro-connect",11887
@@ -1371,6 +1382,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Maken-Ki! Battling Venus","http://www.hulu.com/maken-ki-battling-venus",9936
 "Hulu","Manga Minutes","http://www.hulu.com/manga-minutes",n/a
 "Hulu","Manga Motion Comics","http://www.hulu.com/manga-motion-comics",n/a
+"Hulu","Maoyu: Archenemy & Hero","http://www.hulu.com/maoyu-archenemy-and-hero",14833
 "Hulu","MÄR","http://www.hulu.com/mar",738
 "Hulu","Mardock Scramble: The First Compression","http://www.hulu.com/mardock-scramble-the-first-compression",8100
 "Hulu","Mardock Scramble: The Second Combustion","http://www.hulu.com/mardock-scramble-the-second-combustion",10624
@@ -1393,7 +1405,9 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","MEGANEBU!","http://www.hulu.com/meganebu",19257
 "Hulu","Mekakucity Actors","http://www.hulu.com/mekakucity-actors",21603
 "Hulu","Mezzo","http://www.hulu.com/mezzo",222
+"Hulu","Mia and the Migoo","http://www.hulu.com/mia-and-the-migoo",n/a
 "Hulu","Michiko and Hatchin","http://www.hulu.com/michiko-and-hatchin",4087
+"Hulu","Mighty Mouse: The New Adventures","http://www.hulu.com/mighty-mouse-the-new-adventures",n/a
 "Hulu","Milton The Monster","http://www.hulu.com/milton-the-monster",n/a
 "Hulu","Minami-ke","http://www.hulu.com/minami-ke",14511
 "Hulu","Mirage of Blaze","http://www.hulu.com/mirage-of-blaze",1019
@@ -1407,11 +1421,11 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Monogatari Series Second Season","http://www.hulu.com/monogatari-series-second-season",17074
 "Hulu","Monster Rancher","http://www.hulu.com/monster-rancher",1469
 "Hulu","Monster Rancher","http://www.hulu.com/monster-rancher",13201
+"Hulu","Monsters vs. Aliens","http://www.hulu.com/monsters-vs-aliens",n/a
 "Hulu","Moon Phase","http://www.hulu.com/moon-phase",343
 "Hulu","Mother Up","http://www.hulu.com/mother-up",n/a
 "Hulu","Motto To Loveru","http://www.hulu.com/motto-to-loveru",9181
 "Hulu","Moyashimon: Tales of Agriculture","http://www.hulu.com/moyashimon-tales-of-agriculture",n/a
-"Hulu","Mr. Bean: The Animated Series","http://www.hulu.com/mr-bean-the-animated-series",n/a
 "Hulu","Mr. Peabody & Sherman","http://www.hulu.com/mr-peabody-and-sherman",n/a
 "Hulu","Mr. Stain on Junk Alley","http://www.hulu.com/mr-stain-on-junk-alley",3519
 "Hulu","Mumfie's Quest","http://www.hulu.com/mumfies-quest",n/a
@@ -1502,6 +1516,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Phi-Brain","http://www.hulu.com/phi-brain",12753
 "Hulu","Photo Kano","http://www.hulu.com/photo-kano",16397
 "Hulu","Piano: The Melody of a Young Girl's Heart","http://www.hulu.com/piano-the-melody-of-a-young-girls-heart",328
+"Hulu","Ping Pong: The Animation","http://www.hulu.com/ping-pong-the-animation",22135
 "Hulu","Place to Place","http://www.hulu.com/place-to-place",12291
 "Hulu","Pocahontas (1994)","http://www.hulu.com/pocahontas-1994",n/a
 "Hulu","Pocahontas (1999)","http://www.hulu.com/pocahontas-1999",n/a
@@ -1528,6 +1543,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Prince And The Pauper","http://www.hulu.com/prince-and-the-pauper",n/a
 "Hulu","Prince and the Pauper (2000)","http://www.hulu.com/prince-and-the-pauper-2000",n/a
 "Hulu","Prince Planet","http://www.hulu.com/prince-planet",6448
+"Hulu","Princess (2006)","http://www.hulu.com/princess-2006",n/a
 "Hulu","Princess Castle","http://www.hulu.com/princess-castle",n/a
 "Hulu","Princess Jellyfish","http://www.hulu.com/princess-jellyfish",8129
 "Hulu","Princess Resurrection","http://www.hulu.com/princess-resurrection",2130
@@ -1570,6 +1586,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Revolutionary Girl Utena: Adolescence of Utena","http://www.hulu.com/revolutionary-girl-utena-adolescence-of-utena",441
 "Hulu","Rex The Runt","http://www.hulu.com/rex-the-runt",n/a
 "Hulu","Rick & Steve: The Happiest Gay Couple In All The World","http://www.hulu.com/rick-and-steve-the-happiest-gay-couple-in-all-the-world",n/a
+"Hulu","Riddle Story of Devil","http://www.hulu.com/riddle-story-of-devil",19429
 "Hulu","RideBack","http://www.hulu.com/rideback",4618
 "Hulu","Rob Zombie Presents The Haunted World of El Superbeasto","http://www.hulu.com/rob-zombie-presents-the-haunted-world-of-el-superbeasto",n/a
 "Hulu","RoboCop: Alpha Commando","http://www.hulu.com/robocop-alpha-commando",n/a
@@ -1614,6 +1631,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Say ""I Love You""","http://www.hulu.com/say-i-love-you",14289
 "Hulu","School Rumble","http://www.hulu.com/school-rumble",24
 "Hulu","School Rumble","http://www.hulu.com/school-rumble",846
+"Hulu","Sea Level","http://www.hulu.com/sea-level",n/a
 "Hulu","Sekirei","http://www.hulu.com/sekirei",4063
 "Hulu","selector infected WIXOSS","http://www.hulu.com/selector-infected-wixoss",22273
 "Hulu","Sengoku Basara","http://www.hulu.com/sengoku-basara",5355
@@ -1651,6 +1669,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Slayers EVOLUTION-R","http://www.hulu.com/slayers-evolution-r",5233
 "Hulu","Slayers REVOLUTION","http://www.hulu.com/slayers-revolution",4028
 "Hulu","Slayers Try","http://www.hulu.com/slayers-try",1172
+"Hulu","Snoopy Come Home","http://www.hulu.com/snoopy-come-home",n/a
 "Hulu","Snorks","http://www.hulu.com/snorks",n/a
 "Hulu","Snow White (1998)","http://www.hulu.com/snow-white-1998",n/a
 "Hulu","So I Can't Play H","http://www.hulu.com/so-i-cant-play-h",12549
@@ -1659,6 +1678,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Soni-Ani: Super Sonico The Animation","http://www.hulu.com/soni-ani-super-sonico-the-animation",20555
 "Hulu","Sonic X","http://www.hulu.com/sonic-x",1816
 "Hulu","Soul Eater","http://www.hulu.com/soul-eater",3588
+"Hulu","Soul Eater Not!","http://www.hulu.com/soul-eater-not",21507
 "Hulu","Sound of the Sky","http://www.hulu.com/sound-of-the-sky",6802
 "Hulu","South Park","http://www.hulu.com/south-park",n/a
 "Hulu","Space Adventure Cobra","http://www.hulu.com/space-adventure-cobra",2452
@@ -1716,7 +1736,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Tayo the Little Bus","http://www.hulu.com/tayo-the-little-bus",n/a
 "Hulu","Tayutama: Kiss on My Deity","http://www.hulu.com/tayutama-kiss-on-my-deity",5734
 "Hulu","Tears to Tiara","http://www.hulu.com/tears-to-tiara",3594
-"Hulu","Technotise: Edit and I","http://www.hulu.com/technotise-edit-and-i",n/a
 "Hulu","Teenage Mutant Ninja Turtles","http://www.hulu.com/teenage-mutant-ninja-turtles",n/a
 "Hulu","Tegami Bachi: Letter Bee","http://www.hulu.com/tegami-bachi-letter-bee",6444
 "Hulu","Tegami Bachi: Letter Bee Reverse","http://www.hulu.com/tegami-bachi-letter-bee-reverse",8311
@@ -1733,7 +1752,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Adventures of Flash Gordon","http://www.hulu.com/the-adventures-of-flash-gordon",n/a
 "Hulu","The Adventures Of The American Rabbit","http://www.hulu.com/the-adventures-of-the-american-rabbit",n/a
 "Hulu","The Adventures of the Galaxy Rangers","http://www.hulu.com/the-adventures-of-the-galaxy-rangers",n/a
-"Hulu","The Animated Adventures of Tom Sawyer","http://www.hulu.com/the-animated-adventures-of-tom-sawyer",n/a
 "Hulu","The Ant & the Aardvark","http://www.hulu.com/the-ant-and-the-aardvark",n/a
 "Hulu","The Archie Show","http://www.hulu.com/the-archie-show",n/a
 "Hulu","The Awesomes","http://www.hulu.com/the-awesomes",n/a
@@ -1764,6 +1782,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Legend of the Legendary Heroes","http://www.hulu.com/the-legend-of-the-legendary-heroes",8086
 "Hulu","The Legend of the Sky Kingdom","http://www.hulu.com/the-legend-of-the-sky-kingdom",n/a
 "Hulu","The Lionhearts","http://www.hulu.com/the-lionhearts",n/a
+"Hulu","The Little Rascals Christmas","http://www.hulu.com/the-little-rascals-christmas",n/a
 "Hulu","The Mr. Magoo Show","http://www.hulu.com/the-mr-magoo-show",n/a
 "Hulu","The New 3 Stooges","http://www.hulu.com/the-new-3-stooges",n/a
 "Hulu","The New Adventures of Peter Rabbit","http://www.hulu.com/the-new-adventures-of-peter-rabbit",n/a
@@ -1771,6 +1790,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Night Before Christmas","http://www.hulu.com/the-night-before-christmas",n/a
 "Hulu","The Pet Girl of Sakurasou","http://www.hulu.com/the-pet-girl-of-sakurasou",13759
 "Hulu","The Prince of Tennis","http://www.hulu.com/the-prince-of-tennis",22
+"Hulu","The Princess and the Pilot","http://www.hulu.com/the-princess-and-the-pilot",9000
 "Hulu","The Rose of Versailles","http://www.hulu.com/the-rose-of-versailles",338
 "Hulu","The Sacred Blacksmith","http://www.hulu.com/the-sacred-blacksmith",5940
 "Hulu","The Secret Life of Suckers","http://www.hulu.com/the-secret-life-of-suckers",n/a
@@ -1783,6 +1803,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Skull Man","http://www.hulu.com/the-skull-man",2161
 "Hulu","The Slayers NEXT","http://www.hulu.com/the-slayers-next",535
 "Hulu","The Story of Mr. Sorry","http://www.hulu.com/the-story-of-mr-sorry",8081
+"Hulu","The Story Of Santa Claus","http://www.hulu.com/the-story-of-santa-claus",n/a
 "Hulu","The Tatami Galaxy","http://www.hulu.com/the-tatami-galaxy",7785
 "Hulu","The Third: The Girl with the Blue Eye","http://www.hulu.com/the-third-the-girl-with-the-blue-eye",944
 "Hulu","The True Story of Puss'N Boots","http://www.hulu.com/the-true-story-of-pussn-boots",n/a
@@ -1839,7 +1860,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Unbreakable Machine-Doll","http://www.hulu.com/unbreakable-machine-doll",17247
 "Hulu","Undersea Super Train: Marine Express","http://www.hulu.com/undersea-super-train-marine-express",3175
 "Hulu","Un-Go","http://www.hulu.com/un-go",10798
-"Hulu","Unsupervised","http://www.hulu.com/unsupervised",n/a
 "Hulu","Upotte!","http://www.hulu.com/upotte",12317
 "Hulu","Uta no Prince Sama","http://www.hulu.com/uta-no-prince-sama",10321
 "Hulu","Uta~Kata","http://www.hulu.com/utakata",688
@@ -1851,10 +1871,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Vampire Princess Miyu","http://www.hulu.com/vampire-princess-miyu",690
 "Hulu","Vandread","http://www.hulu.com/vandread",180
 "Hulu","Vandread","http://www.hulu.com/vandread",181
-"Hulu","VeggieTales: A Snoodle's Tale","http://www.hulu.com/veggietales-a-snoodles-tale",n/a
 "Hulu","VeggieTales: Abe and the Amazing Promise","http://www.hulu.com/veggietales-abe-and-the-amazing-promise",n/a
-"Hulu","VeggieTales: An Easter Carol","http://www.hulu.com/veggietales-an-easter-carol",n/a
-"Hulu","VeggieTales: Esther, the Girl Who Became Queen","http://www.hulu.com/veggietales-esther-the-girl-who-became-queen",n/a
 "Hulu","VeggieTales: Gideon Tuba Warrior","http://www.hulu.com/veggietales-gideon-tuba-warrior",n/a
 "Hulu","VeggieTales: Larry Boy and the Bad Apple","http://www.hulu.com/veggietales-larry-boy-and-the-bad-apple",n/a
 "Hulu","VeggieTales: Maclarry and the Stinky Cheese Battle","http://www.hulu.com/veggietales-maclarry-and-the-stinky-cheese-battle",n/a
@@ -1863,8 +1880,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","VeggieTales: Sheerluck Holmes and the Golden Ruler","http://www.hulu.com/veggietales-sheerluck-holmes-and-the-golden-ruler",n/a
 "Hulu","VeggieTales: Sumo of the Opera","http://www.hulu.com/veggietales-sumo-of-the-opera",n/a
 "Hulu","VeggieTales: Tomato Sawyer and Huckleberry Larry's Big River Rescue","http://www.hulu.com/veggietales-tomato-sawyer-and-huckleberry-larrys-big-river-rescue",n/a
-"Hulu","VeggieTales: 'Twas the Night Before Easter","http://www.hulu.com/veggietales-twas-the-night-before-easter",n/a
-"Hulu","VeggieTales: Where's God When I'm Scared?","http://www.hulu.com/veggietales-wheres-god-when-im-scared",n/a
 "Hulu","Vexille: 2077 Isolation of Japan","http://www.hulu.com/vexille-2077-isolation-of-japan",2746
 "Hulu","Viper's Creed","http://www.hulu.com/vipers-creed",5505
 "Hulu","Virus","http://www.hulu.com/virus-tv",2364
@@ -1925,6 +1940,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Viz","Coppelion","http://www.viz.com/anime/streaming/coppelion",9479
 "Viz","Cross Game","http://www.viz.com/anime/streaming/cross-game",5941
 "Viz","Death Note","http://www.viz.com/anime/streaming/deathnote",1535
+"Viz","Gargantia on the Verdurous Planet","http://www.viz.com/anime/streaming/gargantia",16524
 "Viz","Hikaru no Go","http://www.viz.com/anime/streaming/hikaru-no-go",135
 "Viz","Honey and Clover","http://www.viz.com/anime/streaming/honey-and-clover",16
 "Viz","Honey and Clover II","http://www.viz.com/anime/streaming/honey-and-clover-2",1142
