@@ -151,6 +151,11 @@ JOIN mal_list_entry ON mal_list.mal_user_id = mal_list_entry.mal_user_id AND mal
             throw new NotImplementedException("PostgreSQL MAL API does not support getting recent online users.");
         }
 
+        public AnimeDetailsResults GetAnimeDetails(int animeId)
+        {
+            throw new NotImplementedException("PostgreSQL MAP API does not support getting recent online users.");
+        }
+
         public void Dispose()
         {
             ;
