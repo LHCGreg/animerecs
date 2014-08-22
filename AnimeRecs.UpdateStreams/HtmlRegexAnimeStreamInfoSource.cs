@@ -9,7 +9,7 @@ using AnimeRecs.DAL;
 
 namespace AnimeRecs.UpdateStreams
 {
-    abstract class HtmlRegexAnimeStreamInfoSource : IAnimeStreamInfoSource
+    class HtmlRegexAnimeStreamInfoSource : IAnimeStreamInfoSource
     {
         protected string Url { get; private set; }
         protected Regex AnimeRegex { get; private set; }
@@ -18,11 +18,16 @@ namespace AnimeRecs.UpdateStreams
         protected HtmlRegexContext UrlContext { get; private set; }
 
         /// <summary>
+        /// Set this to send cookies in the web request.
+        /// </summary>
+        public CookieCollection Cookies { get; set; }
+
+        /// <summary>
         /// Regex must have a named capture group called AnimeName and Url
         /// </summary>
         /// <param name="url"></param>
         /// <param name="regex"></param>
-        protected HtmlRegexAnimeStreamInfoSource(string url, Regex animeRegex, StreamingService service, HtmlRegexContext animeNameContext, HtmlRegexContext urlContext)
+        public HtmlRegexAnimeStreamInfoSource(string url, Regex animeRegex, StreamingService service, HtmlRegexContext animeNameContext, HtmlRegexContext urlContext)
         {
             Url = url;
             AnimeRegex = animeRegex;
@@ -38,6 +43,12 @@ namespace AnimeRecs.UpdateStreams
             request.Method = "GET";
             request.KeepAlive = false;
             request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            if (Cookies != null)
+            {
+                request.CookieContainer = new CookieContainer();
+                request.CookieContainer.Add(Cookies);
+            }
 
             string responseBody = null;
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
@@ -111,7 +122,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
