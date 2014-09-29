@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DB Init Scripts\Prereqs.sql" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +129,7 @@
     <Content Include="DB Init Scripts\animerecs.0000.sql" />
     <Content Include="DB Init Scripts\animerecs.0001.prereqs.sql" />
     <Content Include="DB Init Scripts\animerecs.0002.hulu.sql" />
+    <Content Include="DB Init Scripts\anime_prereqs.sql" />
     <Content Include="DB Init Scripts\linux_create_template.sql" />
     <Content Include="DB Init Scripts\streaming_name_mapping.sql" />
     <Content Include="DB Init Scripts\windows_create_template.sql" />
