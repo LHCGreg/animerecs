@@ -40,6 +40,12 @@ namespace AnimeRecs.UpdateStreams
             return _sourceAfterLogin.GetAnimeStreamInfo();
         }
 
+        // For unit testing
+        internal ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string responseBody)
+        {
+            return _sourceAfterLogin.GetAnimeStreamInfo(responseBody);
+        }
+
         private static string GetUsername()
         {
             Console.WriteLine("Crunchyroll username:");
