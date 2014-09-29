@@ -12,6 +12,8 @@
     <AssemblyName>AnimeRecs.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,36 +32,54 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugMono|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugMono\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseMono|AnyCPU'">
+    <OutputPath>bin\ReleaseMono\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Common.Logging\Common.Logging.dll</HintPath>
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="MalApi">
-      <HintPath>..\lib\MalApi\MalApi.dll</HintPath>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MiscUtil">
-      <HintPath>..\lib\MiscUtil\MiscUtil.dll</HintPath>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.34\lib\net40\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MalApi, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MalApi.2.2.1\lib\net40\MalApi.dll</HintPath>
+    </Reference>
+    <Reference Include="MiscUtil, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\JonSkeet.MiscUtil.0.1\lib\net35-Client\MiscUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Npgsql.2.2.1\lib\net40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.2.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Npgsql.2.2.1\lib\net40\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.XML" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(BuildSystem)' == 'MSBuild' ">
-    <Reference Include="Mono.Security">
-      <HintPath>..\lib\Npgsql\netfx40\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql">
-      <HintPath>..\lib\Npgsql\netfx40\Npgsql.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(BuildSystem)' != 'MSBuild' ">
-    <Reference Include="Npgsql">
-      <HintPath>..\lib\Npgsql\mono20\Npgsql.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimeRecsDbConnection.cs" />
@@ -80,20 +100,14 @@
     <Compile Include="PgMalDataLoader.cs" />
     <Compile Include="PgMyAnimeListApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlMapper.cs" />
     <Compile Include="StreamingService.cs" />
     <Compile Include="streaming_service.cs" />
     <Compile Include="streaming_service_anime_map.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DB Init Scripts\InitDb.001.sql" />
-    <None Include="DB Init Scripts\InitDb.002.sql" />
+    <None Include="app.config" />
     <None Include="DB Init Scripts\Prereqs.sql" />
-    <None Include="DB Init Scripts\StreamMappings.sql" />
-    <None Include="DB Init Scripts\CreateDb_linux.sql" />
-    <None Include="DB Init Scripts\CreateDb_windows.sql" />
-    <Content Include="csproj_manually_modified.txt" />
-    <None Include="DB Init Scripts\InitDb.000.sql" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj">
@@ -105,12 +119,14 @@
       <Name>AnimeRecs.RecEngine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DB Init Scripts\animerecs.0000.sql" />
+    <Content Include="DB Init Scripts\animerecs.0001.prereqs.sql" />
+    <Content Include="DB Init Scripts\animerecs.0002.hulu.sql" />
+    <Content Include="DB Init Scripts\linux_create_template.sql" />
+    <Content Include="DB Init Scripts\streaming_name_mapping.sql" />
+    <Content Include="DB Init Scripts\windows_create_template.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
 </Project>

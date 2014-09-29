@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using AnimeRecs.DAL;
-using Mono.Unix;
-using Mono.Unix.Native;
 using AnimeRecs.RecService.Configuration;
 using AnimeRecs.RecService.ClientLib;
+#if MONO
+using Mono.Unix;
+using Mono.Unix.Native;
+#endif
 
 namespace AnimeRecs.RecService
 {
@@ -55,21 +57,14 @@ namespace AnimeRecs.RecService
                         }
                     }
 
-                    if (Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX)
-                    {
-                        UnixSignal[] signals = new UnixSignal[]
-                        {
-                            new UnixSignal(Signum.SIGINT),
-                            new UnixSignal(Signum.SIGTERM)
-                        };
-                        Logging.Log.InfoFormat("Started listening on port {0}. Press ctrl+c to stop.", commandLine.PortNumber);
-                        UnixSignal.WaitAny(signals);
-                    }
-                    else
-                    {
-                        Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", commandLine.PortNumber);
-                        Console.ReadKey();
-                    }
+#if MONO
+                    Logging.Log.InfoFormat("Started listening on port {0}. Press ctrl+c to stop.", commandLine.PortNumber);
+                    WaitForUnixStopSignal();
+#else
+
+                    Logging.Log.InfoFormat("Started listening on port {0}. Press any key to stop.", commandLine.PortNumber);
+                    Console.ReadKey();
+#endif
 
                     Logging.Log.InfoFormat("Got stop signal.");
                 }
@@ -80,6 +75,18 @@ namespace AnimeRecs.RecService
                 Logging.Log.FatalFormat("Fatal error: {0}", ex, ex.Message);
             }
         }
+
+#if MONO
+        static void WaitForUnixStopSignal()
+        {
+            UnixSignal[] signals = new UnixSignal[]
+                        {
+                            new UnixSignal(Signum.SIGINT),
+                            new UnixSignal(Signum.SIGTERM)
+                        };
+            UnixSignal.WaitAny(signals);
+        }
+#endif
     }
 }
 
