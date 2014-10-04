@@ -51,7 +51,14 @@ namespace AnimeRecs.NancyWeb
         // Called once
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
+            // This seems to be called before ApplicationStartup, so read config if it hasn't been read yet
+            if (AppGlobals.Config == null)
+            {
+                AppGlobals.Config = Config.FromAppConfig();
+            }
+
             container.Register<IAnimeRecsClientFactory>((c, x) => new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts));
+            container.Register<Config>(AppGlobals.Config);
         }
 
         // Called once per request

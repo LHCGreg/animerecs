@@ -14,9 +14,10 @@ namespace AnimeRecs.NancyWeb.Modules
 {
     public class HomeModule : NancyModule
     {
+        private Config _config;
         private IAnimeRecsClientFactory _recClientFactory;
         
-        public HomeModule(IAnimeRecsClientFactory recClientFactory)
+        public HomeModule(Config config, IAnimeRecsClientFactory recClientFactory)
         {
             Get["/"] = HomePage;
             _recClientFactory = recClientFactory;
@@ -57,7 +58,7 @@ namespace AnimeRecs.NancyWeb.Modules
 
         private object DoHomePage(MainPageParams parameters)
         {
-            string algorithm = parameters.algorithm ?? AppGlobals.Config.DefaultRecSource;
+            string algorithm = parameters.algorithm ?? _config.DefaultRecSource;
             bool displayDetailedResults = parameters.detailedResults ?? false;
             bool debugModeOn = parameters.debugMode ?? false;
 
