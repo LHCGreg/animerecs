@@ -25,11 +25,15 @@ namespace AnimeRecs.NancyWeb
         public string HtmlBeforeBodyEnd { get; private set; }
         public string PostgresConnectionString { get; private set; }
         public IDictionary<string, int> SpecialRecSourcePorts { get; private set; }
+        public bool EnableDiagnosticsDashboard { get; private set; }
+        public string DiagnosticsDashboardPassword { get; private set; }
+        public bool ShowErrorTraces { get; private set; }
 
         public Config(TimeSpan animeListCacheExpiration, int? recServicePort, string defaultRecSource, int maximumRecommendersToReturn,
             int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, int malTimeoutInMs,
             bool useLocalDbMalApi, string clubMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
-            IDictionary<string, int> specialRecSourcePorts)
+            IDictionary<string, int> specialRecSourcePorts, bool enableDiagnosticsDashboard,
+            string diagnosticsDashboardPassword, bool showErrorTraces)
         {
             AnimeListCacheExpiration = animeListCacheExpiration;
             RecServicePort = recServicePort;
@@ -58,6 +62,10 @@ namespace AnimeRecs.NancyWeb
             HtmlBeforeBodyEnd = htmlBeforeBodyEnd ?? "";
 
             SpecialRecSourcePorts = specialRecSourcePorts;
+
+            EnableDiagnosticsDashboard = enableDiagnosticsDashboard;
+            DiagnosticsDashboardPassword = diagnosticsDashboardPassword;
+            ShowErrorTraces = showErrorTraces;
         }
 
         public static Config FromAppConfig()
@@ -111,6 +119,20 @@ namespace AnimeRecs.NancyWeb
                 }
             }
 
+            bool enableDiagnosticsDashboard = false;
+            string diagnosticsDashboardPassword = "";
+            if (ConfigurationManager.AppSettings["Diagnostics.EnableDiagnosticsDashboard"] != null)
+            {
+                enableDiagnosticsDashboard = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.EnableDiagnosticsDashboard"]);
+                diagnosticsDashboardPassword = ConfigurationManager.AppSettings["Diagnostics.DiagnosticsDashboardPassword"];
+            }
+
+            bool showErrorTraces = false;
+            if (ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"] != null)
+            {
+                showErrorTraces = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"]);
+            }
+
             return new Config
             (
                 animeListCacheExpiration: malCacheExpiration,
@@ -125,7 +147,10 @@ namespace AnimeRecs.NancyWeb
                 clubMalLink: clubMalLink,
                 htmlBeforeBodyEnd: htmlBeforeBodyEnd,
                 postgresConnectionString: postgresConnectionString,
-                specialRecSourcePorts: specialRecSourcePorts
+                specialRecSourcePorts: specialRecSourcePorts,
+                enableDiagnosticsDashboard: enableDiagnosticsDashboard,
+                diagnosticsDashboardPassword: diagnosticsDashboardPassword,
+                showErrorTraces: showErrorTraces
             );
         }
     }

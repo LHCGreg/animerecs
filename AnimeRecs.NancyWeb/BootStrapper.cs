@@ -5,27 +5,59 @@ using System.Text;
 using System.Threading.Tasks;
 using Nancy;
 using Nancy.Bootstrapper;
+using Nancy.Diagnostics;
 using Nancy.TinyIoc;
 
 namespace AnimeRecs.NancyWeb
 {
     public class BootStrapper : DefaultNancyBootstrapper
     {
+        // Called once
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            // Called once
-            AppGlobals.Config = Config.FromAppConfig();
+            // DiagnosticsConfiguration seems to be read before this method is called.
+            // So set the config in whichever gets called first, because Nancy could change that.
+            if (AppGlobals.Config == null)
+            {
+                AppGlobals.Config = Config.FromAppConfig();
+            }
+
+            if (!AppGlobals.Config.EnableDiagnosticsDashboard)
+            {
+                DiagnosticsHook.Disable(pipelines);
+            }
         }
 
+        protected override DiagnosticsConfiguration DiagnosticsConfiguration
+        {
+            get
+            {
+                if (AppGlobals.Config == null)
+                {
+                    AppGlobals.Config = Config.FromAppConfig();
+                }
+
+                if (AppGlobals.Config.EnableDiagnosticsDashboard)
+                {
+                    return new DiagnosticsConfiguration { Password = AppGlobals.Config.DiagnosticsDashboardPassword };
+                }
+                else
+                {
+                    return base.DiagnosticsConfiguration;
+                }
+            }
+        }
+
+        // Called once
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
-            // Called once
             container.Register<IAnimeRecsClientFactory>((c, x) => new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts));
         }
 
+        // Called once per request
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
-            // Called once per request
+            
         }
     }
 }
