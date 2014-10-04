@@ -58,7 +58,7 @@ namespace AnimeRecs.NancyWeb
             }
 
             container.Register<IAnimeRecsClientFactory>((c, x) => new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts));
-            container.Register<Config>(AppGlobals.Config);
+            container.Register<IConfig>(AppGlobals.Config);
         }
 
         // Called once per request

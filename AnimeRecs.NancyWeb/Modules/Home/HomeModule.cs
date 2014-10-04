@@ -10,17 +10,19 @@ using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Validation;
 
-namespace AnimeRecs.NancyWeb.Modules
+namespace AnimeRecs.NancyWeb.Home
 {
     public class HomeModule : NancyModule
     {
-        private Config _config;
+        private IConfig _config;
         private IAnimeRecsClientFactory _recClientFactory;
         
-        public HomeModule(Config config, IAnimeRecsClientFactory recClientFactory)
+        public HomeModule(IConfig config, IAnimeRecsClientFactory recClientFactory)
         {
-            Get["/"] = HomePage;
+            _config = config;
             _recClientFactory = recClientFactory;
+
+            Get["/"] = HomePage;
         }
 
         public class MainPageParams
@@ -92,7 +94,7 @@ namespace AnimeRecs.NancyWeb.Modules
                 debugModeOn: debugModeOn
             );
 
-            return View["Views/Home", viewModel];
+            return View["Modules/Home/Home", viewModel];
         }
     }
 }

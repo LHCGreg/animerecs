@@ -10,7 +10,7 @@ using MiscUtil.Extensions;
 
 namespace AnimeRecs.NancyWeb
 {
-    public class Config
+    public class Config : IConfig
     {
         public TimeSpan AnimeListCacheExpiration { get; private set; }
         public int? RecServicePort { get; private set; }

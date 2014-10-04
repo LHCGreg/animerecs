@@ -116,11 +116,12 @@
     <Compile Include="Config.cs" />
     <Compile Include="HtmlHelpers.cs" />
     <Compile Include="IAnimeRecsClientFactory.cs" />
-    <Compile Include="Modules\HomeModule.cs" />
+    <Compile Include="IConfig.cs" />
+    <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecClientFactory.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="Modules\Home\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\libs\jquery-1.7.1.min.js">
@@ -163,7 +164,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <None Include="Views\Home.cshtml">
+    <None Include="Modules\Home\Home.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
