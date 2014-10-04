@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89F847
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.NancyWeb", "AnimeRecs.NancyWeb\AnimeRecs.NancyWeb.csproj", "{49887F23-44C7-41B4-82BE-8E87C5FAF989}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,14 @@ Global
 		{1B0D3714-8F25-41B2-9E71-F2E1A136F404}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B0D3714-8F25-41B2-9E71-F2E1A136F404}.ReleaseMono|Any CPU.ActiveCfg = ReleaseMono|Any CPU
 		{1B0D3714-8F25-41B2-9E71-F2E1A136F404}.ReleaseMono|Any CPU.Build.0 = ReleaseMono|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.DebugMono|Any CPU.ActiveCfg = DebugMono|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.DebugMono|Any CPU.Build.0 = DebugMono|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.ReleaseMono|Any CPU.ActiveCfg = ReleaseMono|Any CPU
+		{49887F23-44C7-41B4-82BE-8E87C5FAF989}.ReleaseMono|Any CPU.Build.0 = ReleaseMono|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
