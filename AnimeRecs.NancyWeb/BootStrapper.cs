@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnimeRecs.DAL;
+using MalApi;
 using Nancy;
 using Nancy.Bootstrapper;
+using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.TinyIoc;
 
@@ -17,25 +20,21 @@ namespace AnimeRecs.NancyWeb
         {
             // DiagnosticsConfiguration seems to be read before this method is called.
             // So set the config in whichever gets called first, because Nancy could change that.
-            if (AppGlobals.Config == null)
-            {
-                AppGlobals.Config = Config.FromAppConfig();
-            }
+            LoadConfigIfNotLoaded();
 
             if (!AppGlobals.Config.EnableDiagnosticsDashboard)
             {
                 DiagnosticsHook.Disable(pipelines);
             }
+
+            StaticConfiguration.DisableErrorTraces = !AppGlobals.Config.ShowErrorTraces;
         }
 
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
         {
             get
             {
-                if (AppGlobals.Config == null)
-                {
-                    AppGlobals.Config = Config.FromAppConfig();
-                }
+                LoadConfigIfNotLoaded();
 
                 if (AppGlobals.Config.EnableDiagnosticsDashboard)
                 {
@@ -51,20 +50,77 @@ namespace AnimeRecs.NancyWeb
         // Called once
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
-            // This seems to be called before ApplicationStartup, so read config if it hasn't been read yet
-            if (AppGlobals.Config == null)
+            List<IDisposable> disposablesInitialized = new List<IDisposable>();
+            try
             {
-                AppGlobals.Config = Config.FromAppConfig();
-            }
+                // This seems to be called before ApplicationStartup, so read config if it hasn't been read yet
+                LoadConfigIfNotLoaded();
 
-            container.Register<IAnimeRecsClientFactory>((c, x) => new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts));
-            container.Register<IConfig>(AppGlobals.Config);
+                container.Register<IConfig>(AppGlobals.Config);
+
+                IAnimeRecsClientFactory recServiceClientFactory = new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts);
+                container.Register<IAnimeRecsClientFactory>(recServiceClientFactory);
+
+                IAnimeRecsDbConnectionFactory dbConnectionFactory = new AnimeRecsDbConnectionFactory(AppGlobals.Config.PostgresConnectionString);
+                container.Register<IAnimeRecsDbConnectionFactory>(dbConnectionFactory);
+
+                IMyAnimeListApi api;
+                if (AppGlobals.Config.UseLocalDbMalApi)
+                {
+                    api = new PgMyAnimeListApi(AppGlobals.Config.PostgresConnectionString);
+                }
+                else
+                {
+                    api = new MyAnimeListApi()
+                    {
+                        UserAgent = AppGlobals.Config.MalApiUserAgentString,
+                        TimeoutInMs = AppGlobals.Config.MalTimeoutInMs
+                    };
+                }
+                disposablesInitialized.Add(api);
+
+                CachingMyAnimeListApi cachingApi = new CachingMyAnimeListApi(api, AppGlobals.Config.AnimeListCacheExpiration, ownApi: true);
+                disposablesInitialized.Add(cachingApi);
+
+                SingletonMyAnimeListApiFactory factory = new SingletonMyAnimeListApiFactory(cachingApi);
+                
+                // TinyIoC will dispose of the factory when the Nancy host stops
+                container.Register<IMyAnimeListApiFactory>(factory);
+            }
+            catch
+            {
+                foreach (IDisposable disposable in disposablesInitialized)
+                {
+                    disposable.Dispose();
+                }
+                throw;
+            }
         }
 
         // Called once per request
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
             
+        }
+
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            base.ConfigureConventions(nancyConventions);
+
+            LoadConfigIfNotLoaded();
+            if (AppGlobals.Config.HandleStaticContent)
+            {
+                // Content is already allowed by Nancy
+                nancyConventions.StaticContentsConventions.AddDirectory("Scripts");
+            }
+        }
+
+        private void LoadConfigIfNotLoaded()
+        {
+            if (AppGlobals.Config == null)
+            {
+                AppGlobals.Config = Config.FromAppConfig();
+            }
         }
     }
 }

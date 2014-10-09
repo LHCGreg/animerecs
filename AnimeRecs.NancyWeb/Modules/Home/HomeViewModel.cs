@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimeRecs.NancyWeb.ViewModels
+namespace AnimeRecs.NancyWeb.Modules.Home
 {
     public class HomeViewModel
     {

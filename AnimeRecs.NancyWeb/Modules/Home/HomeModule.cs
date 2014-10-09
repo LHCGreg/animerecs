@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AnimeRecs.NancyWeb.ViewModels;
 using AnimeRecs.RecService.ClientLib;
 using FluentValidation;
 using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Validation;
 
-namespace AnimeRecs.NancyWeb.Home
+namespace AnimeRecs.NancyWeb.Modules.Home
 {
     public class HomeModule : NancyModule
     {

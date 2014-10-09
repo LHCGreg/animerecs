@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace AnimeRecs.NancyWeb
+namespace AnimeRecs.NancyWeb.Modules.GetRecs
 {
-    public static class AppGlobals
+    public class RecResultsAsHtmlJson
     {
-        public static Config Config { get; set; }
+        public string Html { get; set; }
+
+        public RecResultsAsHtmlJson()
+        {
+            ;
+        }
+
+        public RecResultsAsHtmlJson(string html)
+        {
+            Html = html;
+        }
     }
 }
 

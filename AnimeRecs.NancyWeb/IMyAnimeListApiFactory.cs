@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MalApi;
 
 namespace AnimeRecs.NancyWeb
 {
-    public static class AppGlobals
+    public interface IMyAnimeListApiFactory
     {
-        public static Config Config { get; set; }
+        IMyAnimeListApi GetMalApi();
     }
 }
 

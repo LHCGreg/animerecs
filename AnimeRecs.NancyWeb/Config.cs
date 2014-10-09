@@ -28,12 +28,13 @@ namespace AnimeRecs.NancyWeb
         public bool EnableDiagnosticsDashboard { get; private set; }
         public string DiagnosticsDashboardPassword { get; private set; }
         public bool ShowErrorTraces { get; private set; }
+        public bool HandleStaticContent { get; private set; }
 
         public Config(TimeSpan animeListCacheExpiration, int? recServicePort, string defaultRecSource, int maximumRecommendersToReturn,
             int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, int malTimeoutInMs,
             bool useLocalDbMalApi, string clubMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
             IDictionary<string, int> specialRecSourcePorts, bool enableDiagnosticsDashboard,
-            string diagnosticsDashboardPassword, bool showErrorTraces)
+            string diagnosticsDashboardPassword, bool showErrorTraces, bool handleStaticContent)
         {
             AnimeListCacheExpiration = animeListCacheExpiration;
             RecServicePort = recServicePort;
@@ -66,6 +67,7 @@ namespace AnimeRecs.NancyWeb
             EnableDiagnosticsDashboard = enableDiagnosticsDashboard;
             DiagnosticsDashboardPassword = diagnosticsDashboardPassword;
             ShowErrorTraces = showErrorTraces;
+            HandleStaticContent = handleStaticContent;
         }
 
         public static Config FromAppConfig()
@@ -133,6 +135,12 @@ namespace AnimeRecs.NancyWeb
                 showErrorTraces = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"]);
             }
 
+            bool handleStaticContent = true;
+            if (ConfigurationManager.AppSettings["HandleStaticContent"] != null)
+            {
+                handleStaticContent = bool.Parse(ConfigurationManager.AppSettings["HandleStaticContent"]);
+            }
+
             return new Config
             (
                 animeListCacheExpiration: malCacheExpiration,
@@ -150,7 +158,8 @@ namespace AnimeRecs.NancyWeb
                 specialRecSourcePorts: specialRecSourcePorts,
                 enableDiagnosticsDashboard: enableDiagnosticsDashboard,
                 diagnosticsDashboardPassword: diagnosticsDashboardPassword,
-                showErrorTraces: showErrorTraces
+                showErrorTraces: showErrorTraces,
+                handleStaticContent: handleStaticContent
             );
         }
     }

@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nancy;
 
 namespace AnimeRecs.NancyWeb
 {
-    public static class AppGlobals
+    class ShortCircuitException : Exception
     {
-        public static Config Config { get; set; }
+        public Response Response { get; private set; }
+        
+        public ShortCircuitException(Response response)
+        {
+            Response = response;
+        }
     }
 }
 

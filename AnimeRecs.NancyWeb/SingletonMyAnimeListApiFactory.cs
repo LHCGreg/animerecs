@@ -2,13 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using MalApi;
 
 namespace AnimeRecs.NancyWeb
 {
-    public static class AppGlobals
+    class SingletonMyAnimeListApiFactory : IMyAnimeListApiFactory, IDisposable
     {
-        public static Config Config { get; set; }
+        private IMyAnimeListApi _api;
+
+        public SingletonMyAnimeListApiFactory(IMyAnimeListApi api)
+        {
+            _api = api;
+        }
+
+        public IMyAnimeListApi GetMalApi()
+        {
+            return new NoDisposeMyAnimeListApi(_api);
+        }
+
+        public void Dispose()
+        {
+            _api.Dispose();
+        }
     }
 }
 

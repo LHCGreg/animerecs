@@ -2,13 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using MalApi;
 
 namespace AnimeRecs.NancyWeb
 {
-    public static class AppGlobals
+    /// <summary>
+    /// Wraps another IMyAnimeListApi and does not dispose of the other api.
+    /// </summary>
+    class NoDisposeMyAnimeListApi : IMyAnimeListApi
     {
-        public static Config Config { get; set; }
+        private IMyAnimeListApi _underlyingApi;
+
+        public NoDisposeMyAnimeListApi(IMyAnimeListApi underlyingApi)
+        {
+            _underlyingApi = underlyingApi;
+        }
+
+        public MalUserLookupResults GetAnimeListForUser(string user)
+        {
+            return _underlyingApi.GetAnimeListForUser(user);
+        }
+
+        public RecentUsersResults GetRecentOnlineUsers()
+        {
+            return _underlyingApi.GetRecentOnlineUsers();
+        }
+
+        public AnimeDetailsResults GetAnimeDetails(int animeId)
+        {
+            return _underlyingApi.GetAnimeDetails(animeId);
+        }
+
+        public void Dispose()
+        {
+            ;
+        }
     }
 }
 

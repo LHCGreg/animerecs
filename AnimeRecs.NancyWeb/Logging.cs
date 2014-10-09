@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimeRecs.NancyWeb
 {
-    public static class AppGlobals
+    internal class Logging
     {
-        public static Config Config { get; set; }
+        internal static Common.Logging.ILog Log { get { return Common.Logging.LogManager.GetLogger("AnimeRecs.Web"); } }
     }
 }
 

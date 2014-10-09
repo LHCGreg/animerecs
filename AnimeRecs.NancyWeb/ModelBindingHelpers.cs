@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nancy.Validation;
 
 namespace AnimeRecs.NancyWeb
 {
-    public static class AppGlobals
+    static class ModelBindingHelpers
     {
-        public static Config Config { get; set; }
+        public static string ConstructErrorString(IDictionary<string, IList<ModelValidationError>> errors)
+        {
+            List<string> errorList = new List<string>();
+            foreach (var x in errors.SelectMany(p => p.Value.Select(e => new { Property = p.Key, Properties = e.MemberNames.ToList(), Error = e.ErrorMessage })))
+            {
+               errorList.Add(string.Format("Error with property {0}: {1}", x.Property, x.Error));
+            }
+            string errorString = string.Join("\n\n", errorList);
+            return errorString;
+        }
     }
 }
 
