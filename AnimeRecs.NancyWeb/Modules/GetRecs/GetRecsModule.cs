@@ -98,6 +98,7 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
                 userLookup: userLookup,
                 userAnimeList: animeList,
                 maximumRecommendationsToReturn: _config.MaximumRecommendationsToReturn,
+                maximumRecommendersToReturn: _config.MaximumRecommendersToReturn,
                 animeWithheld: animeWithheld,
                 dbConnectionFactory: _dbConnectionFactory
             );

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnimeRecs.DAL;
 using AnimeRecs.NancyWeb.Modules.GetRecs;
+using AnimeRecs.RecEngine.MAL;
 using MalApi;
 using Nancy.ViewEngines;
 using Nancy.ViewEngines.Razor;
@@ -15,12 +16,17 @@ namespace AnimeRecs.NancyWeb
     // MUST be public, not internal, for razor to access it
     public static class HtmlHelpers
     {
+        public static IHtmlString Attribute(string text)
+        {
+            return new NonEncodedHtmlString(AttributeString(text));
+        }
+        
         /// <summary>
         /// Puts the text in double quotes and escapes necessary attribute characters.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        private static string Attribute(string text)
+        private static string AttributeString(string text)
         {
             // Don't use System.Web.HttpUtility, we're avoiding System.Web
             // " & <
@@ -97,9 +103,9 @@ namespace AnimeRecs.NancyWeb
                     }
 
                     string imgHtml = string.Format(@"<img src={0} title={1} alt={2} />",
-                        Attribute(imagePath), Attribute(titleText), Attribute(altText));
+                        AttributeString(imagePath), AttributeString(titleText), AttributeString(altText));
 
-                    string linkHtml = string.Format(@"<a href={0}>{1}</a>", Attribute(serviceMap.streaming_url), imgHtml);
+                    string linkHtml = string.Format(@"<a href={0}>{1}</a>", AttributeString(serviceMap.streaming_url), imgHtml);
                     streamLinks.Add(linkHtml);
                 }
             }
@@ -166,7 +172,7 @@ namespace AnimeRecs.NancyWeb
         {
             string animeTitle = model.Results.AnimeInfo[malAnimeId].Title;
             string encodedString = string.Format(@"<a href={0} class=""recommendation"">{1}</a>",
-                Attribute(GetMalAnimeUrl(malAnimeId, animeTitle)), EncodeToString(animeTitle));
+                AttributeString(GetMalAnimeUrl(malAnimeId, animeTitle)), EncodeToString(animeTitle));
 
             return new NonEncodedHtmlString(encodedString);
         }
@@ -174,7 +180,7 @@ namespace AnimeRecs.NancyWeb
         public static IHtmlString GetWithheldMalAnimeHtml(int malAnimeId, string animeTitle)
         {
             string encodedString = string.Format(@"<a href={0} class=""recommendation"">{1}</a>",
-                Attribute(GetMalAnimeUrl(malAnimeId, animeTitle)), EncodeToString(animeTitle));
+                AttributeString(GetMalAnimeUrl(malAnimeId, animeTitle)), EncodeToString(animeTitle));
 
             return new NonEncodedHtmlString(encodedString);
         }
@@ -183,6 +189,42 @@ namespace AnimeRecs.NancyWeb
         {
             // TODO: Add url-sanitized anime name at end for a friendlier URL?
             return string.Format("http://myanimelist.net/anime/{0}", malAnimeId.ToString(CultureInfo.InvariantCulture));
+        }
+
+        public static string GetMalListUrl(string username)
+        {
+            return string.Format("http://myanimelist.net/animelist/{0}", Uri.EscapeUriString(username));
+        }
+
+        public static AnimeRecsRecommendationType GetRecommendationType(MalAnimeRecsRecommenderUser recommender,
+    MalAnimeRecsRecommenderRecommendation rec, IDictionary<int, MalListEntry> userAnimeList)
+        {
+            if (recommender.RecsNotInCommon.Contains(rec))
+            {
+                return AnimeRecsRecommendationType.UsefulRecommendation;
+            }
+            else if (recommender.RecsInconclusive.Contains(rec))
+            {
+                if (userAnimeList.ContainsKey(rec.MalAnimeId) &&
+                    (userAnimeList[rec.MalAnimeId].Status == CompletionStatus.Watching
+                    || userAnimeList[rec.MalAnimeId].Status == CompletionStatus.PlanToWatch
+                    || userAnimeList[rec.MalAnimeId].Status == CompletionStatus.OnHold))
+                {
+                    return AnimeRecsRecommendationType.UsefulRecommendation;
+                }
+                else
+                {
+                    return AnimeRecsRecommendationType.Inconclusive;
+                }
+            }
+            else if (recommender.RecsLiked.Contains(rec))
+            {
+                return AnimeRecsRecommendationType.Liked;
+            }
+            else
+            {
+                return AnimeRecsRecommendationType.NotLiked;
+            }
         }
     }
 }

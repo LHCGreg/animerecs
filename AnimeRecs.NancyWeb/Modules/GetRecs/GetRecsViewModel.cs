@@ -20,6 +20,7 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
         public IDictionary<int, MalListEntry> UserAnimeList { get; private set; }
         public IDictionary<int, MalListEntry> AnimeWithheld { get; private set; }
         public int MaximumRecommendationsToReturn { get; private set; }
+        public int MaximumRecommendersToReturn { get; private set; }
 
         private IAnimeRecsDbConnectionFactory DbConnectionFactory { get; set; }
 
@@ -30,7 +31,7 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
 
         public GetRecsViewModel(MalRecResults<IEnumerable<IRecommendation>> results, int userId, string userName,
             MalUserLookupResults userLookup, IDictionary<int, MalListEntry> userAnimeList,
-            int maximumRecommendationsToReturn, IDictionary<int, MalListEntry> animeWithheld, IAnimeRecsDbConnectionFactory dbConnectionFactory)
+            int maximumRecommendationsToReturn, int maximumRecommendersToReturn, IDictionary<int, MalListEntry> animeWithheld, IAnimeRecsDbConnectionFactory dbConnectionFactory)
         {
             Results = results;
             UserId = userId;
@@ -38,6 +39,7 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
             UserLookup = userLookup;
             UserAnimeList = userAnimeList;
             MaximumRecommendationsToReturn = maximumRecommendationsToReturn;
+            MaximumRecommendersToReturn = maximumRecommendersToReturn;
             DbConnectionFactory = dbConnectionFactory;
             StreamsByAnime = new Dictionary<int, ICollection<streaming_service_anime_map>>();
             AnimeWithheld = animeWithheld;
