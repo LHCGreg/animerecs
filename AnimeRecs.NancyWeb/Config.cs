@@ -136,9 +136,9 @@ namespace AnimeRecs.NancyWeb
             }
 
             bool handleStaticContent = true;
-            if (ConfigurationManager.AppSettings["HandleStaticContent"] != null)
+            if (ConfigurationManager.AppSettings["Hosting.HandleStaticContent"] != null)
             {
-                handleStaticContent = bool.Parse(ConfigurationManager.AppSettings["HandleStaticContent"]);
+                handleStaticContent = bool.Parse(ConfigurationManager.AppSettings["Hosting.HandleStaticContent"]);
             }
 
             return new Config

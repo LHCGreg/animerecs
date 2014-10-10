@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,14 @@ namespace AnimeRecs.NancyWeb
                 RewriteLocalhost = false
             };
 
-            using (var host = new NancyHost(config, new Uri("http://localhost:8888")))
+            string portString = ConfigurationManager.AppSettings["Hosting.Port"];
+            uint port;
+            if (!uint.TryParse(portString, out port))
+            {
+                throw new Exception("Hosting.Port is not a valid port number.");
+            }
+
+            using (var host = new NancyHost(config, new Uri(string.Format("http://localhost:{0}", port))))
             {
                 host.Start();
                 Console.WriteLine("Started");
