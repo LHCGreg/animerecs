@@ -143,6 +143,9 @@
     <Compile Include="SingletonMyAnimeListApiFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="robots.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\libs\jquery-1.7.1.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
