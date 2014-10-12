@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AnimeRecs.DAL;
+using AnimeRecs.NancyWeb.Modules.GetRecs;
+using AnimeRecs.NancyWeb.Modules.Home;
+using AnimeRecs.RecEngine;
 using MalApi;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.TinyIoc;
+using Nancy.ViewEngines;
+using Nancy.ViewEngines.Razor;
 
 namespace AnimeRecs.NancyWeb
 {
@@ -28,6 +34,8 @@ namespace AnimeRecs.NancyWeb
             }
 
             StaticConfiguration.DisableErrorTraces = !AppGlobals.Config.ShowErrorTraces;
+
+            KickOffViewPrecompiling(container);
         }
 
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
@@ -83,7 +91,7 @@ namespace AnimeRecs.NancyWeb
                 disposablesInitialized.Add(cachingApi);
 
                 SingletonMyAnimeListApiFactory factory = new SingletonMyAnimeListApiFactory(cachingApi);
-                
+
                 // TinyIoC will dispose of the factory when the Nancy host stops
                 container.Register<IMyAnimeListApiFactory>(factory);
             }
@@ -100,7 +108,7 @@ namespace AnimeRecs.NancyWeb
         // Called once per request
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
-            
+
         }
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)
@@ -119,8 +127,107 @@ namespace AnimeRecs.NancyWeb
         {
             if (AppGlobals.Config == null)
             {
+                Logging.Log.Debug("Loading config");
                 AppGlobals.Config = Config.FromAppConfig();
+                Logging.Log.Debug("Config loaded.");
             }
+        }
+
+        private static Dictionary<string, object> ViewPathsAndModels = new Dictionary<string, object>()
+        {
+            { "Modules/Home/Home", new HomeViewModel("default", true, true, true, false) },
+            { "Modules/GetRecs/AnimeRecs", GetDummyAnimeRecsViewModel() },
+            { "Modules/GetRecs/AnimeRecs_complex", GetDummyAnimeRecsViewModel() },
+            { "Modules/GetRecs/AverageScore", GetDummyRecsViewModel() },
+            { "Modules/GetRecs/Fallback", GetDummyRecsViewModel() },
+            { "Modules/GetRecs/MostPopular", GetDummyRecsViewModel() },
+            { "Modules/GetRecs/RatingPrediction", GetDummyRecsViewModel() }
+        };
+
+        private static List<string> ViewsFinishedPrecompiling = new List<string>();
+
+        private void KickOffViewPrecompiling(TinyIoCContainer container)
+        {
+            Logging.Log.Info("Precompiling razor views in background");
+            RazorViewEngine engine = container.Resolve<RazorViewEngine>();
+            IViewLocator locator = container.Resolve<Nancy.ViewEngines.IViewLocator>();
+            IRenderContextFactory renderContextFactory = container.Resolve<IRenderContextFactory>();
+            RazorPreloader preloader = new RazorPreloader(engine, locator, renderContextFactory);
+
+            foreach (var pathAndModel in ViewPathsAndModels)
+            {
+                // Avoid capturing the loop variable, it does not work how you expect it to work in some .NET versions.
+                // No idea what mono does with it.
+                string viewPath = pathAndModel.Key;
+                object viewModel = pathAndModel.Value;
+                ThreadPool.QueueUserWorkItem(x => PrecompileView(viewPath, viewModel, engine, locator, renderContextFactory, preloader));
+            }
+        }
+
+        private static void PrecompileView(string viewPath, object viewModel, RazorViewEngine engine, IViewLocator locator,
+            IRenderContextFactory renderContextFactory, RazorPreloader preloader)
+        {
+            try
+            {
+                Logging.Log.DebugFormat("Precompiling view {0}", viewPath);
+                preloader.PreloadRazorView(viewPath, viewModel);
+                Logging.Log.DebugFormat("Finished precompiling view {0}", viewPath);
+            }
+            catch (Exception ex)
+            {
+                Logging.Log.ErrorFormat("Error precompiling view {0}: {1}", ex, viewPath, ex.Message);
+            }
+
+            lock (ViewsFinishedPrecompiling)
+            {
+                ViewsFinishedPrecompiling.Add(viewPath);
+                if (ViewsFinishedPrecompiling.Count == ViewPathsAndModels.Count)
+                {
+                    Logging.Log.Info("Finished precompiling views");
+                }
+            }
+        }
+
+        private static GetRecsViewModel GetDummyRecsViewModel()
+        {
+            return new GetRecsViewModel(
+                results: new RecService.ClientLib.MalRecResults<IEnumerable<RecEngine.IRecommendation>>(
+                    results: new List<IRecommendation>(),
+                    animeInfo: new Dictionary<int, RecEngine.MAL.MalAnime>(),
+                    recommendationType: "blah"
+                ),
+                userId: 9,
+                userName: "blah",
+                userLookup: new MalUserLookupResults(9, "blah", new List<MyAnimeListEntry>()),
+                userAnimeList: new Dictionary<int, RecEngine.MAL.MalListEntry>(),
+                maximumRecommendationsToReturn: 100,
+                maximumRecommendersToReturn: 5,
+                animeWithheld: new Dictionary<int, RecEngine.MAL.MalListEntry>(),
+                dbConnectionFactory: null
+            );
+        }
+
+        private static GetRecsViewModel GetDummyAnimeRecsViewModel()
+        {
+            return new GetRecsViewModel(
+                results: new RecService.ClientLib.MalRecResults<IEnumerable<RecEngine.IRecommendation>>(
+                    results: new AnimeRecs.RecEngine.MAL.MalAnimeRecsResults(
+                        recommendations: new List<AnimeRecsRecommendation>(),
+                        recommenders: new List<RecEngine.MAL.MalAnimeRecsRecommenderUser>(),
+                        targetScoreUsed: 8m
+                    ),
+                    animeInfo: new Dictionary<int, RecEngine.MAL.MalAnime>(),
+                    recommendationType: "blah"
+                ),
+                userId: 9,
+                userName: "blah",
+                userLookup: new MalUserLookupResults(9, "blah", new List<MyAnimeListEntry>()),
+                userAnimeList: new Dictionary<int, RecEngine.MAL.MalListEntry>(),
+                maximumRecommendationsToReturn: 100,
+                maximumRecommendersToReturn: 5,
+                animeWithheld: new Dictionary<int, RecEngine.MAL.MalListEntry>(),
+                dbConnectionFactory: null
+            );
         }
     }
 }

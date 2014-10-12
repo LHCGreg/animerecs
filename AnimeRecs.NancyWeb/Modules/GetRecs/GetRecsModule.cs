@@ -41,7 +41,7 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
             Post["/GetRecs"] = GetRecs;
         }
 
-        private dynamic GetRecs(dynamic arg)
+        private object GetRecs(dynamic arg)
         {
             Logging.Log.Info("Started processing GetRecs request.");
 
@@ -105,9 +105,6 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
 
             RecResultsAsHtmlJson resultsJson = GetResultHtml(viewModel, input);
             return Response.AsJson(resultsJson);
-
-            //RecResultsAsHtml resultsHtml = new RecResultsAsHtml("");
-            //return Response.AsJson(resultsHtml);
         }
 
         private MalUserLookupResults GetUserLookup(AnimeRecsInputJson input)

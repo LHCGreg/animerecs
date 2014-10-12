@@ -39,7 +39,7 @@ namespace AnimeRecs.NancyWeb.Modules.Home
             }
         }
 
-        private dynamic HomePage(dynamic arg)
+        private object HomePage(dynamic arg)
         {
             // TODO: miniprofiler
             MainPageParams parameters = this.BindAndValidate<MainPageParams>();

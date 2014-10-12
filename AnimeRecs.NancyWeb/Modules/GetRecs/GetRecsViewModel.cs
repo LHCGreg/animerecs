@@ -47,6 +47,7 @@ namespace AnimeRecs.NancyWeb.Modules.GetRecs
 
         public void DeclareAnimeToBeDisplayed(IEnumerable<int> malAnimeIds)
         {
+            if (DbConnectionFactory == null) return; // Null is passed when precompiling the views
             using (IAnimeRecsDbConnection conn = DbConnectionFactory.GetConnection())
             {
                 StreamsByAnime = conn.GetStreams(malAnimeIds);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,9 @@ namespace AnimeRecs.NancyWeb
     class Program
     {
         static void Main(string[] args)
-        {
+        {            
+            Logging.Log.Info("Starting AnimeRecs web app");
+            
             HostConfiguration config = new HostConfiguration()
             {
                 RewriteLocalhost = false
@@ -27,8 +30,9 @@ namespace AnimeRecs.NancyWeb
             using (var host = new NancyHost(config, new Uri(string.Format("http://localhost:{0}", port))))
             {
                 host.Start();
-                Console.WriteLine("Started");
+                Logging.Log.InfoFormat("Started listening on port {0}", port);
                 Console.ReadLine();
+                Logging.Log.Info("Got stop signal, stopping web app");
             }
         }
     }
