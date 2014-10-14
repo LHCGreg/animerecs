@@ -13,6 +13,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.Diagnostics;
+using Nancy.Responses.Negotiation;
 using Nancy.TinyIoc;
 using Nancy.ViewEngines;
 using Nancy.ViewEngines.Razor;
@@ -28,6 +29,8 @@ namespace AnimeRecs.NancyWeb
             // So set the config in whichever gets called first, because Nancy could change that.
             LoadConfigIfNotLoaded();
 
+            KickOffViewPrecompiling(container);
+
             if (!AppGlobals.Config.EnableDiagnosticsDashboard)
             {
                 DiagnosticsHook.Disable(pipelines);
@@ -35,7 +38,8 @@ namespace AnimeRecs.NancyWeb
 
             StaticConfiguration.DisableErrorTraces = !AppGlobals.Config.ShowErrorTraces;
 
-            KickOffViewPrecompiling(container);
+            IResponseNegotiator responder = container.Resolve<IResponseNegotiator>();
+            pipelines.OnError += (ctx, ex) => ErrorHandler.HandleException(ctx, ex, responder);
         }
 
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
@@ -141,7 +145,8 @@ namespace AnimeRecs.NancyWeb
             { "Modules/GetRecs/AverageScore", GetDummyRecsViewModel() },
             { "Modules/GetRecs/Fallback", GetDummyRecsViewModel() },
             { "Modules/GetRecs/MostPopular", GetDummyRecsViewModel() },
-            { "Modules/GetRecs/RatingPrediction", GetDummyRecsViewModel() }
+            { "Modules/GetRecs/RatingPrediction", GetDummyRecsViewModel() },
+            { "Error", new ErrorViewModel(new Exception("blah")) }
         };
 
         private static List<string> ViewsFinishedPrecompiling = new List<string>();

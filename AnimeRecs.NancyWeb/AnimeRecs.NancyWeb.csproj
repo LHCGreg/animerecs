@@ -125,6 +125,8 @@
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="AjaxError.cs" />
+    <Compile Include="ErrorHandler.cs" />
+    <Compile Include="ErrorViewModel.cs" />
     <Compile Include="HtmlHelpers.cs" />
     <Compile Include="IAnimeRecsClientFactory.cs" />
     <Compile Include="IConfig.cs" />
@@ -204,6 +206,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Modules\GetRecs\AverageScore.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Error.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
