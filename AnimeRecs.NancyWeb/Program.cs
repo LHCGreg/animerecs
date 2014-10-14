@@ -6,15 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nancy.Hosting.Self;
+#if MONO
+using Mono.Unix;
+using Mono.Unix.Native;
+#endif
 
 namespace AnimeRecs.NancyWeb
 {
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
             Logging.Log.Info("Starting AnimeRecs web app");
-            
+
             HostConfiguration config = new HostConfiguration()
             {
                 RewriteLocalhost = false
@@ -31,10 +35,26 @@ namespace AnimeRecs.NancyWeb
             {
                 host.Start();
                 Logging.Log.InfoFormat("Started listening on port {0}", port);
+#if MONO
+                    WaitForUnixStopSignal();
+#else
                 Console.ReadLine();
+#endif
                 Logging.Log.Info("Got stop signal, stopping web app");
             }
         }
+
+#if MONO
+        static void WaitForUnixStopSignal()
+        {
+            UnixSignal[] signals = new UnixSignal[]
+                        {
+                            new UnixSignal(Signum.SIGINT),
+                            new UnixSignal(Signum.SIGTERM)
+                        };
+            UnixSignal.WaitAny(signals);
+        }
+#endif
     }
 }
 
