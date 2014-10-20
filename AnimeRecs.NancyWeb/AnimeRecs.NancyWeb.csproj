@@ -56,10 +56,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Label="SlowCheetah">
-    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.14\tools\))</SlowCheetahToolsPath>
-    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
-    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
-    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+    <SlowCheetahToolsPath>$(MSBuildProjectDirectory)/../packages/SlowCheetah.2.5.14/tools/</SlowCheetahToolsPath>
+    <SlowCheetahTargets>$(MSBuildProjectDirectory)/Properties/SlowCheetah/SlowCheetah.Transforms.targets</SlowCheetahTargets>
+    <!-- No $(LocalAppData) on Linux -->
+    <sc-MSBuildLibPathLocal>$(MSBuildProjectDirectory)/SlowCheetah_temp/</sc-MSBuildLibPathLocal>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging">
@@ -120,6 +120,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Condition=" '$(Configuration)' == 'DebugMono' or '$(Configuration)' == 'ReleaseMono' " Include="Mono.Posix" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
@@ -169,9 +170,9 @@
     <Content Include="Scripts\script.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="AnimeRecs.NancyWeb.targets" />
     <None Include="app.config">
       <SubType>Designer</SubType>
-      <TransformOnBuild>True</TransformOnBuild>
     </None>
     <None Include="app.Debug.config" />
     <None Include="app.Release.config" />
@@ -255,9 +256,10 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="AnimeRecs.NancyWeb.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <Target Name="CopyRazorIntellisenseDlls" BeforeTargets="Build">
     <Copy SourceFiles="$(SolutionDir)packages\Nancy.Viewengines.Razor.0.23.2\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll;$(SolutionDir)packages\Nancy.Viewengines.Razor.0.23.2\lib\Net40\Nancy.ViewEngines.Razor.dll" DestinationFolder="$(ProjectDir)bin\" />
   </Target>
-  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
+  <Import Project="$(SlowCheetahTargets)" Label="SlowCheetah" />
 </Project>
