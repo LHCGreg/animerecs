@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89F847
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.NancyWeb", "AnimeRecs.NancyWeb\AnimeRecs.NancyWeb.csproj", "{49887F23-44C7-41B4-82BE-8E87C5FAF989}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeRecs.Web", "AnimeRecs.Web\AnimeRecs.Web.csproj", "{49887F23-44C7-41B4-82BE-8E87C5FAF989}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
