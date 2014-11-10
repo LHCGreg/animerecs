@@ -44,7 +44,10 @@ namespace AnimeRecs.NancyWeb
                     stream.Position = 0;
                     using (StreamReader reader = new StreamReader(stream))
                     {
+                        // Disable Mono warning about renderedHtml not being used. It's useful to see it when debugging.
+#pragma warning disable 219
                         string renderedHtml = reader.ReadToEnd();
+#pragma warning restore 219
                     }
                 }
             }
