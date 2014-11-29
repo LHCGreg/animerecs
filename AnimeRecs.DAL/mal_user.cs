@@ -28,7 +28,7 @@ namespace AnimeRecs.DAL
         public void Insert(NpgsqlConnection conn, NpgsqlTransaction transaction)
         {
             string sql = "INSERT INTO mal_user (mal_user_id, mal_name, time_added) VALUES (:MalUserId, :MalName, :TimeAdded)";
-            int rowsAffected = conn.Execute(sql, new { MalUserId = mal_user_id, MalName = mal_name, TimeAdded = time_added }, transaction);
+            conn.Execute(sql, new { MalUserId = mal_user_id, MalName = mal_name, TimeAdded = time_added }, transaction);
         }
 
         public static IEnumerable<mal_user> GetAll(NpgsqlConnection conn, NpgsqlTransaction transaction)
@@ -75,7 +75,7 @@ FROM mal_user
 ORDER BY time_added
 LIMIT :NumToDelete)";
 
-            int numRowsDeleted = conn.Execute(deleteSql, new { NumToDelete = numUsers }, transaction);
+            conn.Execute(deleteSql, new { NumToDelete = numUsers }, transaction);
         }
     }
 }

@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MiscUtil.Extensions;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using MiscUtil.Extensions;
 
 namespace AnimeRecs.Web
 {
-    public class Config
+    public class Config : IConfig
     {
         public TimeSpan AnimeListCacheExpiration { get; private set; }
         public int? RecServicePort { get; private set; }
@@ -24,11 +25,16 @@ namespace AnimeRecs.Web
         public string HtmlBeforeBodyEnd { get; private set; }
         public string PostgresConnectionString { get; private set; }
         public IDictionary<string, int> SpecialRecSourcePorts { get; private set; }
+        public bool EnableDiagnosticsDashboard { get; private set; }
+        public string DiagnosticsDashboardPassword { get; private set; }
+        public bool ShowErrorTraces { get; private set; }
+        public bool HandleStaticContent { get; private set; }
 
         public Config(TimeSpan animeListCacheExpiration, int? recServicePort, string defaultRecSource, int maximumRecommendersToReturn,
             int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, int malTimeoutInMs,
             bool useLocalDbMalApi, string clubMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
-            IDictionary<string, int> specialRecSourcePorts)
+            IDictionary<string, int> specialRecSourcePorts, bool enableDiagnosticsDashboard,
+            string diagnosticsDashboardPassword, bool showErrorTraces, bool handleStaticContent)
         {
             AnimeListCacheExpiration = animeListCacheExpiration;
             RecServicePort = recServicePort;
@@ -57,9 +63,14 @@ namespace AnimeRecs.Web
             HtmlBeforeBodyEnd = htmlBeforeBodyEnd ?? "";
 
             SpecialRecSourcePorts = specialRecSourcePorts;
+
+            EnableDiagnosticsDashboard = enableDiagnosticsDashboard;
+            DiagnosticsDashboardPassword = diagnosticsDashboardPassword;
+            ShowErrorTraces = showErrorTraces;
+            HandleStaticContent = handleStaticContent;
         }
 
-        public static Config FromWebConfig()
+        public static Config FromAppConfig()
         {
             int malCacheExpirationSeconds = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpiration.Seconds"], CultureInfo.InvariantCulture);
             int malCacheExpirationMinutes = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpiration.Minutes"], CultureInfo.InvariantCulture);
@@ -110,6 +121,26 @@ namespace AnimeRecs.Web
                 }
             }
 
+            bool enableDiagnosticsDashboard = false;
+            string diagnosticsDashboardPassword = "";
+            if (ConfigurationManager.AppSettings["Diagnostics.EnableDiagnosticsDashboard"] != null)
+            {
+                enableDiagnosticsDashboard = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.EnableDiagnosticsDashboard"]);
+                diagnosticsDashboardPassword = ConfigurationManager.AppSettings["Diagnostics.DiagnosticsDashboardPassword"];
+            }
+
+            bool showErrorTraces = false;
+            if (ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"] != null)
+            {
+                showErrorTraces = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"]);
+            }
+
+            bool handleStaticContent = true;
+            if (ConfigurationManager.AppSettings["Hosting.HandleStaticContent"] != null)
+            {
+                handleStaticContent = bool.Parse(ConfigurationManager.AppSettings["Hosting.HandleStaticContent"]);
+            }
+
             return new Config
             (
                 animeListCacheExpiration: malCacheExpiration,
@@ -124,13 +155,17 @@ namespace AnimeRecs.Web
                 clubMalLink: clubMalLink,
                 htmlBeforeBodyEnd: htmlBeforeBodyEnd,
                 postgresConnectionString: postgresConnectionString,
-                specialRecSourcePorts: specialRecSourcePorts
+                specialRecSourcePorts: specialRecSourcePorts,
+                enableDiagnosticsDashboard: enableDiagnosticsDashboard,
+                diagnosticsDashboardPassword: diagnosticsDashboardPassword,
+                showErrorTraces: showErrorTraces,
+                handleStaticContent: handleStaticContent
             );
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

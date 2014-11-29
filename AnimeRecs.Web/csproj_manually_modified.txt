@@ -1,9 +1,0 @@
-﻿ASP.NET MVC related references are conditionally copy-local when compiling with the MonoDebug or MonoRelease build configurations.
-
-AnimeRecs.Web.csproj has been manually modified to add project references, which Visual Web Developer Express does not normally allow you to do.
-
-This change works when invoking msbuild on the command-line, but when building from Visual Web Developer external project references are not build. Instead, the build process skips building the referenced project looks at where the output would be.
-
-To get around that, there is a prebuild step on AnimeRecs.Web that invokes msbuild on the project references if not building for a Mono configuration.
-
-There is a yellow warning sign on the reference in Solution Explorer. It compiles fine. You will get Intellisense if you manually build the referenced projects in AnimeRecs.RecEngine.sln.

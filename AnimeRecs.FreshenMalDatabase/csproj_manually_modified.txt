@@ -1,2 +1,0 @@
-﻿The mono20/ npgsql is conditionally referenced if the MONO symbol is defined, otherwise the /netfx40 npgsql is referenced.
-The mono20 NLog is conditionally referenced if the MONO symbol is defined, otherwise the /net20 NLog is referenced.

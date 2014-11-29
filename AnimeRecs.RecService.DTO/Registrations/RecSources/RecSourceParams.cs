@@ -99,7 +99,6 @@ namespace AnimeRecs.RecService.DTO
         public bool? BoldDriver { get; set; }
         public bool? FrequencyRegularization { get; set; }
         public float? LearnRate { get; set; }
-        public float? LearnRateDecay { get; set; }
         public string OptimizationTarget { get; set; }
         public uint? NumFactors { get; set; }
         public uint? NumIter { get; set; }
@@ -136,7 +135,6 @@ namespace AnimeRecs.RecService.DTO
         public float? BiasReg { get; set; }
         public bool? FrequencyRegularization { get; set; }
         public float? LearnRate { get; set; }
-        public float? LearnRateDecay { get; set; }
         public uint? NumFactors { get; set; }
         public uint? NumIter { get; set; }
         public float? Regularization { get; set; }

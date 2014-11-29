@@ -24,7 +24,7 @@ AnimeRecs.RecService.ClientLib: Client library for interacting with AnimeRecs.Re
 
 AnimeRecs.RecService.Client: Command-line rec service client application for controlling a running rec service and testing recommendation sources.
 
-AnimeRecs.Web: ASP.NET MVC web application that gives recommendations based on a user's myanimelist.net account
+AnimeRecs.Web: Nancy web application that gives recommendations based on a user's myanimelist.net account
 
 # Setting up
 
@@ -32,19 +32,15 @@ AnimeRecs.Web: ASP.NET MVC web application that gives recommendations based on a
 
 To set up a development environment you will need to install the following:
 
-- Microsoft Visual C# 2010 Express
-- Visual Web Developer 2010 Express
+- Visual Studio 2013 Community Edition
 - PostgreSQL (http://www.postgresql.org/) (9.1.x supported, earlier versions will probably work also)
 
-Set up instructions for Linux assume Ubuntu. If you want to use a different distro, good luck, you're on your own. I have found Ubuntu to have good Mono support.
+Set up instructions for Linux assume Ubuntu or Debian. If you want to use a different distro, good luck, you're on your own. I have found Ubuntu and Debian to have good Mono support.
 
-To build for Mono on Linux, you must use xbuild (or MonoDevelop set to use xbuild) on Linux. Cross-compiling is not supported. Building for .NET vs. Mono has slight differences. Some libraries used have separate .NET and Mono builds, some assemblies need to be copy-local on one but not the other, some need to reference a local assembly when the other references one in the GAC. The only difference in run-time behavior is that when running on Windows recservice is existing by pressing any key, while on Linux it is terminated by sending a SIGINT (ctrl+c) or SIGTERM.
+To build for Mono on Linux, you must use xbuild (or MonoDevelop set to use xbuild) on Linux. Cross-compiling is not supported. Building for .NET vs. Mono have slight differences. The only difference in run-time behavior is that when running on Windows recservice is existing by pressing any key, while on Linux it is terminated by sending a SIGINT (ctrl+c) or SIGTERM.
 
 Building on Linux with xbuild:
 $ xbuild /t:build /p:Configuration=Debug /p:Platform=AnyCPU xyz.csproj
-
-Building a web package with xbuild (note, this does not apply Web.config transforms!):
-$ xbuild /t:build "/p:Configuration=Debug;Platform=AnyCPU;OutDir=/home/greg/publish/" AnimeRecs.Web.csproj
 
 ## Setting up PostgreSQL in Ubuntu
 1. Set your locale to UTF-8. This ensures that Postgres that does not install with a default of ASCII and prevent you from creating a database that uses UTF-8 as its encoding.
@@ -69,13 +65,14 @@ $ exit
 
 ## Initializing the database
 
-1. Create a PostgreSQL database called "animerecs". On Windows, connect using pgAdmin and use AnimeRecs.DAL/DB Init Scripts/CreateDb_windows.sql. On Linux, psql -U postgres -h localhost -f 'AnimeRecs.DAL/DB Init Scripts/CreateDb_linux.sql'
-2. Connect to the new database and run the SQL in AnimeRecs.DAL/DB Init Scripts/InitDb.000.sql to create the tables. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f InitDb.000.sql.
-3. Likewise, run all InitDb.###.sql scripts in order.
+1. Install [pgdbsc](https://github.com/LHCGreg/dbsc/releases). On Windows, download the installer for the latest version from the releases page. On Linux, follow the instructions on [the readme](https://github.com/LHCGreg/dbsc/blob/master/README.md) to add the dbsc package repository and install the package.
+2. Open a command prompt to AnimeRecs.DAL\DB Init Scripts. On Windows, run `pgdbsc checkout -u postgres -p testpw -dbCreateTemplate windows_create_template.sql`. On Linux, run `pgdbsc checkout -u postgres -p testpw -dbCreateTemplate linux_create_template.sql`
 
 ## Populating the database with ratings
 
-1. Edit App.config in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
+Note that this cannot be done in a development environment because MAL will reject requests that do not have an API key. If you are interested in developing for animerecs, contact me and I can provide you with a usable database.
+
+1. Edit App.Debug.config (App.DebugMono.config on Linux) in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
 2. Compile and run AnimeRecs.FreshenMalDatabase. This will populate the database with users from myanimelist.net's "recently online users" page. This will take some time to run.
 
 ## Populating the database with stream mappings
@@ -88,9 +85,9 @@ Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/Prereqs.
 
 ## Running the web site
 
-1. Edit App.config in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
+1. Edit App.Debug.config (App.DebugMono.config on Linux) in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
 2. Compile AnimeRecs.RecService.Client and load some rec sources, preferably at least one with the name "default". See the recclient tutorial below for how to use AnimeRecs.RecService.Client.
-3. Open AnimeRecs.Web.sln. Compile and run the web site locally. Try it out. You can use http://localhost:[port]/?algorithm=some_rec_source to use a non-default rec source.
+3. Compile and run the web site locally. Try it out. The site runs on port 8888 by default. You can just this by editing Hosting.Port in the config. You can use http://localhost:8888/?algorithm=some_rec_source to use a non-default rec source.
 
 
 [Get command-line usage info]

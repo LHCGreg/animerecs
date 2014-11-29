@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
 using MalApi;
 
 namespace AnimeRecs.Web
@@ -9,23 +9,28 @@ namespace AnimeRecs.Web
     /// <summary>
     /// Wraps another IMyAnimeListApi and does not dispose of the other api.
     /// </summary>
-    public class NoDisposeMyAnimeListApi : IMyAnimeListApi
+    class NoDisposeMyAnimeListApi : IMyAnimeListApi
     {
-        private IMyAnimeListApi m_underlyingApi;
+        private IMyAnimeListApi _underlyingApi;
 
         public NoDisposeMyAnimeListApi(IMyAnimeListApi underlyingApi)
         {
-            m_underlyingApi = underlyingApi;
+            _underlyingApi = underlyingApi;
         }
 
         public MalUserLookupResults GetAnimeListForUser(string user)
         {
-            return m_underlyingApi.GetAnimeListForUser(user);
+            return _underlyingApi.GetAnimeListForUser(user);
         }
 
         public RecentUsersResults GetRecentOnlineUsers()
         {
-            return m_underlyingApi.GetRecentOnlineUsers();
+            return _underlyingApi.GetRecentOnlineUsers();
+        }
+
+        public AnimeDetailsResults GetAnimeDetails(int animeId)
+        {
+            return _underlyingApi.GetAnimeDetails(animeId);
         }
 
         public void Dispose()
@@ -35,7 +40,7 @@ namespace AnimeRecs.Web
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

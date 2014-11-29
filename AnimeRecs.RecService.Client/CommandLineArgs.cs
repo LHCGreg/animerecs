@@ -136,7 +136,6 @@ namespace AnimeRecs.RecService.Client
                 { "bold_driver", "Used when loading a BiasedMatrixFactorization rec source. Defaults to false.", argExistence => BiasedMatrixFactorizationParams.BoldDriver = (argExistence != null) },
                 { "frequency_regularization", "Used when loading a BiasedMatrixFactorization rec source. Defaults to false.", argExistence => BiasedMatrixFactorizationParams.FrequencyRegularization = (argExistence != null) },
                 { "learn_rate=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to 0.01.", arg => BiasedMatrixFactorizationParams.LearnRate = float.Parse(arg) },
-                { "learn_rate_decay=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to 1.0.", arg => BiasedMatrixFactorizationParams.LearnRateDecay = float.Parse(arg) },
                 { "optimization_target=", "Used when loading a BiasedMatrixFactorization rec source. Must be LogisticLoss, MAE, or RMSE. Defaults to RMSE.", arg => SetOptimizationTarget(arg) },
                 { "num_factors=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to 10.", arg => BiasedMatrixFactorizationParams.NumFactors = uint.Parse(arg) },
                 { "num_iter=", "Used when loading a BiasedMatrixFactorization rec source. Defaults to 30.", arg => BiasedMatrixFactorizationParams.NumIter = uint.Parse(arg) },

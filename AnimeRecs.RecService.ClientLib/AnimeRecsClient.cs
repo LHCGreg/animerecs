@@ -255,7 +255,7 @@ namespace AnimeRecs.RecService.ClientLib
 
         private void DoOperationWithoutResponseBody(Operation operation, int receiveTimeoutInMs)
         {
-            Response response = DoOperation<Response>(operation, receiveTimeoutInMs);
+            DoOperation<Response>(operation, receiveTimeoutInMs);
         }
 
         private TcpClient CreateTcpClient(int receiveTimeoutInMs)

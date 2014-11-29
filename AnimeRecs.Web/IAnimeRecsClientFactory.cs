@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.ClientLib;
 
 namespace AnimeRecs.Web
 {
-    // Must be thread-safe and return a thread-safe object
-    public interface IAnimeRecsClientFactory : IDisposable
+    public interface IAnimeRecsClientFactory
     {
         AnimeRecsClient GetClient(string recSourceName);
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using AnimeRecs.RecService.ClientLib;
-using AnimeRecs.DAL;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.Web
 {
-    public class AppGlobals
+    public static class AppGlobals
     {
         public static Config Config { get; set; }
-        public static IAnimeRecsClientFactory RecClientFactory { get; set; }
-        public static IMyAnimeListApiFactory MalApiFactory { get; set; }
-        public static IAnimeRecsDbConnectionFactory DbConnectionFactory { get; set; }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

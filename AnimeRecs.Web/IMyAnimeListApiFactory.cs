@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using MalApi;
 
 namespace AnimeRecs.Web
 {
-    // Must be thread-safe and return a thread-safe object
-    public interface IMyAnimeListApiFactory : IDisposable
+    public interface IMyAnimeListApiFactory
     {
         IMyAnimeListApi GetMalApi();
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

@@ -42,8 +42,6 @@ namespace AnimeRecs.DAL
         {
             // Load all anime, then all users, then all entries
 
-            Dictionary<int, Dictionary<int, MalListEntry>> userAnimeLists = new Dictionary<int, Dictionary<int, MalListEntry>>();
-
             Dictionary<int, mal_user> dbUsers = new Dictionary<int, mal_user>();
 
             Logging.Log.Debug("Slurping anime from the database.");

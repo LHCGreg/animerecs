@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.ClientLib;
 
 namespace AnimeRecs.Web
@@ -36,15 +37,10 @@ namespace AnimeRecs.Web
                 }
             }
         }
-
-        public void Dispose()
-        {
-            ;
-        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

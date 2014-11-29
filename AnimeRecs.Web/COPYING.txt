@@ -1,4 +1,4 @@
-Copyright (C) 2012 Greg Najda
+Copyright (C) 2014 Greg Najda
 
 AnimeRecs.Web is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -12,3 +12,5 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with AnimeRecs.Web.  If not, see <http://www.gnu.org/licenses/>.
+
+If you modify AnimeRecs.Web, or any covered work, by linking or combining it with HTML Agility Pack (or a modified version of that library), containing parts covered by the terms of the Microsoft Public License, the licensors of AnimeRecs.UpdateStreams.Tests grant you additional permission to convey the resulting work. Corresponding Source for a non-source form of such a combination shall include the source code for the parts of HTML Agility Pack used as well as that of the covered work.
