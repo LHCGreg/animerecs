@@ -791,7 +791,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Shigurui: Death Frenzy","http://www.funimation.com/shows/shigurui-death-frenzy/videos/episodes",2216
 "Funimation","Shiki","http://www.funimation.com/shows/shiki/videos/episodes",7724
 "Funimation","Shin chan","http://www.funimation.com/shows/shin-chan/videos/episodes",966
-"Funimation","SHONEN HOLLYWOOD –HOLLY STAGE FOR 49-","http://www.funimation.com/shows/shonen-hollywood/videos/episodes",23151
+"Funimation","SHONEN HOLLYWOOD -HOLLY STAGE FOR 49-","http://www.funimation.com/shows/shonen-hollywood/videos/episodes",23151
 "Funimation","Shuffle!","http://www.funimation.com/shows/shuffle/videos/episodes",79
 "Funimation","Slam Dunk","http://www.funimation.com/shows/slam-dunk/videos/episodes",170
 "Funimation","Solty Rei","http://www.funimation.com/shows/solty-rei/videos/episodes",152
@@ -874,6 +874,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","A Certain Magical Index","http://www.hulu.com/a-certain-magical-index",4654
 "Hulu","A Certain Scientific Railgun","http://www.hulu.com/a-certain-scientific-railgun",6213
 "Hulu","A Certain Scientific Railgun","http://www.hulu.com/a-certain-scientific-railgun",16049
+"Hulu","A Charlie Brown Thanksgiving","http://www.hulu.com/a-charlie-brown-thanksgiving",n/a
 "Hulu","A Good Librarian Like a Good Shepherd","http://www.hulu.com/a-good-librarian-like-a-good-shepherd",17827
 "Hulu","A Little Princess (1996)","http://www.hulu.com/a-little-princess-1996",n/a
 "Hulu","A Magic Cartoon Christmas","http://www.hulu.com/a-magic-cartoon-christmas",n/a
@@ -905,6 +906,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","ALDNOAH.ZERO","http://www.hulu.com/aldnoahzero",22729
 "Hulu","All Dogs Go To Heaven (1996)","http://www.hulu.com/all-dogs-go-to-heaven-1996",n/a
 "Hulu","Allison and Lillia","http://www.hulu.com/allison-and-lillia",3549
+"Hulu","Almost Naked Animals","http://www.hulu.com/almost-naked-animals",n/a
 "Hulu","Alois Nebel","http://www.hulu.com/alois-nebel",n/a
 "Hulu","Amagami SS","http://www.hulu.com/amagami-ss",8676
 "Hulu","Amagami SS +Plus","http://www.hulu.com/amagami-ss-plus",11235
@@ -1011,6 +1013,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Blue Submarine No. 6","http://www.hulu.com/blue-submarine-no-6",1051
 "Hulu","Bob's Burgers","http://www.hulu.com/bobs-burgers",n/a
 "Hulu","Bodacious Space Pirates","http://www.hulu.com/bodacious-space-pirates",8917
+"Hulu","Bold Eagles","http://www.hulu.com/bold-eagles",n/a
 "Hulu","Boo!","http://www.hulu.com/boo",n/a
 "Hulu","Boogiepop Phantom","http://www.hulu.com/boogiepop-phantom",369
 "Hulu","Boys Be...","http://www.hulu.com/boys-be",105
@@ -1209,6 +1212,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Fate / Stay Night","http://www.hulu.com/fate-stay-night",356
 "Hulu","Fate / Stay Night Unlimited Blade Works (2010)","http://www.hulu.com/fate-stay-night-unlimited-blade-works-movie",6922
 "Hulu","Fate/kaleid liner Prisma Illya","http://www.hulu.com/fatekaleid-liner-prisma-illya",14829
+"Hulu","Fate/Kaleid Liner Prisma Illya 2wei!","http://www.hulu.com/fatekaleid-liner-prisma-illya-2wei",20509
 "Hulu","Fate/stay night [Unlimited Blade Works]","http://www.hulu.com/fatestay-night-unlimited-blade-works",27821
 "Hulu","Fate/stay night [Unlimited Blade Works]","http://www.hulu.com/fatestay-night-unlimited-blade-works",22297
 "Hulu","Fate/Zero","http://www.hulu.com/fatezero",10087
@@ -1255,6 +1259,8 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Galaxy Railways","http://www.hulu.com/galaxy-railways",1490
 "Hulu","Ga-Rei-Zero","http://www.hulu.com/ga-rei-zero",4725
 "Hulu","Garfield and Friends","http://www.hulu.com/garfield-and-friends",n/a
+"Hulu","Garfield TV Specials","http://www.hulu.com/garfield-tv-specials",n/a
+"Hulu","Garfield's Thanksgiving","http://www.hulu.com/garfields-thanksgiving",n/a
 "Hulu","Gargantia on the Verdurous Planet","http://www.hulu.com/gargantia-on-the-verdurous-planet",16524
 "Hulu","Garo the Animation","http://www.hulu.com/garo-the-animation",23311
 "Hulu","Gasaraki","http://www.hulu.com/gasaraki",782
@@ -1443,6 +1449,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Koihime Musou","http://www.hulu.com/koihime-musou",4262
 "Hulu","Kokoro Connect","http://www.hulu.com/kokoro-connect",11887
 "Hulu","K-ON! The Movie","http://www.hulu.com/k-on-the-movie",9617
+"Hulu","K-On!!","http://www.hulu.com/k-on",5680
 "Hulu","K-On!!","http://www.hulu.com/k-on",7791
 "Hulu","K-On!!","http://www.hulu.com/k-on",9734
 "Hulu","Koutetsu Sangokushi","http://www.hulu.com/koutetsu-sangokushi",2162
@@ -1485,6 +1492,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Love Live! School Idol Project","http://www.hulu.com/love-live-school-idol-project",15051
 "Hulu","Love Love?","http://www.hulu.com/love-love",275
 "Hulu","Love Love?","http://www.hulu.com/love-love",1874
+"Hulu","Love Stage","http://www.hulu.com/love-stage",21105
 "Hulu","Love, Chunibyo and Other Delusions","http://www.hulu.com/love-chunibyo-and-other-delusions",14741
 "Hulu","Love, Chunibyo and Other Delusions! -Heart Throb-","http://www.hulu.com/love-chunibyo-and-other-delusions-heart-throb",18671
 "Hulu","Love, Election and Chocolate","http://www.hulu.com/love-election-and-chocolate",12175
@@ -1586,7 +1594,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Nanaka 6/17","http://www.hulu.com/nanaka-617",776
 "Hulu","Nanaka 6/17","http://www.hulu.com/nanaka-617",5865
 "Hulu","Nanana's Buried Treasure","http://www.hulu.com/nananas-buried-treasure",21561
-"Hulu","Napoleon Dynamite","http://www.hulu.com/napoleon-dynamite",n/a
 "Hulu","Naruto","http://www.hulu.com/naruto",20
 "Hulu","Naruto Shippuden","http://www.hulu.com/naruto-shippuden",1735
 "Hulu","Naruto Spin-Off: Rock Lee & His Ninja Pals","http://www.hulu.com/naruto-spin-off-rock-lee-and-his-ninja-pals",12979
@@ -1913,7 +1920,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Tarzan (1999)","http://www.hulu.com/tarzan-1999",n/a
 "Hulu","Tatsumi","http://www.hulu.com/tatsumi",n/a
 "Hulu","Tayo the Little Bus","http://www.hulu.com/tayo-the-little-bus",n/a
-"Hulu","Tears to Tiara","http://www.hulu.com/tears-to-tiara",3594
 "Hulu","Teenage Mutant Ninja Turtles","http://www.hulu.com/teenage-mutant-ninja-turtles",n/a
 "Hulu","Tegami Bachi: Letter Bee","http://www.hulu.com/tegami-bachi-letter-bee",6444
 "Hulu","Tegami Bachi: Letter Bee Reverse","http://www.hulu.com/tegami-bachi-letter-bee-reverse",8311
@@ -1983,6 +1989,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The Pilot's Love Song","http://www.hulu.com/the-pilots-love-song",19117
 "Hulu","The Prince of Tennis","http://www.hulu.com/the-prince-of-tennis",22
 "Hulu","The Princess and the Pilot","http://www.hulu.com/the-princess-and-the-pilot",9000
+"Hulu","The Ren & Stimpy Show","http://www.hulu.com/the-ren-and-stimpy-show",n/a
 "Hulu","The Rose of Versailles","http://www.hulu.com/the-rose-of-versailles",338
 "Hulu","The Sacred Blacksmith","http://www.hulu.com/the-sacred-blacksmith",5940
 "Hulu","The Secret Life of Suckers","http://www.hulu.com/the-secret-life-of-suckers",n/a
@@ -2080,7 +2087,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Virus","http://www.hulu.com/virus-tv",2364
 "Hulu","Viva Pinata","http://www.hulu.com/viva-pinata",n/a
 "Hulu","Vividred Operation","http://www.hulu.com/vividred-operation",14283
-"Hulu","Voltron Force","http://www.hulu.com/voltron-force",n/a
 "Hulu","Voltron Force: New Defenders Trilogy","http://www.hulu.com/voltron-force-new-defenders-trilogy",n/a
 "Hulu","Voltron: Fleet of Doom","http://www.hulu.com/voltron-fleet-of-doom",n/a
 "Hulu","Voltron: Lion Force","http://www.hulu.com/voltron-lion-force",1448
@@ -2184,6 +2190,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Viz","Strawberry 100%","http://www.viz.com/anime/streaming/strawberry-100",641
 "Viz","Strawberry 100%","http://www.viz.com/anime/streaming/strawberry-100",642
 "Viz","The Prince of Tennis","http://www.viz.com/anime/streaming/the-prince-of-tennis",22
+"Viz","Tiger & Bunny","http://www.viz.com/anime/streaming/tiger-and-bunny",9941
 "Viz","Ultra Maniac","http://www.viz.com/anime/streaming/ultra-maniac",178
 "Viz","Vampire Knight","http://www.viz.com/anime/streaming/vampire-knight",3457
 "Viz","Vampire Knight","http://www.viz.com/anime/streaming/vampire-knight",4752
