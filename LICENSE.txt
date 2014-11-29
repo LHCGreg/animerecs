@@ -1,35 +1,5 @@
-All code copyright 2012 Greg Najda, licensed under the GPL version 3 (<project name>/COPYING.txt).
+All code copyright 2014 Greg Najda, licensed under the GPL version 3 (<project name>/COPYING.txt).
 
+Licenses for third-party javascript libraries can be found in the file's header.
 
-AnimeRecs uses the following libraries:
-
-
-MalApi is copyright Greg Najda and is licensed under the Apache License 2.0 (lib/MalApi/license.txt).
-
-NDesk.Options is copyright NDesk.org and is licensed under the MIT/X11 license (lib/NDesk.Options/license.txt).
-
-Common.Logging is copyright by the Common.Logging developers and is licensed under the Apache License 2.0 (lib/Common.Logging/license.txt).
-
-NLog is copyright (c) 2004-2009 Jaroslaw Kowalski <jaak@jkowalski.net> and is licensed under the BSD license (lib/NLog/license.txt).
-
-Npgsql is copyright (c) 2002-2007, The Npgsql Development Team. The license for Npgsql is in lib/Npgsql/license.txt.
-
-Dapper is Copyright (c) 2012 Sam Saffron and Marc Gravell and is licensed under the Apache License 2.0 (licenses/dapper_license.txt).
-
-modernizr is copyright modernizr.com and is licensed under the MIT license (licenses/modernizr_license.txt).
-
-jquery is Copyright (c) 2012 jQuery Foundation and other contributors and is licensed under the MIT license (licenses/jquery_license.txt)
-
-jquery.placeholder is Copyright 2011, Daniel Stocks and is licensed under the MIT license (licenses/jquery.placeholder_license.txt).
-
-Miscellaneous Utility Library is Copyright (c) 2004-2008 Jon Skeet and Marc Gravell. The license is in lib/MiscUtil/license.txt.
-
-Json.NET is copyright 2007 James Newton-King and is licensed under the MIT/X11 license (lib/Json.NET/license.txt).
-
-MyMediaLite is Copyright (C) 2011, 2012 Zeno Gantner, Copyright (C) 2010 Zeno Gantner, Steffen Rendle, Christoph Freudenthaler and is licensed under the GPL version 3 (lib/mymedialite/mymedialite_license.txt).
-
-MyMediaLite uses C5 (see lib/mymedialite/C5_license.txt), MathNet.Numerics (see lib/mymedialite/MathNet.Numerics.License.txt), and SVM.NET (see lib/mymedialite/SVMNET_license.txt), a port of LIBSVM (see lib/mymedialite/libsvm_license.txt).
-
-HTML Agility Pack is copyright Simon Mourier and is licensed under the Microsoft Public License (lib/HtmlAgilityPack/license.txt).
-
-MiniProfiler is copyright Sam Saffron and is licensed under the Apache License 2.0 (licenses/miniprofiler_license.txt)
+Third-party NuGet packages are under various licenses and can be found on nuget.org.
