@@ -28,6 +28,9 @@ namespace AnimeRecs.UpdateStreams
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
+            // Need to log in to Crunchyroll because anime classified as "mature content" is not listed
+            // to unregistered users.
+            
             // Read username and password
             
             string username = GetUsername();
