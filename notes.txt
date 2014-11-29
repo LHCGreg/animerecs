@@ -1,1 +1,0 @@
-Yes, I know the plural of "anime" is "anime", not "animes". "animes" is used in the code because code clarity > grammatical correctness.
