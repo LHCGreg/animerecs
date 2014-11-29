@@ -13,7 +13,8 @@ namespace AnimeRecs.UpdateStreams
     class CrunchyrollStreamInfoSource : IAnimeStreamInfoSource
     {
         private const string AnimeListUrl = "http://www.crunchyroll.com/videos/anime/alpha?group=all";
-        private const string LoginUrl = "https://www.crunchyroll.com/?a=formhandler";
+        private const string LoginBaseUrl = "https://www.crunchyroll.com";
+        private const string LoginResource = "?a=formhandler";
         private const string AnimeRegexString =
             "<a title=\"[^\"]*?\" token=\"shows-portraits\" itemprop=\"url\" href=\"(?<Url>[^\"]*?)\" [^>]*?>\\s*(?<AnimeName>.*?)\\s*?</a>";
         private HtmlRegexAnimeStreamInfoSource _sourceAfterLogin;
@@ -62,8 +63,8 @@ namespace AnimeRecs.UpdateStreams
 
         private CookieCollection Login(string username, string password)
         {
-            RestClient client = new RestClient();
-            RestRequest request = new RestRequest(LoginUrl, Method.POST);
+            RestClient client = new RestClient(LoginBaseUrl);
+            RestRequest request = new RestRequest(LoginResource, Method.POST);
             request.AddParameter("formname", "RpcApiUser_Login", ParameterType.GetOrPost);
             request.AddParameter("fail_url", "http://www.crunchyroll.com/login", ParameterType.GetOrPost);
             request.AddParameter("name", username, ParameterType.GetOrPost);
