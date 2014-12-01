@@ -73,6 +73,7 @@ namespace AnimeRecs.RecService
             catch (Exception ex)
             {
                 Logging.Log.FatalFormat("Fatal error: {0}", ex, ex.Message);
+                Environment.ExitCode = 1;
             }
         }
 
@@ -90,7 +91,7 @@ namespace AnimeRecs.RecService
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //
