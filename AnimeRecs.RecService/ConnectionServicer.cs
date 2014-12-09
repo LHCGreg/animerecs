@@ -232,14 +232,24 @@ namespace AnimeRecs.RecService
             byte[] responseLengthBytes = BitConverter.GetBytes(responseLengthNetworkOrder);
 
             Logging.Log.Trace("Writing response.");
-            Client.Client.Send(responseLengthBytes);
-            Client.Client.Send(responseJsonBytes);
+            SocketSendAll(responseLengthBytes);
+            SocketSendAll(responseJsonBytes);
             Logging.Log.Debug("Response written.");
+        }
+
+        private void SocketSendAll(byte[] bytes)
+        {
+            int numSent = 0;
+            while (numSent < bytes.Length)
+            {
+                int numSentThisTime = Client.Client.Send(bytes, offset: numSent, size: bytes.Length - numSent, socketFlags: SocketFlags.None);
+                numSent += numSentThisTime;
+            }
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

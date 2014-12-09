@@ -220,8 +220,8 @@ namespace AnimeRecs.RecService.ClientLib
                 int lengthNetworkOrder = IPAddress.HostToNetworkOrder(length);
                 byte[] lengthBytes = BitConverter.GetBytes(lengthNetworkOrder);
                 Logging.Log.Trace("Sending bytes.");
-                socket.Client.Send(lengthBytes);
-                socket.Client.Send(operationJsonBytes);
+                SocketSendAll(socket.Client, lengthBytes);
+                SocketSendAll(socket.Client, operationJsonBytes);
                 Logging.Log.Trace("Sent bytes.");
                 using (NetworkStream socketStream = socket.GetStream())
                 {
@@ -269,6 +269,16 @@ namespace AnimeRecs.RecService.ClientLib
             return client;
         }
 
+        private void SocketSendAll(Socket socket, byte[] bytes)
+        {
+            int numSent = 0;
+            while (numSent < bytes.Length)
+            {
+                int numSentThisTime = socket.Send(bytes, offset: numSent, size: bytes.Length - numSent, socketFlags: SocketFlags.None);
+                numSent += numSentThisTime;
+            }
+        }
+
         public void Dispose()
         {
             ;
@@ -276,7 +286,7 @@ namespace AnimeRecs.RecService.ClientLib
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2014 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.ClientLib.
 //
