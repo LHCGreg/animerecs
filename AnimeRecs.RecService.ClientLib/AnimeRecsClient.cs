@@ -261,10 +261,10 @@ namespace AnimeRecs.RecService.ClientLib
         private TcpClient CreateTcpClient(int receiveTimeoutInMs)
         {
             TcpClient client = new TcpClient();
-            client.SendTimeout = 3000;
-            client.ReceiveTimeout = receiveTimeoutInMs;
             Logging.Log.Trace("Connecting to rec service.");
             client.Connect(IPAddress.Loopback, PortNumber);
+            client.SendTimeout = 3000;
+            client.ReceiveTimeout = receiveTimeoutInMs;
             Logging.Log.Trace("Connected to rec service.");
             return client;
         }
