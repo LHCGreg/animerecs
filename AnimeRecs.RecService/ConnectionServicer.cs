@@ -242,7 +242,8 @@ namespace AnimeRecs.RecService
             int numSent = 0;
             while (numSent < bytes.Length)
             {
-                int numSentThisTime = Client.Client.Send(bytes, offset: numSent, size: bytes.Length - numSent, socketFlags: SocketFlags.None);
+                // socketFlags parameter is currently named incorrectly in mono - see https://bugzilla.xamarin.com/show_bug.cgi?id=25169
+                int numSentThisTime = Client.Client.Send(bytes, /*offset:*/ numSent, /*size:*/ bytes.Length - numSent, /*socketFlags:*/ SocketFlags.None);
                 numSent += numSentThisTime;
             }
         }
