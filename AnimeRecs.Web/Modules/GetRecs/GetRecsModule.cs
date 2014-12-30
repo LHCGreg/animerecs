@@ -143,9 +143,9 @@ namespace AnimeRecs.Web.Modules.GetRecs
                 }
             }
 
-            if (input.PercentOfAnimeToWithhold > 0m)
+            if (input.PercentOfAnimeToWithhold != null && input.PercentOfAnimeToWithhold.Value > 0m)
             {
-                int numAnimesToWithhold = (int)(animeList.Count * (input.PercentOfAnimeToWithhold / 100));
+                int numAnimesToWithhold = (int)(animeList.Count * (input.PercentOfAnimeToWithhold.Value / 100));
                 Random rng = new Random();
                 List<int> animeIdsToWithhold = animeList.Keys.OrderBy(animeId => rng.Next()).Take(numAnimesToWithhold).ToList();
                 foreach (int animeIdToWithhold in animeIdsToWithhold)
