@@ -18,7 +18,7 @@
         </div>
         <div class="datainput">
             <div class="usernamesubmit">
-                <input class="username textinput bigtextinput" type="text" placeholder="your MyAnimeList.net username" />
+                <input class="username textinput bigtextinput" id="usernameInput" type="text" placeholder="your MyAnimeList.net username" />
                 <a class="go noselect" id="splash-go">
                     <div class="go-arrow">
                     </div>
@@ -37,7 +37,7 @@
                         Target score
                     </div>
                     <div class="scoreinput scoregood">
-                        <input class="good textinput smalltextinput" type="text" value="8" maxlength="2" />
+                        <input class="good textinput smalltextinput" id="minGoodScoreInput" type="text" value="8" maxlength="2" />
                     </div>
                 </div>
             }
@@ -63,6 +63,7 @@
 
 <div class="footer">
     <div class="footer-left">
+        <div class="footer-item" id="output">XXX</div>
         <div class="footer-item">Have a bug report or suggestion? <a href="@AppGlobals.Config.ClubMalLink">Post on the club on MAL.</a></div>
         <div class="footer-item">Want to help make AnimeRecs better? <a href="https://github.com/LHCGreg/animerecs">Check out the code on GitHub</a>.</div>
     </div>
@@ -75,7 +76,8 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">    window.jQuery || document.write('<script src="@Url.Content("~/Scripts/libs/jquery-1.7.1.min.js")"><\/script>')</script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/libs/jquery.placeholder.min.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/script.js")"></script>
+<script type="application/dart" src="@Url.Content("~/Scripts/animerecs.dart")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/packages/browser/dart.js")"></script>
 @*
     Copyright (C) 2014 Greg Najda
 

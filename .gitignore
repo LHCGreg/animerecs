@@ -3,3 +3,5 @@ obj/
 *.user
 *.suo
 packages/*/
+AnimeRecs.Web/Scripts/packages/*/
+.pub/
