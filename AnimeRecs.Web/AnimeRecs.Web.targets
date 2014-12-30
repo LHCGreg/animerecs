@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="BuildDartApp">
+    <!-- input: -->
+    <!-- $(DartAppDir) $(DartApp) $(DartAppOutputDir) $(DartAppOutputJsFilename) $(DartCompileToJs) -->
+    
+    <!-- pub get-->
+    <Exec Command="pub get" WorkingDirectory="$(DartAppDir)" />
+
+    <!-- Copy dart app and packages/**/*.dart to output -->
+    <CreateItem Include="$(DartAppDir)*.dart">
+      <Output TaskParameter="Include" ItemName="DartSources" />
+    </CreateItem>
+
+    <CreateItem Include="$(DartAppDir)packages/**/*">
+      <Output TaskParameter="Include" ItemName="DartPackages" />
+    </CreateItem>
+
+    <CreateItem Include="@(DartSources->'$(DartAppOutputDir)%(RecursiveDir)%(Filename)%(Extension)')">
+      <Output TaskParameter="Include" ItemName="DartDestinations" />
+    </CreateItem>
+
+    <CreateItem Include="@(DartPackages->'$(DartAppOutputDir)packages/%(RecursiveDir)%(Filename)%(Extension)')">
+      <Output TaskParameter="Include" ItemName="DartPackageDestinations" />
+    </CreateItem>
+
+    <Copy SourceFiles="@(DartSources)" DestinationFiles="@(DartDestinations)" />
+    <Copy SourceFiles="@(DartPackages)" DestinationFiles="@(DartPackageDestinations)" />
+    
+    <!-- If release build, run dart2js-->
+    <Exec Condition="'$(DartCompileToJs)' == 'true'" WorkingDirectory=""
+          Command='dart2js -m --enable-experimental-mirrors -o "$(DartAppOutputDir)$(DartAppOutputJsFilename)" "$(DartApp)"' />
+  </Target>
+
+  <PropertyGroup>
+    <!-- Add BuildDartApp as build step after the main build -->
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      BuildDartApp
+    </BuildDependsOn>
+    
+    <!-- Set BuildDartApp properties -->
+    <DartAppDir>$(MSBuildProjectDirectory)/Scripts/</DartAppDir>
+    <DartApp>$(MSBuildProjectDirectory)/Scripts/animerecs.dart</DartApp>
+    <DartAppOutputDir>$(OutputPath)Scripts/</DartAppOutputDir>
+    <DartAppOutputJsFilename>animerecs.dart.js</DartAppOutputJsFilename>
+    <DartCompileToJs>false</DartCompileToJs>
+    <DartCompileToJs Condition="'$(Configuration)' == 'Release' or '$(Configuration)' == 'ReleaseMono'">true</DartCompileToJs>
+  </PropertyGroup>
+</Project>
