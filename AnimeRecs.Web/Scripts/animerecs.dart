@@ -106,11 +106,11 @@ void submitRecRequest(AnimeRecsInputJson input) {
   request
     ..open("POST", apiEndpoint)
     ..timeout = timeoutInMs
-    ..responseType = "json"
+    ..setRequestHeader("Accept", "application/json, text/javascript, */*; q=0.01")
+    ..setRequestHeader("Content-Type", "application/json")
     ..onError.listen((progressEvent) => onRequestError(request))
     ..onLoad.listen((progressEvent) => onRequestComplete(request))
     ..onTimeout.listen((progressEvent) => onRequestTimeout(request))
-    ..setRequestHeader("Content-Type", "application/json")
     ..send(json);
   
   requestInProgress = request;
@@ -141,9 +141,9 @@ void onRequestError(HttpRequest request) {
 }
 
 AjaxError tryGetErrorFromRequest(HttpRequest request) {
-  if(request.response != null && request.response is Map<String, Object>) {
-    Map<String, Object> jsonMap = request.response as Map<String, Object>;
-    AjaxError errorResult = new AjaxError.FromJson(jsonMap);
+  //if(request.response != null && request.response is Map<String, Object>) {
+  if(request.getResponseHeader("Content-Type").contains("application/json")) {
+    AjaxError errorResult = new Exportable(AjaxError, request.responseText);
     return errorResult;
   }
   else {
@@ -176,8 +176,7 @@ void onRequestComplete(HttpRequest request) {
       ..add("userinfo");
   }
   
-  Map<String, Object> resultsMap = request.response as Map<String, Object>;
-  RecResultsAsHtmlJson results = new RecResultsAsHtmlJson.FromJson(resultsMap);
+  RecResultsAsHtmlJson results = new Exportable(RecResultsAsHtmlJson, request.responseText);
   elements.resultsDiv.setInnerHtml(results.Html, treeSanitizer: trustedHtml);
 }
 
@@ -254,20 +253,22 @@ class AnimeRecsInputJson extends Object with Exportable {
   }
 }
 
-class RecResultsAsHtmlJson {
-  String Html;
+@export
+class RecResultsAsHtmlJson extends Object with Exportable {
+  @export String Html;
   
-  RecResultsAsHtmlJson.FromJson(Map<String, Object> json) {
-    Html = json["Html"];
-  }
+//  RecResultsAsHtmlJson.FromJson(Map<String, Object> json) {
+//    Html = json["Html"];
+//  }
 }
 
-class AjaxError {
-  String ErrorCode;
-  String Message;
+@export
+class AjaxError extends Object with Exportable {
+  @export String ErrorCode;
+  @export String Message;
   
-  AjaxError.FromJson(Map<String, Object> json) {
-    ErrorCode = json["ErrorCode"];
-    Message = json["Message"];
-  }
+//  AjaxError.FromJson(Map<String, Object> json) {
+//    ErrorCode = json["ErrorCode"];
+//    Message = json["Message"];
+//  }
 }
