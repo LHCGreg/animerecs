@@ -161,9 +161,7 @@
     <Content Include="Scripts\libs\modernizr-2.0.6.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\script.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Scripts\script.js" />
     <None Include="AnimeRecs.Web.targets" />
     <None Include="app.config">
       <SubType>Designer</SubType>
