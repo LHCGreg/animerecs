@@ -19,9 +19,16 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Algorithm: Classic<span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-menu-with-icons" role="menu">
+                        <li><span class="glyphicon glyphicon-ok selected-algorithm" aria-hidden="true"></span><a href="#">Classic</a></li>
+                        <li><a class="not-selected">Classic With Details</a></li>
+                        <li><a class="not-selected" href="#">Highest Rated</a></li>
+                        <li><a class="not-selected" href="#">Most Popular</a></li>
+                        <li><a class="not-selected" href="#">Biased Matrix Factorization</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -36,8 +43,13 @@
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-default form-control">Go</button>
-                    @*<span class="fa fa-play" id="go-button"></span>*@
                 </div>
+                @* TODO: Handle debug mode *@
+                @if (!Model.DebugModeOn)
+                {
+                    <input id="recSourceName" name="RecSourceName" type="hidden" value="@Model.Algorithm" />
+                }
+                <input id="displayDetailedResults" name="DisplayDetailedResults" type="hidden" value="@Model.DisplayDetailedResults" />
             </form>
         </div>
     </div>

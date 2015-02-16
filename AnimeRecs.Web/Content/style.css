@@ -1,4 +1,23 @@
-﻿/* center in viewport */
+﻿.dropdown-menu-with-icons>li>a {
+    display: inline-block !important;
+    cursor: pointer /* href-less <a> tags */
+}
+
+.selected-algorithm {
+    color: #3c763d;
+}
+
+.not-selected {
+    padding-left: 34px !important; /* 20px from default + 14px from icon */
+}
+
+@media (max-width: 767px) {
+    .not-selected {
+        padding-left: 39px !important; /* 25px from default + 14px from icon */
+    }
+}
+
+/* center in viewport */
 .viewport-center {
     position: fixed;
     z-index: 999;
