@@ -44,7 +44,7 @@
     <DartApp>$(MSBuildProjectDirectory)/Scripts/animerecs.dart</DartApp>
     <DartAppOutputDir>$(OutputPath)Scripts/</DartAppOutputDir>
     <DartAppOutputJsFilename>animerecs.dart.js</DartAppOutputJsFilename>
-    <DartCompileToJs>false</DartCompileToJs>
-    <DartCompileToJs Condition="'$(Configuration)' == 'Release' or '$(Configuration)' == 'ReleaseMono'">true</DartCompileToJs>
+    <DartCompileToJs Condition="'$(DartCompileToJs)' == '' and ('$(Configuration)' == 'Release' or '$(Configuration)' == 'ReleaseMono')">true</DartCompileToJs>
+    <DartCompileToJs Condition="'$(DartCompileToJs)' == ''">false</DartCompileToJs>
   </PropertyGroup>
 </Project>
