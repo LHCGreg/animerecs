@@ -4,8 +4,7 @@ import 'package:exportable/exportable.dart';
 const String apiEndpoint = "/GetRecs";
 const int timeoutInMs = 7000;
 HtmlElements elements = new HtmlElements();
-bool splashDisplayed = true;
-bool waitingForResponse = false;
+bool inResultsMode = false; // When not in results mode, input is centered
 HttpRequest requestInProgress = null;
 
 // Use this class to disable the stupid inner html sanitization
@@ -17,22 +16,23 @@ class NullTreeSanitizer implements NodeTreeSanitizer {
 final trustedHtml = const NullTreeSanitizer();
 
 void main() {
+  // Set up event handlers
+  //TODO: Update this
   Element autoScoresDiv = querySelector("div.autoscores");
   if(autoScoresDiv != null) {
     autoScoresDiv.onClick.listen(onAutoScoreCheckboxClick);
   }
-  
-  querySelector("#header .title").onClick.listen((event) => displaySplash());
-  
-  querySelector(".datainput .usernamesubmit .go").onClick.listen((event) => handleSubmit());
     
-  querySelector(".datainput .textinput").onKeyDown.listen( (KeyboardEvent e){
+  elements.goButton.onClick.listen((event) => handleSubmit());
+    
+  elements.usernameInput.onKeyDown.listen( (KeyboardEvent e){
     if (e.keyCode == 13) // Enter
       handleSubmit();
   });
 }
 
 void onAutoScoreCheckboxClick(MouseEvent event) {
+  // TODO: update this
   bool checkedBeforeClick = elements.minScoreElements.automaticallyDetermineGoodScoreCheckbox.checked;
   if(checkedBeforeClick) {
     elements.minScoreElements.scoresDiv.style.display = "none";
@@ -41,16 +41,11 @@ void onAutoScoreCheckboxClick(MouseEvent event) {
   }
 }
 
-void displaySplash() {
-  splashDisplayed = true;
-  cancelRecRequest();
-  elements.mainDiv.classes
-    ..remove("userinfo")
-    ..add("splash");
-  elements.resultsDiv.innerHtml = "";
-}
-
 void handleSubmit() {
+  if(requestInProgress != null) {
+    return;
+  }
+  
   AnimeRecsInputJson inputJson = createInputJsonFromFormFields();
   if(inputJson.MalName != "") {
     submitRecRequest(inputJson);
@@ -92,13 +87,7 @@ AnimeRecsInputJson createInputJsonFromFormFields() {
 }
 
 void submitRecRequest(AnimeRecsInputJson input) {
-  if(waitingForResponse) {
-    return;
-  }
-  
-  waitingForResponse = true;
-  elements.goButton.classes.add("loading");
-  elements.resultsDiv.innerHtml = "";
+  enterLoadingMode();
   
   String json = input.toJson();
   
@@ -116,21 +105,42 @@ void submitRecRequest(AnimeRecsInputJson input) {
   requestInProgress = request;
 }
 
-void cancelRecRequest() {
-  if(requestInProgress == null) {
+void enterLoadingMode() {
+  elements.goButton.disabled = true;
+  elements.resultsDiv.innerHtml = "";
+}
+
+void exitLoadingMode() {
+  elements.goButton.disabled = false;
+}
+
+void enterResultsMode() {
+  if(inResultsMode) {
     return;
   }
   
-  waitingForResponse = false;
-  requestInProgress.abort();
-  requestInProgress = null;
-  elements.goButton.classes.remove("loading");
+  // remove viewport-center class from main-content-outer
+  elements.mainContentOuterDiv.classes.remove("viewport-center");
+  // remove div-center class from main-content-inner
+  elements.mainContentInnerDiv.classes.remove("div-center");
+  // add hidden to div with title class
+  elements.titleDiv.classes.add("hidden");
+  // add col-xs-6 class to anything with input-col-xs-6 class
+  ElementList col6Elements = querySelectorAll(".input-col-xs-6");
+  col6Elements.classes.add("col-xs-6");
+  elements.footer.classes.remove("footer-no-results");
+  elements.footer.classes.add("footer-results");
+  inResultsMode = true;
+}
+
+void displayResults(RecResultsAsHtmlJson results) {
+  enterResultsMode();
+  elements.resultsDiv.setInnerHtml(results.Html, treeSanitizer: trustedHtml);
 }
 
 void onRequestError(HttpRequest request) {
-  waitingForResponse = false;
   requestInProgress = null;
-  elements.goButton.classes.remove("loading");
+  exitLoadingMode();
   
   AjaxError errorResult = tryGetErrorFromRequest(request);
   if(errorResult != null && errorResult.ErrorCode == "NoSuchMALUser") {
@@ -141,7 +151,6 @@ void onRequestError(HttpRequest request) {
 }
 
 AjaxError tryGetErrorFromRequest(HttpRequest request) {
-  //if(request.response != null && request.response is Map<String, Object>) {
   if(request.getResponseHeader("Content-Type").contains("application/json")) {
     AjaxError errorResult = new Exportable(AjaxError, request.responseText);
     return errorResult;
@@ -152,9 +161,8 @@ AjaxError tryGetErrorFromRequest(HttpRequest request) {
 }
 
 void onRequestTimeout(HttpRequest request) {
-  waitingForResponse = false;
   requestInProgress = null;
-  elements.goButton.classes.remove("loading");
+  exitLoadingMode();
   window.alert("The server did not respond.");
 }
 
@@ -165,39 +173,38 @@ void onRequestComplete(HttpRequest request) {
     return;
   }
   
-  waitingForResponse = false;
   requestInProgress = null;
-  elements.goButton.classes.remove("loading");
-  
-  if(splashDisplayed) {
-    splashDisplayed = false;
-    elements.mainDiv.classes
-      ..remove("splash")
-      ..add("userinfo");
-  }
+  exitLoadingMode();
   
   RecResultsAsHtmlJson results = new Exportable(RecResultsAsHtmlJson, request.responseText);
-  elements.resultsDiv.setInnerHtml(results.Html, treeSanitizer: trustedHtml);
+  displayResults(results);
+  //elements.resultsDiv.setInnerHtml(results.Html, treeSanitizer: trustedHtml);
 }
 
 class HtmlElements {
-  Element mainDiv;
+  Element mainContentOuterDiv;
+  Element mainContentInnerDiv;
+  Element titleDiv;
   TextInputElement usernameInput;
-  Element goButton;
+  ButtonElement goButton;
   Element resultsDiv;
   HiddenInputElement displayDetailedResultsHiddenInput;
   InputElement recSourceNameInput; // text if debug mode, otherwise hidden
+  Element footer;
   
   MinScoreHtmlElements minScoreElements;
   DebugModeHtmlElements debugElements;
   
   HtmlElements() {
-    mainDiv = querySelector("#main");
+    mainContentOuterDiv = querySelector("#main-content-outer");
+    mainContentInnerDiv = querySelector("#main-content-inner");
+    titleDiv = querySelector(".title");
     usernameInput = querySelector("#usernameInput");
-    goButton = querySelector(".datainput .go");
+    goButton = querySelector("#goButton");
     resultsDiv = querySelector("#results");
     displayDetailedResultsHiddenInput = querySelector("#displayDetailedResults");
     recSourceNameInput = querySelector("#recSourceName");
+    footer = querySelector("#footer");
     
     minScoreElements = new MinScoreHtmlElements();
     if(minScoreElements.minGoodScoreInput == null) {
