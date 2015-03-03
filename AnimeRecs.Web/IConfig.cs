@@ -8,26 +8,27 @@ namespace AnimeRecs.Web
 {
     public interface IConfig
     {
+        int Port { get; }
+        IList<AlgorithmConfig> Algorithms { get; }
+        string DefaultAlgorithm { get; }
         TimeSpan AnimeListCacheExpiration { get; }
         int? RecServicePort { get; }
-        string DefaultRecSource { get; }
         int MaximumRecommendersToReturn { get; }
         int MaximumRecommendationsToReturn { get; }
         decimal DefaultTargetPercentile { get; }
         string MalApiUserAgentString { get; }
-        int MalTimeoutInMs { get; }
+        TimeSpan MalTimeout { get; }
         bool UseLocalDbMalApi { get; }
         string ClubMalLink { get; }
         string HtmlBeforeBodyEnd { get; }
         string PostgresConnectionString { get; }
-        IDictionary<string, int> SpecialRecSourcePorts { get; }
         bool EnableDiagnosticsDashboard { get; }
         string DiagnosticsDashboardPassword { get; }
         bool ShowErrorTraces { get; }
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

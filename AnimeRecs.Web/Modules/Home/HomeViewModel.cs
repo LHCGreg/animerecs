@@ -8,25 +8,23 @@ namespace AnimeRecs.Web.Modules.Home
 {
     public class HomeViewModel
     {
-        public string Algorithm { get; set; }
-        public bool AlgorithmAvailable { get; set; }
-        public bool TargetScoreNeeded { get; set; }
+        public AlgorithmConfig Algorithm { get; set; }
+        public IList<AlgorithmConfig> AvailableAlgorithms { get; set; }
         public bool DisplayDetailedResults { get; set; }
         public bool DebugModeOn { get; set; }
 
-        public HomeViewModel(string algorithm, bool algorithmAvailable, bool targetScoreNeeded, bool displayDetailedResults,
+        public HomeViewModel(AlgorithmConfig algorithm, IList<AlgorithmConfig> availableAlgorithms, bool displayDetailedResults,
             bool debugModeOn)
         {
             Algorithm = algorithm;
-            AlgorithmAvailable = algorithmAvailable;
-            TargetScoreNeeded = targetScoreNeeded;
+            AvailableAlgorithms = availableAlgorithms;
             DisplayDetailedResults = displayDetailedResults;
             DebugModeOn = debugModeOn;
         }
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

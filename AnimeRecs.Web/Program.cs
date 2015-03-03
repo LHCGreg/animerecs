@@ -19,22 +19,18 @@ namespace AnimeRecs.Web
         {
             Logging.Log.Info("Starting AnimeRecs web app");
 
-            HostConfiguration config = new HostConfiguration()
+            HostConfiguration nancyConfig = new HostConfiguration()
             {
                 RewriteLocalhost = false
             };
 
-            string portString = ConfigurationManager.AppSettings["Hosting.Port"];
-            uint port;
-            if (!uint.TryParse(portString, out port))
-            {
-                throw new Exception("Hosting.Port is not a valid port number.");
-            }
+            Config config = Config.FromAppConfig();
+            AppGlobals.Config = config;
 
-            using (var host = new NancyHost(config, new Uri(string.Format("http://localhost:{0}", port))))
+            using (var host = new NancyHost(nancyConfig, new Uri(string.Format("http://localhost:{0}", config.Port))))
             {
                 host.Start();
-                Logging.Log.InfoFormat("Started listening on port {0}", port);
+                Logging.Log.InfoFormat("Started listening on port {0}", config.Port);
 #if MONO
                     WaitForUnixStopSignal();
 #else
@@ -58,7 +54,7 @@ namespace AnimeRecs.Web
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

@@ -10,37 +10,30 @@ namespace AnimeRecs.Web
     public class RecClientFactory : IAnimeRecsClientFactory
     {
         private int? DefaultPort { get; set; }
-        private IDictionary<string, int> SpecialRecSourcePorts { get; set; }
 
-        public RecClientFactory(int? defaultPort, IDictionary<string, int> specialRecSourcePorts)
+        public RecClientFactory(int? defaultPort)
         {
             DefaultPort = defaultPort;
-            SpecialRecSourcePorts = specialRecSourcePorts;
         }
 
-        public AnimeRecsClient GetClient(string recSourceName)
+        public AnimeRecsClient GetClient(AlgorithmConfig algorithm)
         {
-            if (recSourceName != null && SpecialRecSourcePorts.ContainsKey(recSourceName))
+            if (algorithm == null) throw new ArgumentNullException("algorithm");
+
+            int? port = algorithm.Port ?? DefaultPort;
+            if (port == null)
             {
-                int port = SpecialRecSourcePorts[recSourceName];
-                return new AnimeRecsClient(port);
+                return new AnimeRecsClient();
             }
             else
             {
-                if (DefaultPort == null)
-                {
-                    return new AnimeRecsClient();
-                }
-                else
-                {
-                    return new AnimeRecsClient(DefaultPort.Value);
-                }
+                return new AnimeRecsClient(port.Value);
             }
         }
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

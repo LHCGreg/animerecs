@@ -121,6 +121,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmConfig.cs" />
+    <Compile Include="AnimeRecsConfigurationSection.cs" />
     <Compile Include="AnimeRecsRecommendationType.cs" />
     <Compile Include="AppGlobals.cs" />
     <Compile Include="BootStrapper.cs" />

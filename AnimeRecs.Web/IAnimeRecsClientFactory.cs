@@ -9,11 +9,11 @@ namespace AnimeRecs.Web
 {
     public interface IAnimeRecsClientFactory
     {
-        AnimeRecsClient GetClient(string recSourceName);
+        AnimeRecsClient GetClient(AlgorithmConfig algorithm);
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

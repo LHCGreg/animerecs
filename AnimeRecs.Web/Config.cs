@@ -12,35 +12,36 @@ namespace AnimeRecs.Web
 {
     public class Config : IConfig
     {
+        public int Port { get; private set; }
+        public IList<AlgorithmConfig> Algorithms { get; private set; }
+        public string DefaultAlgorithm { get; private set; }
         public TimeSpan AnimeListCacheExpiration { get; private set; }
         public int? RecServicePort { get; private set; }
-        public string DefaultRecSource { get; private set; }
         public int MaximumRecommendersToReturn { get; private set; }
         public int MaximumRecommendationsToReturn { get; private set; }
         public decimal DefaultTargetPercentile { get; private set; }
         public string MalApiUserAgentString { get; private set; }
-        public int MalTimeoutInMs { get; private set; }
+        public TimeSpan MalTimeout { get; private set; }
         public bool UseLocalDbMalApi { get; private set; }
         public string ClubMalLink { get; private set; }
         public string HtmlBeforeBodyEnd { get; private set; }
         public string PostgresConnectionString { get; private set; }
-        public IDictionary<string, int> SpecialRecSourcePorts { get; private set; }
         public bool EnableDiagnosticsDashboard { get; private set; }
         public string DiagnosticsDashboardPassword { get; private set; }
         public bool ShowErrorTraces { get; private set; }
         public bool HandleStaticContent { get; private set; }
 
-        public Config(TimeSpan animeListCacheExpiration, int? recServicePort, string defaultRecSource, int maximumRecommendersToReturn,
-            int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, int malTimeoutInMs,
+        public Config(int port, IList<AlgorithmConfig> algorithms, string defaultAlgorithm, TimeSpan animeListCacheExpiration, int? recServicePort, int maximumRecommendersToReturn,
+            int maximumRecommendationsToReturn, decimal defaultTargetPercentile, string malApiUserAgentString, TimeSpan malTimeout,
             bool useLocalDbMalApi, string clubMalLink, string htmlBeforeBodyEnd, string postgresConnectionString,
-            IDictionary<string, int> specialRecSourcePorts, bool enableDiagnosticsDashboard,
+            bool enableDiagnosticsDashboard,
             string diagnosticsDashboardPassword, bool showErrorTraces, bool handleStaticContent)
         {
+            Port = port;
+            Algorithms = algorithms;
+            DefaultAlgorithm = defaultAlgorithm;
             AnimeListCacheExpiration = animeListCacheExpiration;
             RecServicePort = recServicePort;
-
-            defaultRecSource.ThrowIfNull("defaultRecSource");
-            DefaultRecSource = defaultRecSource;
 
             MaximumRecommendersToReturn = maximumRecommendersToReturn;
             MaximumRecommendationsToReturn = maximumRecommendationsToReturn;
@@ -48,7 +49,7 @@ namespace AnimeRecs.Web
 
             malApiUserAgentString.ThrowIfNull("malApiUserAgentString");
             MalApiUserAgentString = malApiUserAgentString;
-            MalTimeoutInMs = malTimeoutInMs;
+            MalTimeout = malTimeout;
             UseLocalDbMalApi = useLocalDbMalApi;
 
             if (useLocalDbMalApi)
@@ -62,8 +63,6 @@ namespace AnimeRecs.Web
 
             HtmlBeforeBodyEnd = htmlBeforeBodyEnd ?? "";
 
-            SpecialRecSourcePorts = specialRecSourcePorts;
-
             EnableDiagnosticsDashboard = enableDiagnosticsDashboard;
             DiagnosticsDashboardPassword = diagnosticsDashboardPassword;
             ShowErrorTraces = showErrorTraces;
@@ -72,29 +71,14 @@ namespace AnimeRecs.Web
 
         public static Config FromAppConfig()
         {
-            int malCacheExpirationSeconds = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpiration.Seconds"], CultureInfo.InvariantCulture);
-            int malCacheExpirationMinutes = int.Parse(ConfigurationManager.AppSettings["AnimeListCacheExpiration.Minutes"], CultureInfo.InvariantCulture);
-            TimeSpan malCacheExpiration = new TimeSpan(hours: 0, minutes: malCacheExpirationMinutes, seconds: malCacheExpirationSeconds);
+            Logging.Log.Debug("Loading config");
+            AnimeRecsConfigurationSection appConfig = AnimeRecsConfigurationSection.Settings;
 
-            int? recServicePort = null;
-            if (ConfigurationManager.AppSettings["RecService.Port"] != null)
+            List<AlgorithmConfig> algorithms = new List<AlgorithmConfig>();
+            foreach (AlgorithmElement algorithm in appConfig.Algorithms)
             {
-                recServicePort = int.Parse(ConfigurationManager.AppSettings["RecService.Port"], CultureInfo.InvariantCulture);
+                algorithms.Add(new AlgorithmConfig(algorithm.DisplayName, algorithm.RecServiceName, algorithm.TargetScoreNeeded, algorithm.Details, algorithm.Port));
             }
-
-            string defaultRecSource = ConfigurationManager.AppSettings["RecService.DefaultRecSource"];
-
-            int maxRecommendersToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendersToReturn"], CultureInfo.InvariantCulture);
-            int maxRecommendationsToReturn = int.Parse(ConfigurationManager.AppSettings["MaximumRecommendationsToReturn"], CultureInfo.InvariantCulture);
-            decimal defaultTargetPercentile = decimal.Parse(ConfigurationManager.AppSettings["DefaultTargetPercentile"], CultureInfo.InvariantCulture) / 100;
-            string malApiUserAgentString = ConfigurationManager.AppSettings["MalApi.UserAgentString"];
-            int malTimeoutInMs = int.Parse(ConfigurationManager.AppSettings["MalApi.TimeoutInMs"]);
-            bool useLocalDbMalApi = false;
-            if (ConfigurationManager.AppSettings["MalApi.API"] != null && ConfigurationManager.AppSettings["MalApi.API"].Equals("DB"))
-            {
-                useLocalDbMalApi = true;
-            }
-            string clubMalLink = ConfigurationManager.AppSettings["ClubMalLink"];
 
             string postgresConnectionString = null;
             if (ConfigurationManager.ConnectionStrings["Postgres"] != null)
@@ -102,70 +86,36 @@ namespace AnimeRecs.Web
                 postgresConnectionString = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
             }
 
-            string htmlBeforeBodyEnd = "";
-            if (ConfigurationManager.AppSettings["HtmlBeforeBodyEnd"] != null)
-            {
-                htmlBeforeBodyEnd = ConfigurationManager.AppSettings["HtmlBeforeBodyEnd"];
-            }
-
-            Dictionary<string, int> specialRecSourcePorts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-
-            Regex specialRecSourcePortConfigKeyRegex = new Regex(@"RecService\.(?<RecSource>.+)\.Port");
-            foreach (string configKey in ConfigurationManager.AppSettings.AllKeys)
-            {
-                Match m = specialRecSourcePortConfigKeyRegex.Match(configKey);
-                if (m.Success)
-                {
-                    string recSourceName = m.Groups["RecSource"].Value;
-                    specialRecSourcePorts[recSourceName] = int.Parse(ConfigurationManager.AppSettings[configKey]);
-                }
-            }
-
-            bool enableDiagnosticsDashboard = false;
-            string diagnosticsDashboardPassword = "";
-            if (ConfigurationManager.AppSettings["Diagnostics.EnableDiagnosticsDashboard"] != null)
-            {
-                enableDiagnosticsDashboard = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.EnableDiagnosticsDashboard"]);
-                diagnosticsDashboardPassword = ConfigurationManager.AppSettings["Diagnostics.DiagnosticsDashboardPassword"];
-            }
-
-            bool showErrorTraces = false;
-            if (ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"] != null)
-            {
-                showErrorTraces = bool.Parse(ConfigurationManager.AppSettings["Diagnostics.ShowErrorTraces"]);
-            }
-
-            bool handleStaticContent = true;
-            if (ConfigurationManager.AppSettings["Hosting.HandleStaticContent"] != null)
-            {
-                handleStaticContent = bool.Parse(ConfigurationManager.AppSettings["Hosting.HandleStaticContent"]);
-            }
-
-            return new Config
+            Config config = new Config
             (
-                animeListCacheExpiration: malCacheExpiration,
-                recServicePort: recServicePort,
-                defaultRecSource: defaultRecSource,
-                maximumRecommendersToReturn: maxRecommendersToReturn,
-                maximumRecommendationsToReturn: maxRecommendationsToReturn,
-                defaultTargetPercentile: defaultTargetPercentile,
-                malApiUserAgentString: malApiUserAgentString,
-                malTimeoutInMs: malTimeoutInMs,
-                useLocalDbMalApi: useLocalDbMalApi,
-                clubMalLink: clubMalLink,
-                htmlBeforeBodyEnd: htmlBeforeBodyEnd,
+                port: appConfig.Hosting.Port,
+                algorithms: algorithms,
+                defaultAlgorithm: appConfig.Algorithms.Default,
+                animeListCacheExpiration: appConfig.MalAPI.CacheExpiration,
+                recServicePort: appConfig.RecService.Port,
+                maximumRecommendersToReturn: appConfig.Recommendations.MaxRecommendersToReturn,
+                maximumRecommendationsToReturn: appConfig.Recommendations.MaxRecommendationsToReturn,
+                defaultTargetPercentile: appConfig.Recommendations.DefaultTargetPercentile,
+                malApiUserAgentString: appConfig.MalAPI.UserAgentString,
+                malTimeout: appConfig.MalAPI.Timeout,
+                useLocalDbMalApi: appConfig.MalAPI.Type == MalAPIType.DB,
+                clubMalLink: appConfig.Html.ClubMalLink,
+                htmlBeforeBodyEnd: appConfig.Html.HtmlBeforeBodyEnd,
                 postgresConnectionString: postgresConnectionString,
-                specialRecSourcePorts: specialRecSourcePorts,
-                enableDiagnosticsDashboard: enableDiagnosticsDashboard,
-                diagnosticsDashboardPassword: diagnosticsDashboardPassword,
-                showErrorTraces: showErrorTraces,
-                handleStaticContent: handleStaticContent
+                enableDiagnosticsDashboard: appConfig.Diagnostics.EnableDashboard,
+                diagnosticsDashboardPassword: appConfig.Diagnostics.DashboardPassword,
+                showErrorTraces: appConfig.Diagnostics.ShowErrorTraces,
+                handleStaticContent: appConfig.Hosting.HandleStaticContent
             );
+
+            Logging.Log.Debug("Config loaded.");
+
+            return config;
         }
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

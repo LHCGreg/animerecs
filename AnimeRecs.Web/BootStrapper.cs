@@ -70,7 +70,7 @@ namespace AnimeRecs.Web
 
                 container.Register<IConfig>(AppGlobals.Config);
 
-                IAnimeRecsClientFactory recServiceClientFactory = new RecClientFactory(AppGlobals.Config.RecServicePort, AppGlobals.Config.SpecialRecSourcePorts);
+                IAnimeRecsClientFactory recServiceClientFactory = new RecClientFactory(AppGlobals.Config.RecServicePort);
                 container.Register<IAnimeRecsClientFactory>(recServiceClientFactory);
 
                 IAnimeRecsDbConnectionFactory dbConnectionFactory = new AnimeRecsDbConnectionFactory(AppGlobals.Config.PostgresConnectionString);
@@ -86,7 +86,7 @@ namespace AnimeRecs.Web
                     api = new MyAnimeListApi()
                     {
                         UserAgent = AppGlobals.Config.MalApiUserAgentString,
-                        TimeoutInMs = AppGlobals.Config.MalTimeoutInMs
+                        TimeoutInMs = (int)AppGlobals.Config.MalTimeout.TotalMilliseconds
                     };
                 }
                 disposablesInitialized.Add(api);
@@ -139,7 +139,7 @@ namespace AnimeRecs.Web
 
         private static Dictionary<string, object> ViewPathsAndModels = new Dictionary<string, object>()
         {
-            { "Modules/Home/Home", new HomeViewModel("default", true, true, true, false) },
+            { "Modules/Home/Home", new HomeViewModel(new AlgorithmConfig("blah", "blah", true, true, null), new List<AlgorithmConfig>() { new AlgorithmConfig("blah", "blah", true, true, null) }, true, true) },
             { "Modules/GetRecs/AnimeRecs", GetDummyAnimeRecsViewModel() },
             { "Modules/GetRecs/AnimeRecs_complex", GetDummyAnimeRecsViewModel() },
             { "Modules/GetRecs/AverageScore", GetDummyRecsViewModel() },

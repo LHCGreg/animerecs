@@ -29,6 +29,38 @@ void main() {
     if (e.keyCode == 13) // Enter
       handleSubmit();
   });
+  
+  ElementList<dynamic> algorithmLinks = querySelectorAll(".algorithm");
+  algorithmLinks.forEach((dynElement) {
+    Element element = dynElement;
+    element.onClick.listen((event) => onAlgorithmClick(element));
+  });
+}
+
+void onAlgorithmClick(Element algorithmLink) {
+  String name = algorithmLink.getAttribute("data-name");
+  String displayName = algorithmLink.getAttribute("data-display-name");
+  bool details = algorithmLink.getAttribute("data-details").toLowerCase() == "true";
+  bool targetScoreNeeded = algorithmLink.getAttribute("data-target-score-needed").toLowerCase() == "true";
+  // update #algorithm-dropdown
+  elements.algorithmDropdown.setInnerHtml("Algorithm: " + displayName, treeSanitizer: trustedHtml);
+  
+  // update .algorithm.navbar-dropdown-selected
+  Element currentSelectedLink = querySelector(".algorithm.navbar-dropdown-selected");
+  currentSelectedLink.classes.remove("navbar-dropdown-selected");
+  currentSelectedLink.classes.add("navbar-dropdown-not-selected");
+  
+  // update element to navbar-dropdown-selected
+  algorithmLink.classes.remove("navbar-dropdown-not-selected");
+  algorithmLink.classes.add("navbar-dropdown-selected");
+  
+  // update #recSourceName hidden input
+  elements.recSourceNameInput.value = name;
+  
+  // update #displayDetailedResults hidden input
+  elements.displayDetailedResultsHiddenInput.value = details ? "true" : "false";
+  
+  // TODO: show/hide minimum score input
 }
 
 void onAutoScoreCheckboxClick(MouseEvent event) {
@@ -185,6 +217,7 @@ class HtmlElements {
   Element mainContentOuterDiv;
   Element mainContentInnerDiv;
   Element titleDiv;
+  Element algorithmDropdown;
   TextInputElement usernameInput;
   ButtonElement goButton;
   Element resultsDiv;
@@ -199,6 +232,7 @@ class HtmlElements {
     mainContentOuterDiv = querySelector("#main-content-outer");
     mainContentInnerDiv = querySelector("#main-content-inner");
     titleDiv = querySelector(".title");
+    algorithmDropdown = querySelector("#algorithm-dropdown");
     usernameInput = querySelector("#usernameInput");
     goButton = querySelector("#goButton");
     resultsDiv = querySelector("#results");

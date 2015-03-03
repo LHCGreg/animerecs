@@ -20,13 +20,17 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Algorithm: Classic<span class="caret"></span></a>
+                    <a href="#" id="algorithm-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Algorithm: @Model.Algorithm.DisplayName<span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-menu-with-icons" role="menu">
-                        <li><span class="glyphicon glyphicon-ok selected-algorithm" aria-hidden="true"></span><a class="navbar-dropdown-selected">Classic</a></li>
-                        <li><a class="navbar-dropdown-not-selected">Classic With Details</a></li>
-                        <li><a class="navbar-dropdown-not-selected">Highest Rated</a></li>
-                        <li><a class="navbar-dropdown-not-selected">Most Popular</a></li>
-                        <li><a class="navbar-dropdown-not-selected">Biased Matrix Factorization</a></li>
+                        @foreach (AlgorithmConfig algorithm in @Model.AvailableAlgorithms)
+                        {
+                            <li><a data-display-name="@algorithm.DisplayName" data-name="@algorithm.RecServiceName" data-details="@algorithm.ShowDetails" data-target-score-needed="@algorithm.TargetScoreNeeded" class="algorithm @(algorithm.DisplayName == Model.Algorithm.DisplayName ? "navbar-dropdown-selected" : "navbar-dropdown-not-selected")">@algorithm.DisplayName</a></li>
+                        }
+                        @*<li><a data-display-name="Classic" data-name="animerecs" data-details="false" data-target-score-needed="false" class="algorithm navbar-dropdown-selected">Classic</a></li>
+                            <li><a data-display-name="Classic With Details" data-name="animerecs" data-details="true" data-target-score-needed="true" class="algorithm navbar-dropdown-not-selected">Classic With Details</a></li>
+                            <li><a data-display-name="Highest Rated" data-name="averagescore" data-details="false" data-target-score-needed="false" class="algorithm navbar-dropdown-not-selected">Highest Rated</a></li>
+                            <li><a data-display-name="Most Popular" data-name="mostpopular" data-details="false" data-target-score-needed="false" class="algorithm navbar-dropdown-not-selected">Most Popular</a></li>
+                            <li><a data-display-name="Biased Matrix Factorization" data-name="biasedmatrixfactorization" data-details="false" data-target-score-needed="false" class="algorithm navbar-dropdown-not-selected">Biased Matrix Factorization</a></li>*@
                     </ul>
                 </li>
             </ul>
@@ -34,653 +38,45 @@
     </div>
 </nav>
 <div class="container viewport-center" id="main-content-outer">
-@*<div class="container" id="main-content-outer">*@
+    @*Post-recs: <div class="container" id="main-content-outer">*@
     <div class="div-center" id="main-content-inner">
-    @*<div id="main-content-inner">*@
+        @*Post-recs: <div id="main-content-inner">*@
         <div id="input">
             <div class="title">Anime Recommendation Finder</div>
-            @*<div class="title hidden">Anime Recommendation Finder</div>*@
+            @*Post-recs: <div class="title hidden">Anime Recommendation Finder</div>*@
             <form class="form-horizontal">
                 <div class="form-group">
                     <div class="input-col-xs-6">
-                    @*<div class="input-row col-xs-6">*@
+                        @*Post-recs: <div class="input-row col-xs-6">*@
                         <input type="text" class="form-control" id="usernameInput" placeholder="MyAnimeList.net username" />
                     </div>
                     <div class="input-col-xs-6"></div>
-                    @*<div class="col-xs-6"></div>*@
+                    @*Post-recs: <div class="col-xs-6"></div>*@
                 </div>
                 <div class="form-group">
                     <div class="input-row">
-                    @*<div class="input-row col-xs-6">*@
+                        @*Post-recs: <div class="input-row col-xs-6">*@
                         <button type="submit" class="btn btn-default" id="goButton">Go</button>
                     </div>
                     <div class="input-col-xs-6"></div>
-                    @*<div class="col-xs-6"></div>*@
+                    @*Post-recs: <div class="col-xs-6"></div>*@
                 </div>
+                <input id="recSourceName" name="RecSourceName" type="hidden" value="@Model.Algorithm.RecServiceName" />
+                <input id="displayDetailedResults" name="DisplayDetailedResults" type="hidden" value="@Model.DisplayDetailedResults" />
                 @* TODO: Handle debug mode *@
+                @* TODO: Handle target score needed *@
                 @if (!Model.DebugModeOn)
                 {
-                    <input id="recSourceName" name="RecSourceName" type="hidden" value="@Model.Algorithm" />
+                    
                 }
-                <input id="displayDetailedResults" name="DisplayDetailedResults" type="hidden" value="@Model.DisplayDetailedResults" />
+                
             </form>
         </div>
         <div id="results"></div>
-        @*<div id="results">
-            <table class="recsTable table">
-                <thead>
-                    <tr>
-                        <td>
-                            Streams
-                        </td>
-                        <td>
-                            Anime
-                        </td>
-                        <td>
-                            Type
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/magi"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.viz.com/anime/streaming/magi-2"><img src="/Content/viz_icon.png" title="Watch on Viz" alt="Viz"></a> <a href="http://www.hulu.com/magi-2"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/18115" class="recommendation">Magi: The Kingdom of Magic</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/12477" class="recommendation">Sakasama no Patema</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/1690" class="recommendation">Bokurano</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/12355" class="recommendation">Ookami Kodomo no Ame to Yuki</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/fatestay-night"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/fatestay-night-unlimited-blade-works"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/22297" class="recommendation">Fate/stay night: Unlimited Blade Works (TV)</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/7465" class="recommendation">Eve no Jikan (Movie)</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/578" class="recommendation">Hotaru no Haka</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/2236" class="recommendation">Toki wo Kakeru Shoujo</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/392" class="recommendation">Yu Yu Hakusho</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/208" class="recommendation">R.O.D OVA</a>
-                        </td>
-                        <td>
-                            OVA
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/14353" class="recommendation">Death Billiards</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/3701" class="recommendation">Kaiba</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/3665" class="recommendation">Ginga Eiyuu Densetsu Gaiden: Rasen Meikyuu</a>
-                        </td>
-                        <td>
-                            OVA
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/3371" class="recommendation">Ginga Eiyuu Densetsu Gaiden: Senoku no Hoshi, Senoku no Hikari</a>
-                        </td>
-                        <td>
-                            OVA
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/820" class="recommendation">Ginga Eiyuu Densetsu</a>
-                        </td>
-                        <td>
-                            OVA
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/30" class="recommendation">Neon Genesis Evangelion</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/mononoke"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/mononoke"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/2246" class="recommendation">Mononoke</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/1033" class="recommendation">Sennen Joyuu</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/7674" class="recommendation">Bakuman.</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/6594" class="recommendation">Katanagatari</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.funimation.com/shows/black-lagoon/videos/episodes"><img src="/Content/funimation_icon.png" title="Watch on Funimation" alt="Funimation"></a> <a href="http://www.hulu.com/black-lagoon"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/1519" class="recommendation">Black Lagoon: The Second Barrage</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.hulu.com/now-and-then-here-and-there"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/160" class="recommendation">Ima, Soko ni Iru Boku</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/437" class="recommendation">Perfect Blue</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/la-maison-en-petits-cubes"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/5365" class="recommendation">Tsumiki no Ie</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/2759" class="recommendation">Evangelion: 1.0 You Are (Not) Alone</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/5040" class="recommendation">One Outs</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/5681" class="recommendation">Summer Wars</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/10408" class="recommendation">Hotarubi no Mori e</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.hulu.com/sword-of-the-stranger"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/2418" class="recommendation">Stranger: Mukou Hadan</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/2593" class="recommendation">Kara no Kyoukai 1: Fukan Fuukei</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/5177" class="recommendation">Denpa Teki na Kanojo</a>
-                        </td>
-                        <td>
-                            OVA
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/arakawa-under-the-bridge"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/arakawa-under-the-bridge"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/7647" class="recommendation">Arakawa Under the Bridge</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/405" class="recommendation">Blood: The Last Vampire</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/7193" class="recommendation">Aoi Bungaku Series</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/hunter-x-hunter"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/11061" class="recommendation">Hunter x Hunter (2011)</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/monogatari-second-season"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/monogatari-series-second-season"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/17074" class="recommendation">Monogatari Series: Second Season</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/21855" class="recommendation">Hanamonogatari</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/gto-the-animation"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/245" class="recommendation">Great Teacher Onizuka</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/chihayafuru"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/10800" class="recommendation">Chihayafuru</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/monthly-girls-nozaki-kun"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/monthly-girls-nozakikun"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/23289" class="recommendation">Gekkan Shoujo Nozaki-kun</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/934" class="recommendation">Higurashi no Naku Koro ni</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/15689" class="recommendation">Nekomonogatari: Kuro</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/no-game-no-life"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/no-game-no-life"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/19815" class="recommendation">No Game No Life</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/11577" class="recommendation">Steins;Gate: Fuka Ryouiki no Déjà vu</a>
-                        </td>
-                        <td>
-                            Movie
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/ace-of-the-diamond"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/18689" class="recommendation">Diamond no Ace</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/log-horizon"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/log-horizon"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/17265" class="recommendation">Log Horizon</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/102" class="recommendation">Aishiteruze Baby★★</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/200" class="recommendation">Tenshi na Konamaiki</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.funimation.com/shows/soul-eater/videos/episodes"><img src="/Content/funimation_icon.png" title="Watch on Funimation" alt="Funimation"></a> <a href="http://www.hulu.com/soul-eater"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/3588" class="recommendation">Soul Eater</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/nisekoi"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/nisekoi"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/18897" class="recommendation">Nisekoi</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/kokoro-connect"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/kokoro-connect"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/11887" class="recommendation">Kokoro Connect</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.funimation.com/shows/dragon-ball/videos/episodes"><img src="/Content/funimation_icon.png" title="Watch on Funimation" alt="Funimation"></a> <a href="http://www.hulu.com/dragon-ball"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/223" class="recommendation">Dragon Ball</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/2508" class="recommendation">Genshiken 2</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/mitsudomoe"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/7627" class="recommendation">Mitsudomoe</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/384" class="recommendation">Gantz</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/the-irregular-at-magic-high-school"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/the-irregular-at-magic-high-school"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/20785" class="recommendation">Mahouka Koukou no Rettousei</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/squid-girl"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/squid-girl"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/8557" class="recommendation">Shinryaku! Ika Musume</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.funimation.com/shows/deadman-wonderland/videos/episodes"><img src="/Content/funimation_icon.png" title="Watch on Funimation" alt="Funimation"></a> <a href="http://www.hulu.com/deadman-wonderland"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/6880" class="recommendation">Deadman Wonderland</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/chihayafuru"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/14397" class="recommendation">Chihayafuru 2</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.crunchyroll.com/the-pet-girl-of-sakurasou"><img src="/Content/crunchyroll_icon.png" title="Watch on Crunchyroll" alt="Crunchyroll"></a> <a href="http://www.hulu.com/the-pet-girl-of-sakurasou"><img src="/Content/hulu_icon.png" title="Watch on Hulu" alt="Hulu"></a>
-                        </td>
-                        <td>
-                            <a href="http://myanimelist.net/anime/13759" class="recommendation">Sakurasou no Pet na Kanojo</a>
-                        </td>
-                        <td>
-                            TV
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>*@
     </div>
 </div>
 <footer class="footer-no-results" id="footer">
-@*<footer class="footer-results" id="footer">*@
+    @* Post-recs: <footer class="footer-results" id="footer">*@
     <div class="container">
         <div class="row">
             <div class="col-xs-6">Have a bug report or suggestion? <a href="@AppGlobals.Config.ClubMalLink">Post on the club on MAL</a>.</div>
@@ -753,11 +149,10 @@
         </div>
     </div>*@
 
-<script type="application/dart" src="@Url.Content("~/Scripts/animerecs.dart")">
-</script>
+<script type="application/dart" src="@Url.Content("~/Scripts/animerecs.dart")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/packages/browser/dart.js")"></script>
 @*
-    Copyright (C) 2014 Greg Najda
+    Copyright (C) 2015 Greg Najda
 
     This file is part of AnimeRecs.Web.
 

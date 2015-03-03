@@ -74,11 +74,6 @@ namespace AnimeRecs.Web.Modules.GetRecs
 
         private Response DoGetRecs(AnimeRecsInputJson input)
         {
-            if (input.RecSourceName == null)
-            {
-                input.RecSourceName = _config.DefaultRecSource;
-            }
-
             MalUserLookupResults userLookup = GetUserLookup(input);
 
             Dictionary<int, MalListEntry> animeList = new Dictionary<int, MalListEntry>();
@@ -168,7 +163,9 @@ namespace AnimeRecs.Web.Modules.GetRecs
                 numRecsToTryToGet = 100000;
             }
 
-            using (AnimeRecsClient recClient = _recClientFactory.GetClient(input.RecSourceName))
+            AlgorithmConfig algorithm = AlgorithmConfig.SelectAlgorithm(_config.Algorithms, input.RecSourceName, input.DisplayDetailedResults, _config.DefaultAlgorithm);
+
+            using (AnimeRecsClient recClient = _recClientFactory.GetClient(algorithm))
             {
                 MalRecResults<IEnumerable<IRecommendation>> recResults;
                 try
@@ -192,7 +189,7 @@ namespace AnimeRecs.Web.Modules.GetRecs
                         Logging.Log.InfoFormat("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
                             input.RecSourceName, numRecsToTryToGet, input.MalName, AppGlobals.Config.DefaultTargetPercentile);
                         recResults = recClient.GetMalRecommendationsWithPercentileTarget(animeList, input.RecSourceName, numRecsToTryToGet,
-                            AppGlobals.Config.DefaultTargetPercentile);
+                            _config.DefaultTargetPercentile);
                     }
                 }
                 catch (AnimeRecs.RecService.DTO.RecServiceErrorException ex)
@@ -258,7 +255,7 @@ namespace AnimeRecs.Web.Modules.GetRecs
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

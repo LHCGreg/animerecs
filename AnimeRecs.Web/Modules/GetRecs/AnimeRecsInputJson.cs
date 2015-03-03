@@ -52,6 +52,7 @@ namespace AnimeRecs.Web.Modules.GetRecs
         // Only applicable for AnimeRecs...should think about how to take parameter specific to a rec source type.
         public bool DisplayDetailedResults { get; set; }
 
+        [Required]
         public string RecSourceName { get; set; }
 
         public AnimeRecsInputJson()

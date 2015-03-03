@@ -15,7 +15,7 @@ namespace AnimeRecs.Web.Modules.Home
     {
         private IConfig _config;
         private IAnimeRecsClientFactory _recClientFactory;
-        
+
         public HomeModule(IConfig config, IAnimeRecsClientFactory recClientFactory)
         {
             _config = config;
@@ -59,37 +59,13 @@ namespace AnimeRecs.Web.Modules.Home
 
         private object DoHomePage(MainPageParams parameters)
         {
-            string algorithm = parameters.algorithm ?? _config.DefaultRecSource;
-            bool displayDetailedResults = parameters.detailedResults ?? false;
+            AlgorithmConfig algorithm = AlgorithmConfig.SelectAlgorithm(_config.Algorithms, parameters.algorithm, parameters.detailedResults, _config.DefaultAlgorithm);
             bool debugModeOn = parameters.debugMode ?? false;
-
-            string recSourceType = null;
-
-            using (AnimeRecsClient client = _recClientFactory.GetClient(algorithm))
-            {
-                try
-                {
-                    recSourceType = client.GetRecSourceType(algorithm);
-                }
-                catch
-                {
-                    ;
-                }
-            }
-
-            bool algorithmAvailable = recSourceType != null;
-
-            bool targetScoreNeeded = false;
-            if (AnimeRecs.RecService.DTO.RecSourceTypes.AnimeRecs.Equals(recSourceType, StringComparison.OrdinalIgnoreCase) && displayDetailedResults)
-            {
-                targetScoreNeeded = true;
-            }
 
             HomeViewModel viewModel = new HomeViewModel(
                 algorithm: algorithm,
-                algorithmAvailable: algorithmAvailable,
-                targetScoreNeeded: targetScoreNeeded,
-                displayDetailedResults: displayDetailedResults,
+                availableAlgorithms: _config.Algorithms,
+                displayDetailedResults: algorithm.ShowDetails,
                 debugModeOn: debugModeOn
             );
 
@@ -98,7 +74,7 @@ namespace AnimeRecs.Web.Modules.Home
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //
