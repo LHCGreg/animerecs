@@ -1769,7 +1769,6 @@ VALUES
 (20057, 4, 'http://www.hulu.com/space-dandy'),
 (198, 4, 'http://www.hulu.com/speed-grapher'),
 (1445, 4, 'http://www.hulu.com/speed-racer'),
-(1445, 4, 'http://www.hulu.com/speed-racer'),
 (2966, 4, 'http://www.hulu.com/spice-and-wolf'),
 (5341, 4, 'http://www.hulu.com/spice-and-wolf'),
 (8557, 4, 'http://www.hulu.com/squid-girl'),
