@@ -10,7 +10,8 @@ namespace AnimeRecs.DAL
         Crunchyroll = 1,
         Funimation = 2,
         Viz = 3,
-        Hulu = 4
+        Hulu = 4,
+        Viewster = 5
     }
 }
 

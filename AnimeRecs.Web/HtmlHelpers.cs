@@ -98,6 +98,11 @@ namespace AnimeRecs.Web
                             altText = "Hulu";
                             titleText = "Watch on Hulu";
                             break;
+                        case StreamingService.Viewster:
+                            imagePath = renderContext.ParsePath("~/Content/viewster_icon.png");
+                            altText = "Viewster";
+                            titleText = "Watch on Viewster";
+                            break;
                         default:
                             continue;
                     }

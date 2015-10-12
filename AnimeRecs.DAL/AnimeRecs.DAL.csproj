@@ -125,6 +125,7 @@
   <ItemGroup>
     <Content Include="DB Init Scripts\animerecs.0000.sql" />
     <Content Include="DB Init Scripts\animerecs.0001.prereqs.sql" />
+    <Content Include="DB Init Scripts\animerecs.0003.viewster_daisuki.sql" />
     <Content Include="DB Init Scripts\animerecs.0002.hulu.sql" />
     <Content Include="DB Init Scripts\anime_prereqs.sql" />
     <Content Include="DB Init Scripts\linux_create_template.sql" />

@@ -212,13 +212,14 @@ namespace AnimeRecs.UpdateStreams
                 new CrunchyrollStreamInfoSource(),
                 new FunimationStreamInfoSource(),
                 new VizStreamInfoSource(),
-                new HuluStreamInfoSource()
+                new HuluStreamInfoSource(),
+                new ViewsterStreamInfoSource()
             };
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2015 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
