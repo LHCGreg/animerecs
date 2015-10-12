@@ -51,6 +51,7 @@ namespace AnimeRecs.UpdateStreams
             }
 
             string responseBody = null;
+            Console.WriteLine("Getting HTML for {0}", Url);
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
                 if (response.StatusCode != HttpStatusCode.OK)

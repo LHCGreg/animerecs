@@ -24,6 +24,7 @@ namespace AnimeRecs.UpdateStreams
             string responseBody;
             using (CompressionWebClient client = new CompressionWebClient())
             {
+                Console.WriteLine("Getting HTML for {0}", Url);
                 responseBody = client.DownloadString(Url);
             }
 

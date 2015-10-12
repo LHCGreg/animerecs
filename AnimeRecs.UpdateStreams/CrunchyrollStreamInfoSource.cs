@@ -75,6 +75,8 @@ namespace AnimeRecs.UpdateStreams
 
             client.CookieContainer = new CookieContainer();
             client.UserAgent = "animerecs.com stream update tool";
+
+            Console.WriteLine("Logging into Crunchyroll.");
             IRestResponse response = client.Execute(request);
             if (response.ResponseStatus != ResponseStatus.Completed)
             {

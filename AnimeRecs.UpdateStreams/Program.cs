@@ -71,6 +71,8 @@ namespace AnimeRecs.UpdateStreams
                 streams.AddRange(streamsFromThisSource);
             }
 
+            Console.WriteLine("Writing out csv.");
+
             // Write a new csv mapping to the output file. If MAL anime ids or n/a was present in the input file for a certain
             // streaming service/anime name/URL combination, use them. Otherwise, leave the MAL anime id column blank
             // for a human operator to fill in.

@@ -45,6 +45,7 @@ namespace AnimeRecs.UpdateStreams
 
             using (CompressionWebClient webClient = new CompressionWebClient())
             {
+                Console.WriteLine("Getting Hulu API token.");
                 string huluPageHtml = webClient.DownloadString("http://www.hulu.com/tv/genres/anime");
                 Regex oathTokenRegex = new Regex("w.API_DONUT = '(?<Token>[^']*)'");
                 Match m = oathTokenRegex.Match(huluPageHtml);
@@ -114,6 +115,7 @@ namespace AnimeRecs.UpdateStreams
                         "http://www.hulu.com/mozart/v1.h2o/{0}?exclude_hulu_content=1&genre={1}&sort=release_with_popularity&_language=en&_region=us&items_per_page=100&position={2}&region=us&locale=en&language=en&access_token={3}",
                         type, Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
 
+                    Console.WriteLine("Getting type genre {0}, type {1}, position {2} from Hulu", genre, type, position);
                     string jsonString = webClient.DownloadString(url);
                     HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);
 
