@@ -211,11 +211,13 @@ namespace AnimeRecs.UpdateStreams
         {
             return new List<IAnimeStreamInfoSource>()
             {
+                // Crunchyroll first because it prompts for a username and password. Let the user enter that first instead of in the middle.
                 new CrunchyrollStreamInfoSource(),
                 new FunimationStreamInfoSource(),
                 new VizStreamInfoSource(),
                 new HuluStreamInfoSource(),
-                new ViewsterStreamInfoSource()
+                new ViewsterStreamInfoSource(),
+                new DaisukiStreamInfoSource()
             };
         }
     }

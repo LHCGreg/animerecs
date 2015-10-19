@@ -11,7 +11,8 @@ namespace AnimeRecs.DAL
         Funimation = 2,
         Viz = 3,
         Hulu = 4,
-        Viewster = 5
+        Viewster = 5,
+        Daisuki = 6
     }
 }
 

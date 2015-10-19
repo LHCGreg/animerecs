@@ -103,6 +103,11 @@ namespace AnimeRecs.Web
                             altText = "Viewster";
                             titleText = "Watch on Viewster";
                             break;
+                        case StreamingService.Daisuki:
+                            imagePath = renderContext.ParsePath("~/Content/daisuki_icon.png");
+                            altText = "Daisuki";
+                            titleText = "Watch on Daisuki";
+                            break;
                         default:
                             continue;
                     }

@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="CrunchyrollStreamInfoSource.cs" />
     <Compile Include="CsvRow.cs" />
+    <Compile Include="DaisukiStreamInfoSource.cs" />
     <Compile Include="FunimationStreamInfoSource.cs" />
     <Compile Include="HtmlParsingAnimeStreamInfoSource.cs" />
     <Compile Include="HtmlRegexAnimeStreamInfoSource.cs" />

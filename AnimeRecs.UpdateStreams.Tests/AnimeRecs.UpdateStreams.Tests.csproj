@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Daisuki.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
