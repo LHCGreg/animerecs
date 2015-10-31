@@ -507,6 +507,8 @@ VALUES
 (16009, 1, 'http://www.crunchyroll.com/sunday-without-god'),
 (1544, 1, 'http://www.crunchyroll.com/super-robot-wars-original-generation'),
 (11757, 1, 'http://www.crunchyroll.com/sword-art-online'),
+(20021, 1, 'http://www.crunchyroll.com/sword-art-online'),
+(21881, 1, 'http://www.crunchyroll.com/sword-art-online'),
 (21573, 1, 'http://www.crunchyroll.com/symphogear'),
 (28861, 1, 'http://www.crunchyroll.com/takamiya-nasuno-desu'),
 (31221, 1, 'http://www.crunchyroll.com/tantei-team-kz-jiken-note'),
