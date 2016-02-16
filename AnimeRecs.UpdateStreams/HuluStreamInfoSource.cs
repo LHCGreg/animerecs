@@ -124,7 +124,12 @@ namespace AnimeRecs.UpdateStreams
                         throw new Exception(string.Format("Did not get any hulu anime from url {0}", url));
                     }
 
-                    numAnimes = json.total_count;
+                    // Only set it for the first page.
+                    // Getting a weird problem for shows, Animation and Cartoons where total_count is 313 on the first page but 314 on subsequent pages, but there's actually only 313.
+                    if (position == 0)
+                    {
+                        numAnimes = json.total_count;
+                    }
                     
                     foreach (var data in json.data)
                     {
