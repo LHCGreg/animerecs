@@ -12,7 +12,7 @@ namespace AnimeRecs.UpdateStreams
     {
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            string url = "http://www.daisuki.net/fastAPI/anime/search/?";
+            string url = "http://www.daisuki.net/bin/wcm/searchAnimeAPI?api=anime_list&searchOptions=&currentPath=%2Fcontent%2Fdaisuki%2Fus%2Fen";
 
             using (CompressionWebClient webClient = new CompressionWebClient())
             {
@@ -32,16 +32,16 @@ namespace AnimeRecs.UpdateStreams
                 List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
                 foreach (DaisukiAnimeJson anime in parsedJson.response)
                 {
-                    if (anime.ad_id == null)
+                    if (anime.animeURL == null)
                     {
-                        throw new Exception("ad_id not set in Daisuki JSON.");
+                        throw new Exception("animeURL not set in Daisuki JSON.");
                     }
                     if (anime.title == null)
                     {
                         throw new Exception("title not set in Daisuki JSON.");
                     }
 
-                    string animeUrl = string.Format("http://www.daisuki.net/anime/detail/{0}", anime.ad_id);
+                    string animeUrl = string.Format("http://www.daisuki.net{0}", anime.animeURL);
                     streams.Add(new AnimeStreamInfo(anime.title, animeUrl, StreamingService.Daisuki));
                 }
 
@@ -56,7 +56,7 @@ namespace AnimeRecs.UpdateStreams
 
         private class DaisukiAnimeJson
         {
-            public string ad_id { get; set; }
+            public string animeURL { get; set; }
             public string title { get; set; }
         }
     }
