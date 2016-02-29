@@ -187,6 +187,10 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Folktales from Japan","http://www.crunchyroll.com/folktales-from-japan",13163
 "Crunchyroll","Food Wars! Shokugeki no Soma","http://www.crunchyroll.com/food-wars-shokugeki-no-soma",28171
 "Crunchyroll","Free! - Iwatobi Swim Club","http://www.crunchyroll.com/free-iwatobi-swim-club",18507
+"Crunchyroll","Fushigi Yugi","http://www.crunchyroll.com/fushigi-yugi",123
+"Crunchyroll","Fushigi Yugi OVA","http://www.crunchyroll.com/fushigi-yugi-ova",380
+"Crunchyroll","Fushigi Yugi OVA","http://www.crunchyroll.com/fushigi-yugi-ova",381
+"Crunchyroll","Fushigi Yugi: Eikoden","http://www.crunchyroll.com/fushigi-yugi-eikoden",124
 "Crunchyroll","Future Card Buddyfight","http://www.crunchyroll.com/future-card-buddyfight",19067
 "Crunchyroll","GA Geijutsuka Art Design Class","http://www.crunchyroll.com/ga-geijutsuka-art-design-class",5670
 "Crunchyroll","GA Geijutsuka Art Design Class","http://www.crunchyroll.com/ga-geijutsuka-art-design-class",6959
@@ -222,6 +226,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","Golden Time","http://www.crunchyroll.com/golden-time",17895
 "Crunchyroll","Gourmet Girl Graffiti","http://www.crunchyroll.com/gourmet-girl-graffiti",24629
 "Crunchyroll","Greathunt","http://www.crunchyroll.com/greathunt",n/a
+"Crunchyroll","Group Watch","http://www.crunchyroll.com/group-watch",n/a
 "Crunchyroll","GTO - The Animation","http://www.crunchyroll.com/gto-the-animation",245
 "Crunchyroll","Gugure! Kokkuri-san","http://www.crunchyroll.com/gugure-kokkuri-san",23251
 "Crunchyroll","Gunbuster 2","http://www.crunchyroll.com/gunbuster-2",1002
@@ -306,7 +311,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Crunchyroll","KINMOZA!","http://www.crunchyroll.com/kinmoza",16732
 "Crunchyroll","Kite","http://www.crunchyroll.com/kite",320
 "Crunchyroll","Kite Liberator","http://www.crunchyroll.com/kite-liberator",3323
-"Crunchyroll","Kiznaiver","http://www.crunchyroll.com/kiznaiver",31798
+"Crunchyroll","KIZNAIVER","http://www.crunchyroll.com/kiznaiver",31798
 "Crunchyroll","Koihime Musou","http://www.crunchyroll.com/koihime-musou",4262
 "Crunchyroll","Kokoro Connect","http://www.crunchyroll.com/kokoro-connect",11887
 "Crunchyroll","Komori-san Can't Decline!","http://www.crunchyroll.com/komori-san-cant-decline",31091
@@ -856,7 +861,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Funimation","Durarara!!","http://www.funimation.com/shows/durarara/videos/episodes",27833
 "Funimation","Eden of the East","http://www.funimation.com/shows/eden-of-the-east/videos/episodes",5630
 "Funimation","El Cazador de la Bruja","http://www.funimation.com/shows/el-cazador-de-la-bruja/videos/episodes",2030
-"Funimation","Erased","http://www.funimation.com/shows/erased/videos/episodes",31043
+"Funimation","ERASED","http://www.funimation.com/shows/erased/videos/episodes",31043
 "Funimation","Ergo Proxy","http://www.funimation.com/shows/ergo-proxy/videos/episodes",790
 "Funimation","Eureka Seven","http://www.funimation.com/shows/eureka-seven/videos/episodes",237
 "Funimation","Eureka Seven AO","http://www.funimation.com/shows/eureka-seven-astral-ocean/videos/episodes",12471
@@ -1187,6 +1192,21 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","And Yet the Town Moves","http://www.hulu.com/and-yet-the-town-moves",8726
 "Hulu","Angel Beats","http://www.hulu.com/angel-beats",6547
 "Hulu","Angelic Layer","http://www.hulu.com/angelic-layer",52
+"Hulu","Angelina Ballerina: Ballerina Princess","http://www.hulu.com/angelina-ballerina-ballerina-princess",n/a
+"Hulu","Angelina Ballerina: Dance Around the World","http://www.hulu.com/angelina-ballerina-dance-around-the-world",n/a
+"Hulu","Angelina Ballerina: Dreams Do Come True","http://www.hulu.com/angelina-ballerina-dreams-do-come-true",n/a
+"Hulu","Angelina Ballerina: Follows Her Dreams","http://www.hulu.com/angelina-ballerina-follows-her-dreams",n/a
+"Hulu","Angelina Ballerina: Friends Forever","http://www.hulu.com/angelina-ballerina-friends-forever",n/a
+"Hulu","Angelina Ballerina: In the Wings","http://www.hulu.com/angelina-ballerina-in-the-wings",n/a
+"Hulu","Angelina Ballerina: Meet Angelina Ballerina","http://www.hulu.com/angelina-ballerina-meet-angelina-ballerina",n/a
+"Hulu","Angelina Ballerina: On with the Show","http://www.hulu.com/angelina-ballerina-on-with-the-show",n/a
+"Hulu","Angelina Ballerina: Perfectly Pink!","http://www.hulu.com/angelina-ballerina-perfectly-pink",n/a
+"Hulu","Angelina Ballerina: Princess Dance","http://www.hulu.com/angelina-ballerina-princess-dance",n/a
+"Hulu","Angelina Ballerina: Spring Fling","http://www.hulu.com/angelina-ballerina-spring-fling",n/a
+"Hulu","Angelina Ballerina: Superstar Sisters","http://www.hulu.com/angelina-ballerina-superstar-sisters",n/a
+"Hulu","Angelina Ballerina: The Big Performance","http://www.hulu.com/angelina-ballerina-the-big-performance",n/a
+"Hulu","Angelina Ballerina: The Magic of Dance","http://www.hulu.com/angelina-ballerina-the-magic-of-dance",n/a
+"Hulu","Angelina Ballerina: The Shining Star Trophy","http://www.hulu.com/angelina-ballerina-the-shining-star-trophy",n/a
 "Hulu","Angus & Cheryl","http://www.hulu.com/angus-and-cheryl",n/a
 "Hulu","Animal Farm","http://www.hulu.com/animal-farm",n/a
 "Hulu","Animal Party","http://www.hulu.com/animal-party",n/a
@@ -1248,6 +1268,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Bamboo Blade","http://www.hulu.com/bamboo-blade",2986
 "Hulu","Bananas in Pyjamas (2011)","http://www.hulu.com/bananas-in-pyjamas-2011",n/a
 "Hulu","Barakamon","http://www.hulu.com/barakamon",22789
+"Hulu","Barney: Storytime with Barney","http://www.hulu.com/barney-storytime-with-barney",n/a
 "Hulu","Basilisk","http://www.hulu.com/basilisk",67
 "Hulu","Battle Girls: Time Paradox","http://www.hulu.com/battle-girls-time-paradox",10308
 "Hulu","Battle of the Planets","http://www.hulu.com/battle-of-the-planets",2389
@@ -1300,6 +1321,35 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Blue Gender: The Warrior","http://www.hulu.com/blue-gender-the-warrior",1380
 "Hulu","Blue Spring Ride","http://www.hulu.com/blue-spring-ride",21995
 "Hulu","Blue Submarine No. 6","http://www.hulu.com/blue-submarine-no-6",1051
+"Hulu","Bob the Builder: Animal Adventures","http://www.hulu.com/bob-the-builder-animal-adventures",n/a
+"Hulu","Bob The Builder: Bob Saves the Day!","http://www.hulu.com/bob-the-builder-bob-saves-the-day",n/a
+"Hulu","Bob The Builder: Bob's Big Plan","http://www.hulu.com/bob-the-builder-bobs-big-plan",n/a
+"Hulu","Bob the Builder: Bob's Top Team","http://www.hulu.com/bob-the-builder-bobs-top-team",n/a
+"Hulu","Bob the Builder: Build It and They Will Come","http://www.hulu.com/bob-the-builder-build-it-and-they-will-come",n/a
+"Hulu","Bob the Builder: Build It Big!","http://www.hulu.com/bob-the-builder-build-it-big",n/a
+"Hulu","Bob The Builder: Building Buddies","http://www.hulu.com/bob-the-builder-building-buddies",n/a
+"Hulu","Bob the Builder: Building Yard Adventure","http://www.hulu.com/bob-the-builder-building-yard-adventure",n/a
+"Hulu","Bob the Builder: Built for Fun","http://www.hulu.com/bob-the-builder-built-for-fun",n/a
+"Hulu","Bob the Builder: Call in the Crew","http://www.hulu.com/bob-the-builder-call-in-the-crew",n/a
+"Hulu","Bob The Builder: Can Do Crew","http://www.hulu.com/bob-the-builder-can-do-crew",n/a
+"Hulu","Bob The Builder: Can We Fix It","http://www.hulu.com/bob-the-builder-can-we-fix-it",n/a
+"Hulu","Bob The Builder: Christmas to Remember","http://www.hulu.com/bob-the-builder-christmas-to-remember",n/a
+"Hulu","Bob the Builder: Construction Chaos","http://www.hulu.com/bob-the-builder-construction-chaos",n/a
+"Hulu","Bob the Builder: Dig! Lift! Haul!","http://www.hulu.com/bob-the-builder-dig-lift-haul",n/a
+"Hulu","Bob the Builder: Digging for Treasure","http://www.hulu.com/bob-the-builder-digging-for-treasure",n/a
+"Hulu","Bob the Builder: Heavy Duty Diggers","http://www.hulu.com/bob-the-builder-heavy-duty-diggers",n/a
+"Hulu","Bob the Builder: Let's Build!","http://www.hulu.com/bob-the-builder-lets-build",n/a
+"Hulu","Bob the Builder: On Site - Skyscrapers","http://www.hulu.com/bob-the-builder-on-site--skyscrapers",n/a
+"Hulu","Bob the Builder: Pets in a Pickle","http://www.hulu.com/bob-the-builder-pets-in-a-pickle",n/a
+"Hulu","Bob The Builder: Race to the Finish Movie","http://www.hulu.com/bob-the-builder-race-to-the-finish-movie",n/a
+"Hulu","Bob the Builder: Teamwork Time!","http://www.hulu.com/bob-the-builder-teamwork-time",n/a
+"Hulu","Bob the Builder: The Big Game","http://www.hulu.com/bob-the-builder-the-big-game",n/a
+"Hulu","Bob The Builder: The Knights of Fix-A-Lot","http://www.hulu.com/bob-the-builder-the-knights-of-fixalot",n/a
+"Hulu","Bob The Builder: Three Musketruck","http://www.hulu.com/bob-the-builder-three-musketruck",n/a
+"Hulu","Bob the Builder: To the Rescue","http://www.hulu.com/bob-the-builder-to-the-rescue",n/a
+"Hulu","Bob the Builder: Tool Power","http://www.hulu.com/bob-the-builder-tool-power",n/a
+"Hulu","Bob the Builder: Truck Teamwork","http://www.hulu.com/bob-the-builder-truck-teamwork",n/a
+"Hulu","Bob The Builder: When Bob Became a Builder","http://www.hulu.com/bob-the-builder-when-bob-became-a-builder",n/a
 "Hulu","Bob's Burgers","http://www.hulu.com/bobs-burgers",n/a
 "Hulu","Bodacious Space Pirates","http://www.hulu.com/bodacious-space-pirates",8917
 "Hulu","Bold Eagles","http://www.hulu.com/bold-eagles",n/a
@@ -1446,7 +1496,6 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Di Gi Charat Winter Garden","http://www.hulu.com/di-gi-charat-winter-garden",1718
 "Hulu","Diabolik Lovers","http://www.hulu.com/diabolik-lovers",17513
 "Hulu","Diabolik Lovers II: More,Blood","http://www.hulu.com/diabolik-lovers-ii-moreblood",29974
-"Hulu","Diamond Daydreams","http://www.hulu.com/diamond-daydreams",148
 "Hulu","Dick Figures: The Movie","http://www.hulu.com/dick-figures-the-movie",n/a
 "Hulu","Digimon Adventure","http://www.hulu.com/digimon-adventure",552
 "Hulu","Digimon Adventure tri.","http://www.hulu.com/digimon-adventure-tri",25687
@@ -1897,6 +1946,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Mezzo","http://www.hulu.com/mezzo",222
 "Hulu","Mia and the Migoo","http://www.hulu.com/mia-and-the-migoo",n/a
 "Hulu","Michiko and Hatchin","http://www.hulu.com/michiko-and-hatchin",4087
+"Hulu","Miffy the Movie","http://www.hulu.com/miffy-the-movie",n/a
 "Hulu","Mikagura School Suite","http://www.hulu.com/mikagura-school-suite",28817
 "Hulu","Minami-ke","http://www.hulu.com/minami-ke",14511
 "Hulu","Minuscule: Valley of the Lost Ants","http://www.hulu.com/minuscule-valley-of-the-lost-ants",n/a
@@ -2029,6 +2079,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","Patlabor The Mobile Police (TV)","http://www.hulu.com/patlabor-the-mobile-police-tv",324
 "Hulu","Patlabor: The Movie","http://www.hulu.com/patlabor-the-movie",1095
 "Hulu","Peacemaker","http://www.hulu.com/peacemaker",161
+"Hulu","Peach Girl","http://www.hulu.com/peach-girl",325
 "Hulu","Penguindrum","http://www.hulu.com/penguindrum",10721
 "Hulu","Persona 4","http://www.hulu.com/persona-4",10588
 "Hulu","Persona4 the Golden Animation","http://www.hulu.com/persona4-the-golden-animation",24075
@@ -2411,6 +2462,22 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","The World Is Still Beautiful","http://www.hulu.com/the-world-is-still-beautiful",22101
 "Hulu","The World of Strawberry Shortcake","http://www.hulu.com/the-world-of-strawberry-shortcake",n/a
 "Hulu","This Ugly Yet Beautiful World","http://www.hulu.com/this-ugly-yet-beautiful-world",146
+"Hulu","Thomas & Friends: Animals Aboard!","http://www.hulu.com/thomas--friends-animals-aboard",n/a
+"Hulu","Thomas & Friends: Cranky Bugs & Other Thomas Stories","http://www.hulu.com/thomas--friends-cranky-bugs--other-thomas-stories",n/a
+"Hulu","Thomas & Friends: Curious Cargo","http://www.hulu.com/thomas--friends-curious-cargo",n/a
+"Hulu","Thomas & Friends: Go Go Thomas!","http://www.hulu.com/thomas--friends-go-go-thomas",n/a
+"Hulu","Thomas & Friends: Henry & the Elephant","http://www.hulu.com/thomas--friends-henry--the-elephant",n/a
+"Hulu","Thomas & Friends: It's Great to be an Engine!","http://www.hulu.com/thomas--friends-its-great-to-be-an-engine",n/a
+"Hulu","Thomas & Friends: King of the Railway","http://www.hulu.com/thomas--friends-king-of-the-railway",n/a
+"Hulu","Thomas & Friends: Railway Mischief","http://www.hulu.com/thomas--friends-railway-mischief",n/a
+"Hulu","Thomas & Friends: Rescue on the Rails","http://www.hulu.com/thomas--friends-rescue-on-the-rails",n/a
+"Hulu","Thomas & Friends: Spills & Thrills","http://www.hulu.com/thomas--friends-spills--thrills",n/a
+"Hulu","Thomas & Friends: Splish, Splash, Splosh","http://www.hulu.com/thomas--friends-splish-splash-splosh",n/a
+"Hulu","Thomas & Friends: The Lion of Sodor","http://www.hulu.com/thomas--friends-the-lion-of-sodor",n/a
+"Hulu","Thomas & Friends: The Thomas Way","http://www.hulu.com/thomas--friends-the-thomas-way",n/a
+"Hulu","Thomas & Friends: Thomas and the Treasure","http://www.hulu.com/thomas-and-friends-thomas-and-the-treasure",n/a
+"Hulu","Thomas & Friends: Trusty Friends","http://www.hulu.com/thomas--friends-trusty-friends",n/a
+"Hulu","Thomas & Friends: Wobbly Wheels & Whistles","http://www.hulu.com/thomas--friends-wobbly-wheels--whistles",n/a
 "Hulu","Tide-Line Blue","http://www.hulu.com/tide-line-blue",473
 "Hulu","Tide-Line Blue","http://www.hulu.com/tide-line-blue",1001
 "Hulu","Tiger & Bunny","http://www.hulu.com/tiger-and-bunny",9941
@@ -2515,6 +2582,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Hulu","We, Without Wings: Under the Innocent Sky","http://www.hulu.com/we-without-wings-under-the-innocent-sky",9922
 "Hulu","Welcome to the NHK","http://www.hulu.com/welcome-to-the-nhk",1210
 "Hulu","Wendy","http://www.hulu.com/wendy",n/a
+"Hulu","When They Cry","http://www.hulu.com/when-they-cry",934
 "Hulu","Wild Kratts","http://www.hulu.com/wild-kratts",n/a
 "Hulu","Wish Upon the Pleiades","http://www.hulu.com/wish-upon-the-pleiades",17919
 "Hulu","Witchblade","http://www.hulu.com/witchblade",935
@@ -2627,6 +2695,7 @@ Service,Anime,URL,MAL ID (or n/a)
 "Viewster","No Game No Life","https://www.viewster.com/serie/1323-19619-000",19815
 "Viewster","Plastic Memories","https://www.viewster.com/serie/1263-19431-000",27775
 "Viewster","Rental Magica","https://www.viewster.com/serie/1223-19567-000",2369
+"Viewster","Saint Beast: Kouin Jojishi Tenshi Tan","https://www.viewster.com/serie/1302-19490-000",2153
 "Viewster","Saint Beast: Seijuu Kourin Hen","https://www.viewster.com/serie/1302-19489-000",1037
 "Viewster","Samurai Warriors ","https://www.viewster.com/serie/1280-19203-000",28283
 "Viewster","Samurai Warriors SP","https://www.viewster.com/serie/1280-19202-000",21497
