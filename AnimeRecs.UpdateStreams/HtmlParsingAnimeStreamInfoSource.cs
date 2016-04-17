@@ -34,6 +34,11 @@ namespace AnimeRecs.UpdateStreams
             htmlDoc.LoadHtml(responseBody);
             HtmlNodeCollection matchingNodes = htmlDoc.DocumentNode.SelectNodes(XPath);
 
+            if (matchingNodes == null)
+            {
+                throw new Exception(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
+            }
+
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
             foreach (HtmlNode matchingNode in matchingNodes)
             {
