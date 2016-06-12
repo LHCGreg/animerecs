@@ -106,9 +106,8 @@ namespace AnimeRecs.UpdateStreams
             using (CompressionWebClient webClient = new CompressionWebClient())
             {
                 int position = 0;
-                int numAnimes = int.MaxValue;
-
-                while (position < numAnimes)
+                int numAnimesInPage;
+                do
                 {
                     string url = string.Format(
                         CultureInfo.InvariantCulture,
@@ -119,18 +118,14 @@ namespace AnimeRecs.UpdateStreams
                     string jsonString = webClient.DownloadString(url);
                     HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);
 
-                    if (json.data.Count == 0)
+                    // You can get no results if the total count on the first page does not agree with the total count on later pages.
+                    // Additions/removals seem to lag behind on later pages for some reason.
+                    if (json.data.Count == 0 && json.total_count == 0)
                     {
                         throw new Exception(string.Format("Did not get any hulu anime from url {0}", url));
                     }
+                    numAnimesInPage = json.data.Count;
 
-                    // Only set it for the first page.
-                    // Getting a weird problem for shows, Animation and Cartoons where total_count is 313 on the first page but 314 on subsequent pages, but there's actually only 313.
-                    if (position == 0)
-                    {
-                        numAnimes = json.total_count;
-                    }
-                    
                     foreach (var data in json.data)
                     {
                         string animeName = data.show.name;
@@ -138,7 +133,7 @@ namespace AnimeRecs.UpdateStreams
                         streams.Add(new AnimeStreamInfo(animeName: animeName, url: animeUrl, service: StreamingService.Hulu));
                         position++;
                     }
-                }
+                } while (numAnimesInPage > 0);
             }
 
             return streams;
