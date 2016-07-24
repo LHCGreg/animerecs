@@ -11,7 +11,7 @@ namespace AnimeRecs.UpdateStreams
     class VizStreamInfoSource : HtmlParsingAnimeStreamInfoSource
     {
         private const string Url = "http://www.viz.com/watch/streaming/watch";
-        private const string XPath = @"//table[@class=""purchase-table""]/tbody/tr/td/a";
+        private const string XPath = @"//div[contains(@class,'property-row')]/a";
         
         public VizStreamInfoSource()
             : base(Url, XPath)
@@ -22,7 +22,14 @@ namespace AnimeRecs.UpdateStreams
         protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
         {
             string possiblyRelativeUrl = matchingNode.Attributes["href"].Value;
-            string animeName = HtmlEntity.DeEntitize(matchingNode.InnerText);
+
+            HtmlNode animeNameDiv = matchingNode.ChildNodes.Where(node => node.NodeType == HtmlNodeType.Element && node.Name == "div" && node.Attributes.Contains("class") && node.Attributes["class"].Value.Contains("type-center")).FirstOrDefault();
+            if (animeNameDiv == null)
+            {
+                throw new Exception(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
+            }
+
+            string animeName = HtmlEntity.DeEntitize(animeNameDiv.InnerText);
             return new AnimeStreamInfo(animeName, possiblyRelativeUrl, StreamingService.Viz);
         }
     }
