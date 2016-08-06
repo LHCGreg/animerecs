@@ -28,15 +28,13 @@ namespace AnimeRecs.UpdateStreams
                 responseBody = client.DownloadString(Url);
             }
 
-            // HTML Agility Pack does not convert "&Auml;" to an A with an umlaut
-            // but it doesn't really matter as long as it's readable by the human editing the csv and consistent across program runs.
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseBody);
             HtmlNodeCollection matchingNodes = htmlDoc.DocumentNode.SelectNodes(XPath);
 
             if (matchingNodes == null)
             {
-                throw new Exception(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
+                throw new NoMatchingHtmlException(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
             }
 
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();

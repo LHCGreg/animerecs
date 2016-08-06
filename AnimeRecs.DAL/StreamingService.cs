@@ -12,11 +12,13 @@ namespace AnimeRecs.DAL
         Viz = 3,
         Hulu = 4,
         Viewster = 5,
-        Daisuki = 6
+        Daisuki = 6,
+        Netflix = 7,
+        AnimeNetwork = 8
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2016 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

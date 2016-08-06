@@ -110,7 +110,7 @@ namespace AnimeRecs.UpdateStreams
 
             if (streams.Count == 0)
             {
-                throw new Exception("No streams found!");
+                throw new NoMatchingHtmlException("No streams found!");
             }
             return streams;
         }
