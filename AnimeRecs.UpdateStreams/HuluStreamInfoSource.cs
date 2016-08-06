@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using AnimeRecs.DAL;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using MiscUtil.Collections;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -60,24 +61,22 @@ namespace AnimeRecs.UpdateStreams
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
+            HashSet<AnimeStreamInfo> streams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, string>(streamInfo => streamInfo.Url, StringComparer.OrdinalIgnoreCase));
             ICollection<AnimeStreamInfo> animeStreams = GetAnimeStreamInfo("shows", "Anime");
-            streams.AddRange(animeStreams);
-            HashSet<string> urls = new HashSet<string>(animeStreams.Select(stream => stream.Url));
+            streams.UnionWith(animeStreams);
 
             // Ugh, Hulu puts some anime in "Animation and Cartoons" instead of "Anime".
             // And some in both!
 
             ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("shows", "Animation and Cartoons");
-            streams.AddRange(animationAndCartoonStreams.Where(stream => !urls.Contains(stream.Url)));
-            urls.UnionWith(animationAndCartoonStreams.Select(stream => stream.Url));
+            streams.UnionWith(animationAndCartoonStreams);
 
             ICollection<AnimeStreamInfo> animeMovieStreams = GetAnimeStreamInfo("movies", "Anime");
-            streams.AddRange(animeMovieStreams.Where(stream => !urls.Contains(stream.Url)));
-            urls.UnionWith(animeMovieStreams.Select(stream => stream.Url));
+            streams.UnionWith(animeMovieStreams);
 
             ICollection<AnimeStreamInfo> animationAndCartoonMovieStreams = GetAnimeStreamInfo("movies", "Animation and Cartoons");
-            streams.AddRange(animationAndCartoonMovieStreams.Where(stream => !urls.Contains(stream.Url)));
+            streams.UnionWith(animationAndCartoonMovieStreams);
+
             return streams;
         }
 
@@ -141,7 +140,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2016 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
