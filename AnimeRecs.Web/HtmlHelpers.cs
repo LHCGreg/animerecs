@@ -203,12 +203,12 @@ namespace AnimeRecs.Web
         public static string GetMalAnimeUrl(int malAnimeId, string animeTitle)
         {
             // TODO: Add url-sanitized anime name at end for a friendlier URL?
-            return string.Format("http://myanimelist.net/anime/{0}", malAnimeId.ToString(CultureInfo.InvariantCulture));
+            return string.Format("https://myanimelist.net/anime/{0}", malAnimeId.ToString(CultureInfo.InvariantCulture));
         }
 
         public static string GetMalListUrl(string username)
         {
-            return string.Format("http://myanimelist.net/animelist/{0}", Uri.EscapeUriString(username));
+            return string.Format("https://myanimelist.net/animelist/{0}", Uri.EscapeUriString(username));
         }
 
         public static AnimeRecsRecommendationType GetRecommendationType(MalAnimeRecsRecommenderUser recommender,
