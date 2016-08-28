@@ -58,7 +58,7 @@ VALUES
 
                     cmd.Parameters.AddWithValue(string.Format("MalUserId{0}", numTag), tag.mal_user_id);
                     cmd.Parameters.AddWithValue(string.Format("MalAnimeId{0}", numTag), tag.mal_anime_id);
-                    cmd.Parameters.AddWithValue(string.Format("Tag{0}", numTag), tag.tag);
+                    cmd.Parameters.AddWithValue(string.Format("Tag{0}", numTag), (object)tag.tag ?? DBNull.Value);
 
                     numTag++;
                     anyRows = true;
@@ -81,7 +81,7 @@ VALUES
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2016 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

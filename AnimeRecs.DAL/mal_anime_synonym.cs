@@ -52,7 +52,7 @@ namespace AnimeRecs.DAL
                     sqlBuilder.AppendFormat("(:MalAnimeId{0}, :Synonym{0})", numSynonym);
 
                     cmd.Parameters.AddWithValue(string.Format("MalAnimeId{0}", numSynonym), synonym.mal_anime_id);
-                    cmd.Parameters.AddWithValue(string.Format("Synonym{0}", numSynonym), synonym.synonym);
+                    cmd.Parameters.AddWithValue(string.Format("Synonym{0}", numSynonym), (object)synonym.synonym ?? DBNull.Value);
 
                     numSynonym++;
                     anyRows = true;
@@ -75,7 +75,7 @@ namespace AnimeRecs.DAL
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2016 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

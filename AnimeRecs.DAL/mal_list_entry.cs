@@ -73,15 +73,15 @@ VALUES
 
                     cmd.Parameters.AddWithValue(string.Format("MalUserId{0}", numEntry), entry.mal_user_id);
                     cmd.Parameters.AddWithValue(string.Format("MalAnimeId{0}", numEntry), entry.mal_anime_id);
-                    cmd.Parameters.AddWithValue(string.Format("Rating{0}", numEntry), entry.rating);
+                    cmd.Parameters.AddWithValue(string.Format("Rating{0}", numEntry), (object)entry.rating ?? DBNull.Value);
                     cmd.Parameters.AddWithValue(string.Format("MalListEntryStatusId{0}", numEntry), entry.mal_list_entry_status_id);
                     cmd.Parameters.AddWithValue(string.Format("NumEpisodesWatched{0}", numEntry), entry.num_episodes_watched);
-                    cmd.Parameters.AddWithValue(string.Format("StartedWatchingYear{0}", numEntry), entry.started_watching_year);
-                    cmd.Parameters.AddWithValue(string.Format("StartedWatchingMonth{0}", numEntry), entry.started_watching_month);
-                    cmd.Parameters.AddWithValue(string.Format("StartedWatchingDay{0}", numEntry), entry.started_watching_day);
-                    cmd.Parameters.AddWithValue(string.Format("FinishedWatchingYear{0}", numEntry), entry.finished_watching_year);
-                    cmd.Parameters.AddWithValue(string.Format("FinishedWatchingMonth{0}", numEntry), entry.finished_watching_month);
-                    cmd.Parameters.AddWithValue(string.Format("FinishedWatchingDay{0}", numEntry), entry.finished_watching_day);
+                    cmd.Parameters.AddWithValue(string.Format("StartedWatchingYear{0}", numEntry), (object)entry.started_watching_year ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue(string.Format("StartedWatchingMonth{0}", numEntry), (object)entry.started_watching_month ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue(string.Format("StartedWatchingDay{0}", numEntry), (object)entry.started_watching_day ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue(string.Format("FinishedWatchingYear{0}", numEntry), (object)entry.finished_watching_year ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue(string.Format("FinishedWatchingMonth{0}", numEntry), (object)entry.finished_watching_month ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue(string.Format("FinishedWatchingDay{0}", numEntry), (object)entry.finished_watching_day ?? DBNull.Value);
                     cmd.Parameters.AddWithValue(string.Format("LastMalUpdate{0}", numEntry), entry.last_mal_update);
 
                     numEntry++;
@@ -105,7 +105,7 @@ VALUES
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2016 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //
