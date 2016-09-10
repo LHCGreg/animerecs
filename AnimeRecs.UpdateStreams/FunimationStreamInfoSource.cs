@@ -17,7 +17,8 @@ namespace AnimeRecs.UpdateStreams
             animeRegex: new Regex("<li><a class=\"fs16 bold\" href=\"(?<Url>[^\"]*)\">(?<AnimeName>.*?)</a>",
                 RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
         {
-            ;
+            Cookies = new System.Net.CookieCollection();
+            Cookies.Add(new System.Net.Cookie("welcome_page", "1", "/", "www.funimation.com"));
         }
     }
 }
