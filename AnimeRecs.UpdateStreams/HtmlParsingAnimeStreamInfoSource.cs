@@ -5,6 +5,7 @@ using System.Text;
 using HtmlAgilityPack;
 using AnimeRecs.DAL;
 using System.Net;
+using System.IO;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -12,6 +13,14 @@ namespace AnimeRecs.UpdateStreams
     {
         private string Url { get; set; }
         private string XPath { get; set; }
+
+        /// <summary>
+        /// Set this to send cookies in the web request.
+        /// </summary>
+        public CookieCollection Cookies { get; set; }
+
+        // Set this to add headers to the web request
+        public Dictionary<string, string> Headers { get; set; }
 
         protected HtmlParsingAnimeStreamInfoSource(string url, string xpath)
         {
@@ -21,18 +30,48 @@ namespace AnimeRecs.UpdateStreams
         
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            string responseBody;
-            using (CompressionWebClient client = new CompressionWebClient())
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(Url);
+
+            request.Method = "GET";
+            request.KeepAlive = false;
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            if (Cookies != null)
             {
-                Console.WriteLine("Getting HTML for {0}", Url);
-                responseBody = client.DownloadString(Url);
+                request.CookieContainer = new CookieContainer();
+                request.CookieContainer.Add(Cookies);
+            }
+
+            if (Headers != null)
+            {
+                foreach (KeyValuePair<string, string> headerAndValue in Headers)
+                {
+                    request.Headers[headerAndValue.Key] = headerAndValue.Value;
+                }
+            }
+
+            string responseBody = null;
+            Console.WriteLine("Getting HTML for {0}", Url);
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(string.Format("HTTP status code {0}", response.StatusCode));
+                }
+
+                using (Stream responseBodyStream = response.GetResponseStream())
+                using (StreamReader responseBodyReader = new StreamReader(responseBodyStream, Encoding.UTF8))
+                {
+                    // XXX: Shouldn't be hardcoding UTF-8
+                    responseBody = responseBodyReader.ReadToEnd();
+                }
             }
 
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseBody);
             HtmlNodeCollection matchingNodes = htmlDoc.DocumentNode.SelectNodes(XPath);
 
-            if (matchingNodes == null)
+            if (matchingNodes == null || matchingNodes.Count == 0)
             {
                 throw new NoMatchingHtmlException(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
             }

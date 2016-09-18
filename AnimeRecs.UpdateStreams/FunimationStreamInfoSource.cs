@@ -4,26 +4,111 @@ using System.Linq;
 using System.Text;
 using AnimeRecs.DAL;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.IO;
+using MiscUtil.Collections;
+using HtmlAgilityPack;
 
 namespace AnimeRecs.UpdateStreams
 {
-    class FunimationStreamInfoSource : HtmlRegexAnimeStreamInfoSource
+    class FunimationStreamInfoSource : IAnimeStreamInfoSource
     {
-        // <li><a class="fs16 bold" href="http://www.funimation.com/shows/hackquantum/videos/episodes/anime">.hack//Quantum</a></li>
-
         public FunimationStreamInfoSource()
-            : base(url: "http://www.funimation.com/videos", service: StreamingService.Funimation,
-            animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute,
-            animeRegex: new Regex("<li><a class=\"fs16 bold\" href=\"(?<Url>[^\"]*)\">(?<AnimeName>.*?)</a>",
-                RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
         {
-            Cookies = new System.Net.CookieCollection();
-            Cookies.Add(new System.Net.Cookie("welcome_page", "1", "/", "www.funimation.com"));
+
+        }
+
+        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        {
+            HashSet<AnimeStreamInfo> tvStreams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, Tuple<string, string>>(streamInfo => Tuple.Create(streamInfo.Url, streamInfo.AnimeName)));
+            HashSet<AnimeStreamInfo> movieStreams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, Tuple<string, string>>(streamInfo => Tuple.Create(streamInfo.Url, streamInfo.AnimeName)));
+            string tvUrlTemplate = "http://www.funimation.com/shows/{0}?search=0&order_by=title&order_sort=asc&offset={0}";
+            string movieUrlTemplate = "http://www.funimation.com/videos/movies/{0}?search=0&order_by=show_title&order_sort=asc&offset={0}";
+            int offset = 0;
+
+            while (true)
+            {
+                string url = string.Format(tvUrlTemplate, offset);
+                HtmlParsingAnimeStreamInfoSource helperSource = new HelperStreamInfoSource(url);
+
+                try
+                {
+                    ICollection<AnimeStreamInfo> streamsFromThisRequest = helperSource.GetAnimeStreamInfo();
+                    tvStreams.UnionWith(streamsFromThisRequest);
+                }
+                catch (NoMatchingHtmlException)
+                {
+                    if (tvStreams.Count > 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                offset += 20;
+            }
+
+            offset = 0;
+
+            while (true)
+            {
+                string url = string.Format(movieUrlTemplate, offset);
+                HtmlParsingAnimeStreamInfoSource helperSource = new HelperStreamInfoSource(url);
+
+                try
+                {
+                    ICollection<AnimeStreamInfo> streamsFromThisRequest = helperSource.GetAnimeStreamInfo();
+                    movieStreams.UnionWith(streamsFromThisRequest);
+                }
+                catch (NoMatchingHtmlException)
+                {
+                    if (movieStreams.Count > 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                offset += 20;
+            }
+
+            HashSet<AnimeStreamInfo> allStreams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, Tuple<string, string>>(streamInfo => Tuple.Create(streamInfo.Url, streamInfo.AnimeName)));
+            allStreams.UnionWith(tvStreams);
+            allStreams.UnionWith(movieStreams);
+            return allStreams;
+        }
+
+        private class HelperStreamInfoSource : HtmlParsingAnimeStreamInfoSource
+        {
+            //<div class="popup-heading">
+            //    <a href="http://www.funimation.com/shows/king-of-thorn" class="item-title">King of Thorn</a>
+            //</div>
+            private static string xpath = "//div[contains(@class, 'popup-heading')]/a[contains(@class, 'item-title')]";
+
+            public HelperStreamInfoSource(string url)
+                : base(url, xpath)
+            {
+                Cookies = new CookieCollection() { new Cookie("welcome_page", "1", "/", "www.funimation.com") }; // Needed so Funimation doesn't return the page about Funimation and Crunchyroll teaming up
+                Headers = new Dictionary<string, string>(1) { { "X-Requested-With", "XMLHttpRequest" } }; // Needed or else Funimation returns the regular page instead of the ajax results
+            }
+
+            protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
+            {
+                string animeName = HtmlEntity.DeEntitize(matchingNode.InnerText);
+                string url = matchingNode.Attributes["href"].Value;
+                return new AnimeStreamInfo(animeName, url, StreamingService.Funimation);
+            }
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2016 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

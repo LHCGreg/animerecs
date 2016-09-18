@@ -22,6 +22,9 @@ namespace AnimeRecs.UpdateStreams
         /// </summary>
         public CookieCollection Cookies { get; set; }
 
+        // Set this to add headers to the web request
+        public Dictionary<string, string> Headers { get; set; }
+
         /// <summary>
         /// Regex must have a named capture group called AnimeName and Url
         /// </summary>
@@ -48,6 +51,14 @@ namespace AnimeRecs.UpdateStreams
             {
                 request.CookieContainer = new CookieContainer();
                 request.CookieContainer.Add(Cookies);
+            }
+
+            if (Headers != null)
+            {
+                foreach (KeyValuePair<string, string> headerAndValue in Headers)
+                {
+                    request.Headers[headerAndValue.Key] = headerAndValue.Value;
+                }
             }
 
             string responseBody = null;
@@ -94,13 +105,6 @@ namespace AnimeRecs.UpdateStreams
                 else
                 {
                     absoluteUrl = new Uri(animeListUri, rawUri).ToString();
-                }
-
-                // Hack to work around Funimation's CMS having this where "PUCHIM@S" would normally be:
-                // <span class=""__cf_email__"" data-cfemail=""29797c6a616064697a"">[email protected]</span><script data-cfhash='f9e31' type=""text/javascript"">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>
-                if (absoluteUrl == "http://www.funimation.com/shows/puchims/videos/episodes")
-                {
-                    animeName = "PUCHIM@S";
                 }
 
                 streams.Add(new AnimeStreamInfo(animeName: animeName, url: absoluteUrl, service: Service));
