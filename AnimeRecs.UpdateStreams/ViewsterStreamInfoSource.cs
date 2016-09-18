@@ -12,7 +12,7 @@ namespace AnimeRecs.UpdateStreams
 {
     class ViewsterStreamInfoSource : IAnimeStreamInfoSource
     {
-        private static readonly string InitialPage = "https://www.viewster.com/genre/58/anime/";
+        private static readonly string InitialPageUrl = "https://www.viewster.com/genre/58/anime/";
         
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
@@ -22,8 +22,7 @@ namespace AnimeRecs.UpdateStreams
 
         private string GetAPIToken()
         {
-            string initialPageUrl = "https://www.viewster.com/genre/58/anime/";
-            HttpWebRequest request = HttpWebRequest.CreateHttp(initialPageUrl);
+            HttpWebRequest request = HttpWebRequest.CreateHttp(InitialPageUrl);
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             request.CookieContainer = new CookieContainer();
