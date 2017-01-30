@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+
+<html ng-app="funimationApp" lang="en">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+	<meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQUBUlJWCBACVFNQDwUEXw=="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(15),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(16),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),s.xhrWrappable&&t(9),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),c=t(7),s="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState";t("loader").features.stn=!0,t(6);var g=NREUM.o.EV;o.on(m,function(t,e){var n=t[0];n instanceof g&&(this.bstStart=Date.now())}),o.on(w,function(t,e){var n=t[0];n instanceof g&&i("bst",[n,e,this.bstStart,Date.now()])}),a.on(m,function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),a.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),this.bstType])}),c.on(m,function(){this.bstStart=Date.now()}),c.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=Date.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+s]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+s]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+s]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(17)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,e,n){var r=t("ee").get("history"),o=t(17)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,e,n){var r=t("ee").get("raf"),o=t(17)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(17)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],9:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,w,"fn-",c)}function i(t){v.push(t),h&&(g=-g,b.data=g)}function a(){for(var t=0;t<v.length;t++)r([],v[t]);v.length&&(v=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(5);var f=t("ee"),u=f.get("xhr"),d=t(17)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",w=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],v=[];e.exports=u;var y=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,y),y.prototype=p.prototype,d.inPlace(y.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var g=1,b=document.createTextNode(g);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],10:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],11:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],12:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(15),c=t(16),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],13:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],14:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],15:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],16:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],17:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[y[n]];return f&&f.push([g,n,r,i]),i}}function p(t,e){v[t]=h(t).concat(e)}function h(t){return v[t]||[]}function m(t){return d[t]=d[t]||o(n)}function w(t,e){f(t,function(t,n){e=e||"feature",y[n]=e,e in u||(u[e]=[])})}var v={},y={},g={on:p,emit:n,get:m,listeners:h,context:e,buffer:w,abort:a,aborted:!1};return g}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(15),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=g.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(v,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(15),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(12);var w=""+location,v={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1016.min.js"},y=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),g=e.exports={offset:a(),origin:w,features:{},xhrWrappable:y};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,10,4,3]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"0339219548","agent":"","transactionName":"MVxWZ0JTXhIHVRZdXwgWckZeUUQICVhNX1EIXBpFWVdHElx3DlhjDlZDQGZbVRZIVA1bRBVNRlJAbUAAAVM9UFESWA==","applicationID":"20228439","errorBeacon":"bam.nr-data.net","applicationTime":516}</script>
+	<title>All Funimation Anime Shows List</title>
+	<meta name="description" content="View the entire list of Funimation anime and enjoy your classics and find new favorites. Try new anime genres in our entire anime catalog.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+	<meta name="keywords" content="popular anime, Funimation">
+	<meta property="og:site_name" content="Funimation">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://www.funimation.com/static/img/funimation-share-logo.jpg">
+	<meta property="fb:app_id" content="444514955756615" />
+	
+	<meta property="og:title" content="All Funimation Anime Shows List">
+	<meta property="og:description" content="View the entire list of Funimation anime and enjoy your classics and find new favorites. Try new anime genres in our entire anime catalog.">
+	
+
+	
+	<meta property="og:site_name" content="Funimation">
+	
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/static/img/favicon.ico?v=" type="image/x-icon">
+	<link href="/static/style/common.css?v=" rel="stylesheet"/>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="/static/script/modernizr.min.js"></script>
+	<script src="/static/script/angular-1.4.5.min.js"></script>
+	<script src="/static/script/libs/angular-messages.js"></script>
+	<script src="/static/script/jquery-1.11.3.min.js"></script>
+	<script>var userDataObject = {}, templateShippingMethods = [], shippingAddresses = [];</script>
+	
+	<script src="/static/script/angular-credit-cards.js"></script>
+	<script src="/static/script/libs/angular/dir-pagination.js"></script>
+	<script src="/static/script/libs/jquery/jquery.raty-fa.js"></script>
+	<script src="/static/script/angular/gsa.js"></script>
+	
+	
+	
+<link href="https://www.funimation.com/shows/all-shows/" rel="canonical" />
+
+</head>
+
+<body id="" class="">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W977WG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+{'gtm.start': new Date().getTime(),event:'gtm.js'}
+);var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W977WG');</script>
+<!-- End Google Tag Manager -->
+
+<!--   KANE UI HTML  -->
+
+
+
+<script>
+    var KANE_pushObj = {
+        'ecommerce': {
+            'promoView': {
+                'promotions': []
+            },
+            'impressions': [],
+            'currencyCode': 'USD',
+        }
+    }
+
+    function getCustomDimensionCookie(name) {
+        var i,x,y,cookies = document.cookie.split(";");
+		var good = false;
+		for (i = 0; i < cookies.length; i++) {
+			x = cookies[i].substr(0,cookies[i].indexOf("="));
+			y = cookies[i].substr(cookies[i].indexOf("=")+1);
+			x = x.replace(/^\s+|\s+$/g,"");
+			if (x == name) return unescape(y); good = true;
+		};
+		if(!good) return false;
+    }
+
+    var KANE_customdimensions = {
+        'event':'set-customdimensions',
+        'requesttime': Date(),
+        'userCountry': 'US',
+        'sessionCookie': getCustomDimensionCookie('PIsession'),
+        'userCookie': getCustomDimensionCookie('PIuser'),
+        
+            'customerType': 'New',
+        
+    }
+
+    var KANE_territories = {'default': 'https://www.funimation.com', 'CA': 'https://www.funimation.com', 'US': 'https://www.funimation.com', 'curTer': 'US', 'GB': 'https://www.funimationnow.uk', 'IE': 'https://www.funimationnow.ie'};
+</script>
+
+
+
+    <!--  ===================================================================  -->
+    <!--  HEADER  ===========================================================  -->
+    <!--  ===================================================================  -->
+    <header class="skinny" id="funimation-main-site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 hidden-xs hidden-sm"></div>
+                <div class="col-md-10 padding-left-right-15">
+                    <a id="trigger" href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                    <div id="logo">
+                        <a href="/">
+                            <img id="desktop-logo" src="/static/img/common/funimation-anon-logo.png" alt="Funimation Logo" class="img-responsive" />
+                            <img id="mobile-logo" src="/static/img/common/funimation-anon-logo.png" alt="Funimation Mobile Logo"/>
+                        </a>
+                    </div>
+
+                    <!--  MOBILE HEADER ICONS  ===============  -->
+                    <div id="mobile-header-icons" class="">
+                        <a href="/log-in/" class="login-button img-responsive">Log In</a>
+                        <a href="#" class="search"><img src="/static/img/icons/icon-search.png" alt="" class="img-responsive" id="search-icon"></a>
+                        
+                        	<span class="cartMobile">
+    	                    	<img src="/static/img/icons/icon-cart.png" alt="" class="img-responsive" id="cart-icon">
+    	                    	<mini-cart mobile="true"></mini-cart>
+                        		
+
+	<script type="text/template" id="mini-cart-template">
+		<a ng-href="{{vm.cartLink}}" ng-click="vm.click()" ng-mouseenter="vm.show()" ng-mouseleave="vm.hide()">
+			<div class="ng-hide loader" ng-show="vm.loading">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32.6 32.6" style="enable-background:new 0 0 32.6 32.6;" xml:space="preserve">
+					<circle fill="red" cx="16.3" cy="16.3" r="16.3"/>
+					<path class="rotate animated infinite" d="M16.3,30.3c-7.7,0-14-6.3-14-14s6.3-14,14-14v6c-4.4,0-8,3.6-8,8s3.6,8,8,8c3.2,0,6.1-1.9,7.4-4.9l5.5,2.3
+					C27,26.9,21.9,30.3,16.3,30.3z" transform="rotate(220 16.3 16.3)" />
+				</svg>
+			</div>
+			<div ng-if="vm.cart.data.items.length > 0 && !vm.loading" ng-cloak class="badge red">{{vm.cart.data.items.length}}</div>
+			<!-- <div ng-transclude></div> -->
+		</a>
+		<div class="cartOptions open" ng-mouseenter="vm.show()" ng-mouseleave="vm.hide()">
+			<div class="totalCount">
+				<span ng-show="vm.cart.data.items.length === 1">1 item</span>
+				<span ng-show="vm.cart.data.items.length !== 1">{{vm.cart.data.items.length}} items</span>
+			</div>
+			<div class="totalPrice">
+				<div class="price">
+					<span data-ng-bind-html="vm.cart.data.subtotal | formatMoneyValue | currencyFormat"></span>
+				</div>
+			</div>
+			<a ng-href="{{vm.checkoutLink}}" ng-show="vm.cart.data.items.length > 0" class="ng-hide btn btn-success btn-cart">Checkout</a>
+			<div class="col-xs-12 product-list">
+				<div ng-show="vm.cart.data.items.length > 0" class="ng-hide row product" ng-repeat="item in vm.cart.data.items">
+					<cart-item
+						item="item"
+						update="vm.updateItem(item)"
+						remove="vm.removeItem(item)"
+						type="mini"
+					/>
+				</div>
+				<div ng-show="vm.cart.data.items.length === 0" class="ng-hide row product">
+					<p class="no-items">There are no items added to your cart</p>
+				</div>
+			</div>
+			<a href="/shop/cart" class="btn btn-default btn-edit">View and Edit Cart</a>
+		</div>
+	</script>
+
+	<script type="text/template" id="mini-cart-item-template">
+		<div class="col-xs-3">
+			<a ng-href="{{item.shopLink}}">
+				<img ng-src="//res.cloudinary.com/sfp/image/upload/q_80/cprd/catalog/product/{{item.productImage}}" alt="{{item.name}}" class="img-responsive ng-hide" ng-show="item.productImage">
+				<img ng-src="//res.cloudinary.com/sfp/image/upload/q_80/w_85,h_85/cste/be0f4dd3-1ad7-4174-8701-c9f54fce8c61.jpeg" alt="{{item.name}}" class="img-responsive ng-hide" ng-show="!item.productImage">
+			</a>
+		</div>
+		<div class="col-xs-9 product-info">
+			<div class="product-title">
+				<a ng-href="{{item.shopLink}}">
+					<span>{{item.show_name}}</span>
+					<span>{{item.name}}</span>
+				</a>
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-xs-4">
+						<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" class="loading-spinner">
+							<path ng-show="loading" ng-cloak opacity="0.2" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+							<path ng-show="loading" ng-cloak d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z" transform="rotate(216 20 20)">
+								<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animateTransform>
+							</path>
+						</svg>
+						<input type="text" id="qty-{{item.sku}}" class="form-control" ng-change="updateItem()" ng-model="item.qty" ng-model-options='{ debounce: 350 }'>
+					</div>
+					<div class="col-xs-4">
+						<a href ng-click="removeItem()" class="remove-from-cart"><i class="fa fa-trash"></i><span>{{removeText}}</span></a>
+					</div>
+					<div class="col-xs-4 text-right">
+						<div class="price">
+							<span data-ng-bind-html="item.updatedItemQty * item.updatedPrice | formatMoneyValue | currencyFormat"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row max-sale ng-hide" ng-show="item.product.extensionAttributes.stockItem.maxSaleQty < 100">
+					<span>Max sale quantity: {{item.product.extensionAttributes.stockItem.maxSaleQty}}</span>
+				</div>
+			</div>
+		</div>
+	</script>
+
+
+
+                        	</span>
+                        
+                        
+                    </div>
+
+                    <!--  MAIN NAVIGATION LINKS  =============  -->
+                    <nav id="main-navigation">
+                        <ul class="list-unstyled list-inline">
+    <li class="parent open"><a href="/whats-new/">What's New</a>
+        <ul class="list-unstyled">
+            <li><a href="/new-releases/">New Releases</a></li>
+            <li><a href="/schedule/">Schedule</a></li>
+            <li><a href="/shop/whats-new/">Products</a></li>
+            <li><a href="/events/">Events</a></li>
+        </ul>
+    </li>
+    <li class="parent open"><a href="/discover/">Discover</a>
+        <ul class="list-unstyled">
+            <li><a href="/recommended-for-you/">Recommended</a></li>
+            <li><a href="/trendingbuzz/">Trending</a></li>
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/moods/">Moods</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/forum/">Forum</a></li>
+            <li><a href="/dubbletalk/">DubbleTalk</a></li>
+        </ul>
+    </li>
+    <li class="parent open"><a href="/shows/">Shows</a>
+        <ul class="list-unstyled">
+            <li><a href="/shows/all-shows/">All Shows</a></li>
+            <li><a href="/genre/">Genres</a></li>
+            <li><a href="/simuldubs/">SimulDubs™</a></li>
+            <li><a href="/shows/popular/">Popular</a></li>
+        </ul>
+    </li>
+    <li class="parent open"><a href="/shop/">Shop</a>
+        <ul class="list-unstyled">
+            <li><a href="/shop/pre-orders/">Pre-orders</a></li>
+            <li><a href="/shop/home-video/">Home Video</a></li>
+            <li><a href="/shop/accessories/">Accessories</a></li>
+            <li><a href="/shop/figures-collectibles/">Figures &amp; Collectibles</a></li>
+            <li><a href="/shop/apparel/">Apparel</a></li>
+            <li><a href="/shop/toys-games/">Toys &amp; Games</a></li>
+            <li><a href="/shop/home-decor/">Home &amp; Décor</a></li>
+        </ul>
+    </li>
+</ul>
+                        <div class="navigation-callout">
+    <p id="callout-header">Start Your 14-Day Free Trial</p>
+    <p id="callout-subheader">Stream hundreds of ad-free anime anytime, anywhere.</p>
+    <a href="/subscribe/" class="btn"> START MY FREE TRIAL</a>
+</div>
+                    </nav>
+
+                    <!--  DEFAULT HEADER ICONS  ==============  -->
+                    <div class="header-icons">
+                        <ul class="list-unstyled list-inline">
+                            <ul class="list-unstyled list-inline">
+                            <li class="login-button"><a href="/log-in/" class="img-responsive">Log In</a></li>
+                            <li class="search"><a href="#"><img src="/static/img/icons/icon-search.png" alt="" class="img-responsive" id="search-icon"></a></li>
+                            
+    	                        <li class="cart">
+    	                        	<img src="/static/img/icons/icon-cart.png" alt="" class="img-responsive" id="cart-icon">
+    	                        	<mini-cart></mini-cart>
+    	                        </li>
+    							
+
+	<script type="text/template" id="mini-cart-template">
+		<a ng-href="{{vm.cartLink}}" ng-click="vm.click()" ng-mouseenter="vm.show()" ng-mouseleave="vm.hide()">
+			<div class="ng-hide loader" ng-show="vm.loading">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32.6 32.6" style="enable-background:new 0 0 32.6 32.6;" xml:space="preserve">
+					<circle fill="red" cx="16.3" cy="16.3" r="16.3"/>
+					<path class="rotate animated infinite" d="M16.3,30.3c-7.7,0-14-6.3-14-14s6.3-14,14-14v6c-4.4,0-8,3.6-8,8s3.6,8,8,8c3.2,0,6.1-1.9,7.4-4.9l5.5,2.3
+					C27,26.9,21.9,30.3,16.3,30.3z" transform="rotate(220 16.3 16.3)" />
+				</svg>
+			</div>
+			<div ng-if="vm.cart.data.items.length > 0 && !vm.loading" ng-cloak class="badge red">{{vm.cart.data.items.length}}</div>
+			<!-- <div ng-transclude></div> -->
+		</a>
+		<div class="cartOptions open" ng-mouseenter="vm.show()" ng-mouseleave="vm.hide()">
+			<div class="totalCount">
+				<span ng-show="vm.cart.data.items.length === 1">1 item</span>
+				<span ng-show="vm.cart.data.items.length !== 1">{{vm.cart.data.items.length}} items</span>
+			</div>
+			<div class="totalPrice">
+				<div class="price">
+					<span data-ng-bind-html="vm.cart.data.subtotal | formatMoneyValue | currencyFormat"></span>
+				</div>
+			</div>
+			<a ng-href="{{vm.checkoutLink}}" ng-show="vm.cart.data.items.length > 0" class="ng-hide btn btn-success btn-cart">Checkout</a>
+			<div class="col-xs-12 product-list">
+				<div ng-show="vm.cart.data.items.length > 0" class="ng-hide row product" ng-repeat="item in vm.cart.data.items">
+					<cart-item
+						item="item"
+						update="vm.updateItem(item)"
+						remove="vm.removeItem(item)"
+						type="mini"
+					/>
+				</div>
+				<div ng-show="vm.cart.data.items.length === 0" class="ng-hide row product">
+					<p class="no-items">There are no items added to your cart</p>
+				</div>
+			</div>
+			<a href="/shop/cart" class="btn btn-default btn-edit">View and Edit Cart</a>
+		</div>
+	</script>
+
+	<script type="text/template" id="mini-cart-item-template">
+		<div class="col-xs-3">
+			<a ng-href="{{item.shopLink}}">
+				<img ng-src="//res.cloudinary.com/sfp/image/upload/q_80/cprd/catalog/product/{{item.productImage}}" alt="{{item.name}}" class="img-responsive ng-hide" ng-show="item.productImage">
+				<img ng-src="//res.cloudinary.com/sfp/image/upload/q_80/w_85,h_85/cste/be0f4dd3-1ad7-4174-8701-c9f54fce8c61.jpeg" alt="{{item.name}}" class="img-responsive ng-hide" ng-show="!item.productImage">
+			</a>
+		</div>
+		<div class="col-xs-9 product-info">
+			<div class="product-title">
+				<a ng-href="{{item.shopLink}}">
+					<span>{{item.show_name}}</span>
+					<span>{{item.name}}</span>
+				</a>
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-xs-4">
+						<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" class="loading-spinner">
+							<path ng-show="loading" ng-cloak opacity="0.2" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+							<path ng-show="loading" ng-cloak d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z" transform="rotate(216 20 20)">
+								<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animateTransform>
+							</path>
+						</svg>
+						<input type="text" id="qty-{{item.sku}}" class="form-control" ng-change="updateItem()" ng-model="item.qty" ng-model-options='{ debounce: 350 }'>
+					</div>
+					<div class="col-xs-4">
+						<a href ng-click="removeItem()" class="remove-from-cart"><i class="fa fa-trash"></i><span>{{removeText}}</span></a>
+					</div>
+					<div class="col-xs-4 text-right">
+						<div class="price">
+							<span data-ng-bind-html="item.updatedItemQty * item.updatedPrice | formatMoneyValue | currencyFormat"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row max-sale ng-hide" ng-show="item.product.extensionAttributes.stockItem.maxSaleQty < 100">
+					<span>Max sale quantity: {{item.product.extensionAttributes.stockItem.maxSaleQty}}</span>
+				</div>
+			</div>
+		</div>
+	</script>
+
+
+
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1 hidden-xs hidden-sm"></div>
+            </div>
+        </div>
+</header>
+
+
+<!-- Search Bar -->
+<aside id="search-bar" class="skinny">
+    <div class="container">
+        <div class="row paddedRow">
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
+            <div class="col-md-10">
+                <form class="searchForm" name="searchForm" id="headerSearch" action="#" method="#">
+                    <div class="form-group clearfix">
+                        <input type="text" id="search-bar-input" class="form-control" name="search" ng-model="search" maxlength="40"  required placeholder="Search Funimation" />
+                        <button type="submit" class="btn">Search</button>
+                    </div>
+                </form>
+                <div id="search-drawer" ng-show="searchForm.$valid" class="ng-hide"></div>
+            </div>
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
+        </div>
+    </div>
+</aside>
+
+
+<main id="main" role="main"  class="container-fluid">
+<!--  CATEGORY/BROWSE/GENRE TEMPLATE  ========================================================================================== -->
+
+
+<div class="container" data-placementName="All Shows: Page 1">
+
+    <!-- Headline -->
+    <section class="headline main mbHalf">
+        <h1>All Shows</h1>
+        
+    </section>
+
+    <section>
+        <div class="row paddedRow">
+                <div class="col-md-1 hidden-xs hidden-sm"></div>
+                <div class="col-md-10 overflowHidden">
+                    <hr />
+                </div>
+                <div class="col-md-1 hidden-xs hidden-sm"></div>
+            </div>
+            <div class="row paddedRow">
+                <div class="col-md-1 hidden-xs hidden-sm"></div>
+                <div class="col-md-10 showCategoryControls">
+                    <div class="row evenSpacedColumns">
+                        <div class="col-sm-3 clearfix">
+                            <ul class="fa-ul clear-filters">
+                                
+                            </ul>
+                        </div>
+                        <div class="col-sm-9 clearfix">
+                            <div class="right-controls">
+                                <ul class="fa-ul filters">
+                                    <li class="list" data-filtertype="genre">Genres<i class="fa-li fa fa-list"></i>
+                                        <div class="list-dropdown">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genreactionadventure" data-filter="action-adventure" type="checkbox">
+                                                        
+
+                                                        <label for="genreactionadventure">Action/Adventure</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genrecomedy" data-filter="comedy" type="checkbox">
+                                                        
+
+                                                        <label for="genrecomedy">Comedy</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genredrama" data-filter="drama" type="checkbox">
+                                                        
+
+                                                        <label for="genredrama">Drama</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genrefan-service" data-filter="fan-service" type="checkbox">
+                                                        
+
+                                                        <label for="genrefan-service">Fan Service</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genrefantasy" data-filter="fantasy" type="checkbox">
+                                                        
+
+                                                        <label for="genrefantasy">Fantasy</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genrehorror" data-filter="horror" type="checkbox">
+                                                        
+
+                                                        <label for="genrehorror">Horror</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genrelive-action" data-filter="live-action" type="checkbox">
+                                                        
+
+                                                        <label for="genrelive-action">Live-Action</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genrepsychological" data-filter="psychological" type="checkbox">
+                                                        
+
+                                                        <label for="genrepsychological">Psychological</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genreromance" data-filter="romance" type="checkbox">
+                                                        
+
+                                                        <label for="genreromance">Romance</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genresci-fi" data-filter="sci-fi" type="checkbox">
+                                                        
+
+                                                        <label for="genresci-fi">Sci Fi</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genreshoujo" data-filter="shoujo" type="checkbox">
+                                                        
+
+                                                        <label for="genreshoujo">Shoujo</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genreshounen" data-filter="shounen" type="checkbox">
+                                                        
+
+                                                        <label for="genreshounen">Shounen</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        
+                                                            <input id="genreslice-of-life" data-filter="slice-of-life" type="checkbox">
+                                                        
+
+                                                        <label for="genreslice-of-life">Slice of Life</label>
+                                                    </div>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="list" data-filtertype="rating">Rating<i class="fa-li fa fa-list"></i>
+                                        <div class="list-dropdown">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingTV-14" data-filter="TV-US|TV-14" type="checkbox">
+                                                        <label for="ratingTV-14">TV-14</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingTV-MA" data-filter="TV-US|MA" type="checkbox">
+                                                        <label for="ratingTV-MA">TV-MA</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingTV-PG" data-filter="TV-US|PG" type="checkbox">
+                                                        <label for="ratingTV-PG">TV-PG</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingTV-G" data-filter="TV-US|G" type="checkbox">
+                                                        <label for="ratingTV-G">TV-G</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingPG-13" data-filter="MPAA|13" type="checkbox">
+                                                        <label for="ratingPG-13">PG-13</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingR" data-filter="MPAA|R" type="checkbox">
+                                                        <label for="ratingR">R</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingPG" data-filter="MPAA|PG" type="checkbox">
+                                                        <label for="ratingPG">PG</label>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="ratingG" data-filter="MPAA|G" type="checkbox">
+                                                        <label for="ratingG">G</label>
+                                                    </div>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="list" data-filtertype="version">Version<i class="fa-li fa fa-list"></i>
+                                        <div class="list-dropdown">
+                                            <ul>
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="versionSimulcast" data-filter="simulcast" type="checkbox">
+                                                        <label for="versionSimulcast">Simulcast</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-checkbox small">
+                                                        <input id="lversionUncut" data-filter="uncut" type="checkbox">
+                                                        <label for="lversionUncut">Uncut</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="select-dropdown sort-options">
+                                    <div class="select-trigger">Most Popular</div>
+                                    <ul class="select-list">
+                                        <li data-value="show">Show Name (A-Z)</li>
+                                        <li data-value="popularity">Most Popular</li>
+                                        <li data-value="date">Date Added</li>
+                                    </ul>
+                                    <select name="orderby" id="OrderBy" class="hidden">
+                                        <option value="show">Show Name (A-Z)</option>
+                                        <option value="popularity">Most Popular</option>
+                                        <option value="date">Date Added</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 hidden-xs hidden-sm"></div>
+            </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-hidden col-md-1">
+                </div>
+                <div class="col-md-10 overflowHidden">
+
+					
+					
+
+					
+					<div class="product-list row3 evenSpacedColumns">
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="37729" data-ref-id="37729" data-position="1" data-title="009 Re:Cyborg">
+                            <div class="show-container" href="/shows/009-recyborg/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1374725/Latvian/1374725_Latvian_ShowThumbnail_846011b4-c9c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/009-recyborg/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Long ago, nine humans were captu...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="009 Re:Cyborg">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/009-recyborg/">009 Re:Cyborg</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="168480" data-ref-id="168480" data-position="2" data-title="91 Days">
+                            <div class="show-container" href="/shows/91-days/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1555274/English/1555274_English_ShowThumbnail_aa105fa8-daad-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/91-days/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            91 days is all Avilio Bruno need...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="91 Days">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/91-days/">91 Days</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="21982" data-ref-id="21982" data-position="3" data-title="A Certain Magical Index">
+                            <div class="show-container" href="/shows/a-certain-magical-index/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1544830/English/1544830_English_ShowThumbnail_a1ad0cf8-1fdc-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/a-certain-magical-index/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            In a world where magic is as rea...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="A Certain Magical Index">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/a-certain-magical-index/">A Certain Magical Index</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="30284" data-ref-id="30284" data-position="4" data-title="A Certain Scientific Railgun">
+                            <div class="show-container" href="/shows/a-certain-scientific-railgun/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1318580/Latvian/1318580_Latvian_ShowThumbnail_f96a4de2-c8c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/a-certain-scientific-railgun/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Find all the adventure Academy C...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="A Certain Scientific Railgun">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/a-certain-scientific-railgun/">A Certain Scientific Railgun</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+					</div><div class="product-list row3 evenSpacedColumns">
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="46767" data-ref-id="46767" data-position="5" data-title="A good librarian like a good shepherd">
+                            <div class="show-container" href="/shows/a-good-librarian-like-a-good-shepherd/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1480376/Latvian/1480376_Latvian_ShowThumbnail_7c1419ae-c9c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/a-good-librarian-like-a-good-shepherd/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Kyotaro is better with books tha...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="A good librarian like a good shepherd">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/a-good-librarian-like-a-good-shepherd/">A good librarian like a good shepherd</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="73224" data-ref-id="73224" data-position="6" data-title="Absolute Duo">
+                            <div class="show-container" href="/shows/absolute-duo/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1294837/Latvian/1294837_Latvian_ShowThumbnail_285b7dac-c8c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/absolute-duo/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            After a traumatic accident takes...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Absolute Duo">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/absolute-duo/">Absolute Duo</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="264281" data-ref-id="264281" data-position="7" data-title="ACCA: 13-Territory Inspection Dept.">
+                            <div class="show-container" href="/shows/acca/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1595241/English/1595241_English_ShowThumbnail_ac7dea0e-d4dd-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/acca/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            ACCA, a unified syndicate in the...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="3.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="ACCA: 13-Territory Inspection Dept.">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/acca/">ACCA: 13-Territory Inspection Dept.</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="21640" data-ref-id="21640" data-position="8" data-title="Aesthetica of a Rogue Hero">
+                            <div class="show-container" href="/shows/aesthetica-of-a-rogue-hero/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1318678/Latvian/1318678_Latvian_ShowThumbnail_4db37518-c9c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/aesthetica-of-a-rogue-hero/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Ohtorizawa Akatsuki is about to ...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Aesthetica of a Rogue Hero">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/aesthetica-of-a-rogue-hero/">Aesthetica of a Rogue Hero</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+					</div><div class="product-list row3 evenSpacedColumns">
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="36855" data-ref-id="36855" data-position="9" data-title="Afro Samurai">
+                            <div class="show-container" href="/shows/afro-samurai/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1363138/Latvian/1363138_Latvian_ShowThumbnail_94a56482-c8c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/afro-samurai/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            As a kid, he saw his father slau...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Afro Samurai">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/afro-samurai/">Afro Samurai</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="103113" data-ref-id="103113" data-position="10" data-title="Ah! My Goddess: Flights of Fancy">
+                            <div class="show-container" href="/shows/ah-my-goddess-flights-of-fancy/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1318706/Latvian/1318706_Latvian_ShowThumbnail_46a614a0-b6d7-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/ah-my-goddess-flights-of-fancy/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            When three Goddesses move in and...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-PG<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Ah! My Goddess: Flights of Fancy">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/ah-my-goddess-flights-of-fancy/">Ah! My Goddess: Flights of Fancy</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="30464" data-ref-id="30464" data-position="11" data-title="Ai Yori Aoshi">
+                            <div class="show-container" href="/shows/ai-yori-aoshi/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1331060/Japanese/1331060_Japanese_ShowThumbnail_3ed59e66-fee3-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/ai-yori-aoshi/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Kaoru is a college boy living wi...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Ai Yori Aoshi">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/ai-yori-aoshi/">Ai Yori Aoshi</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="52940" data-ref-id="52940" data-position="12" data-title="Air Gear">
+                            <div class="show-container" href="/shows/air-gear/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1332540/Latvian/1332540_Latvian_ShowThumbnail_0f1c65ca-c8c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/air-gear/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Ikki rules his school, but when ...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-PG<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Air Gear">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/air-gear/">Air Gear</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+					</div><div class="product-list row3 evenSpacedColumns">
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="256256" data-ref-id="256256" data-position="13" data-title="Akiba&#39;s Trip The Animation">
+                            <div class="show-container" href="/shows/akibas-trip-the-animation/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1587391/English/1587391_English_ShowThumbnail_23aaee3b-bde2-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/akibas-trip-the-animation/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            After being attacked by a vampir...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Akiba&#39;s Trip The Animation">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/akibas-trip-the-animation/">Akiba&#39;s Trip The Animation</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="40304" data-ref-id="40304" data-position="14" data-title="Akira">
+                            <div class="show-container" href="/shows/akira/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1379257/Latvian/1379257_Latvian_ShowThumbnail_2b0388a0-c8c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/akira/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            In Neo-Tokyo, a biker with a twi...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">R<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Akira">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/akira/">Akira</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="205601" data-ref-id="205601" data-position="15" data-title="Alderamin on the Sky">
+                            <div class="show-container" href="/shows/alderamin-on-the-sky/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1555300/English/1555300_English_ShowThumbnail_17cc0f65-06b8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/alderamin-on-the-sky/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            The lazy, womanizing Ikta Solork...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Alderamin on the Sky">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/alderamin-on-the-sky/">Alderamin on the Sky</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="44804" data-ref-id="44804" data-position="16" data-title="Alien vs Ninja">
+                            <div class="show-container" href="/shows/alien-vs-ninja/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1350696/Latvian/1350696_Latvian_ShowThumbnail_a92717f6-c9c8-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/alien-vs-ninja/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            In medieval Japan, savage aliens...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="2.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Alien vs Ninja">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/alien-vs-ninja/">Alien vs Ninja</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+					</div><div class="product-list row3 evenSpacedColumns">
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="190758" data-ref-id="190758" data-position="17" data-title="ALL OUT!!">
+                            <div class="show-container" href="/shows/all-out/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1555328/English/1555328_English_ShowThumbnail_f342a067-f8b5-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/all-out/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Kenji Gion and Sumiaki Iwashimiz...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="ALL OUT!!">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/all-out/">ALL OUT!!</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="126708" data-ref-id="126708" data-position="18" data-title="And you thought there is never a girl online?">
+                            <div class="show-container" href="/shows/and-you-thought-there-is-never-a-girl-online/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1416828/Japanese/1416828_Japanese_ShowThumbnail_657277dc-fde3-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/and-you-thought-there-is-never-a-girl-online/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Hideki can’t trust online girls,...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="And you thought there is never a girl online?">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/and-you-thought-there-is-never-a-girl-online/">And you thought there is never a girl online?</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="30475" data-ref-id="30475" data-position="19" data-title="Appleseed XIII">
+                            <div class="show-container" href="/shows/appleseed-xiii/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1379271/English/1379271_English_ShowThumbnail_19dea661-dbad-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/appleseed-xiii/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            In a war-torn future, the geneti...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-14<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Appleseed XIII">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/appleseed-xiii/">Appleseed XIII</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+
+
+					
+
+					
+
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="show-wrapper" data-id="27620" data-ref-id="27620" data-position="20" data-title="Aquarion">
+                            <div class="show-container" href="/shows/aquarion/">
+
+                                <img src="https://res.cloudinary.com/sfp/image/upload/c_fill,q_80,w_280,h_280/oth/FunimationStoreFront/1318768/Japanese/1318768_Japanese_ShowThumbnail_0790a660-fee3-e611-80c5-0017a4776c06.jpg" alt="" class="img-responsive">
+                                <div class="show-details">
+                                    <a href="/shows/aquarion/" class="show-link"></a>
+                                    <div class="description">
+                                        
+                                            Humanity is dominated by fear wh...
+                                        
+                                    </div>
+                                    <div class="stars" data-rating="4.5"><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="info">TV-MA<br />Japanese | English</div>
+                                    <a href="#" class="btn add-queue-btn"  data-title="Aquarion">Add to Queue</a>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <a href="/shows/aquarion/">Aquarion</a>
+                            </div>
+                        </div>
+                    </div>
+
+					
+					</div><div class="product-list row3 evenSpacedColumns">
+					
+
+
+					
+					</div>
+					
+
+
+					
+                    <nav class="pull-right">
+                        <ul class="pagination">
+                            <li>
+                              <a  class="first paging disabled" aria-label="Previous">
+                                <span aria-hidden="true">&lt;&lt;</span>
+                                </a>
+                            </li>
+                            <li>
+                              <a  class="prev paging disabled" aria-label="Previous">
+                                <span aria-hidden="true">&lt;</span>
+                                </a>
+                            </li>
+
+							
+								
+									
+										<li class="active" >
+											
+												<a>1</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=2">
+												2
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=3">
+												3
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=4">
+												4
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=5">
+												5
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=6">
+												6
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=7">
+												7
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=8">
+												8
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=9">
+												9
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=10">
+												10
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="/shows/all-shows/?sort=show&p=11">
+												11
+											</a>
+											
+										</li>
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+                            <li>
+                                <a href="/shows/all-shows/?sort=show&p=2" class="next paging" aria-label="Next">
+                                    <span aria-hidden="true">&gt;</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/shows/all-shows/?sort=show&p=20" class="last paging" aria-label="Next">
+                                    <span aria-hidden="true">&gt;&gt;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+
+
+                </div>
+                <div class="col-xs-hidden col-md-1">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+
+<div id="mainModuleContainer">
+
+	
+		
+			<section class="html-block interior-content container-fluid " data-placement="browsev2" data-moduleid="505" data-module="Show Category Anon Callout">
+				<!-- 14 Day -->
+<div class="subscription-callout col-sm-12">
+  	<a href="/subscribe/"><img src="https://res.cloudinary.com/sfp/image/upload/q_80/cste/aa94c2fb-0c19-425d-ac43-83da46f1051a.jpeg" class="img-responsive"></a>
+</div>
+
+
+<!-- 30 Day Free Trial -->
+<!-- <div class="subscription-callout col-sm-12">
+  	<a href="/subscribe/><img src="https://res.cloudinary.com/sfp/image/upload/q_80/cste/9ef0146c-fdd0-488f-a849-aa96f1b92dc8.jpeg" class="img-responsive"></a>
+</div> -->
+			</section>
+		
+	
+
+	
+		
+			
+				<div class="container processing " data-placement="browsev2" data-moduleid="801" data-module="PIPH-pi-show-category"><p>Initial content</p></div>
+			
+		
+	
+
+
+<script>
+	$('.internal-promo-click-bind').each(function(i,v){
+		KANE_pushObj.ecommerce.promoView.promotions.push(
+			{'id': $(v).attr('data-id'),'name': $(v).attr('data-title'),'creative': $(v).attr('data-creative'),'position': i}
+		);
+	})
+
+	$('.internal-product-click-bind').each(function(i,v){
+		KANE_pushObj.ecommerce.impressions.push(
+			{'name': $(v).closest('[data-title]').attr('data-title'), 'id': $(v).closest('[data-ref-id]')[0].hasAttribute('data-sku'), 'price': $(v).closest('[data-price]').attr('data-price'), 'brand': '', 'category': 'products', 'variant': '', 'position': i}
+		);
+	})
+</script>
+
+</div>
+
+
+<br><br>
+
+</div><!-- End Container -->
+
+
+
+<script>
+    var currentFilters = ""
+	
+		KANE_pushObj.ecommerce.impressions = KANE_pushObj.ecommerce.impressions.concat([
+			{'name': '009 Re:Cyborg','id': '37729','price': '','category': 'shows','list': 'All Shows: Page 1','position': 1},
+		
+	
+		
+			{'name': '91 Days','id': '168480','price': '','category': 'shows','list': 'All Shows: Page 1','position': 2},
+		
+	
+		
+			{'name': 'A Certain Magical Index','id': '21982','price': '','category': 'shows','list': 'All Shows: Page 1','position': 3},
+		
+	
+		
+			{'name': 'A Certain Scientific Railgun','id': '30284','price': '','category': 'shows','list': 'All Shows: Page 1','position': 4},
+		
+	
+		
+			{'name': 'A good librarian like a good shepherd','id': '46767','price': '','category': 'shows','list': 'All Shows: Page 1','position': 5},
+		
+	
+		
+			{'name': 'Absolute Duo','id': '73224','price': '','category': 'shows','list': 'All Shows: Page 1','position': 6},
+		
+	
+		
+			{'name': 'ACCA: 13-Territory Inspection Dept.','id': '264281','price': '','category': 'shows','list': 'All Shows: Page 1','position': 7},
+		
+	
+		
+			{'name': 'Aesthetica of a Rogue Hero','id': '21640','price': '','category': 'shows','list': 'All Shows: Page 1','position': 8},
+		
+	
+		
+			{'name': 'Afro Samurai','id': '36855','price': '','category': 'shows','list': 'All Shows: Page 1','position': 9},
+		
+	
+		
+			{'name': 'Ah! My Goddess: Flights of Fancy','id': '103113','price': '','category': 'shows','list': 'All Shows: Page 1','position': 10},
+		
+	
+		
+			{'name': 'Ai Yori Aoshi','id': '30464','price': '','category': 'shows','list': 'All Shows: Page 1','position': 11},
+		
+	
+		
+			{'name': 'Air Gear','id': '52940','price': '','category': 'shows','list': 'All Shows: Page 1','position': 12},
+		
+	
+		
+			{'name': 'Akiba&#39;s Trip The Animation','id': '256256','price': '','category': 'shows','list': 'All Shows: Page 1','position': 13},
+		
+	
+		
+			{'name': 'Akira','id': '40304','price': '','category': 'shows','list': 'All Shows: Page 1','position': 14},
+		
+	
+		
+			{'name': 'Alderamin on the Sky','id': '205601','price': '','category': 'shows','list': 'All Shows: Page 1','position': 15},
+		
+	
+		
+			{'name': 'Alien vs Ninja','id': '44804','price': '','category': 'shows','list': 'All Shows: Page 1','position': 16},
+		
+	
+		
+			{'name': 'ALL OUT!!','id': '190758','price': '','category': 'shows','list': 'All Shows: Page 1','position': 17},
+		
+	
+		
+			{'name': 'And you thought there is never a girl online?','id': '126708','price': '','category': 'shows','list': 'All Shows: Page 1','position': 18},
+		
+	
+		
+			{'name': 'Appleseed XIII','id': '30475','price': '','category': 'shows','list': 'All Shows: Page 1','position': 19},
+		
+	
+		
+			{'name': 'Aquarion','id': '27620','price': '','category': 'shows','list': 'All Shows: Page 1','position': 20},
+		]);
+	
+	KANE_pushObj.contentType = 'Category';
+	KANE_pushObj.genreSelected = 'All Shows';
+</script>
+
+</div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
+            <div class="col-md-10 padding-left-right-15"><div class="col-md-8 col-xs-12">
+	<ul class="footer-navigation">
+		<li><a href="/about-us/">About Funimation</a></li>
+		<li><a href="/contact-us/">Customer Support</a></li>
+		<li><a href="/terms-of-use/">Terms of Use</a></li>
+		<li><a href="/privacy-policy/">Privacy Policy</a></li>
+	</ul>
+	
+	<p class="copyright">©2017 Funimation Productions, LTD. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-xs-12">
+	<ul class="social-media clearfix">
+		<li class="facebook"><a href="https://www.facebook.com/funimation"></a></li>
+		<li class="twitter"><a href="https://twitter.com/funimation"></a></li>
+		<li class="youtube"><a href="https://www.youtube.com/user/FUNimation"></a></li>
+		<li class="instagram"><a href="https://www.instagram.com/funimation"></a></li>
+		<li class="tumblr"><a href="http://funimation.tumblr.com/"></a></li>
+		<li class="pinterest"><a href="https://www.pinterest.com/funimation"></a></li>
+	</ul>
+</div></div>
+            <div class="col-md-1 hidden-xs hidden-sm"></div>
+        </div>
+    </div>
+</footer>
+
+<div class="gs_modal-wrap bottom center" id="cookie-modal">
+    <p class="title-line"><strong>This website uses cookies.</strong></p>
+    <p>We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners. <a href="/privacy-policy/" target="_blank">See details</a>.<a id="accept-cookie" class="accept btn btn-light" href="#">I accept</a></p>
+</div>
+<div id="lights"></div>
+
+<script>
+    if(dataLayer != undefined && dataLayer != null) {
+        dataLayer.push(KANE_customdimensions);
+        dataLayer.push(KANE_pushObj);
+    }
+</script>
+
+
+<div id="click-cover"></div>
+
+<!-- END KANE UI HTML  -->
+
+<input type='hidden' name='csrfmiddlewaretoken' value='78BnXr1P2HU1TtHU2zoBFTwc7lU72JwU' />
+
+
+
+
+
+
+
+<script>var TENANT = '';</script>
+<script type="text/javascript">
+var KANE = {};
+var KANE_API = 'dadcdigital.com/api/';
+var STATIC_URL = '/static/';
+var SOURCE_API = 'https://prod-api-funimationnow.dadcdigital.com/api/';
+var PAGE_TYPE = false;
+var BUILD_VERSION='';
+var KANE_DRAWER_EPISODES = false;
+KANE.fbAppId = '444514955756615';
+var basicAuth = false;
+
+var UNTOACCESS = false;
+var MAGE_API = SOURCE_API + 'source/magento/';
+KANE.cartTotals = {};
+KANE.cartObject = {items:[]};
+KANE.wishlistItems = {sharingCode:null,wishlistId:null,products:[],updatedAt:null,shared:null,customerId:null};
+
+ var KANE_badUser = true; 
+KANE.subscriptionItems = [{"planId": "us-era-061916-01", "currency": "usd", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "Removes Ads", "id": 13, "tier": 0, "preferences": {"disableAds": true}, "paypalId": "P-4VJ4610944864051F3P7OFEI", "title": "Ad-Eraser", "itunesId": "", "type": "reccurring", "description": "Removes Ads", "price": "1.99", "externalName": "", "dependencies": [109, 110], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": null}, {"planId": "us-prk-ad-m-10062016", "currency": "usd", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "Special access to Funimation Events at Conventions", "id": 12, "tier": 0, "preferences": {"discountedShippingGroupId": 4}, "paypalId": "P-1TR01247KK681382JXR7BT3Q", "title": "Perks", "itunesId": "", "type": "reccurring", "description": "Special access to Funimation Events at Conventions\r\nFree Shipping for Shop orders over $20 and above\r\nVIP cost access to special sales / limited-release items", "price": "1.99", "externalName": "Perks", "dependencies": [109, 110, 317], "active": true, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": null}, {"planId": "us-fnf-ad-m-10062016", "currency": "usd", "feVisible": true, "frequency": "month", "trialType": "", "shortDescription": "Add 3 simultaneous streams", "id": 144, "tier": 0, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 3}, "paypalId": "P-58K24389RB450341H63DLXBI", "title": "U.S. Friends & Family - Monthly", "itunesId": "", "type": "reccurring", "description": "Let your friends watch too with 3 additional simultaneous streams.", "price": "1.99", "externalName": "Friends & Family", "dependencies": [107, 317], "active": true, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": null}, {"planId": "us-fnf-ad-m-11032016-TEST", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "day", "shortDescription": "Add 3 simultaneous streams", "id": 307, "tier": 0, "preferences": {}, "paypalId": "P-1SX33088AY816051P63EGM2Y", "title": "US Friends & Family Monthly - 1 DAY TEST", "itunesId": "", "type": "reccurring", "description": "Let your friends watch too with 3 additional simultaneous streams.", "price": "1.99", "externalName": "Friends & Family - Test", "dependencies": [304], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": 0}, {"planId": "us-fnf-ad-y-10212016", "currency": "USD", "feVisible": true, "frequency": "annual", "trialType": "", "shortDescription": "Add 3 simultaneous streams", "id": 283, "tier": 0, "preferences": {"streamLimit": 3}, "paypalId": "P-8D5273488K024164X63DMAVI", "title": "U.S. Friends & Family - Yearly", "itunesId": "", "type": "reccurring", "description": "Let your friends watch too with 3 additional simultaneous streams.", "price": "19.99", "externalName": "Friends & Family", "dependencies": [108], "active": true, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": null}, {"planId": "us-fnf-ad-y-11032016-TEST", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "day", "shortDescription": "Add 3 simultaneous streams", "id": 306, "tier": 0, "preferences": {}, "paypalId": "P-6EE97184S4843493363EGWNI", "title": "US Friends & Family Yearly - 2 DAY TEST", "itunesId": "", "type": "reccurring", "description": "Let your friends watch too with 3 additional simultaneous streams.", "price": "19.99", "externalName": "Friends & Family - Test", "dependencies": [305], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": 0}, {"planId": "us-prk-ad-m-11102016", "currency": "USD", "feVisible": true, "frequency": "month", "trialType": "", "shortDescription": "Special access to Funimation Events at Conventions", "id": 285, "tier": 0, "preferences": {}, "paypalId": "P-8TF5478634482593263DMKGQ", "title": "U.S. Perks - Monthly", "itunesId": "", "type": "reccurring", "description": "Special access to Funimation Events at Conventions\r\nVIP cost and early access to special sales / limited-release items\r\nFree Shipping for Shop orders over $20 and above", "price": "3.99", "externalName": "Perks", "dependencies": [107, 317], "active": true, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": null}, {"planId": "us-prk-ad-m-11102016-TEST", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "day", "shortDescription": "Special access to Funimation Events at Conventions", "id": 309, "tier": 0, "preferences": {}, "paypalId": "P-314444238D379531E63EHAHY", "title": "US Perks Monthly - 1 DAY TEST", "itunesId": "", "type": "reccurring", "description": "Special access to Funimation Events at Conventions\r\nFree Shipping for Shop orders over $20 and above\r\nVIP cost access to special sales / limited-release items", "price": "3.99", "externalName": "Perks - Test", "dependencies": [304], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": 0}, {"planId": "us-prk-ad-y-10212016", "currency": "USD", "feVisible": true, "frequency": "annual", "trialType": "", "shortDescription": "Special access to Funimation Events at Conventions", "id": 284, "tier": 0, "preferences": {}, "paypalId": "P-1KT06478DT143421663DMTTQ", "title": "U.S. Perks - Yearly", "itunesId": "", "type": "reccurring", "description": "Special access to Funimation Events at Conventions\r\nVIP cost and early access to special sales / limited-release items\r\nFree Shipping for Shop orders over $20 and above", "price": "39.99", "externalName": "Perks", "dependencies": [108], "active": true, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": null}, {"planId": "us-prk-ad-y-11032016-TEST", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "day", "shortDescription": "Special access to Funimation Events at Conventions", "id": 308, "tier": 0, "preferences": {}, "paypalId": "P-47P36295J0081862E63EHJZQ", "title": "US Perks Yearly - 2 DAY TEST", "itunesId": "", "type": "reccurring", "description": "Special access to Funimation Events at Conventions\r\nVIP cost and early access to special sales / limited-release items\r\nFree Shipping for Shop orders over $20 and above", "price": "39.99", "externalName": "Perks - Test", "dependencies": [305], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "addon", "trialLength": 0}, {"planId": "US-BASIC", "currency": "USD", "feVisible": true, "frequency": "month", "trialType": "", "shortDescription": "", "id": 7, "tier": 10, "preferences": {"languages": {"Japanese": 2, "English": 1}, "purchaseType": {"A-VOD": 1}}, "paypalId": "", "title": "Basic", "itunesId": "", "type": "reccurring", "description": "", "price": "0", "externalName": "Free", "dependencies": [], "active": true, "frequencyValue": "1", "maxVideoQuality": "480", "taxPercent": "10.00", "region": "US", "subtype": "base", "trialLength": null}, {"planId": "107608", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 52, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12-month All-AccessPass - $5 off discount - Old", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "54.95", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "120199", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 53, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - Extended 2015 - Old", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.95", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "99340", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 33, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - Extended - Old", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "54.95", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127680", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 63, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - SubPass", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "121508", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 54, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - SubPass - Extended - Old", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "101298", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 36, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - SubPass Playstation - Old", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "102329", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 46, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscriptio - All-AccessPass - Old", "itunesId": null, "type": "reccurring", "description": "14-Day Free Trial Monthly Subscription All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127685", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 68, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "128829", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 100, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-All-AccessPass iTunes", "itunesId": null, "type": "reccurring", "description": "14-Day Free Trial Monthly Subscription All-AccessPass", "price": "4.20", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "81830", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 19, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-Discounted - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127688", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 262, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription - DubPass", "itunesId": null, "type": "reccurring", "description": "14-day Free Trial Monthly Subscription - AllAccess Pass", "price": "7.99", "externalName": "Free", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "101512", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 251, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription - DubPass - Old", "itunesId": null, "type": "reccurring", "description": "14-day Free Trial Monthly Subscription - AllAccess Pass", "price": "7.95", "externalName": "Free", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "79635", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 16, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "128828", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 99, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription - SubPass (iTunes)", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "3.50", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "101301", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 39, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription - SubPass - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "102836", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 50, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscri -SubPass Playstation - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "126652", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 55, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "30-Day Free Trial Monthly Subscriptio - All-AccessPass - Old", "itunesId": null, "type": "reccurring", "description": "30-Day Free Trial Monthly Subscription All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "127702", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 85, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "30-Day Free Trial Monthly Subscription - All-AccessPass", "itunesId": null, "type": "reccurring", "description": "30-Day Free Trial Monthly Subscription All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "127703", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 86, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "30-day Free Trial Monthly Subscription - SubPass", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "126653", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 56, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "30-day Free Trial Monthly Subscription - SubPass - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "127697", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 80, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "3 Month Subscription - All-AccessPass", "itunesId": null, "type": "reccurring", "description": "3 Month Subscription AllAccess Pass", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127699", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 82, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "3 Month Subscription - SubPass", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "102834", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 48, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "3 Month Subscription - SubPass Playstation - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "128830", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 101, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "60 Day Free Trial Monthly All-Access Pass Subscription", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 60}, {"planId": "127704", "currency": "USD", "feVisible": false, "frequency": "semi-annual", "trialType": null, "shortDescription": null, "id": 272, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}}, "paypalId": null, "title": "6 Month Streaming for $20", "itunesId": null, "type": "reccurring", "description": "6 Month Streaming for $20", "price": "20.00", "externalName": "Free", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "91936", "currency": "USD", "feVisible": false, "frequency": "semi-annual", "trialType": null, "shortDescription": null, "id": 249, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}}, "paypalId": null, "title": "6 Month Streaming for $20 - Old", "itunesId": null, "type": "reccurring", "description": "6 Month Streaming for $20", "price": "20.00", "externalName": "Free", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "283545", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 103, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "AKA 30 Day Free Trial", "itunesId": null, "type": "reccurring", "description": "AKA 30 Day Free Trial", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "283544", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 102, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Anime Expo 30 Day Free Trial", "itunesId": null, "type": "reccurring", "description": "Anime Expo 30 Day Free Trial", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "us-lgs-fn-m-10012016", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "", "id": 72, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Legacy Subpass Monthly", "itunesId": "", "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "us-lgs-fn-q-10012016", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "", "id": 40, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Legacy Subpass Quarterly", "itunesId": "", "type": "reccurring", "description": "One Month Subscription", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-lgs-fn-y-10012016", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "", "shortDescription": "", "id": 42, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Legacy Subpass Yearly", "itunesId": "", "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-min-052116", "currency": "usd", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "Good Tier Plan", "id": 141, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "discountedShippingGroupId": 4, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-8VE859163F318422VEH6DTZA", "title": "MiniPlan", "itunesId": "", "type": "reccurring", "description": "Simulcast (Subs) \u2013 No Delay\nNo Broadcast Dubs\nAd Supported : 1 Ad, plays at the beginning of the show\nHD viewing features\n1 Simultaneous Stream ", "price": "2.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": null}, {"planId": "127706", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 89, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "102328", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 45, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - All-AccessPass - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription  All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127710", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 276, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}}, "paypalId": null, "title": "Monthly Subscription - DubPass", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription AllAccess Pass", "price": "7.99", "externalName": "Free", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "101511", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 250, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}}, "paypalId": null, "title": "Monthly Subscription - DubPass - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription AllAccess Pass", "price": "7.95", "externalName": "Free", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "91600", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 31, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - May Con - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription - May Con", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "79634", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 15, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127714", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 97, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - SubPass", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "101300", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 38, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - SubPass - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "101296", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 34, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - SubPass Playstation - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-pre-fn-m-10012016", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "", "id": 91, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Monthly", "itunesId": "", "type": "reccurring", "description": "Monthly Subscription  All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127687", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 70, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Premium Monthly - 14 day", "itunesId": null, "type": "reccurring", "description": "14-Day Free Trial Monthly Subscription All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127701", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 84, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Premium Monthly - 30 day", "itunesId": null, "type": "reccurring", "description": "30-Day Free Trial Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "us-pre-ps-m-10012016", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "", "id": 35, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Monthly  - PlayStation", "itunesId": "", "type": "reccurring", "description": "Monthly Subscription AllAccess Pass Playstation", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "102837", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 51, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Premium Monthly  - PlayStation - 14 day", "itunesId": null, "type": "reccurring", "description": "14-Day Free Trial Monthly Subscription All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "us-pre-fn-q-10012016", "currency": "USD", "feVisible": true, "frequency": "month", "trialType": "", "shortDescription": "Premium Quarterly", "id": 41, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Quarterly", "itunesId": "", "type": "reccurring", "description": "3 Month Subscription AllAccess Pass", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-pre-ps-q-10012016", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "", "id": 49, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Quarterly -PlayStation", "itunesId": "", "type": "reccurring", "description": "3 Month Subscription AllAccess Pass", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-pre-fn-y-10012016", "currency": "USD", "feVisible": true, "frequency": "annual", "trialType": "", "shortDescription": "", "id": 59, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Yearly", "itunesId": "", "type": "reccurring", "description": "12 Month Subscription All-AccessPass", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-lgp-fn-y-10012016", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": null, "shortDescription": "", "id": 47, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "I-XKCNVKKA9SK3", "title": "Premium Yearly -  (Legacy)", "itunesId": "", "type": "reccurring", "description": "12 Month Subscription All-AccessPass", "price": "59.95", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": null}, {"planId": "us-lgp-d1-y-10012016", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "", "shortDescription": "", "id": 27, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Yearly -  Legacy  Discounted", "itunesId": "", "type": "reccurring", "description": "Annual Subscription", "price": "54.95", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-lgp-ps-y-10012016", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "", "shortDescription": "", "id": 37, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Yearly - PlayStation (Legacy)", "itunesId": "", "type": "reccurring", "description": "Annual Subscription", "price": "59.95", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-bas-m-21060727", "currency": "USD", "feVisible": true, "frequency": "month", "trialType": null, "shortDescription": "Basic tier", "id": 109, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "purchaseType": {"A-VOD": 1}}, "paypalId": "P-1G0660718T538292YKOIV6DI", "title": "US Basic - Monthly", "itunesId": "", "type": "reccurring", "description": "Simulcast (Subs) \u2013 No Delay\nNo Broadcast Dubs\nAd Supported : 1 Ad, plays at the beginning of the show\nHD viewing features\n1 Simultaneous Stream ", "price": "2.99", "externalName": "Free", "dependencies": [12, 13], "active": false, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": null}, {"planId": "us-bas-y-21060727", "currency": "USD", "feVisible": true, "frequency": "annual", "trialType": "", "shortDescription": "Basic tier", "id": 110, "tier": 20, "preferences": {"languages": {"Japanese": 2, "English": 1}, "purchaseType": {"A-VOD": 1}}, "paypalId": "P-3UV50421VP274301YKPN5ZAY", "title": "US Basic - Yearly", "itunesId": "", "type": "reccurring", "description": "Simulcast (Subs) \u2013 No Delay\nNo Broadcast Dubs\nAd Supported : 1 Ad, plays at the beginning of the show\nHD viewing features\n1 Simultaneous Stream ", "price": "33.99", "externalName": "Free", "dependencies": [12, 13], "active": true, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": null}, {"planId": "127681", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": null, "shortDescription": null, "id": 257, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - SubPass - Extended", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127682", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": null, "shortDescription": null, "id": 258, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - SubPass Playstation", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127690", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 263, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription -SubPass Playstation", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127700", "currency": "USD", "feVisible": false, "frequency": "quarter", "trialType": null, "shortDescription": null, "id": 271, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "3 Month Subscription - SubPass Playstation", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-meg-052116-01", "currency": "usd", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "MIddle Tier", "id": 140, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "discountedShippingGroupId": 4, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-0C067350CL8511303EH7QQEQ", "title": "MegaPlan", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \nSubs &  Dubs\nDVD Dubs \u2013 Day and Date with Home Video Release\nNo Ads\nHD viewing features\n2 Simultaneous Streams", "price": "6.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": null}, {"planId": "127715", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 280, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - SubPass Playstation", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "US-PREM-INTERNAL", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "day", "shortDescription": "Premium tier", "id": 318, "tier": 30, "preferences": {}, "paypalId": "", "title": "US Premium - Internal", "itunesId": "", "type": "reccurring", "description": "Internal Pass:\r\n\r\nFull Selection of shows \r\nSubs &  Dubs\r\nDVD Dubs \u2013 Day and Date with Home Video Release\r\nNo Ads\r\nHD viewing features\r\n2 Simultaneous Streams", "price": "0", "externalName": "Premium", "dependencies": [], "active": true, "frequencyValue": "1", "maxVideoQuality": "1080", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "us-pre-fn-m-10012016", "currency": "USD", "feVisible": true, "frequency": "month", "trialType": "day", "shortDescription": "Premium tier", "id": 107, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-02592514P3753573V63DBJDQ", "title": "US Premium - Monthly", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \r\nSubs &  Dubs\r\nDVD Dubs \u2013 Day and Date with Home Video Release\r\nNo Ads\r\nHD viewing features\r\n2 Simultaneous Streams", "price": "5.99", "externalName": "Premium", "dependencies": [144, 285], "active": true, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "us-pre-fn-m-11032016-TEST", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "day", "shortDescription": "Premium tier", "id": 304, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-98G32792MH843063W63EDX3I", "title": "US Premium Monthly - 1 DAY TEST", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \r\nSubs &  Dubs\r\nDVD Dubs \u2013 Day and Date with Home Video Release\r\nNo Ads\r\nHD viewing features\r\n2 Simultaneous Streams", "price": "5.99", "externalName": "Premium - Test", "dependencies": [307, 309], "active": false, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 1}, {"planId": "127708", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": "day", "shortDescription": "Premium tier", "id": 317, "tier": 30, "preferences": {"streamLimit": 1}, "paypalId": "", "title": "US Premium - Monthly (Legacy)", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \r\nSubs &  Dubs\r\nDVD Dubs \u2013 Day and Date with Home Video Release\r\nNo Ads\r\nHD viewing features\r\n2 Simultaneous Streams", "price": "5.99", "externalName": "Premium", "dependencies": [12, 144, 285], "active": true, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "us-pre-fn-y-10012016", "currency": "USD", "feVisible": true, "frequency": "annual", "trialType": "day", "shortDescription": "Premium Tier Plan", "id": 108, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-4K038134H8495725T63DBSRI", "title": "US Premium - Yearly", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \r\nSubs &  Dubs\r\nDVD Dubs \u2013 Day and Date with Home Video Release\r\nNo Ads\r\nHD viewing features\r\n2 Simultaneous Streams", "price": "59.99", "externalName": "Premium", "dependencies": [283, 284], "active": true, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "us-pre-fn-y-11032016-TEST", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "day", "shortDescription": "Premium Tier Plan", "id": 305, "tier": 30, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-4C834195R2908601K63ED7XI", "title": "US Premium Yearly - 2 DAY TEST", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \r\nSubs &  Dubs\r\nDVD Dubs \u2013 Day and Date with Home Video Release\r\nNo Ads\r\nHD viewing features\r\n2 Simultaneous Streams", "price": "59.99", "externalName": "Premium - Test", "dependencies": [306, 308], "active": false, "frequencyValue": "1", "maxVideoQuality": "720", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 1}, {"planId": "127674", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": null, "shortDescription": null, "id": 253, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "54.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127678", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": null, "shortDescription": null, "id": 255, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - Extended", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "54.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127679", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": null, "shortDescription": null, "id": 256, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "12 Month Subscription - Extended 2015", "itunesId": null, "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127684", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 260, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscr- All-AccessPass Playstation", "itunesId": null, "type": "reccurring", "description": "14-Day Free Trial Monthly Subscription All-AccessPass", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127691", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 264, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-$20", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "82133", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 240, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-$20 - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127692", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 265, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-$40", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "82134", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 241, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-$40 - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127693", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 266, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-$85", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "82135", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 242, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-$85 - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127694", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 267, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Monthly Subscription-Discounted", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127686", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 261, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription (Samsung)", "itunesId": null, "type": "reccurring", "description": "Samsung One Month Subscription with 14-Day Free Trial", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "79637", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 238, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-day Free Trial Monthly Subscription (Samsung) - Old", "itunesId": null, "type": "reccurring", "description": "Samsung One Month Subscription with 14-Day Free Trial", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127695", "currency": "USD", "feVisible": false, "frequency": "quarter", "trialType": null, "shortDescription": null, "id": 268, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Quarterly Subscription", "itunesId": null, "type": "reccurring", "description": "Quarterly Subscription", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "88539", "currency": "USD", "feVisible": false, "frequency": "quarter", "trialType": null, "shortDescription": null, "id": 244, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Quarterly Subscription - Old", "itunesId": null, "type": "reccurring", "description": "Quarterly Subscription", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127696", "currency": "USD", "feVisible": false, "frequency": "semi-annual", "trialType": null, "shortDescription": null, "id": 269, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Semi-Annual Subscription", "itunesId": null, "type": "reccurring", "description": "Semi-Annual Subscription", "price": "47.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "88540", "currency": "USD", "feVisible": false, "frequency": "semi-annual", "trialType": null, "shortDescription": null, "id": 245, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "14-Day Free Trial Semi-Annual Subscription - Old", "itunesId": null, "type": "reccurring", "description": "Semi-Annual Subscription", "price": "47.70", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127672", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 252, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "1-day subscription-discounted", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 1}, {"planId": "84781", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 243, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "1-day subscription-discounted - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 1}, {"planId": "81832", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 239, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "30-Day Free Trial Monthly Subscription - Old", "itunesId": null, "type": "reccurring", "description": "30-Day Free Trial Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 30}, {"planId": "127698", "currency": "USD", "feVisible": false, "frequency": "quarter", "trialType": null, "shortDescription": null, "id": 270, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "3 Month Subscription - All-AccessPass Playstation", "itunesId": null, "type": "reccurring", "description": "3 Month Subscription AllAccess Pass", "price": "15.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127705", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 273, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "90-day Free Trial Subscription", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 90}, {"planId": "89563", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 246, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "90-day Free Trial Subscription - Old", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 90}, {"planId": "127709", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 275, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - All-AccessPass Playstation", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription AllAccess Pass Playstation", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "127711", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 277, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - Easter Promo", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "90982", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 247, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - Easter Promo - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127712", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 278, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - Let Me Out Promo", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "91592", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 248, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - Let Me Out Promo - Old", "itunesId": null, "type": "reccurring", "description": "One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127713", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 279, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription - May Con", "itunesId": null, "type": "reccurring", "description": "Monthly Subscription - May Con", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 14}, {"planId": "127707", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 274, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription (Samsung)", "itunesId": null, "type": "reccurring", "description": "Samsung One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "79636", "currency": "USD", "feVisible": false, "frequency": "month", "trialType": null, "shortDescription": null, "id": 237, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": null, "title": "Monthly Subscription (Samsung) - Old", "itunesId": null, "type": "reccurring", "description": "Samsung One Month Subscription", "price": "5.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": null, "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-lgp-d2-y-10012016", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "", "shortDescription": "", "id": 259, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Yearly -  Legacy  Discounted - 2", "itunesId": "", "type": "reccurring", "description": "Annual Subscription", "price": "54.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-pre-ps-y-10012016", "currency": "USD", "feVisible": false, "frequency": "annual", "trialType": "", "shortDescription": "", "id": 254, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "", "title": "Premium Yearly - PlayStation", "itunesId": "", "type": "reccurring", "description": "Annual Subscription", "price": "59.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": null, "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": 0}, {"planId": "us-sup-052116-01", "currency": "usd", "feVisible": false, "frequency": "month", "trialType": "", "shortDescription": "Best Tier Plan", "id": 142, "tier": 40, "preferences": {"languages": {"Japanese": 2, "English": 1}, "streamLimit": 1, "discountedShippingGroupId": 4, "purchaseType": {"A-VOD": 2, "SVOD": 1}}, "paypalId": "P-6MW59861JM1383726EH72ANA", "title": "SuperPlan", "itunesId": "", "type": "reccurring", "description": "Full Selection of shows \nSubs &  Dubs\nEarly access to DVD Dubs\nNo Ads\nHD viewing features\n4k (when available)\n4 Simultaneous Streams\n\u201cConvention\u201d Package included", "price": "10.99", "externalName": "Premium", "dependencies": [], "active": false, "frequencyValue": "1", "maxVideoQuality": "4k", "taxPercent": "0", "region": "US", "subtype": "base", "trialLength": null}];
+
+    PAGE_TYPE = 'category';
+
+
+
+
+</script>
+
+
+<!--  KANE JS FILES  -->
+
+<script src="/static/script/libs/jquery.bxslider.min.js"></script>
+<script src="/static/script/bootstrap.min.js"></script>
+<script src="/static/script/jquery.touch-swipe.min.js"></script>
+<script src="/static/script/platform.js"></script>
+<script src="/static/script/common.js"></script>
+<script src="/static/script/shop.js"></script>
+<script src="/static/script/global.js"></script>
+<script src="/static/script/image-uploader.js"></script>
+<script src="/static/script/core.js"></script>
+<script src="/static/script/login.js"></script>
+<script src="/static/script/modal.js"></script>
+<script src="/static/script/mustache.min.js"></script>
+<script src="/static/script/gs_inf_results.js"></script>
+<script src="/static/script/gs_results.js"></script>
+<script src="/static/script/addthis.js"></script>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-575eef77973794a2" type="text/javascript"></script>
+
+
+<script src="/static/script/funimation-custom.js?v="></script>
+<script>
+// NOTE: WG - THIS REMOVES THE TRACKING HAS THAT addThis APPENDS TO SHARES
+var addthis_config = addthis_config||{};
+    addthis_config.data_track_addressbar = false;
+    addthis_config.data_track_clickback = false;
+</script>
+
+<!--  ==============================================================================================================  -->
+<!--  MODULE TEMPLATES  ============================================================================================  -->
+<!--  ==============================================================================================================  -->
+
+<!--  ASYNC QUEUE MODULE BODY TEMPLATE  ===================  -->
+<script type="text/template" id="module-queue-async-body">
+	
+		<div>
+			<section class="headline main mtFull mbFull">
+				<h1>Queue</h1>
+			</section>
+			<section class="quad-section">
+				<div class="quad-container">
+					<div class="row">
+						<div class="col-md-1 hidden-xs hidden-sm"></div>
+						<div class="col-md-10">
+							<div class="quad-slider product-list" data-mobile-visible-slides="2">
+								<!--  QUEUE ITEMS WILL RENDERS HERE  -->
+							</div>
+							<div class="quad slider-control outside prev"><img src="/static/img/common/arrow-grey-left.png" alt="Arrow Left" class="img-responsive" /></div>
+							<div class="quad slider-control outside next"><img src="/static/img/common/arrow-grey-right.png" alt="Arrow Right" class="img-responsive" /></div>
+						</div>
+						<div class="col-md-1 hidden-xs hidden-sm"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+</script>
+
+<!--  ASYNC QUEUE MODULE ITEM TEMPLATE  ===================  -->
+<script type="text/template" id="module-queue-async-item">
+	
+		<div class="slide" data-id="{{ show.id }}" data-ref-id="{{ show.id }}" data-position="{{ count }}" data-title="{{ show.title }}">
+		    <a href="/shows/{{ show.titleSlug }}/">
+		        <div class="show-wrapper">
+		            <div class="show-container">
+		                <img class="img-responsive" alt="Watch {{ show.title }} Online" src="{{ show.renderImage }}" />
+		                <div class="show-details">
+		                    <div class="description">{{ #show.synopsis.renderSynopsis }}{{ show.synopsis.renderSynopsis }}{{ /show.synopsis.renderSynopsis }}</div>
+		                    {{ #show.renderStarRating }}
+								<div class="stars" data-rating="{{ show.renderStarRating }}"><span></span><span></span><span></span><span></span><span></span></div>
+							{{ /show.renderStarRating }}
+		                    <div class="info">
+								{{ #show.allowRating }}
+									{{ show.renderRating }}
+									<br />
+								{{ /show.allowRating }}
+								{{ #show.video.renderLanguage }}{{ show.video.renderLanguage }}{{ /show.video.renderLanguage }}</div>
+		                    <span class="btn add-queue-btn remove" >Remove From Queue</span>
+		                </div>
+		            </div>
+		            <div class="name">
+		                {{ show.title }}
+		            </div>
+		        </div>
+		    </a>
+		</div>
+	
+</script>
+
+<!--  ASYNC HISTORY MODULE BODY TEMPLATE  ===================  -->
+<script type="text/template" id="module-history-async-body">
+	
+		<div>
+			<section class="quad-section">
+				<div class="quad-container">
+					<div class="row">
+						<div class="col-md-1 hidden-xs hidden-sm"></div>
+						<div class="col-md-10">
+							<div class="quad-slider" data-mobile-visible-slides="2">
+								<!--  GENERAL HISTORY ITEMS RENDER HERE  -->
+							</div>
+							<div class="quad slider-control outside prev"><img src="/static/img/common/arrow-grey-left.png" alt="Arrow Left" class="img-responsive" /></div>
+							<div class="quad slider-control outside next"><img src="/static/img/common/arrow-grey-right.png" alt="Arrow Right" class="img-responsive" /></div>
+						</div>
+						<div class="col-md-1 hidden-xs hidden-sm"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+</script>
+
+<!--  ASYNC HISTORY MODULE 1st ITEM TEMPLATE  ===================  -->
+<script type="text/template" id="module-history-async-main-item">
+	
+	<div class="curated-hero {{ #bgVid }}bg-vid{{ /bgVid }}" style="background-image: url('{{ video.videoBgImage }}');">
+	    <!--  BACKGROUND VIDEO WILL RENDER HERE IF THERE IS ONE  -->
+		{{ #bgVid }}
+			{{{ bgVid }}}
+		{{ /bgVid }}
+	    <div class="container curated-hero-container home" data-url="/shows/{{ video.item.titleSlug }}/{{ video.item.episodeSlug }}/{{ video.version}}/?a=1">
+	        <div class="vertical-align">
+	            <div class="row paddedRow">
+	                <div class="col-md-1 hidden-xs hidden-sm"></div>
+	                <div class="col-md-10">
+	                    <a href="/shows/{{ video.item.titleSlug }}/{{ video.item.episodeSlug }}/{{ video.version}}/?a=1" class="homeHistoryPlay">{{{ video.message }}}</a>
+	                </div>
+	                <div class="col-md-1 hidden-xs hidden-sm"></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+</script>
+
+<!--  ASYNC HISTORY MODULE ITEM TEMPLATE  ===================  -->
+<script type="text/template" id="module-history-async-item">
+	
+		<div class="slide" data-id="{{ video.item.titleId }}" data-ref-id="{{ video.item.episodeId }}" data-alphaId="{{ video.ids.externalAlphaId }}" data-position="{{ count }}">
+		    <a href="/shows/{{ video.item.titleSlug }}/{{ video.item.episodeSlug }}/{{ video.version}}/?a=1">
+		        <div class="episodePlay">
+					<img class="img-responsive" alt="Watch {{ video.item.titleName}} Online" src="{{ video.renderImage }}" />
+				</div>
+		        <span class="progressBar" data-progress="0" data-aruntime="{{ runtimeMinutes }}"><span class="progressBar-fill" style="width: {{ watchedPercent }}%"></span></span>
+		        <div class="name">{{ video.renderName }}<br />{{ video.item.episodeNameTrunc }}</div>
+		    </a>
+		</div>
+	
+</script>
+
+<!--  FORUM POST ITEM TEMPLATE  =============================  -->
+<script type="text/template" id="forum-post-template">
+	
+	<div class="slide slide-forum slide-lg col-sm-4">
+        <div class="content">
+            <div class="forum-avatar">
+                <img src="{{ avatarImage }}" alt="" class="img-responsive">
+            </div>
+            <div class="forum-info">
+                <a class="forum-title" href="/forum/topic/{{ tid }}">{{ title }}</a>
+				<span class="forum-user user-name">{{ forumPostUserName }}</span>
+                <span class="forum-date" data-tzdate="{{ teaser.timestamp }}"></span>
+            </div>
+            <div class="forum-post">{{ postcount }} <span>Posts</span></div>
+            <div class="forum-post">{{ viewcount }} <span>Views</span></div>
+			<!--  FORUM COMMENTS REMOVED FROM SHOW DETAIL PAGE  -->
+            <!-- <a class="forum-topic" href="/forum/topic/{{ tid }}">{{{ shortContent }}}</a> -->
+        </div>
+    </div>
+	
+</script>
+
+<!--  PI HEADER CAROUSEL ITEM TEMPLATE  ====================  -->
+<script type="text/template" id="pi-four-across-body">
+	
+		<div>
+			<section class="headline main mtFull mbFull">
+				<h1>{{#clickThru}}<a href="{{clickThru}}">{{name}}</a>{{/clickThru}}{{^clickThru}}{{name}}{{/clickThru}}</h1>
+				{{#description}}<h2>{{description}}</h2>{{/description}}
+			</section>
+			<section class="quad-section">
+				<div class="quad-container">
+					<div class="row">
+						<div class="col-md-1 hidden-xs hidden-sm"></div>
+						<div class="col-md-10">
+							<div class="quad-slider product-list" data-mobile-visible-slides="2">
+								<!--  QUEUE ITEMS WILL RENDERS HERE  -->
+							</div>
+							<div class="quad slider-control outside prev"><img src="/static/img/common/arrow-grey-left.png" alt="Arrow Left" class="img-responsive" /></div>
+							<div class="quad slider-control outside next"><img src="/static/img/common/arrow-grey-right.png" alt="Arrow Right" class="img-responsive" /></div>
+						</div>
+						<div class="col-md-1 hidden-xs hidden-sm"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+</script>
+
+<!--  PI PRODUCT CAROUSEL ITEM TEMPLATE  ====================  -->
+<script type="text/template" id="pi-product-item-template">
+	
+	<div class="slide show product" data-id="{{ productId }}" data-ref-id="{{ productId }}" data-position="{{ count }}" data-title="{{ itemTitle }}" data-product-sku="{{ externalId }}" title="Find {{ itemTitle }} here">
+	    <a href="{{ link }}">
+	        <div class="show-wrapper">
+	            <div class="show-container">
+	                <img class="img-responsive" alt="" src="{{ renderImage }}">
+	                <div class="product-details">
+						{{#item.showName}}<p class="show-name" style="padding: 0;">{{item.showName}}</p>{{/item.showName}}
+	                    <div class="product-name">{{ pretty.titleSml }}</div>
+	                    <div star-rating="{halfShow: true, half: true, starHalf: 'fa fa-star-half', starOff: 'fa fa-star', starOn: 'fa fa-star active', space: false, readOnly: true}" name="rating" rating="{{pretty.starRating}}"></div>
+	                    <div class="priceAddToCart">
+	                        <div class="price" data-price="{{ pretty.price }}">
+								<sup>$</sup>{{{ pretty.renderPrice }}}
+								{{ #pretty.retailPrice }} <span class="retail-price"><sup>$</sup>{{{ pretty.retailPrice }}}</span>{{ /pretty.retailPrice }}
+							</div>
+	                        <div class="addToCart"><span href="#" class="btn btnSmall">More Details</span></div>
+	                    </div>
+	                </div>
+	            </div>
+				<p class="name">{{item.showName}}</p>
+				<p class="description">{{ pretty.titleMed }}</p>
+	        </div>
+	    </a>
+	</div>
+	
+</script>
+
+<!--  PI SHOW CAROUSEL ITEM TEMPLATE  =======================  -->
+<script type="text/template" id="pi-show-item-template">
+	
+	<div class="slide" data-id="{{ item.titleId }}" data-ref-id="{{ item.titleId }}" data-position="{{ count }}" data-title="{{ item.titleName }}" title="Watch {{ item.titleName }} here">
+	    <a href="{{ link }}" style="display: block;">
+	        <div class="show-wrapper">
+	            <div class="show-container">
+	                <img class="img-responsive" alt="Watch {{ item.titleName }} Online" src="{{ renderImage }}" />
+	                <div class="show-details">
+	                    <div class="description">{{ pretty.synopsis }}</div>
+	                    {{ #pretty.starRating }}<div class="stars" data-rating="{{ pretty.starRating }}"><span></span><span></span><span></span><span></span><span></span></div>{{ /pretty.starRating }}
+	                    <div class="info">
+	                        {{ #pretty.rating }}{{ pretty.rating }}<br />{{ /pretty.rating }}
+	                        {{ pretty.audioList }}
+	                    </div>
+	                    <span class="btn add-queue-btn" >Add to Queue</span>
+	                </div>
+	            </div>
+	            <div class="name">{{ item.titleName }}</div>
+	        </div>
+	    </a>
+	</div>
+	
+</script>
+
+
+
+<!--  SCHEDULE DAY TEMPLATE  ================================  -->
+<script type="text/template" id="schedule-day-template">
+	
+		<div class="col-md-12 overflowHidden product-list schedule-day">
+			<div class="date">
+				<div class="date-content">
+					<div class="day">{{day}}</div>
+					<div class="number">{{dayMonth}}</div>
+				</div>
+			</div>
+			<div class="col-md-12 shows-wrap">
+				<!--  SCHEDULE DAYS RENDER HERE  -->
+			</div>
+		</div>
+	
+</script>
+
+
+<!--  SCHEDULE ITEM TEMPLATE  ===============================  -->
+<script type="text/template" id="schedule-item-template">
+	
+		<div class="col-md-3 show" data-ref-id="{{ item.titleId }}" data-id="{{ item.titleId }}" data-title="{{ item.titleName }}" data-image-url="{{ renderImage }}">
+			<div class="image">
+				<div class="show-wrapper">
+					<div class="show-container">
+						<img src="{{ renderImage }}" alt="{{ item.episodeName }}" class="img-responsive">
+						<div class="show-details schedule">
+							<a href="/shows/{{item.titleSlug}}" class="show-link"></a>
+							<div class="stars"><span></span><span></span><span></span><span></span><span></span></div>
+							<div class="info">{{item.ratings|displayRating:regionUrls.curTer}}<br />Japanese | English</div>
+							<a href="#" class="add-queue-btn btn">Add to Queue</a>
+							<a href="/shows/{{item.titleSlug}}" class="moreDetails">More Details</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-sm-12 content">
+				<div class="meta">
+					<div class="title"><a href="/shows/{{ item.titleSlug }}">{{ item.titleName }}</a></div>
+					<div class="episode">Episode{{#item.multEp}}s{{/item.multEp}} {{ item.episodeNum }}</div>
+				</div>
+				<div class="time">{{ dateTime.hour }}:{{ dateTime.minute }} {{ dateTime.period }} <span class="timezone-label">{{ tzLabel }}</span></div>
+			</div>
+		</div>
+	
+</script>
+
+
+
+<script>
+$(document).ready(function () {
+	
+	
+	KANE.init();
+});
+</script>
+</body>
+</html>

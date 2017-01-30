@@ -99,8 +99,11 @@
     <Compile Include="HtmlParsingAnimeStreamInfoSource.cs" />
     <Compile Include="HtmlRegexAnimeStreamInfoSource.cs" />
     <Compile Include="HtmlRegexContext.cs" />
+    <Compile Include="HttpWebResponseTextReader.cs" />
     <Compile Include="HuluStreamInfoSource.cs" />
     <Compile Include="IAnimeStreamInfoSouce.cs" />
+    <Compile Include="IWebClient.cs" />
+    <Compile Include="IWebClientResult.cs" />
     <Compile Include="MalId.cs" />
     <Compile Include="NoMatchingHtmlException.cs" />
     <Compile Include="Program.cs" />
@@ -108,6 +111,8 @@
     <Compile Include="Utils.cs" />
     <Compile Include="ViewsterStreamInfoSource.cs" />
     <Compile Include="VizStreamInfoSource.cs" />
+    <Compile Include="WebClient.cs" />
+    <Compile Include="WebClientResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">

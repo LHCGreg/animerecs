@@ -4,67 +4,36 @@ using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
 using AnimeRecs.DAL;
-using System.Net;
 using System.IO;
 
 namespace AnimeRecs.UpdateStreams
 {
     abstract class HtmlParsingAnimeStreamInfoSource : IAnimeStreamInfoSource
     {
+        private IWebClient WebClient { get; set; }
         private string Url { get; set; }
         private string XPath { get; set; }
 
-        /// <summary>
-        /// Set this to send cookies in the web request.
-        /// </summary>
-        public CookieCollection Cookies { get; set; }
-
-        // Set this to add headers to the web request
-        public Dictionary<string, string> Headers { get; set; }
-
         protected HtmlParsingAnimeStreamInfoSource(string url, string xpath)
+            : this(new WebClient(), url, xpath)
         {
+
+        }
+
+        protected HtmlParsingAnimeStreamInfoSource(IWebClient webClient, string url, string xpath)
+        {
+            WebClient = webClient;
             Url = url;
             XPath = xpath;
         }
         
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(Url);
-
-            request.Method = "GET";
-            request.KeepAlive = false;
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
-            if (Cookies != null)
-            {
-                request.CookieContainer = new CookieContainer();
-                request.CookieContainer.Add(Cookies);
-            }
-
-            if (Headers != null)
-            {
-                foreach (KeyValuePair<string, string> headerAndValue in Headers)
-                {
-                    request.Headers[headerAndValue.Key] = headerAndValue.Value;
-                }
-            }
-
             string responseBody = null;
             Console.WriteLine("Getting HTML for {0}", Url);
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (IWebClientResult result = WebClient.Get(Url))
             {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new Exception(string.Format("HTTP status code {0}", response.StatusCode));
-                }
-
-                using (Stream responseBodyStream = response.GetResponseStream())
-                using (StreamReader responseBodyReader = new StreamReader(responseBodyStream, Encoding.UTF8))
-                {
-                    // XXX: Shouldn't be hardcoding UTF-8
-                    responseBody = responseBodyReader.ReadToEnd();
-                }
+                responseBody = result.Content.ReadToEnd();
             }
 
             HtmlDocument htmlDoc = new HtmlDocument();
@@ -94,7 +63,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

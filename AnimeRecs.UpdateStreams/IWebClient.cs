@@ -2,32 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Net;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    /// <summary>
-    /// WebClient that can accept compressed responses
-    /// </summary>
-    class CompressionWebClient : System.Net.WebClient
+    internal interface IWebClient
     {
-        public CompressionWebClient()
-        {
-            // Are you serious, Microsoft? You can't use the information in the HTTP headers? AND you default to
-            // the system-wide default encoding instead of utf8? -_-
-            this.Encoding = Encoding.UTF8;
-        }
-        
-        protected override WebRequest GetWebRequest(Uri address)
-        {
-            HttpWebRequest request = (HttpWebRequest)base.GetWebRequest(address);
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            return request;
-        }
+        IWebClientResult Get(string url);
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
