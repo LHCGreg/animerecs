@@ -5,24 +5,25 @@ using System.Text;
 using NUnit.Framework;
 using AnimeRecs.UpdateStreams;
 using AnimeRecs.DAL;
+using AnimeRecs.UpdateStreams.Crunchyroll;
 
 namespace AnimeRecs.UpdateStreams.Tests
 {
     [TestFixture]
-    public partial class CrunchyrollStreamInfoSourceTests
+    public partial class CrunchyrollHtmlStreamInfoSourceTests
     {
         [Test]
         public void TestRegex()
         {
-            CrunchyrollStreamInfoSource cr = new CrunchyrollStreamInfoSource();
-            ICollection<AnimeStreamInfo> streams = cr.GetAnimeStreamInfo(CrunchyrollStreamInfoSourceTests.TestHtml);
+            CrunchyrollHtmlStreamInfoSource cr = new CrunchyrollHtmlStreamInfoSource(CrunchyrollHtmlStreamInfoSourceTests.TestHtml);
+            ICollection<AnimeStreamInfo> streams = cr.GetAnimeStreamInfo();
             Assert.That(streams, Contains.Item(new AnimeStreamInfo("Mobile Suit Zeta Gundam", "http://www.crunchyroll.com/mobile-suit-zeta-gundam", StreamingService.Crunchyroll)));
             Assert.That(streams, Contains.Item(new AnimeStreamInfo("NARUTO Spin-Off: Rock Lee & His Ninja Pals", "http://www.crunchyroll.com/naruto-spin-off-rock-lee-his-ninja-pals", StreamingService.Crunchyroll)));
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams.Tests
 //

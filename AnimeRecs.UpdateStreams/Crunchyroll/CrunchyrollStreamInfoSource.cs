@@ -1,29 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
-using AnimeRecs.DAL;
 using RestSharp;
 
-namespace AnimeRecs.UpdateStreams
+namespace AnimeRecs.UpdateStreams.Crunchyroll
 {
     class CrunchyrollStreamInfoSource : IAnimeStreamInfoSource
     {
-        private const string AnimeListUrl = "http://www.crunchyroll.com/videos/anime/alpha?group=all";
         private const string LoginBaseUrl = "https://www.crunchyroll.com";
         private const string LoginResource = "?a=formhandler";
-        private const string AnimeRegexString =
-            "<a title=\"[^\"]*?\" token=\"shows-portraits\" itemprop=\"url\" href=\"(?<Url>[^\"]*?)\" [^>]*?>\\s*(?<AnimeName>.*?)\\s*?</a>";
-        private HtmlRegexAnimeStreamInfoSource _sourceAfterLogin;
         
         public CrunchyrollStreamInfoSource()
         {
-            _sourceAfterLogin = new HtmlRegexAnimeStreamInfoSource(AnimeListUrl,
-                new Regex(AnimeRegexString, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline),
-                StreamingService.Crunchyroll, animeNameContext: HtmlRegexContext.Body, urlContext: HtmlRegexContext.Attribute);
+
         }
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
@@ -40,14 +31,8 @@ namespace AnimeRecs.UpdateStreams
             CookieCollection cookies = Login(username, password);
 
             // Use cookies in GET
-            _sourceAfterLogin.Cookies = cookies;
-            return _sourceAfterLogin.GetAnimeStreamInfo();
-        }
-
-        // For unit testing
-        internal ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string responseBody)
-        {
-            return _sourceAfterLogin.GetAnimeStreamInfo(responseBody);
+            var source = new CrunchyrollLoggedInStreamInfoSource(cookies);
+            return source.GetAnimeStreamInfo();
         }
 
         private static string GetUsername()
@@ -150,7 +135,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

@@ -72,7 +72,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrunchyrollStreamInfoSourceTests.cs" />
+    <Compile Include="CrunchyrollHtmlStreamInfoSourceTests.cs" />
     <Compile Include="CrunchyrollStreamInfoSourceTests.html.cs" />
     <Compile Include="FunimationStreamInfoSourceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

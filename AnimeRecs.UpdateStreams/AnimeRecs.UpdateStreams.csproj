@@ -92,7 +92,10 @@
     <Compile Include="CompressionWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CrunchyrollStreamInfoSource.cs" />
+    <Compile Include="Crunchyroll\CrunchyrollHtmlStreamInfoSource.cs" />
+    <Compile Include="Crunchyroll\CrunchyrollLocalHtmlStreamInfoSource.cs" />
+    <Compile Include="Crunchyroll\CrunchyrollLoggedInStreamInfoSource.cs" />
+    <Compile Include="Crunchyroll\CrunchyrollStreamInfoSource.cs" />
     <Compile Include="CsvRow.cs" />
     <Compile Include="DaisukiStreamInfoSource.cs" />
     <Compile Include="FunimationStreamInfoSource.cs" />
@@ -113,6 +116,7 @@
     <Compile Include="VizStreamInfoSource.cs" />
     <Compile Include="WebClient.cs" />
     <Compile Include="WebClientResult.cs" />
+    <Compile Include="WebPageAnimeStreamInfoSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">

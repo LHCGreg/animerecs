@@ -6,6 +6,7 @@ using System.IO;
 using Microsoft.VisualBasic.FileIO;
 using MiscUtil.Collections.Extensions;
 using AnimeRecs.DAL;
+using AnimeRecs.UpdateStreams.Crunchyroll;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -17,7 +18,7 @@ namespace AnimeRecs.UpdateStreams
 
             if (commandLine.Op == Operation.CreateCsv)
             {
-                CreateCsv(commandLine.InputFile, commandLine.OutputFile);
+                CreateCsv(commandLine);
             }
             else if (commandLine.Op == Operation.GenerateSql)
             {
@@ -34,8 +35,11 @@ namespace AnimeRecs.UpdateStreams
         /// </summary>
         /// <param name="inputFile"></param>
         /// <param name="outputFile"></param>
-        static void CreateCsv(string inputFile, string outputFile)
+        static void CreateCsv(CommandLineArgs args)
         {
+            string inputFile = args.InputFile;
+            string outputFile = args.OutputFile;
+            
             // Read in existing mapping from the input csv. If no input csv was specified, treat it as an empty csv.
             List<CsvRow> inputCsvRows;
             if (inputFile == null)
@@ -63,7 +67,7 @@ namespace AnimeRecs.UpdateStreams
                 rowsByServiceAndAnime[csvRow.Service][csvRow.AnimeName].Add(csvRow);
             }
 
-            List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources();
+            List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources(args);
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
             foreach (IAnimeStreamInfoSource streamInfoSource in streamInfoSources)
             {
@@ -207,12 +211,22 @@ namespace AnimeRecs.UpdateStreams
             return "\"" + str.Replace("\"", "\"\"") + "\"";
         }
 
-        static List<IAnimeStreamInfoSource> GetStreamInfoSources()
+        static List<IAnimeStreamInfoSource> GetStreamInfoSources(CommandLineArgs args)
         {
+            IAnimeStreamInfoSource crunchyrollSource;
+            if (args.CrunchyrollLocalHtmlPath != null)
+            {
+                crunchyrollSource = new CrunchyrollLocalHtmlStreamInfoSource(args.CrunchyrollLocalHtmlPath);
+            }
+            else
+            {
+                crunchyrollSource = new CrunchyrollStreamInfoSource();
+            }
+
             return new List<IAnimeStreamInfoSource>()
             {
                 // Crunchyroll first because it prompts for a username and password. Let the user enter that first instead of in the middle.
-                new CrunchyrollStreamInfoSource(),
+                crunchyrollSource,
                 new FunimationStreamInfoSource(),
                 new VizStreamInfoSource(),
                 new HuluStreamInfoSource(),
@@ -224,7 +238,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2015 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

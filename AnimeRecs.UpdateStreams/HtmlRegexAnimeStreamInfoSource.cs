@@ -4,91 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Net;
-using System.IO;
 using AnimeRecs.DAL;
 
 namespace AnimeRecs.UpdateStreams
 {
     class HtmlRegexAnimeStreamInfoSource : IAnimeStreamInfoSource
     {
-        protected string Url { get; private set; }
-        protected Regex AnimeRegex { get; private set; }
-        protected StreamingService Service { get; private set; }
-        protected HtmlRegexContext AnimeNameContext { get; private set; }
-        protected HtmlRegexContext UrlContext { get; private set; }
+        private string Url { get; set; }
+        private Regex AnimeRegex { get; set; }
+        private string Html { get; set; }
+        private StreamingService Service { get; set; }
+        private HtmlRegexContext AnimeNameContext { get; set; }
+        private HtmlRegexContext UrlContext { get; set; }
 
         /// <summary>
-        /// Set this to send cookies in the web request.
-        /// </summary>
-        public CookieCollection Cookies { get; set; }
-
-        // Set this to add headers to the web request
-        public Dictionary<string, string> Headers { get; set; }
-
-        /// <summary>
-        /// Regex must have a named capture group called AnimeName and Url
+        /// Regex must have named capture groups called AnimeName and Url
         /// </summary>
         /// <param name="url"></param>
         /// <param name="regex"></param>
-        public HtmlRegexAnimeStreamInfoSource(string url, Regex animeRegex, StreamingService service, HtmlRegexContext animeNameContext, HtmlRegexContext urlContext)
+        public HtmlRegexAnimeStreamInfoSource(string url, Regex animeRegex, string html, StreamingService service, HtmlRegexContext animeNameContext, HtmlRegexContext urlContext)
         {
             Url = url;
             AnimeRegex = animeRegex;
+            Html = html;
             Service = service;
             AnimeNameContext = animeNameContext;
             UrlContext = urlContext;
         }
-        
+
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(Url);
-
-            request.Method = "GET";
-            request.KeepAlive = false;
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
-            if (Cookies != null)
-            {
-                request.CookieContainer = new CookieContainer();
-                request.CookieContainer.Add(Cookies);
-            }
-
-            if (Headers != null)
-            {
-                foreach (KeyValuePair<string, string> headerAndValue in Headers)
-                {
-                    request.Headers[headerAndValue.Key] = headerAndValue.Value;
-                }
-            }
-
-            string responseBody = null;
-            Console.WriteLine("Getting HTML for {0}", Url);
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new Exception(string.Format("HTTP status code {0}", response.StatusCode));
-                }
-
-                using (Stream responseBodyStream = response.GetResponseStream())
-                using (StreamReader responseBodyReader = new StreamReader(responseBodyStream, Encoding.UTF8))
-                {
-                    // XXX: Shouldn't be hardcoding UTF-8
-                    responseBody = responseBodyReader.ReadToEnd();
-                }
-            }
-
-            ICollection<AnimeStreamInfo> streams = GetAnimeStreamInfo(responseBody);
-            return streams;
-        }
-
-        // Internal for unit testing
-        internal ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string responseBody)
-        {
             Uri animeListUri = new Uri(Url);
-            
+
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
-            Match match = AnimeRegex.Match(responseBody);
+            Match match = AnimeRegex.Match(Html);
             while (match.Success)
             {
                 string animeNameRaw = match.Groups["AnimeName"].Value;
@@ -134,7 +83,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

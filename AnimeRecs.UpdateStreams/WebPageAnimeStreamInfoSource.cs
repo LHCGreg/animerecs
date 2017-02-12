@@ -2,64 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HtmlAgilityPack;
-using AnimeRecs.DAL;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    abstract class HtmlParsingAnimeStreamInfoSource : IAnimeStreamInfoSource
+    /// <summary>
+    /// Gets HTML from a web page and lets the child class process it.
+    /// </summary>
+    abstract class WebPageStreamInfoSource : IAnimeStreamInfoSource
     {
+        protected string Url { get; private set; }
         private IWebClient WebClient { get; set; }
-        private string Url { get; set; }
-        private string XPath { get; set; }
 
-        protected HtmlParsingAnimeStreamInfoSource(string url, string xpath)
-            : this(url, xpath, new WebClient())
+        public WebPageStreamInfoSource(string url)
+            : this(url, new WebClient())
         {
 
         }
 
-        protected HtmlParsingAnimeStreamInfoSource(string url, string xpath, IWebClient webClient)
+        internal WebPageStreamInfoSource(string url, IWebClient webClient)
         {
             Url = url;
-            XPath = xpath;
             WebClient = webClient;
         }
-        
+
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            string responseBody = null;
+            string responseBody;
+
             Console.WriteLine("Getting HTML for {0}", Url);
             using (IWebClientResult result = WebClient.Get(Url))
             {
                 responseBody = result.Content.ReadToEnd();
             }
 
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(responseBody);
-            HtmlNodeCollection matchingNodes = htmlDoc.DocumentNode.SelectNodes(XPath);
-
-            if (matchingNodes == null || matchingNodes.Count == 0)
-            {
-                throw new NoMatchingHtmlException(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
-            }
-
-            List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
-            foreach (HtmlNode matchingNode in matchingNodes)
-            {
-                AnimeStreamInfo stream = GetStreamInfoFromMatch(matchingNode);
-                
-                // Convert possibly relative url to an absolute url
-                stream = new AnimeStreamInfo(stream.AnimeName, Utils.PossiblyRelativeUrlToAbsoluteUrl(stream.Url, Url), stream.Service);
-                
-                streams.Add(stream);
-            }
-
+            ICollection<AnimeStreamInfo> streams = GetAnimeStreamInfo(responseBody);
             return streams;
         }
 
-        protected abstract AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode);
+        protected abstract ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string html);
     }
 }
 

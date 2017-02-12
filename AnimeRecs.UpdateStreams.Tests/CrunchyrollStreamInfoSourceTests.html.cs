@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AnimeRecs.UpdateStreams.Tests
 {
-    public partial class CrunchyrollStreamInfoSourceTests
+    public partial class CrunchyrollHtmlStreamInfoSourceTests
     {
         public static string TestHtml = @"
 

@@ -63,7 +63,7 @@ namespace AnimeRecs.UpdateStreams
             private static string xpath = "//div[contains(@class, 'product-list')]//div[contains(@class, 'show-wrapper')]/div[contains(@class, 'name')]/a";
 
             public HelperStreamInfoSource(IWebClient webClient, string url)
-                : base(webClient, url, xpath)
+                : base(url, xpath, webClient)
             {
 
             }
