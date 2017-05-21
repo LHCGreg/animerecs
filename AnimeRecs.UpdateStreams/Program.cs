@@ -225,7 +225,7 @@ namespace AnimeRecs.UpdateStreams
 
             return new List<IAnimeStreamInfoSource>()
             {
-                // Crunchyroll first because it prompts for a username and password. Let the user enter that first instead of in the middle.
+                // Crunchyroll first because it prompts for a username and password if not loading from a file. Let the user enter that first instead of in the middle.
                 crunchyrollSource,
                 new AmazonAnimeStrikeStreamInfoSource(),
                 new AmazonPrimeStreamInfoSource(),
