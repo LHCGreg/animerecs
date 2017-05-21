@@ -78,8 +78,8 @@ namespace AnimeRecs.UpdateStreams
                     throw new Exception(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
                 }
 
-                string animeName = HtmlEntity.DeEntitize(animeNameTag.InnerText);
-                string possiblyRelativeUrl = animeLinkTag.Attributes["href"].Value;
+                string animeName = Utils.DecodeHtmlBody(animeNameTag.InnerText);
+                string possiblyRelativeUrl = Utils.DecodeHtmlAttribute(animeLinkTag.Attributes["href"].Value);
                 return new AnimeStreamInfo(animeName, possiblyRelativeUrl, StreamingService.AnimeNetwork);
             }
         }

@@ -20,7 +20,7 @@ namespace AnimeRecs.UpdateStreams
 
         protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
         {
-            string possiblyRelativeUrl = matchingNode.Attributes["href"].Value;
+            string possiblyRelativeUrl = Utils.DecodeHtmlAttribute(matchingNode.Attributes["href"].Value);
 
             HtmlNode animeNameDiv = matchingNode.ChildNodes.Where(node => node.NodeType == HtmlNodeType.Element && node.Name == "div" && node.Attributes.Contains("class") && node.Attributes["class"].Value.Contains("type-center")).FirstOrDefault();
             if (animeNameDiv == null)
@@ -28,7 +28,7 @@ namespace AnimeRecs.UpdateStreams
                 throw new Exception(string.Format("Could not extract information from {0}. The site's HTML format probably changed.", Url));
             }
 
-            string animeName = HtmlEntity.DeEntitize(animeNameDiv.InnerText);
+            string animeName = Utils.DecodeHtmlBody(animeNameDiv.InnerText);
             return new AnimeStreamInfo(animeName, possiblyRelativeUrl, StreamingService.Viz);
         }
     }

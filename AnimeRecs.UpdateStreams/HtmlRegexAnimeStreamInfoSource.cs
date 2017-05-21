@@ -73,9 +73,9 @@ namespace AnimeRecs.UpdateStreams
             switch (context)
             {
                 case HtmlRegexContext.Body:
-                    return WebUtility.HtmlDecode(str);
+                    return Utils.DecodeHtmlBody(str);
                 case HtmlRegexContext.Attribute:
-                    return str.Replace("&quot;", "\"").Replace("&apos;", "'").Replace("&lt;", "<").Replace("&gt;", ">").Replace("&amp;", "&");
+                    return Utils.DecodeHtmlAttribute(str);
                 default:
                     return str;
             }

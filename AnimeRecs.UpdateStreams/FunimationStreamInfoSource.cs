@@ -70,8 +70,8 @@ namespace AnimeRecs.UpdateStreams
 
             protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
             {
-                string animeName = HtmlEntity.DeEntitize(matchingNode.InnerText);
-                string url = matchingNode.Attributes["href"].Value;
+                string animeName = Utils.DecodeHtmlBody(matchingNode.InnerText);
+                string url = Utils.DecodeHtmlAttribute(matchingNode.Attributes["href"].Value);
                 return new AnimeStreamInfo(animeName, url, StreamingService.Funimation);
             }
         }
