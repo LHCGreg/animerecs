@@ -1,34 +1,26 @@
-﻿using System;
+﻿using AnimeRecs.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    static class Utils
+    class AmazonPrimeStreamInfoSource : AmazonStreamInfoSource
     {
-        public static string PossiblyRelativeUrlToAbsoluteUrl(string possiblyRelativeUrl, string sourceUrl)
+        private const string FirstPageUrl = "https://www.amazon.com/s/ref=sr_rot_p_n_ways_to_watch_1?rh=n:2858778011,p_n_theme_browse-bin:2650364011,p_n_ways_to_watch:12007865011&ie=UTF8";
+
+        public AmazonPrimeStreamInfoSource()
+            : base(FirstPageUrl, StreamingService.AmazonPrime, new WebClient())
         {
-            Uri possiblyRelativeUri = new Uri(possiblyRelativeUrl, UriKind.RelativeOrAbsolute);
-            if (possiblyRelativeUri.IsAbsoluteUri)
-            {
-                return possiblyRelativeUri.ToString();
-            }
-            else
-            {
-                return new Uri(new Uri(sourceUrl), possiblyRelativeUrl).ToString();
-            }
+
         }
 
-        public static string DecodeHtmlAttribute(string rawAttributeText)
+        public AmazonPrimeStreamInfoSource(IWebClient webClient)
+            : base(FirstPageUrl, StreamingService.AmazonPrime, webClient)
         {
-            return WebUtility.HtmlDecode(rawAttributeText);
-        }
 
-        public static string DecodeHtmlBody(string rawBody)
-        {
-            return WebUtility.HtmlDecode(rawBody);
         }
     }
 }

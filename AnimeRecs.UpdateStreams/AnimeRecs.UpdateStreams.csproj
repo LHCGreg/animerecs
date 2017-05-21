@@ -86,6 +86,9 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmazonAnimeStrikeStreamInfoSource.cs" />
+    <Compile Include="AmazonPrimeStreamInfoSource.cs" />
+    <Compile Include="AmazonStreamInfoSource.cs" />
     <Compile Include="AnimeNetworkStreamInfoSource.cs" />
     <Compile Include="AnimeStreamInfo.cs" />
     <Compile Include="CommandLineArgs.cs" />

@@ -51,13 +51,12 @@ namespace AnimeRecs.UpdateStreams
 
         private class AnimeNetworkPageStreamInfoSource : HtmlParsingAnimeStreamInfoSource
         {
-            private const string XPath = @"//div[contains(@class,'titleimg')]";
-            private string Url { get; set; }
+            private const string AnimeDivXPath = @"//div[contains(@class,'titleimg')]";
             
             public AnimeNetworkPageStreamInfoSource(string url)
-                : base(url, XPath)
+                : base(url, AnimeDivXPath)
             {
-                Url = url;
+
             }
 
             protected override AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode)
@@ -87,7 +86,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

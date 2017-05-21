@@ -227,6 +227,8 @@ namespace AnimeRecs.UpdateStreams
             {
                 // Crunchyroll first because it prompts for a username and password. Let the user enter that first instead of in the middle.
                 crunchyrollSource,
+                new AmazonAnimeStrikeStreamInfoSource(),
+                new AmazonPrimeStreamInfoSource(),
                 new FunimationStreamInfoSource(),
                 new VizStreamInfoSource(),
                 new HuluStreamInfoSource(),

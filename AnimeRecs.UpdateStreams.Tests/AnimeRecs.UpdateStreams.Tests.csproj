@@ -72,6 +72,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmazonAnimeStrikeStreamInfoSourceTests.cs" />
+    <Compile Include="AmazonPrimeStreamInfoSourceTests.cs" />
     <Compile Include="CrunchyrollHtmlStreamInfoSourceTests.cs" />
     <Compile Include="CrunchyrollStreamInfoSourceTests.html.cs" />
     <Compile Include="FunimationStreamInfoSourceTests.cs" />
@@ -104,6 +106,16 @@
     <EmbeddedResource Include="funimation_3.html" />
     <EmbeddedResource Include="funimation_4.html" />
     <EmbeddedResource Include="funimation_5.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="amazon_anime_strike_1.html" />
+    <EmbeddedResource Include="amazon_anime_strike_2.html" />
+    <EmbeddedResource Include="amazon_anime_strike_3.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="amazon_prime_1.html" />
+    <EmbeddedResource Include="amazon_prime_2.html" />
+    <EmbeddedResource Include="amazon_prime_3.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

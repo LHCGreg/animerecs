@@ -14,11 +14,13 @@ namespace AnimeRecs.DAL
         Viewster = 5,
         Daisuki = 6,
         Netflix = 7,
-        AnimeNetwork = 8
+        AnimeNetwork = 8,
+        AmazonPrime = 9,
+        AmazonAnimeStrike = 10
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

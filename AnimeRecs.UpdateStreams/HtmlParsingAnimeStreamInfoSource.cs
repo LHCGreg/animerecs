@@ -10,9 +10,9 @@ namespace AnimeRecs.UpdateStreams
 {
     abstract class HtmlParsingAnimeStreamInfoSource : IAnimeStreamInfoSource
     {
-        private IWebClient WebClient { get; set; }
-        private string Url { get; set; }
-        private string XPath { get; set; }
+        protected IWebClient WebClient { get; private set; }
+        protected string Url { get; private set; }
+        protected string XPath { get; private set; }
 
         protected HtmlParsingAnimeStreamInfoSource(string url, string xpath)
             : this(url, xpath, new WebClient())
@@ -56,7 +56,14 @@ namespace AnimeRecs.UpdateStreams
                 streams.Add(stream);
             }
 
+            OnStreamsExtracted(htmlDoc, streams);
+
             return streams;
+        }
+
+        protected virtual void OnStreamsExtracted(HtmlDocument htmlDoc, List<AnimeStreamInfo> streams)
+        {
+
         }
 
         protected abstract AnimeStreamInfo GetStreamInfoFromMatch(HtmlNode matchingNode);

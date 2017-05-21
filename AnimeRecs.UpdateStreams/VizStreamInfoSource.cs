@@ -10,11 +10,10 @@ namespace AnimeRecs.UpdateStreams
 {
     class VizStreamInfoSource : HtmlParsingAnimeStreamInfoSource
     {
-        private const string Url = "http://www.viz.com/watch/streaming/watch";
-        private const string XPath = @"//div[contains(@class,'property-row')]/a";
+        private const string AnimeDivXPath = @"//div[contains(@class,'property-row')]/a";
         
         public VizStreamInfoSource()
-            : base(Url, XPath)
+            : base("http://www.viz.com/watch/streaming/watch", AnimeDivXPath)
         {
             ;
         }
@@ -35,7 +34,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

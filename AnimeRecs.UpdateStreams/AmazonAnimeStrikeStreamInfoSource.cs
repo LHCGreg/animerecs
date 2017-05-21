@@ -1,34 +1,26 @@
-﻿using System;
+﻿using AnimeRecs.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    static class Utils
+    class AmazonAnimeStrikeStreamInfoSource : AmazonStreamInfoSource
     {
-        public static string PossiblyRelativeUrlToAbsoluteUrl(string possiblyRelativeUrl, string sourceUrl)
+        private const string FirstPageUrl = "https://www.amazon.com/s/ref=sr_nr_p_n_subscription_id_1?rh=n:2858778011,p_n_ways_to_watch:12007866011,p_n_subscription_id:16182082011&ie=UTF8";
+
+        public AmazonAnimeStrikeStreamInfoSource()
+            : base(FirstPageUrl, StreamingService.AmazonAnimeStrike, new WebClient())
         {
-            Uri possiblyRelativeUri = new Uri(possiblyRelativeUrl, UriKind.RelativeOrAbsolute);
-            if (possiblyRelativeUri.IsAbsoluteUri)
-            {
-                return possiblyRelativeUri.ToString();
-            }
-            else
-            {
-                return new Uri(new Uri(sourceUrl), possiblyRelativeUrl).ToString();
-            }
+
         }
 
-        public static string DecodeHtmlAttribute(string rawAttributeText)
+        public AmazonAnimeStrikeStreamInfoSource(IWebClient webClient)
+            : base(FirstPageUrl, StreamingService.AmazonAnimeStrike, webClient)
         {
-            return WebUtility.HtmlDecode(rawAttributeText);
-        }
 
-        public static string DecodeHtmlBody(string rawBody)
-        {
-            return WebUtility.HtmlDecode(rawBody);
         }
     }
 }
