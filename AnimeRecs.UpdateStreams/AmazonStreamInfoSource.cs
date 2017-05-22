@@ -87,8 +87,21 @@ namespace AnimeRecs.UpdateStreams
                 HtmlNode link = matchingNode.ParentNode;
                 string url = Utils.DecodeHtmlAttribute(link.Attributes["href"].Value);
 
-                // remove qid=12345& from the url - you get a new qid every time you run.
-                url = s_qidRegex.Replace(url, "");
+                // https://www.amazon.com/Acceleration/dp/B00GQ1HB3Q/ref=sr_1_37/141-4748842-3456620?s=instant-video&ie=UTF8&sr=1-37&refinements=p_n_ways_to_watch:12007866011%2Cp_n_subscription_id:16182082011
+                // to
+                // https://www.amazon.com/Acceleration/dp/B00GQ1HB3Q
+                //
+                // All the stuff after is unncessary and some of it changes on every search.
+                // The qid and the 141-4748842-3456620 definitely changes.
+                // ref=sr_1_37 and sr=1-37 probably can change if the position of the anime in the search results changes.
+
+                int indexOfUnnecessaryUrlStuff = url.IndexOf("/ref=");
+                if (indexOfUnnecessaryUrlStuff == -1)
+                {
+                    throw new Exception(string.Format("Did not find /ref= in Amazon url. The URL format may have changed. The URL was: {0}", url));
+                }
+
+                url = url.Substring(0, indexOfUnnecessaryUrlStuff);
                 
                 return new AnimeStreamInfo(animeName, url, _service);
             }
