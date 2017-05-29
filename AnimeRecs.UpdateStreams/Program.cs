@@ -75,6 +75,21 @@ namespace AnimeRecs.UpdateStreams
                 streams.AddRange(streamsFromThisSource);
             }
 
+            Dictionary<StreamingService, Dictionary<string, List<AnimeStreamInfo>>> streamsByServiceAndAnime = new Dictionary<StreamingService, Dictionary<string, List<AnimeStreamInfo>>>();
+
+            foreach (AnimeStreamInfo stream in streams)
+            {
+                if (!streamsByServiceAndAnime.ContainsKey(stream.Service))
+                {
+                    streamsByServiceAndAnime[stream.Service] = new Dictionary<string, List<AnimeStreamInfo>>();
+                }
+                if (!streamsByServiceAndAnime[stream.Service].ContainsKey(stream.AnimeName))
+                {
+                    streamsByServiceAndAnime[stream.Service][stream.AnimeName] = new List<AnimeStreamInfo>();
+                }
+                streamsByServiceAndAnime[stream.Service][stream.AnimeName].Add(stream);
+            }
+
             Console.WriteLine("Writing out csv.");
 
             // Write a new csv mapping to the output file. If MAL anime ids or n/a was present in the input file for a certain
@@ -94,7 +109,37 @@ namespace AnimeRecs.UpdateStreams
                     if (rowsByServiceAndAnime.ContainsKey(streamInfo.Service) && rowsByServiceAndAnime[streamInfo.Service].ContainsKey(streamInfo.AnimeName))
                     {
                         List<CsvRow> rowsForThisServiceAndAnime = rowsByServiceAndAnime[streamInfo.Service][streamInfo.AnimeName];
-                        existingCsvRows = rowsForThisServiceAndAnime.Where(row => row.Url == streamInfo.Url).ToList();
+
+                        // Amazon URLs look like https://www.amazon.com/Our-Eyes-Finally-Met-Anothers/dp/B06Y5WC21S
+                        // The "Our-Eyes-Finally-Met-Anothers" relates to an episode title.
+                        // The B06Y5WC21S is some sort of ID that seems to relate to the episode rather than the whole series.
+                        // For reasons unknown, the episode that represents the whole series can change, resulting in the URL changing.
+                        // This results in a fair amount of churn in the CSV, around 20 changes per week.
+                        // To avoid having to remap those streams to MAL IDs, use the following logic:
+
+                        // If amazon service, and only one URL present in existing CSV for this (service, title),
+                        // and only one url present in the streams that we just got, then consider the existing CSV rows
+                        // a match and use their MAL IDs.
+                        
+                        // Even if that is not the case, then only consider the ID at the end when matching URLs of streams
+                        // to existing CSV rows.
+
+                        if (streamInfo.Service != StreamingService.AmazonAnimeStrike && streamInfo.Service != StreamingService.AmazonPrime)
+                        {
+                            existingCsvRows = rowsForThisServiceAndAnime.Where(row => row.Url == streamInfo.Url).ToList();
+                        }
+                        else
+                        {
+                            if (rowsForThisServiceAndAnime.GroupBy(row => row.Url).Count() == 1 && streamsByServiceAndAnime[streamInfo.Service][streamInfo.AnimeName].GroupBy(stream => stream.Url).Count() == 1)
+                            {
+                                existingCsvRows = rowsForThisServiceAndAnime.ToList();
+                            }
+                            else
+                            {
+                                string amazonStreamID = GetAmazonIDFromUrl(streamInfo.Url);
+                                existingCsvRows = rowsForThisServiceAndAnime.Where(row => GetAmazonIDFromUrl(row.Url) == amazonStreamID).ToList();
+                            }
+                        }
                     }
 
                     output.Write("\r\n"); // not WriteLine() - this should be \r\n regardless of what platform this is run on per the CSV RFC
@@ -108,8 +153,8 @@ namespace AnimeRecs.UpdateStreams
                             {
                                 output.Write("\r\n");
                             }
-                            output.Write("{0},{1},{2},{3}", QuoteForCsv(existingRow.Service.ToString()),
-                                QuoteForCsv(existingRow.AnimeName), QuoteForCsv(existingRow.Url),
+                            output.Write("{0},{1},{2},{3}", QuoteForCsv(streamInfo.Service.ToString()),
+                                QuoteForCsv(streamInfo.AnimeName), QuoteForCsv(streamInfo.Url),
                                 existingRow.MalAnimeId.ToString());
                         }
                     }
@@ -121,6 +166,24 @@ namespace AnimeRecs.UpdateStreams
                     }
                 }
             }
+        }
+
+        // https://www.amazon.com/Our-Eyes-Finally-Met-Anothers/dp/B06Y5WC21S -> B06Y5WC21S
+        static string GetAmazonIDFromUrl(string url)
+        {
+            int indexOfLastSlash = url.LastIndexOf('/');
+            if (indexOfLastSlash == -1)
+            {
+                throw new Exception(string.Format("Amazon URL {0} doesn't have a slash in it.", url));
+            }
+
+            int idLength = url.Length - indexOfLastSlash - 1;
+            if (idLength <= 0)
+            {
+                throw new Exception(string.Format("Length of ID in Amazon URL {0} is <= 0", url));
+            }
+
+            return url.Substring(indexOfLastSlash + 1, url.Length - indexOfLastSlash - 1);
         }
 
         static List<CsvRow> LoadCsv(string inputFile)
