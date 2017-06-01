@@ -113,6 +113,16 @@ namespace AnimeRecs.Web
                             altText = "Anime Network";
                             titleText = "Watch on The Anime Network";
                             break;
+                        case StreamingService.AmazonPrime:
+                            imagePath = renderContext.ParsePath("~/Content/amazon_prime_icon.png");
+                            altText = "Amazon Prime";
+                            titleText = "Watch on Amazon Prime";
+                            break;
+                        case StreamingService.AmazonAnimeStrike:
+                            imagePath = renderContext.ParsePath("~/Content/amazon_anime_strike_icon.png");
+                            altText = "Anime Strike";
+                            titleText = "Watch on Amazon Anime Strike";
+                            break;
                         default:
                             continue;
                     }
