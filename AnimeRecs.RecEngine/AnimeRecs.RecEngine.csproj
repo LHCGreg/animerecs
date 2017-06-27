@@ -1,98 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net452</TargetFrameworks>
     <RootNamespace>AnimeRecs.RecEngine</RootNamespace>
     <AssemblyName>AnimeRecs.RecEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Version>2.0.0.0</Version>
+    <Description>Recommendation interfaces and generic recommendation algorithms</Description>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugMono|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugMono\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseMono|AnyCPU'">
-    <OutputPath>bin\ReleaseMono\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AnimeRecsRecSource.cs" />
-    <Compile Include="AnimeRecsTrainingData.cs" />
-    <Compile Include="AverageScoreRecSource.cs" />
-    <Compile Include="BasicInputForUser.cs" />
-    <Compile Include="BasicInputForUserPercentageClassifier.cs" />
-    <Compile Include="BasicInputForUserWithOkToRecommendPredicate.cs" />
-    <Compile Include="BasicPositiveFeedbackForUser.cs" />
-    <Compile Include="BasicPositiveFeedbackForUserWithOkToRecommendPredicate.cs" />
-    <Compile Include="BasicRecommendation.cs" />
-    <Compile Include="BasicTrainingData.cs" />
-    <Compile Include="ClassifiedUserInput.cs" />
-    <Compile Include="ConfidenceInterval.cs" />
-    <Compile Include="Evaluation\EvaluationResults.cs" />
-    <Compile Include="Evaluation\ItemsForInputAndEvaluation.cs" />
-    <Compile Include="Evaluation\SingleUserEvaluationResults.cs" />
-    <Compile Include="Evaluation\TopNEvaluator.cs" />
-    <Compile Include="IBasicInputForUser.cs" />
-    <Compile Include="IBasicTrainingData.cs" />
-    <Compile Include="IInputForUser.cs" />
-    <Compile Include="IInputForUserWithItemIds.cs" />
-    <Compile Include="IPositiveFeedbackForUser.cs" />
-    <Compile Include="IRecommendation.cs" />
-    <Compile Include="IRecommendationSource.cs" />
-    <Compile Include="ITrainable.cs" />
-    <Compile Include="ITrainableRecSource.cs" />
-    <Compile Include="IUserInputClassifier.cs" />
-    <Compile Include="MostPopularRecSource.cs" />
-    <Compile Include="PercentageRatingClassifier.cs" />
-    <Compile Include="PercentageSplit.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingPredictionRecommendation.cs" />
-    <Compile Include="RecUtils.cs" />
-    <Compile Include="Utils\DelegateComparer.cs" />
-    <Compile Include="Utils\FilteredDictionary.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

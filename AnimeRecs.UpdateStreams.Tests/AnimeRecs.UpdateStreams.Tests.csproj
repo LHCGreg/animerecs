@@ -1,122 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D354A612-DB25-4EFD-9916-200DE54C94C7}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net452</TargetFrameworks>
     <RootNamespace>AnimeRecs.UpdateStreams.Tests</RootNamespace>
     <AssemblyName>UpdateStreams.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <Version>2.0.0.0</Version>
+    <Description>Unit tests for UpdateStreams</Description>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugMono|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\DebugMono\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseMono|AnyCPU'">
-    <OutputPath>bin\ReleaseMono\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+  
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.5.30.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <PackageReference Include="Castle.Core" Version="3.3.3" />
+    <PackageReference Include="Moq" Version="4.5.30" />
+    <PackageReference Include="NUnit" Version="3.6.0" />
+    
+    <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj" />
+    <ProjectReference Include="..\AnimeRecs.UpdateStreams\AnimeRecs.UpdateStreams.csproj" />
   </ItemGroup>
+  
   <ItemGroup>
-    <Compile Include="AmazonAnimeStrikeStreamInfoSourceTests.cs" />
-    <Compile Include="AmazonPrimeStreamInfoSourceTests.cs" />
-    <Compile Include="CrunchyrollHtmlStreamInfoSourceTests.cs" />
-    <Compile Include="CrunchyrollStreamInfoSourceTests.html.cs" />
-    <Compile Include="FunimationStreamInfoSourceTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj">
-      <Project>{F7463E78-C746-4D37-A869-759FB38B247B}</Project>
-      <Name>AnimeRecs.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AnimeRecs.UpdateStreams\AnimeRecs.UpdateStreams.csproj">
-      <Project>{836964EF-6B5A-4127-A596-83BD6A169958}</Project>
-      <Name>AnimeRecs.UpdateStreams</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Daisuki.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Viewster.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="amazon_anime_strike_1.html" />
+    <EmbeddedResource Include="amazon_anime_strike_2.html" />
+    <EmbeddedResource Include="amazon_anime_strike_3.html" />
+    <EmbeddedResource Include="amazon_prime_1.html" />
+    <EmbeddedResource Include="amazon_prime_2.html" />
+    <EmbeddedResource Include="amazon_prime_3.html" />
     <EmbeddedResource Include="funimation_1.html" />
     <EmbeddedResource Include="funimation_2.html" />
     <EmbeddedResource Include="funimation_3.html" />
     <EmbeddedResource Include="funimation_4.html" />
     <EmbeddedResource Include="funimation_5.html" />
   </ItemGroup>
+  
   <ItemGroup>
-    <EmbeddedResource Include="amazon_anime_strike_1.html" />
-    <EmbeddedResource Include="amazon_anime_strike_2.html" />
-    <EmbeddedResource Include="amazon_anime_strike_3.html" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="amazon_prime_1.html" />
-    <EmbeddedResource Include="amazon_prime_2.html" />
-    <EmbeddedResource Include="amazon_prime_3.html" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
 </Project>
