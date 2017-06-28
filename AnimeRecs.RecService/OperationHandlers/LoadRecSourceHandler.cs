@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecEngine.MAL;
-using MyMediaLite.RatingPrediction;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {

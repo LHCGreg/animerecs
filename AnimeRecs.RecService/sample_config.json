@@ -26,16 +26,6 @@
 				MinEpisodesToCountIncomplete: 26,
 				UseDropped: false
 			}
-		},
-		{
-			Name: "BiasedMatrixFactorization",
-			Type: "BiasedMatrixFactorization",
-			Params: {
-				MinEpisodesToCountIncomplete: 26,
-				UseDropped: true,
-				MinUsersToCountAnime: 50,
-				BoldDriver: true
-			}
 		}
 	]
 }

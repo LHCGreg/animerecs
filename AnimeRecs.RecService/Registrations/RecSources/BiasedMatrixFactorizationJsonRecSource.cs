@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if MYMEDIALITE
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +73,9 @@ namespace AnimeRecs.RecService.Registrations.RecSources
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+#endif
+
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

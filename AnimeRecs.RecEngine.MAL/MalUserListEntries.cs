@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MalApi;
 using AnimeRecs.RecEngine.Evaluation;
-using MyMediaLite;
+using Medallion;
 
 namespace AnimeRecs.RecEngine.MAL
 {
@@ -200,7 +200,7 @@ namespace AnimeRecs.RecEngine.MAL
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecEngine.MAL.
 //

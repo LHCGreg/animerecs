@@ -10,14 +10,11 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="C5" Version="2.3" />
     <PackageReference Include="Common.Logging" Version="2.3.1" />
     <PackageReference Include="Common.Logging.NLog31" Version="2.3.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.4.9.5" />
     <PackageReference Include="MalApi" Version="3.0.0" />
-    <PackageReference Include="MathNet.Numerics" Version="2.6.1" />
     <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
-    <PackageReference Include="MyMediaLite" Version="3.10" />
     <PackageReference Include="NDesk.Options" Version="0.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="6.0.6" />
     <PackageReference Include="NLog" Version="3.1.0.0" />
@@ -29,8 +26,16 @@
     <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj" />
   </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <DefineConstants>$(DefineConstants);MYMEDIALITE</DefineConstants>
+  </PropertyGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="System.configuration" />
+    <PackageReference Include="C5" Version="2.3" />
+    <PackageReference Include="MathNet.Numerics" Version="2.6.1" />
+    <PackageReference Include="MyMediaLite" Version="3.10" />
+    <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj" />
   </ItemGroup>
 </Project>

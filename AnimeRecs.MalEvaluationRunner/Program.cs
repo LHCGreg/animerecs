@@ -7,9 +7,14 @@ using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecEngine.Evaluation;
 using AnimeRecs.DAL;
+using Medallion;
+
+#if MYMEDIALITE
 using MyMediaLite;
 using MyMediaLite.RatingPrediction;
 using MyMediaLite.ItemRecommendation;
+#endif
+
 
 namespace AnimeRecs.RecEngine.MalEvaluationRunner
 {
@@ -39,12 +44,12 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             //    minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
             //var defaultMatrixFactorizationRecSource = new MalMyMediaLiteRatingPredictionRecSource<MatrixFactorization>
             //    (new MatrixFactorization(), minEpisodesToCountIncomplete, useDropped: true, minUsersToCountAnime: 50);
-            //var animeRecsRecSource35 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
-            //    numRecommendersToUse: 100,
-            //    fractionConsideredRecommended: 0.35,
-            //    targetFraction: 0.35,
-            //    minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
-            //);
+            var animeRecsRecSource35 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
+                numRecommendersToUse: 100,
+                fractionConsideredRecommended: 0.35,
+                targetFraction: 0.35,
+                minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
+            );
             //var animeRecsRecSource25 = new MalAnimeRecsRecSourceWithConstantPercentTarget(
             //    numRecommendersToUse: 100,
             //    fractionConsideredRecommended: 0.25,
@@ -52,6 +57,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             //    minEpisodesToClassifyIncomplete: minEpisodesToCountIncomplete
             //);
 
+#if MYMEDIALITE
             var bprmfRecSource = new MalMyMediaLiteItemRecommenderRecSourceWithConstantPercentTarget<BPRMF>(
                 new BPRMF() { BiasReg = .01f },
                 fractionConsideredRecommended: 0.25,
@@ -59,6 +65,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
                 minUsersToCountAnime: 30,
                 targetFraction: 0.25
             );
+#endif
 
             //recommendersUnderTest.Add(averageScoreRecSourceWithoutDropped);
             //recommendersUnderTest.Add(mostPopularRecSourceWithoutDropped);
@@ -67,9 +74,11 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
             //recommendersUnderTest.Add(biasedMatrixFactorizationRecSourceWithFactors);
             //recommendersUnderTest.Add(biasedMatrixFactorizationRecSourceWithFactorsAndIters);
             //recommendersUnderTest.Add(defaultMatrixFactorizationRecSource);
-            //recommendersUnderTest.Add(animeRecsRecSource35);
+            recommendersUnderTest.Add(animeRecsRecSource35);
             //recommendersUnderTest.Add(animeRecsRecSource25);
+#if MYMEDIALITE
             recommendersUnderTest.Add(bprmfRecSource);
+#endif
 
             for (int i = 0; i < recommendersUnderTest.Count; i++)
             {
@@ -154,7 +163,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.MalEvaluationRunner.
 //

@@ -10,14 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="C5" Version="2.3" />
     <PackageReference Include="Common.Logging" Version="2.3.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.4.9.5" />
     <PackageReference Include="MalApi" Version="3.0.0" />
-    <PackageReference Include="MathNet.Numerics" Version="2.6.1" />
-    <PackageReference Include="MyMediaLite" Version="3.10" />
-    
-    <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj" />
+    <PackageReference Include="MedallionRandom" Version="1.1.0" />
     <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <DefineConstants>$(DefineConstants);MYMEDIALITE</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj" />
   </ItemGroup>
 </Project>
