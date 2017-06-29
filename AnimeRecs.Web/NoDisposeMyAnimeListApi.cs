@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using MalApi;
 
 namespace AnimeRecs.Web
@@ -23,14 +25,44 @@ namespace AnimeRecs.Web
             return _underlyingApi.GetAnimeListForUser(user);
         }
 
+        public Task<MalUserLookupResults> GetAnimeListForUserAsync(string user)
+        {
+            return _underlyingApi.GetAnimeListForUserAsync(user);
+        }
+
+        public Task<MalUserLookupResults> GetAnimeListForUserAsync(string user, CancellationToken cancellationToken)
+        {
+            return _underlyingApi.GetAnimeListForUserAsync(user, cancellationToken);
+        }
+
         public RecentUsersResults GetRecentOnlineUsers()
         {
             return _underlyingApi.GetRecentOnlineUsers();
         }
 
+        public Task<RecentUsersResults> GetRecentOnlineUsersAsync()
+        {
+            return _underlyingApi.GetRecentOnlineUsersAsync();
+        }
+
+        public Task<RecentUsersResults> GetRecentOnlineUsersAsync(CancellationToken cancellationToken)
+        {
+            return _underlyingApi.GetRecentOnlineUsersAsync(cancellationToken);
+        }
+
         public AnimeDetailsResults GetAnimeDetails(int animeId)
         {
             return _underlyingApi.GetAnimeDetails(animeId);
+        }
+
+        public Task<AnimeDetailsResults> GetAnimeDetailsAsync(int animeId)
+        {
+            return _underlyingApi.GetAnimeDetailsAsync(animeId);
+        }
+
+        public Task<AnimeDetailsResults> GetAnimeDetailsAsync(int animeId, CancellationToken cancellationToken)
+        {
+            return _underlyingApi.GetAnimeDetailsAsync(animeId, cancellationToken);
         }
 
         public void Dispose()
@@ -40,7 +72,7 @@ namespace AnimeRecs.Web
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.Web.
 //

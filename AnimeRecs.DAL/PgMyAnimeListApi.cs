@@ -7,6 +7,8 @@ using MiscUtil.Collections.Extensions;
 using MalApi;
 using Npgsql;
 using Dapper;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.DAL
 {
@@ -60,9 +62,19 @@ namespace AnimeRecs.DAL
 
         public MalUserLookupResults GetAnimeListForUser(string user)
         {
+            return GetAnimeListForUserAsync(user).ConfigureAwait(continueOnCapturedContext: false).GetAwaiter().GetResult();
+        }
+
+        public Task<MalUserLookupResults> GetAnimeListForUserAsync(string user)
+        {
+            return GetAnimeListForUserAsync(user, CancellationToken.None);
+        }
+
+        public async Task<MalUserLookupResults> GetAnimeListForUserAsync(string user, CancellationToken cancellationToken)
+        {
             using (NpgsqlConnection conn = new NpgsqlConnection(m_connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync(cancellationToken);
                 // ILIKE does a table scan. :( The ideal way of doing a case-insensitive search would be to use the citext
                 // data type, but that's an add-on and not part of a standard Postgres install.
                 // This class is only intended to be used for development anyway.
@@ -102,9 +114,9 @@ JOIN mal_list_entry ON mal_list.mal_user_id = mal_list_entry.mal_user_id AND mal
                 int userId;
                 string canonicalUserName = null;
                 List<MyAnimeListEntry> entries = new List<MyAnimeListEntry>();
-                using (SqlMapper.GridReader results = conn.QueryMultiple(sql, new { UserName = user }))
+                using (SqlMapper.GridReader results = await conn.QueryMultipleAsync(new CommandDefinition(sql, new { UserName = user }, cancellationToken: cancellationToken)))
                 {
-                    User u = results.Read<User>().FirstOrDefault();
+                    User u = (await results.ReadAsync<User>()).FirstOrDefault();
                     if (u == null)
                     {
                         throw new MalUserNotFoundException(string.Format("No MAL list exists for {0}.", user));
@@ -112,7 +124,7 @@ JOIN mal_list_entry ON mal_list.mal_user_id = mal_list_entry.mal_user_id AND mal
                     userId = u.mal_user_id;
                     canonicalUserName = u.mal_name;
 
-                    foreach (UserListEntry dbEntry in results.Read<UserListEntry>())
+                    foreach (UserListEntry dbEntry in await results.ReadAsync<UserListEntry>())
                     {
                         MalAnimeInfoFromUserLookup animeInfo = new MalAnimeInfoFromUserLookup(
                             animeId: dbEntry.mal_anime_id,
@@ -146,12 +158,37 @@ JOIN mal_list_entry ON mal_list.mal_user_id = mal_list_entry.mal_user_id AND mal
         }
 
         /// <exception cref="System.NotImplementedException">Always thrown.</exception>
+        public Task<RecentUsersResults> GetRecentOnlineUsersAsync()
+        {
+            throw new NotImplementedException("PostgreSQL MAL API does not support getting recent online users.");
+        }
+
+        /// <exception cref="System.NotImplementedException">Always thrown.</exception>
+        public Task<RecentUsersResults> GetRecentOnlineUsersAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException("PostgreSQL MAL API does not support getting recent online users.");
+        }
+
+        /// <exception cref="System.NotImplementedException">Always thrown.</exception>
         public RecentUsersResults GetRecentOnlineUsers()
         {
             throw new NotImplementedException("PostgreSQL MAL API does not support getting recent online users.");
         }
 
+        /// <exception cref="System.NotImplementedException">Always thrown.</exception>
         public AnimeDetailsResults GetAnimeDetails(int animeId)
+        {
+            throw new NotImplementedException("PostgreSQL MAP API does not support getting recent online users.");
+        }
+
+        /// <exception cref="System.NotImplementedException">Always thrown.</exception>
+        public Task<AnimeDetailsResults> GetAnimeDetailsAsync(int animeId)
+        {
+            throw new NotImplementedException("PostgreSQL MAP API does not support getting recent online users.");
+        }
+
+        /// <exception cref="System.NotImplementedException">Always thrown.</exception>
+        public Task<AnimeDetailsResults> GetAnimeDetailsAsync(int animeId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException("PostgreSQL MAP API does not support getting recent online users.");
         }
@@ -163,7 +200,7 @@ JOIN mal_list_entry ON mal_list.mal_user_id = mal_list_entry.mal_user_id AND mal
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net452;netstandard1.3</TargetFrameworks>
     <RootNamespace>AnimeRecs.RecEngine.MAL</RootNamespace>
     <AssemblyName>AnimeRecs.RecEngine.MAL</AssemblyName>
     <Version>2.0.0.0</Version>
@@ -10,9 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Common.Logging" Version="2.3.1" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.4.9.5" />
-    <PackageReference Include="MalApi" Version="3.0.0" />
+    <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta1" />
     <PackageReference Include="MedallionRandom" Version="1.1.0" />
     <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj" />
   </ItemGroup>

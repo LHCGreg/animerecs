@@ -10,10 +10,9 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Common.Logging" Version="2.3.1" />
-    <PackageReference Include="Common.Logging.NLog31" Version="2.3.1" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.4.9.5" />
-    <PackageReference Include="MalApi" Version="3.0.0" />
+    <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
+    <PackageReference Include="Common.Logging.NLog31" Version="3.4.0-Beta2" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta1" />
     <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
     <PackageReference Include="NDesk.Options" Version="0.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="6.0.6" />
