@@ -13,7 +13,7 @@
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
     <PackageReference Include="Dapper" Version="1.50.2.0" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta1" />
-    <PackageReference Include="Npgsql" Version="3.1.7" />
+    <PackageReference Include="Npgsql" Version="3.2.4.1" />
     
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj" />
