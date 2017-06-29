@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: InternalsVisibleTo("AnimeRecs.RecEngine.MAL.Tests")]
+[assembly: InternalsVisibleTo("AnimeRecs.RecEngine.MAL.UnitTests")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
