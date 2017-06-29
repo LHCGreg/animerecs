@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Xunit;
 using AnimeRecs.RecEngine.MAL;
 using MalApi;
 
 namespace AnimeRecs.RecEngine.MAL.UnitTests
 {
-    [TestFixture]
     public class ReadOnlyMalListEntryDictionaryTests
     {
-        [Test]
+        [Fact]
         public void TestIndexing()
         {
             List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId> entries = new List<ReadOnlyMalListEntryDictionary.ListEntryAndAnimeId>()
@@ -25,12 +24,12 @@ namespace AnimeRecs.RecEngine.MAL.UnitTests
             };
 
             ReadOnlyMalListEntryDictionary dict = new ReadOnlyMalListEntryDictionary(entries);
-            Assert.That(dict[3].NumEpisodesWatched, Is.EqualTo(3));
-            Assert.That(dict[1].NumEpisodesWatched, Is.EqualTo(1));
-            Assert.That(dict[9].NumEpisodesWatched, Is.EqualTo(9));
-            Assert.That(dict[25].NumEpisodesWatched, Is.EqualTo(25));
-            Assert.That(dict[2].NumEpisodesWatched, Is.EqualTo(2));
-            Assert.That(dict[6].NumEpisodesWatched, Is.EqualTo(6));
+            Assert.Equal(3, dict[3].NumEpisodesWatched);
+            Assert.Equal(1, dict[1].NumEpisodesWatched);
+            Assert.Equal(9, dict[9].NumEpisodesWatched);
+            Assert.Equal(25, dict[25].NumEpisodesWatched);
+            Assert.Equal(2, dict[2].NumEpisodesWatched);
+            Assert.Equal(6, dict[6].NumEpisodesWatched);
         }
     }
 }

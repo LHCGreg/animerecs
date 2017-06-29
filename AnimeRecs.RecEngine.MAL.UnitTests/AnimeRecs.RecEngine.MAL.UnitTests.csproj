@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp1.0</TargetFrameworks>
     <RootNamespace>AnimeRecs.RecEngine.MAL.UnitTests</RootNamespace>
     <AssemblyName>AnimeRecs.RecEngine.MAL.UnitTests</AssemblyName>
     <Version>2.0.0.0</Version>
@@ -12,7 +12,10 @@
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta1" />
-    <PackageReference Include="Nunit" Version="2.6.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="xunit" Version="2.3.0-beta3-build3705" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build3705" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta3-build3705" />
     
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj" />
   </ItemGroup>
