@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MiscUtil.Collections.Extensions;
 using System.Globalization;
 
 namespace AnimeRecs.DAL
@@ -42,10 +41,10 @@ namespace AnimeRecs.DAL
             sql.AppendLine("(mal_anime_id, streaming_service_id, streaming_url)");
             sql.AppendLine("VALUES");
 
-            foreach (var streamMapIt in streamMaps.AsSmartEnumerable())
+            bool first = true;
+            foreach (streaming_service_anime_map streamMap in streamMaps)
             {
-                streaming_service_anime_map streamMap = streamMapIt.Value;
-                if (!streamMapIt.IsFirst)
+                if (!first)
                 {
                     sql.AppendLine(",");
                 }
@@ -54,6 +53,8 @@ namespace AnimeRecs.DAL
                     streamMap.streaming_service_id.ToString(CultureInfo.InvariantCulture),
                     PgHelpers.QuotePgString(streamMap.streaming_url)
                 );
+
+                first = false;
             }
             sql.AppendLine(";");
             sql.AppendLine();
@@ -64,7 +65,7 @@ namespace AnimeRecs.DAL
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

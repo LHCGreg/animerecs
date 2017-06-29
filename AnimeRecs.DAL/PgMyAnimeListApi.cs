@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MiscUtil.Extensions;
-using MiscUtil.Collections.Extensions;
 using MalApi;
 using Npgsql;
 using Dapper;
@@ -21,7 +19,7 @@ namespace AnimeRecs.DAL
 
         public PgMyAnimeListApi(string connectionString)
         {
-            connectionString.ThrowIfNull("connectionString");
+            if (connectionString == null) throw new ArgumentNullException("connectionString");
             m_connectionString = connectionString;
         }
 

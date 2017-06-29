@@ -5,7 +5,6 @@ using System.Text;
 using Npgsql;
 using Dapper;
 using System.Globalization;
-using MiscUtil.Collections.Extensions;
 
 namespace AnimeRecs.DAL
 {
@@ -42,10 +41,9 @@ namespace AnimeRecs.DAL
             using (NpgsqlCommand cmd = new NpgsqlCommand())
             {
                 int numSynonym = 1;
-                foreach (var synIter in synonyms.AsSmartEnumerable())
+                foreach (var synonym in synonyms)
                 {
-                    mal_anime_synonym synonym = synIter.Value;
-                    if (!synIter.IsFirst)
+                    if (numSynonym > 1)
                     {
                         sqlBuilder.AppendLine(", ");
                     }
@@ -75,7 +73,7 @@ namespace AnimeRecs.DAL
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

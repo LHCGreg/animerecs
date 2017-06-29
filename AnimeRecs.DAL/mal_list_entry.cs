@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Npgsql;
-using MiscUtil.Collections.Extensions;
 
 namespace AnimeRecs.DAL
 {
@@ -60,10 +59,9 @@ VALUES
             using (NpgsqlCommand cmd = new NpgsqlCommand())
             {
                 int numEntry = 1;
-                foreach (var entryIter in entries.AsSmartEnumerable())
+                foreach (mal_list_entry entry in entries)
                 {
-                    mal_list_entry entry = entryIter.Value;
-                    if (!entryIter.IsFirst)
+                    if (numEntry > 1)
                     {
                         sqlBuilder.AppendLine(", ");
                     }
@@ -105,7 +103,7 @@ VALUES
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

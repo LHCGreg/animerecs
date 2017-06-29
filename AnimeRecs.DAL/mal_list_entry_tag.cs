@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Npgsql;
 using Dapper;
-using MiscUtil.Collections.Extensions;
 
 namespace AnimeRecs.DAL
 {
@@ -46,10 +45,9 @@ VALUES
             using (NpgsqlCommand cmd = new NpgsqlCommand())
             {
                 int numTag = 1;
-                foreach (var tagIter in tags.AsSmartEnumerable())
+                foreach (mal_list_entry_tag tag in tags)
                 {
-                    mal_list_entry_tag tag = tagIter.Value;
-                    if (!tagIter.IsFirst)
+                    if (numTag > 1)
                     {
                         sqlBuilder.AppendLine(", ");
                     }
@@ -81,7 +79,7 @@ VALUES
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

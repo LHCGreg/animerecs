@@ -5,7 +5,6 @@ using System.Text;
 using System.Globalization;
 using Npgsql;
 using Dapper;
-using MiscUtil.Collections.Extensions;
 
 namespace AnimeRecs.DAL
 {
@@ -48,10 +47,10 @@ namespace AnimeRecs.DAL
             sql.AppendLine("(mal_anime_id, prerequisite_mal_anime_id)");
             sql.AppendLine("VALUES");
 
-            foreach (var prereqMapIt in prereqMaps.AsSmartEnumerable())
+            bool first = true;
+            foreach (var prereqMap in prereqMaps)
             {
-                mal_anime_prerequisite prereqMap = prereqMapIt.Value;
-                if (!prereqMapIt.IsFirst)
+                if (!first)
                 {
                     sql.AppendLine(",");
                 }
@@ -59,6 +58,8 @@ namespace AnimeRecs.DAL
                     prereqMap.mal_anime_id.ToString(CultureInfo.InvariantCulture),
                     prereqMap.prerequisite_mal_anime_id.ToString(CultureInfo.InvariantCulture)
                 );
+
+                first = false;
             }
             sql.AppendLine(";");
             sql.AppendLine();
@@ -69,7 +70,7 @@ namespace AnimeRecs.DAL
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //
