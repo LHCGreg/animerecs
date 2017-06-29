@@ -3,6 +3,10 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net452</TargetFrameworks>
+    
+    <!-- Keeping training data in memory can use a lot of memory, which running as 64-bit can make worse. -->
+    <Prefer32Bit>True</Prefer32Bit>
+    
     <RootNamespace>AnimeRecs.RecService</RootNamespace>
     <AssemblyName>recservice</AssemblyName>
     <Version>2.0.0.0</Version>
