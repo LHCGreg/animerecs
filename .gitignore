@@ -4,3 +4,4 @@ obj/
 *.suo
 .vs/
 packages/*/
+config_overrides.xml

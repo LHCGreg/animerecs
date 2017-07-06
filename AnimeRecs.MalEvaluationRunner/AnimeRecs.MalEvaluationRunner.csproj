@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net452;netcoreapp1.0</TargetFrameworks>
     <RootNamespace>AnimeRecs.RecEngine.MalEvaluationRunner</RootNamespace>
     <AssemblyName>MalEvaluationRunner</AssemblyName>
     <Version>2.0.0.0</Version>
@@ -11,6 +11,9 @@
   
   <ItemGroup>
     <PackageReference Include="MedallionRandom" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.2" />
     
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj" />
@@ -27,5 +30,17 @@
     <PackageReference Include="MathNet.Numerics" Version="2.6.1" />
     <PackageReference Include="MyMediaLite" Version="3.10" />
     <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="config_base.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('config_overrides.xml')">
+    <None Update="config_overrides.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

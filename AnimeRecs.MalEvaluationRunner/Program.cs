@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecEngine.Evaluation;
 using AnimeRecs.DAL;
 using Medallion;
+using Microsoft.Extensions.Configuration;
 
 #if MYMEDIALITE
 using MyMediaLite;
@@ -89,7 +89,14 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
 
             MalTrainingData rawData;
 
-            string postgresConnectionString = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
+            IConfigurationBuilder configBuilder = new ConfigurationBuilder()
+                .AddXmlFile("config_base.xml")
+                .AddXmlFile("config_overrides.xml", optional: true);
+
+            IConfigurationRoot rawConfig = configBuilder.Build();
+            Config config = rawConfig.Get<Config>();
+
+            string postgresConnectionString = config.ConnectionStrings.AnimeRecs;
             using (PgMalDataLoader loader = new PgMalDataLoader(postgresConnectionString))
             {
                 rawData = loader.LoadMalTrainingData();
