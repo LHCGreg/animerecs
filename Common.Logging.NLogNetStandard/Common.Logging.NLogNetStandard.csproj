@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net462;netstandard1.3</TargetFrameworks>
+    <RootNamespace>Common.Logging.NLog</RootNamespace>
+    <AssemblyName>Common.Logging.NLog</AssemblyName>
+    <Version>0.99.99.99</Version>
+    <Description>.NET Standard compatible Common.Logging adapter for NLog 5</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
+    <PackageReference Include="NLog" Version="5.0.0-beta09" />
+  </ItemGroup>
+</Project>

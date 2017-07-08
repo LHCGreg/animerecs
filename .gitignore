@@ -5,3 +5,4 @@ obj/
 .vs/
 packages/*/
 config_overrides.xml
+internal-nlog.log

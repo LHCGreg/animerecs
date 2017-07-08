@@ -6,25 +6,37 @@ using AnimeRecs.DAL;
 using MalApi;
 using Npgsql;
 using System.Globalization;
+using Microsoft.Extensions.Configuration;
 
 namespace AnimeRecs.FreshenMalDatabase
 {
+    enum ExitCode
+    {
+        Success = 0,
+        Failure = 1
+    }
+
     class Program
     {
         static Config config;
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             Logging.SetUpLogging();
 
             try
             {
-                config = new Config();
+                IConfigurationBuilder configBuilder = new ConfigurationBuilder()
+                    .AddXmlFile("config_base.xml")
+                    .AddXmlFile("config_overrides.xml", optional: true);
+
+                IConfigurationRoot rawConfig = configBuilder.Build();
+                config = rawConfig.Get<Config>();
 
                 using (IMyAnimeListApi basicApi = new MyAnimeListApi() { TimeoutInMs = config.MalTimeoutInMs, UserAgent = config.MalApiUserAgentString })
                 using (IMyAnimeListApi rateLimitingApi = new RateLimitingMyAnimeListApi(basicApi, TimeSpan.FromMilliseconds(config.DelayBetweenRequestsInMs)))
                 using (IMyAnimeListApi malApi = new RetryOnFailureMyAnimeListApi(rateLimitingApi, config.NumMalRequestFailuresBeforeGivingUp, config.DelayAfterMalRequestFailureInMs))
-                using (NpgsqlConnection conn = new NpgsqlConnection(config.PostgresConnectionString))
+                using (NpgsqlConnection conn = new NpgsqlConnection(config.ConnectionStrings.AnimeRecs))
                 {
                     conn.Open();
                     int usersAddedSoFar = 0;
@@ -75,8 +87,10 @@ namespace AnimeRecs.FreshenMalDatabase
             catch (Exception ex)
             {
                 Logging.Log.FatalFormat("Fatal error: {0}", ex, ex.Message);
-                Environment.ExitCode = 1;
+                return (int)ExitCode.Failure;
             }
+
+            return (int)ExitCode.Success;
         }
 
         /// <summary>

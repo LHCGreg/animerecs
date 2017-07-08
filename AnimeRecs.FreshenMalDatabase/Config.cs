@@ -2,39 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Configuration;
 
 namespace AnimeRecs.FreshenMalDatabase
 {
     class Config
     {
-        public int UsersPerRun { get; private set; }
-        public int MaxUsersInDatabase { get; private set; }
-        public int DelayBetweenRequestsInMs { get; private set; }
-        public int MalTimeoutInMs { get; private set; }
-        public string MalApiUserAgentString { get; private set; }
-        public int MinimumAnimesCompletedAndRated { get; private set; }
-        public int NumMalRequestFailuresBeforeGivingUp { get; private set; }
-        public int DelayAfterMalRequestFailureInMs { get; private set; }
+        public ConfigConnectionStrings ConnectionStrings { get; set; }
 
-        public string PostgresConnectionString { get; private set; }
+        public int UsersPerRun { get; set; }
+        public int MaxUsersInDatabase { get; set; }
+        public int DelayBetweenRequestsInMs { get; set; }
+        public int MalTimeoutInMs { get; set; }
+        public string MalApiUserAgentString { get; set; }
+        public int MinimumAnimesCompletedAndRated { get; set; }
+        public int NumMalRequestFailuresBeforeGivingUp { get; set; }
+        public int DelayAfterMalRequestFailureInMs { get; set; }
 
-        public Config()
+        public class ConfigConnectionStrings
         {
-            UsersPerRun = int.Parse(ConfigurationManager.AppSettings["UsersPerRun"]);
-            MaxUsersInDatabase = int.Parse(ConfigurationManager.AppSettings["MaxUsersInDatabase"]);
-            DelayBetweenRequestsInMs = int.Parse(ConfigurationManager.AppSettings["DelayBetweenRequestsMs"]);
-            MalTimeoutInMs = int.Parse(ConfigurationManager.AppSettings["MalTimeoutInMs"]);
-            MalApiUserAgentString = ConfigurationManager.AppSettings["MalApiUserAgentString"];
-            MinimumAnimesCompletedAndRated = int.Parse(ConfigurationManager.AppSettings["MinimumAnimesCompletedAndRated"]);
-            NumMalRequestFailuresBeforeGivingUp = int.Parse(ConfigurationManager.AppSettings["NumMalRequestFailuresBeforeGivingUp"]);
-            DelayAfterMalRequestFailureInMs = int.Parse(ConfigurationManager.AppSettings["DelayAfterMalRequestFailureInMs"]);
-            PostgresConnectionString = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
+            public string AnimeRecs { get; set; }
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.FreshenMalDatabase.
 //

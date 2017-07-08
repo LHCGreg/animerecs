@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net462</TargetFrameworks>
     
     <!-- Keeping training data in memory can use a lot of memory, which running as 64-bit can make worse. -->
     <Prefer32Bit>True</Prefer32Bit>
@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
     <PackageReference Include="Common.Logging.NLog31" Version="3.4.0-Beta2" />
-    <PackageReference Include="MalApi" Version="4.0.0-Beta1" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta2" />
     <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
     <PackageReference Include="NDesk.Options" Version="0.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="6.0.6" />

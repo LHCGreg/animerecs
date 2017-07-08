@@ -4,7 +4,7 @@
   
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net462</TargetFrameworks>
     <RootNamespace>AnimeRecs.Web</RootNamespace>
     <AssemblyName>AnimeRecs.Web</AssemblyName>
     <Version>2.0.0.0</Version>
@@ -15,7 +15,7 @@
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
     <PackageReference Include="Common.Logging.NLog31" Version="3.4.0-Beta2" />
     <PackageReference Include="FluentValidation" Version="5.5.0.0" />
-    <PackageReference Include="MalApi" Version="4.0.0-Beta1" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta2" />
     <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
     <PackageReference Include="Nancy" Version="0.23.2" />
     <PackageReference Include="Nancy.Hosting.Self" Version="0.23.2" />
