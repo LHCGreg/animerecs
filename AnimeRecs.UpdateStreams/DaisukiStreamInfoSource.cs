@@ -10,43 +10,47 @@ namespace AnimeRecs.UpdateStreams
 {
     class DaisukiStreamInfoSource : IAnimeStreamInfoSource
     {
+        private IWebClient _webClient;
+
+        public DaisukiStreamInfoSource(IWebClient webClient)
+        {
+            _webClient = webClient;
+        }
+
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
             string url = "http://www.daisuki.net/bin/wcm/searchAnimeAPI?api=anime_list&searchOptions=&currentPath=%2Fcontent%2Fdaisuki%2Fus%2Fen";
 
-            using (CompressionWebClient webClient = new CompressionWebClient())
+            Console.WriteLine("Getting Daisuki anime list.");
+            string json = _webClient.GetString(url);
+
+            DaisukiAnimeQueryJson parsedJson = JsonConvert.DeserializeObject<DaisukiAnimeQueryJson>(json);
+            if (parsedJson.response == null)
             {
-                Console.WriteLine("Getting Daisuki anime list.");
-                string json = webClient.DownloadString(url);
-
-                DaisukiAnimeQueryJson parsedJson = JsonConvert.DeserializeObject<DaisukiAnimeQueryJson>(json);
-                if (parsedJson.response == null)
-                {
-                    throw new Exception("response list of animes not found in Daisuki JSON.");
-                }
-                if (parsedJson.response.Count == 0)
-                {
-                    throw new Exception("No anime found in Daisuki JSON.");
-                }
-
-                List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
-                foreach (DaisukiAnimeJson anime in parsedJson.response)
-                {
-                    if (anime.animeURL == null)
-                    {
-                        throw new Exception("animeURL not set in Daisuki JSON.");
-                    }
-                    if (anime.title == null)
-                    {
-                        throw new Exception("title not set in Daisuki JSON.");
-                    }
-
-                    string animeUrl = string.Format("http://www.daisuki.net{0}", anime.animeURL);
-                    streams.Add(new AnimeStreamInfo(anime.title, animeUrl, StreamingService.Daisuki));
-                }
-
-                return streams;
+                throw new Exception("response list of animes not found in Daisuki JSON.");
             }
+            if (parsedJson.response.Count == 0)
+            {
+                throw new Exception("No anime found in Daisuki JSON.");
+            }
+
+            List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
+            foreach (DaisukiAnimeJson anime in parsedJson.response)
+            {
+                if (anime.animeURL == null)
+                {
+                    throw new Exception("animeURL not set in Daisuki JSON.");
+                }
+                if (anime.title == null)
+                {
+                    throw new Exception("title not set in Daisuki JSON.");
+                }
+
+                string animeUrl = string.Format("http://www.daisuki.net{0}", anime.animeURL);
+                streams.Add(new AnimeStreamInfo(anime.title, animeUrl, StreamingService.Daisuki));
+            }
+
+            return streams;
         }
 
         private class DaisukiAnimeQueryJson
@@ -62,7 +66,7 @@ namespace AnimeRecs.UpdateStreams
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
@@ -78,11 +82,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

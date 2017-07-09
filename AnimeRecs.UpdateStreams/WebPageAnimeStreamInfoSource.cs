@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,30 +12,19 @@ namespace AnimeRecs.UpdateStreams
     /// </summary>
     abstract class WebPageStreamInfoSource : IAnimeStreamInfoSource
     {
-        protected string Url { get; private set; }
         private IWebClient WebClient { get; set; }
-
-        public WebPageStreamInfoSource(string url)
-            : this(url, new WebClient())
-        {
-
-        }
+        protected WebClientRequest Request { get; private set; }
 
         internal WebPageStreamInfoSource(string url, IWebClient webClient)
         {
-            Url = url;
+            Request = new WebClientRequest(url);
             WebClient = webClient;
         }
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            string responseBody;
-
-            Console.WriteLine("Getting HTML for {0}", Url);
-            using (IWebClientResult result = WebClient.Get(Url))
-            {
-                responseBody = result.Content.ReadToEnd();
-            }
+            Console.WriteLine("Getting HTML for {0}", Request.URL);
+            string responseBody = WebClient.GetString(Request);
 
             ICollection<AnimeStreamInfo> streams = GetAnimeStreamInfo(responseBody);
             return streams;
@@ -60,11 +50,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

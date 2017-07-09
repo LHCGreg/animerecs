@@ -10,7 +10,14 @@ using MiscUtil.Collections;
 namespace AnimeRecs.UpdateStreams
 {
     class AnimeNetworkStreamInfoSource : IAnimeStreamInfoSource
-    {        
+    {
+        private IWebClient _webClient;
+
+        public AnimeNetworkStreamInfoSource(IWebClient webClient)
+        {
+            _webClient = webClient;
+        }
+
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
             List<string> letters = new List<string>(27);
@@ -31,7 +38,7 @@ namespace AnimeRecs.UpdateStreams
                 //    <h3 class="small hidden-sm hidden-xs">A-Channel</h3>
                 //    <a href="/Watch-Anime/A-Channel">
                 string url = string.Format("http://www.theanimenetwork.com/Watch-Anime/Alphabet/{0}", letter);
-                AnimeNetworkPageStreamInfoSource pageSource = new AnimeNetworkPageStreamInfoSource(url);
+                AnimeNetworkPageStreamInfoSource pageSource = new AnimeNetworkPageStreamInfoSource(url, _webClient);
 
                 try
                 {
@@ -43,7 +50,7 @@ namespace AnimeRecs.UpdateStreams
                     // It can happen for no anime to begin with a letter, or for the "0" page (labeled as "#") for no anime to begin with a number or symbol.
                     continue;
                 }
-                
+
             }
 
             return streamsFromAllPages;
@@ -52,9 +59,9 @@ namespace AnimeRecs.UpdateStreams
         private class AnimeNetworkPageStreamInfoSource : HtmlParsingAnimeStreamInfoSource
         {
             private const string AnimeDivXPath = @"//div[contains(@class,'titleimg')]";
-            
-            public AnimeNetworkPageStreamInfoSource(string url)
-                : base(url, AnimeDivXPath)
+
+            public AnimeNetworkPageStreamInfoSource(string url, IWebClient webClient)
+                : base(url, AnimeDivXPath, webClient)
             {
 
             }
@@ -65,7 +72,7 @@ namespace AnimeRecs.UpdateStreams
                 // <div class="col-lg-3 col-md-4 col-sm-6 text-center titleimg">
                 //    <h3 class="small hidden-sm hidden-xs">A-Channel</h3>
                 //    <a href="/Watch-Anime/A-Channel">
-                
+
                 HtmlNode animeNameTag = matchingNode.ChildNodes.Where(node => node.NodeType == HtmlNodeType.Element && node.Name == "h3").FirstOrDefault();
                 if (animeNameTag == null)
                 {
@@ -102,11 +109,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

@@ -1,6 +1,5 @@
 ﻿using AnimeRecs.DAL;
 using Moq;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,19 +7,20 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
+using FluentAssertions;
 
-namespace AnimeRecs.UpdateStreams.Tests
+namespace AnimeRecs.UpdateStreams.UnitTests
 {
-    [TestFixture]
     public class AmazonPrimeStreamInfoSourceTests
     {
-        [Test]
+        [Fact]
         public void TestGetAnimeStreamInfo()
         {
             IWebClient mockWebClient = GetMockWebClient();
             AmazonPrimeStreamInfoSource source = new AmazonPrimeStreamInfoSource(mockWebClient);
             ICollection<AnimeStreamInfo> streams = source.GetAnimeStreamInfo();
-            Assert.That(streams, Is.EquivalentTo(ExpectedStreamInfo));
+            streams.Should().BeEquivalentTo(ExpectedStreamInfo);
         }
 
         private static IWebClient GetMockWebClient()
@@ -32,19 +32,19 @@ namespace AnimeRecs.UpdateStreams.Tests
             resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_pg_2?rh=n:2858778011%2Cp_n_theme_browse-bin:2650364011%2Cp_n_ways_to_watch:12007865011&page=2&ie=UTF8&qid=1495396353"] = "amazon_prime_2.html";
             resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_pg_6?rh=n:2858778011%2Cp_n_theme_browse-bin:2650364011%2Cp_n_ways_to_watch:12007865011&page=6&ie=UTF8&qid=1495396393"] = "amazon_prime_3.html";
 
+            Dictionary<Uri, IWebClientResult> mockResultsByURL = new Dictionary<Uri, IWebClientResult>();
             foreach (string url in resourceNamesOfMockPages.Keys)
             {
                 string urlCopy = url;
-                webClientMock.Setup(client => client.Get(urlCopy)).Returns(() => new WebClientResult(GetResourceReader(resourceNamesOfMockPages[urlCopy])));
+
+                var resultMock = new Mock<IWebClientResult>();
+                resultMock.Setup(r => r.ReadResponseAsString()).Returns(Helpers.GetResourceText(resourceNamesOfMockPages[urlCopy]));
+                resultMock.Setup(r => r.Dispose()).Callback(() => { });
+                mockResultsByURL[new Uri(url)] = resultMock.Object;
             }
 
+            webClientMock.Setup(client => client.Get(It.IsAny<WebClientRequest>())).Returns<WebClientRequest>(request => mockResultsByURL[request.URL]);
             return webClientMock.Object;
-        }
-
-        private static TextReader GetResourceReader(string name)
-        {
-            string resourceName = string.Format("AnimeRecs.UpdateStreams.Tests.{0}", name);
-            return new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName), Encoding.UTF8);
         }
 
         private static List<AnimeStreamInfo> ExpectedStreamInfo = new List<AnimeStreamInfo>()
@@ -89,25 +89,17 @@ namespace AnimeRecs.UpdateStreams.Tests
 
 // Copyright (C) 2017 Greg Najda
 //
-// This file is part of AnimeRecs.UpdateStreams.Tests
+// This file is part of AnimeRecs.UpdateStreams.UnitTests
 //
-// AnimeRecs.UpdateStreams.Tests is free software: you can redistribute it and/or modify
+// AnimeRecs.UpdateStreams.UnitTests is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// AnimeRecs.UpdateStreams.Tests is distributed in the hope that it will be useful,
+// AnimeRecs.UpdateStreams.UnitTests is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
-//  along with AnimeRecs.UpdateStreams.Tests.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams.Tests, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams.Tests grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.
+//  along with AnimeRecs.UpdateStreams.UnitTests.  If not, see <http://www.gnu.org/licenses/>.

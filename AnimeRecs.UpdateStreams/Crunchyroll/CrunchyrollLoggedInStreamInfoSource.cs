@@ -12,10 +12,10 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
     /// </summary>
     internal class CrunchyrollLoggedInStreamInfoSource : WebPageStreamInfoSource
     {
-        public CrunchyrollLoggedInStreamInfoSource(CookieCollection cookies)
-            : base(CrunchyrollHtmlStreamInfoSource.AnimeListUrl, new WebClient() { Cookies = cookies })
+        public CrunchyrollLoggedInStreamInfoSource(IWebClient loggedInWebClient)
+            : base(CrunchyrollHtmlStreamInfoSource.AnimeListUrl, loggedInWebClient)
         {
-
+            
         }
 
         protected override ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string html)
@@ -42,11 +42,3 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

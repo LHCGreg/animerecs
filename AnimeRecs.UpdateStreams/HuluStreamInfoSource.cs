@@ -13,7 +13,8 @@ namespace AnimeRecs.UpdateStreams
     class HuluStreamInfoSource : IAnimeStreamInfoSource
     {
         private string _oauthToken;
-        
+        private IWebClient _webClient;
+
         class HuluAnimeResultsJsonRoot
         {
             public int total_count { get; set; }
@@ -34,29 +35,28 @@ namespace AnimeRecs.UpdateStreams
             public string canonical_name { get; set; }
         }
 
-        public HuluStreamInfoSource()
+        public HuluStreamInfoSource(IWebClient webClient)
         {
-            ;
+            _webClient = webClient;
         }
 
         private void EnsureOauthToken()
         {
-            if(_oauthToken != null)
+            if (_oauthToken != null)
                 return;
 
-            using (CompressionWebClient webClient = new CompressionWebClient())
-            {
-                Console.WriteLine("Getting Hulu API token.");
-                string huluPageHtml = webClient.DownloadString("http://www.hulu.com/tv/genres/anime");
-                Regex oathTokenRegex = new Regex("w.API_DONUT = '(?<Token>[^']*)'");
-                Match m = oathTokenRegex.Match(huluPageHtml);
-                if (!m.Success)
-                {
-                    throw new Exception("w.API_DONUT not found in Hulu HTML. The page probably changed and the code for getting Hulu anime needs to be updaed.");
-                }
+            Console.WriteLine("Getting Hulu API token.");
 
-                _oauthToken = m.Groups["Token"].ToString();
+            string huluPageHtml = _webClient.GetString("http://www.hulu.com/tv/genres/anime");
+
+            Regex oathTokenRegex = new Regex("w.API_DONUT = '(?<Token>[^']*)'");
+            Match m = oathTokenRegex.Match(huluPageHtml);
+            if (!m.Success)
+            {
+                throw new Exception("w.API_DONUT not found in Hulu HTML. The page probably changed and the code for getting Hulu anime needs to be updaed.");
             }
+
+            _oauthToken = m.Groups["Token"].ToString();
         }
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
@@ -102,45 +102,42 @@ namespace AnimeRecs.UpdateStreams
 
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
 
-            using (CompressionWebClient webClient = new CompressionWebClient())
+            int position = 0;
+            int numAnimesInPage;
+            do
             {
-                int position = 0;
-                int numAnimesInPage;
-                do
+                string url = string.Format(
+                    CultureInfo.InvariantCulture,
+                    "http://www.hulu.com/mozart/v1.h2o/{0}?exclude_hulu_content=1&genre={1}&sort=release_with_popularity&_language=en&_region=us&items_per_page=100&position={2}&region=us&locale=en&language=en&access_token={3}",
+                    type, Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
+
+                Console.WriteLine("Getting type genre {0}, type {1}, position {2} from Hulu", genre, type, position);
+                string jsonString = _webClient.GetString(url);
+                HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);
+
+                // You can get no results if the total count on the first page does not agree with the total count on later pages.
+                // Additions/removals seem to lag behind on later pages for some reason.
+                if (json.data.Count == 0 && json.total_count == 0)
                 {
-                    string url = string.Format(
-                        CultureInfo.InvariantCulture,
-                        "http://www.hulu.com/mozart/v1.h2o/{0}?exclude_hulu_content=1&genre={1}&sort=release_with_popularity&_language=en&_region=us&items_per_page=100&position={2}&region=us&locale=en&language=en&access_token={3}",
-                        type, Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
+                    throw new Exception(string.Format("Did not get any hulu anime from url {0}", url));
+                }
+                numAnimesInPage = json.data.Count;
 
-                    Console.WriteLine("Getting type genre {0}, type {1}, position {2} from Hulu", genre, type, position);
-                    string jsonString = webClient.DownloadString(url);
-                    HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);
-
-                    // You can get no results if the total count on the first page does not agree with the total count on later pages.
-                    // Additions/removals seem to lag behind on later pages for some reason.
-                    if (json.data.Count == 0 && json.total_count == 0)
-                    {
-                        throw new Exception(string.Format("Did not get any hulu anime from url {0}", url));
-                    }
-                    numAnimesInPage = json.data.Count;
-
-                    foreach (var data in json.data)
-                    {
-                        string animeName = data.show.name;
-                        string animeUrl = string.Format("http://www.hulu.com/{0}", data.show.canonical_name);
-                        streams.Add(new AnimeStreamInfo(animeName: animeName, url: animeUrl, service: StreamingService.Hulu));
-                        position++;
-                    }
-                } while (numAnimesInPage > 0);
-            }
+                foreach (var data in json.data)
+                {
+                    string animeName = data.show.name;
+                    string animeUrl = string.Format("http://www.hulu.com/{0}", data.show.canonical_name);
+                    streams.Add(new AnimeStreamInfo(animeName: animeName, url: animeUrl, service: StreamingService.Hulu));
+                    position++;
+                }
+            } while (numAnimesInPage > 0);
 
             return streams;
         }
     }
 }
 
-// Copyright (C) 2016 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
@@ -156,11 +153,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

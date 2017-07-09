@@ -24,7 +24,7 @@
     <PackageReference Include="Nancy.Validation.DataAnnotations" Version="0.23.2" />
     <PackageReference Include="Nancy.Validation.FluentValidation" Version="0.23.2" />
     <PackageReference Include="Nancy.Viewengines.Razor" Version="0.23.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="6.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NLog" Version="3.1.0.0" />
     <PackageReference Include="Owin" Version="1.0" />
     <PackageReference Include="Microsoft.AspNet.Razor" Version="3.2.2" />

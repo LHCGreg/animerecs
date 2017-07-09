@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using RestSharp;
 
 namespace AnimeRecs.UpdateStreams.Crunchyroll
 {
     class CrunchyrollStreamInfoSource : IAnimeStreamInfoSource
     {
-        private const string LoginBaseUrl = "https://www.crunchyroll.com";
-        private const string LoginResource = "?a=formhandler";
-        
-        public CrunchyrollStreamInfoSource()
-        {
+        private const string LoginUrl = "https://www.crunchyroll.com/?a=formhandler";
 
+        private IWebClient _webClient;
+        
+        public CrunchyrollStreamInfoSource(IWebClient webClient)
+        {
+            _webClient = webClient;
         }
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
@@ -28,10 +28,10 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
             string password = GetPassword();
 
             // POST to login, get cookies
-            CookieCollection cookies = Login(username, password);
+            Login(username, password);
 
             // Use cookies in GET
-            var source = new CrunchyrollLoggedInStreamInfoSource(cookies);
+            var source = new CrunchyrollLoggedInStreamInfoSource(loggedInWebClient: _webClient);
             return source.GetAnimeStreamInfo();
         }
 
@@ -49,37 +49,26 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
             return password;
         }
 
-        private CookieCollection Login(string username, string password)
+        private void Login(string username, string password)
         {
-            RestClient client = new RestClient(LoginBaseUrl);
-            RestRequest request = new RestRequest(LoginResource, Method.POST);
-            request.AddParameter("formname", "RpcApiUser_Login", ParameterType.GetOrPost);
-            request.AddParameter("fail_url", "http://www.crunchyroll.com/login", ParameterType.GetOrPost);
-            request.AddParameter("name", username, ParameterType.GetOrPost);
-            request.AddParameter("password", password, ParameterType.GetOrPost);
-
-            client.CookieContainer = new CookieContainer();
-            client.UserAgent = "animerecs.com stream update tool";
-
             Console.WriteLine("Logging into Crunchyroll.");
-            IRestResponse response = client.Execute(request);
-            if (response.ResponseStatus != ResponseStatus.Completed)
+            WebClientRequest request = new WebClientRequest(LoginUrl);
+            request.UserAgent = "animerecs.com stream update tool";
+            request.PostParameters.Add(new KeyValuePair<string, string>("formname", "RpcApiUser_Login"));
+            request.PostParameters.Add(new KeyValuePair<string, string>("fail_url", "http://www.crunchyroll.com/login"));
+            request.PostParameters.Add(new KeyValuePair<string, string>("name", username));
+            request.PostParameters.Add(new KeyValuePair<string, string>("password", password));
+
+            using (var response = _webClient.Post(request))
             {
-                throw new Exception(string.Format("Error logging in to crunchyroll: {0}", response.ErrorMessage));
+                // don't care about response text, just the cookie
             }
 
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new Exception(string.Format("Error logging in to crunchroll, HTTP status: {0}", response.StatusDescription));
-            }
-
-            CookieCollection cookies = client.CookieContainer.GetCookies(new Uri("http://www.crunchyroll.com"));
+            CookieCollection cookies = _webClient.Cookies.GetCookies(new Uri("http://www.crunchyroll.com"));
             if (cookies["sess_id"] == null)
             {
                 throw new Exception("Crunchyroll sess_id cookie was not set after logging in, maybe username/password was wrong.");
             }
-
-            return cookies;
         }
 
         private static string ReadPassword()
@@ -151,11 +140,3 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

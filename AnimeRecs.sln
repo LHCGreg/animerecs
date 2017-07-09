@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.RecService.Client
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.UpdateStreams", "AnimeRecs.UpdateStreams\AnimeRecs.UpdateStreams.csproj", "{836964EF-6B5A-4127-A596-83BD6A169958}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.UpdateStreams.Tests", "AnimeRecs.UpdateStreams.Tests\AnimeRecs.UpdateStreams.Tests.csproj", "{D354A612-DB25-4EFD-9916-200DE54C94C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.UpdateStreams.UnitTests", "AnimeRecs.UpdateStreams.UnitTests\AnimeRecs.UpdateStreams.UnitTests.csproj", "{D354A612-DB25-4EFD-9916-200DE54C94C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.RecEngine.MAL.UnitTests", "AnimeRecs.RecEngine.MAL.UnitTests\AnimeRecs.RecEngine.MAL.UnitTests.csproj", "{BFD31C58-7E12-4C76-8C32-CFD5AB739C16}"
 EndProject

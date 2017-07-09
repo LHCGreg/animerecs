@@ -12,6 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta2" />
-    <PackageReference Include="Newtonsoft.Json" Version="6.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 </Project>

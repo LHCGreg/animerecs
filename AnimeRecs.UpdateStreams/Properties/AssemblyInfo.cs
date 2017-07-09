@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: InternalsVisibleTo("UpdateStreams.Tests")]
+[assembly: InternalsVisibleTo("UpdateStreams.UnitTests")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

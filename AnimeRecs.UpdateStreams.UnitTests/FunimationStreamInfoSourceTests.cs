@@ -1,6 +1,5 @@
 ﻿using AnimeRecs.DAL;
 using Moq;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,22 +8,23 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
+using FluentAssertions;
 
-namespace AnimeRecs.UpdateStreams.Tests
+namespace AnimeRecs.UpdateStreams.UnitTests
 {
-    [TestFixture, Parallelizable]
-    class FunimationStreamInfoSourceTests
+    public class FunimationStreamInfoSourceTests
     {
-        [Test]
+        [Fact]
         public void TestHelperStreamInfoSource()
         {
             IWebClient mockWebClient = GetMockWebClient();
             FunimationStreamInfoSource.HelperStreamInfoSource source = new FunimationStreamInfoSource.HelperStreamInfoSource(mockWebClient, "https://www.funimation.com/shows/all-shows/?sort=show&p=1");
             ICollection<AnimeStreamInfo> streams = source.GetAnimeStreamInfo();
-            Assert.That(streams, Is.EquivalentTo(ExpectedFirstPageStreamInfo));
+            streams.Should().BeEquivalentTo(ExpectedFirstPageStreamInfo);
         }
 
-        [Test]
+        [Fact]
         public void TestHelperStreamInfoSourceOnEmpty()
         {
             IWebClient mockWebClient = GetMockWebClient();
@@ -32,19 +32,20 @@ namespace AnimeRecs.UpdateStreams.Tests
             Assert.Throws<NoMatchingHtmlException>(() => source.GetAnimeStreamInfo());
         }
 
-        [Test]
+        [Fact]
         public void TestGetAnimeStreamInfo()
         {
             IWebClient mockWebClient = GetMockWebClient();
             FunimationStreamInfoSource source = new FunimationStreamInfoSource(mockWebClient);
             ICollection<AnimeStreamInfo> streams = source.GetAnimeStreamInfo();
-            Assert.That(streams, Is.EquivalentTo(ExpectedStreamInfo));
+            streams.Should().BeEquivalentTo(ExpectedStreamInfo);
         }
 
         private static IWebClient GetMockWebClient()
         {
             var webClientMock = new Mock<IWebClient>();
 
+            Dictionary<Uri, IWebClientResult> mockResultsByURL = new Dictionary<Uri, IWebClientResult>();
             const int numPages = 5;
             for (int page = 1; page <= numPages; page++)
             {
@@ -52,9 +53,14 @@ namespace AnimeRecs.UpdateStreams.Tests
                 // to get page numPages + 1
                 int pageCopy = page;
                 string url = string.Format("https://www.funimation.com/shows/all-shows/?sort=show&p={0}", page);
-                webClientMock.Setup(client => client.Get(url)).Returns(() => new WebClientResult(GetResourceReader(pageCopy)));
+
+                var resultMock = new Mock<IWebClientResult>();
+                resultMock.Setup(r => r.ReadResponseAsString()).Returns(GetResourceText(pageCopy));
+                resultMock.Setup(r => r.Dispose()).Callback(() => { });
+                mockResultsByURL[new Uri(url)] = resultMock.Object;
             }
 
+            webClientMock.Setup(client => client.Get(It.IsAny<WebClientRequest>())).Returns<WebClientRequest>(request => mockResultsByURL[request.URL]);
             return webClientMock.Object;
         }
 
@@ -161,35 +167,28 @@ namespace AnimeRecs.UpdateStreams.Tests
             new AnimeStreamInfo("Zebraman 2", "https://www.funimation.com/shows/zebraman-2/", StreamingService.Funimation),
         };
 
-        private static TextReader GetResourceReader(int page)
+        private static string GetResourceText(int page)
         {
-            string resourceName = string.Format("AnimeRecs.UpdateStreams.Tests.funimation_{0}.html", page);
-            return new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName), Encoding.UTF8);
+            string resourceShortName = string.Format("funimation_{0}.html", page);
+            return Helpers.GetResourceText(resourceShortName);
         }
     }
 }
 
 // Copyright (C) 2017 Greg Najda
 //
-// This file is part of AnimeRecs.UpdateStreams.Tests
+// This file is part of AnimeRecs.UpdateStreams.UnitTests
 //
-// AnimeRecs.UpdateStreams.Tests is free software: you can redistribute it and/or modify
+// AnimeRecs.UpdateStreams.UnitTests is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// AnimeRecs.UpdateStreams.Tests is distributed in the hope that it will be useful,
+// AnimeRecs.UpdateStreams.UnitTests is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
-//  along with AnimeRecs.UpdateStreams.Tests.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams.Tests, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams.Tests grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.
+//  along with AnimeRecs.UpdateStreams.UnitTests.  If not, see <http://www.gnu.org/licenses/>.
+

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
-using AnimeRecs.DAL;
-using System.IO;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -13,12 +11,6 @@ namespace AnimeRecs.UpdateStreams
         protected IWebClient WebClient { get; private set; }
         protected string Url { get; private set; }
         protected string XPath { get; private set; }
-
-        protected HtmlParsingAnimeStreamInfoSource(string url, string xpath)
-            : this(url, xpath, new WebClient())
-        {
-
-        }
 
         protected HtmlParsingAnimeStreamInfoSource(string url, string xpath, IWebClient webClient)
         {
@@ -29,12 +21,8 @@ namespace AnimeRecs.UpdateStreams
         
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
         {
-            string responseBody = null;
             Console.WriteLine("Getting HTML for {0}", Url);
-            using (IWebClientResult result = WebClient.Get(Url))
-            {
-                responseBody = result.Content.ReadToEnd();
-            }
+            string responseBody = WebClient.GetString(Url);
 
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseBody);
@@ -86,11 +74,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

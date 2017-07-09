@@ -1,45 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
-using System.Globalization;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    /// <summary>
-    /// Not specified means a blank in the csv. Specified but null MalId means n/a.
-    /// </summary>
-    struct MalId
+    class WebClientRequest
     {
-        public bool Specified { get; private set; }
-        public int? MalAnimeId { get; private set; }
+        public Uri URL { get; set; }
+        public string UserAgent { get; set; }
+        public string Accept { get; set; }
+        public List<KeyValuePair<string, string>> Headers { get; set; }
+        public List<KeyValuePair<string, string>> PostParameters { get; set; }
 
-        public MalId(int? malAnimeId, bool specified)
-            : this()
+        public WebClientRequest(string url)
         {
-            MalAnimeId = malAnimeId;
-            Specified = specified;
-        }
-
-        public override string ToString()
-        {
-            if (MalAnimeId != null)
-            {
-                return MalAnimeId.Value.ToString(CultureInfo.InvariantCulture);
-            }
-            else if (Specified)
-            {
-                return "n/a";
-            }
-            else
-            {
-                return "";
-            }
+            URL = new Uri(url);
+            Headers = new List<KeyValuePair<string, string>>();
+            PostParameters = new List<KeyValuePair<string, string>>();
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //

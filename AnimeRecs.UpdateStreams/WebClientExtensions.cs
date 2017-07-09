@@ -2,44 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Globalization;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    /// <summary>
-    /// Not specified means a blank in the csv. Specified but null MalId means n/a.
-    /// </summary>
-    struct MalId
+    static class WebClientExtensions
     {
-        public bool Specified { get; private set; }
-        public int? MalAnimeId { get; private set; }
-
-        public MalId(int? malAnimeId, bool specified)
-            : this()
+        public static string GetString(this IWebClient webClient, string url)
         {
-            MalAnimeId = malAnimeId;
-            Specified = specified;
+            using (IWebClientResult result = webClient.Get(url))
+            {
+                return result.ReadResponseAsString();
+            }
         }
 
-        public override string ToString()
+        public static string GetString(this IWebClient webClient, WebClientRequest request)
         {
-            if (MalAnimeId != null)
+            using (IWebClientResult result = webClient.Get(request))
             {
-                return MalAnimeId.Value.ToString(CultureInfo.InvariantCulture);
+                return result.ReadResponseAsString();
             }
-            else if (Specified)
-            {
-                return "n/a";
-            }
-            else
-            {
-                return "";
-            }
+        }
+
+        public static IWebClientResult Get(this IWebClient webClient, string url)
+        {
+            return webClient.Get(new WebClientRequest(url));
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdateStreams
 //
@@ -55,3 +47,4 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
+

@@ -3,63 +3,107 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
-    internal class WebClient : IWebClient
+    internal class WebClient : IWebClient, IDisposable
     {
-        /// <summary>
-        /// Set this to send cookies in the web request.
-        /// </summary>
-        public CookieCollection Cookies { get; set; }
+        private HttpClientHandler _handler;
+        private HttpClient _client;
 
-        /// <summary>
-        /// Set this to add headers to the web request
-        /// </summary>
-        public Dictionary<string, string> Headers { get; set; }
-
-        public IWebClientResult Get(string url)
+        public WebClient()
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-
-            request.Method = "GET";
-            request.KeepAlive = false;
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            if (Cookies != null)
+            _handler = new HttpClientHandler()
             {
-                request.CookieContainer = new CookieContainer();
-                request.CookieContainer.Add(Cookies);
-            }
+                AllowAutoRedirect = true,
+                UseCookies = true,
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+            };
+            _handler.CookieContainer = new CookieContainer();
+            _client = new HttpClient(_handler);
+        }
 
-            if (Headers != null)
+        public CookieContainer Cookies { get { return _handler.CookieContainer; } }
+
+        private HttpRequestMessage TranslateRequest(WebClientRequest request, HttpMethod method)
+        {
+            HttpRequestMessage translatedRequest = new HttpRequestMessage(method, request.URL);
+
+            if (request.UserAgent != null)
             {
-                foreach (KeyValuePair<string, string> headerAndValue in Headers)
+                if (!translatedRequest.Headers.TryAddWithoutValidation("User-Agent", request.UserAgent))
                 {
-                    request.Headers[headerAndValue.Key] = headerAndValue.Value;
+                    throw new Exception("Failed adding user agent string to request.");
                 }
             }
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            TextReader responseReader = null;
-            try
+            if (request.Accept != null)
             {
-                if (response.StatusCode != HttpStatusCode.OK)
+                if (!translatedRequest.Headers.TryAddWithoutValidation("Accept", request.Accept))
                 {
-                    throw new Exception(string.Format("HTTP status code {0}", response.StatusCode));
+                    throw new Exception("Failed adding Accept header to request.");
+                }
+            }
+
+            if (request.Headers != null)
+            {
+                foreach (KeyValuePair<string, string> header in request.Headers)
+                {
+                    if (!translatedRequest.Headers.TryAddWithoutValidation(header.Key, header.Value))
+                    {
+                        throw new Exception(string.Format("Failed adding {0} header with value {1} to request.", header.Key, header.Value));
+                    }
+                }
+            }
+
+            if (method == HttpMethod.Post && request.PostParameters != null && request.PostParameters.Count > 0)
+            {
+                FormUrlEncodedContent encodedContent = new FormUrlEncodedContent(request.PostParameters);
+                translatedRequest.Content = encodedContent;
+            }
+
+            return translatedRequest;
+        }
+
+        private IWebClientResult DoRequest(WebClientRequest request, HttpMethod method)
+        {
+            using (HttpRequestMessage translatedRequest = TranslateRequest(request, method))
+            {
+                HttpResponseMessage response = _client.SendAsync(translatedRequest, HttpCompletionOption.ResponseContentRead).ConfigureAwait(continueOnCapturedContext: false).GetAwaiter().GetResult();
+                try
+                {
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new Exception(string.Format("Request to {0} failed with status code {1}.", request.URL, response.StatusCode));
+                    }
+                }
+                catch (Exception)
+                {
+                    response.Dispose();
+                    throw;
                 }
 
-                responseReader = new HttpWebResponseTextReader(response);
-                return new WebClientResult(responseReader);
+                return new WebClientResult(response);
             }
-            catch (Exception)
-            {
-                if (responseReader != null) responseReader.Dispose();
-                response.Dispose();
-                throw;
-            }
+        }
+
+        public IWebClientResult Get(WebClientRequest request)
+        {
+            return DoRequest(request, HttpMethod.Get);
+        }
+
+        public IWebClientResult Post(WebClientRequest request)
+        {
+            return DoRequest(request, HttpMethod.Post);
+        }
+
+        public void Dispose()
+        {
+            _client.Dispose();
+            _handler.Dispose();
         }
     }
 }
@@ -80,11 +124,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.

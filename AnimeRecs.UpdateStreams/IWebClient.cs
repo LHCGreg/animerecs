@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
+    /// <summary>
+    /// Abstraction of HTTP access for easier mocking and switching of HTTP API used.
+    /// </summary>
     internal interface IWebClient
     {
-        IWebClientResult Get(string url);
+        IWebClientResult Get(WebClientRequest request);
+        IWebClientResult Post(WebClientRequest request);
+        CookieContainer Cookies { get; }
     }
 }
 
@@ -28,11 +34,3 @@ namespace AnimeRecs.UpdateStreams
 //
 //  You should have received a copy of the GNU General Public License
 //  along with AnimeRecs.UpdateStreams.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  If you modify AnimeRecs.UpdateStreams, or any covered work, by linking 
-//  or combining it with HTML Agility Pack (or a modified version of that 
-//  library), containing parts covered by the terms of the Microsoft Public 
-//  License, the licensors of AnimeRecs.UpdateStreams grant you additional 
-//  permission to convey the resulting work. Corresponding Source for a non-
-//  source form of such a combination shall include the source code for the parts 
-//  of HTML Agility Pack used as well as that of the covered work.
