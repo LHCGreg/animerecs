@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
+using System.Threading;
 
 namespace AnimeRecs.UpdateStreams.UnitTests
 {
@@ -19,7 +20,7 @@ namespace AnimeRecs.UpdateStreams.UnitTests
         {
             IWebClient mockWebClient = GetMockWebClient();
             AmazonAnimeStrikeStreamInfoSource source = new AmazonAnimeStrikeStreamInfoSource(mockWebClient);
-            ICollection<AnimeStreamInfo> streams = source.GetAnimeStreamInfo();
+            ICollection<AnimeStreamInfo> streams = source.GetAnimeStreamInfoAsync(CancellationToken.None).GetAwaiter().GetResult();
             streams.Should().BeEquivalentTo(ExpectedStreamInfo);
         }
 
@@ -38,12 +39,12 @@ namespace AnimeRecs.UpdateStreams.UnitTests
                 string urlCopy = url;
 
                 var resultMock = new Mock<IWebClientResult>();
-                resultMock.Setup(r => r.ReadResponseAsString()).Returns(Helpers.GetResourceText(resourceNamesOfMockPages[urlCopy]));
+                resultMock.Setup(r => r.ReadResponseAsStringAsync(It.IsAny<CancellationToken>())).Returns(Task.FromResult(Helpers.GetResourceText(resourceNamesOfMockPages[urlCopy])));
                 resultMock.Setup(r => r.Dispose()).Callback(() => { });
                 mockResultsByURL[new Uri(url)] = resultMock.Object;
             }
 
-            webClientMock.Setup(client => client.Get(It.IsAny<WebClientRequest>())).Returns<WebClientRequest>(request => mockResultsByURL[request.URL]);
+            webClientMock.Setup(client => client.GetAsync(It.IsAny<WebClientRequest>(), It.IsAny<CancellationToken>())).Returns<WebClientRequest, CancellationToken>((request, token) => Task.FromResult(mockResultsByURL[request.URL]));
             return webClientMock.Object;
         }
 

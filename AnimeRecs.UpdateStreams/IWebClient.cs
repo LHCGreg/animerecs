@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
@@ -12,8 +13,8 @@ namespace AnimeRecs.UpdateStreams
     /// </summary>
     internal interface IWebClient
     {
-        IWebClientResult Get(WebClientRequest request);
-        IWebClientResult Post(WebClientRequest request);
+        Task<IWebClientResult> GetAsync(WebClientRequest request, CancellationToken cancellationToken);
+        Task<IWebClientResult> PostAsync(WebClientRequest request, CancellationToken cancellationToken);
         CookieContainer Cookies { get; }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using AnimeRecs.DAL;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -23,7 +24,7 @@ namespace AnimeRecs.UpdateStreams
             _webClient = webClient;
         }
 
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
             // Get first page
             // Parse out streams
@@ -33,7 +34,7 @@ namespace AnimeRecs.UpdateStreams
             string nextPageUrl = _firstPageUrl;
             do
             {
-                ParsedPageResults results = GetPageResults(nextPageUrl);
+                ParsedPageResults results = await GetPageResultsAsync(nextPageUrl, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
                 streams.UnionWith(results.Streams);
                 nextPageUrl = results.NextPageUrl;
             } while (nextPageUrl != null);
@@ -53,10 +54,10 @@ namespace AnimeRecs.UpdateStreams
             }
         }
 
-        private ParsedPageResults GetPageResults(string url)
+        private async Task<ParsedPageResults> GetPageResultsAsync(string url, CancellationToken cancellationToken)
         {
             AmazonPageStreamInfoSource pageSource = new AmazonPageStreamInfoSource(url, _service, _webClient);
-            ICollection<AnimeStreamInfo> streams = pageSource.GetAnimeStreamInfo();
+            ICollection<AnimeStreamInfo> streams = await pageSource.GetAnimeStreamInfoAsync(cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
 
             return new ParsedPageResults(streams: streams, nextPageUrl: pageSource.NextPageUrl);
         }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
@@ -68,11 +69,11 @@ namespace AnimeRecs.UpdateStreams
             return translatedRequest;
         }
 
-        private IWebClientResult DoRequest(WebClientRequest request, HttpMethod method)
+        private async Task<IWebClientResult> DoRequestAsync(WebClientRequest request, HttpMethod method, CancellationToken cancellationToken)
         {
             using (HttpRequestMessage translatedRequest = TranslateRequest(request, method))
             {
-                HttpResponseMessage response = _client.SendAsync(translatedRequest, HttpCompletionOption.ResponseContentRead).ConfigureAwait(continueOnCapturedContext: false).GetAwaiter().GetResult();
+                HttpResponseMessage response = await _client.SendAsync(translatedRequest, HttpCompletionOption.ResponseContentRead, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
                 try
                 {
                     if (!response.IsSuccessStatusCode)
@@ -90,14 +91,14 @@ namespace AnimeRecs.UpdateStreams
             }
         }
 
-        public IWebClientResult Get(WebClientRequest request)
+        public Task<IWebClientResult> GetAsync(WebClientRequest request, CancellationToken cancellationToken)
         {
-            return DoRequest(request, HttpMethod.Get);
+            return DoRequestAsync(request, HttpMethod.Get, cancellationToken);
         }
 
-        public IWebClientResult Post(WebClientRequest request)
+        public Task<IWebClientResult> PostAsync(WebClientRequest request, CancellationToken cancellationToken)
         {
-            return DoRequest(request, HttpMethod.Post);
+            return DoRequestAsync(request, HttpMethod.Post, cancellationToken);
         }
 
         public void Dispose()

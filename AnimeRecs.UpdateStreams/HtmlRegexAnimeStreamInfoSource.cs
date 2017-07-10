@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.DAL;
 
 namespace AnimeRecs.UpdateStreams
@@ -29,6 +31,13 @@ namespace AnimeRecs.UpdateStreams
             Service = service;
             AnimeNameContext = animeNameContext;
             UrlContext = urlContext;
+        }
+
+        public Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
+        {
+            // We're not making any http requests in this class and it's not especially CPU intensive, so just run synchronously
+            // and wrap the result in a task.
+            return Task.FromResult(GetAnimeStreamInfo());
         }
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()

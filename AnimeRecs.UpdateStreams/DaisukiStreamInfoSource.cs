@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AnimeRecs.DAL;
 using Newtonsoft.Json;
@@ -17,12 +18,12 @@ namespace AnimeRecs.UpdateStreams
             _webClient = webClient;
         }
 
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationtoken)
         {
             string url = "http://www.daisuki.net/bin/wcm/searchAnimeAPI?api=anime_list&searchOptions=&currentPath=%2Fcontent%2Fdaisuki%2Fus%2Fen";
 
             Console.WriteLine("Getting Daisuki anime list.");
-            string json = _webClient.GetString(url);
+            string json = await _webClient.GetStringAsync(url, cancellationtoken).ConfigureAwait(continueOnCapturedContext: false);
 
             DaisukiAnimeQueryJson parsedJson = JsonConvert.DeserializeObject<DaisukiAnimeQueryJson>(json);
             if (parsedJson.response == null)

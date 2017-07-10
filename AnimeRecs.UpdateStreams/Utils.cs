@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -29,6 +31,32 @@ namespace AnimeRecs.UpdateStreams
         public static string DecodeHtmlBody(string rawBody)
         {
             return WebUtility.HtmlDecode(rawBody);
+        }
+
+        // Adapted from https://gist.github.com/svick/9992598
+        public static void WaitAllCancelOnFirstException(Task[] tasks, CancellationTokenSource tokenSource)
+        {
+            var cts = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token);
+
+            foreach (var task in tasks)
+            {
+                task.ContinueWith(t => {
+                    if (t.IsFaulted) cts.Cancel();
+                },
+                cts.Token,
+                TaskContinuationOptions.ExecuteSynchronously,
+                TaskScheduler.Current);
+            }
+
+            try
+            {
+                Task.WaitAll(tasks, cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                tokenSource.Cancel();
+                throw;
+            }
         }
     }
 }

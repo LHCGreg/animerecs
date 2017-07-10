@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AnimeRecs.DAL;
 using MiscUtil.Collections;
@@ -21,20 +22,20 @@ namespace AnimeRecs.UpdateStreams
             _webClient = webClient;
         }
 
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
-            string apiToken = GetAPIToken();
-            return GetAnimeSeries(apiToken);
+            string apiToken = await GetAPITokenAsync(cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
+            return await GetAnimeSeriesAsync(apiToken, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
         }
 
-        private string GetAPIToken()
+        private async Task<string> GetAPITokenAsync(CancellationToken cancellationToken)
         {
             WebClientRequest request = new WebClientRequest(InitialPageUrl);
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             request.UserAgent = "animerecs.com stream update tool";
 
             Console.WriteLine("Getting Viewster API token.");
-            using (IWebClientResult result = _webClient.Get(request))
+            using (IWebClientResult result = await _webClient.GetAsync(request, cancellationToken).ConfigureAwait(continueOnCapturedContext: false))
             {
                 CookieCollection viewsterCookies = _webClient.Cookies.GetCookies(new Uri("https://www.viewster.com/"));
                 if (viewsterCookies == null)
@@ -52,7 +53,7 @@ namespace AnimeRecs.UpdateStreams
             }
         }
 
-        private ICollection<AnimeStreamInfo> GetAnimeSeries(string apiToken)
+        private async Task<ICollection<AnimeStreamInfo>> GetAnimeSeriesAsync(string apiToken, CancellationToken cancellationToken)
         {
             // https://public-api.viewster.com/series?genreId=58&pageSize=25
             int pageSize = 100;
@@ -71,7 +72,7 @@ namespace AnimeRecs.UpdateStreams
                 WebClientRequest request = new WebClientRequest(url);
                 request.Headers.Add(new KeyValuePair<string, string>("Auth-token", apiToken));
                 request.Accept = "application/json";
-                string json = _webClient.GetString(request);
+                string json = await _webClient.GetStringAsync(request, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
 
                 streamsFromThisRequest = ParseAnimeJson(json);
                 streams.UnionWith(streamsFromThisRequest);

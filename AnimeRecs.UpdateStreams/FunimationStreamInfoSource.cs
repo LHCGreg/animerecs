@@ -5,6 +5,8 @@ using System.Text;
 using AnimeRecs.DAL;
 using HtmlAgilityPack;
 using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -17,7 +19,7 @@ namespace AnimeRecs.UpdateStreams
             _webClient = webClient;
         }
 
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
             HashSet<AnimeStreamInfo> streams = new HashSet<AnimeStreamInfo>();
             const string urlTemplate = "https://www.funimation.com/shows/all-shows/?sort=show&p={0}";
@@ -33,7 +35,7 @@ namespace AnimeRecs.UpdateStreams
 
                 try
                 {
-                    ICollection<AnimeStreamInfo> streamsFromThisRequest = helperSource.GetAnimeStreamInfo();
+                    ICollection<AnimeStreamInfo> streamsFromThisRequest = await helperSource.GetAnimeStreamInfoAsync(cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
                     streams.UnionWith(streamsFromThisRequest);
                 }
                 catch (NoMatchingHtmlException)

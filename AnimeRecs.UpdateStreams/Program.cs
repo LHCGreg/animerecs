@@ -7,6 +7,8 @@ using AnimeRecs.DAL;
 using AnimeRecs.UpdateStreams.Crunchyroll;
 using CsvHelper;
 using CsvHelper.Configuration;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -73,13 +75,54 @@ namespace AnimeRecs.UpdateStreams
             {
                 List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources(args, webClient);
 
-                foreach (IAnimeStreamInfoSource streamInfoSource in streamInfoSources)
+                List<Task<ICollection<AnimeStreamInfo>>> streamTasks = new List<Task<ICollection<AnimeStreamInfo>>>();
+                CancellationTokenSource tokenSource = new CancellationTokenSource();
+                CancellationToken token = tokenSource.Token;
+
+                try
                 {
-                    ICollection<AnimeStreamInfo> streamsFromThisSource = streamInfoSource.GetAnimeStreamInfo();
+                    foreach (IAnimeStreamInfoSource streamInfoSource in streamInfoSources)
+                    {
+                        streamTasks.Add(streamInfoSource.GetAnimeStreamInfoAsync(token));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tokenSource.Cancel();
+                    streamTasks.Add(Task.FromException<ICollection<AnimeStreamInfo>>(ex));
+                }
+
+                try
+                {
+                    Utils.WaitAllCancelOnFirstException(streamTasks.ToArray(), tokenSource);
+                }
+                catch (OperationCanceledException)
+                {
+                    foreach (Task<ICollection<AnimeStreamInfo>> streamTask in streamTasks)
+                    {
+                        if (streamTask.IsFaulted)
+                        {
+                            try
+                            {
+                                streamTask.GetAwaiter().GetResult();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                            }
+                        }
+                    }
+
+                    throw new Exception("Some stream sources failed. See previous messages.");
+                }
+
+                foreach (Task<ICollection<AnimeStreamInfo>> streamTask in streamTasks)
+                {
+                    ICollection<AnimeStreamInfo> streamsFromThisSource = streamTask.Result;
                     streams.AddRange(streamsFromThisSource);
                 }
             }
-            
+
             Dictionary<StreamingService, Dictionary<string, List<AnimeStreamInfo>>> streamsByServiceAndAnime = new Dictionary<StreamingService, Dictionary<string, List<AnimeStreamInfo>>>();
 
             foreach (AnimeStreamInfo stream in streams)
@@ -284,7 +327,9 @@ namespace AnimeRecs.UpdateStreams
             }
             else
             {
-                crunchyrollSource = new CrunchyrollStreamInfoSource(webClient);
+                string crunchyrollUsername = GetCrunchyrollUsername();
+                string crunchyrollPassword = GetCrunchyrollPassword();
+                crunchyrollSource = new CrunchyrollStreamInfoSource(crunchyrollUsername, crunchyrollPassword, webClient);
             }
 
             return new List<IAnimeStreamInfoSource>()
@@ -300,6 +345,71 @@ namespace AnimeRecs.UpdateStreams
                 new DaisukiStreamInfoSource(webClient),
                 new AnimeNetworkStreamInfoSource(webClient)
             };
+        }
+
+        static string GetCrunchyrollUsername()
+        {
+            Console.WriteLine("Crunchyroll username:");
+            string username = Console.ReadLine();
+            return username;
+        }
+
+        static string GetCrunchyrollPassword()
+        {
+            Console.WriteLine("Crunchyroll password:");
+            string password = ReadPassword();
+            return password;
+        }
+
+        static string ReadPassword()
+        {
+            // If Console.ReadKey returns a ConsoleKeyInfo with KeyChar and Key of 0 on Mono, stdin or stdout is redirected.
+            // stdout being redirected affecting the value of Console.ReadKey is a bug (https://bugzilla.xamarin.com/show_bug.cgi?id=12552).
+            // Returning 0 when stdin is redirected is also a bug (https://bugzilla.xamarin.com/show_bug.cgi?id=12551).
+            // The documented behavior is to throw an InvalidOperationException.
+
+            bool runningOnMono = Type.GetType("Mono.Runtime") != null;
+            StringBuilder textEntered = new StringBuilder();
+
+            while (true)
+            {
+                ConsoleKeyInfo key;
+                try
+                {
+                    key = Console.ReadKey(intercept: true);
+                }
+                catch (InvalidOperationException)
+                {
+                    // Console.ReadKey throws InvalidOperationException if stdin is not a console
+                    // .NET 4.5 provides Console.IsInputRedirected.
+                    // Switch to 4.5 once Linux distros start packaging a Mono version that support 4.5.
+                    throw new Exception("Cannot prompt for password because stdin is redirected.");
+                }
+                if (runningOnMono && key.KeyChar == '\0' && (int)key.Key == 0)
+                {
+                    throw new Exception("Cannot prompt for password because stdin is redirected.");
+                }
+
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine();
+                    break;
+                }
+                else if (key.Key == ConsoleKey.Backspace)
+                {
+                    if (textEntered.Length > 0)
+                    {
+                        textEntered.Length = textEntered.Length - 1;
+                    }
+                }
+                else
+                {
+                    char c = key.KeyChar;
+                    textEntered.Append(c);
+                }
+            }
+
+            return textEntered.ToString();
         }
     }
 }

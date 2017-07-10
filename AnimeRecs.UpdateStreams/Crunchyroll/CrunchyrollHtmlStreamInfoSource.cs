@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace AnimeRecs.UpdateStreams.Crunchyroll
 {
@@ -27,6 +28,13 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
         public CrunchyrollHtmlStreamInfoSource(string html)
         {
             _html = html;
+        }
+
+        public Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
+        {
+            // We're not making any http requests in this class and it's not especially CPU intensive, so just run synchronously
+            // and wrap the result in a task.
+            return Task.FromResult(GetAnimeStreamInfo());
         }
 
         public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()

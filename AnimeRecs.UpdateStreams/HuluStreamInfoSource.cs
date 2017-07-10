@@ -7,6 +7,8 @@ using AnimeRecs.DAL;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using MiscUtil.Collections;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -40,14 +42,14 @@ namespace AnimeRecs.UpdateStreams
             _webClient = webClient;
         }
 
-        private void EnsureOauthToken()
+        private async Task EnsureOauthTokenAsync(CancellationToken cancellationToken)
         {
             if (_oauthToken != null)
                 return;
 
             Console.WriteLine("Getting Hulu API token.");
 
-            string huluPageHtml = _webClient.GetString("http://www.hulu.com/tv/genres/anime");
+            string huluPageHtml = await _webClient.GetStringAsync("http://www.hulu.com/tv/genres/anime", cancellationToken);
 
             Regex oathTokenRegex = new Regex("w.API_DONUT = '(?<Token>[^']*)'");
             Match m = oathTokenRegex.Match(huluPageHtml);
@@ -59,22 +61,26 @@ namespace AnimeRecs.UpdateStreams
             _oauthToken = m.Groups["Token"].ToString();
         }
 
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
             HashSet<AnimeStreamInfo> streams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, string>(streamInfo => streamInfo.Url, StringComparer.OrdinalIgnoreCase));
-            ICollection<AnimeStreamInfo> animeStreams = GetAnimeStreamInfo("shows", "Anime");
+
+            // Potential for parallelizing these 4 operations but it's probably not slowing down the
+            // whole program run, it'd be more code, and it's nicer to Hulu to only do one request at a time.
+
+            ICollection<AnimeStreamInfo> animeStreams = await GetAnimeStreamInfoAsync("shows", "Anime", cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
             streams.UnionWith(animeStreams);
 
             // Ugh, Hulu puts some anime in "Animation and Cartoons" instead of "Anime".
             // And some in both!
 
-            ICollection<AnimeStreamInfo> animationAndCartoonStreams = GetAnimeStreamInfo("shows", "Animation and Cartoons");
+            ICollection<AnimeStreamInfo> animationAndCartoonStreams = await GetAnimeStreamInfoAsync("shows", "Animation and Cartoons", cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
             streams.UnionWith(animationAndCartoonStreams);
 
-            ICollection<AnimeStreamInfo> animeMovieStreams = GetAnimeStreamInfo("movies", "Anime");
+            ICollection<AnimeStreamInfo> animeMovieStreams = await GetAnimeStreamInfoAsync("movies", "Anime", cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
             streams.UnionWith(animeMovieStreams);
 
-            ICollection<AnimeStreamInfo> animationAndCartoonMovieStreams = GetAnimeStreamInfo("movies", "Animation and Cartoons");
+            ICollection<AnimeStreamInfo> animationAndCartoonMovieStreams = await GetAnimeStreamInfoAsync("movies", "Animation and Cartoons", cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
             streams.UnionWith(animationAndCartoonMovieStreams);
 
             return streams;
@@ -86,7 +92,7 @@ namespace AnimeRecs.UpdateStreams
         /// <param name="type">movies or shows</param>
         /// <param name="genre"></param>
         /// <returns></returns>
-        private ICollection<AnimeStreamInfo> GetAnimeStreamInfo(string type, string genre)
+        private async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(string type, string genre, CancellationToken cancellationToken)
         {
             // http://www.hulu.com/mozart/v1.h2o/shows?exclude_hulu_content=1&genre={genre}&sort=release_with_popularity&_language=en&_region=us&items_per_page=100&position=0&region=us&locale=en&language=en&access_token={oathtoken}
             // count is in total_count
@@ -98,7 +104,7 @@ namespace AnimeRecs.UpdateStreams
             // data[x].show.name is the show's name.
             // data[x].show.canonical_name is how you get the url for the show - http://www.hulu.com/{canonical_name}
 
-            EnsureOauthToken();
+            await EnsureOauthTokenAsync(cancellationToken);
 
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
 
@@ -112,7 +118,7 @@ namespace AnimeRecs.UpdateStreams
                     type, Uri.EscapeDataString(genre), position, Uri.EscapeDataString(_oauthToken));
 
                 Console.WriteLine("Getting type genre {0}, type {1}, position {2} from Hulu", genre, type, position);
-                string jsonString = _webClient.GetString(url);
+                string jsonString = await _webClient.GetStringAsync(url, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
                 HuluAnimeResultsJsonRoot json = JsonConvert.DeserializeObject<HuluAnimeResultsJsonRoot>(jsonString);
 
                 // You can get no results if the total count on the first page does not agree with the total count on later pages.

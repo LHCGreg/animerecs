@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
@@ -18,9 +19,11 @@ namespace AnimeRecs.UpdateStreams
             _response = response;
         }
 
-        public string ReadResponseAsString()
+        public Task<string> ReadResponseAsStringAsync(CancellationToken cancellationToken)
         {
-            return _response.Content.ReadAsStringAsync().ConfigureAwait(continueOnCapturedContext: false).GetAwaiter().GetResult();
+            // HttpContent does not support CancellationTokens. WebClient makes sure to not return from http requests
+            // until all the content is read into memory so this is ok-ish.
+            return _response.Content.ReadAsStringAsync();
         }
 
         public void Dispose()

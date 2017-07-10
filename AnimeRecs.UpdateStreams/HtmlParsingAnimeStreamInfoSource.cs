@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 
 namespace AnimeRecs.UpdateStreams
@@ -19,10 +21,10 @@ namespace AnimeRecs.UpdateStreams
             WebClient = webClient;
         }
         
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
             Console.WriteLine("Getting HTML for {0}", Url);
-            string responseBody = WebClient.GetString(Url);
+            string responseBody = await WebClient.GetStringAsync(Url, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
 
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseBody);

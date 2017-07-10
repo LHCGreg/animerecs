@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AnimeRecs.DAL;
 using HtmlAgilityPack;
@@ -18,7 +19,7 @@ namespace AnimeRecs.UpdateStreams
             _webClient = webClient;
         }
 
-        public ICollection<AnimeStreamInfo> GetAnimeStreamInfo()
+        public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
             List<string> letters = new List<string>(27);
             letters.Add("0");
@@ -42,7 +43,7 @@ namespace AnimeRecs.UpdateStreams
 
                 try
                 {
-                    ICollection<AnimeStreamInfo> streamsFromThisPage = pageSource.GetAnimeStreamInfo();
+                    ICollection<AnimeStreamInfo> streamsFromThisPage = await pageSource.GetAnimeStreamInfoAsync(cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
                     streamsFromAllPages.UnionWith(streamsFromThisPage);
                 }
                 catch (NoMatchingHtmlException)
