@@ -11,7 +11,7 @@
   
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
-    <PackageReference Include="MalApi" Version="4.0.0-Beta2" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="xunit" Version="2.3.0-beta3-build3705" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build3705" />

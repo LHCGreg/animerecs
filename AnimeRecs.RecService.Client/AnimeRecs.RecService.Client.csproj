@@ -11,7 +11,7 @@
   
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
-    <PackageReference Include="MalApi" Version="4.0.0-Beta2" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
     <PackageReference Include="Ndesk.Options" Version="0.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
