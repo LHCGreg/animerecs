@@ -5,7 +5,6 @@ using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    [Serializable]
     public class RecServiceErrorException : Exception
     {
         public Error Error { get; private set; }
@@ -15,14 +14,10 @@ namespace AnimeRecs.RecService.DTO
         {
             Error = error;
         }
-        protected RecServiceErrorException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context)
-            : base(info, context) { }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //
