@@ -7,3 +7,4 @@ packages/*/
 config_overrides.xml
 internal-nlog.log
 launchSettings.json
+*.pubxml
