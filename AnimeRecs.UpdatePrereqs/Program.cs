@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic.FileIO;
 using AnimeRecs.DAL;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace AnimeRecs.UpdatePrereqs
 {
@@ -18,23 +19,28 @@ namespace AnimeRecs.UpdatePrereqs
             List<mal_anime_prerequisite> prereqs = new List<mal_anime_prerequisite>();
 
             // open input file and parse it
-            using (TextFieldParser csvParser = new TextFieldParser(commandLine.InputFilePath))
-            {
-                csvParser.TextFieldType = FieldType.Delimited;
-                csvParser.HasFieldsEnclosedInQuotes = true;
-                csvParser.Delimiters = new string[] { "," };
-                bool headerRead = false;
-                while (!csvParser.EndOfData)
-                {
-                    string[] fields = csvParser.ReadFields();
-                    if (!headerRead)
-                    {
-                        headerRead = true;
-                        continue;
-                    }
 
-                    string prereqMalUrl = fields[0];
-                    string animeMalUrl = fields[1];
+            CsvConfiguration csvConfig = new CsvConfiguration()
+            {
+                AllowComments = false,
+                HasExcelSeparator = false,
+                HasHeaderRecord = true,
+                IgnoreBlankLines = true,
+                IgnorePrivateAccessor = true,
+                ThrowOnBadData = true,
+                TrimFields = false,
+                UseExcelLeadingZerosFormatForNumerics = false,
+                WillThrowOnMissingField = true,
+            };
+
+            using (FileStream inputStream = new FileStream(commandLine.InputFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (TextReader inputReader = new StreamReader(inputStream, Encoding.UTF8))
+            using (CsvReader csvReader = new CsvReader(inputReader, csvConfig))
+            {
+                while (csvReader.Read())
+                {
+                    string prereqMalUrl = csvReader.GetField<string>("Prerequisite");
+                    string animeMalUrl = csvReader.GetField<string>("Anime");
 
                     int prereqId = GetMalIdFromMalUrl(prereqMalUrl);
                     int animeId = GetMalIdFromMalUrl(animeMalUrl);
@@ -49,7 +55,8 @@ namespace AnimeRecs.UpdatePrereqs
             }
 
             string sql = mal_anime_prerequisite.CreateRefreshPrerequisiteMapSql(prereqs);
-            using (TextWriter output = new StreamWriter(commandLine.OutputFilePath))
+            using (FileStream outputStream = new FileStream(commandLine.OutputFilePath, FileMode.Create, FileAccess.Write, FileShare.Read))
+            using (StreamWriter output = new StreamWriter(outputStream, Encoding.UTF8))
             {
                 output.Write(sql);
             }
@@ -69,7 +76,7 @@ namespace AnimeRecs.UpdatePrereqs
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdatePrereqs
 //

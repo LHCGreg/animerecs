@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net462</TargetFrameworks>
+    <TargetFrameworks>net462;netcoreapp1.1</TargetFrameworks>
     <RootNamespace>AnimeRecs.UpdatePrereqs</RootNamespace>
     <AssemblyName>UpdatePrereqs</AssemblyName>
     <Version>2.0.0.0</Version>
@@ -10,12 +10,9 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="NDesk.Options" Version="0.2.1" />
+    <PackageReference Include="Mono.Options" Version="5.3.0.1" />
+    <PackageReference Include="CsvHelper" Version="2.16.3" />
 
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <Reference Include="Microsoft.VisualBasic" />
   </ItemGroup>
 </Project>

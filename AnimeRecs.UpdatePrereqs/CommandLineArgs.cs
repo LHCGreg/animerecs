@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NDesk.Options;
+using Mono.Options;
 using System.IO;
 
 namespace AnimeRecs.UpdatePrereqs
@@ -69,33 +69,15 @@ namespace AnimeRecs.UpdatePrereqs
 
         public void DisplayHelp(TextWriter writer)
         {
-            writer.WriteLine("Usage: {0} [OPTIONS] <input csv file>", GetProgramName());
+            writer.WriteLine("Usage: [OPTIONS] <input csv file>");
             writer.WriteLine();
             writer.WriteLine("Parameters:");
             GetOptionSet().WriteOptionDescriptions(writer);
         }
-
-        public static string GetProgramName()
-        {
-            string[] argsWithProgramName = System.Environment.GetCommandLineArgs();
-            string programName;
-            if (argsWithProgramName[0].Equals(string.Empty))
-            {
-                // "If the file name is not available, the first element is equal to String.Empty."
-                // Doesn't say why that would happen, but ok...
-                programName = (new System.Reflection.AssemblyName(System.Reflection.Assembly.GetExecutingAssembly().FullName).Name) + ".exe";
-            }
-            else
-            {
-                programName = Path.GetFileName(argsWithProgramName[0]);
-            }
-
-            return programName;
-        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.UpdatePrereqs
 //
