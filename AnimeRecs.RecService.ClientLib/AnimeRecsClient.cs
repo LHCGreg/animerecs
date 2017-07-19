@@ -5,12 +5,14 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json;
-using MiscUtil.IO;
 using AnimeRecs.RecEngine;
-using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecService.ClientLib.Registrations;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Threading;
+using Nito.AsyncEx;
+using System.IO;
 
 namespace AnimeRecs.RecService.ClientLib
 {
@@ -37,18 +39,18 @@ namespace AnimeRecs.RecService.ClientLib
 
         /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>
-        public string Ping(string message, int receiveTimeoutInMs = 0)
+        public async Task<string> PingAsync(string message, CancellationToken cancellationToken)
         {
             Operation<PingRequest> operation = new Operation<PingRequest>(
                 opName: OpNames.Ping,
                 payload: new PingRequest(message)
             );
 
-            PingResponse pingResponse = DoOperationWithResponseBody<PingResponse>(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+            PingResponse pingResponse = await DoOperationWithResponseBodyAsync<PingResponse>(operation, cancellationToken).ConfigureAwait(false);
             return pingResponse.ResponseMessage;
         }
 
-        public void LoadRecSource(string name, bool replaceExisting, RecSourceParams parameters, int receiveTimeoutInMs = 0)
+        public Task LoadRecSourceAsync(string name, bool replaceExisting, RecSourceParams parameters, CancellationToken cancellationToken)
         {
             Operation<LoadRecSourceRequest<RecSourceParams>> operation = new Operation<LoadRecSourceRequest<RecSourceParams>>(
                 opName: OpNames.LoadRecSource,
@@ -57,78 +59,79 @@ namespace AnimeRecs.RecService.ClientLib
                 )
             );
 
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+            return DoOperationWithoutResponseBodyAsync(operation, cancellationToken);
         }
 
-        public void LoadRecSource(LoadRecSourceRequest request, int receiveTimeoutInMs = 0)
+        public Task LoadRecSourceAsync(LoadRecSourceRequest request, CancellationToken cancellationToken)
         {
             Operation<LoadRecSourceRequest> operation = new Operation<LoadRecSourceRequest>(
                 opName: OpNames.LoadRecSource,
                 payload: request
             );
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+
+            return DoOperationWithoutResponseBodyAsync(operation, cancellationToken);
         }
 
-        public void UnloadRecSource(string name, int receiveTimeoutInMs = 0)
+        public Task UnloadRecSourceAsync(string name, CancellationToken cancellationToken)
         {
             Operation<UnloadRecSourceRequest> operation = new Operation<UnloadRecSourceRequest>(
                 opName: OpNames.UnloadRecSource,
                 payload: new UnloadRecSourceRequest(name)
             );
 
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs: receiveTimeoutInMs);
+            return DoOperationWithoutResponseBodyAsync(operation, cancellationToken);
         }
 
-        public string GetRecSourceType(string recSourceName, int receiveTimeoutInMs = 0)
+        public async Task<string> GetRecSourceTypeAsync(string recSourceName, CancellationToken cancellationToken)
         {
             Operation<GetRecSourceTypeRequest> operation = new Operation<GetRecSourceTypeRequest>(
                 opName: OpNames.GetRecSourceType,
                 payload: new GetRecSourceTypeRequest(recSourceName)
             );
 
-            GetRecSourceTypeResponse responseBody = DoOperationWithResponseBody<GetRecSourceTypeResponse>(operation, receiveTimeoutInMs);
+            GetRecSourceTypeResponse responseBody = await DoOperationWithResponseBodyAsync<GetRecSourceTypeResponse>(operation, cancellationToken).ConfigureAwait(false);
             return responseBody.RecSourceType;
         }
 
-        public void ReloadTrainingData(ReloadBehavior behavior, bool finalize, int receiveTimeoutInMs = 0)
+        public Task ReloadTrainingDataAsync(ReloadBehavior behavior, bool finalize, CancellationToken cancellationToken)
         {
             Operation<ReloadTrainingDataRequest> operation = new Operation<ReloadTrainingDataRequest>(
                 opName: OpNames.ReloadTrainingData,
                 payload: new ReloadTrainingDataRequest(behavior, finalize)
             );
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs);
+            return DoOperationWithoutResponseBodyAsync(operation, cancellationToken);
         }
 
-        public void FinalizeRecSources(int receiveTimeoutInMs = 0)
+        public Task FinalizeRecSourcesAsync(CancellationToken cancellationToken)
         {
             Operation<FinalizeRecSourcesRequest> operation = new Operation<FinalizeRecSourcesRequest>(
                 opName: OpNames.FinalizeRecSources,
                 payload: new FinalizeRecSourcesRequest()
             );
-            DoOperationWithoutResponseBody(operation, receiveTimeoutInMs);
+            return DoOperationWithoutResponseBodyAsync(operation, cancellationToken);
         }
 
-        public MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(IDictionary<int, RecEngine.MAL.MalListEntry> animeList,
-            string recSourceName, int numRecsDesired, decimal targetScore, int receiveTimeoutInMs = 0)
+        public Task<MalRecResults<IEnumerable<IRecommendation>>> GetMalRecommendationsAsync(IDictionary<int, RecEngine.MAL.MalListEntry> animeList,
+            string recSourceName, int numRecsDesired, decimal targetScore, CancellationToken cancellationToken)
         {
             List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
 
             Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
                 GetMalRecsRequest.CreateWithTargetScore(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
 
-            return GetMalRecommendations(operation, receiveTimeoutInMs);
+            return GetMalRecommendationsAsync(operation, cancellationToken);
         }
 
-        public MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendationsWithPercentileTarget(
-           IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName, int numRecsDesired, decimal targetPercentile,
-           int receiveTimeoutInMs = 0)
+        public Task<MalRecResults<IEnumerable<IRecommendation>>> GetMalRecommendationsWithPercentileTargetAsync(
+            IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName, int numRecsDesired, decimal targetPercentile,
+            CancellationToken cancellationToken)
         {
             List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
 
             Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
                 GetMalRecsRequest.CreateWithTargetFraction(recSourceName, numRecsDesired, targetPercentile, new MalListForUser(dtoAnimeList)));
 
-            return GetMalRecommendations(operation, receiveTimeoutInMs);
+            return GetMalRecommendationsAsync(operation, cancellationToken);
         }
 
         private List<DTO.MalListEntry> CreateDtoAnimeList(IDictionary<int, RecEngine.MAL.MalListEntry> animeList)
@@ -144,9 +147,9 @@ namespace AnimeRecs.RecService.ClientLib
             return dtoAnimeList;
         }
 
-        private MalRecResults<IEnumerable<IRecommendation>> GetMalRecommendations(Operation<GetMalRecsRequest> operation, int receiveTimeoutInMs)
+        private async Task<MalRecResults<IEnumerable<IRecommendation>>> GetMalRecommendationsAsync(Operation<GetMalRecsRequest> operation, CancellationToken cancellationToken)
         {
-            GetMalRecsResponse response = DoOperationWithResponseBody<GetMalRecsResponse>(operation, receiveTimeoutInMs);
+            GetMalRecsResponse response = await DoOperationWithResponseBodyAsync<GetMalRecsResponse>(operation, cancellationToken).ConfigureAwait(false);
 
             // This should be set as if we were running against an in-process rec source.
             // So it should be an IEnumerable<AverageScoreRecommendation> if getting recs from an AverageScore rec source, etc.
@@ -189,14 +192,6 @@ namespace AnimeRecs.RecService.ClientLib
             return resultsWithAnimes;
         }
 
-        private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs)
-            where TResponse : Response
-        {
-            string responseJsonString;
-            TResponse response = DoOperation<TResponse>(operation, receiveTimeoutInMs, out responseJsonString);
-            return response;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -206,34 +201,34 @@ namespace AnimeRecs.RecService.ClientLib
         /// <returns></returns>
         /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>
-        private TResponse DoOperation<TResponse>(Operation operation, int receiveTimeoutInMs, out string responseJsonString)
+        private async Task<TResponse> DoOperationAsync<TResponse>(Operation operation, CancellationToken cancellationToken)
             where TResponse : Response
         {
             string operationJsonString = JsonConvert.SerializeObject(operation);
             byte[] operationJsonBytes = Encoding.UTF8.GetBytes(operationJsonString);
 
-            byte[] responseJsonBytes;
+            byte[] responseJsonBuffer;
 
-            using (TcpClient socket = CreateTcpClient(receiveTimeoutInMs))
+            int length = operationJsonBytes.Length;
+            int lengthNetworkOrder = IPAddress.HostToNetworkOrder(length);
+            byte[] lengthBytes = BitConverter.GetBytes(lengthNetworkOrder);
+
+            using (Socket socket = await CreateSocketAsync(cancellationToken).ConfigureAwait(false))
             {
-                int length = operationJsonBytes.Length;
-                int lengthNetworkOrder = IPAddress.HostToNetworkOrder(length);
-                byte[] lengthBytes = BitConverter.GetBytes(lengthNetworkOrder);
                 Logging.Log.Trace("Sending bytes.");
-                SocketSendAll(socket.Client, lengthBytes);
-                SocketSendAll(socket.Client, operationJsonBytes);
+                await SocketSendAllAsync(socket, lengthBytes, cancellationToken);
+                await SocketSendAllAsync(socket, operationJsonBytes, cancellationToken);
                 Logging.Log.Trace("Sent bytes.");
-                using (NetworkStream socketStream = socket.GetStream())
-                {
-                    byte[] responseLengthBytes = StreamUtil.ReadExactly(socketStream, 4);
-                    int responseLengthNetworkOrder = BitConverter.ToInt32(responseLengthBytes, 0);
-                    int responseLength = IPAddress.NetworkToHostOrder(responseLengthNetworkOrder);
-                    responseJsonBytes = StreamUtil.ReadExactly(socketStream, responseLength);
-                    Logging.Log.Trace("Got response.");
-                }
+
+                byte[] responseLengthBuffer = await SocketReceiveAllAsync(socket, 4, cancellationToken).ConfigureAwait(false);
+                int responseLengthNetworkOrder = BitConverter.ToInt32(responseLengthBuffer, 0);
+                int responseLength = IPAddress.NetworkToHostOrder(responseLengthNetworkOrder);
+
+                responseJsonBuffer = await SocketReceiveAllAsync(socket, responseLength, cancellationToken).ConfigureAwait(false);
+                Logging.Log.Trace("Got response.");
             }
 
-            responseJsonString = Encoding.UTF8.GetString(responseJsonBytes);
+            string responseJsonString = Encoding.UTF8.GetString(responseJsonBuffer);
             Logging.Log.Trace("Decoded response string.");
             TResponse response = JsonConvert.DeserializeObject<TResponse>(responseJsonString);
             Logging.Log.Trace("Deserialized response.");
@@ -247,36 +242,84 @@ namespace AnimeRecs.RecService.ClientLib
             }
         }
 
-        private TResponseBody DoOperationWithResponseBody<TResponseBody>(Operation operation, int receiveTimeoutInMs)
+        private async Task<TResponseBody> DoOperationWithResponseBodyAsync<TResponseBody>(Operation operation, CancellationToken cancellationToken)
         {
-            Response<TResponseBody> response = DoOperation<Response<TResponseBody>>(operation, receiveTimeoutInMs);
+            Response<TResponseBody> response = await DoOperationAsync<Response<TResponseBody>>(operation, cancellationToken).ConfigureAwait(false);
             return response.Body;
         }
 
-        private void DoOperationWithoutResponseBody(Operation operation, int receiveTimeoutInMs)
+        private Task DoOperationWithoutResponseBodyAsync(Operation operation, CancellationToken cancellationToken)
         {
-            DoOperation<Response>(operation, receiveTimeoutInMs);
+            return DoOperationAsync<Response>(operation, cancellationToken);
         }
 
-        private TcpClient CreateTcpClient(int receiveTimeoutInMs)
+        private async Task<Socket> CreateSocketAsync(CancellationToken cancellationToken)
         {
-            TcpClient client = new TcpClient();
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Logging.Log.Trace("Connecting to rec service.");
-            client.Connect(IPAddress.Loopback, PortNumber);
-            client.SendTimeout = 3000;
-            client.ReceiveTimeout = receiveTimeoutInMs;
+            Task connectTask = socket.ConnectAsync(IPAddress.Loopback, PortNumber);
+            try
+            {
+                await connectTask.WaitAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException)
+            {
+                try
+                {
+                    socket.Dispose();
+                }
+                catch
+                {
+
+                }
+                throw;
+            }
             Logging.Log.Trace("Connected to rec service.");
-            return client;
+            return socket;
         }
 
-        private void SocketSendAll(Socket socket, byte[] bytes)
+        private async Task SocketSendAllAsync(Socket socket, byte[] bytes, CancellationToken cancellationToken)
         {
-            int numSent = 0;
-            while (numSent < bytes.Length)
+            int numBytesSent = 0;
+            while (numBytesSent < bytes.Length)
             {
-                // socketFlags parameter is currently named incorrectly in mono - see https://bugzilla.xamarin.com/show_bug.cgi?id=25169
-                int numSentThisTime = socket.Send(bytes, /*offset:*/ numSent, /*size:*/ bytes.Length - numSent, /*socketFlags:*/ SocketFlags.None);
-                numSent += numSentThisTime;
+                Task<int> sendTask = socket.SendAsync(new ArraySegment<byte>(bytes, offset: numBytesSent, count: bytes.Length - numBytesSent), SocketFlags.None);
+
+                // Add cancellation functionality to SendAsync.
+                // If it does get canceled, an OperationCanceledException will be thrown.
+                // The code a bit higher up will dispose the socket, which is the only sensible thing to do
+                // if you cancel in the middle of a send.
+                int numSentThisTime = await sendTask.WaitAsync(cancellationToken).ConfigureAwait(false);
+
+                numBytesSent += numSentThisTime;
+            }
+        }
+
+        private async Task<byte[]> SocketReceiveAllAsync(Socket socket, int numBytesToReceive, CancellationToken cancellationToken)
+        {
+            byte[] buffer = new byte[numBytesToReceive];
+            await SocketReceiveAllAsync(socket, buffer, offset: 0, numBytesToReceive: numBytesToReceive, cancellationToken: cancellationToken).ConfigureAwait(false);
+            return buffer;
+        }
+
+        private async Task SocketReceiveAllAsync(Socket socket, byte[] buffer, int offset, int numBytesToReceive, CancellationToken cancellationToken)
+        {
+            int numBytesReceived = 0;
+            while (numBytesReceived < numBytesToReceive)
+            {
+                Task<int> receiveTask = socket.ReceiveAsync(new ArraySegment<byte>(buffer, offset: offset + numBytesReceived, count: numBytesToReceive - numBytesReceived), SocketFlags.None);
+                // Add cancellation functionality to ReceiveAsync.
+                // If it does get canceled, an OperationCanceledException will be thrown.
+                // The code a bit higher up will dispose the socket, which is the only sensible thing to do
+                // if you cancel in the middle of a receive.
+
+                int numReceivedThisTime = await receiveTask.WaitAsync(cancellationToken).ConfigureAwait(false);
+                if (numReceivedThisTime == 0)
+                {
+                    throw new EndOfStreamException(string.Format("Expected the remote end to send {0} bytes but only received {1} bytes.", numBytesToReceive, numBytesReceived));
+                }
+
+                numBytesReceived += numReceivedThisTime;
             }
         }
 
@@ -287,7 +330,7 @@ namespace AnimeRecs.RecService.ClientLib
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.ClientLib.
 //

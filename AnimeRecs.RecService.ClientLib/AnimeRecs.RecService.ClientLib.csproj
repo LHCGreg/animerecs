@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net462</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard1.3</TargetFrameworks>
     <RootNamespace>AnimeRecs.RecService.ClientLib</RootNamespace>
     <AssemblyName>AnimeRecs.RecService.ClientLib</AssemblyName>
     <Version>2.0.0.0</Version>
@@ -12,8 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
-    <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Nito.AsyncEx.Tasks" Version="5.0.0-pre-02" />
     
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj" />
