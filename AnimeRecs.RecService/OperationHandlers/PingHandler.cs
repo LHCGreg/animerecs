@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response Ping(Operation baseOperation, RecServiceState state)
+        public static Task<Response> PingAsync(Operation baseOperation, RecServiceState state, CancellationToken cancellationToken)
         {
             Operation<PingRequest> operation = (Operation<PingRequest>)(baseOperation);
             if (!operation.PayloadSet || operation.Payload == null)
-                return GetArgumentNotSetError("Payload");
+                return Task.FromResult(GetArgumentNotSetError("Payload"));
             if (operation.Payload.PingMessage == null)
-                return GetArgumentNotSetError("Payload.PingMessage");
+                return Task.FromResult(GetArgumentNotSetError("Payload.PingMessage"));
 
-            return new Response<PingResponse>()
+            return Task.FromResult<Response>(new Response<PingResponse>()
             {
                 Body = new PingResponse()
                 {
                     OriginalMessage = operation.Payload.PingMessage,
                     ResponseMessage = string.Format("Your message was \"{0}\".", operation.Payload.PingMessage)
                 }
-            };
+            });
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net462</TargetFrameworks>
+    <TargetFrameworks>net47;netcoreapp1.1</TargetFrameworks>
     
     <!-- Keeping training data in memory can use a lot of memory, which running as 64-bit can make worse. -->
     <Prefer32Bit>True</Prefer32Bit>
@@ -15,30 +15,69 @@
   
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
-    <PackageReference Include="Common.Logging.NLog31" Version="3.4.0-Beta2" />
+
+    <!-- No Common.Logging NLog adapter supports netstandard yet. -->
+    <!-- <PackageReference Include="Common.Logging.NLog41" Version="3.4.0-Beta2" /> -->
+
     <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
-    <PackageReference Include="JonSkeet.MiscUtil" Version="0.1" />
-    <PackageReference Include="NDesk.Options" Version="0.2.1" />
+    <PackageReference Include="JTForks.MiscUtil" Version="1.285.0" />
+    <PackageReference Include="Mono.Options" Version="5.3.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="NLog" Version="3.1.0.0" />
-    <PackageReference Include="SlowMonkey" Version="1.1.1" />
+    <PackageReference Include="NLog" Version="5.0.0-beta09" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.2" />
+    <PackageReference Include="Nito.AsyncEx.Tasks" Version="5.0.0-pre-02" />
 
     <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecEngine.MAL\AnimeRecs.RecEngine.MAL.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj" />
-    <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecService.DTO\AnimeRecs.RecService.DTO.csproj" />
+    <ProjectReference Include="..\Common.Logging.NLogNetStandard\Common.Logging.NLogNetStandard.csproj" />
+    <ProjectReference Include="..\AnimeRecs.Utils\AnimeRecs.Utils.csproj" />
   </ItemGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <DefineConstants>$(DefineConstants);MYMEDIALITE</DefineConstants>
-  </PropertyGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <Reference Include="System.configuration" />
+  <!-- Conditionals for full .NET framework -->
+
+  <PropertyGroup Condition="!( $(TargetFramework.Contains('core')) OR $(TargetFramework.Contains('standard')) )">
+    <!-- MyMediaLite only supports full framework, not core -->
+    <DefineConstants>$(DefineConstants);MYMEDIALITE;NETFULL</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="!( $(TargetFramework.Contains('core')) OR $(TargetFramework.Contains('standard')) )">
+    <!-- MyMediaLite (and its dependencies C5 and Mathnet.Numerics) only support full framework, not core -->
     <PackageReference Include="C5" Version="2.3" />
     <PackageReference Include="MathNet.Numerics" Version="2.6.1" />
     <PackageReference Include="MyMediaLite" Version="3.10" />
     <ProjectReference Include="..\AnimeRecs.RecEngine.MyMediaLite\AnimeRecs.RecEngine.MyMediaLite.csproj" />
+  </ItemGroup>
+  
+  <!-- Conditionals for .NET core -->
+
+  <PropertyGroup Condition="$(TargetFramework.Contains('core')) OR $(TargetFramework.Contains('standard'))">
+    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Contains('core')) OR $(TargetFramework.Contains('standard'))">
+    <!-- .NET core 1.x needs the System.ValueTuple package to use C# 7 tuple returns. -->
+    <PackageReference Include="System.ValueTuple" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config.example.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('config.xml')">
+    <None Update="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

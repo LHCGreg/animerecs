@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response UnloadRecSource(Operation baseOperation, RecServiceState state)
+        public static async Task<Response> UnloadRecSourceAsync(Operation baseOperation, RecServiceState state, CancellationToken cancellationToken)
         {
             Operation<UnloadRecSourceRequest> operation = (Operation<UnloadRecSourceRequest>)baseOperation;
             operation.Payload.AssertArgumentNotNull("Payload");
             operation.Payload.Name.AssertArgumentNotNull("Payload.Name");
-            state.UnloadRecSource(operation.Payload.Name);
+            await state.UnloadRecSourceAsync(operation.Payload.Name, cancellationToken).ConfigureAwait(false);
 
             return new Response();
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

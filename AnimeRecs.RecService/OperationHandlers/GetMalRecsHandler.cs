@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response GetMalRecs(Operation baseOperation, RecServiceState state)
+        public static async Task<Response> GetMalRecsAsync(Operation baseOperation, RecServiceState state, CancellationToken cancellationToken)
         {
             Operation<GetMalRecsRequest> operation = (Operation<GetMalRecsRequest>)baseOperation;
-            return new Response<GetMalRecsResponse>() { Body = state.GetMalRecs(operation.Payload) };
+            return new Response<GetMalRecsResponse>() { Body = await state.GetMalRecsAsync(operation.Payload, cancellationToken).ConfigureAwait(false) };
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
+using Common.Logging.NLog;
 
 namespace AnimeRecs.RecService
 {
@@ -11,21 +12,25 @@ namespace AnimeRecs.RecService
 
         internal static void SetUpLogging()
         {
+            Common.Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(new Common.Logging.Configuration.NameValueCollection()
+            {
+                ["configType"] = "FILE",
+                ["configFile"] = "NLog.config"
+            });
             Log = global::Common.Logging.LogManager.GetLogger("AnimeRecs.RecService");
             WriteLogPrologue();
         }
 
         private static void WriteLogPrologue()
         {
-            Logging.Log.DebugFormat("{0} started.", System.Reflection.Assembly.GetEntryAssembly().FullName);
-            Logging.Log.DebugFormat("CLR Version: {0}", Environment.Version);
-            Logging.Log.DebugFormat("Operating System: {0}", Environment.OSVersion);
-            Logging.Log.DebugFormat("Number of processors: {0}", Environment.ProcessorCount);
+            Logging.Log.InfoFormat("{0} started.", System.Reflection.Assembly.GetEntryAssembly().FullName);
+            Logging.Log.DebugFormat("CLR Version: {0}, Operating System: {1}, OS Architecture: {2}, Processor Architecture: {3}, Number of Processors: {4}",
+                RuntimeInformation.FrameworkDescription, RuntimeInformation.OSDescription, RuntimeInformation.OSArchitecture, RuntimeInformation.ProcessArchitecture, Environment.ProcessorCount);
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

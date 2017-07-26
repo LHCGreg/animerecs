@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Common.Logging.NLog;
-using System.Reflection;
-using System.Runtime.Versioning;
 using System.Runtime.InteropServices;
 
 namespace AnimeRecs.FreshenMalDatabase

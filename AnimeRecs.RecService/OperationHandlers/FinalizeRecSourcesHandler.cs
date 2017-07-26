@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response FinalizeRecSources(Operation baseOperation, RecServiceState state)
+        public static async Task<Response> FinalizeRecSourcesAsync(Operation baseOperation, RecServiceState state, CancellationToken cancellationToken)
         {
             Operation<FinalizeRecSourcesRequest> operation = (Operation<FinalizeRecSourcesRequest>)baseOperation;
-            state.FinalizeRecSources();
+            await state.FinalizeRecSourcesAsync(cancellationToken);
             return new Response();
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

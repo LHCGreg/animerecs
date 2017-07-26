@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.DAL
 {
     public interface IMalTrainingDataLoader : IDisposable
     {
-        MalTrainingData LoadMalTrainingData();
+        Task<MalTrainingData> LoadMalTrainingDataAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Returns a dictionary where the key is the MAL anime id of an anime and the value is a list of MAL anime ids of prerequisites
         /// for that anime. If a key is not in the dictionary, that anime has no known prerequisites.
         /// </summary>
         /// <returns></returns>
-        IDictionary<int, IList<int>> LoadPrerequisites();
+        Task<IDictionary<int, IList<int>>> LoadPrerequisitesAsync(CancellationToken cancellationToken);
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

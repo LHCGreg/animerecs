@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using MiscUtil.IO;
 using Newtonsoft.Json;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecService.OperationHandlers;
+using AnimeRecs.Utils;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.RecService
 {
@@ -21,7 +22,7 @@ namespace AnimeRecs.RecService
         {
             { OpNames.Ping, new OperationDescription
                 (
-                operationHandler: OpHandlers.Ping,
+                operationHandler: OpHandlers.PingAsync,
                 operationType: typeof(Operation<PingRequest>),
                 responseType: typeof(Response<PingResponse>)
                 )
@@ -29,7 +30,7 @@ namespace AnimeRecs.RecService
 
             { OpNames.LoadRecSource, new OperationDescription
                 (
-                operationHandler: OpHandlers.LoadRecSource,
+                operationHandler: OpHandlers.LoadRecSourceAsync,
                 operationType: typeof(Operation<LoadRecSourceRequest>),
                 responseType: typeof(Response)
                 )
@@ -37,7 +38,7 @@ namespace AnimeRecs.RecService
 
             { OpNames.UnloadRecSource, new OperationDescription
                 (
-                operationHandler: OpHandlers.UnloadRecSource,
+                operationHandler: OpHandlers.UnloadRecSourceAsync,
                 operationType: typeof(Operation<UnloadRecSourceRequest>),
                 responseType: typeof(Response)
                 )
@@ -45,7 +46,7 @@ namespace AnimeRecs.RecService
 
             { OpNames.GetRecSourceType, new OperationDescription
                 (
-                operationHandler: OpHandlers.GetRecSourceType,
+                operationHandler: OpHandlers.GetRecSourceTypeAsync,
                 operationType: typeof(Operation<GetRecSourceTypeRequest>),
                 responseType: typeof(Response<GetRecSourceTypeResponse>)
                 )
@@ -53,7 +54,7 @@ namespace AnimeRecs.RecService
 
             { OpNames.ReloadTrainingData, new OperationDescription
                 (
-                operationHandler: OpHandlers.ReloadTrainingData,
+                operationHandler: OpHandlers.ReloadTrainingDataAsync,
                 operationType: typeof(Operation<ReloadTrainingDataRequest>),
                 responseType: typeof(Response)
                 )
@@ -61,7 +62,7 @@ namespace AnimeRecs.RecService
 
             { OpNames.GetMalRecs, new OperationDescription
                 (
-                operationHandler: OpHandlers.GetMalRecs,
+                operationHandler: OpHandlers.GetMalRecsAsync,
                 operationType: typeof(Operation<GetMalRecsRequest>),
                 responseType: typeof(Response<GetMalRecsResponse>)
                 )
@@ -69,35 +70,41 @@ namespace AnimeRecs.RecService
 
             { OpNames.FinalizeRecSources, new OperationDescription
                 (
-                operationHandler: OpHandlers.FinalizeRecSources,
+                operationHandler: OpHandlers.FinalizeRecSourcesAsync,
                 operationType: typeof(Operation<FinalizeRecSourcesRequest>),
                 responseType: typeof(Response)
                 )
             }
         };
-        
-        private TcpClient Client { get; set; }
-        private RecServiceState State { get; set; }
-        
-        public ConnectionServicer(TcpClient client, RecServiceState state)
+
+        private Socket m_socket;
+        private RecServiceState m_state;
+        private TimeSpan m_readTimeout;
+        private TimeSpan m_writeTimeout;
+        private CancellationToken m_cancellationToken;
+
+        public ConnectionServicer(Socket clientSocket, RecServiceState state, TimeSpan readTimeout, TimeSpan writeTimeout, CancellationToken cancellationToken)
         {
-            Client = client;
-            State = state;
+            m_socket = clientSocket;
+            m_state = state;
+            m_readTimeout = readTimeout;
+            m_writeTimeout = writeTimeout;
+            m_cancellationToken = cancellationToken;
         }
 
-        public void ServiceConnection()
+        public async Task ServiceConnectionAsync()
         {
             try
             {
-                ServiceConnectionCore();
+                await ServiceConnectionCoreAsync().ConfigureAwait(false);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is OperationCanceledException) && !(ex is SocketTimeoutException) && !(ex is SocketException))
             {
                 try
                 {
-                    SendUnexpectedError(ex);
+                    await SendUnexpectedErrorAsync(ex).ConfigureAwait(false);
                 }
-                catch (Exception ex2)
+                catch (Exception ex2) when (!(ex is OperationCanceledException))
                 {
                     Logging.Log.InfoFormat("Error trying to notify client of unexpected error: {0}", ex2, ex2.Message);
                 }
@@ -106,30 +113,33 @@ namespace AnimeRecs.RecService
             }
         }
 
-        private void ServiceConnectionCore()
+        private async Task ServiceConnectionCoreAsync()
         {
             Logging.Log.Debug("Reading message from client.");
-            byte[] messageBytes;
-            using (NetworkStream clientStream = new NetworkStream(Client.Client, ownsSocket: false))
-            {
-                byte[] messageLengthBytes = StreamUtil.ReadExactly(clientStream, 4);
-                int messageLengthNetworkOrder = BitConverter.ToInt32(messageLengthBytes, 0);
-                int messageLength = IPAddress.NetworkToHostOrder(messageLengthNetworkOrder);
-                messageBytes = StreamUtil.ReadExactly(clientStream, messageLength);
-            }
 
-            Logging.Log.Debug("Converting message bytes into string.");
+            // Read 4 bytes for the message length. Convert from network to host byte order.
+            byte[] messageLengthBytes = new byte[4];
+            await m_socket.ReceiveAllAsync(messageLengthBytes, m_readTimeout, m_cancellationToken).ConfigureAwait(false);
+            int messageLengthNetworkOrder = BitConverter.ToInt32(messageLengthBytes, 0);
+            int messageLength = IPAddress.NetworkToHostOrder(messageLengthNetworkOrder);
+            Logging.Log.TraceFormat("Message length is {0} bytes, reading the rest of the message now.", messageLength);
+
+            // Read the rest of the message.
+            byte[] messageBytes = new byte[messageLength];
+            await m_socket.ReceiveAllAsync(messageBytes,m_readTimeout, m_cancellationToken).ConfigureAwait(false);
+
+            Logging.Log.Trace("Converting message bytes into string.");
             string messageString = Encoding.UTF8.GetString(messageBytes);
 
             Operation operation;
             try
             {
-                Logging.Log.Debug("Deserializing message.");
+                Logging.Log.Trace("Deserializing message.");
                 operation = JsonConvert.DeserializeObject<Operation>(messageString);
             }
             catch (JsonReaderException ex)
             {
-                SendInvalidJsonError(ex);
+                await SendInvalidJsonErrorAsync(ex).ConfigureAwait(false);
                 return;
             }
 
@@ -137,13 +147,13 @@ namespace AnimeRecs.RecService
 
             if (operation.OpName == null)
             {
-                SendNoOpError();
+                await SendNoOpErrorAsync().ConfigureAwait(false);
                 return;
             }
 
-            if(!Operations.ContainsKey(operation.OpName))
+            if (!Operations.ContainsKey(operation.OpName))
             {
-                SendBadOpError(operation.OpName);
+                await SendBadOpErrorAsync(operation.OpName).ConfigureAwait(false);
                 return;
             }
 
@@ -151,18 +161,18 @@ namespace AnimeRecs.RecService
 
             try
             {
-                Response response = opDescription.OperationHandler(operation, State);
+                Response response = await opDescription.OperationHandler(operation, m_state, m_cancellationToken).ConfigureAwait(false);
                 Logging.Log.Debug("Operation completed, writing response.");
-                WriteResponse(response);
+                await WriteResponseAsync(response);
             }
             catch (RecServiceErrorException ex)
             {
                 Response errorResponse = new Response(ex.Error);
-                WriteResponse(errorResponse);
+                await WriteResponseAsync(errorResponse);
             }
         }
 
-        private void SendInvalidJsonError(JsonReaderException ex)
+        private Task SendInvalidJsonErrorAsync(JsonReaderException ex)
         {
             Response errorResponse = new Response()
             {
@@ -172,10 +182,11 @@ namespace AnimeRecs.RecService
                     Message = string.Format("Invalid message. Expected a JSON object. {0}", ex.Message)
                 }
             };
-            WriteResponse(errorResponse);
+
+            return WriteResponseAsync(errorResponse);
         }
 
-        private void SendNoOpError()
+        private Task SendNoOpErrorAsync()
         {
             Response errorResponse = new Response()
             {
@@ -185,10 +196,10 @@ namespace AnimeRecs.RecService
                     Message = "No OpName specified."
                 }
             };
-            WriteResponse(errorResponse);
+            return WriteResponseAsync(errorResponse);
         }
 
-        private void SendBadOpError(string opName)
+        private Task SendBadOpErrorAsync(string opName)
         {
             Response errorResponse = new Response()
             {
@@ -198,10 +209,10 @@ namespace AnimeRecs.RecService
                     Message = string.Format("'{0}' is not a valid OpName.", opName)
                 }
             };
-            WriteResponse(errorResponse);
+            return WriteResponseAsync(errorResponse);
         }
 
-        private void SendUnexpectedError(Exception ex)
+        private Task SendUnexpectedErrorAsync(Exception ex)
         {
             Logging.Log.ErrorFormat("Unexpected error while servicing connection: {0}", ex, ex.Message);
             Response errorResponse = new Response()
@@ -212,16 +223,16 @@ namespace AnimeRecs.RecService
                     Message = string.Format("Unexpected error: {0}.", ex.Message)
                 }
             };
-            WriteResponse(errorResponse);
+            return WriteResponseAsync(errorResponse);
         }
 
-        private void WriteResponse(Response response)
+        private async Task WriteResponseAsync(Response response)
         {
             if (response.Error != null)
             {
                 Logging.Log.InfoFormat("Sending error response with message: {0}", response.Error.Message);
             }
-            
+
             Logging.Log.Trace("Serializing response.");
             string responseJsonString = JsonConvert.SerializeObject(response);
 
@@ -231,26 +242,16 @@ namespace AnimeRecs.RecService
             int responseLengthNetworkOrder = IPAddress.HostToNetworkOrder(responseLength);
             byte[] responseLengthBytes = BitConverter.GetBytes(responseLengthNetworkOrder);
 
-            Logging.Log.Trace("Writing response.");
-            SocketSendAll(responseLengthBytes);
-            SocketSendAll(responseJsonBytes);
+            Logging.Log.Trace("Writing response length.");
+            await m_socket.SendAllAsync(responseLengthBytes, m_writeTimeout, m_cancellationToken).ConfigureAwait(false);
+            Logging.Log.Trace("Writing the rest of the response.");
+            await m_socket.SendAllAsync(responseJsonBytes, m_writeTimeout, m_cancellationToken).ConfigureAwait(false);
             Logging.Log.Debug("Response written.");
-        }
-
-        private void SocketSendAll(byte[] bytes)
-        {
-            int numSent = 0;
-            while (numSent < bytes.Length)
-            {
-                // socketFlags parameter is currently named incorrectly in mono - see https://bugzilla.xamarin.com/show_bug.cgi?id=25169
-                int numSentThisTime = Client.Client.Send(bytes, /*offset:*/ numSent, /*size:*/ bytes.Length - numSent, /*socketFlags:*/ SocketFlags.None);
-                numSent += numSentThisTime;
-            }
         }
     }
 }
 
-// Copyright (C) 2014 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

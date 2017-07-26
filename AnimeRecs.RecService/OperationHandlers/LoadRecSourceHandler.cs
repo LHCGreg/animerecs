@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AnimeRecs.RecService.DTO;
-using AnimeRecs.RecEngine.MAL;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response LoadRecSource(Operation baseOperation, RecServiceState state)
+        public static async Task<Response> LoadRecSourceAsync(Operation baseOperation, RecServiceState state, CancellationToken cancellationToken)
         {
             Operation<LoadRecSourceRequest> operation = (Operation<LoadRecSourceRequest>)baseOperation;
             if (!operation.PayloadSet || operation.Payload == null)
@@ -19,19 +19,12 @@ namespace AnimeRecs.RecService.OperationHandlers
             if (operation.Payload.Type == null)
                 return GetArgumentNotSetError("Payload.Type");
 
-            if (state.JsonRecSourceTypes.ContainsKey(operation.Payload.Type))
+            try
             {
-                Type jsonRecSourceType = state.JsonRecSourceTypes[operation.Payload.Type];
-
-                // operation.Payload's static type is LoadRecSourceRequest.
-                // Its real type will be something like LoadRecSourceRequest<AverageScoreRecSourceParams> thanks to the custom JsonConverter.
-                // A json rec source is expected to have one or more constructors taking types derived from LoadRecSourceRequest.
-                Func<ITrainableJsonRecSource> recSourceFactory = () => (ITrainableJsonRecSource)(Activator.CreateInstance(jsonRecSourceType, operation.Payload));
-
-                state.LoadRecSource(recSourceFactory, operation.Payload.Name, operation.Payload.ReplaceExisting);
+                await state.LoadRecSourceAsync(operation.Payload, cancellationToken).ConfigureAwait(false);
                 return new Response();
             }
-            else
+            catch (KeyNotFoundException)
             {
                 return Response.GetErrorResponse(
                     errorCode: ErrorCodes.InvalidArgument,
@@ -42,7 +35,7 @@ namespace AnimeRecs.RecService.OperationHandlers
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

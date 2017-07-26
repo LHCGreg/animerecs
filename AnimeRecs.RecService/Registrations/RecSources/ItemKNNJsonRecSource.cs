@@ -7,7 +7,6 @@ using System.Text;
 using MyMediaLite.RatingPrediction;
 using MyMediaLite.Correlation;
 using AnimeRecs.RecService.DTO;
-using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.Registrations.RecSources

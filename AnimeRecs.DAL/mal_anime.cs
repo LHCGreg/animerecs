@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Npgsql;
 using Dapper;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace AnimeRecs.DAL
 {
@@ -111,16 +113,22 @@ WHERE mal_anime_id = :MalAnimeId";
                 transaction);
         }
 
-        public static IEnumerable<mal_anime> GetAll(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        public static async Task<IList<mal_anime>> GetAllAsync(NpgsqlConnection conn, NpgsqlTransaction transaction, CancellationToken cancellationToken)
         {
             string sql = @"
 SELECT mal_anime_id, title, mal_anime_type_id, num_episodes, mal_anime_status_id, start_year, start_month, start_day,
 end_year, end_month, end_day, image_url, last_updated
 FROM mal_anime
 ";
-
-            // This buffers all the rows in memory before returning
-            return conn.Query<mal_anime>(sql, transaction: transaction);
+            TimeSpan timeout = TimeSpan.FromSeconds(10); // TODO: Make this configurable
+            try
+            {
+                return await conn.QueryAsyncWithCancellation<mal_anime>(sql, timeout, cancellationToken, transaction).ConfigureAwait(false);
+            }
+            catch (Exception ex) when (!(ex is OperationCanceledException))
+            {
+                throw new Exception(string.Format("Error loading all MAL animes from database: {0}", ex.Message), ex);
+            }
         }
 
         public static bool IsInDatabase(int animeId, NpgsqlConnection conn, NpgsqlTransaction transaction)
@@ -132,7 +140,7 @@ FROM mal_anime
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

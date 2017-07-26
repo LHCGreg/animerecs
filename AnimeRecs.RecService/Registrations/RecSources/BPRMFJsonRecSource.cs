@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using AnimeRecs.RecService.DTO;
 using MyMediaLite.ItemRecommendation;
-using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.Registrations.RecSources

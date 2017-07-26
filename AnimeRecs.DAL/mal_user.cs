@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Npgsql;
 using Dapper;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.DAL
 {
@@ -31,14 +33,22 @@ namespace AnimeRecs.DAL
             conn.Execute(sql, new { MalUserId = mal_user_id, MalName = mal_name, TimeAdded = time_added }, transaction);
         }
 
-        public static IEnumerable<mal_user> GetAll(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        public static async Task<IList<mal_user>> GetAllAsync(NpgsqlConnection conn, NpgsqlTransaction transaction, CancellationToken cancellationToken)
         {
             string sql = @"
 SELECT mal_user_id, mal_name, time_added
 FROM mal_user
 ";
-            // This will buffer all rows in memory before returning
-            return conn.Query<mal_user>(sql, transaction: transaction);
+            TimeSpan timeout = TimeSpan.FromSeconds(10); // TODO: make this configurable
+
+            try
+            {
+                return await conn.QueryAsyncWithCancellation<mal_user>(sql, timeout, cancellationToken, transaction).ConfigureAwait(false);
+            }
+            catch (Exception ex) when (!(ex is OperationCanceledException))
+            {
+                throw new Exception(string.Format("Error loading all MAL users from database: {0}", ex.Message), ex);
+            }
         }
 
         public static bool UserIsInDbCaseSensitive(string username, NpgsqlConnection conn, NpgsqlTransaction transaction)
@@ -80,7 +90,7 @@ LIMIT :NumToDelete)";
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

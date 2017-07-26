@@ -32,32 +32,6 @@ namespace AnimeRecs.UpdateStreams
         {
             return WebUtility.HtmlDecode(rawBody);
         }
-
-        // Adapted from https://gist.github.com/svick/9992598
-        public static void WaitAllCancelOnFirstException(Task[] tasks, CancellationTokenSource tokenSource)
-        {
-            var cts = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token);
-
-            foreach (var task in tasks)
-            {
-                task.ContinueWith(t => {
-                    if (t.IsFaulted) cts.Cancel();
-                },
-                cts.Token,
-                TaskContinuationOptions.ExecuteSynchronously,
-                TaskScheduler.Current);
-            }
-
-            try
-            {
-                Task.WaitAll(tasks, cts.Token);
-            }
-            catch (OperationCanceledException)
-            {
-                tokenSource.Cancel();
-                throw;
-            }
-        }
     }
 }
 

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is an example config file. For local development, create a config.xml file using this file as a template.
+     Your config.xml will get copied to build output and used by default if no -f argument is passed.
+     For production deployments, either deploy a config.xml file alongside the program or pass
+     -f <path to config file> -->
+
+<Config>
+  <ConnectionStrings>
+    
+    <!-- Something like:
+         Server=localhost;Port=5432;User Id=postgres;Password=testpw;Database=animerecs;Timeout=5; -->
+    <AnimeRecs></AnimeRecs>
+    
+  </ConnectionStrings>
+
+  <!-- If true, "finalizes" the rec service after loading and training the rec sources.
+       "Finalizing" means flushing the training data in order to release some memory.
+       New rec sources cannot be added until training data is reloaded.
+       
+       Setting this to false is wasteful of memory if you do not need to dynamically load rec sources after startup. -->
+  <FinalizeAfterLoad>true</FinalizeAfterLoad>
+  
+  <!-- List of rec sources to load on startup. -->
+  <RecSources>
+    <!-- Each child element of <RecSources> is a rec source. The child element itself gives the name of the
+         rec source, which is used when asking for recommendations. -->
+    <default>
+      
+      <!-- The type of rec source. See Registrations/RecSources/RecSourceTypes.cs in AnimeRecs.RecService.DTO for possible types. -->
+      <Type>AnimeRecs</Type>
+      
+      <!-- Parameters specific to the rec source type. See the relevant RecSourceParams class
+           (AverageScoreRecSourceParams for example) in AnimeRecs.RecService.DTO for the available parameters. -->
+      <Params>
+        <NumRecommendersToUse>100</NumRecommendersToUse>
+        <FractionConsideredRecommended>0.35</FractionConsideredRecommended>
+        <MinEpisodesToClassifyIncomplete>26</MinEpisodesToClassifyIncomplete>
+      </Params>
+    </default>
+    <AverageScore>
+      <Type>AverageScore</Type>
+      <Params>
+        <MinEpisodesToCountIncomplete>26</MinEpisodesToCountIncomplete>
+        <MinUsersToCountAnime>50</MinUsersToCountAnime>
+        <UseDropped>true</UseDropped>
+      </Params>
+    </AverageScore>
+    <MostPopular>
+      <Type>MostPopular</Type>
+      <Params>
+        <MinEpisodesToCountIncomplete>26</MinEpisodesToCountIncomplete>
+        <UseDropped>true</UseDropped>
+      </Params>
+    </MostPopular>
+  </RecSources>
+</Config>

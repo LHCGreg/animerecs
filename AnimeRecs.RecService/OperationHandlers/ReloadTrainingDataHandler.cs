@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using AnimeRecs.RecService.DTO;
 
 namespace AnimeRecs.RecService.OperationHandlers
 {
     internal static partial class OpHandlers
     {
-        public static Response ReloadTrainingData(Operation baseOperation, RecServiceState state)
+        public static async Task<Response> ReloadTrainingDataAsync(Operation baseOperation, RecServiceState state, CancellationToken cancellationToken)
         {
             Operation<ReloadTrainingDataRequest> operation = (Operation<ReloadTrainingDataRequest>)baseOperation;
             ReloadBehavior behavior = (ReloadBehavior)Enum.Parse(typeof(ReloadBehavior), operation.Payload.Mode);
-            state.ReloadTrainingData(behavior, operation.Payload.Finalize);
+            await state.ReloadTrainingDataAsync(behavior, operation.Payload.Finalize, cancellationToken);
             return new Response();
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

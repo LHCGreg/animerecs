@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AnimeRecs.DAL;
 
 namespace AnimeRecs.RecService
@@ -22,7 +21,7 @@ namespace AnimeRecs.RecService
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

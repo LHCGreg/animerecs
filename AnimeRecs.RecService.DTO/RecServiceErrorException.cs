@@ -14,6 +14,12 @@ namespace AnimeRecs.RecService.DTO
         {
             Error = error;
         }
+
+        public RecServiceErrorException(Error error, Exception innerException)
+            : base(error.Message, innerException)
+        {
+            Error = error;
+        }
     }
 }
 

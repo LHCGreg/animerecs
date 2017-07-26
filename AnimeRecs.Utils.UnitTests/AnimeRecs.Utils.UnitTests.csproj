@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net47;netcoreapp1.1</TargetFrameworks>
+    <RootNamespace>AnimeRecs.Utils.UnitTests</RootNamespace>
+    <AssemblyName>AnimeRecs.Utils.UnitTests</AssemblyName>
+    <Version>2.0.0.0</Version>
+    <Description>Unit tests for AnimeRecs.Utils</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.7.63" />
+    <PackageReference Include="FluentAssertions" Version="4.19.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="xunit" Version="2.3.0-beta3-build3705" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build3705" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta3-build3705" />
+    <ProjectReference Include="..\AnimeRecs.Utils\AnimeRecs.Utils.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+</Project>

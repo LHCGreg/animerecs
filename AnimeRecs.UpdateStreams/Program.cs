@@ -9,6 +9,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System.Threading.Tasks;
 using System.Threading;
+using AnimeRecs.Utils;
 
 namespace AnimeRecs.UpdateStreams
 {
@@ -74,52 +75,26 @@ namespace AnimeRecs.UpdateStreams
             using (WebClient webClient = new WebClient())
             {
                 List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources(args, webClient);
-
-                List<Task<ICollection<AnimeStreamInfo>>> streamTasks = new List<Task<ICollection<AnimeStreamInfo>>>();
-                CancellationTokenSource tokenSource = new CancellationTokenSource();
-                CancellationToken token = tokenSource.Token;
-
-                try
+                using (CancellationTokenSource cancellation = new CancellationTokenSource(TimeSpan.FromMinutes(5)))
                 {
-                    foreach (IAnimeStreamInfoSource streamInfoSource in streamInfoSources)
+                    CancellableAsyncFunc<ICollection<AnimeStreamInfo>>[] streamFuncs = streamInfoSources.Select(source => new CancellableAsyncFunc<ICollection<AnimeStreamInfo>>(
+                        () => source.GetAnimeStreamInfoAsync(cancellation.Token), cancellation)
+                    ).ToArray();
+
+                    CancellableTask<ICollection<AnimeStreamInfo>>[] streamTasks = AsyncUtils.StartTasksEnsureExceptionsWrapped(streamFuncs);
+                    try
                     {
-                        streamTasks.Add(streamInfoSource.GetAnimeStreamInfoAsync(token));
+                        AsyncUtils.WhenAllCancelOnFirstExceptionDontWaitForCancellations(streamTasks).GetAwaiter().GetResult();
                     }
-                }
-                catch (Exception ex)
-                {
-                    tokenSource.Cancel();
-                    streamTasks.Add(Task.FromException<ICollection<AnimeStreamInfo>>(ex));
-                }
-
-                try
-                {
-                    Utils.WaitAllCancelOnFirstException(streamTasks.ToArray(), tokenSource);
-                }
-                catch (OperationCanceledException)
-                {
-                    foreach (Task<ICollection<AnimeStreamInfo>> streamTask in streamTasks)
+                    catch (OperationCanceledException ex)
                     {
-                        if (streamTask.IsFaulted)
-                        {
-                            try
-                            {
-                                streamTask.GetAwaiter().GetResult();
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex);
-                            }
-                        }
+                        throw new Exception("Getting streams timed out.", ex);
                     }
 
-                    throw new Exception("Some stream sources failed. See previous messages.");
-                }
-
-                foreach (Task<ICollection<AnimeStreamInfo>> streamTask in streamTasks)
-                {
-                    ICollection<AnimeStreamInfo> streamsFromThisSource = streamTask.Result;
-                    streams.AddRange(streamsFromThisSource);
+                    foreach (CancellableTask<ICollection<AnimeStreamInfo>> streamTask in streamTasks)
+                    {
+                        streams.AddRange(streamTask.Task.Result);
+                    }
                 }
             }
 

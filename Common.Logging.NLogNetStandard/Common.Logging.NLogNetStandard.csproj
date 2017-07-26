@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net462;netstandard1.3</TargetFrameworks>
+    <TargetFrameworks>net47;netstandard1.3</TargetFrameworks>
     <RootNamespace>Common.Logging.NLog</RootNamespace>
     <AssemblyName>Common.Logging.NLog</AssemblyName>
     <Version>0.99.99.99</Version>

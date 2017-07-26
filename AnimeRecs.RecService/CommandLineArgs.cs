@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
-using NDesk.Options;
+using Mono.Options;
 
 namespace AnimeRecs.RecService
 {
@@ -15,7 +14,8 @@ namespace AnimeRecs.RecService
         private int m_portNumber = 5541;
         public int PortNumber { get { return m_portNumber; } private set { m_portNumber = value; } }
 
-        public string ConfigFile { get; private set; }
+        private string m_configFile = "config.xml";
+        public string ConfigFile { get { return m_configFile; } private set { m_configFile = value; } }
 
         public OptionSet GetOptionSet()
         {
@@ -23,7 +23,7 @@ namespace AnimeRecs.RecService
             {
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
                 { "p|port=", "Port to listen on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
-                { "f|config=", "File to load configuration settings from. App.config is still used for other settings. Currently this is only used to load rec sources on startup. If not specified, no rec sources are loaded on startup.", arg => ConfigFile = arg }
+                { "f|config=", "File to load configuration settings from. Defaults to config.xml.", arg => ConfigFile = arg }
             };
 
             return optionSet;
@@ -34,38 +34,21 @@ namespace AnimeRecs.RecService
             Logging.Log.Debug("Parsing command line args.");
             OptionSet optionSet = GetOptionSet();
             optionSet.Parse(args);
-            Logging.Log.DebugFormat("Command line args parsed. PortNumber={0}, ShowHelp={1}", PortNumber, ShowHelp);
+
+            Logging.Log.DebugFormat("Command line args parsed. PortNumber={0}, ConfigFile={1}, ShowHelp={2}", PortNumber, ConfigFile, ShowHelp);
         }
 
         public void DisplayHelp(TextWriter writer)
         {
-            writer.WriteLine("Usage: {0} [OPTIONS]", GetProgramName());
+            writer.WriteLine("Usage: [OPTIONS]");
             writer.WriteLine();
             writer.WriteLine("Parameters:");
             GetOptionSet().WriteOptionDescriptions(writer);
         }
-
-        public static string GetProgramName()
-        {
-            string[] argsWithProgramName = System.Environment.GetCommandLineArgs();
-            string programName;
-            if (argsWithProgramName[0].Equals(string.Empty))
-            {
-                // "If the file name is not available, the first element is equal to String.Empty."
-                // Doesn't say why that would happen, but ok...
-                programName = (new System.Reflection.AssemblyName(System.Reflection.Assembly.GetExecutingAssembly().FullName).Name) + ".exe";
-            }
-            else
-            {
-                programName = Path.GetFileName(argsWithProgramName[0]);
-            }
-
-            return programName;
-        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

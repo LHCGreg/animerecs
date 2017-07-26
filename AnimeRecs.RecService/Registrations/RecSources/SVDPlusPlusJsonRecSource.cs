@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using MyMediaLite.RatingPrediction;
 using AnimeRecs.RecService.DTO;
-using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 
 namespace AnimeRecs.RecService.Registrations.RecSources

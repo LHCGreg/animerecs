@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
 
@@ -43,7 +42,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

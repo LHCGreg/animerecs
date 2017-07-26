@@ -8,6 +8,7 @@ using AnimeRecs.RecEngine.Evaluation;
 using AnimeRecs.DAL;
 using Medallion;
 using Microsoft.Extensions.Configuration;
+using System.Threading;
 
 #if MYMEDIALITE
 using MyMediaLite;
@@ -98,8 +99,9 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
 
             string postgresConnectionString = config.ConnectionStrings.AnimeRecs;
             using (PgMalDataLoader loader = new PgMalDataLoader(postgresConnectionString))
+            using (CancellationTokenSource timeout = new CancellationTokenSource(TimeSpan.FromSeconds(60)))
             {
-                rawData = loader.LoadMalTrainingData();
+                rawData = loader.LoadMalTrainingDataAsync(timeout.Token).ConfigureAwait(false).GetAwaiter().GetResult();
             }
 
             const int numEvaluations = 5;
@@ -110,7 +112,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
                 for (int recSourceIndex = 0; recSourceIndex < recommendersUnderTest.Count; recSourceIndex++)
                 {
                     ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<IRecommendation>, IRecommendation> recSource = recommendersUnderTest[recSourceIndex];
-                    
+
                     Tuple<MalTrainingData, ICollection<MalUserListEntries>> dataForTrainingAndEvaluation = GetDataForTrainingAndEvaluation(rawData);
                     MalTrainingData trainingData = dataForTrainingAndEvaluation.Item1;
                     ICollection<MalUserListEntries> dataForEvaluation = dataForTrainingAndEvaluation.Item2;
@@ -129,7 +131,7 @@ namespace AnimeRecs.RecEngine.MalEvaluationRunner
                 }
             }
 
-            for(int recSourceIndex = 0; recSourceIndex < recommendersUnderTest.Count; recSourceIndex++)
+            for (int recSourceIndex = 0; recSourceIndex < recommendersUnderTest.Count; recSourceIndex++)
             {
                 ITrainableRecSource<MalTrainingData, MalUserListEntries, IEnumerable<IRecommendation>, IRecommendation> recSource = recommendersUnderTest[recSourceIndex];
                 Console.WriteLine(recSource);

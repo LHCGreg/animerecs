@@ -5,6 +5,7 @@ obj/
 .vs/
 packages/*/
 config_overrides.xml
+config.xml
 internal-nlog.log
 launchSettings.json
 *.pubxml

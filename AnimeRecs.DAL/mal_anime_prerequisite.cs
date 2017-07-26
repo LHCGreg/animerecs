@@ -5,6 +5,8 @@ using System.Text;
 using System.Globalization;
 using Npgsql;
 using Dapper;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace AnimeRecs.DAL
 {
@@ -25,10 +27,19 @@ namespace AnimeRecs.DAL
             prerequisite_mal_anime_id = _prerequisite_mal_anime_id;
         }
 
-        public static IEnumerable<mal_anime_prerequisite> GetAll(NpgsqlConnection conn, NpgsqlTransaction transaction)
+        public static async Task<IList<mal_anime_prerequisite>> GetAllAsync(NpgsqlConnection conn, NpgsqlTransaction transaction, CancellationToken cancellationToken)
         {
             string sql = "SELECT * FROM mal_anime_prerequisite";
-            return conn.Query<mal_anime_prerequisite>(sql, transaction: transaction);
+            TimeSpan timeout = TimeSpan.FromSeconds(10); // TODO: Make this configurable
+
+            try
+            {
+                return await conn.QueryAsyncWithCancellation<mal_anime_prerequisite>(sql, timeout, cancellationToken, transaction).ConfigureAwait(false);
+            }
+            catch (Exception ex) when (!(ex is OperationCanceledException))
+            {
+                throw new Exception(string.Format("Error loading all MAL anime prerequisites from database: {0}", ex.Message), ex);
+            }
         }
 
         public static string CreateRefreshPrerequisiteMapSql(IEnumerable<mal_anime_prerequisite> prereqMaps)

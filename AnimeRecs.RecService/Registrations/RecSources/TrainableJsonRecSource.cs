@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecEngine;
-using Newtonsoft.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Runtime.ExceptionServices;
 
 namespace AnimeRecs.RecService.Registrations.RecSources
 {
     internal abstract class TrainableJsonRecSource<TMalRecSource, TInput, TRecommendationResults, TRecommendation, TResponse, TDtoRec>
         : ITrainableJsonRecSource
 
-        where TMalRecSource : ITrainableRecSource<MalTrainingData, TInput, TRecommendationResults,  TRecommendation>
+        where TMalRecSource : ITrainableRecSource<MalTrainingData, TInput, TRecommendationResults, TRecommendation>
         where TRecommendationResults : IEnumerable<TRecommendation>
         where TInput : IInputForUser
         where TRecommendation : IRecommendation
@@ -20,6 +21,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
         where TDtoRec : DTO.Recommendation, new()
     {
         protected TMalRecSource UnderlyingRecSource { get; private set; }
+        private object m_underlyingRecSourceLock = new object();
 
         private IDictionary<int, string> m_usernamesByUserId = new Dictionary<int, string>();
         protected IDictionary<int, string> UsernamesByUserId { get { return m_usernamesByUserId; } private set { m_usernamesByUserId = value; } }
@@ -32,15 +34,48 @@ namespace AnimeRecs.RecService.Registrations.RecSources
             UnderlyingRecSource = underlyingRecSource;
         }
 
-        public void Train(MalTrainingData trainingData, IDictionary<int, string> usernamesByUserId)
+        // Cancellation token is mainly so we can stop the service in a timely manner even if a lengthy train is going on.
+        // Adding cooperative cancellation to the underlying rec sources be some work.
+        // So instead, this base class implements "uncooperative" cancellation.
+        // Run the training on another thread and kill the thread on cancellation.
+        // Killing it will leave the rec source in some indeterminate state, but that's fine if we're shutting down anyway.
+        // That was the idea, anyway, but .NET core does not support Thread.Abort() until the yet-to-be-released 2.0.
+        // So instead, just abandon the thread to churn along for the brief period until the process exits.
+        public void Train(MalTrainingData trainingData, IDictionary<int, string> usernamesByUserId, CancellationToken cancellationToken)
         {
-            UnderlyingRecSource.Train(trainingData);
-            Animes = trainingData.Animes;
-            UsernamesByUserId = usernamesByUserId;
+            cancellationToken.ThrowIfCancellationRequested();
+
+            Task trainingTask = Task.Factory.StartNew(() => TrainingThreadEntryPoint(trainingData), TaskCreationOptions.LongRunning);
+            try
+            {
+                trainingTask.Wait(cancellationToken);
+            }
+            catch (AggregateException aggEx)
+            {
+                ExceptionDispatchInfo.Capture(aggEx.InnerException).Throw();
+                throw; // Will never be reached
+            }
+
+            // Force a memory fence after off-thread changes to UnderlyingRecSource
+            lock (m_underlyingRecSourceLock)
+            {
+                Animes = trainingData.Animes;
+                UsernamesByUserId = usernamesByUserId;
+            }
         }
 
-        public DTO.GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest)
+        private void TrainingThreadEntryPoint(MalTrainingData trainingData)
         {
+            lock (m_underlyingRecSourceLock)
+            {
+                UnderlyingRecSource.Train(trainingData);
+            }
+        }
+
+        public DTO.GetMalRecsResponse GetRecommendations(MalUserListEntries animeList, GetMalRecsRequest recRequest, CancellationToken cancellationToken)
+        {
+            // Ignore the cancellation token - we're only cancelling on service shut down, and getting recommendations should be quick.
+            // If getting recommendations takes longer than the final connection drain time limit, something is wrong.
             TInput recSourceInput = GetRecSourceInputFromRequest(animeList, recRequest);
             TRecommendationResults recResults = UnderlyingRecSource.GetRecommendations(recSourceInput, recRequest.NumRecsDesired);
 
@@ -86,7 +121,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
         /// <param name="caster"></param>
         /// <returns></returns>
         protected abstract TInput GetRecSourceInputFromRequest(MalUserListEntries animeList, GetMalRecsRequest recRequest);
-        
+
         /// <summary>
         /// Set any properties of a recommendation other than the item id here.
         /// </summary>
@@ -126,7 +161,7 @@ namespace AnimeRecs.RecService.Registrations.RecSources
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.
 //

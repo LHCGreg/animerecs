@@ -8,7 +8,7 @@ using AnimeRecs.RecService.DTO.JsonConverters;
 namespace AnimeRecs.RecService.DTO
 {
     [JsonConverter(typeof(LoadRecSourceRequestJsonConverter))]
-    public class LoadRecSourceRequest
+    public abstract class LoadRecSourceRequest
     {
         /// <summary>
         /// Name to give the loaded rec source. Other operations will use this name to refer to it. The name is not case-sensitive.
@@ -36,10 +36,13 @@ namespace AnimeRecs.RecService.DTO
             ReplaceExisting = replaceExisting;
             Type = type;
         }
+
+        // Used for dynamically setting params based on configuration
+        public abstract RecSourceParams GetParams();
     }
     
     public class LoadRecSourceRequest<TRecSourceParams> : LoadRecSourceRequest
-        where TRecSourceParams : RecSourceParams
+        where TRecSourceParams : RecSourceParams, new()
     {
         /// <summary>
         /// Parameters specific to the type of rec source.
@@ -48,7 +51,7 @@ namespace AnimeRecs.RecService.DTO
 
         public LoadRecSourceRequest()
         {
-            ;
+            Params = new TRecSourceParams();
         }
 
         public LoadRecSourceRequest(string name, string type, bool replaceExisting, TRecSourceParams parameters)
@@ -56,10 +59,15 @@ namespace AnimeRecs.RecService.DTO
         {
             Params = parameters;
         }
+
+        public override RecSourceParams GetParams()
+        {
+            return Params;
+        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //
