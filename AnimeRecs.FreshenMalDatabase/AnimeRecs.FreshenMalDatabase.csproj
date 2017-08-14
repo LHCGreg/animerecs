@@ -18,6 +18,7 @@
     <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     <PackageReference Include="NLog" Version="5.0.0-beta09" />
     <PackageReference Include="Npgsql" Version="3.2.4.1" />
+    <PackageReference Include="Mono.Options" Version="5.3.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.2" />
@@ -27,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="config_base.xml">
+    <None Update="config.example.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="NLog.config">
@@ -36,8 +37,8 @@
     <None Remove="internal-nlog.log" />
   </ItemGroup>
 
-  <ItemGroup Condition="Exists('config_overrides.xml')">
-    <None Update="config_overrides.xml">
+  <ItemGroup Condition="Exists('config.xml')">
+    <None Update="config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

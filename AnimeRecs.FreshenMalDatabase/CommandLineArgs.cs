@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using Mono.Options;
 
-namespace AnimeRecs.RecService
+namespace AnimeRecs.FreshenMalDatabase
 {
     internal class CommandLineArgs
     {
         public bool ShowHelp { get; private set; } = false;
-        public int PortNumber { get; private set; } = 5541;
         public string ConfigFile { get; private set; } = "config.xml";
 
         public OptionSet GetOptionSet()
@@ -17,7 +16,6 @@ namespace AnimeRecs.RecService
             OptionSet optionSet = new OptionSet()
             {
                 { "?|h|help", "Show this message and exit.", argExistence => ShowHelp = (argExistence != null) },
-                { "p|port=", "Port to listen on. Defaults to 5541.", arg => PortNumber = int.Parse(arg) },
                 { "f|config=", "File to load configuration settings from. Defaults to config.xml.", arg => ConfigFile = arg }
             };
 
@@ -30,7 +28,7 @@ namespace AnimeRecs.RecService
             OptionSet optionSet = GetOptionSet();
             optionSet.Parse(args);
 
-            Logging.Log.DebugFormat("Command line args parsed. PortNumber={0}, ConfigFile={1}, ShowHelp={2}", PortNumber, ConfigFile, ShowHelp);
+            Logging.Log.Debug($"Command line args parsed. ConfigFile={ConfigFile}, ShowHelp={ShowHelp}");
         }
 
         public void DisplayHelp(TextWriter writer)
@@ -45,17 +43,17 @@ namespace AnimeRecs.RecService
 
 // Copyright (C) 2017 Greg Najda
 //
-// This file is part of AnimeRecs.RecService.
+// This file is part of AnimeRecs.FreshenMalDatabase.
 //
-// AnimeRecs.RecService is free software: you can redistribute it and/or modify
+// AnimeRecs.FreshenMalDatabase is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// AnimeRecs.RecService is distributed in the hope that it will be useful,
+// AnimeRecs.FreshenMalDatabase is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
-//  along with AnimeRecs.RecService.  If not, see <http://www.gnu.org/licenses/>.
+//  along with AnimeRecs.FreshenMalDatabase.  If not, see <http://www.gnu.org/licenses/>.

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AnimeRecs.DAL;
 using MalApi;
 using Npgsql;
-using System.Globalization;
 using Microsoft.Extensions.Configuration;
 
 namespace AnimeRecs.FreshenMalDatabase
@@ -26,9 +24,15 @@ namespace AnimeRecs.FreshenMalDatabase
 
             try
             {
+                CommandLineArgs commandLine = new CommandLineArgs(args);
+                if (commandLine.ShowHelp)
+                {
+                    commandLine.DisplayHelp(Console.Out);
+                    return (int)ExitCode.Success;
+                }
+
                 IConfigurationBuilder configBuilder = new ConfigurationBuilder()
-                    .AddXmlFile("config_base.xml")
-                    .AddXmlFile("config_overrides.xml", optional: true);
+                    .AddXmlFile(commandLine.ConfigFile);
 
                 IConfigurationRoot rawConfig = configBuilder.Build();
                 config = rawConfig.Get<Config>();
