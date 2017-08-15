@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using MiscUtil.Collections.Extensions;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.ClientLib;
@@ -15,10 +13,9 @@ namespace AnimeRecs.RecService.Client.Registrations.Output
         {
             MalRecResults<IEnumerable<AverageScoreRecommendation>> results = basicResults.CastRecs<IEnumerable<AverageScoreRecommendation>>();
             int recNumber = 1;
-            foreach (var recIt in results.Results.AsSmartEnumerable())
+            foreach (AverageScoreRecommendation rec in results.Results)
             {
-                AverageScoreRecommendation rec = recIt.Value;
-                if (recIt.IsFirst)
+                if (recNumber == 1)
                 {
                     Console.WriteLine("     {0,-52} {1,-6} {2}", "Anime", "Avg", "# ratings");
                 }
@@ -30,7 +27,7 @@ namespace AnimeRecs.RecService.Client.Registrations.Output
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.Client.
 //

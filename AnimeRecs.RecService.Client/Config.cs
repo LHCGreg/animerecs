@@ -1,33 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace AnimeRecs.RecService.Client
 {
-    internal static class Config
+    internal class Config
     {
-        public static bool UseDbAsMalApi { get { return ConfigurationManager.AppSettings["MAL.API"] == "DB"; } }
-        public static string PgConnectionString
+        public ApiType MalApiType { get; set; } = ApiType.Normal;
+        public ConfigConnectionStrings ConnectionStrings { get; set; }
+
+        internal static Config LoadFromFile(string filePath)
         {
-            get
-            {
-                ConnectionStringSettings connectionStringSettings = ConfigurationManager.ConnectionStrings["Postgres"];
-                if (connectionStringSettings != null)
-                {
-                    return ConfigurationManager.ConnectionStrings["Postgres"].ToString();
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            IConfigurationBuilder configBuilder = new ConfigurationBuilder()
+                .AddXmlFile(filePath);
+
+            IConfigurationRoot rawConfig = configBuilder.Build();
+            return rawConfig.Get<Config>();
+        }
+
+        public class ConfigConnectionStrings
+        {
+            public string AnimeRecs { get; set; }
+        }
+
+        public enum ApiType
+        {
+            Normal,
+            DB
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.Client.
 //

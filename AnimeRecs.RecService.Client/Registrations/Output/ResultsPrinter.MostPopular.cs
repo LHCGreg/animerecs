@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using MiscUtil.Collections.Extensions;
 using AnimeRecs.RecEngine;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.ClientLib;
@@ -15,10 +13,9 @@ namespace AnimeRecs.RecService.Client.Registrations.Output
         {
             MalRecResults<IEnumerable<MostPopularRecommendation>> results = basicResults.CastRecs<IEnumerable<MostPopularRecommendation>>();
             int recNumber = 1;
-            foreach (var recIt in results.Results.AsSmartEnumerable())
+            foreach (MostPopularRecommendation rec in results.Results)
             {
-                MostPopularRecommendation rec = recIt.Value;
-                if (recIt.IsFirst)
+                if (recNumber == 1)
                 {
                     Console.WriteLine("     {0,-52} {1,4} {2}", "Anime", "Rank", "# ratings");
                 }
@@ -30,7 +27,7 @@ namespace AnimeRecs.RecService.Client.Registrations.Output
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.Client.
 //

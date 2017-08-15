@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Globalization;
 using System.Net.Sockets;
-using System.Reflection;
-using MiscUtil.IO;
 using Newtonsoft.Json;
 using MalApi;
 using AnimeRecs.DAL;
 using AnimeRecs.RecService.ClientLib;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.RecService.Client.Registrations.Output;
+using AnimeRecs.Utils;
+using System.Threading;
+using System.Net;
+using System.Diagnostics;
 
 namespace AnimeRecs.RecService.Client
 {
@@ -27,75 +28,94 @@ namespace AnimeRecs.RecService.Client
                 return;
             }
 
+            Config config = Config.LoadFromFile(commandLine.ConfigFile);
+
             using (AnimeRecsClient client = new AnimeRecsClient(commandLine.PortNumber))
             {
                 if (commandLine.Operation.Equals("raw", StringComparison.OrdinalIgnoreCase))
                 {
-                    using (TcpClient rawClient = new TcpClient("localhost", commandLine.PortNumber))
-                    {
-                        byte[] jsonBytes = Encoding.UTF8.GetBytes(commandLine.RawJson);
-                        rawClient.Client.Send(jsonBytes);
+                    byte[] requestJsonBytes = Encoding.UTF8.GetBytes(commandLine.RawJson);
+                    int requestLength = requestJsonBytes.Length;
+                    int requestLengthNetworkOrder = IPAddress.HostToNetworkOrder(requestLength);
+                    byte[] requestLengthBytes = BitConverter.GetBytes(requestLengthNetworkOrder);
 
-                        using (NetworkStream socketStream = rawClient.GetStream())
-                        {
-                            rawClient.Client.Shutdown(SocketShutdown.Send);
-                            byte[] responseJsonBytes = StreamUtil.ReadFully(socketStream);
-                            string responseJsonString = Encoding.UTF8.GetString(responseJsonBytes);
-                            dynamic responseJson = JsonConvert.DeserializeObject<dynamic>(responseJsonString);
-                            string prettyResponse = JsonConvert.SerializeObject(responseJson, Formatting.Indented);
-                            Console.WriteLine(prettyResponse);
-                        }
+                    byte[] requestBytes = new byte[requestLengthBytes.Length + requestJsonBytes.Length];
+                    requestLengthBytes.CopyTo(requestBytes, index: 0);
+                    requestJsonBytes.CopyTo(requestBytes, index: requestLengthBytes.Length);
+
+                    using (Socket rawClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+                    {
+                        TimeSpan sendTimeout = TimeSpan.FromSeconds(5);
+                        rawClientSocket.SendAllAsync(requestBytes, sendTimeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+                        rawClientSocket.Shutdown(SocketShutdown.Send);
+
+                        byte[] responseLengthBuffer = rawClientSocket.ReceiveAllAsync(numBytesToReceive: 4, receiveAllTimeout: TimeSpan.FromMinutes(3), cancellationToken: CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+                        int responseLengthNetworkOrder = BitConverter.ToInt32(responseLengthBuffer, 0);
+                        int responseLength = IPAddress.NetworkToHostOrder(responseLengthNetworkOrder);
+                        byte[] responseJsonBytes = rawClientSocket.ReceiveAllAsync(responseLength, receiveAllTimeout: TimeSpan.FromSeconds(5), cancellationToken: CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+                        string responseJsonString = Encoding.UTF8.GetString(responseJsonBytes);
+                        dynamic responseJson = JsonConvert.DeserializeObject<dynamic>(responseJsonString);
+                        string prettyResponse = JsonConvert.SerializeObject(responseJson, Formatting.Indented);
+                        Console.WriteLine(prettyResponse);
                     }
                 }
                 else if (commandLine.Operation.Equals(OpNames.Ping, StringComparison.OrdinalIgnoreCase))
                 {
-                    string pingResponse = client.Ping(commandLine.PingMessage);
-                    Console.WriteLine("The service replied: {0}", pingResponse);
+                    TimeSpan timeout = TimeSpan.FromSeconds(3);
+                    Stopwatch timer = Stopwatch.StartNew();
+                    string pingResponse = client.PingAsync(commandLine.PingMessage, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+                    timer.Stop();
+                    Console.WriteLine($"The service replied: {pingResponse} (took {timer.Elapsed})");
                 }
                 else if (commandLine.Operation.Equals(OpNames.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
                 {
-                    client.ReloadTrainingData(commandLine.ReloadMode, commandLine.Finalize);
+                    TimeSpan timeout = TimeSpan.FromMinutes(3);
+                    client.ReloadTrainingDataAsync(commandLine.ReloadMode, commandLine.Finalize, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     Console.WriteLine("Training data reloaded.");
                 }
                 else if (commandLine.Operation.Equals(OpNames.FinalizeRecSources, StringComparison.OrdinalIgnoreCase))
                 {
-                    client.FinalizeRecSources();
+                    TimeSpan timeout = TimeSpan.FromSeconds(5);
+                    client.FinalizeRecSourcesAsync(timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult(); ;
                     Console.WriteLine("Rec sources finalized.");
                 }
                 else if (commandLine.Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase))
                 {
                     if (commandLine.RecSourceType.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                        TimeSpan timeout = TimeSpan.FromSeconds(30);
+                        client.LoadRecSourceAsync(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new AverageScoreRecSourceParams(
                                 minEpisodesToCountIncomplete: commandLine.MinEpisodesToCountIncomplete,
                                 minUsersToCountAnime: commandLine.MinUsersToCountAnime,
                                 useDropped: commandLine.UseDropped
-                            )
-                        );
+                            ),
+                            timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     }
                     else if (commandLine.RecSourceType.Equals(RecSourceTypes.MostPopular, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                        TimeSpan timeout = TimeSpan.FromSeconds(30);
+                        client.LoadRecSourceAsync(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new MostPopularRecSourceParams(
                                 minEpisodesToCountIncomplete: commandLine.MinEpisodesToCountIncomplete,
                                 useDropped: commandLine.UseDropped
-                            )
-                        );
+                            ), timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     }
                     else if (commandLine.RecSourceType.Equals(RecSourceTypes.AnimeRecs, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                        TimeSpan timeout = TimeSpan.FromSeconds(60);
+                        client.LoadRecSourceAsync(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
                             new AnimeRecsRecSourceParams(
                                 numRecommendersToUse: commandLine.NumRecommendersToUse,
                                 fractionConsideredRecommended: commandLine.FractionRecommended,
                                 minEpisodesToClassifyIncomplete: commandLine.MinEpisodesToCountIncomplete
-                            )
-                        );
+                            ), timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     }
                     else if (commandLine.RecSourceType.Equals(RecSourceTypes.BiasedMatrixFactorization, StringComparison.OrdinalIgnoreCase))
                     {
-                        client.LoadRecSource(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource, commandLine.BiasedMatrixFactorizationParams);
+                        TimeSpan timeout = TimeSpan.FromMinutes(3);
+                        client.LoadRecSourceAsync(commandLine.RecSourceName, commandLine.ReplaceExistingRecSource,
+                            commandLine.BiasedMatrixFactorizationParams, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     }
                     else
                     {
@@ -106,19 +126,21 @@ namespace AnimeRecs.RecService.Client
                 }
                 else if (commandLine.Operation.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
                 {
-                    client.UnloadRecSource(commandLine.RecSourceName);
+                    TimeSpan timeout = TimeSpan.FromSeconds(10);
+                    client.UnloadRecSourceAsync(commandLine.RecSourceName, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     Console.WriteLine("Unload complete.");
                 }
                 else if (commandLine.Operation.Equals(OpNames.GetRecSourceType, StringComparison.OrdinalIgnoreCase))
                 {
-                    string recSourceType = client.GetRecSourceType(commandLine.RecSourceName);
+                    TimeSpan timeout = TimeSpan.FromSeconds(3);
+                    string recSourceType = client.GetRecSourceTypeAsync(commandLine.RecSourceName, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     Console.WriteLine("Type of rec source {0} is {1}.", commandLine.RecSourceName, recSourceType);
                 }
                 else if (commandLine.Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
                 {
                     MalUserLookupResults lookup;
 
-                    using (IMyAnimeListApi malApi = GetMalApi())
+                    using (IMyAnimeListApi malApi = GetMalApi(config))
                     {
                         lookup = malApi.GetAnimeListForUser(commandLine.MalUsername);
                     }
@@ -129,11 +151,16 @@ namespace AnimeRecs.RecService.Client
                         animeListEntries[entry.AnimeInfo.AnimeId] = new RecEngine.MAL.MalListEntry((byte?)entry.Score, entry.Status, (short)entry.NumEpisodesWatched);
                     }
 
-                    MalRecResults<IEnumerable<RecEngine.IRecommendation>> recs = client.GetMalRecommendations(
+                    TimeSpan timeout = TimeSpan.FromSeconds(10);
+                    MalRecResults<IEnumerable<RecEngine.IRecommendation>> recs = client.GetMalRecommendationsAsync(
                         animeList: animeListEntries,
                         recSourceName: commandLine.RecSourceName,
                         numRecsDesired: commandLine.NumRecs,
-                        targetScore: commandLine.TargetScore);
+                        targetScore: commandLine.TargetScore,
+                        timeout: timeout,
+                        cancellationToken: CancellationToken.None
+                    )
+                    .ConfigureAwait(false).GetAwaiter().GetResult();
 
                     PrintRecs(recs, animeListEntries, commandLine.TargetScore);
                 }
@@ -144,11 +171,11 @@ namespace AnimeRecs.RecService.Client
             }
         }
 
-        private static IMyAnimeListApi GetMalApi()
+        private static IMyAnimeListApi GetMalApi(Config config)
         {
-            if (Config.UseDbAsMalApi)
+            if (config.MalApiType == Config.ApiType.DB)
             {
-                return new PgMyAnimeListApi(Config.PgConnectionString);
+                return new PgMyAnimeListApi(config.ConnectionStrings.AnimeRecs);
             }
             else
             {
@@ -170,7 +197,7 @@ namespace AnimeRecs.RecService.Client
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.Client.
 //

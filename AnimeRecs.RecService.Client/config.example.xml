@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is an example config file. For local development, create a config.xml file using this file as a template.
+     Your config.xml will get copied to build output and used by default if no -f argument is passed.
+     For production deployments, either deploy a config.xml file alongside the program or pass
+     -f <path to config file> -->
+
+<Config>
+  <ConnectionStrings>
+    
+    <!-- Something like:
+         Server=localhost;Port=5432;User Id=postgres;Password=testpw;Database=animerecs;Timeout=5;Command Timeout=60; -->
+    <AnimeRecs></AnimeRecs>
+    
+  </ConnectionStrings>
+
+   <!--If MAL.API is set to "DB", use a local database instead of going to MAL.
+    Useful if you don't want to hit MAL. For example, if you're on the train without internet access.--> 
+  <MalApiType>Normal</MalApiType>
+</Config>

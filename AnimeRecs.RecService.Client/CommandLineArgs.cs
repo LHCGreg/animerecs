@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NDesk.Options;
+using Mono.Options;
 using System.IO;
 using AnimeRecs.RecService.DTO;
 
@@ -30,27 +29,15 @@ namespace AnimeRecs.RecService.Client
             RecSourceTypes.BiasedMatrixFactorization
         };
 
-        private bool m_showHelp = false;
-        public bool ShowHelp { get { return m_showHelp; } set { m_showHelp = value; } }
-
-        public string Operation { get; private set; }
-
-        private string m_pingMessage = "ping";
-        public string PingMessage { get { return m_pingMessage; } set { m_pingMessage = value; } }
-
-        private int m_portNumber = 5541;
-        public int PortNumber { get { return m_portNumber; } set { m_portNumber = value; } }
-
-        private string m_recSourceName = "default";
-        public string RecSourceName { get { return m_recSourceName; } set { m_recSourceName = value; } }
-
-        private bool m_replaceExistingRecSource = false;
-        public bool ReplaceExistingRecSource { get { return m_replaceExistingRecSource; } set { m_replaceExistingRecSource = value; } }
-
-        public string RecSourceType { get; private set; }
-
-        private int m_minEpisodesToCountIncomplete = 26;
-        public int MinEpisodesToCountIncomplete { get { return m_minEpisodesToCountIncomplete; } set { m_minEpisodesToCountIncomplete = value; } }
+        public bool ShowHelp { get; private set; } = false;
+        public string ConfigFile { get; private set; } = "config.xml";
+        public string Operation { get; private set; } = null;
+        public string PingMessage { get; private set; } = "ping";
+        public int PortNumber { get; private set; } = 5541;
+        public string RecSourceName { get; private set; } = "default";
+        public bool ReplaceExistingRecSource { get; private set; } = false;
+        public string RecSourceType { get; private set; } = null;
+        public int MinEpisodesToCountIncomplete { get; private set; } = 26;
 
         private bool? m_useDropped = null;
         public bool UseDropped
@@ -73,37 +60,16 @@ namespace AnimeRecs.RecService.Client
             }
         }
 
-        private int m_minUsersToCountAnime = 50;
-        public int MinUsersToCountAnime { get { return m_minUsersToCountAnime; } set { m_minUsersToCountAnime = value; } }
-
-        private int m_numRecommendersToUse = 100;
-        public int NumRecommendersToUse { get { return m_numRecommendersToUse; } set { m_numRecommendersToUse = value; } }
-
-        private double m_fractionRecommended = 0.35;
-        public double FractionRecommended { get { return m_fractionRecommended; } set { m_fractionRecommended = value; } }
-
-        public string MalUsername { get; private set; }
-
-        private int m_numRecs = 50;
-        public int NumRecs { get { return m_numRecs; } set { m_numRecs = value; } }
-
-        private decimal m_targetScore = 8m;
-        public decimal TargetScore { get { return m_targetScore; } set { m_targetScore = value; } }
-
-        private BiasedMatrixFactorizationRecSourceParams m_biasedMatrixFactorizationParams = new BiasedMatrixFactorizationRecSourceParams();
-        public BiasedMatrixFactorizationRecSourceParams BiasedMatrixFactorizationParams
-        {
-            get { return m_biasedMatrixFactorizationParams; }
-            set { m_biasedMatrixFactorizationParams = value; }
-        }
-
-        private ReloadBehavior m_reloadMode = ReloadBehavior.HighAvailability;
-        public ReloadBehavior ReloadMode { get { return m_reloadMode; } set { m_reloadMode = value; } }
-
-        private bool m_finalize = false;
-        public bool Finalize { get { return m_finalize; } set { m_finalize = value; } }
-
-        public string RawJson { get; set; }
+        public int MinUsersToCountAnime { get; private set; } = 50;
+        public int NumRecommendersToUse { get; private set; } = 100;
+        public double FractionRecommended { get; private set; } = 0.35;
+        public string MalUsername { get; private set; } = null;
+        public int NumRecs { get; private set; } = 50;
+        public decimal TargetScore { get; private set; } = 8m;
+        public BiasedMatrixFactorizationRecSourceParams BiasedMatrixFactorizationParams { get; private set; } = new BiasedMatrixFactorizationRecSourceParams();
+        public ReloadBehavior ReloadMode { get; private set; } = ReloadBehavior.HighAvailability;
+        public bool Finalize { get; private set; } = false;
+        public string RawJson { get; set; } = null;
 
         public OptionSet GetOptionSet()
         {
@@ -116,7 +82,8 @@ namespace AnimeRecs.RecService.Client
                 { "finalize", "Finalize the rec sources loaded after the reload is complete to reduce memory usage. Used with the ReloadTrainingData command.", argExistence => Finalize = (argExistence != null) },
                 { "name|rec_source_name=", "Rec source name. Used with the LoadRecSource, GetRecSourceType, UnloadRecSource, and GetMalRecs commands. Defaults to \"default\"", arg => RecSourceName = arg },
                 { "reload_mode=", "Used with ReloadTrainingData. Possible values are HighAvailability and LowMemory. Defaults to HighAvailability. HighAvailability: Keep the old training data and rec sources in memory while the reload/retrain is going on to keep the rec service serving requests. Requires around twice the amount of memory normally consumed. LowMemory: Drop the old training data and rec sources before starting the reload/retrain. This avoids using double normal memory but means the rec service cannot give recommendations while the reload/retrain is going on.", arg => SetReloadMode(arg) },
-                { "f", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
+                { "f|config=", "File to load configuration settings from. Defaults to config.xml.", arg => ConfigFile = arg },
+                { "force", "Replace an existing rec source. Used with the LoadRecSource command", argExistence => ReplaceExistingRecSource = (argExistence != null) },
                 { "type|rec_source_type=", "Rec source type. Required for LoadRecSource command", arg => SetRecSourceType(arg) },
                 { "min_episodes_to_count_incomplete=", "Minimum episodes to count the rating of a show a user is currently watched. Used with the LoadRecSource command with the AverageScore, MostPopular, and AnimeRecs rec source types. Defaults to 26.",
                     arg => { MinEpisodesToCountIncomplete = int.Parse(arg); BiasedMatrixFactorizationParams.MinEpisodesToCountIncomplete = int.Parse(arg); } },
@@ -188,7 +155,11 @@ namespace AnimeRecs.RecService.Client
 
         private void SetReloadMode(string mode)
         {
-            if (!Enum.TryParse<ReloadBehavior>(mode, out m_reloadMode))
+            if (Enum.TryParse<ReloadBehavior>(mode, out ReloadBehavior reloadMode))
+            {
+                ReloadMode = reloadMode;
+            }
+            else
             {
                 throw new OptionException(string.Format("{0} is not a recognized reload mode.", mode), "reload_mode");
             }
@@ -234,33 +205,15 @@ namespace AnimeRecs.RecService.Client
 
         public void DisplayHelp(TextWriter writer)
         {
-            writer.WriteLine("Usage: {0} [OPTIONS]", GetProgramName());
+            writer.WriteLine("Usage: [OPTIONS]");
             writer.WriteLine();
             writer.WriteLine("Parameters:");
             GetOptionSet().WriteOptionDescriptions(writer);
         }
-
-        public static string GetProgramName()
-        {
-            string[] argsWithProgramName = System.Environment.GetCommandLineArgs();
-            string programName;
-            if (argsWithProgramName[0].Equals(string.Empty))
-            {
-                // "If the file name is not available, the first element is equal to String.Empty."
-                // Doesn't say why that would happen, but ok...
-                programName = (new System.Reflection.AssemblyName(System.Reflection.Assembly.GetExecutingAssembly().FullName).Name) + ".exe";
-            }
-            else
-            {
-                programName = Path.GetFileName(argsWithProgramName[0]);
-            }
-
-            return programName;
-        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.Client.
 //
