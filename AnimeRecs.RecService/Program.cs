@@ -26,6 +26,9 @@ namespace AnimeRecs.RecService
         // Used for the SIGTERM handler, which must wait for all shutdown to complete before returning from the event handler.
         static ManualResetEventSlim Done = new ManualResetEventSlim(false);
 
+        static object SigHandlerLock = new object();
+        static bool ShuttingDown = false;
+
         static int Main(string[] args)
         {
             Thread.CurrentThread.Name = "Main";
@@ -83,14 +86,6 @@ namespace AnimeRecs.RecService
             }
         }
 
-        static object SigHandlersLock = new object();
-
-        static ConsoleCancelEventHandler SigIntHandler = null;
-
-#if NETCORE
-        static Action<AssemblyLoadContext> SigTermHandler = null;
-#endif
-
         static void RegisterCancellationHandlers(CancellationTokenSource serviceStopper)
         {
             // Set up how the service will be stopped.
@@ -99,60 +94,33 @@ namespace AnimeRecs.RecService
             // assemblyLoadContext.Unloading corresponds to SIGTERM on Linux and nothing(?) on Windows.
             // AssemblyLoadContext is only on .net core, not .net 4.7.
 
-            lock (SigHandlersLock)
+            lock (SigHandlerLock)
             {
                 // Don't need to wait for shutdown inside the event handler for SIGINT because the process doesn't die after the event handler returns.
                 // The SIGTERM handler on the other hand...not sure but the process might die after the event handler returns.
-                SigIntHandler = (sender, eventArgs) => { StopService(serviceStopper, waitForShutdown: false); eventArgs.Cancel = true; };
-                Console.CancelKeyPress += SigIntHandler;
+                Console.CancelKeyPress += (sender, eventArgs) => { StopService(serviceStopper, waitForShutdown: false); eventArgs.Cancel = true; };
 #if NETCORE
                 var assemblyLoadContext = AssemblyLoadContext.GetLoadContext(typeof(Program).GetTypeInfo().Assembly);
 
                 // Sleep for a bit after everything is shut down to give logs a chance to flush
-                SigTermHandler = context => { StopService(serviceStopper, waitForShutdown: true); Thread.Sleep(TimeSpan.FromMilliseconds(500)); };
-                assemblyLoadContext.Unloading += SigTermHandler;
+                assemblyLoadContext.Unloading += context => { StopService(serviceStopper, waitForShutdown: true); Thread.Sleep(TimeSpan.FromMilliseconds(500)); };
 #endif
-            }
-        }
-
-        static void UnregisterCancellationHandlers()
-        {
-            lock (SigHandlersLock)
-            {
-                if (SigIntHandler != null)
-                {
-                    Console.CancelKeyPress -= SigIntHandler;
-                    SigIntHandler = null;
-#if NETCORE
-                    var assemblyLoadContext = AssemblyLoadContext.GetLoadContext(typeof(Program).GetTypeInfo().Assembly);
-                    assemblyLoadContext.Unloading -= SigTermHandler;
-                    SigTermHandler = null;
-#endif
-                }
             }
         }
 
         static void StopService(CancellationTokenSource serviceStopper, bool waitForShutdown)
         {
-            lock (SigHandlersLock)
+            lock (SigHandlerLock)
             {
-                // If handlers are already unregistered, serviceStopper has been disposed so we shouldn't access it.
-                // This might happen if signals are sent rapidly.
-                if (SigIntHandler == null)
+                // If we're already in the process of shutting down, don't do anything (except wait for shutdown in SIGTERM handler).
+                // Can't use serviceStopper.IsCancellationRequested because that cancellation token source could be
+                // disposed in the middle of shutting down.
+                if (!ShuttingDown)
                 {
-                    return;
-                }
-
-                // If we're not already in the process of stopping, stop by setting cancellation on the service stopper token.
-                if (!serviceStopper.IsCancellationRequested)
-                {
+                    ShuttingDown = true;
                     Logging.Log.Info("Stopping rec service...");
                     serviceStopper.Cancel();
                 }
-
-                // Unregister handlers so we stop getting shutdown signals.
-                // There could still be signals sent while we were inside lock(SigHandlersLock), waiting to enter the lock.
-                UnregisterCancellationHandlers();
             }
 
             if (waitForShutdown)
