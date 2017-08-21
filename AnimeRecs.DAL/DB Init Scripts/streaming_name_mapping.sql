@@ -932,6 +932,7 @@ VALUES
 (19369, 1, 'http://www.crunchyroll.com/outbreak-company'),
 (29803, 1, 'http://www.crunchyroll.com/overlord'),
 (31181, 1, 'http://www.crunchyroll.com/owarimonogatari'),
+(35247, 1, 'http://www.crunchyroll.com/owarimonogatari'),
 (32697, 1, 'http://www.crunchyroll.com/ozmafia'),
 (31498, 1, 'http://www.crunchyroll.com/pan-de-peace'),
 (5530, 1, 'http://www.crunchyroll.com/pandorahearts'),
