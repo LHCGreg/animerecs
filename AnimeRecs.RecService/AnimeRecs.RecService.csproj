@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net47;netcoreapp1.1</TargetFrameworks>
+    <TargetFrameworks>net47;netcoreapp2.0</TargetFrameworks>
     
     <!-- Keeping training data in memory can use a lot of memory, which running as 64-bit can make worse. -->
     <Prefer32Bit>True</Prefer32Bit>
