@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
@@ -18,19 +17,19 @@ namespace AnimeRecs.RecService.DTO
         private static IDictionary<string, Func<LoadRecSourceRequest>> s_LoadRecSourceRequestFactories =
             new Dictionary<string, Func<LoadRecSourceRequest>>(StringComparer.OrdinalIgnoreCase)
             {
-                { AverageScore, () => new LoadRecSourceRequest<AverageScoreRecSourceParams>() },
-                { MostPopular, () => new LoadRecSourceRequest<MostPopularRecSourceParams>() },
-                { AnimeRecs, () => new LoadRecSourceRequest<AnimeRecsRecSourceParams>() },
-                { BiasedMatrixFactorization, () => new LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>() },
-                { SVDPlusPlus, () => new LoadRecSourceRequest<SVDPlusPlusRecSourceParams>() },
-                { ItemKNN, () => new LoadRecSourceRequest<ItemKNNRecSourceParams>() },
-                { BPRMF, () => new LoadRecSourceRequest<BPRMFRecSourceParams>() }
+                { AverageScore, () => new LoadRecSourceRequest<AverageScoreRecSourceParams>() { Type = AverageScore } },
+                { MostPopular, () => new LoadRecSourceRequest<MostPopularRecSourceParams>() { Type = MostPopular } },
+                { AnimeRecs, () => new LoadRecSourceRequest<AnimeRecsRecSourceParams>() { Type = AnimeRecs } },
+                { BiasedMatrixFactorization, () => new LoadRecSourceRequest<BiasedMatrixFactorizationRecSourceParams>() { Type = BiasedMatrixFactorization } },
+                { SVDPlusPlus, () => new LoadRecSourceRequest<SVDPlusPlusRecSourceParams>() { Type = SVDPlusPlus } },
+                { ItemKNN, () => new LoadRecSourceRequest<ItemKNNRecSourceParams>() { Type = ItemKNN } },
+                { BPRMF, () => new LoadRecSourceRequest<BPRMFRecSourceParams>() { Type = BPRMF } }
             };
         public static IDictionary<string, Func<LoadRecSourceRequest>> LoadRecSourceRequestFactories { get { return s_LoadRecSourceRequestFactories; } }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

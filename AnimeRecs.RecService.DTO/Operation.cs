@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using AnimeRecs.RecService.DTO.JsonConverters;
 
 namespace AnimeRecs.RecService.DTO
 {
     [JsonConverter(typeof(OperationJsonConverter))]
+    // No [JsonClass], preloading generic classes needs to be handled specially
     public class Operation
     {
         public string OpName { get; set; }
@@ -23,6 +23,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    // No [JsonClass], preloading generic classes needs to be handled specially
     public class Operation<TPayload> : Operation
     {
         private TPayload m_payload;
@@ -43,7 +44,7 @@ namespace AnimeRecs.RecService.DTO
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

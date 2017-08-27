@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public class RecommendationTypes
+    public static class RecommendationTypes
     {
         public static string BasicRecommendation { get { return "BasicRecommendation"; } }
         public static string AverageScore { get { return "AverageScore"; } }
@@ -17,17 +16,17 @@ namespace AnimeRecs.RecService.DTO
         private static IDictionary<string, Func<GetMalRecsResponse>> s_getMalRecsResponseFactories =
             new Dictionary<string, Func<GetMalRecsResponse>>(StringComparer.OrdinalIgnoreCase)
             {
-                { AverageScore, () => new GetMalRecsResponse<AverageScoreRecommendation>() },
-                { MostPopular, () => new GetMalRecsResponse<MostPopularRecommendation>() },
-                { AnimeRecs, () => new GetMalRecsResponse<AnimeRecsRecommendation, MalAnimeRecsExtraResponseData>() },
-                { RatingPrediction, () => new GetMalRecsResponse<RatingPredictionRecommendation>() }
+                { AverageScore, () => new GetMalRecsResponse<AverageScoreRecommendation>() { RecommendationType = AverageScore } },
+                { MostPopular, () => new GetMalRecsResponse<MostPopularRecommendation>() { RecommendationType = MostPopular } },
+                { AnimeRecs, () => new GetMalRecsResponse<AnimeRecsRecommendation, MalAnimeRecsExtraResponseData>() { RecommendationType = AnimeRecs } },
+                { RatingPrediction, () => new GetMalRecsResponse<RatingPredictionRecommendation>() { RecommendationType = RatingPrediction } }
             };
         public static IDictionary<string, Func<GetMalRecsResponse>> GetMalRecsResponseFactories { get { return s_getMalRecsResponseFactories; } }
 
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

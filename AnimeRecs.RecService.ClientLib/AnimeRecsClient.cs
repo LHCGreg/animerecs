@@ -47,7 +47,7 @@ namespace AnimeRecs.RecService.ClientLib
         {
             // TODO: rethrow non-rec service errors with more information
             Operation<PingRequest> operation = new Operation<PingRequest>(
-                opName: OpNames.Ping,
+                opName: OperationTypes.Ping,
                 payload: new PingRequest(message)
             );
 
@@ -59,7 +59,7 @@ namespace AnimeRecs.RecService.ClientLib
         public Task LoadRecSourceAsync(string name, bool replaceExisting, RecSourceParams parameters, TimeSpan timeout, CancellationToken cancellationToken)
         {
             Operation<LoadRecSourceRequest<RecSourceParams>> operation = new Operation<LoadRecSourceRequest<RecSourceParams>>(
-                opName: OpNames.LoadRecSource,
+                opName: OperationTypes.LoadRecSource,
                 payload: new LoadRecSourceRequest<RecSourceParams>(
                     name: name, type: parameters.GetRecSourceTypeName(), replaceExisting: replaceExisting, parameters: parameters
                 )
@@ -71,7 +71,7 @@ namespace AnimeRecs.RecService.ClientLib
         public Task LoadRecSourceAsync(LoadRecSourceRequest request, TimeSpan timeout, CancellationToken cancellationToken)
         {
             Operation<LoadRecSourceRequest> operation = new Operation<LoadRecSourceRequest>(
-                opName: OpNames.LoadRecSource,
+                opName: OperationTypes.LoadRecSource,
                 payload: request
             );
 
@@ -81,7 +81,7 @@ namespace AnimeRecs.RecService.ClientLib
         public Task UnloadRecSourceAsync(string name, TimeSpan timeout, CancellationToken cancellationToken)
         {
             Operation<UnloadRecSourceRequest> operation = new Operation<UnloadRecSourceRequest>(
-                opName: OpNames.UnloadRecSource,
+                opName: OperationTypes.UnloadRecSource,
                 payload: new UnloadRecSourceRequest(name)
             );
 
@@ -91,7 +91,7 @@ namespace AnimeRecs.RecService.ClientLib
         public async Task<string> GetRecSourceTypeAsync(string recSourceName, TimeSpan timeout, CancellationToken cancellationToken)
         {
             Operation<GetRecSourceTypeRequest> operation = new Operation<GetRecSourceTypeRequest>(
-                opName: OpNames.GetRecSourceType,
+                opName: OperationTypes.GetRecSourceType,
                 payload: new GetRecSourceTypeRequest(recSourceName)
             );
 
@@ -103,7 +103,7 @@ namespace AnimeRecs.RecService.ClientLib
         public Task ReloadTrainingDataAsync(ReloadBehavior behavior, bool finalize, TimeSpan timeout, CancellationToken cancellationToken)
         {
             Operation<ReloadTrainingDataRequest> operation = new Operation<ReloadTrainingDataRequest>(
-                opName: OpNames.ReloadTrainingData,
+                opName: OperationTypes.ReloadTrainingData,
                 payload: new ReloadTrainingDataRequest(behavior, finalize)
             );
             return DoOperationWithoutResponseBodyAsync(operation, timeout, cancellationToken, descriptionForErrors: "reloading training data");
@@ -112,7 +112,7 @@ namespace AnimeRecs.RecService.ClientLib
         public Task FinalizeRecSourcesAsync(TimeSpan timeout, CancellationToken cancellationToken)
         {
             Operation<FinalizeRecSourcesRequest> operation = new Operation<FinalizeRecSourcesRequest>(
-                opName: OpNames.FinalizeRecSources,
+                opName: OperationTypes.FinalizeRecSources,
                 payload: new FinalizeRecSourcesRequest()
             );
             return DoOperationWithoutResponseBodyAsync(operation, timeout, cancellationToken, descriptionForErrors: "finalizing rec sources");
@@ -123,7 +123,7 @@ namespace AnimeRecs.RecService.ClientLib
         {
             List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
 
-            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
+            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OperationTypes.GetMalRecs,
                 GetMalRecsRequest.CreateWithTargetScore(recSourceName, numRecsDesired, targetScore, new MalListForUser(dtoAnimeList)));
 
             return GetMalRecommendationsAsync(operation, timeout, cancellationToken);
@@ -135,7 +135,7 @@ namespace AnimeRecs.RecService.ClientLib
         {
             List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
 
-            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OpNames.GetMalRecs,
+            Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OperationTypes.GetMalRecs,
                 GetMalRecsRequest.CreateWithTargetFraction(recSourceName, numRecsDesired, targetPercentile, new MalListForUser(dtoAnimeList)));
 
             return GetMalRecommendationsAsync(operation, timeout, cancellationToken);

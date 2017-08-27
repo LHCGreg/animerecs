@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using AnimeRecs.RecService.DTO.JsonConverters;
 
@@ -40,7 +39,8 @@ namespace AnimeRecs.RecService.DTO
         // Used for dynamically setting params based on configuration
         public abstract RecSourceParams GetParams();
     }
-    
+
+    // No [JsonClass], preloading generic classes needs to be handled specially
     public class LoadRecSourceRequest<TRecSourceParams> : LoadRecSourceRequest
         where TRecSourceParams : RecSourceParams, new()
     {

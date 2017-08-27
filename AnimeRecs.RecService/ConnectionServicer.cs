@@ -20,7 +20,7 @@ namespace AnimeRecs.RecService
     {
         private static Dictionary<string, OperationDescription> Operations = new Dictionary<string, OperationDescription>(StringComparer.OrdinalIgnoreCase)
         {
-            { OpNames.Ping, new OperationDescription
+            { OperationTypes.Ping, new OperationDescription
                 (
                 operationHandler: OpHandlers.PingAsync,
                 operationType: typeof(Operation<PingRequest>),
@@ -28,7 +28,7 @@ namespace AnimeRecs.RecService
                 )
             },
 
-            { OpNames.LoadRecSource, new OperationDescription
+            { OperationTypes.LoadRecSource, new OperationDescription
                 (
                 operationHandler: OpHandlers.LoadRecSourceAsync,
                 operationType: typeof(Operation<LoadRecSourceRequest>),
@@ -36,7 +36,7 @@ namespace AnimeRecs.RecService
                 )
             },
 
-            { OpNames.UnloadRecSource, new OperationDescription
+            { OperationTypes.UnloadRecSource, new OperationDescription
                 (
                 operationHandler: OpHandlers.UnloadRecSourceAsync,
                 operationType: typeof(Operation<UnloadRecSourceRequest>),
@@ -44,7 +44,7 @@ namespace AnimeRecs.RecService
                 )
             },
 
-            { OpNames.GetRecSourceType, new OperationDescription
+            { OperationTypes.GetRecSourceType, new OperationDescription
                 (
                 operationHandler: OpHandlers.GetRecSourceTypeAsync,
                 operationType: typeof(Operation<GetRecSourceTypeRequest>),
@@ -52,7 +52,7 @@ namespace AnimeRecs.RecService
                 )
             },
 
-            { OpNames.ReloadTrainingData, new OperationDescription
+            { OperationTypes.ReloadTrainingData, new OperationDescription
                 (
                 operationHandler: OpHandlers.ReloadTrainingDataAsync,
                 operationType: typeof(Operation<ReloadTrainingDataRequest>),
@@ -60,7 +60,7 @@ namespace AnimeRecs.RecService
                 )
             },
 
-            { OpNames.GetMalRecs, new OperationDescription
+            { OperationTypes.GetMalRecs, new OperationDescription
                 (
                 operationHandler: OpHandlers.GetMalRecsAsync,
                 operationType: typeof(Operation<GetMalRecsRequest>),
@@ -68,7 +68,7 @@ namespace AnimeRecs.RecService
                 )
             },
 
-            { OpNames.FinalizeRecSources, new OperationDescription
+            { OperationTypes.FinalizeRecSources, new OperationDescription
                 (
                 operationHandler: OpHandlers.FinalizeRecSourcesAsync,
                 operationType: typeof(Operation<FinalizeRecSourcesRequest>),

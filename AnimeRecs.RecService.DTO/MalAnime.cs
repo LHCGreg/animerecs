@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
+    [JsonClass]
     public class MalAnime
     {
         public int MalAnimeId { get; set; }
@@ -25,7 +25,7 @@ namespace AnimeRecs.RecService.DTO
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

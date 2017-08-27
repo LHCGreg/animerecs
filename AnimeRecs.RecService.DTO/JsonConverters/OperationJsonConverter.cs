@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace AnimeRecs.RecService.DTO.JsonConverters
@@ -12,27 +11,17 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
         {
             string opName = jObject.Value<string>("OpName");
 
-            if (opName.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
-                return new Operation<GetMalRecsRequest>();
-            else if (opName.Equals(OpNames.GetRecSourceType, StringComparison.OrdinalIgnoreCase))
-                return new Operation<GetRecSourceTypeRequest>();
-            else if (opName.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase))
-                return new Operation<LoadRecSourceRequest>();
-            else if (opName.Equals(OpNames.Ping, StringComparison.OrdinalIgnoreCase))
-                return new Operation<PingRequest>();
-            else if (opName.Equals(OpNames.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
-                return new Operation<ReloadTrainingDataRequest>();
-            else if (opName.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
-                return new Operation<UnloadRecSourceRequest>();
-            else if (opName.Equals(OpNames.FinalizeRecSources, StringComparison.OrdinalIgnoreCase))
-                return new Operation<FinalizeRecSourcesRequest>();
-            else
+            if (!OperationTypes.OperationFactories.TryGetValue(opName, out Func<Operation> opFactory))
+            {
                 throw new Newtonsoft.Json.JsonException(string.Format("Operation {0} not recognized.", opName));
+            }
+
+            return opFactory();
         }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

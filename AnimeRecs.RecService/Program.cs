@@ -70,6 +70,8 @@ namespace AnimeRecs.RecService
         // Can throw AggregateException and regular Exceptions.
         private static void StartServiceAndWait(CommandLineArgs commandLine)
         {
+            WarmUpJsonSerializingInBackground();
+            
             // When a request to stop the service is sent, cancel this cancellation token source.
             using (CancellationTokenSource serviceStopper = new CancellationTokenSource())
             {
@@ -83,6 +85,27 @@ namespace AnimeRecs.RecService
                 {
                     Logging.Log.Info("Rec service shutdown complete.");
                 }
+            }
+        }
+
+        private static void WarmUpJsonSerializingInBackground()
+        {
+            Task.Run(action: WarmUpJsonSerializing);
+        }
+
+        private static void WarmUpJsonSerializing()
+        {
+            Logging.Log.Debug("Warming up JSON serialization.");
+            Stopwatch timer = Stopwatch.StartNew();
+            try
+            {
+                DTO.Optimization.WarmUpJsonSerializing();
+                timer.Stop();
+                Logging.Log.DebugFormat("Done warming up JSON serialization. Took {0}", timer.Elapsed);
+            }
+            catch (Exception ex)
+            {
+                Logging.Log.ErrorFormat("Error warming up JSON serialization: {0}", ex, ex.Message);
             }
         }
 

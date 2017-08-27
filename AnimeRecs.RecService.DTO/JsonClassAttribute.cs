@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.RecService.DTO
 {
-    public static class OpNames
+    /// <summary>
+    /// Used to mark a class as used for JSON serializing/deserializing. This can be used for preserializing all JSON classes
+    /// in long-running processes like servers to speed up the first use of a class for serializing/deserializing.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+    internal sealed class JsonClassAttribute : Attribute
     {
-        public static string Ping { get { return "Ping"; } }
-        public static string LoadRecSource { get { return "LoadRecSource"; } }
-        public static string UnloadRecSource { get { return "UnloadRecSource"; } }
-        public static string ReloadTrainingData { get { return "ReloadTrainingData"; } }
-        public static string GetMalRecs { get { return "GetMalRecs"; } }
-        public static string GetRecSourceType { get { return "GetRecSourceType"; } }
-        public static string FinalizeRecSources { get { return "FinalizeRecSources"; } }
+        public JsonClassAttribute()
+        {
+
+        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

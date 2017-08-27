@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using AnimeRecs.RecService.DTO.JsonConverters;
 
 namespace AnimeRecs.RecService.DTO
 {
     [JsonConverter(typeof(GetMalRecsResponseJsonConverter))]
+    // No [JsonClass], preloading generic classes needs to be handled specially
     public class GetMalRecsResponse
     {
         public string RecommendationType { get; set; }
@@ -24,7 +24,8 @@ namespace AnimeRecs.RecService.DTO
             Animes = animes;
         }
     }
-    
+
+    // No [JsonClass], preloading generic classes needs to be handled specially
     public class GetMalRecsResponse<TRecommendation> : GetMalRecsResponse
         where TRecommendation : Recommendation
     {
@@ -42,6 +43,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    // No [JsonClass], preloading generic classes needs to be handled specially
     public class GetMalRecsResponse<TRecommendation, TData> : GetMalRecsResponse<TRecommendation>
         where TRecommendation : Recommendation
     {
@@ -60,7 +62,7 @@ namespace AnimeRecs.RecService.DTO
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

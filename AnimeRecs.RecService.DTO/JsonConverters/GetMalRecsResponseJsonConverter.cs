@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeRecs.RecService.DTO.JsonConverters
 {
@@ -11,7 +10,7 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
         {
             string recType = jObject.Value<string>("RecommendationType");
 
-            if (!RecommendationTypes.GetMalRecsResponseFactories.ContainsKey(recType))
+            if (recType == null || !RecommendationTypes.GetMalRecsResponseFactories.ContainsKey(recType))
             {
                 // fallback
                 return new GetMalRecsResponse<Recommendation>();
@@ -22,7 +21,7 @@ namespace AnimeRecs.RecService.DTO.JsonConverters
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

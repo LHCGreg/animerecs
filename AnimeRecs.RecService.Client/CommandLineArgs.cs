@@ -11,13 +11,13 @@ namespace AnimeRecs.RecService.Client
     {
         private HashSet<string> AllowedCommands = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            OpNames.Ping,
-            OpNames.LoadRecSource,
-            OpNames.UnloadRecSource,
-            OpNames.GetRecSourceType,
-            OpNames.ReloadTrainingData,
-            OpNames.GetMalRecs,
-            OpNames.FinalizeRecSources,
+            OperationTypes.Ping,
+            OperationTypes.LoadRecSource,
+            OperationTypes.UnloadRecSource,
+            OperationTypes.GetRecSourceType,
+            OperationTypes.ReloadTrainingData,
+            OperationTypes.GetMalRecs,
+            OperationTypes.FinalizeRecSources,
             "Raw"
         };
 
@@ -187,12 +187,12 @@ namespace AnimeRecs.RecService.Client
                 throw new OptionException("Command was not specified.", "command");
             }
 
-            if (!ShowHelp && Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase) && RecSourceType == null)
+            if (!ShowHelp && Operation.Equals(OperationTypes.LoadRecSource, StringComparison.OrdinalIgnoreCase) && RecSourceType == null)
             {
                 throw new OptionException("Rec source type was not specified", "rec_source_type");
             }
 
-            if (!ShowHelp && Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase) && MalUsername == null)
+            if (!ShowHelp && Operation.Equals(OperationTypes.GetMalRecs, StringComparison.OrdinalIgnoreCase) && MalUsername == null)
             {
                 throw new OptionException("MAL username was not specified.", "username");
             }

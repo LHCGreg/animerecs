@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeRecs.RecService.DTO
 {
+    [JsonClass]
     public class RecSourceParams
     {
         public virtual string GetRecSourceTypeName()
@@ -13,6 +13,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class AverageScoreRecSourceParams : RecSourceParams
     {
         public int MinEpisodesToCountIncomplete { get; set; }
@@ -39,6 +40,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class MostPopularRecSourceParams : RecSourceParams
     {
         public int MinEpisodesToCountIncomplete { get; set; }
@@ -62,6 +64,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class AnimeRecsRecSourceParams : RecSourceParams
     {
         public int NumRecommendersToUse { get; set; }
@@ -88,6 +91,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class BiasedMatrixFactorizationRecSourceParams : RecSourceParams
     {
         public int MinEpisodesToCountIncomplete { get; set; }
@@ -125,6 +129,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class SVDPlusPlusRecSourceParams : RecSourceParams
     {
         public int MinEpisodesToCountIncomplete { get; set; }
@@ -147,6 +152,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class ItemKNNRecSourceParams : RecSourceParams
     {
         public int MinEpisodesToCountIncomplete { get; set; }
@@ -169,6 +175,7 @@ namespace AnimeRecs.RecService.DTO
         }
     }
 
+    [JsonClass]
     public class BPRMFRecSourceParams : RecSourceParams
     {
         public double FractionConsideredRecommended { get; set; }
@@ -207,7 +214,7 @@ namespace AnimeRecs.RecService.DTO
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2017 Greg Najda
 //
 // This file is part of AnimeRecs.RecService.DTO.
 //

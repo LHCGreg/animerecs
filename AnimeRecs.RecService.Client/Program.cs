@@ -59,7 +59,7 @@ namespace AnimeRecs.RecService.Client
                         Console.WriteLine(prettyResponse);
                     }
                 }
-                else if (commandLine.Operation.Equals(OpNames.Ping, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.Ping, StringComparison.OrdinalIgnoreCase))
                 {
                     TimeSpan timeout = TimeSpan.FromSeconds(3);
                     Stopwatch timer = Stopwatch.StartNew();
@@ -67,19 +67,19 @@ namespace AnimeRecs.RecService.Client
                     timer.Stop();
                     Console.WriteLine($"The service replied: {pingResponse} (took {timer.Elapsed})");
                 }
-                else if (commandLine.Operation.Equals(OpNames.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.ReloadTrainingData, StringComparison.OrdinalIgnoreCase))
                 {
                     TimeSpan timeout = TimeSpan.FromMinutes(3);
                     client.ReloadTrainingDataAsync(commandLine.ReloadMode, commandLine.Finalize, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     Console.WriteLine("Training data reloaded.");
                 }
-                else if (commandLine.Operation.Equals(OpNames.FinalizeRecSources, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.FinalizeRecSources, StringComparison.OrdinalIgnoreCase))
                 {
                     TimeSpan timeout = TimeSpan.FromSeconds(5);
                     client.FinalizeRecSourcesAsync(timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult(); ;
                     Console.WriteLine("Rec sources finalized.");
                 }
-                else if (commandLine.Operation.Equals(OpNames.LoadRecSource, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.LoadRecSource, StringComparison.OrdinalIgnoreCase))
                 {
                     if (commandLine.RecSourceType.Equals(RecSourceTypes.AverageScore, StringComparison.OrdinalIgnoreCase))
                     {
@@ -124,19 +124,19 @@ namespace AnimeRecs.RecService.Client
 
                     Console.WriteLine("Load complete.");
                 }
-                else if (commandLine.Operation.Equals(OpNames.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.UnloadRecSource, StringComparison.OrdinalIgnoreCase))
                 {
                     TimeSpan timeout = TimeSpan.FromSeconds(10);
                     client.UnloadRecSourceAsync(commandLine.RecSourceName, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     Console.WriteLine("Unload complete.");
                 }
-                else if (commandLine.Operation.Equals(OpNames.GetRecSourceType, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.GetRecSourceType, StringComparison.OrdinalIgnoreCase))
                 {
                     TimeSpan timeout = TimeSpan.FromSeconds(3);
                     string recSourceType = client.GetRecSourceTypeAsync(commandLine.RecSourceName, timeout, CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
                     Console.WriteLine("Type of rec source {0} is {1}.", commandLine.RecSourceName, recSourceType);
                 }
-                else if (commandLine.Operation.Equals(OpNames.GetMalRecs, StringComparison.OrdinalIgnoreCase))
+                else if (commandLine.Operation.Equals(OperationTypes.GetMalRecs, StringComparison.OrdinalIgnoreCase))
                 {
                     MalUserLookupResults lookup;
 
