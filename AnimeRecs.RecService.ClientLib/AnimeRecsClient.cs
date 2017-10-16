@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Threading;
 using Nito.AsyncEx;
+using System.Diagnostics;
 
 namespace AnimeRecs.RecService.ClientLib
 {
@@ -214,28 +215,32 @@ namespace AnimeRecs.RecService.ClientLib
         {
             try
             {
+                Stopwatch serializeTimer = Stopwatch.StartNew();
                 string operationJsonString = JsonConvert.SerializeObject(operation);
+                serializeTimer.Stop();
+                Logging.Log.TraceFormat("Serialized request. Took {0}", serializeTimer.Elapsed);
+
                 byte[] operationJsonBytes = Encoding.UTF8.GetBytes(operationJsonString);
-
-                byte[] responseJsonBuffer;
-
                 int length = operationJsonBytes.Length;
                 int lengthNetworkOrder = IPAddress.HostToNetworkOrder(length);
                 byte[] lengthBytes = BitConverter.GetBytes(lengthNetworkOrder);
 
-                byte[] requestBytes = new byte[lengthBytes.Length + operationJsonBytes.Length];
-                lengthBytes.CopyTo(requestBytes, index: 0);
-                operationJsonBytes.CopyTo(requestBytes, index: lengthBytes.Length);
+                byte[] responseJsonBuffer;
 
                 const int sendTimeoutInSeconds = 3;
                 TimeSpan sendTimeout = TimeSpan.FromSeconds(sendTimeoutInSeconds);
 
+                Stopwatch timer = new Stopwatch();
+
                 using (Socket socket = await CreateSocketAsync(cancellationToken).ConfigureAwait(false))
                 {
-                    Logging.Log.Trace("Sending bytes.");
-                    await socket.SendAllAsync(requestBytes, sendTimeout, cancellationToken).ConfigureAwait(false);
-                    Logging.Log.Trace("Sent bytes.");
+                    timer.Restart();
+                    await socket.SendAllAsync(lengthBytes, sendTimeout, cancellationToken).ConfigureAwait(false);
+                    await socket.SendAllAsync(operationJsonBytes, sendTimeout, cancellationToken).ConfigureAwait(false);
+                    timer.Stop();
+                    Logging.Log.TraceFormat("Sent bytes. Took {0}", timer.Elapsed);
 
+                    timer.Restart();
                     byte[] responseLengthBuffer = await socket.ReceiveAllAsync(4, receiveTimeout, cancellationToken).ConfigureAwait(false);
                     int responseLengthNetworkOrder = BitConverter.ToInt32(responseLengthBuffer, 0);
                     int responseLength = IPAddress.NetworkToHostOrder(responseLengthNetworkOrder);
@@ -245,13 +250,17 @@ namespace AnimeRecs.RecService.ClientLib
                     const int receiveTimeoutForRestOfResponseInSeconds = 5;
                     TimeSpan receiveTimeoutForRestOfResponse = TimeSpan.FromSeconds(receiveTimeoutForRestOfResponseInSeconds);
                     responseJsonBuffer = await socket.ReceiveAllAsync(responseLength, receiveTimeoutForRestOfResponse, cancellationToken).ConfigureAwait(false);
-                    Logging.Log.Trace("Got response.");
+                    timer.Stop();
+                    Logging.Log.TraceFormat("Got response. Took {0}", timer.Elapsed);
                 }
 
+                timer.Restart();
                 string responseJsonString = Encoding.UTF8.GetString(responseJsonBuffer);
-                Logging.Log.Trace("Decoded response string.");
+                Logging.Log.TraceFormat("Decoded response string. Took {0}", timer.Elapsed);
+
+                timer.Restart();
                 TResponse response = JsonConvert.DeserializeObject<TResponse>(responseJsonString);
-                Logging.Log.Trace("Deserialized response.");
+                Logging.Log.TraceFormat("Deserialized response. Took {0}", timer.Elapsed);
                 if (response.Error != null)
                 {
                     throw new RecServiceErrorException(response.Error);
@@ -286,6 +295,7 @@ namespace AnimeRecs.RecService.ClientLib
         private async Task<Socket> CreateSocketAsync(CancellationToken cancellationToken)
         {
             Logging.Log.Trace("Connecting to rec service.");
+            Stopwatch timer = Stopwatch.StartNew();
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // Hardcoded constant connect timeout, reasonable whether local or remote.
@@ -307,7 +317,8 @@ namespace AnimeRecs.RecService.ClientLib
                 throw new Exception(string.Format("Error connecting to rec service at {0}:{1}: {2}", AnimeRecsServiceAddress, PortNumber, ex.Message), ex);
             }
 
-            Logging.Log.Trace("Connected to rec service.");
+            timer.Stop();
+            Logging.Log.TraceFormat("Connected to rec service. Took {0}", timer.Elapsed);
             return socket;
         }
 
