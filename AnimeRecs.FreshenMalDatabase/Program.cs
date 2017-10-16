@@ -20,11 +20,11 @@ namespace AnimeRecs.FreshenMalDatabase
 
         static int Main(string[] args)
         {
-            Logging.SetUpLogging();
+            CommandLineArgs commandLine;
 
             try
             {
-                CommandLineArgs commandLine = new CommandLineArgs(args);
+                commandLine = new CommandLineArgs(args);
                 if (commandLine.ShowHelp)
                 {
                     commandLine.DisplayHelp(Console.Out);
@@ -36,6 +36,26 @@ namespace AnimeRecs.FreshenMalDatabase
 
                 IConfigurationRoot rawConfig = configBuilder.Build();
                 config = rawConfig.Get<Config>();
+
+                if (config.LoggingConfigPath != null)
+                {
+                    Logging.SetUpLogging(config.LoggingConfigPath);
+                }
+                else
+                {
+                    Console.Error.WriteLine("No logging configuration file set. Logging to console.");
+                    Logging.SetUpConsoleLogging();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("Fatal error: {0}", ex, ex.Message);
+                return (int)ExitCode.Failure;
+            }
+
+            try
+            {
+                Logging.Log.Debug($"Command line args parsed. ConfigFile={commandLine.ConfigFile}");
 
                 using (IMyAnimeListApi basicApi = new MyAnimeListApi() { TimeoutInMs = config.MalTimeoutInMs, UserAgent = config.MalApiUserAgentString })
                 using (IMyAnimeListApi rateLimitingApi = new RateLimitingMyAnimeListApi(basicApi, TimeSpan.FromMilliseconds(config.DelayBetweenRequestsInMs)))

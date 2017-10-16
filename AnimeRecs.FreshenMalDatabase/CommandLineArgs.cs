@@ -24,11 +24,8 @@ namespace AnimeRecs.FreshenMalDatabase
 
         public CommandLineArgs(string[] args)
         {
-            Logging.Log.Debug("Parsing command line args.");
             OptionSet optionSet = GetOptionSet();
             optionSet.Parse(args);
-
-            Logging.Log.Debug($"Command line args parsed. ConfigFile={ConfigFile}, ShowHelp={ShowHelp}");
         }
 
         public void DisplayHelp(TextWriter writer)

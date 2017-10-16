@@ -12,6 +12,8 @@
     <AnimeRecs></AnimeRecs>
     
   </ConnectionStrings>
+
+  <LoggingConfigPath>NLog.config</LoggingConfigPath>
   
   <DelayBetweenRequestsInMs>5000</DelayBetweenRequestsInMs>
   <MalTimeoutInMs>10000</MalTimeoutInMs>

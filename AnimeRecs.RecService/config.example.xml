@@ -13,6 +13,8 @@
     
   </ConnectionStrings>
 
+  <LoggingConfigPath>NLog.config</LoggingConfigPath>
+
   <!-- If true, "finalizes" the rec service after loading and training the rec sources.
        "Finalizing" means flushing the training data in order to release some memory.
        New rec sources cannot be added until training data is reloaded.

@@ -26,11 +26,8 @@ namespace AnimeRecs.RecService
 
         public CommandLineArgs(string[] args)
         {
-            Logging.Log.Debug("Parsing command line args.");
             OptionSet optionSet = GetOptionSet();
             optionSet.Parse(args);
-
-            Logging.Log.DebugFormat("Command line args parsed. PortNumber={0}, ConfigFile={1}, ShowHelp={2}", PortNumber, ConfigFile, ShowHelp);
         }
 
         public void DisplayHelp(TextWriter writer)

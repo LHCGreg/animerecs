@@ -11,15 +11,27 @@ namespace AnimeRecs.FreshenMalDatabase
     {
         internal static global::Common.Logging.ILog Log { get; set; }
 
-        internal static void SetUpLogging()
+        internal static void SetUpLogging(string loggingConfigPath)
         {
-            Common.Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(new Common.Logging.Configuration.NameValueCollection()
+            if (loggingConfigPath == null)
             {
-                ["configType"] = "FILE",
-                ["configFile"] = "NLog.config"
-            });
-            Log = global::Common.Logging.LogManager.GetLogger("AnimeRecs.FreshenMalDatabase");
+                Common.Logging.LogManager.Adapter = new AnimeRecs.CommonLoggingNetStandardStopgap.SimpleConsoleLoggerFactoryAdapter();
+            }
+            else
+            {
+                Common.Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(new Common.Logging.Configuration.NameValueCollection()
+                {
+                    ["configType"] = "FILE",
+                    ["configFile"] = loggingConfigPath
+                });
+            }
+            Log = Common.Logging.LogManager.GetLogger("AnimeRecs.FreshenMalDatabase");
             WriteLogPrologue();
+        }
+
+        internal static void SetUpConsoleLogging()
+        {
+            SetUpLogging(loggingConfigPath: null);
         }
 
         private static void WriteLogPrologue()

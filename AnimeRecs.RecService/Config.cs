@@ -14,6 +14,7 @@ namespace AnimeRecs.RecService
         }
 
         public ConnectionStringsConfig ConnectionStrings { get; set; }
+        public string LoggingConfigPath { get; set; }
         public bool FinalizeAfterLoad { get; set; }
         public IList<LoadRecSourceRequest> RecSources { get; set; }
 
@@ -34,6 +35,7 @@ namespace AnimeRecs.RecService
             IConfigurationRoot rawConfig = configBuilder.Build();
             config.ConnectionStrings.AnimeRecs = rawConfig.GetValue<string>("ConnectionStrings:AnimeRecs");
             config.FinalizeAfterLoad = rawConfig.GetValue<bool>("FinalizeAfterLoad");
+            config.LoggingConfigPath = rawConfig.GetValue<string>("LoggingConfigPath");
 
             IConfigurationSection recSourcesSection = rawConfig.GetSection("RecSources");
             foreach (IConfigurationSection recSourceSection in recSourcesSection.GetChildren())

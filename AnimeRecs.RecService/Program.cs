@@ -32,18 +32,40 @@ namespace AnimeRecs.RecService
         static int Main(string[] args)
         {
             Thread.CurrentThread.Name = "Main";
-            Logging.SetUpLogging();
+            CommandLineArgs commandLine;
+            Config config;
 
             try
             {
-                CommandLineArgs commandLine = new CommandLineArgs(args);
+                commandLine = new CommandLineArgs(args);
                 if (commandLine.ShowHelp)
                 {
                     commandLine.DisplayHelp(Console.Out);
                     return (int)ExitCode.Success;
                 }
 
-                StartServiceAndWait(commandLine);
+                config = Config.LoadFromFile(commandLine.ConfigFile);
+
+                if (config.LoggingConfigPath != null)
+                {
+                    Logging.SetUpLogging(config.LoggingConfigPath);
+                }
+                else
+                {
+                    Console.Error.WriteLine("No logging configuration file set. Logging to console.");
+                    Logging.SetUpConsoleLogging();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("Fatal error: {0}", ex, ex.Message);
+                return (int)ExitCode.Error;
+            }
+
+            try
+            {
+                Logging.Log.DebugFormat("Command line args parsed. PortNumber={0}, ConfigFile={1}, ShowHelp={2}", commandLine.PortNumber, commandLine.ConfigFile, commandLine.ShowHelp);
+                StartServiceAndWait(commandLine, config);
                 return (int)ExitCode.Success;
             }
             catch (AggregateException aggEx)
@@ -68,7 +90,7 @@ namespace AnimeRecs.RecService
         }
 
         // Can throw AggregateException and regular Exceptions.
-        private static void StartServiceAndWait(CommandLineArgs commandLine)
+        private static void StartServiceAndWait(CommandLineArgs commandLine, Config config)
         {
             WarmUpJsonSerializingInBackground();
             
@@ -79,7 +101,7 @@ namespace AnimeRecs.RecService
 
                 try
                 {
-                    StartServiceAndWaitThrowOpCanceled(commandLine, serviceStopper.Token);
+                    StartServiceAndWaitThrowOpCanceled(commandLine, config, serviceStopper.Token);
                 }
                 catch (OperationCanceledException)
                 {
@@ -162,10 +184,8 @@ namespace AnimeRecs.RecService
         /// <exception cref="System.Exception"></exception>
         // This function is expected to synchronously start the service and wait for the cancellation token to be signaled,
         // indicating the service should stop. When that happens, it should throw OperationCanceledException
-        private static void StartServiceAndWaitThrowOpCanceled(CommandLineArgs commandLine, CancellationToken serviceStopToken)
+        private static void StartServiceAndWaitThrowOpCanceled(CommandLineArgs commandLine, Config config, CancellationToken serviceStopToken)
         {
-            serviceStopToken.ThrowIfCancellationRequested();
-            Config config = Config.LoadFromFile(commandLine.ConfigFile);
             serviceStopToken.ThrowIfCancellationRequested();
 
             PgMalTrainingDataLoaderFactory trainingDataLoaderFactory = new PgMalTrainingDataLoaderFactory(config.ConnectionStrings.AnimeRecs);

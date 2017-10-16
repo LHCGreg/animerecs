@@ -17,6 +17,7 @@ namespace AnimeRecs.FreshenMalDatabase
         public int MinimumAnimesCompletedAndRated { get; set; }
         public int NumMalRequestFailuresBeforeGivingUp { get; set; }
         public int DelayAfterMalRequestFailureInMs { get; set; }
+        public string LoggingConfigPath { get; set; }
 
         public class ConfigConnectionStrings
         {
