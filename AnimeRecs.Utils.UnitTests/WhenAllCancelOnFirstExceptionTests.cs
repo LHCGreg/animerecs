@@ -62,6 +62,68 @@ namespace AnimeRecs.Utils.UnitTests
         }
 
         [Fact]
+        public void SynchronouslyCanceledTasksDoNotTakeOverBookkeeping()
+        {
+            // Tests fix for a bug where, when a task faults and triggers cancellation of all tasks, the
+            // continuation for some canceled tasks (such as those not started yet) runs synchronously on the
+            // same thread. Since the canceled task's continuation runs on the same thread as the faulted task's
+            // continuation, a lock statement is not effective for mutual exclusion. The canceled task's
+            // continuation runs through all the bookkeeping and ultimately results in the aggregate task
+            // ending in a canceled state instead of a faulted state.
+
+            // To recreate this situation, we need a task that faults and a task associated with a cancellation token
+            // that does not start executing until the first task has had time to fault and run its continuation,
+            // and a third task that is in the running state when the first task runs its continuation.
+
+            CancellationTokenSource secondTaskCts = new CancellationTokenSource();
+            Task delayStartTask = new Task(() =>
+            {
+                secondTaskCts.Token.ThrowIfCancellationRequested();
+            }, secondTaskCts.Token);
+
+            CancellationTokenSource thirdTaskCts = new CancellationTokenSource();
+            Task runningTask = Task.Run(() =>
+            {
+                thirdTaskCts.Token.ThrowIfCancellationRequested();
+                Thread.Sleep(TimeSpan.FromMilliseconds(2000));
+                thirdTaskCts.Token.ThrowIfCancellationRequested();
+            }, thirdTaskCts.Token);
+
+            CancellableTask[] tasks = new CancellableTask[]
+            {
+                    GetLateFaultingCancellableTask(),
+                    new CancellableTask(delayStartTask, secondTaskCts),
+                    new CancellableTask(runningTask, thirdTaskCts),
+            };
+
+            Task.Delay(TimeSpan.FromMilliseconds(2000)).ContinueWith(task =>
+            {
+                delayStartTask.Start();
+            });
+
+            try
+            {
+                Task waitTask = AsyncUtils.WhenAllCancelOnFirstExceptionDontWaitForCancellations(tasks);
+                Assert.Throws<Exception>(() => waitTask.ConfigureAwait(false).GetAwaiter().GetResult());
+                Assert.Single(waitTask.Exception.InnerExceptions);
+                Assert.All(waitTask.Exception.InnerExceptions, ex => Assert.Equal("Late Fault", ex.Message));
+
+                Assert.Equal(TaskStatus.Faulted, tasks[0].Task.Status);
+                Assert.Equal(TaskStatus.Canceled, tasks[1].Task.Status);
+
+                TaskStatus task3Status = tasks[2].Task.Status;
+                Assert.True(task3Status == TaskStatus.Canceled || task3Status == TaskStatus.Running, string.Format("Third task has status {0} instead of Canceled or Running.", task3Status));
+            }
+            finally
+            {
+                foreach (CancellableTask task in tasks)
+                {
+                    task.CancellationTokenSource.Dispose();
+                }
+            }
+        }
+
+        [Fact]
         public void AllCompleteSuccessfullyWaitForCancellations()
         {
             CancellableTask[] tasks = new CancellableTask[3]

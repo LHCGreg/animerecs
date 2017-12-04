@@ -367,16 +367,6 @@ namespace AnimeRecs.Utils
                             }
                         }
 
-                        if ((task.IsCanceled || task.IsFaulted) && !cancellationsIssued)
-                        {
-                            foreach (ICancellableTask taskToCancel in tasks)
-                            {
-                                taskToCancel.Cancel();
-                            }
-
-                            cancellationsIssued = true;
-                        }
-
                         if (tasksCompleteInAnyManner == tasksList.Count)
                         {
                             // If all tasks finished but some faulted, set the exceptions for the wait task
@@ -415,9 +405,21 @@ namespace AnimeRecs.Utils
                                 waitTaskCompleted = true;
                             }
                         }
+
+                        // Cancel all tasks if any task faults or is canceled.
+                        // Do this last because the continuation for the tasks we're cancelling can run
+                        // synchronously if the task has not been started yet and is associated with a
+                        // cancellation token.
+                        if ((task.IsCanceled || task.IsFaulted) && !cancellationsIssued)
+                        {
+                            cancellationsIssued = true;
+
+                            foreach (ICancellableTask taskToCancel in tasks)
+                            {
+                                taskToCancel.Cancel();
+                            }
+                        }
                     }
-
-
                 }, TaskContinuationOptions.ExecuteSynchronously);
             }
 
