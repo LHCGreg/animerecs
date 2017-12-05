@@ -317,7 +317,6 @@ namespace AnimeRecs.UpdateStreams
                 new VizStreamInfoSource(webClient),
                 new HuluStreamInfoSource(webClient),
                 new ViewsterStreamInfoSource(webClient),
-                new DaisukiStreamInfoSource(webClient),
             };
         }
 
