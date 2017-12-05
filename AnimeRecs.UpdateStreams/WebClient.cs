@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace AnimeRecs.UpdateStreams
 {
+    /// <summary>
+    /// thread-safe
+    /// </summary>
     internal class WebClient : IWebClient, IDisposable
     {
         private HttpClientHandler _handler;

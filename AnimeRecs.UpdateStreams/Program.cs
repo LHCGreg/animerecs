@@ -73,8 +73,12 @@ namespace AnimeRecs.UpdateStreams
             List<AnimeStreamInfo> streams = new List<AnimeStreamInfo>();
 
             using (WebClient webClient = new WebClient())
+            // Use Firefox driver with headless Firefox for Funimation to get around Incapsula.
+            // Use Firefox and not Chrome because javascript cannot be disabled with headless Chrome at this time.
+            // Javascript slows the process down and is not needed currently.
+            using (FirefoxDriverWebClient funimationWebClient = new FirefoxDriverWebClient(args.GeckoDriverDirectory))
             {
-                List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources(args, webClient);
+                List<IAnimeStreamInfoSource> streamInfoSources = GetStreamInfoSources(args, webClient, funimationWebClient);
                 using (CancellationTokenSource cancellation = new CancellationTokenSource(TimeSpan.FromMinutes(5)))
                 {
                     CancellableAsyncFunc<ICollection<AnimeStreamInfo>>[] streamFuncs = streamInfoSources.Select(source => new CancellableAsyncFunc<ICollection<AnimeStreamInfo>>(
@@ -293,7 +297,7 @@ namespace AnimeRecs.UpdateStreams
             return "\"" + str.Replace("\"", "\"\"") + "\"";
         }
 
-        static List<IAnimeStreamInfoSource> GetStreamInfoSources(CommandLineArgs args, IWebClient webClient)
+        static List<IAnimeStreamInfoSource> GetStreamInfoSources(CommandLineArgs args, IWebClient webClient, IWebClient funimationWebClient)
         {
             IAnimeStreamInfoSource crunchyrollSource;
             if (args.CrunchyrollLocalHtmlPath != null)
@@ -313,7 +317,7 @@ namespace AnimeRecs.UpdateStreams
                 crunchyrollSource,
                 new AmazonAnimeStrikeStreamInfoSource(webClient),
                 new AmazonPrimeStreamInfoSource(webClient),
-                new FunimationStreamInfoSource(webClient),
+                new FunimationStreamInfoSource(funimationWebClient),
                 new VizStreamInfoSource(webClient),
                 new HuluStreamInfoSource(webClient),
                 new ViewsterStreamInfoSource(webClient),
