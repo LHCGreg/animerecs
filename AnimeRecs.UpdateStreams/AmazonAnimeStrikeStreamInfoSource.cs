@@ -9,7 +9,7 @@ namespace AnimeRecs.UpdateStreams
 {
     class AmazonAnimeStrikeStreamInfoSource : AmazonStreamInfoSource
     {
-        private const string FirstPageUrl = "https://www.amazon.com/s/ref=sr_nr_p_n_subscription_id_1?rh=n:2858778011,p_n_ways_to_watch:12007866011,p_n_subscription_id:16182082011&ie=UTF8";
+        private const string FirstPageUrl = "https://www.amazon.com/s/ref=sr_ex_n_1?rh=n:2858778011,p_n_subscription_id:saikindo&ie=UTF8";
 
         public AmazonAnimeStrikeStreamInfoSource(IWebClient webClient)
             : base(FirstPageUrl, StreamingService.AmazonAnimeStrike, webClient)

@@ -29,9 +29,9 @@ namespace AnimeRecs.UpdateStreams.UnitTests
             var webClientMock = new Mock<IWebClient>();
 
             Dictionary<string, string> resourceNamesOfMockPages = new Dictionary<string, string>();
-            resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_nr_p_n_subscription_id_1?rh=n:2858778011,p_n_ways_to_watch:12007866011,p_n_subscription_id:16182082011&ie=UTF8"] = "amazon_anime_strike_1.html";
-            resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_pg_2?rh=n:2858778011%2Cp_n_ways_to_watch:12007866011%2Cp_n_subscription_id:16182082011&page=2&ie=UTF8&qid=1495396159"] = "amazon_anime_strike_2.html";
-            resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_pg_9?rh=n:2858778011%2Cp_n_ways_to_watch:12007866011%2Cp_n_subscription_id:16182082011&page=9&ie=UTF8&qid=1495396218"] = "amazon_anime_strike_3.html";
+            resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_ex_n_1?rh=n:2858778011,p_n_subscription_id:saikindo&ie=UTF8"] = "amazon_anime_strike_1.html";
+            resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_pg_2?rh=n:2858778011%2Cp_n_subscription_id:saikindo&page=2&ie=UTF8&qid=1495396159"] = "amazon_anime_strike_2.html";
+            resourceNamesOfMockPages["https://www.amazon.com/s/ref=sr_pg_9?rh=n:2858778011%2Cp_n_subscription_id:saikindo&page=9&ie=UTF8&qid=1495396218"] = "amazon_anime_strike_3.html";
 
             Dictionary<Uri, IWebClientResult> mockResultsByURL = new Dictionary<Uri, IWebClientResult>();
             foreach (string url in resourceNamesOfMockPages.Keys)
