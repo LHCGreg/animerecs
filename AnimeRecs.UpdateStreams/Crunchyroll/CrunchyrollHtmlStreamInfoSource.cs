@@ -53,6 +53,10 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
                 {
                     fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER CINDERELLA GIRLS Theater", "http://www.crunchyroll.com/the-idolmster-cinderella-girls-theater", StreamingService.Crunchyroll);
                 }
+                if (fixedStreams[i].Url == "http://www.crunchyroll.com/the-idolmster-side-m")
+                {
+                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER Side M", "http://www.crunchyroll.com/the-idolmster-side-m", StreamingService.Crunchyroll);
+                }
             }
 
             return fixedStreams;
