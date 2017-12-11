@@ -30,7 +30,15 @@ namespace AnimeRecs.UpdateStreams
             // Parse out streams
             // Parse out next page URL
             // If next page URL exists, get next page, repeat
-            HashSet<AnimeStreamInfo> streams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, string>(streamInfo => streamInfo.Url, StringComparer.OrdinalIgnoreCase));
+
+            // Don't return multiple streams with the same name but different URL.
+            // In cases like Space Dandy, it has two seasons which each get picked up as a stream but they
+            // both have the same name, with no "Season 1" or "Season 2" in the name to distinguish.
+            // In such cases, the stream page will have links to all the other seasons, so we only really need one of the streams.
+            // If we return both, then because the exact stream URL constantly changes, neither season will match with the csv
+            // and the csv writer has no way of knowing which stream matches with which csv entry, so it has to blank out
+            // the MAL ID column and the person doing the manual mapping has to manually map those rows again every run.
+            HashSet<AnimeStreamInfo> streams = new HashSet<AnimeStreamInfo>(new ProjectionEqualityComparer<AnimeStreamInfo, string>(streamInfo => streamInfo.AnimeName, StringComparer.OrdinalIgnoreCase));
             string nextPageUrl = _firstPageUrl;
             do
             {
