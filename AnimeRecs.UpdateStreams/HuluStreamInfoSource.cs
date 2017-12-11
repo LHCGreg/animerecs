@@ -83,7 +83,7 @@ namespace AnimeRecs.UpdateStreams
             ICollection<AnimeStreamInfo> animationAndCartoonMovieStreams = await GetAnimeStreamInfoAsync("movies", "Animation and Cartoons", cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
             streams.UnionWith(animationAndCartoonMovieStreams);
 
-            return streams;
+            return streams.ToList();
         }
 
         /// <summary>

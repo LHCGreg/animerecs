@@ -20,11 +20,22 @@ namespace AnimeRecs.UpdateStreams
             XPath = xpath;
             WebClient = webClient;
         }
+
+        /// <summary>
+        /// Subclasses can add headers here.
+        /// </summary>
+        protected virtual void ModifyRequestBeforeSending(WebClientRequest request)
+        {
+
+        }
         
         public async Task<ICollection<AnimeStreamInfo>> GetAnimeStreamInfoAsync(CancellationToken cancellationToken)
         {
             Console.WriteLine("Getting HTML for {0}", Url);
-            string responseBody = await WebClient.GetStringAsync(Url, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
+            WebClientRequest request = new WebClientRequest(Url);
+            ModifyRequestBeforeSending(request);
+
+            string responseBody = await WebClient.GetStringAsync(request, cancellationToken).ConfigureAwait(continueOnCapturedContext: false);
 
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(responseBody);

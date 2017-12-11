@@ -84,7 +84,7 @@ namespace AnimeRecs.UpdateStreams
             {
                 throw new Exception("No Viewster streams found, something must be wrong.");
             }
-            return streams;
+            return streams.ToList();
         }
 
         private class ViewsterAnimeQueryJson

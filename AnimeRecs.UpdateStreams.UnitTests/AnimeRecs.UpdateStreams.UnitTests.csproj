@@ -8,6 +8,14 @@
     <Version>2.0.0.0</Version>
     <Description>Unit tests for UpdateStreams</Description>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="hidive_empty.html" />
+    <None Remove="hidive_movies.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hidive_empty.html" />
+    <EmbeddedResource Include="hidive_movies.html" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Moq" Version="4.7.63" />
@@ -34,6 +42,7 @@
     <EmbeddedResource Include="funimation_3.html" />
     <EmbeddedResource Include="funimation_4.html" />
     <EmbeddedResource Include="funimation_5.html" />
+    <EmbeddedResource Include="hidive_tv.html" />
   </ItemGroup>
   
   <ItemGroup>

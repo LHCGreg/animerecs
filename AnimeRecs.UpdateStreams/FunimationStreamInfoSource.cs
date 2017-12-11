@@ -51,7 +51,7 @@ namespace AnimeRecs.UpdateStreams
                 }
             }
 
-            return streams;
+            return streams.ToList();
         }
 
         internal class HelperStreamInfoSource : HtmlParsingAnimeStreamInfoSource
