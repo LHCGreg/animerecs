@@ -123,6 +123,11 @@ namespace AnimeRecs.Web
                             altText = "Anime Strike";
                             titleText = "Watch on Amazon Anime Strike";
                             break;
+                        case StreamingService.Hidive:
+                            imagePath = renderContext.ParsePath("~/Content/hidive_icon.png");
+                            altText = "Hidive";
+                            titleText = "Watch on Hidive";
+                            break;
                         default:
                             continue;
                     }

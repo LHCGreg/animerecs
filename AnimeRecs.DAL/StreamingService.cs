@@ -16,7 +16,8 @@ namespace AnimeRecs.DAL
         Netflix = 7,
         AnimeNetwork = 8,
         AmazonPrime = 9,
-        AmazonAnimeStrike = 10
+        AmazonAnimeStrike = 10,
+        Hidive = 11,
     }
 }
 
