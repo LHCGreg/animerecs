@@ -51,11 +51,15 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
                 // <span class=""__cf_email__"" data-cfemail=""8fc6cbc0c3c2cfdcdbcadd"">[email protected]</span><script data-cfhash='f9e31' type=""text/javascript"">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script>
                 if (fixedStreams[i].Url == "http://www.crunchyroll.com/the-idolmster-cinderella-girls-theater")
                 {
-                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER CINDERELLA GIRLS Theater", "http://www.crunchyroll.com/the-idolmster-cinderella-girls-theater", StreamingService.Crunchyroll);
+                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER CINDERELLA GIRLS Theater", fixedStreams[i].Url, StreamingService.Crunchyroll);
                 }
                 if (fixedStreams[i].Url == "http://www.crunchyroll.com/the-idolmster-side-m")
                 {
-                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER Side M", "http://www.crunchyroll.com/the-idolmster-side-m", StreamingService.Crunchyroll);
+                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER Side M", fixedStreams[i].Url, StreamingService.Crunchyroll);
+                }
+                if (fixedStreams[i].Url == "http://www.crunchyroll.com/the-idolmster-cinderella-girls")
+                {
+                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER CINDERELLA GIRLS", fixedStreams[i].Url, StreamingService.Crunchyroll);
                 }
             }
 
