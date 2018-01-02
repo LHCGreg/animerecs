@@ -6,6 +6,7 @@ obj/
 packages/*/
 config_overrides.xml
 config.xml
+NLog.config
 internal-nlog.log
 launchSettings.json
 *.pubxml

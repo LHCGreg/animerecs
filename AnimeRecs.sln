@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.RecEngine", "AnimeRecs.RecEngine\AnimeRecs.RecEngine.csproj", "{DB0DAE3C-8E19-4DDA-9B86-620EA5C9C243}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.Utils", "AnimeRecs.Utils\AnimeRecs.Utils.csproj", "{E150A671-1DD3-428F-8786-A23CB4B1329E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.Utils.UnitTests", "AnimeRecs.Utils.UnitTests\AnimeRecs.Utils.UnitTests.csproj", "{27031601-9884-417D-9FBF-59028BFD9584}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeRecs.WebCore", "AnimeRecs.WebCore\AnimeRecs.WebCore.csproj", "{02F493EA-498D-4406-9AE8-94E280E09183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,8 +127,15 @@ Global
 		{27031601-9884-417D-9FBF-59028BFD9584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27031601-9884-417D-9FBF-59028BFD9584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27031601-9884-417D-9FBF-59028BFD9584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F493EA-498D-4406-9AE8-94E280E09183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F493EA-498D-4406-9AE8-94E280E09183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F493EA-498D-4406-9AE8-94E280E09183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F493EA-498D-4406-9AE8-94E280E09183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA2658C3-C0D7-4E91-A43D-985A3CBD8FB8}
 	EndGlobalSection
 EndGlobal

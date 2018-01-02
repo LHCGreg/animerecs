@@ -11,6 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
-    <PackageReference Include="NLog" Version="5.0.0-beta09" />
+    <PackageReference Include="NLog" Version="4.5.0-rc03" />
   </ItemGroup>
 </Project>

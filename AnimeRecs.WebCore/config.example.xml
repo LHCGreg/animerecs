@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is an example config file. For local development, create a config.xml file using this file as a template.
+     Your config.xml will get copied to build output and used by default if no -f argument is passed.
+     For production deployments, either deploy a config.xml file alongside the program or pass
+     -f <path to config file> -->
+
+<Config>
+  <ConnectionStrings>
+    
+    <!-- Something like:
+         Server=localhost;Port=5432;User Id=postgres;Password=testpw;Database=animerecs;Timeout=5; -->
+    <AnimeRecs></AnimeRecs>
+    
+  </ConnectionStrings>
+
+  <LoggingConfigPath>NLog.config</LoggingConfigPath>
+
+  <Hosting>
+    <Port>5000</Port>
+    
+    <!-- If set, UnixSocketPath takes precedence over Port number -->
+    <!-- <UnixSocketPath>/tmp/animerecs_web.socket</UnixSocketPath> -->
+
+    <HandleStaticContent>True</HandleStaticContent>
+
+    <!-- Development/production environment is handled by ASPNETCORE_ENVIRONMENT environment variable -->
+  </Hosting>
+
+  <MalApi>
+    <!-- Allowed values: Normal, DB (get users from AnimeRecs database instead of hitting MAL) -->
+    <Type>Normal</Type>
+    <UserAgentString>AnimeRecs-development</UserAgentString>
+    <TimeoutMilliseconds>5000</TimeoutMilliseconds>
+    <AnimeListCacheExpirationSeconds>30</AnimeListCacheExpirationSeconds>
+  </MalApi>
+
+  <Recommendations>
+    <!-- Change this setting if using a non-default port for the rec service -->
+    <RecServicePort>5541</RecServicePort>
+
+    <!-- You can change the port for a specific rec source.
+         This can be useful if you want to use different databases for certain rec sources. -->
+    <!--<NonDefaultRecServices>
+      <AverageScore>
+        <Port>5542</Port>
+      </AverageScore>
+    </NonDefaultRecServices>-->
+
+    <!--<NonDefaultRecService>
+      <Name>AverageScore</Name>
+      <Port>5542</Port>
+    </NonDefaultRecService>
+    <NonDefaultRecService>
+      <Name>BlahBlah</Name>
+      <Port>5543</Port>
+    </NonDefaultRecService>-->
+
+    <!--<NonDefaultRecServices>
+      <0>
+      </0>
+    </NonDefaultRecServices>-->
+
+    <NonDefaultRecServices>
+      <AverageScore>
+        <Port>5542</Port>
+      </AverageScore>
+      <BlahBlah>
+        <Port>5543</Port>
+      </BlahBlah>
+    </NonDefaultRecServices>
+
+    <!-- Rec source to use when the user does not explicitly specify it. -->
+    <DefaultRecSource>default</DefaultRecSource>
+
+    <!-- Maximum recommenders to return when using an AnimeRecs rec source -->
+    <MaximumRecommendersToReturn>6</MaximumRecommendersToReturn>
+
+    <!-- Maximum recommendations to return when using a non-AnimeRecs rec source -->
+    <MaximumRecommendationsToReturn>60</MaximumRecommendationsToReturn>
+
+    <DefaultTargetPercentile>35</DefaultTargetPercentile>    
+  </Recommendations>
+
+  <Html>
+    <ClubMalLink>https://myanimelist.net/clubs.php?cid=33431</ClubMalLink>
+
+    <!--
+    A good place to put Google Analytics code.
+    
+    These characters must be escaped in the value of HtmlBeforeBodyEnd:
+    & = &amp;
+    < = &lt;
+    > = &gt;
+    " = &quot;
+    ' = &apos;
+    -->
+    <HtmlBeforeBodyEnd></HtmlBeforeBodyEnd>
+  </Html>
+</Config>
