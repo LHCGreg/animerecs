@@ -1,200 +1,32 @@
 ﻿Service,Anime,URL,MAL ID (or n/a)
-"AmazonAnimeStrike","Accel World - Season 1","https://www.amazon.com/Restoration/dp/B01N5NQXWP",11759
-"AmazonAnimeStrike","Accel World - Season 2","https://www.amazon.com/Reincarnation/dp/B01MT7FCV3",11759
-"AmazonAnimeStrike","Accel World Season 1, Vol. 2","https://www.amazon.com/Determination/dp/B0190TJ9BC",11759
-"AmazonAnimeStrike","Accel World, Season 1, Vol. 1 (English Dubbed)","https://www.amazon.com/Activation/dp/B01734441G",11759
-"AmazonAnimeStrike","Akame ga Kill Season 1","https://www.amazon.com/Kill-the-Lust-for-Combat/dp/B013PUY0E8",22199
-"AmazonAnimeStrike","Akame ga Kill! Season 1 (English Dubbed)","https://www.amazon.com/Kill-the-Authority/dp/B06X3W1KJJ",22199
-"AmazonAnimeStrike","Akira (English Dubbed)","https://www.amazon.com/Akira-English-Dubbed-Katsuhiro-Ohtomo/dp/B00G0AA0S6",47
-"AmazonAnimeStrike","Altair: A Record of Battles","https://www.amazon.com/Dance-of-the-Moonlit-Beauty/dp/B073R5VNHB",34547
-"AmazonAnimeStrike","Anonymous Noise - Season 1","https://www.amazon.com/Set-Off-Run-Towards-Summer/dp/B06Y5WC21S",33203
-"AmazonAnimeStrike","Appleseed","https://www.amazon.com/Appleseed-Shinji-Aramaki/dp/B06WLPRMD5",54
-"AmazonAnimeStrike","Appleseed (English Dubbed)","https://www.amazon.com/Appleseed-English-Dubbed-Steven-Foster/dp/B06WVG99YV",54
-"AmazonAnimeStrike","Aquarion EVOL (English Dubbed)","https://www.amazon.com/Melody-of-Myth/dp/B0172Q15X0",10447
-"AmazonAnimeStrike","Aquarion EVOL Part 1 (English Dubbed)","https://www.amazon.com/Myth-That-Holds-End/dp/B0172Q0SUG",10447
-"AmazonAnimeStrike","Armed Girl's Machiavellism - Season 1","https://www.amazon.com/The-Warabinpics-are-Starting/dp/B06Y1R2PPW",33475
-"AmazonAnimeStrike","Atom: the Beginning - Season 1","https://www.amazon.com/Birth-of-the-Mighty-Atom/dp/B06ZYPXZHD",33371
-"AmazonAnimeStrike","Bakemonogatari - Season 1","https://www.amazon.com/Mayoi-Mai-Part-3/dp/B06XP34Y5F",5081
-"AmazonAnimeStrike","Black Bullet Season 1","https://www.amazon.com/The-Last-Hope/dp/B01NAQGVG9",20787
-"AmazonAnimeStrike","Black Bullet Season 1 (English Dubbed)","https://www.amazon.com/The-Crimson-Black-Assassin/dp/B01MR4QUO9",20787
-"AmazonAnimeStrike","BLOOD+ Season 1","https://www.amazon.com/Rainbow-For-Each/dp/B01NBVQNSY",150
-"AmazonAnimeStrike","BLOOD+ Season 1 (English Dubbed)","https://www.amazon.com/Dangerous-Boy-English-Dubbed/dp/B01N9SOCD2",150
-"AmazonAnimeStrike","Blue Exorcist (English Dubbed)","https://www.amazon.com/The-Secret-Garden/dp/B072W7Z3N3",9919
-"AmazonAnimeStrike","Blue Exorcist- Kyoto Saga","https://www.amazon.com/Strange-Bedfellows/dp/B01N5OPRDL",33506
-"AmazonAnimeStrike","Blue Exorcist Season 1","https://www.amazon.com/Gufu/dp/B01N5NQKOR",9919
-"AmazonAnimeStrike","BTOOOM! Season 1 (English Dubbed)","https://www.amazon.com/The-Bloody-High-School-Girl/dp/B00VGYC3NQ",14345
-"AmazonAnimeStrike","BTOOOM! Season 1 [subtitled]","https://www.amazon.com/Best-in-the-World-subtitled/dp/B00GTIT2CO",14345
-"AmazonAnimeStrike","Children Who Chase Lost Voices","https://www.amazon.com/Children-Who-Chase-Lost-Voices/dp/B01MS5UMSR",9760
-"AmazonAnimeStrike","Children Who Chase Lost Voices (English Dubbed)","https://www.amazon.com/Children-Chase-Voices-English-Dubbed/dp/B01MY71NBS",9760
-"AmazonAnimeStrike","Chi's Sweet Adventure - Season 1","https://www.amazon.com/Chi-takes-cover-rain/dp/B01NAQ8WG5",33240
-"AmazonAnimeStrike","Clannad","https://www.amazon.com/Clannad-Genius-Challenge-English-Subtitled/dp/B017356OOK",2167
-"AmazonAnimeStrike","Clannad","https://www.amazon.com/Clannad-Genius-Challenge-English-Subtitled/dp/B017356OOK",4059
-"AmazonAnimeStrike","Clannad Season 1","https://www.amazon.com/Clannad-13-Garden-of-Memories/dp/B0190TAU42",2167
-"AmazonAnimeStrike","Clannad Season 1","https://www.amazon.com/Clannad-13-Garden-of-Memories/dp/B0190TAU42",4059
-"AmazonAnimeStrike","Clannad: After Story","https://www.amazon.com/Farewell-End-Summer/dp/B01N7QJKJC",4181
-"AmazonAnimeStrike","Clannad: After Story","https://www.amazon.com/Farewell-End-Summer/dp/B01N7QJKJC",6351
-"AmazonAnimeStrike","Clannad: After Story (English Dubbed)","https://www.amazon.com/A-Season-of-Beginnings/dp/B01N157144",4181
-"AmazonAnimeStrike","Clannad: After Story (English Dubbed)","https://www.amazon.com/A-Season-of-Beginnings/dp/B01N157144",6351
-"AmazonAnimeStrike","Cowboy Bebop (Original Japanese Version)","https://www.amazon.com/Session-7-Heavy-Metal-Queen/dp/B06XMQK9MY",1
-"AmazonAnimeStrike","Darker Than Black","https://www.amazon.com/White-Dress-Stained-Girls-Dreams/dp/B072DR6GZ1",2025
-"AmazonAnimeStrike","Darker Than Black","https://www.amazon.com/White-Dress-Stained-Girls-Dreams/dp/B072DR6GZ1",4182
-"AmazonAnimeStrike","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/New-Star-Shines-Dawn-Part/dp/B0172Q3VSC",2025
-"AmazonAnimeStrike","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/New-Star-Shines-Dawn-Part/dp/B0172Q3VSC",4182
-"AmazonAnimeStrike","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/New-Star-Shines-Dawn-Part/dp/B0172Q3VSC",6573
-"AmazonAnimeStrike","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/New-Star-Shines-Dawn-Part/dp/B0172Q3VSC",7338
-"AmazonAnimeStrike","Death Note (English Dubbed) Season 1","https://www.amazon.com/Ally/dp/B0190R90NG",1535
-"AmazonAnimeStrike","Death Note (Japanese Language with English Subtitles)","https://www.amazon.com/Confrontation/dp/B0172OJER6",1535
-"AmazonAnimeStrike","DIVE!!","https://www.amazon.com/DIVE-TO-BLUE/dp/B073QMGZ3B",34543
-"AmazonAnimeStrike","Eromanga Sensei - Season 1","https://www.amazon.com/How-Two-Met-Future-Siblings/dp/B06Y49LVBJ",32901
-"AmazonAnimeStrike","Fate/Stay Night: Unlimited Blade Works Season 1","https://www.amazon.com/Winter-Days-Where-Heart/dp/B01NBT0NKG",22297
-"AmazonAnimeStrike","Fate/Stay Night: Unlimited Blade Works Season 1","https://www.amazon.com/Winter-Days-Where-Heart/dp/B01NBT0NKG",27821
-"AmazonAnimeStrike","Fate/Stay Night: Unlimited Blade Works Season 2","https://www.amazon.com/Princess-of-Colchis/dp/B01N9PZO3Z",28701
-"AmazonAnimeStrike","Full Metal Panic! (Original Japanese Version)","https://www.amazon.com/Deep-Trap/dp/B01N4SK6SB",71
-"AmazonAnimeStrike","Full Metal Panic! The Second Raid (Original Japanese Version)","https://www.amazon.com/Left-Behind/dp/B01MSDUNUN",73
-"AmazonAnimeStrike","Full Metal Panic? - Fumoffu (English Dubbed)","https://www.amazon.com/Hostility-Passing-By-A-Fruitless-Lunchtime/dp/B0190SQ1L4",72
-"AmazonAnimeStrike","Full Metal Panic? Fumoffu (Original Japanese Version)","https://www.amazon.com/Man-South-Hostage-No-Compromises/dp/B01N7XQEEL",72
-"AmazonAnimeStrike","Fullmetal Alchemist Brotherhood (English Dubbed) Season 1","https://www.amazon.com/Home-Family-Waiting/dp/B0190R8JYM",5114
-"AmazonAnimeStrike","Fullmetal Alchemist Brotherhood (English Subtitled) Season 1","https://www.amazon.com/The-Fifth-Laboratory/dp/B0172XVT1G",5114
-"AmazonAnimeStrike","Fullmetal Panic the Second Raid Season 3 (English Dubbed)","https://www.amazon.com/His-Problem/dp/B0172Q4N0M",73
-"AmazonAnimeStrike","Girls' Last Tour - Season 1","https://www.amazon.com/Technology-Aquarium-Life/dp/B0767NNPS4",35838
-"AmazonAnimeStrike","Girls und Panzer Season 1","https://www.amazon.com/Tanks-We-Ride-Them/dp/B00VGYKHMK",14131
-"AmazonAnimeStrike","Girls und Panzer Season 1","https://www.amazon.com/Tanks-We-Ride-Them/dp/B00VGYKHMK",16199
-"AmazonAnimeStrike","Girls und Panzer Season 1 (English Dubbed)","https://www.amazon.com/Tankery-Here-It-Comes/dp/B01N4OS6GE",14131
-"AmazonAnimeStrike","Girls und Panzer Season 1 (English Dubbed)","https://www.amazon.com/Tankery-Here-It-Comes/dp/B01N4OS6GE",16199
-"AmazonAnimeStrike","GRANBLUE FANTASY The Animation","https://www.amazon.com/Episode-01-Girl-in-Blue/dp/B01MTBLQVL",31629
-"AmazonAnimeStrike","Grimoire of Zero - Season 1","https://www.amazon.com/The-Witch-and-the-Beastfallen/dp/B06Y3CSGF1",34176
-"AmazonAnimeStrike","Gurren Lagann Season 1","https://www.amazon.com/I-Accept-Your-Last-Wish/dp/B01N23FB40",2001
-"AmazonAnimeStrike","Gurren Lagann Season 1 (English Dubbed)","https://www.amazon.com/You-Dont-Know-Anything/dp/B017345GBS",2001
-"AmazonAnimeStrike","Hell Girl - Season 4","https://www.amazon.com/Cant-Be-Seen-Heard/dp/B073XRG653",228
-"AmazonAnimeStrike","Hell Girl - Season 4","https://www.amazon.com/Cant-Be-Seen-Heard/dp/B073XRG653",1594
-"AmazonAnimeStrike","Hell Girl - Season 4","https://www.amazon.com/Cant-Be-Seen-Heard/dp/B073XRG653",3713
-"AmazonAnimeStrike","Hell Girl - Season 4","https://www.amazon.com/Cant-Be-Seen-Heard/dp/B073XRG653",34966
-"AmazonAnimeStrike","High School of the Dead Season 1 (English Dubbed)","https://www.amazon.com/DEAD-Storm-Rising/dp/B06WVC3HMF",8074
-"AmazonAnimeStrike","High School of the Dead: Season 1","https://www.amazon.com/Spring-of-the-DEAD/dp/B017SXHEXC",8074
-"AmazonAnimeStrike","Himouto! Umaru-chan - Season 1","https://www.amazon.com/Umaru-and-Ebina/dp/B0765W8B42",28825
-"AmazonAnimeStrike","Himouto! Umaru-chan R","https://www.amazon.com/First-Time-for-Everyone/dp/B0768DY3KB",35376
-"AmazonAnimeStrike","Hitorijime My Hero - Season 1","https://www.amazon.com/Thats-Why-Just-Want-Smile/dp/B073SFV8FC",33654
-"AmazonAnimeStrike","INUYASHIKI  LAST HERO","https://www.amazon.com/Mari-Inuyashiki/dp/B076DPVSW2",34542
-"AmazonAnimeStrike","Is It Wrong to Try to Pick Up Girls In a Dungeon? Season 1","https://www.amazon.com/Supporter-WEAKLING/dp/B01MR3HAY5",28121
-"AmazonAnimeStrike","Just Because! - Season 1","https://www.amazon.com/Episode-01/dp/B0765S9W38",35639
-"AmazonAnimeStrike","K - Season 1","https://www.amazon.com/Killer/dp/B01MU90KFU",14467
-"AmazonAnimeStrike","K - The Complete Series Season 1 (English Dubbed)","https://www.amazon.com/Knight/dp/B00IMY8LVG",14467
-"AmazonAnimeStrike","Kabukibu! - Season 1","https://www.amazon.com/These-Five-Thieves-Lined-Here/dp/B06Y3LLRH7",33840
-"AmazonAnimeStrike","Katsugeki! Touken Ranbu - Season 1","https://www.amazon.com/Katsugeki/dp/B073LSX9Q5",33018
-"AmazonAnimeStrike","Land of the Lustrous - Season 1","https://www.amazon.com/Phosphophyllite/dp/B0767P3MV6",35557
-"AmazonAnimeStrike","Lights of the Clione Season 1","https://www.amazon.com/The-Lighthouse-and-the-Tetrapods/dp/B073WDFKCL",35114
-"AmazonAnimeStrike","LOVE and LIES - Season 1","https://www.amazon.com/First-Love/dp/B073PC1SL6",34934
-"AmazonAnimeStrike","MADE IN ABYSS - Season 1","https://www.amazon.com/The-Challengers/dp/B073S2H1CS",34599
-"AmazonAnimeStrike","Magical Girl Lyrical NANOHA","https://www.amazon.com/Oaths-of-the-Heart/dp/B01N9QR23W",76
-"AmazonAnimeStrike","Magical Girl Lyrical NANOHA A's","https://www.amazon.com/Destiny/dp/B01MZ8VH8F",77
-"AmazonAnimeStrike","Magical Girl Lyrical NANOHA StrikerS","https://www.amazon.com/Final-Limit/dp/B01NASB8SJ",1915
-"AmazonAnimeStrike","Maid-Sama! Season 1","https://www.amazon.com/Footmen-Through-Change-Pairs/dp/B01N5OGKR7",7054
-"AmazonAnimeStrike","Maid-Sama! Season 1 (English Dubbed)","https://www.amazon.com/Hinata-Misaki-Usui/dp/B01N6PMYE1",7054
-"AmazonAnimeStrike","Memories","https://www.amazon.com/Memories-Tsutomu-Isobe/dp/B071XJNW7V",1462
-"AmazonAnimeStrike","Mushi-Shi (Original Japanese Version)","https://www.amazon.com/The-Green-Seat/dp/B01N14X78E",457
-"AmazonAnimeStrike","MUSHI-SHI- Next Passage Season 1","https://www.amazon.com/Mirror-Lake/dp/B01MZ83T51",21939
-"AmazonAnimeStrike","MUSHI-SHI- Next Passage Season 1","https://www.amazon.com/Mirror-Lake/dp/B01MZ83T51",24701
-"AmazonAnimeStrike","Mushi-Shi Season 1 (English Dubbed)","https://www.amazon.com/Cotton-Changeling/dp/B0172TU844",457
-"AmazonAnimeStrike","My Girlfriend is Shobitch - Season 1","https://www.amazon.com/No-dont-open-wide-please/dp/B076CJKWSY",35712
-"AmazonAnimeStrike","My Teen Romantic Comedy SNAFU Season 1","https://www.amazon.com/Sometimes-Gods-Rom-Coms-Does-Things/dp/B01MT6JL3C",14813
-"AmazonAnimeStrike","No Game, No Life Season 1","https://www.amazon.com/Expert/dp/B01NAQEYHN",19815
-"AmazonAnimeStrike","No Game, No Life Season 1 (English Dubbed)","https://www.amazon.com/Expert/dp/B01N6PO4Z0",19815
-"AmazonAnimeStrike","Nodame Cantabile Season 1","https://www.amazon.com/End/dp/B01N15GRX1",1698
-"AmazonAnimeStrike","Nodame Cantabile Season 1 (English Dubbed)","https://www.amazon.com/Awakening-English-Dubbed/dp/B01N5QSMHC",1698
-"AmazonAnimeStrike","One-Punch Man- Season 1","https://www.amazon.com/The-Supreme-Pupil/dp/B01N4N4K4F",30276
-"AmazonAnimeStrike","ONIHEI","https://www.amazon.com/Blood-Battle/dp/B01NH51D4R",33983
-"AmazonAnimeStrike","Ouran High School Host Club (Original Japanese Version)","https://www.amazon.com/Chikas-Down-with-Honey-Declaration/dp/B06XHQN35P",853
-"AmazonAnimeStrike","Paprika","https://www.amazon.com/Paprika-Megumi-Hayashibara/dp/B00134WTL0",1943
-"AmazonAnimeStrike","Paprika (English Dubbed)","https://www.amazon.com/Paprika-English-Dubbed-Megumi-Hayashibara/dp/B06VSHD61D",1943
-"AmazonAnimeStrike","Parasyte - the maxim - Season 1 (English Dubbed)","https://www.amazon.com/The-Sun-Also-Rises/dp/B0173TLZR2",22535
-"AmazonAnimeStrike","Parasyte- the maxim Season 1","https://www.amazon.com/The-Sun-Also-Rises/dp/B01MS4VC2S",22535
-"AmazonAnimeStrike","Princess Principal - Season 1","https://www.amazon.com/Vice-Voice/dp/B073SH1CF2",35240
-"AmazonAnimeStrike","Puella Magi Madoka Magica - Part 1 (English Dubbed)","https://www.amazon.com/First-Met-Her-Dream-Something/dp/B00EHABV20",9756
-"AmazonAnimeStrike","Puella Magi Madoka Magica - Part 2 (English Dubbed)","https://www.amazon.com/I-Was-Stupid-So/dp/B00EHAOJHY",n/a
-"AmazonAnimeStrike","Puella Magi Madoka Magica - Part 3 (English Dubbed)","https://www.amazon.com/Only-Thing-Have-Left-Guide/dp/B00ELB4JAQ",n/a
-"AmazonAnimeStrike","Puella Magi Madoka Magica Season 1","https://www.amazon.com/That-Would-Be-Truly-Wonderful/dp/B01NARJJXT",9756
-"AmazonAnimeStrike","RAGE OF BAHAMUT VIRGIN SOUL","https://www.amazon.com/Run-Nina/dp/B06Y3LMLGW",30736
-"AmazonAnimeStrike","Re:CREATORS","https://www.amazon.com/worry-about-others-said-yourself/dp/B06Y3WYQHG",34561
-"AmazonAnimeStrike","Rurouni Kenshin ~ New Kyoto Arc (English Dubbed)","https://www.amazon.com/Cage-of-Flames/dp/B01N5ONCBH",11441
-"AmazonAnimeStrike","Rurouni Kenshin~ New Kyoto Arc","https://www.amazon.com/Warble-of-Light/dp/B01MS4V98P",11441
-"AmazonAnimeStrike","Saekano- How to Raise a Boring Girlfriend - Season 1","https://www.amazon.com/One-on-one-Route-After-8-Years/dp/B06XYXP125",29317
-"AmazonAnimeStrike","Saekano- How to Raise a Boring Girlfriend - Season 1","https://www.amazon.com/One-on-one-Route-After-8-Years/dp/B06XYXP125",23277
-"AmazonAnimeStrike","Saekano- How to Raise a Boring Girlfriend .flat","https://www.amazon.com/Episode0-Service-Love-Pure-heart/dp/B06Y1QNBN3",35338
-"AmazonAnimeStrike","Saekano- How to Raise a Boring Girlfriend .flat","https://www.amazon.com/Episode0-Service-Love-Pure-heart/dp/B06Y1QNBN3",30727
-"AmazonAnimeStrike","Sagrada Reset - Season 1","https://www.amazon.com/CAT-GHOST-REVOLUTION-SUNDAY/dp/B06Y1R8D86",34102
-"AmazonAnimeStrike","Scum's Wish","https://www.amazon.com/Scums-Wish/dp/B01N0ZOITQ",32949
-"AmazonAnimeStrike","Season 1","https://www.amazon.com/Episode-14/dp/B074GFBMPG",n/a
-"AmazonAnimeStrike","Season 1 - The Wandering Samurai","https://www.amazon.com/Handsome-Swordsman-Legend-Fights-Love/dp/B06XNZ8MWW",45
-"AmazonAnimeStrike","Season 1 - The Wandering Samurai (English Dubbed)","https://www.amazon.com/Fly-Your-Dreams-Adventures-Marimo/dp/B06XNZGRDR",45
-"AmazonAnimeStrike","Season 2","https://www.amazon.com/The-Fake-Hell-Link/dp/B074GD74HL",n/a
-"AmazonAnimeStrike","Season 2 - Legend of Kyoto","https://www.amazon.com/Formation-Alliance-Aoshi-Joins-Shishio/dp/B06XL15DV7",n/a
-"AmazonAnimeStrike","Season 2 - Legend of Kyoto (English Dubbed)","https://www.amazon.com/Strongest-Opponent-Past-Merciless-Strike/dp/B06XKZ6LDJ",n/a
-"AmazonAnimeStrike","Season 3","https://www.amazon.com/Six-Coin-Lanterns/dp/B074GHWQ4G",n/a
-"AmazonAnimeStrike","Season 3 - Tales of the Meiji","https://www.amazon.com/Straying-Journey-Trap-Divine-Crossing/dp/B06XNSR8KQ",n/a
-"AmazonAnimeStrike","Season 3 - Tales of the Meiji (English Dubbed)","https://www.amazon.com/Find-Lost-Treasure-Detective-Notaro/dp/B06XP1HNWR",n/a
-"AmazonAnimeStrike","Season 3 - Tales of the Meiji (English Dubbed)","https://www.amazon.com/Find-Lost-Treasure-Detective-Notaro/dp/B06XP1HNWR",n/a
-"AmazonAnimeStrike","Shin chan Spin-off vol.1  Aliens vs. Shinnosuke","https://www.amazon.com/10-People-and-a-Dog/dp/B01MU9HDMY",33661
-"AmazonAnimeStrike","Soul Eater","https://www.amazon.com/Twirl-Round-World-Which-Dances/dp/B0190R9G2Q",n/a
-"AmazonAnimeStrike","Soul Eater (English Dubbed)","https://www.amazon.com/Dead-Alive-between-Revival-Dazzlement/dp/B0172UPV36",3588
-"AmazonAnimeStrike","Spice & Wolf","https://www.amazon.com/Wolf-and-Her-Helpless-Partner/dp/B06Y1CDRML",2966
-"AmazonAnimeStrike","Spice & Wolf (Original Japanese Version)","https://www.amazon.com/Wolf-and-a-New-Beginning/dp/B06Y1C4W11",2966
-"AmazonAnimeStrike","Spice and Wolf Season 1(English Dubbed)","https://www.amazon.com/Wolf-and-Best-Clothes/dp/B002ZQ1J7K",2966
-"AmazonAnimeStrike","Spice and Wolf Season 1(English Dubbed)","https://www.amazon.com/Wolf-and-Best-Clothes/dp/B002ZQ1J7K",5341
-"AmazonAnimeStrike","Spice and Wolf Season 1(English Dubbed)","https://www.amazon.com/Wolf-and-Best-Clothes/dp/B002ZQ1J7K",6007
-"AmazonAnimeStrike","Steamboy (English Dubbed)","https://www.amazon.com/Steamboy-English-Dubbed-Anna-Paquin/dp/B06VSRFDGR",565
-"AmazonAnimeStrike","Steamboy [Subtitled]","https://www.amazon.com/Steamboy-Subtitled-Robin-Atkin-Downes/dp/B006TLYLUY",565
-"AmazonAnimeStrike","Sword Oratoria: Is it Wrong to Try to Pick Up Girls in a Dungeon? On the Side - Season 1","https://www.amazon.com/Festivals-and-Courage/dp/B06ZZS9FK9",32887
-"AmazonAnimeStrike","Tekkonkinkreet","https://www.amazon.com/Tekkonkinkreet-Yû-Aoi/dp/B01BPRDWA6",2154
-"AmazonAnimeStrike","Tekkonkinkreet (English Dubbed)","https://www.amazon.com/Tekkonkinkreet-English-Dubbed-Michael-Arias/dp/B06W5295BK",2154
-"AmazonAnimeStrike","Terraformars - Season 1","https://www.amazon.com/SYMPTOM-Mutation/dp/B01N21X9VZ",22687
-"AmazonAnimeStrike","Terraformars - Season 2","https://www.amazon.com/2ND-GENERATION-The-Special-Two/dp/B01N33DRFM",31430
-"AmazonAnimeStrike","The Familiar of ZERO","https://www.amazon.com/Commoner-Familiar/dp/B01NAQDW63",1195
-"AmazonAnimeStrike","The Familiar of Zero F","https://www.amazon.com/Louise-of-the-Holy-Land/dp/B01NAQNZUB",11319
-"AmazonAnimeStrike","The Familiar of Zero: ""Rondo"" of Princesses","https://www.amazon.com/The-Familiars-Mark/dp/B01N0YCGRL",3712
-"AmazonAnimeStrike","The Familiar of Zero: ""Rondo"" of Princesses","https://www.amazon.com/The-Familiars-Mark/dp/B01N0YCGRL",5764
-"AmazonAnimeStrike","The Familiar of Zero: Knight of the Twin Moons","https://www.amazon.com/The-Queens-Holiday/dp/B01N9OX6FP",1840
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",2593
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",3782
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",3783
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",4280
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",4282
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",5204
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",5205
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",6954
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",14807
-"AmazonAnimeStrike","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",22763
-"AmazonAnimeStrike","The Garden of Words","https://www.amazon.com/Garden-Words-Makoto-Shinkai/dp/B01MS4VEJU",16782
-"AmazonAnimeStrike","The Garden of Words (English Dubbed)","https://www.amazon.com/Garden-Words-English-Dubbed/dp/B01N5O7YCF",16782
-"AmazonAnimeStrike","The Great Passage","https://www.amazon.com/Steady-Progress/dp/B01MY70YFT",32948
-"AmazonAnimeStrike","The Pet Girl of Sakurasou Season 1","https://www.amazon.com/Windows-Lights-Christmas-Eve/dp/B01MT6JLUZ",13759
-"AmazonAnimeStrike","UQ Holder! - Season 1","https://www.amazon.com/Beauty-and-the-Boy/dp/B0763JGLBQ",33478
-"AmazonAnimeStrike","Urara Meirocho- Season 1","https://www.amazon.com/Mothers-Knowledge-are-Sometimes-You/dp/B01NCVCARO",32924
-"AmazonAnimeStrike","Vampire Hunter D","https://www.amazon.com/Vampire-Hunter-D-Toyoo-Ashida/dp/B01N20N3LT",732
-"AmazonAnimeStrike","Vampire Hunter D (English Dubbed)","https://www.amazon.com/Vampire-Hunter-D-English-Dubbed/dp/B01NBVGMNV",732
-"AmazonAnimeStrike","Vatican Miracle Examiner - Season 1","https://www.amazon.com/Decapitating-Clown-Tale-Solomon/dp/B073S3FKHD",34368
-"AmazonAnimeStrike","ViVid Strike!","https://www.amazon.com/Rinne-Berlinetta/dp/B01N213IUQ",33589
-"AmazonAnimeStrike","Welcome to the Ballroom","https://www.amazon.com/Heat-16-Four-Legs/dp/B073R63L5K",34636
-"AmazonAnimeStrike","When They Cry","https://www.amazon.com/Happiness/dp/B01N9PYG1D",934
-"AmazonAnimeStrike","When They Cry Kai","https://www.amazon.com/CONFRONTATION/dp/B01MS5PY86",1889
-"AmazonAnimeStrike","When They Cry Rei","https://www.amazon.com/Die-Killing-Chapter-2/dp/B01MS5PYLN",3652
-"AmazonAnimeStrike","Yuki Yuna is a Hero - Season 1","https://www.amazon.com/A-Maidens-True-Heart/dp/B0764WZRVP",25519
-"AmazonAnimeStrike","Yuki Yuna is a Hero - Season 1 (English Dubbed)","https://www.amazon.com/Idyllic-Happiness/dp/B0764XSYDQ",25519
-"AmazonAnimeStrike","Yuki Yuna is a Hero:The Washio Sumi Chapter/Hero Chapter","https://www.amazon.com/Heart-Hurts-When-Think-You/dp/B076646HC9",36798
-"AmazonAnimeStrike","Yuki Yuna is a Hero:The Washio Sumi Chapter/Hero Chapter","https://www.amazon.com/Heart-Hurts-When-Think-You/dp/B076646HC9",34284
-"AmazonAnimeStrike","Yuki Yuna is a Hero:The Washio Sumi Chapter/Hero Chapter","https://www.amazon.com/Heart-Hurts-When-Think-You/dp/B076646HC9",34445
 "AmazonPrime","Again","https://www.amazon.com/Again-Nico-Gao/dp/B074HGY4RX",n/a
+"AmazonPrime","Akira (English Dubbed)","https://www.amazon.com/Akira-English-Dubbed-Katsuhiro-Ohtomo/dp/B00G0AHDKE",47
+"AmazonPrime","Altair: A Record of Battles","https://www.amazon.com/The-Iron-Chains/dp/B073R6JR9Q",34547
 "AmazonPrime","Amethyst - Princess of Gem World","https://www.amazon.com/Welcome-Home/dp/B01J71JF1C",n/a
-"AmazonPrime","Battle Disc","https://www.amazon.com/The-Sparrow-Attack/dp/B01M0D2IDK",n/a
-"AmazonPrime","Beware Of Rocket:The Scar","https://www.amazon.com/Beware-Rocket-Scar-King-Jeff/dp/B078MRNWYX",n/a
-"AmazonPrime","Blood-C: The Last Mind","https://www.amazon.com/Blood-C-Last-Mind-Part-2/dp/B074CGSFLZ",n/a
-"AmazonPrime","Boys Of Valor Series","https://www.amazon.com/Volume-3/dp/B0756QRSYV",n/a
-"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/The-Path-of-Separation/dp/B00AI91ODA",6772
-"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/The-Path-of-Separation/dp/B00AI91ODA",8514
-"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/The-Path-of-Separation/dp/B00AI91ODA",9252
-"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/The-Path-of-Separation/dp/B00AI91ODA",9465
-"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/The-Path-of-Separation/dp/B00AI91ODA",9724
-"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/The-Path-of-Separation/dp/B00AI91ODA",10092
-"AmazonPrime","Bruce Lee and Chinese Gods","https://www.amazon.com/Bruce-Chinese-Gods-Steve-Guttenberg/dp/B01H47Y70A",n/a
+"AmazonPrime","Anonymous Noise - Season 1","https://www.amazon.com/keep-Walking-Forward-Today-Tomorrow/dp/B06Y5WC21S",33203
+"AmazonPrime","Appleseed","https://www.amazon.com/Appleseed-Shinji-Aramaki/dp/B06WLPRMD5",54
+"AmazonPrime","Appleseed (English Dubbed)","https://www.amazon.com/Appleseed-English-Dubbed-Steven-Foster/dp/B06WVG99YV",54
+"AmazonPrime","Aquarion EVOL (English Dubbed)","https://www.amazon.com/Love-Beasts/dp/B00KL51AX0",n/a
+"AmazonPrime","Aquarion EVOL (Original Japanese Version)","https://www.amazon.com/Agitato-of-Life/dp/B01NAX3I7H",10447
+"AmazonPrime","Aquarion EVOL Part 1 (English Dubbed)","https://www.amazon.com/Myth-That-Holds-End/dp/B00GM5S3W4",10447
+"AmazonPrime","Armed Girl's Machiavellism - Season 1","https://www.amazon.com/The-Magnificent-Blade-Rin-Onigawara/dp/B06Y1PY91G",33475
+"AmazonPrime","Atom: the Beginning - Season 1","https://www.amazon.com/A-Dialogue/dp/B071Y1GY5P",33371
+"AmazonPrime","Bakemonogatari - Season 1","https://www.amazon.com/Nadeko-Snake-Part-One/dp/B06XP34Y5F",5081
+"AmazonPrime","Battle Disc","https://www.amazon.com/Trials-Front-Gate-Center/dp/B01M1N6H9S",n/a
+"AmazonPrime","Beware Of Rocket:The Scar","https://www.amazon.com/Beware-Rocket-Scar-King-Jeff/dp/B078MPC1N5",n/a
+"AmazonPrime","Blood-C: The Last Mind","https://www.amazon.com/Blood-C-Last-Mind-Part-1/dp/B074CHBY9S",n/a
+"AmazonPrime","Blue Exorcist (English Dubbed)","https://www.amazon.com/The-Garden-of-Amahara/dp/B072W7Z3N3",9919
+"AmazonPrime","Blue Exorcist- Kyoto Saga","https://www.amazon.com/A-Wolf-in-Sheeps-Clothing/dp/B01N5OPRDL",33506
+"AmazonPrime","Blue Exorcist Season 1","https://www.amazon.com/The-Garden-of-Amahara/dp/B01N20ORT6",9919
+"AmazonPrime","Boys Of Valor Series","https://www.amazon.com/Volume-1/dp/B0756SX11F",n/a
+"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/Scars-from-an-Assassins-Blade/dp/B00BSX6NGS",6772
+"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/Scars-from-an-Assassins-Blade/dp/B00BSX6NGS",8514
+"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/Scars-from-an-Assassins-Blade/dp/B00BSX6NGS",9252
+"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/Scars-from-an-Assassins-Blade/dp/B00BSX6NGS",9465
+"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/Scars-from-an-Assassins-Blade/dp/B00BSX6NGS",9724
+"AmazonPrime","Broken Blade Season 1","https://www.amazon.com/Scars-from-an-Assassins-Blade/dp/B00BSX6NGS",10092
+"AmazonPrime","Bruce Lee and Chinese Gods","https://www.amazon.com/Bruce-Chinese-Gods-Steve-Guttenberg/dp/B01H47XIDC",n/a
+"AmazonPrime","Chi's Sweet Adventure - Season 1","https://www.amazon.com/Chi-takes-cat-lessons-2/dp/B01NAQ8WG5",33240
 "AmazonPrime","Clip: Al ameen - From the life of Prophet Muhammad","https://www.amazon.com/Clip-ameen-life-Prophet-Muhammad/dp/B075SH6X2P",n/a
 "AmazonPrime","Clip: Al Sadiq - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Sadiq-life-Prophet-Muhammad/dp/B075YC6NSQ",n/a
 "AmazonPrime","Clip: Birth of Prophet Muhammad - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Birth-Prophet-Muhammad-life/dp/B07659FTDD",n/a
@@ -202,77 +34,168 @@
 "AmazonPrime","Clip: Prophet and the Blind Man - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Prophet-Blind-life-Muhammad/dp/B0765CD174",n/a
 "AmazonPrime","Clip: Prophet Becomes a Merchant - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Prophet-Becomes-Merchant-Muhammad/dp/B075YBSNRJ",n/a
 "AmazonPrime","Clip: Splitting of chest - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Splitting-chest-Prophet-Muhammad/dp/B075RJK35B",n/a
-"AmazonPrime","Clip: The Chase","https://www.amazon.com/Clip-Chase-Andre-Surya/dp/B01LZL2XV6",n/a
+"AmazonPrime","Clip: The Chase","https://www.amazon.com/Clip-Chase-Andre-Surya/dp/B01LZWUDFP",n/a
 "AmazonPrime","Clip: The Enlightenment - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Enlightenment-life-Prophet-Muhammad/dp/B0762776LQ",n/a
 "AmazonPrime","Clip: The Old Woman and The Prophet - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Woman-Prophet-life-Muhammad/dp/B0765BQH66",n/a
 "AmazonPrime","Clip: The Rebuilding of Ka'bah - From the life of Prophet Muhammad","https://www.amazon.com/Clip-Rebuilding-Kabah-Prophet-Muhammad/dp/B076278P1N",n/a
-"AmazonPrime","Clip: The travel of a commuter.","https://www.amazon.com/Clip-travel-commuter-Shigeo-Fukushima/dp/B01MYRDR43",n/a
-"AmazonPrime","Cyborg Assassin","https://www.amazon.com/Cyborg-Assassin-Eric-W-Sizemore/dp/B06XHDPM4G",n/a
-"AmazonPrime","Delinquent Hamsters","https://www.amazon.com/The-Serious-Match/dp/B06XDZ3PNN",n/a
+"AmazonPrime","Clip: The travel of a commuter.","https://www.amazon.com/Clip-travel-commuter-Shigeo-Fukushima/dp/B01MTSCTMZ",n/a
+"AmazonPrime","Code Geass: Lelouch of the Rebellion, Season 1 (Original Japanese Version)","https://www.amazon.com/Stage-14-Geass-vs/dp/B06Y4G1HBY",1575
+"AmazonPrime","Code Geass: Lelouch of the Rebellion, Season 2 (Original Japanese Version)","https://www.amazon.com/Turn-11-Power-of-Passion/dp/B06Y41BC11",2904
+"AmazonPrime","Cowboy Bebop (Original Japanese Version)","https://www.amazon.com/Session-15-My-Funny-Valentine/dp/B06XMQW3FS",1
+"AmazonPrime","Cyborg Assassin","https://www.amazon.com/Cyborg-Assassin-Eric-W-Sizemore/dp/B06XHC5CS6",n/a
+"AmazonPrime","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/Fallen-Star-Contract-Part/dp/B002S45X62",2025
+"AmazonPrime","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/Fallen-Star-Contract-Part/dp/B002S45X62",4182
+"AmazonPrime","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/Fallen-Star-Contract-Part/dp/B002S45X62",6573
+"AmazonPrime","Darker Than Black Season 1 (English Dubbed)","https://www.amazon.com/Fallen-Star-Contract-Part/dp/B002S45X62",7338
+"AmazonPrime","Delinquent Hamsters","https://www.amazon.com/The-Dusty-Bro/dp/B06XDZ3PNN",n/a
 "AmazonPrime","Demon King Daimao Season 1 (English Subtitled)","https://www.amazon.com/Crazy-Fuss-about-Arranged-Marriage/dp/B00DAA5ZPW",7088
-"AmazonPrime","Dragonblade","https://www.amazon.com/Dragonblade-Karon-Mok/dp/B00G3K52IQ",5889
+"AmazonPrime","DIVE!!","https://www.amazon.com/DIVE-TO-BLUE/dp/B073QM1GWK",34543
 "AmazonPrime","Elfen Lied - Season 01","https://www.amazon.com/Elfen-Lied-06-Innermost-Feelings/dp/B008RJX012",226
+"AmazonPrime","Ergo Proxy (Original Japanese Version)","https://www.amazon.com/Mazecity/dp/B01MUEV2NZ",790
+"AmazonPrime","Ergo Proxy Season 1 (English Dubbed)","https://www.amazon.com/Ophelia/dp/B0172TVVOA",790
+"AmazonPrime","Eromanga Sensei - Season 1","https://www.amazon.com/Eromanga-Festival/dp/B06Y4HW931",32901
+"AmazonPrime","Fate/Stay Night: Unlimited Blade Works Season 1","https://www.amazon.com/The-First-Battle/dp/B01MR4BHHJ",22297
+"AmazonPrime","Fate/Stay Night: Unlimited Blade Works Season 1","https://www.amazon.com/The-First-Battle/dp/B01MR4BHHJ",27821
+"AmazonPrime","Fate/Stay Night: Unlimited Blade Works Season 2","https://www.amazon.com/Time-of-Departure/dp/B01NH50TN8",28701
+"AmazonPrime","Fullmetal Alchemist Brotherhood (English Dubbed) Season 1","https://www.amazon.com/Fullmetal-Alchemist/dp/B003E3XIDQ",5114
+"AmazonPrime","Fullmetal Alchemist Brotherhood (English Subtitled) Season 1","https://www.amazon.com/Home-Family-Waiting/dp/B0172XVT1G",5114
 "AmazonPrime","Game-Con Haul! My Loot Bag!","https://www.amazon.com/Game-Haul-My-Loot-Bag/dp/B01HSTE5NI",n/a
-"AmazonPrime","Genesis Climber MOSPEADA (English Subtitled)","https://www.amazon.com/Showdown-Concert-at-High-Noon/dp/B01J71YOW2",3670
-"AmazonPrime","Get Backers","https://www.amazon.com/Natsumi-Does-Her-Best/dp/B008RK04MY",132
+"AmazonPrime","Genesis Climber MOSPEADA (English Subtitled)","https://www.amazon.com/The-Ballad-of-Breaking-Up/dp/B01J72019Q",3670
+"AmazonPrime","Get Backers","https://www.amazon.com/Get-Backers/dp/B008RK04MY",132
 "AmazonPrime","Ghost Messenger","https://www.amazon.com/Ghost-Messenger-Goo-Bong-hee/dp/B076CN46KH",n/a
+"AmazonPrime","Girls' Last Tour - Season 1","https://www.amazon.com/Culture-Destruction-The-Past/dp/B0767MNZ9N",35838
+"AmazonPrime","GRANBLUE FANTASY The Animation","https://www.amazon.com/The-Veil-is-Lifted/dp/B01MTBLQVL",31629
+"AmazonPrime","Grimoire of Zero - Season 1","https://www.amazon.com/The-Witch-and-the-Beastfallen/dp/B06Y3TBYDJ",34176
+"AmazonPrime","Gurren Lagann Season 1","https://www.amazon.com/Yoko-Will-You-Do-Favor/dp/B01N23FB40",2001
+"AmazonPrime","Gurren Lagann Season 1 (English Dubbed)","https://www.amazon.com/Having-Lots-Faces-Doesnt-Great/dp/B001IIR3G2",2001
 "AmazonPrime","Hang On","https://www.amazon.com/Work-Life/dp/B075KK26J9",n/a
+"AmazonPrime","Hell Girl - Season 4","https://www.amazon.com/Twill/dp/B073XS1L4R",228
+"AmazonPrime","Hell Girl - Season 4","https://www.amazon.com/Twill/dp/B073XS1L4R",1594
+"AmazonPrime","Hell Girl - Season 4","https://www.amazon.com/Twill/dp/B073XS1L4R",3713
+"AmazonPrime","Hell Girl - Season 4","https://www.amazon.com/Twill/dp/B073XS1L4R",34966
 "AmazonPrime","Hello Jadoo","https://www.amazon.com/Movie-Theater-Sneak-In/dp/B01HOW2VJE",n/a
 "AmazonPrime","Hickory Dickory","https://www.amazon.com/Hickory-Dickory-Animation-Character/dp/B077S7XD4R",n/a
+"AmazonPrime","Himouto! Umaru-chan R","https://www.amazon.com/Umaru-and-the-Starry-Sky/dp/B0768HNGT2",28825
+"AmazonPrime","Himouto! Umaru-chan R","https://www.amazon.com/Umaru-and-the-Starry-Sky/dp/B0768HNGT2",35376
+"AmazonPrime","Hitorijime My Hero - Season 1","https://www.amazon.com/A-Person-Worthy-of-Love/dp/B073SG1B9L",33654
 "AmazonPrime","How To Create & Animate a Clay Puppet","https://www.amazon.com/How-Create-Animate-Clay-Puppet/dp/B0058DXJ0M",n/a
-"AmazonPrime","KABANERI OF THE IRON FORTRESS(Subbed)","https://www.amazon.com/Prayer-Offer/dp/B01DU4LS3K",28623
+"AmazonPrime","INUYASHIKI  LAST HERO","https://www.amazon.com/Hiro-Shishigami/dp/B076DKXRWS",34542
+"AmazonPrime","Just Because! - Season 1","https://www.amazon.com/Episode-12/dp/B0765S9W38",35639
+"AmazonPrime","Kabukibu! - Season 1","https://www.amazon.com/Prologue-As-Spring-This-Guy/dp/B06Y3TMPZ2",33840
+"AmazonPrime","Katsugeki! Touken Ranbu - Season 1","https://www.amazon.com/Former-Master/dp/B073LT11MK",33018
 "AmazonPrime","Kick-Heart","https://www.amazon.com/Kick-Heart-Richard-Epcar/dp/B014X13GJS",16149
+"AmazonPrime","Land of the Lustrous - Season 1","https://www.amazon.com/Spring/dp/B0767NS4PN",35557
 "AmazonPrime","Legend Of the Millennium Dragon","https://www.amazon.com/Legend-Millennium-Dragon-Kensho-Ono/dp/B06ZZJ8FZ4",8487
-"AmazonPrime","Legrand Legacy","https://www.amazon.com/Legrand-Legacy-Andre-Surya/dp/B01MCYUOG9",n/a
-"AmazonPrime","Little Snow Fairy Sugar","https://www.amazon.com/Little-Snow-Fairy-Sugar-Couldnt/dp/B008R3HGPO",831
-"AmazonPrime","Little Snow Fairy Sugar","https://www.amazon.com/Little-Snow-Fairy-Sugar-Couldnt/dp/B008R3HGPO",1014
-"AmazonPrime","Mix Master: Final Force","https://www.amazon.com/Shape-Shifter/dp/B06XR95PJC",31246
-"AmazonPrime","Mix Master: King of Cards","https://www.amazon.com/Mix-Master-Season-Pachis-Secret/dp/B00BPBTCK2",7395
-"AmazonPrime","Mythical Detective Loki Ragnarok","https://www.amazon.com/Mythical-Detective-Loki-Ragnarok-09/dp/B004FJTWJM",335
+"AmazonPrime","Legrand Legacy","https://www.amazon.com/Legrand-Legacy-Andre-Surya/dp/B01M4OE5HG",n/a
+"AmazonPrime","Lights of the Clione Season 1","https://www.amazon.com/All-Alone/dp/B073WDFKCL",35114
+"AmazonPrime","Little Snow Fairy Sugar","https://www.amazon.com/Little-Snow-Fairy-Sugar-Pianist/dp/B008R3HGPO",831
+"AmazonPrime","Little Snow Fairy Sugar","https://www.amazon.com/Little-Snow-Fairy-Sugar-Pianist/dp/B008R3HGPO",1014
+"AmazonPrime","LOVE and LIES - Season 1","https://www.amazon.com/So-Bright-Doesnt-Seem-Real/dp/B073PB5CM7",34934
+"AmazonPrime","MADE IN ABYSS - Season 1","https://www.amazon.com/City-Great-Pit/dp/B073S2MKR2",34599
+"AmazonPrime","Magical Girl Lyrical NANOHA","https://www.amazon.com/Call-My-Name/dp/B01MS6IDTI",76
+"AmazonPrime","Magical Girl Lyrical NANOHA A's","https://www.amazon.com/Destiny/dp/B01MZ8VH8F",77
+"AmazonPrime","Magical Girl Lyrical NANOHA StrikerS","https://www.amazon.com/Development/dp/B01NASB8SJ",1915
+"AmazonPrime","Mix Master: Final Force","https://www.amazon.com/Final-Guardian/dp/B06XR95PJC",31246
+"AmazonPrime","Mix Master: King of Cards","https://www.amazon.com/Mix-Master-Cards-Season-Sports/dp/B00BPBTCK2",7395
+"AmazonPrime","Mushi-Shi (Original Japanese Version)","https://www.amazon.com/Journey-Field-Fire/dp/B01MRA0MDG",457
+"AmazonPrime","MUSHI-SHI- Next Passage Season 1","https://www.amazon.com/Banquet-at-the-Forests-Edge/dp/B01MT7ET90",21939
+"AmazonPrime","MUSHI-SHI- Next Passage Season 1","https://www.amazon.com/Banquet-at-the-Forests-Edge/dp/B01MT7ET90",24701
+"AmazonPrime","Mythical Detective Loki Ragnarok","https://www.amazon.com/Mythical-Detective-Loki-Ragnarok-07/dp/B004FJTWJM",335
 "AmazonPrime","Nick Warren In Ibiza 2001","https://www.amazon.com/Nick-Warren-Ibiza-2001/dp/B01L3033GS",n/a
+"AmazonPrime","ONIHEI","https://www.amazon.com/Tanbei-of-Chigashira/dp/B01NAS0WJW",33983
 "AmazonPrime","Orphen Season 1","https://www.amazon.com/Orphen-15-Sister-Moon/dp/B00BLAK5N0",1017
-"AmazonPrime","Pahappahooey Island","https://www.amazon.com/Millards-Big-Fish-Story/dp/B075L581PZ",n/a
+"AmazonPrime","Ouran High School Host Club (Original Japanese Version)","https://www.amazon.com/Starting-Today-You-Are-Host/dp/B06XHQN35P",853
+"AmazonPrime","Pahappahooey Island","https://www.amazon.com/The-Secret-of-the-Book/dp/B075L581PZ",n/a
 "AmazonPrime","Pokémon the Series: Ruby & Sapphire","https://www.amazon.com/You-Never-Can-Taillow/dp/B00Q7NYYP6",1564
-"AmazonPrime","Power Top Plate","https://www.amazon.com/Prestigious-Place-Against-Strongest-Team/dp/B075JM865B",n/a
-"AmazonPrime","Princess Tutu - Season 01","https://www.amazon.com/Princess-Tutu-07-Crow/dp/B003B1VIXI",721
-"AmazonPrime","RahXephon - Season 01","https://www.amazon.com/RahXephon-25-Gods-Uncertain-Music/dp/B003B1VJ0U",165
-"AmazonPrime","Rapunzel Nabunzel","https://www.amazon.com/Rapunzel-Nabunzel-Olga-Molina/dp/B078HLGQ9C",n/a
-"AmazonPrime","Red Princess Blues: Genesis (Anime)","https://www.amazon.com/Red-Princess-Blues-Genesis-Anime/dp/B01LDXWERE",n/a
-"AmazonPrime","Ride The Tide","https://www.amazon.com/Ride-Tide-Bryan-Casey/dp/B078MJ3H5Z",n/a
-"AmazonPrime","Robotech - The Original Broadcast Version","https://www.amazon.com/Space-Fold/dp/B01H0UX7J8",n/a
-"AmazonPrime","Robotech: The Complete Series - Digitally Remastered","https://www.amazon.com/Macross-Saga-Rainy-Night/dp/B01I4ICUAC",n/a
-"AmazonPrime","Robotech: The Shadow Chronicles","https://www.amazon.com/Robotech-Shadow-Chronicles-Mark-Hamill/dp/B01HPN2N4K",n/a
-"AmazonPrime","Robotex","https://www.amazon.com/3rd-Battle-Iota-Pandalom/dp/B075K4JZKZ",n/a
+"AmazonPrime","Power Top Plate","https://www.amazon.com/The-Fate-of-the-Game/dp/B075JM865B",n/a
+"AmazonPrime","Princess Principal - Season 1","https://www.amazon.com/Wired-Liar/dp/B073SFK4ZW",35240
+"AmazonPrime","Princess Tutu - Season 01","https://www.amazon.com/Princess-Tutu-Night-Fire-Festival/dp/B008RK2QZC",721
+"AmazonPrime","Puella Magi Madoka Magica Season 1","https://www.amazon.com/Im-Not-Afraid-Anything-Anymore/dp/B01NARJJXT",9756
+"AmazonPrime","RAGE OF BAHAMUT VIRGIN SOUL","https://www.amazon.com/Red-Dragon/dp/B06Y3LMLGW",30736
+"AmazonPrime","RahXephon - Season 01","https://www.amazon.com/RahXephon-07-Day-of-Assembly/dp/B008RK497A",165
+"AmazonPrime","Rapunzel Nabunzel","https://www.amazon.com/Rapunzel-Nabunzel-Olga-Molina/dp/B078HS7F46",n/a
+"AmazonPrime","Re:CREATORS","https://www.amazon.com/will-remember-everything-that-happened/dp/B06Y3KGYR3",34561
+"AmazonPrime","Red Princess Blues: Genesis (Anime)","https://www.amazon.com/Red-Princess-Blues-Genesis-Anime/dp/B01LDXWVXG",n/a
+"AmazonPrime","Robotech - The Original Broadcast Version","https://www.amazon.com/Glovals-Report/dp/B01H0UW5L4",n/a
+"AmazonPrime","Robotech: The Complete Series - Digitally Remastered","https://www.amazon.com/The-Macross-Saga-Private-Time/dp/B01I4ICXC2",n/a
+"AmazonPrime","Robotech: The Shadow Chronicles","https://www.amazon.com/Robotech-Shadow-Chronicles-Mark-Hamill/dp/B01HPMWXU0",n/a
+"AmazonPrime","Robotex","https://www.amazon.com/Here-Comes-Volcan/dp/B075K4JZKZ",n/a
 "AmazonPrime","Ronja, the Robber’s Daughter","https://www.amazon.com/Moving-Out/dp/B01MZ4E6ZP",22359
 "AmazonPrime","Row Row Row Your Boat","https://www.amazon.com/Row-Your-Boat/dp/B077S5FRG3",n/a
-"AmazonPrime","Shuuichi: Son of Vengeance","https://www.amazon.com/Shuuichi-Son-Vengeance-Kevin-Kittle/dp/B01J6Z23EU",n/a
-"AmazonPrime","Space Dogs Family","https://www.amazon.com/Princess-Of-The-Circus/dp/B078C9MC8M",n/a
-"AmazonPrime","Spicy Boy","https://www.amazon.com/Spicy-Boy/dp/B078FN5XTL",n/a
+"AmazonPrime","Saekano- How to Raise a Boring Girlfriend - Season 1","https://www.amazon.com/An-Error-ridden-Prologue/dp/B06XYLV24S",29317
+"AmazonPrime","Saekano- How to Raise a Boring Girlfriend - Season 1","https://www.amazon.com/An-Error-ridden-Prologue/dp/B06XYLV24S",23277
+"AmazonPrime","Saekano- How to Raise a Boring Girlfriend .flat","https://www.amazon.com/Episode0-Service-Love-Pure-heart/dp/B06Y1QNBN3",35338
+"AmazonPrime","Saekano- How to Raise a Boring Girlfriend .flat","https://www.amazon.com/Episode0-Service-Love-Pure-heart/dp/B06Y1QNBN3",30727
+"AmazonPrime","Sagrada Reset - Season 1","https://www.amazon.com/MEMORY-in-CHILDREN-3/dp/B06Y1YPNCR",34102
+"AmazonPrime","Scum's Wish","https://www.amazon.com/Scums-Wish/dp/B01NCUV2FV",32949
+"AmazonPrime","Season 1","https://www.amazon.com/Episode-14/dp/B074GFBMPG",n/a
+"AmazonPrime","Season 1 - The Wandering Samurai","https://www.amazon.com/Swordsman-Sorrow-Man-Slays-Past/dp/B06XNZJC3K",45
+"AmazonPrime","Season 1 - The Wandering Samurai (English Dubbed)","https://www.amazon.com/Appearance-Kurogasa-Visitor-Shadows/dp/B06XNZGRDR",45
+"AmazonPrime","Season 2","https://www.amazon.com/Hell-Amidst-Steam-Lodging-Travelers/dp/B074GD74HL",n/a
+"AmazonPrime","Season 2 - Legend of Kyoto","https://www.amazon.com/Title-Strongest-Aoshis-New-Conflict/dp/B06XL15DV7",n/a
+"AmazonPrime","Season 2 - Legend of Kyoto (English Dubbed)","https://www.amazon.com/Devil-Vengeance-Makoto-Shishios-Plot/dp/B06XNZ5J1S",n/a
+"AmazonPrime","Season 3","https://www.amazon.com/This-Mundane-World/dp/B074GFPN2V",n/a
+"AmazonPrime","Season 3 - Tales of the Meiji","https://www.amazon.com/Straying-Journey-Trap-Divine-Crossing/dp/B06XNSR8KQ",n/a
+"AmazonPrime","Season 3 - Tales of the Meiji (English Dubbed)","https://www.amazon.com/Kaishu-Katsu-Kenshin-Destiny-Survived-Revolution/dp/B06XNSRF3C",n/a
+"AmazonPrime","Shin chan Spin-off vol.1  Aliens vs. Shinnosuke","https://www.amazon.com/Food/dp/B01MU9HDMY",33661
+"AmazonPrime","Shuuichi: Son of Vengeance","https://www.amazon.com/Shuuichi-Son-Vengeance-Kevin-Kittle/dp/B01J6YTFLK",n/a
+"AmazonPrime","Soul Eater","https://www.amazon.com/Twirl-Round-World-Which-Dances/dp/B00I172ITA",n/a
+"AmazonPrime","Soul Eater (English Dubbed)","https://www.amazon.com/Fierce-Battle-Aboard-Ghost-Ship/dp/B00H920VL0",3588
+"AmazonPrime","Soul Eater (Original Japanese Version)","https://www.amazon.com/Fierce-Battle-Aboard-Ghost-Ship/dp/B01MRCI8Z9",3588
+"AmazonPrime","Space Dogs Family","https://www.amazon.com/Pupsicle-Stand/dp/B077T9N241",n/a
+"AmazonPrime","Spice & Wolf (Original Japanese Version)","https://www.amazon.com/Wolf-and-a-New-Beginning/dp/B06Y1CFSKV",2966
+"AmazonPrime","Spice and Wolf Season 1(English Dubbed)","https://www.amazon.com/Wolf-and-Best-Clothes/dp/B002ZQ1J7K",2966
+"AmazonPrime","Spice and Wolf Season 1(English Dubbed)","https://www.amazon.com/Wolf-and-Best-Clothes/dp/B002ZQ1J7K",5341
+"AmazonPrime","Spice and Wolf Season 1(English Dubbed)","https://www.amazon.com/Wolf-and-Best-Clothes/dp/B002ZQ1J7K",6007
+"AmazonPrime","Spicy Boy","https://www.amazon.com/Spicy-Boy/dp/B078FP2R9S",n/a
 "AmazonPrime","Storm Rider: Clash of the Evils","https://www.amazon.com/Storm-Rider-Clash-Nicholas-Tse/dp/B01M7MBFTL",n/a
-"AmazonPrime","Super Dimension Cavalry Southern Cross (English Subtitled)","https://www.amazon.com/Star-Angel/dp/B01J71XMNO",4503
-"AmazonPrime","Super Dimension Fortress Macross (English Subtitled)","https://www.amazon.com/Virgin-Road/dp/B01J73M3QO",1088
+"AmazonPrime","Super Dimension Cavalry Southern Cross (English Subtitled)","https://www.amazon.com/Prisoner/dp/B01J71XMNO",4503
+"AmazonPrime","Super Dimension Fortress Macross (English Subtitled)","https://www.amazon.com/My-Album/dp/B01J73KOCY",1088
 "AmazonPrime","Super Supers: Pulse Vampires vs. Zombies - Kalina's World","https://www.amazon.com/Super-Supers-Vampires-Zombies-Kalinas/dp/B06XNSWK2H",n/a
 "AmazonPrime","Swiss Family Robinson","https://www.amazon.com/The-Monster-Tree/dp/B019EFG2EE",2544
-"AmazonPrime","Tag","https://www.amazon.com/Tag-Bruce-Jones/dp/B01JBGCRTA",n/a
-"AmazonPrime","Tales Of Little Women","https://www.amazon.com/The-Friendship-Pin/dp/B076MDFNNC",n/a
-"AmazonPrime","Tatsumi (English Subtitled)","https://www.amazon.com/Tatsumi-English-Subtitled-Tetsuya-Bessho/dp/B013T1AOJS",n/a
-"AmazonPrime","Technotise: Edit and I","https://www.amazon.com/Technotise-Edit-I-Sanda-Knezevic/dp/B06XRQH42F",n/a
+"AmazonPrime","Sword Oratoria: Is it Wrong to Try to Pick Up Girls in a Dungeon? On the Side - Season 1","https://www.amazon.com/Sword-Princess-Elf/dp/B06ZZS9FK9",32887
+"AmazonPrime","Tag","https://www.amazon.com/Tag-Bruce-Jones/dp/B01JBGD7OO",n/a
+"AmazonPrime","Tales Of Little Women","https://www.amazon.com/The-March-Family/dp/B076MK978J",n/a
+"AmazonPrime","Tatsumi (English Subtitled)","https://www.amazon.com/Tatsumi-English-Subtitled-Tetsuya-Bessho/dp/B013T1AKLU",n/a
+"AmazonPrime","Technotise: Edit and I","https://www.amazon.com/Technotise-Edit-I-Sanda-Knezevic/dp/B06XRN9MKZ",n/a
 "AmazonPrime","Tenkai Knights - Rise of the Knights","https://www.amazon.com/Tenkai-Knights-Rise-Brian-Beacock/dp/B00I8H72YY",n/a
 "AmazonPrime","The Alien Touch","https://www.amazon.com/Sabine/dp/B071Z93QM1",n/a
+"AmazonPrime","The Devil is a Part-Timer! (Original Japanese Version)","https://www.amazon.com/Devil-Hero-Save-Sasazuka/dp/B01NBYHMDT",15809
 "AmazonPrime","The Emperor and the Nightingale","https://www.amazon.com/Emperor-Nightingale-Animation-Character/dp/B077S8BSYK",n/a
 "AmazonPrime","The Escape","https://www.amazon.com/Escape-Andre-Surya/dp/B01I4BA98Y",n/a
-"AmazonPrime","The Legend of Snow White","https://www.amazon.com/The-Miracle/dp/B074K994R5",n/a
-"AmazonPrime","The Misty Green Sky","https://www.amazon.com/Misty-Green-Sky-Maggie-Taylor/dp/B06X9DMT2F",n/a
-"AmazonPrime","The Mystical Laws","https://www.amazon.com/Mystical-Laws-Isamu-Imakake/dp/B00TJZ31B2",13439
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",2593
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",3782
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",3783
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",4280
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",4282
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",5204
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",5205
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",6954
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",14807
+"AmazonPrime","the Garden of sinners","https://www.amazon.com/Overlooking-View-Thanatos/dp/B0757CNCC5",22763
+"AmazonPrime","The Great Passage","https://www.amazon.com/Waver/dp/B01MT7UMKD",32948
+"AmazonPrime","The Legend of Snow White","https://www.amazon.com/The-Legendary-Mountain/dp/B074KHN95B",n/a
+"AmazonPrime","The Misty Green Sky","https://www.amazon.com/Misty-Green-Sky-Maggie-Taylor/dp/B06WWJPH2R",n/a
+"AmazonPrime","The Mystical Laws","https://www.amazon.com/Mystical-Laws-Isamu-Imakake/dp/B00TJZ4SQE",13439
 "AmazonPrime","The Wolf and the Lamb","https://www.amazon.com/Wolf-Lamb-Silver-Brain/dp/B071Y4SGHL",n/a
-"AmazonPrime","Toy Dad","https://www.amazon.com/Dad-is-a-teddy-bear/dp/B07793N5F5",n/a
-"AmazonPrime","UFO Ultramaiden","https://www.amazon.com/UFO-Ultramaiden-Tokino-Bathhouse-Space/dp/B00425YJIS",1127
-"AmazonPrime","UFO Ultramaiden","https://www.amazon.com/UFO-Ultramaiden-Tokino-Bathhouse-Space/dp/B00425YJIS",11445
-"AmazonPrime","UFO Ultramaiden","https://www.amazon.com/UFO-Ultramaiden-Tokino-Bathhouse-Space/dp/B00425YJIS",1129
-"AmazonPrime","UFO Ultramaiden Season 2","https://www.amazon.com/UFO-Ultramaiden-Cyborg-Princess-Chorus/dp/B0041WL02K",1128
-"AmazonPrime","Up in the Clouds","https://www.amazon.com/Up-Clouds-Katherine-Park/dp/B01MV88N7V",n/a
-"AmazonPrime","Wara Store","https://www.amazon.com/The-Street-Fighter-Minjun/dp/B01HFLCZOK",n/a
-"AmazonPrime","パタパタ森の奥停留場","https://www.amazon.com/パタパタ森の奥停留場-あさ/dp/B06XC7PTSQ",n/a
+"AmazonPrime","Toy Dad","https://www.amazon.com/Dad-is-a-popular-person/dp/B0778SJB54",n/a
+"AmazonPrime","UFO Ultramaiden","https://www.amazon.com/UFO-Ultramaiden-Rika-Acts-Her/dp/B008RJZM6S",1127
+"AmazonPrime","UFO Ultramaiden","https://www.amazon.com/UFO-Ultramaiden-Rika-Acts-Her/dp/B008RJZM6S",11445
+"AmazonPrime","UFO Ultramaiden","https://www.amazon.com/UFO-Ultramaiden-Rika-Acts-Her/dp/B008RJZM6S",1129
+"AmazonPrime","UFO Ultramaiden Season 2","https://www.amazon.com/UFO-Ultramaiden-Four-Lost-Princesses/dp/B0041WL02K",1128
+"AmazonPrime","Up in the Clouds","https://www.amazon.com/Up-Clouds-Katherine-Park/dp/B01N7069J9",n/a
+"AmazonPrime","UQ Holder! - Season 1","https://www.amazon.com/Magia-Erebea/dp/B0763JZXJQ",33478
+"AmazonPrime","Urara Meirocho- Season 1","https://www.amazon.com/Baths-Celebrations-Sometimes-Have-Smiles/dp/B01N102QP4",32924
+"AmazonPrime","Vatican Miracle Examiner - Season 1","https://www.amazon.com/Through-Death-Comprehend-Rebirth-Eternal/dp/B073S2RC7N",34368
+"AmazonPrime","ViVid Strike!","https://www.amazon.com/Victor-and-Loser/dp/B01N213IUQ",33589
+"AmazonPrime","Wara Store","https://www.amazon.com/Hyeyeons-Diet/dp/B01HFLCZOK",n/a
+"AmazonPrime","When We Met - Ride the Tide","https://www.amazon.com/When-We-Met-Ride-Tide/dp/B078MJ3H5Z",n/a
+"AmazonPrime","Yuki Yuna is a Hero - Season 1","https://www.amazon.com/A-Maidens-True-Heart/dp/B0764WPL5Y",25519
+"AmazonPrime","Yuki Yuna is a Hero - Season 1","https://www.amazon.com/A-Maidens-True-Heart/dp/B0764WPL5Y",34284
+"AmazonPrime","Yuki Yuna is a Hero - Season 1","https://www.amazon.com/A-Maidens-True-Heart/dp/B0764WPL5Y",34445
+"AmazonPrime","Yuki Yuna is a Hero - Season 1","https://www.amazon.com/A-Maidens-True-Heart/dp/B0764WPL5Y",36798
+"AmazonPrime","Yuki Yuna is a Hero - Season 1 (English Dubbed)","https://www.amazon.com/Passion/dp/B07651JR7D",25519
+"AmazonPrime","パタパタ森の奥停留場","https://www.amazon.com/パタパタ森の奥停留場-あさ/dp/B06XCTNX83",n/a
 "Crunchyroll",".hack//Legend of the Twilight","http://www.crunchyroll.com/hacklegend-of-the-twilight",298
 "Crunchyroll",".hack//Quantum","http://www.crunchyroll.com/hackquantum",9332
 "Crunchyroll",".hack//Roots","http://www.crunchyroll.com/hackroots",873
@@ -291,6 +214,7 @@
 "Crunchyroll","A Certain Scientific Railgun","http://www.crunchyroll.com/a-certain-scientific-railgun",6213
 "Crunchyroll","A Dark Rabbit has Seven Lives","http://www.crunchyroll.com/a-dark-rabbit-has-seven-lives",9750
 "Crunchyroll","A Lull in the Sea (Nagi-Asu: Nagi no Asukara)","http://www.crunchyroll.com/a-lull-in-the-sea-nagi-asu-nagi-no-asukara",16067
+"Crunchyroll","A Place Further Than the Universe","http://www.crunchyroll.com/a-place-further-than-the-universe",35839
 "Crunchyroll","A Sister's All You Need.","http://www.crunchyroll.com/a-sisters-all-you-need",35413
 "Crunchyroll","A Town Where You Live","http://www.crunchyroll.com/a-town-where-you-live",17741
 "Crunchyroll","Aachi & Ssipak","http://www.crunchyroll.com/aachi-ssipak",2884
@@ -375,6 +299,7 @@
 "Crunchyroll","Banpresto World Figure Colosseum","http://www.crunchyroll.com/banpresto-world-figure-colosseum",n/a
 "Crunchyroll","Barakamon","http://www.crunchyroll.com/barakamon",22789
 "Crunchyroll","Basilisk","http://www.crunchyroll.com/basilisk",67
+"Crunchyroll","Basilisk : The Ouka Ninja Scrolls","http://www.crunchyroll.com/basilisk-the-ouka-ninja-scrolls",35964
 "Crunchyroll","Battle Girls - Time Paradox","http://www.crunchyroll.com/battle-girls-time-paradox",10308
 "Crunchyroll","BAYONETTA: Bloody Fate","http://www.crunchyroll.com/bayonetta-bloody-fate",20543
 "Crunchyroll","BBK/BRNK","http://www.crunchyroll.com/bbkbrnk",32023
@@ -457,6 +382,7 @@
 "Crunchyroll","Captain Earth","http://www.crunchyroll.com/captain-earth",21677
 "Crunchyroll","Captain Harlock","http://www.crunchyroll.com/captain-harlock",1000
 "Crunchyroll","Cardcaptor Sakura","http://www.crunchyroll.com/cardcaptor-sakura",232
+"Crunchyroll","Cardcaptor Sakura: Clear Card","http://www.crunchyroll.com/cardcaptor-sakura-clear-card",33354
 "Crunchyroll","Cardcaptor Sakura: The Movie","http://www.crunchyroll.com/cardcaptor-sakura-the-movie",371
 "Crunchyroll","Cardfight Vanguard (Season 1)","http://www.crunchyroll.com/cardfight-vanguard-season-1",9539
 "Crunchyroll","Cardfight!! Vanguard Asia Circuit (Season 2)","http://www.crunchyroll.com/cardfight-vanguard-asia-circuit-season-2",13145
@@ -494,6 +420,7 @@
 "Crunchyroll","Chrono Crusade","http://www.crunchyroll.com/chrono-crusade",60
 "Crunchyroll","CHRONOS RULER","http://www.crunchyroll.com/chronos-ruler",34565
 "Crunchyroll","Chu-Bra","http://www.crunchyroll.com/chu-bra",6645
+"Crunchyroll","citrus","http://www.crunchyroll.com/citrus",34382
 "Crunchyroll","ClassicaLoid","http://www.crunchyroll.com/classicaloid",31157
 "Crunchyroll","Classroom of the Elite","http://www.crunchyroll.com/classroom-of-the-elite",35507
 "Crunchyroll","Classroom☆Crisis","http://www.crunchyroll.com/classroomcrisis",30383
@@ -521,6 +448,7 @@
 "Crunchyroll","D.Gray-man","http://www.crunchyroll.com/dgray-man",32370
 "Crunchyroll","Da Capo III","http://www.crunchyroll.com/da-capo-iii",14827
 "Crunchyroll","Daily Lives of High School Boys","http://www.crunchyroll.com/daily-lives-of-high-school-boys",11843
+"Crunchyroll","DAIMIDALER: PRINCE VS. PENGUIN EMPIRE","http://www.crunchyroll.com/daimidaler-prince-vs-penguin-empire",21809
 "Crunchyroll","Dai-Shogun - Great Revolution","http://www.crunchyroll.com/dai-shogun-great-revolution",21821
 "Crunchyroll","Dallos","http://www.crunchyroll.com/dallos",3060
 "Crunchyroll","Danchigai","http://www.crunchyroll.com/danchigai",30127
@@ -534,12 +462,14 @@
 "Crunchyroll","Deadman Wonderland","http://www.crunchyroll.com/deadman-wonderland",6880
 "Crunchyroll","DearS","http://www.crunchyroll.com/dears",63
 "Crunchyroll","DearS","http://www.crunchyroll.com/dears",1817
+"Crunchyroll","Death March to the Parallel World Rhapsody","http://www.crunchyroll.com/death-march-to-the-parallel-world-rhapsody",34497
 "Crunchyroll","Death Parade","http://www.crunchyroll.com/death-parade",28223
 "Crunchyroll","Deltora Quest","http://www.crunchyroll.com/deltora-quest",1826
 "Crunchyroll","DEMIAN","http://www.crunchyroll.com/demian",n/a
 "Crunchyroll","Demon King Daimao","http://www.crunchyroll.com/demon-king-daimao",7088
 "Crunchyroll","Demonbane","http://www.crunchyroll.com/demonbane",1067
 "Crunchyroll","DENKI-GAI","http://www.crunchyroll.com/denki-gai",24031
+"Crunchyroll","Desert Punk","http://www.crunchyroll.com/desert-punk",25
 "Crunchyroll","Devil May Cry","http://www.crunchyroll.com/devil-may-cry",1726
 "Crunchyroll","DEVIL SURVIVOR 2 THE ANIMATION","http://www.crunchyroll.com/devil-survivor-2-the-animation",16512
 "Crunchyroll","D-Frag!","http://www.crunchyroll.com/d-frag",20031
@@ -684,7 +614,6 @@
 "Crunchyroll","Girlish number","http://www.crunchyroll.com/girlish-number",32607
 "Crunchyroll","Girls Bravo","http://www.crunchyroll.com/girls-bravo",241
 "Crunchyroll","Girls Bravo","http://www.crunchyroll.com/girls-bravo",487
-"Crunchyroll","Girl's High","http://www.crunchyroll.com/girls-high",863
 "Crunchyroll","GIRLS und PANZER","http://www.crunchyroll.com/girls-und-panzer",14131
 "Crunchyroll","GJ CLUB","http://www.crunchyroll.com/gj-club",14811
 "Crunchyroll","Glass Mask","http://www.crunchyroll.com/glass-mask",1974
@@ -710,6 +639,7 @@
 "Crunchyroll","Gunslinger Girl","http://www.crunchyroll.com/gunslinger-girl",3231
 "Crunchyroll","Gunslinger Stratos","http://www.crunchyroll.com/gunslinger-stratos",28791
 "Crunchyroll","Gurren Lagann","http://www.crunchyroll.com/gurren-lagann",2001
+"Crunchyroll","Guyver: The Bioboosted Armor","http://www.crunchyroll.com/guyver-the-bioboosted-armor",1374
 "Crunchyroll","H2O: Footprints in the Sand","http://www.crunchyroll.com/h2o-footprints-in-the-sand",3299
 "Crunchyroll","Hackadoll the Animation","http://www.crunchyroll.com/hackadoll-the-animation",30721
 "Crunchyroll","Hagane Orchestra","http://www.crunchyroll.com/hagane-orchestra",34013
@@ -718,10 +648,12 @@
 "Crunchyroll","Haikyu!!","http://www.crunchyroll.com/haikyu",28891
 "Crunchyroll","Haikyu!!","http://www.crunchyroll.com/haikyu",32935
 "Crunchyroll","Hajime No Ippo: The Fighting!","http://www.crunchyroll.com/hajime-no-ippo-the-fighting",19647
+"Crunchyroll","Hakata Tonkotsu Ramens","http://www.crunchyroll.com/hakata-tonkotsu-ramens",35889
 "Crunchyroll","Hakkenden: Eight Dogs of the East","http://www.crunchyroll.com/hakkenden-eight-dogs-of-the-east",15613
 "Crunchyroll","Hakone-chan","http://www.crunchyroll.com/hakone-chan",31143
 "Crunchyroll","Hakuoki Reimeiroku","http://www.crunchyroll.com/hakuoki-reimeiroku",13115
 "Crunchyroll","Hakuoki Season 1","http://www.crunchyroll.com/hakuoki-season-1",6895
+"Crunchyroll","HAKYU HOSHIN ENGI","http://www.crunchyroll.com/hakyu-hoshin-engi",36029
 "Crunchyroll","HAL","http://www.crunchyroll.com/hal",16528
 "Crunchyroll","Hamatora","http://www.crunchyroll.com/hamatora",20689
 "Crunchyroll","Hamatora","http://www.crunchyroll.com/hamatora",23421
@@ -758,12 +690,14 @@
 "Crunchyroll","Hina Logic - from Luck & Logic","http://www.crunchyroll.com/hina-logic-from-luck-logic",34834
 "Crunchyroll","Hinako Note","http://www.crunchyroll.com/hinako-note",33948
 "Crunchyroll","Hi-sCool! Seha Girls","http://www.crunchyroll.com/hi-scool-seha-girls",23787
-"Crunchyroll","hitorinoshita - The Outcast","http://www.crunchyroll.com/hitorinoshita-the-outcast",33421
+"Crunchyroll","Hitori No Shita - The Outcast","http://www.crunchyroll.com/hitori-no-shita-the-outcast",33421
+"Crunchyroll","Hitori No Shita - The Outcast","http://www.crunchyroll.com/hitori-no-shita-the-outcast",35333
 "Crunchyroll","Holy Knight","http://www.crunchyroll.com/holy-knight",11005
 "Crunchyroll","Horizon in the Middle of Nowhere","http://www.crunchyroll.com/horizon-in-the-middle-of-nowhere",10456
 "Crunchyroll","Horizon in the Middle of Nowhere","http://www.crunchyroll.com/horizon-in-the-middle-of-nowhere",12487
 "Crunchyroll","Horror News","http://www.crunchyroll.com/horror-news",n/a
 "Crunchyroll","Hourou Musuko Wandering Son","http://www.crunchyroll.com/hourou-musuko-wandering-son",8426
+"Crunchyroll","How to Keep a Mummy","http://www.crunchyroll.com/how-to-keep-a-mummy",35828
 "Crunchyroll","Hozuki no Reitetsu","http://www.crunchyroll.com/hozuki-no-reitetsu",20431
 "Crunchyroll","Humanity Has Declined","http://www.crunchyroll.com/humanity-has-declined",10357
 "Crunchyroll","Hundred","http://www.crunchyroll.com/hundred",31338
@@ -814,6 +748,7 @@
 "Crunchyroll","Jubei-chan: The Ninja Girl","http://www.crunchyroll.com/jubei-chan-the-ninja-girl",635
 "Crunchyroll","Jungle Emperor Leo","http://www.crunchyroll.com/jungle-emperor-leo",2264
 "Crunchyroll","JUNI TAISEN：ZODIAC WAR","http://www.crunchyroll.com/juni-taisenzodiac-war",35076
+"Crunchyroll","Junji Ito Collection","http://www.crunchyroll.com/junji-ito-collection",36124
 "Crunchyroll","Junjo Romantica","http://www.crunchyroll.com/junjo-romantica",3092
 "Crunchyroll","Junjo Romantica","http://www.crunchyroll.com/junjo-romantica",4814
 "Crunchyroll","Junjo Romantica 3","http://www.crunchyroll.com/junjo-romantica-3",25649
@@ -833,8 +768,11 @@
 "Crunchyroll","KanColle","http://www.crunchyroll.com/kancolle",21511
 "Crunchyroll","Kanojo ga Flag wo Oraretara (If Her Flag Breaks)","http://www.crunchyroll.com/kanojo-ga-flag-wo-oraretara-if-her-flag-breaks",19685
 "Crunchyroll","Kanokon","http://www.crunchyroll.com/kanokon",3503
+"Crunchyroll","KARAKAI JOZU NO TAKAGI-SAN","http://www.crunchyroll.com/karakai-jozu-no-takagi-san",35860
 "Crunchyroll","Karneval","http://www.crunchyroll.com/karneval",16035
+"Crunchyroll","Katana Maidens ~ Toji No Miko","http://www.crunchyroll.com/katana-maidens-toji-no-miko",35589
 "Crunchyroll","Katsugeki TOUKEN RANBU","http://www.crunchyroll.com/katsugeki-touken-ranbu",33018
+"Crunchyroll","Kaze No Stigma","http://www.crunchyroll.com/kaze-no-stigma",1691
 "Crunchyroll","Keijo!!!!!!!!","http://www.crunchyroll.com/keijo",32686
 "Crunchyroll","Kemeko DX","http://www.crunchyroll.com/kemeko-dx",3464
 "Crunchyroll","Kemono Friends","http://www.crunchyroll.com/kemono-friends",33089
@@ -881,6 +819,7 @@
 "Crunchyroll","La storia della Arcana Famiglia","http://www.crunchyroll.com/la-storia-della-arcana-famiglia",12967
 "Crunchyroll","Ladies Versus Butlers","http://www.crunchyroll.com/ladies-versus-butlers",7148
 "Crunchyroll","Lady Death","http://www.crunchyroll.com/lady-death",n/a
+"Crunchyroll","Laid-Back Camp","http://www.crunchyroll.com/laid-back-camp",34798
 "Crunchyroll","Lance N' Masques","http://www.crunchyroll.com/lance-n-masques",24011
 "Crunchyroll","Last Exile","http://www.crunchyroll.com/last-exile",97
 "Crunchyroll","Laughing Under the Clouds","http://www.crunchyroll.com/laughing-under-the-clouds",21743
@@ -921,6 +860,7 @@
 "Crunchyroll","Lupin the Third Part 2","http://www.crunchyroll.com/lupin-the-third-part-2",1425
 "Crunchyroll","Lupin the Third Part 3","http://www.crunchyroll.com/lupin-the-third-part-3",1426
 "Crunchyroll","Lychee Light Club","http://www.crunchyroll.com/lychee-light-club",15045
+"Crunchyroll","Maerchen Maedchen","http://www.crunchyroll.com/maerchen-maedchen",35997
 "Crunchyroll","Magi","http://www.crunchyroll.com/magi",14513
 "Crunchyroll","Magi","http://www.crunchyroll.com/magi",18115
 "Crunchyroll","Magic Kaito 1412","http://www.crunchyroll.com/magic-kaito-1412",25517
@@ -975,6 +915,7 @@
 "Crunchyroll","Miss Kobayashi's Dragon Maid","http://www.crunchyroll.com/miss-kobayashis-dragon-maid",33206
 "Crunchyroll","Miss Machiko","http://www.crunchyroll.com/miss-machiko",3391
 "Crunchyroll","Miss Monochrome - The Animation","http://www.crunchyroll.com/miss-monochrome-the-animation",20033
+"Crunchyroll","Mitchiri Neko","http://www.crunchyroll.com/mitchiri-neko",36982
 "Crunchyroll","Mitsudomoe","http://www.crunchyroll.com/mitsudomoe",7627
 "Crunchyroll","Mitsudomoe","http://www.crunchyroll.com/mitsudomoe",9510
 "Crunchyroll","Mizu no Kotoba","http://www.crunchyroll.com/mizu-no-kotoba",2235
@@ -1004,6 +945,7 @@
 "Crunchyroll","Moyashimon","http://www.crunchyroll.com/moyashimon",3001
 "Crunchyroll","Moyashimon","http://www.crunchyroll.com/moyashimon",13409
 "Crunchyroll","Mr. Osomatsu","http://www.crunchyroll.com/mr-osomatsu",31174
+"Crunchyroll","Ms. Koizumi Loves Ramen Noodles","http://www.crunchyroll.com/ms-koizumi-loves-ramen-noodles",35298
 "Crunchyroll","Muromi-san","http://www.crunchyroll.com/muromi-san",16910
 "Crunchyroll","Mushibugyo","http://www.crunchyroll.com/mushibugyo",17505
 "Crunchyroll","MUSHI-SHI","http://www.crunchyroll.com/mushi-shi",21939
@@ -1133,6 +1075,7 @@
 "Crunchyroll","Please Twins!","http://www.crunchyroll.com/please-twins",524
 "Crunchyroll","Poco's Udon World","http://www.crunchyroll.com/pocos-udon-world",32673
 "Crunchyroll","Polar Bear Cafe","http://www.crunchyroll.com/polar-bear-cafe",12815
+"Crunchyroll","Pop Team Epic","http://www.crunchyroll.com/pop-team-epic",35330
 "Crunchyroll","Poyopoyo","http://www.crunchyroll.com/poyopoyo",12021
 "Crunchyroll","Pretear","http://www.crunchyroll.com/pretear",100
 "Crunchyroll","Pretty Cure","http://www.crunchyroll.com/pretty-cure",603
@@ -1142,6 +1085,8 @@
 "Crunchyroll","Problem Children are Coming from Another World, aren't they?","http://www.crunchyroll.com/problem-children-are-coming-from-another-world-arent-they",15315
 "Crunchyroll","Project Blue Earth SOS","http://www.crunchyroll.com/project-blue-earth-sos",1247
 "Crunchyroll","PSYCHO-PASS","http://www.crunchyroll.com/psycho-pass",13601
+"Crunchyroll","PUCHIM@S","http://www.crunchyroll.com/puchims",15649
+"Crunchyroll","PUCHIM@S","http://www.crunchyroll.com/puchims",21073
 "Crunchyroll","Puella Magi Madoka Magica","http://www.crunchyroll.com/puella-magi-madoka-magica",9756
 "Crunchyroll","Pumpkin Scissors","http://www.crunchyroll.com/pumpkin-scissors",1538
 "Crunchyroll","PUNCH LINE","http://www.crunchyroll.com/punch-line",28617
@@ -1161,6 +1106,7 @@
 "Crunchyroll","Re:ZERO -Starting Life in Another World- Shorts","http://www.crunchyroll.com/rezero-starting-life-in-another-world-shorts",33569
 "Crunchyroll","REBORN!","http://www.crunchyroll.com/reborn",1604
 "Crunchyroll","Recently, My Sister is Unusual","http://www.crunchyroll.com/recently-my-sister-is-unusual",17777
+"Crunchyroll","Record of Grancrest War","http://www.crunchyroll.com/record-of-grancrest-war",34279
 "Crunchyroll","Recorder and Randsell","http://www.crunchyroll.com/recorder-and-randsell",11491
 "Crunchyroll","Recorder and Randsell","http://www.crunchyroll.com/recorder-and-randsell",13377
 "Crunchyroll","Recovery of an MMO Junkie","http://www.crunchyroll.com/recovery-of-an-mmo-junkie",36038
@@ -1219,9 +1165,11 @@
 "Crunchyroll","Samurai Troopers","http://www.crunchyroll.com/samurai-troopers",1264
 "Crunchyroll","Samurai Warriors","http://www.crunchyroll.com/samurai-warriors",28283
 "Crunchyroll","Sands of Destruction","http://www.crunchyroll.com/sands-of-destruction",4415
+"Crunchyroll","Sanrio Boys","http://www.crunchyroll.com/sanrio-boys",34839
 "Crunchyroll","Sasami Magical Girls Club","http://www.crunchyroll.com/sasami-magical-girls-club",1881
 "Crunchyroll","Sasami Magical Girls Club","http://www.crunchyroll.com/sasami-magical-girls-club",1882
 "Crunchyroll","Say ""I love you""","http://www.crunchyroll.com/say-i-love-you",14289
+"Crunchyroll","School Babysitters","http://www.crunchyroll.com/school-babysitters",35222
 "Crunchyroll","School Days","http://www.crunchyroll.com/school-days",2476
 "Crunchyroll","Schoolgirl Strikers","http://www.crunchyroll.com/schoolgirl-strikers",34289
 "Crunchyroll","SCHOOL-LIVE!","http://www.crunchyroll.com/school-live",24765
@@ -1281,6 +1229,7 @@
 "Crunchyroll","Sky Wizards Academy","http://www.crunchyroll.com/sky-wizards-academy",25283
 "Crunchyroll","Slam Dunk","http://www.crunchyroll.com/slam-dunk",170
 "Crunchyroll","Slam Dunk (Dub)","http://www.crunchyroll.com/slam-dunk-dub",170
+"Crunchyroll","Slow Start","http://www.crunchyroll.com/slow-start",35540
 "Crunchyroll","So, I Can't Play H!","http://www.crunchyroll.com/so-i-cant-play-h",12549
 "Crunchyroll","Solty Rei","http://www.crunchyroll.com/solty-rei",152
 "Crunchyroll","Solty Rei","http://www.crunchyroll.com/solty-rei",3138
@@ -1351,6 +1300,8 @@
 "Crunchyroll","Tenchi Muyo! Ryo-Ohki","http://www.crunchyroll.com/tenchi-muyo-ryo-ohki",541
 "Crunchyroll","Tenchi Muyo! Ryo-Ohki","http://www.crunchyroll.com/tenchi-muyo-ryo-ohki",1147
 "Crunchyroll","Tenchi Muyo! Tenchi in Tokyo","http://www.crunchyroll.com/tenchi-muyo-tenchi-in-tokyo",538
+"Crunchyroll","Tenchi Muyo! Tenchi Universe","http://www.crunchyroll.com/tenchi-muyo-tenchi-universe",696
+"Crunchyroll","Tenchi Muyo! War on Geminar","http://www.crunchyroll.com/tenchi-muyo-war-on-geminar",5781
 "Crunchyroll","Tenjho Tenge","http://www.crunchyroll.com/tenjho-tenge",174
 "Crunchyroll","Tenjho Tenge","http://www.crunchyroll.com/tenjho-tenge",448
 "Crunchyroll","TERRAFORMARS","http://www.crunchyroll.com/terraformars",22687
@@ -1408,6 +1359,7 @@
 "Crunchyroll","The Rolling Girls","http://www.crunchyroll.com/the-rolling-girls",25867
 "Crunchyroll","The Rose of Versailles","http://www.crunchyroll.com/the-rose-of-versailles",338
 "Crunchyroll","The Royal Tutor","http://www.crunchyroll.com/the-royal-tutor",34262
+"Crunchyroll","The Ryuo's Work is Never Done!","http://www.crunchyroll.com/the-ryuos-work-is-never-done",35905
 "Crunchyroll","The Severing Crime Edge","http://www.crunchyroll.com/the-severing-crime-edge",16355
 "Crunchyroll","The Silver Guardian","http://www.crunchyroll.com/the-silver-guardian",32936
 "Crunchyroll","The Slayers Revolution","http://www.crunchyroll.com/the-slayers-revolution",4028
@@ -1521,6 +1473,7 @@
 "Crunchyroll","Wooser’s Hand-to-Mouth Life: Phantasmagoric Arc","http://www.crunchyroll.com/woosers-hand-to-mouth-life-phantasmagoric-arc",29017
 "Crunchyroll","Wooser's Hand-to-Mouth Life","http://www.crunchyroll.com/woosers-hand-to-mouth-life",15313
 "Crunchyroll","Wooser's Hand-to-Mouth Life","http://www.crunchyroll.com/woosers-hand-to-mouth-life",20267
+"Crunchyroll","Working Buddies!","http://www.crunchyroll.com/working-buddies",36784
 "Crunchyroll","World Break: Aria of Curse for a Holy Swordsman","http://www.crunchyroll.com/world-break-aria-of-curse-for-a-holy-swordsman",22663
 "Crunchyroll","World Conquest Zvezda Plot","http://www.crunchyroll.com/world-conquest-zvezda-plot",20973
 "Crunchyroll","World Fool News","http://www.crunchyroll.com/world-fool-news",18205
@@ -1600,12 +1553,10 @@
 "Funimation","Ai Yori Aoshi","https://www.funimation.com/shows/ai-yori-aoshi/",394
 "Funimation","Air Gear","https://www.funimation.com/shows/air-gear/",857
 "Funimation","Akashic Records of Bastard Magic Instructor","https://www.funimation.com/shows/akashic-records-of-bastard-magic-instructor/",32951
-"Funimation","Akiba's Trip The Animation","https://www.funimation.com/shows/akibas-trip-the-animation/",34051
 "Funimation","Akira","https://www.funimation.com/shows/akira/",47
 "Funimation","Alderamin on the Sky","https://www.funimation.com/shows/alderamin-on-the-sky/",31764
 "Funimation","Alice & Zoroku","https://www.funimation.com/shows/alice-zoroku/",34350
 "Funimation","Alien vs Ninja","https://www.funimation.com/shows/alien-vs-ninja/",n/a
-"Funimation","ALL OUT!!","https://www.funimation.com/shows/all-out/",31588
 "Funimation","And you thought there is never a girl online?","https://www.funimation.com/shows/and-you-thought-there-is-never-a-girl-online/",31404
 "Funimation","Anime Expo","https://www.funimation.com/shows/anime-expo/",n/a
 "Funimation","Appleseed XIII","https://www.funimation.com/shows/appleseed-xiii/",9737
@@ -1650,7 +1601,8 @@
 "Funimation","Black Lagoon","https://www.funimation.com/shows/black-lagoon/",4901
 "Funimation","Blassreiter","https://www.funimation.com/shows/blassreiter/",3407
 "Funimation","BlazBlue: Alter Memory","https://www.funimation.com/shows/blazblue-alter-memory/",18767
-"Funimation","Blessing of the Campanella","https://www.funimation.com/shows/blessing-of-the-campanella/",6979
+"Funimation","Blood Blockade Battlefront","https://www.funimation.com/shows/blood-blockade-battlefront/",24439
+"Funimation","Blood Blockade Battlefront","https://www.funimation.com/shows/blood-blockade-battlefront/",34451
 "Funimation","BLOOD-C","https://www.funimation.com/shows/blood-c/",10490
 "Funimation","BLOOD-C","https://www.funimation.com/shows/blood-c/",10681
 "Funimation","Brave Witches","https://www.funimation.com/shows/brave-witches/",32866
@@ -1686,6 +1638,7 @@
 "Funimation","Code Geass - Akito the Exiled","https://www.funimation.com/shows/code-geass-akito-the-exiled/",15201
 "Funimation","Code Geass - Akito the Exiled","https://www.funimation.com/shows/code-geass-akito-the-exiled/",30711
 "Funimation","Code:Breaker","https://www.funimation.com/shows/codebreaker/",11703
+"Funimation","Code:Realize ~Guardian of Rebirth~","https://www.funimation.com/shows/coderealize-guardian-of-rebirth/",31456
 "Funimation","Concrete Revolutio","https://www.funimation.com/shows/concrete-revolutio/",31147
 "Funimation","Confucius","https://www.funimation.com/shows/confucius/",n/a
 "Funimation","Convenience Store Boy Friends","https://www.funimation.com/shows/convenience-store-boy-friends/",35434
@@ -1713,6 +1666,8 @@
 "Funimation","Desert Punk","https://www.funimation.com/shows/desert-punk/",25
 "Funimation","Devil May Cry","https://www.funimation.com/shows/devil-may-cry/",1726
 "Funimation","D-Frag!","https://www.funimation.com/shows/d-frag/",20031
+"Funimation","Dies Irae","https://www.funimation.com/shows/dies-irae/",36524
+"Funimation","Dies Irae","https://www.funimation.com/shows/dies-irae/",32271
 "Funimation","Dimension W","https://www.funimation.com/shows/dimension-w/",31163
 "Funimation","Disgaea","https://www.funimation.com/shows/disgaea/",860
 "Funimation","Divine Gate","https://www.funimation.com/shows/divine-gate/",31710
@@ -1859,6 +1814,7 @@
 "Funimation","JINSEI - Life Consulting","https://www.funimation.com/shows/jinsei-life-consulting/",23121
 "Funimation","Joker Game","https://www.funimation.com/shows/joker-game/",31405
 "Funimation","Jormungand","https://www.funimation.com/shows/jormungand/",12413
+"Funimation","JUNI TAISEN: ZODIAC WAR","https://www.funimation.com/shows/juni-taisen-zodiac-war/",35076
 "Funimation","Jyu-Oh-Sei","https://www.funimation.com/shows/jyu-oh-sei/",953
 "Funimation","KADO: The Right Answer","https://www.funimation.com/shows/kado-the-right-answer/",32032
 "Funimation","KADO: The Right Answer","https://www.funimation.com/shows/kado-the-right-answer/",35369
@@ -1876,6 +1832,7 @@
 "Funimation","King of Thorn","https://www.funimation.com/shows/king-of-thorn/",6610
 "Funimation","Kingdom","https://www.funimation.com/shows/kingdom/",12031
 "Funimation","Kingdom","https://www.funimation.com/shows/kingdom/",17389
+"Funimation","Kino's Journey -the Beautiful World- the Animated Series","https://www.funimation.com/shows/kinos-journey-the-beautiful-world-the-animated-series/",35079
 "Funimation","Kiss Him, Not Me","https://www.funimation.com/shows/kiss-him-not-me/",32899
 "Funimation","Knight's & Magic","https://www.funimation.com/shows/knights-magic/",34104
 "Funimation","Koro Sensei Quest!","https://www.funimation.com/shows/koro-sensei-quest/",34389
@@ -1909,7 +1866,6 @@
 "Funimation","Mobile Suit Gundam: Iron-Blooded Orphans","https://www.funimation.com/shows/mobile-suit-gundam-iron-blooded-orphans/",33051
 "Funimation","Moeyo Ken","https://www.funimation.com/shows/moeyo-ken/",511
 "Funimation","Mongolian Chop Squad","https://www.funimation.com/shows/mongolian-chop-squad/",57
-"Funimation","Monster Hunter Stories Ride On","https://www.funimation.com/shows/monster-hunter-stories-ride-on/",31631
 "Funimation","MoonPhase","https://www.funimation.com/shows/moonphase/",343
 "Funimation","Mulan: Rise of a Warrior","https://www.funimation.com/shows/mulan-rise-of-a-warrior/",n/a
 "Funimation","Murder Princess","https://www.funimation.com/shows/murder-princess/",1696
@@ -1972,6 +1928,8 @@
 "Funimation","Rainy Cocoa","https://www.funimation.com/shows/rainy-cocoa/",28981
 "Funimation","Rainy Cocoa","https://www.funimation.com/shows/rainy-cocoa/",31139
 "Funimation","Rampo Kitan: Game of Laplace","https://www.funimation.com/shows/rampo-kitan-game-of-laplace/",28619
+"Funimation","Recovery of an MMO Junkie","https://www.funimation.com/shows/recovery-of-an-mmo-junkie/",36038
+"Funimation","Recovery of an MMO Junkie","https://www.funimation.com/shows/recovery-of-an-mmo-junkie/",36043
 "Funimation","Red Data Girl","https://www.funimation.com/shows/red-data-girl/",14921
 "Funimation","Red Garden","https://www.funimation.com/shows/red-garden/",1601
 "Funimation","Red Garden","https://www.funimation.com/shows/red-garden/",2267
@@ -2134,7 +2092,6 @@
 "Funimation","Tokyo Majin","https://www.funimation.com/shows/tokyo-majin/",2683
 "Funimation","Tokyo Ravens","https://www.funimation.com/shows/tokyo-ravens/",16011
 "Funimation","Toriko","https://www.funimation.com/shows/toriko/",10033
-"Funimation","Touken Ranbu Hanamaru","https://www.funimation.com/shows/touken-ranbu-hanamaru/",33023
 "Funimation","Tower of Druaga","https://www.funimation.com/shows/tower-of-druaga/",3230
 "Funimation","Tower of Druaga","https://www.funimation.com/shows/tower-of-druaga/",4726
 "Funimation","Trickster","https://www.funimation.com/shows/trickster/",33377
@@ -2151,6 +2108,7 @@
 "Funimation","UFO Ultramaiden Valkyrie","https://www.funimation.com/shows/ufo-ultramaiden-valkyrie/",1648
 "Funimation","Ultimate Otaku Teacher","https://www.funimation.com/shows/ultimate-otaku-teacher/",29589
 "Funimation","Unbreakable Machine-Doll","https://www.funimation.com/shows/unbreakable-machine-doll/",17247
+"Funimation","URAHARA","https://www.funimation.com/shows/urahara/",35250
 "Funimation","Utawarerumono","https://www.funimation.com/shows/utawarerumono/",856
 "Funimation","Valkyrie Drive -Mermaid-","https://www.funimation.com/shows/valkyrie-drive-mermaid-/",30385
 "Funimation","Vampire Girl vs Frankenstein Girl","https://www.funimation.com/shows/vampire-girl-vs-frankenstein-girl/",n/a
@@ -2199,6 +2157,7 @@
 "Hidive","Aoharu x Machinegun OVA","https://www.hidive.com/stream/aoharu-x-machinegun-ova/2015122513",31754
 "Hidive","Arch Angels","https://www.hidive.com/stream/arch-angels/2006071501",n/a
 "Hidive","Argevollen","https://www.hidive.com/stream/argevollen/s01e001",23325
+"Hidive","Armed Girl's Machivellism","https://www.hidive.com/stream/armed-girls-machivellism/s01e001",33475
 "Hidive","Atelier Escha & Logy ~Alchemists of the Dusk Sky~","https://www.hidive.com/stream/atelier-escha-logy-alchemists-of-the-dusk-sky/s01e001",21167
 "Hidive","Aura","https://www.hidive.com/stream/aura/2012041301",14669
 "Hidive","Azumanga Daioh","https://www.hidive.com/stream/azumanga-daioh/s01e001",66
@@ -2257,13 +2216,14 @@
 "Hidive","Coicent","https://www.hidive.com/stream/coicent/2011022501",9333
 "Hidive","Colorful","https://www.hidive.com/stream/colorful/1999090601",841
 "Hidive","Comet Lucifer","https://www.hidive.com/stream/comet-lucifer/s01e001",31318
-"Hidive","Cool Dimsension","https://www.hidive.com/stream/cool-dimsension/2006101401",n/a
+"Hidive","Cool Dimension","https://www.hidive.com/stream/cool-dimension/2006101401",n/a
 "Hidive","Corpse Party","https://www.hidive.com/stream/corpse-party/2013072401",15037
 "Hidive","Corpse Party ""Live Action"" - PG12 Version","https://www.hidive.com/stream/corpse-party-live-action-pg12-version/2015080101",n/a
 "Hidive","Croisée in a Foreign Labyrinth","https://www.hidive.com/stream/croisee-in-a-foreign-labyrinth/s01e001",9938
 "Hidive","Cross Ange: Rondo of Angels and Dragons","https://www.hidive.com/stream/cross-ange-rondo-of-angels-and-dragons/s01e001",25731
 "Hidive","Cuticle Detective Inaba","https://www.hidive.com/stream/cuticle-detective-inaba/s01e001",15109
 "Hidive","Dai Shogun","https://www.hidive.com/stream/dai-shogun/s01e001",21821
+"Hidive","DAMEPRI ANIME CARAVAN","https://www.hidive.com/stream/damepri-anime-caravan/s01e001",35988
 "Hidive","Daphne in the Brilliant Blue","https://www.hidive.com/stream/daphne-in-the-brilliant-blue/s01e001",1082
 "Hidive","Daphne in the Brilliant Blue OVA","https://www.hidive.com/stream/daphne-in-the-brilliant-blue-ova/2006102225",1898
 "Hidive","DD, Fist of the North Star","https://www.hidive.com/stream/dd-fist-of-the-north-star/s01e001",17705
@@ -2344,6 +2304,7 @@
 "Hidive","Haikyu!! 3rd Season","https://www.hidive.com/stream/haikyu-3rd-season/s03e001",32935
 "Hidive","Hakkenden: Eight Dogs of the East","https://www.hidive.com/stream/hakkenden-eight-dogs-of-the-east/s01e001",15613
 "Hidive","Hakkenden: Eight Dogs of the East Season 2","https://www.hidive.com/stream/hakkenden-eight-dogs-of-the-east-season-2/s02e001",18055
+"Hidive","Hakumei and Mikochi","https://www.hidive.com/stream/hakumei-and-mikochi/s01e001",36094
 "Hidive","Hakuoki - Theatrical Version, Chapter 1: Wild Dance of Kyoto","https://www.hidive.com/stream/hakuoki-theatrical-version-chapter-1-wild-dance-of-kyoto/2013082401",13117
 "Hidive","Hakuoki - Theatrical Version, Chapter 2: Warrior Spirit of the Blue Sky","https://www.hidive.com/stream/hakuoki-theatrical-version-chapter-2-warrior-spirit-of-the-blue-sky/2014030801",13119
 "Hidive","Hakuoki ~Demon of the Fleeting Blossom~ A Memory of Snow Flowers","https://www.hidive.com/stream/hakuoki-demon-of-the-fleeting-blossom-a-memory-of-snow-flowers/2011080501",10350
@@ -2467,9 +2428,11 @@
 "Hidive","Medaka Box","https://www.hidive.com/stream/medaka-box/s01e001",11761
 "Hidive","Medaka Box Abnormal","https://www.hidive.com/stream/medaka-box-abnormal/s02e001",14527
 "Hidive","Meganebu!","https://www.hidive.com/stream/meganebu/s01e001",19257
+"Hidive","Mitsuboshi Colors","https://www.hidive.com/stream/mitsuboshi-colors/s01e001",35078
 "Hidive","MM!","https://www.hidive.com/stream/mm/s01e001",8424
 "Hidive","Modern Magic Made Simple","https://www.hidive.com/stream/modern-magic-made-simple/s01e001",5454
 "Hidive","Modern Magic Made Simple OVA","https://www.hidive.com/stream/modern-magic-made-simple-ova/2009061400",6748
+"Hidive","Momo, The Girl God of Death","https://www.hidive.com/stream/momo-the-girl-god-of-death/s01e001",789
 "Hidive","Momokuri","https://www.hidive.com/stream/momokuri/s01e001",30014
 "Hidive","Momokyun Sword","https://www.hidive.com/stream/momokyun-sword/s01e001",22225
 "Hidive","MONSTER MUSUME Everyday Life with Monster Girls","https://www.hidive.com/stream/monster-musume-everyday-life-with-monster-girls/s01e001",30307
@@ -2522,6 +2485,7 @@
 "Hidive","Place to Place OVA","https://www.hidive.com/stream/place-to-place-ova/2012111613",16273
 "Hidive","Planzet","https://www.hidive.com/stream/planzet/2010052201",8297
 "Hidive","Polyphonica","https://www.hidive.com/stream/polyphonica/s01e001",1727
+"Hidive","Pop Team Epic","https://www.hidive.com/stream/pop-team-epic/s01e001",35330
 "Hidive","Popotan","https://www.hidive.com/stream/popotan/s01e001",610
 "Hidive","Princess Resurrection","https://www.hidive.com/stream/princess-resurrection/s01e001",2130
 "Hidive","Princess Resurrection Special","https://www.hidive.com/stream/princess-resurrection-special/2008021426",4082
@@ -2547,8 +2511,10 @@
 "Hidive","Rozen Maiden ~ Zurückspulen","https://www.hidive.com/stream/rozen-maiden-zuruckspulen/s04e001",18041
 "Hidive","Rozen Maiden: Ouvertüre","https://www.hidive.com/stream/rozen-maiden-ouverture/2006122201",1719
 "Hidive","Rozen Maiden: Träumend","https://www.hidive.com/stream/rozen-maiden-traumend/s02e001",65
+"Hidive","Ruin Explorers","https://www.hidive.com/stream/ruin-explorers/1995062501",1181
 "Hidive","Rurouni Kenshin ~ New Kyoto Arc","https://www.hidive.com/stream/rurouni-kenshin-new-kyoto-arc/2011121701",11441
 "Hidive","Sabagebu! Survival Game Club","https://www.hidive.com/stream/sabagebu-survival-game-club/s01e001",20709
+"Hidive","Saiyuki","https://www.hidive.com/stream/saiyuki/s01e001",129
 "Hidive","Saiyuki Gaiden","https://www.hidive.com/stream/saiyuki-gaiden/2011032501",9088
 "Hidive","Sakura Trick","https://www.hidive.com/stream/sakura-trick/s01e001",20047
 "Hidive","Sakura Wars","https://www.hidive.com/stream/sakura-wars/s01e001",561
@@ -2590,6 +2556,7 @@
 "Hidive","Sunday Without God","https://www.hidive.com/stream/sunday-without-god/s01e001",16009
 "Hidive","Sunday Without God OVA","https://www.hidive.com/stream/sunday-without-god-ova/2014020513",20423
 "Hidive","Taisho Baseball Girls","https://www.hidive.com/stream/taisho-baseball-girls/s01e001",5141
+"Hidive","Takunomi","https://www.hidive.com/stream/takunomi/s01e001",36108
 "Hidive","Tamako Market","https://www.hidive.com/stream/tamako-market/s01e001",16417
 "Hidive","Tamako-love story-","https://www.hidive.com/stream/tamako-love-story-/2014042601",21647
 "Hidive","Tanaka-kun is Always Listless","https://www.hidive.com/stream/tanaka-kun-is-always-listless/s01e001",32093
@@ -2689,7 +2656,6 @@
 "Hidive","Yuyushiki","https://www.hidive.com/stream/yuyushiki/s01e001",15911
 "Hulu",".hack//Roots","http://www.hulu.com/hackroots",873
 "Hulu",".hack//SIGN","http://www.hulu.com/hacksign",48
-"Hulu","3 Little Pigs and the Magic Lamp","http://www.hulu.com/3-little-pigs-and-the-magic-lamp",n/a
 "Hulu","A Boy Named Charlie Brown","http://www.hulu.com/a-boy-named-charlie-brown",n/a
 "Hulu","A Certain Magical Index","http://www.hulu.com/a-certain-magical-index",4654
 "Hulu","A Certain Scientific Railgun","http://www.hulu.com/a-certain-scientific-railgun",6213
@@ -2728,6 +2694,8 @@
 "Hulu","Angelina Ballerina: The Magic of Dance","http://www.hulu.com/angelina-ballerina-the-magic-of-dance",n/a
 "Hulu","Angelina Ballerina: The Shining Star Trophy","http://www.hulu.com/angelina-ballerina-the-shining-star-trophy",n/a
 "Hulu","Angry Birds","http://www.hulu.com/angry-birds",n/a
+"Hulu","Animaniacs","http://www.hulu.com/animaniacs",n/a
+"Hulu","Animaniacs: Wakko’s Wish","http://www.hulu.com/animaniacs-wakkos-wish",n/a
 "Hulu","Animation Domination High-Def Shorts","http://www.hulu.com/animation-domination-high-def-shorts",n/a
 "Hulu","Anomalisa","http://www.hulu.com/anomalisa",n/a
 "Hulu","Another","http://www.hulu.com/another",11111
@@ -2761,6 +2729,7 @@
 "Hulu","Barney: Storytime with Barney","http://www.hulu.com/barney-storytime-with-barney",n/a
 "Hulu","Barnyard","http://www.hulu.com/barnyard",n/a
 "Hulu","Basilisk","http://www.hulu.com/basilisk",67
+"Hulu","Basilisk: The Ouka Ninja Scrolls","http://www.hulu.com/basilisk-the-ouka-ninja-scrolls",35964
 "Hulu","Beautiful Bones -Sakurako's Investigation-","http://www.hulu.com/beautiful-bones-sakurakos-investigation",30187
 "Hulu","Ben 10 (2005)","http://www.hulu.com/ben-10-2005",n/a
 "Hulu","Ben 10: Omniverse","http://www.hulu.com/ben-10-omniverse",n/a
@@ -2847,9 +2816,8 @@
 "Hulu","Camp Lakebottom","http://www.hulu.com/camp-lakebottom",n/a
 "Hulu","Campione","http://www.hulu.com/campione",12293
 "Hulu","Canciones Infantiles","http://www.hulu.com/canciones-infantiles",n/a
+"Hulu","Cardcaptor Sakura: Clear Card","http://www.hulu.com/cardcaptor-sakura-clear-card",33354
 "Hulu","Cardfight!! Vanguard","http://www.hulu.com/cardfight-vanguard",9539
-"Hulu","Care Bears: Friends Forever","http://www.hulu.com/care-bears-friends-forever",n/a
-"Hulu","Care Bears: Magical Adventures","http://www.hulu.com/care-bears-magical-adventures",n/a
 "Hulu","Chaika the Coffin Princess","http://www.hulu.com/chaika-the-coffin-princess",20853
 "Hulu","Chaos Dragon","http://www.hulu.com/chaos-dragon",30091
 "Hulu","Charlie & the Numbers","http://www.hulu.com/charlie-and-the-numbers",n/a
@@ -2871,6 +2839,7 @@
 "Hulu","Code: Breaker","http://www.hulu.com/code-breaker",11703
 "Hulu","Code: Realize ~ Guardian of Rebirth ~","http://www.hulu.com/code-realize",31456
 "Hulu","Comet Lucifer","http://www.hulu.com/comet-lucifer",31318
+"Hulu","Cool World","http://www.hulu.com/cool-world",n/a
 "Hulu","Coppelion","http://www.hulu.com/coppelion",9479
 "Hulu","Corpse Princess","http://www.hulu.com/corpse-princess",4581
 "Hulu","Corpse Princess","http://www.hulu.com/corpse-princess",5034
@@ -2880,7 +2849,6 @@
 "Hulu","Cross Ange: Rondo of Angels and Dragons","http://www.hulu.com/cross-ange-rondo-of-angels-and-dragons",25731
 "Hulu","Cuddlies","http://www.hulu.com/cuddlies",n/a
 "Hulu","Curious George","http://www.hulu.com/curious-george",n/a
-"Hulu","Curious George 2: Follow That Monkey!","http://www.hulu.com/curious-george-2-follow-that-monkey",n/a
 "Hulu","Curious George Swings Into Spring","http://www.hulu.com/curious-george-swings-into-spring",n/a
 "Hulu","Curious George: A Halloween Boo Fest","http://www.hulu.com/curious-george-a-halloween-boo-fest",n/a
 "Hulu","D. Gray-man HALLOW","http://www.hulu.com/dgrayman-hallow",32370
@@ -2960,7 +2928,6 @@
 "Hulu","Fist of the North Star (1984)","http://www.hulu.com/fist-of-the-north-star",1356
 "Hulu","FLCL","http://www.hulu.com/flcl",227
 "Hulu","Flip Flappers","http://www.hulu.com/flip-flappers",32979
-"Hulu","Fly Me To The Moon","http://www.hulu.com/fly-me-to-the-moon",n/a
 "Hulu","Food Wars!","http://www.hulu.com/food-wars",28171
 "Hulu","Frisky Dingo","http://www.hulu.com/frisky-dingo",n/a
 "Hulu","Frog Kingdom","http://www.hulu.com/frog-kingdom",n/a
@@ -3026,7 +2993,6 @@
 "Hulu","Haven't You Heard? I'm Sakamoto","http://www.hulu.com/havent-you-heard-im-sakamoto",33524
 "Hulu","Hayate the Combat Butler!","http://www.hulu.com/hayate-the-combat-butler",2026
 "Hulu","Heavy Object","http://www.hulu.com/heavy-object",27829
-"Hulu","Hellboy: The Dark Below","http://www.hulu.com/hellboy-the-dark-below",n/a
 "Hulu","Hello Kitty's Furry Tale Theater","http://www.hulu.com/hello-kittys-furry-tale-theater",4024
 "Hulu","Hellsing","http://www.hulu.com/hellsing",270
 "Hulu","Hellsing Ultimate","http://www.hulu.com/hellsing-ultimate",777
@@ -3221,6 +3187,8 @@
 "Hulu","Peter Pan Fairy Friendship - The New Adventures","http://www.hulu.com/peter-pan-fairy-friendship--the-new-adventures",n/a
 "Hulu","Phantasy Star Online 2: The Animation","http://www.hulu.com/phantasy-star-online-2-the-animation",31223
 "Hulu","Pink Panther Cartoons","http://www.hulu.com/pink-panther-cartoons",n/a
+"Hulu","Pinky & The Brain","http://www.hulu.com/pinky-and-the-brain",n/a
+"Hulu","Pinky, Elmyra & The Brain","http://www.hulu.com/pinky-elmyra--the-brain",n/a
 "Hulu","Place to Place","http://www.hulu.com/place-to-place",12291
 "Hulu","Planet Sheen","http://www.hulu.com/planet-sheen",n/a
 "Hulu","Plastic Memories","http://www.hulu.com/plastic-memories",27775
@@ -3246,6 +3214,7 @@
 "Hulu","Rage of Bahamut: Genesis","http://www.hulu.com/rage-of-bahamut-genesis",21843
 "Hulu","Ranma 1/2","http://www.hulu.com/ranma-12",210
 "Hulu","Reborn!","http://www.hulu.com/reborn",1604
+"Hulu","Record of Grancrest War","http://www.hulu.com/record-of-grancrest-war",34279
 "Hulu","Regular Show","http://www.hulu.com/regular-show",n/a
 "Hulu","Regular Show: The Movie","http://www.hulu.com/regular-show-the-movie",n/a
 "Hulu","Return to the Planet of the Apes","http://www.hulu.com/return-to-the-planet-of-the-apes",n/a
@@ -3256,7 +3225,7 @@
 "Hulu","Robot Chicken","http://www.hulu.com/robot-chicken",n/a
 "Hulu","Rosaline","http://www.hulu.com/rosaline",n/a
 "Hulu","Rosario + Vampire","http://www.hulu.com/rosario-vampire",2933
-"Hulu","Ruff Ruff, Tweet and Dave","http://www.hulu.com/ruff-ruff-tweet-and-dave",n/a
+"Hulu","Ruff-Ruff, Tweet and Dave","http://www.hulu.com/ruffruff-tweet-and-dave",n/a
 "Hulu","Rugrats","http://www.hulu.com/rugrats",n/a
 "Hulu","Rurouni Kenshin","http://www.hulu.com/rurouni-kenshin",45
 "Hulu","Sailor Moon","http://www.hulu.com/sailor-moon",530
@@ -3307,11 +3276,9 @@
 "Hulu","Soul Eater","http://www.hulu.com/soul-eater",3588
 "Hulu","Soul Eater Not!","http://www.hulu.com/soul-eater-not",21507
 "Hulu","South Park","http://www.hulu.com/south-park",n/a
-"Hulu","South Park: Bigger, Longer & Uncut","http://www.hulu.com/south-park-bigger-longer-and-uncut",n/a
 "Hulu","Space Brothers","http://www.hulu.com/space-brothers",12431
 "Hulu","Space Dandy","http://www.hulu.com/space-dandy",20057
 "Hulu","Space Dandy","http://www.hulu.com/space-dandy",23327
-"Hulu","Space Jam","http://www.hulu.com/space-jam",n/a
 "Hulu","Special A","http://www.hulu.com/special-a",3470
 "Hulu","Speed Racer","http://www.hulu.com/speed-racer",1445
 "Hulu","Spice and Wolf","http://www.hulu.com/spice-and-wolf",2966
@@ -3319,6 +3286,7 @@
 "Hulu","Squidbillies","http://www.hulu.com/squidbillies",n/a
 "Hulu","Star vs. The Forces of Evil","http://www.hulu.com/star-vs-the-forces-of-evil",n/a
 "Hulu","Steins;Gate","http://www.hulu.com/steinsgate",9253
+"Hulu","Steven Spielberg Presents: Tiny Toon Adventures","http://www.hulu.com/steven-spielberg-presents-tiny-toon-adventures",n/a
 "Hulu","Stick with Mick","http://www.hulu.com/stick-with-mick",n/a
 "Hulu","Stone Quackers","http://www.hulu.com/stone-quackers",n/a
 "Hulu","Street Fighter: The New Challengers","http://www.hulu.com/street-fighter-the-new-challengers",1362
@@ -3383,13 +3351,10 @@
 "Hulu","The Rescuers","http://www.hulu.com/the-rescuers",n/a
 "Hulu","The Sacred Blacksmith","http://www.hulu.com/the-sacred-blacksmith",5940
 "Hulu","The Simpsons","http://www.hulu.com/the-simpsons",n/a
-"Hulu","The Swan Princess","http://www.hulu.com/the-swan-princess",n/a
-"Hulu","The Swan Princess and the Secret of the Castle","http://www.hulu.com/the-swan-princess-and-the-secret-of-the-castle",n/a
 "Hulu","The Swan Princess Christmas","http://www.hulu.com/the-swan-princess-christmas",n/a
 "Hulu","The Swan Princess: The Mystery Of The Enchanted Treasure","http://www.hulu.com/the-swan-princess-the-mystery-of-the-enchanted-treasure",n/a
 "Hulu","The Sword in the Stone","http://www.hulu.com/the-sword-in-the-stone",n/a
 "Hulu","The Tayo Movie: Mission Ace","http://www.hulu.com/the-tayo-movie-mission-ace",n/a
-"Hulu","The Velveteen Rabbit","http://www.hulu.com/the-velveteen-rabbit",n/a
 "Hulu","The Venture Bros.","http://www.hulu.com/the-venture-bros",n/a
 "Hulu","The Wallflower","http://www.hulu.com/the-wallflower",1562
 "Hulu","The Wild","http://www.hulu.com/the-wild",n/a
@@ -3412,6 +3377,8 @@
 "Hulu","Thomas & Friends: Wobbly Wheels & Whistles","http://www.hulu.com/thomas--friends-wobbly-wheels--whistles",n/a
 "Hulu","Tiger & Bunny","http://www.hulu.com/tiger-and-bunny",9941
 "Hulu","Tiny Beats","http://www.hulu.com/tiny-beats",n/a
+"Hulu","Tiny Toon Adventures: How I Spent My Vacation","http://www.hulu.com/tiny-toon-adventures-how-i-spent-my-vacation",n/a
+"Hulu","Tiny Toons Spring Break Special","http://www.hulu.com/tiny-toons-spring-break-special",n/a
 "Hulu","To Love ru","http://www.hulu.com/to-loveru",3455
 "Hulu","To Love ru Darkness","http://www.hulu.com/to-loveru-darkness",13663
 "Hulu","To Love ru Darkness 2","http://www.hulu.com/to-loveru-darkness-2",28979
@@ -3468,7 +3435,6 @@
 "Hulu","World Break: Aria of Curse for a Holy Swordsman","http://www.hulu.com/world-break-aria-of-curse-for-a-holy-swordsman",22663
 "Hulu","World Trigger","http://www.hulu.com/world-trigger",24405
 "Hulu","xxxHolic","http://www.hulu.com/xxxholic",861
-"Hulu","Yellowbird","http://www.hulu.com/yellowbird",n/a
 "Hulu","Yes, Virginia","http://www.hulu.com/yes-virginia",n/a
 "Hulu","Yona of the Dawn","http://www.hulu.com/yona-of-the-dawn",25013
 "Hulu","Your Lie in April","http://www.hulu.com/your-lie-in-april",23273
@@ -3486,6 +3452,7 @@
 "Viewster","A Bridge to the Starry Skies","https://www.viewster.com/serie/1302-19421-000",10079
 "Viewster","Akaneiro ni Somaru Saka","https://www.viewster.com/serie/1302-19450-000",4744
 "Viewster","Akaneiro ni Somaru Saka","https://www.viewster.com/serie/1302-19450-000",5772
+"Viewster","Beelzebub - Part 1","https://www.viewster.com/serie/1313-19790-000",9513
 "Viewster","Blue Submarine No. 6","https://www.viewster.com/serie/1313-19722-000",1051
 "Viewster","Bokura ga Ita","https://www.viewster.com/serie/1302-19488-000",1222
 "Viewster","Bravoman","https://www.viewster.com/serie/1311-19471-000",n/a
@@ -3498,6 +3465,7 @@
 "Viewster","DNA²","https://www.viewster.com/serie/1313-19741-000",563
 "Viewster","DNA²","https://www.viewster.com/serie/1313-19741-000",1187
 "Viewster","Dragon Half","https://www.viewster.com/serie/1313-19719-000",870
+"Viewster","Fate/stay night","https://www.viewster.com/serie/1323-19617-000",356
 "Viewster","Flame of Recca","https://www.viewster.com/serie/1313-19729-000",238
 "Viewster","FLIP FLAPPERS","https://www.viewster.com/serie/1323-19736-000",n/a
 "Viewster","Food Wars","https://www.viewster.com/serie/1323-19774-000",28171
