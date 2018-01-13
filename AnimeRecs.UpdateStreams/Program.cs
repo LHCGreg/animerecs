@@ -152,7 +152,7 @@ namespace AnimeRecs.UpdateStreams
                         // Even if that is not the case, then only consider the ID at the end when matching URLs of streams
                         // to existing CSV rows.
 
-                        if (streamInfo.Service != StreamingService.AmazonAnimeStrike && streamInfo.Service != StreamingService.AmazonPrime)
+                        if (streamInfo.Service != StreamingService.AmazonPrime)
                         {
                             existingCsvRows = rowsForThisServiceAndAnime.Where(row => row.Url == streamInfo.Url).ToList();
                         }
@@ -315,7 +315,6 @@ namespace AnimeRecs.UpdateStreams
             {
                 // Crunchyroll first because it prompts for a username and password if not loading from a file. Let the user enter that first instead of in the middle.
                 crunchyrollSource,
-                new AmazonAnimeStrikeStreamInfoSource(webClient),
                 new AmazonPrimeStreamInfoSource(webClient),
                 new FunimationStreamInfoSource(funimationWebClient),
                 new VizStreamInfoSource(webClient),
