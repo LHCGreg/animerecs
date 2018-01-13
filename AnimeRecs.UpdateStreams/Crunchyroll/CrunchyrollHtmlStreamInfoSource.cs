@@ -61,6 +61,10 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
                 {
                     fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER CINDERELLA GIRLS", fixedStreams[i].Url, StreamingService.Crunchyroll);
                 }
+                if (fixedStreams[i].Url == "http://www.crunchyroll.com/puchims")
+                {
+                    fixedStreams[i] = new AnimeStreamInfo("PUCHIM@S", fixedStreams[i].Url, StreamingService.Crunchyroll);
+                }
             }
 
             return fixedStreams;
