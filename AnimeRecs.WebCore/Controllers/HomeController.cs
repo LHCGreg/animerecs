@@ -6,39 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AnimeRecs.WebCore.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 
 namespace AnimeRecs.WebCore.Controllers
 {
-    public class TestModel
-    {
-        public IOptions<Config.HtmlConfig> HtmlConfig { get; set; }
-    }
-
     public class HomeController : Controller
     {
-        public IActionResult Index(TestModel model)
+        private ILogger _logger;
+
+        public HomeController(ILogger<HomeController> logger)
         {
-            Config.HtmlConfig htmlConfig = model.HtmlConfig.Value;
-            return View();
+            _logger = logger;
         }
 
-        public IActionResult About()
+        public IActionResult Index()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            _logger.LogInformation("Testing logging");
+            throw new Exception("Error error error!");
             return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

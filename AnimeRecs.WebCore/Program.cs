@@ -102,7 +102,8 @@ namespace AnimeRecs.WebCore
                         options.Listen(IPAddress.Loopback, bootstrapConfig.Hosting.Port);
                     }
                 })
-                 .UseContentRoot(appDir)
+                 //.UseContentRoot(appDir)
+                 .UseContentRoot(Environment.CurrentDirectory)
                  .ConfigureAppConfiguration((context, configBuilder) =>
                  {
                      configBuilder.AddXmlFile(commandLine.ConfigFile, optional: false, reloadOnChange: true);

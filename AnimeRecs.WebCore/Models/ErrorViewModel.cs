@@ -4,8 +4,11 @@ namespace AnimeRecs.WebCore.Models
 {
     public class ErrorViewModel
     {
-        public string RequestId { get; set; }
+        public Exception Exception { get; private set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public ErrorViewModel(Exception exception)
+        {
+            Exception = exception;
+        }
     }
 }

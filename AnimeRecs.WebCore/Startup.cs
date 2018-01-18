@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace AnimeRecs.WebCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddOptions();
             services.Configure<Config.HtmlConfig>(Configuration.GetSection("Html"));
             services.Configure<Config.MalApiConfig>(Configuration.GetSection("MalApi"));
             services.Configure<Config.RecommendationsConfig>(Configuration.GetSection("Recommendations"));
@@ -38,14 +40,26 @@ namespace AnimeRecs.WebCore
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
             else
             {
                 // TODO: Set up error handling
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/error/500");
             }
+
+            // This error handler is for both API and user-facing URLs
+            app.UseExceptionHandler("/error/500");
+
+            //app.UseExceptionHandler(builder =>
+            //{
+            //    builder.Run(async context =>
+            //    {
+            //        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            //    });
+            //});
 
             //appLifetime.ApplicationStarted.Register
             //appLifetime.ApplicationStopping.Register

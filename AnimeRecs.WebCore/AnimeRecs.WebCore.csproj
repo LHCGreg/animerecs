@@ -9,6 +9,7 @@
     <!--<TrimUnusedDependencies>false</TrimUnusedDependencies>-->
     <!--<RootPackageReference>false</RootPackageReference>-->
     <PublishWithAspNetCoreTargetManifest>true</PublishWithAspNetCoreTargetManifest>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
     <!--<MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>-->
   </PropertyGroup>
 
@@ -24,6 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
 
     <!-- No Common.Logging NLog adapter supports netstandard yet. -->
     <!-- <PackageReference Include="Common.Logging.NLog41" Version="3.4.0-Beta2" /> -->
@@ -32,6 +34,7 @@
     <PackageReference Include="NLog" Version="4.5.0-rc03" />
 
     <PackageReference Include="Mono.Options" Version="5.3.0.1" />
+    <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     
     <!--<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />-->
     <!--<PackageReference Include="Microsoft.Packaging.Tools.Trimming" Version="1.1.0-preview1-25818-01" />-->
@@ -83,6 +86,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.1" />
 
     <ProjectReference Include="..\Common.Logging.NLogNetStandard\Common.Logging.NLogNetStandard.csproj" />
+    <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj" />
+    <ProjectReference Include="..\AnimeRecs.DAL\AnimeRecs.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
