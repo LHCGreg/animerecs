@@ -5,6 +5,7 @@
      -f <path to config file> -->
 
 <Config>
+  <!-- Does not required a restart on change, except for use with DB-based MalApi -->
   <ConnectionStrings>
     
     <!-- Something like:
@@ -15,6 +16,7 @@
 
   <LoggingConfigPath>NLog.config</LoggingConfigPath>
 
+  <!-- Requires app restart on change. -->
   <Hosting>
     <Port>5000</Port>
     
@@ -26,6 +28,9 @@
     <!-- Development/production environment is handled by ASPNETCORE_ENVIRONMENT environment variable -->
   </Hosting>
 
+  
+  <!-- Requires app restart on change. -->
+  <!-- Could be made to respond to changes with more code. -->
   <MalApi>
     <!-- Allowed values: Normal, DB (get users from AnimeRecs database instead of hitting MAL) -->
     <Type>Normal</Type>
@@ -34,6 +39,7 @@
     <AnimeListCacheExpirationSeconds>30</AnimeListCacheExpirationSeconds>
   </MalApi>
 
+  <!-- Does not require a restart on change. -->
   <Recommendations>
     <!-- Change this setting if using a non-default port for the rec service -->
     <RecServicePort>5541</RecServicePort>
@@ -78,7 +84,9 @@
     <!-- Maximum recommendations to return when using a non-AnimeRecs rec source -->
     <MaximumRecommendationsToReturn>60</MaximumRecommendationsToReturn>
 
-    <DefaultTargetPercentile>35</DefaultTargetPercentile>    
+    <DefaultTargetPercentile>35</DefaultTargetPercentile>
+
+    <TimeoutMilliseconds>5000</TimeoutMilliseconds>
   </Recommendations>
 
   <Html>

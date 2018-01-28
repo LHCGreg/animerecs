@@ -10,9 +10,9 @@ namespace AnimeRecs.WebCore.Controllers
 {
     public class ErrorController : Controller
     {
-        [Route("/Error/{code}")]
+        [Route("/Error/{statusCode}")]
         public IActionResult Error(int statusCode)
-        {
+        {            
             // only 500 handled currently
             var exFeatInterface = HttpContext.Features.Get<IExceptionHandlerFeature>();
 
@@ -41,7 +41,9 @@ namespace AnimeRecs.WebCore.Controllers
         private IActionResult HtmlError(int statusCode, Exception ex)
         {
             ErrorViewModel viewModel = new ErrorViewModel(ex);
-            return View("Error", viewModel);
+            ViewResult result = View("Error", viewModel);
+            result.StatusCode = statusCode;
+            return result;
         }
     }
 }

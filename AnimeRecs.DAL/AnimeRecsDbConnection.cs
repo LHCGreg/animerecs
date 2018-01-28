@@ -5,29 +5,26 @@ using System.Text;
 using System.Data;
 using Npgsql;
 using Dapper;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.DAL
 {
     public class AnimeRecsDbConnection : IAnimeRecsDbConnection
     {
-        public IDbConnection Conn { get; private set; }
+        private NpgsqlConnection Conn { get; set; }
         
         public AnimeRecsDbConnection(string pgConnectionString)
         {
             Conn = new NpgsqlConnection(pgConnectionString);
-            Conn.Open();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pgConnection">An *already open* connection</param>
-        public AnimeRecsDbConnection(IDbConnection pgConnection)
+        public Task OpenAsync(CancellationToken cancellationToken)
         {
-            Conn = pgConnection;
+            return Conn.OpenAsync(cancellationToken);
         }
 
-        public IDictionary<int, ICollection<streaming_service_anime_map>> GetStreams(IEnumerable<int> malAnimeIds)
+        public async Task<IDictionary<int, ICollection<streaming_service_anime_map>>> GetStreamsAsync(IEnumerable<int> malAnimeIds, CancellationToken cancellationToken)
         {
             if (!malAnimeIds.Any())
             {
@@ -39,7 +36,7 @@ namespace AnimeRecs.DAL
             string malAnimeIdList = string.Join(", ", malAnimeIds);
 
             string sql = string.Format(@"SELECT * FROM streaming_service_anime_map WHERE mal_anime_id IN ({0})", malAnimeIdList);
-            foreach (streaming_service_anime_map map in Conn.Query<streaming_service_anime_map>(sql))
+            foreach (streaming_service_anime_map map in await Conn.QueryAsyncWithCancellation<streaming_service_anime_map>(sql, cancellationToken).ConfigureAwait(false))
             {
                 if (!streamsByAnime.ContainsKey(map.mal_anime_id))
                 {
@@ -49,12 +46,6 @@ namespace AnimeRecs.DAL
             }
 
             return streamsByAnime;
-        }
-
-        public ICollection<streaming_service_anime_map> GetAllStreams()
-        {
-            string sql = "SELECT * FROM streaming_service_anime_map";
-            return Conn.Query<streaming_service_anime_map>(sql).ToList();
         }
 
         public void Dispose()

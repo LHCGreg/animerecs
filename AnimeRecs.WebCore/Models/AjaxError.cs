@@ -31,41 +31,8 @@ namespace AnimeRecs.WebCore.Models
 
         public AjaxError(ModelStateDictionary modelState)
         {
-            if (modelState.IsValid)
-            {
-                throw new ArgumentException("Tried to construct an AjaxError with a valid ModelState.");
-            }
-
             ErrorCode = InvalidInput;
-
-            List<string> errorList = new List<string>();
-            foreach (var x in modelState.SelectMany(p => p.Value.Errors.Select(e => new { Property = p.Key, ErrorMessage = e.ErrorMessage, Exception = e.Exception, RawValue = p.Value.RawValue })))
-            {
-                string errorMessage = !string.IsNullOrEmpty(x.ErrorMessage) ? x.ErrorMessage : x?.Exception?.Message;
-
-                if (errorMessage != null && x.Property != null && x.RawValue != null)
-                {
-                    errorList.Add($"Error with property {x.Property}: {errorMessage} Raw value = {x.RawValue}");
-                }
-                else if (errorMessage != null && x.Property != null)
-                {
-                    errorList.Add($"Error with property {x.Property}: {errorMessage}");
-                }
-                else if (errorMessage != null)
-                {
-                    errorList.Add(errorMessage);
-                }
-                else if (x.Property != null)
-                {
-                    errorList.Add($"Error with property {x.Property}");
-                }
-                else
-                {
-                    errorList.Add("Unknown error.");
-                }
-            }
-            string errorString = string.Join("\n\n", errorList);
-            Message = errorString;
+            Message = ModelBindingHelpers.ConstructErrorString(modelState);
         }
 
         public static string InvalidInput { get { return "InvalidInput"; } }

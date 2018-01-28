@@ -206,7 +206,9 @@ namespace AnimeRecs.RecService.ClientLib
         /// </summary>
         /// <typeparam name="TResponse"></typeparam>
         /// <param name="operation"></param>
-        /// <param name="receiveTimeoutInMs"></param>
+        /// <param name="receiveTimeout"></param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="descriptionForErrors"></param>
         /// <returns></returns>
         /// <exception cref="AnimeRecs.RecService.DTO.RecServiceErrorException">The recommendation service returned an error.
         /// Consult the ErrorCode property for more information.</exception>

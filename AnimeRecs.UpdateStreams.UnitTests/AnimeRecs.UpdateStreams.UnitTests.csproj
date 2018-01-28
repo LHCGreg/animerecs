@@ -30,9 +30,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <EmbeddedResource Include="amazon_anime_strike_1.html" />
-    <EmbeddedResource Include="amazon_anime_strike_2.html" />
-    <EmbeddedResource Include="amazon_anime_strike_3.html" />
     <EmbeddedResource Include="amazon_prime_1.html" />
     <EmbeddedResource Include="amazon_prime_2.html" />
     <EmbeddedResource Include="amazon_prime_3.html" />

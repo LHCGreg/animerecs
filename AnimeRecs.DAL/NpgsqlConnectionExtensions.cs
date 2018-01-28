@@ -11,6 +11,16 @@ namespace AnimeRecs.DAL
 {
     public static class NpgsqlConnectionExtensions
     {
+        public static Task<IList<T>> QueryAsyncWithCancellation<T>(this NpgsqlConnection conn, string sql, NpgsqlTransaction transaction = null)
+        {
+            return conn.QueryAsyncWithCancellation<T>(sql, TimeSpan.FromSeconds(conn.CommandTimeout), CancellationToken.None, transaction);
+        }
+
+        public static Task<IList<T>> QueryAsyncWithCancellation<T>(this NpgsqlConnection conn, string sql, CancellationToken cancellationToken, NpgsqlTransaction transaction = null)
+        {
+            return conn.QueryAsyncWithCancellation<T>(sql, TimeSpan.FromSeconds(conn.CommandTimeout), cancellationToken, transaction);
+        }
+
         /// <summary>
         /// Wrapper around Dapper's <c>QueryAsync<typeparamref name="T"/></c> that uses cancellation tokens to implement a timeout.
         /// Npgsql currently only implements backend timeouts for async operations other than connecting and only with cancellation tokens.
@@ -66,7 +76,7 @@ namespace AnimeRecs.DAL
     }
 }
 
-// Copyright (C) 2017 Greg Najda
+// Copyright (C) 2018 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

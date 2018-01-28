@@ -3,19 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AnimeRecs.DAL
 {
     public interface IAnimeRecsDbConnection : IDisposable
     {
-        IDbConnection Conn { get; }
+        Task OpenAsync(CancellationToken cancellationToken);
+        Task<IDictionary<int, ICollection<streaming_service_anime_map>>> GetStreamsAsync(IEnumerable<int> malAnimeIds, CancellationToken cancellationToken);
+    }
 
-        IDictionary<int, ICollection<streaming_service_anime_map>> GetStreams(IEnumerable<int> malAnimeIds);
-        ICollection<streaming_service_anime_map> GetAllStreams();
+    public static class AnimeRecsDbConnectionExtensions
+    {
+        public static Task OpenAsync(this IAnimeRecsDbConnection conn)
+        {
+            return conn.OpenAsync(CancellationToken.None);
+        }
+
+        public static Task<IDictionary<int, ICollection<streaming_service_anime_map>>> GetStreamsAsync(this IAnimeRecsDbConnection conn, IEnumerable<int> malAnimeIds)
+        {
+            return conn.GetStreamsAsync(malAnimeIds, CancellationToken.None);
+        }
     }
 }
 
-// Copyright (C) 2012 Greg Najda
+// Copyright (C) 2018 Greg Najda
 //
 // This file is part of AnimeRecs.DAL.
 //

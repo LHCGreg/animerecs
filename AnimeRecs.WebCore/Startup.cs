@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AnimeRecs.DAL;
+using MalApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 
 namespace AnimeRecs.WebCore
 {
@@ -25,28 +28,47 @@ namespace AnimeRecs.WebCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                // Use property names as is on classes that get serialized, instead of camelcasing.
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddOptions();
             services.Configure<Config.HtmlConfig>(Configuration.GetSection("Html"));
             services.Configure<Config.MalApiConfig>(Configuration.GetSection("MalApi"));
             services.Configure<Config.RecommendationsConfig>(Configuration.GetSection("Recommendations"));
-            // TODO: Add services
-        }
+            services.Configure<Config.ConnectionStringsConfig>(Configuration.GetSection("ConnectionStrings"));
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime, IOptions<Config.HtmlConfig> htmlConfigGetter)
-        {
-            Config.HtmlConfig htmlConfig = htmlConfigGetter.Value;
+            services.AddTransient<IAnimeRecsClientFactory, ConfigBasedRecClientFactory>();
+            services.AddTransient<IAnimeRecsDbConnectionFactory, ConfigBasedAnimeRecsDbConnectionFactory>();
 
-            if (env.IsDevelopment())
+            IMyAnimeListApi api;
+            Config.MalApiConfig apiConfig = Configuration.GetSection("MalApi").Get<Config.MalApiConfig>();
+            if (apiConfig.Type == Config.MalApiType.Normal)
             {
-                //app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                api = new MyAnimeListApi()
+                {
+                    UserAgent = apiConfig.UserAgentString,
+                    TimeoutInMs = apiConfig.TimeoutMilliseconds,
+                };
+            }
+            else if (apiConfig.Type == Config.MalApiType.DB)
+            {
+                api = new PgMyAnimeListApi(Configuration.GetConnectionString("AnimeRecs"));
             }
             else
             {
-                // TODO: Set up error handling
-                //app.UseExceptionHandler("/error/500");
+                throw new Exception($"Don't know how to construct MAL API type {apiConfig.Type}.");
+            }
+            CachingMyAnimeListApi cachingApi = new CachingMyAnimeListApi(api, TimeSpan.FromSeconds(apiConfig.AnimeListCacheExpirationSeconds), ownApi: true);
+            SingletonMyAnimeListApiFactory factory = new SingletonMyAnimeListApiFactory(cachingApi);
+            services.AddSingleton<IMyAnimeListApiFactory>(factory);
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseBrowserLink();
             }
 
             // This error handler is for both API and user-facing URLs

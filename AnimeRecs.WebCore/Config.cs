@@ -51,7 +51,6 @@ namespace AnimeRecs.WebCore
         {
             public class NonDefaultRecServiceConfig
             {
-                //public string RecSourceName { get; set; }
                 public int Port { get; set; }
             }
 
@@ -61,6 +60,7 @@ namespace AnimeRecs.WebCore
             public int MaximumRecommendersToReturn { get; set; }
             public int MaximumRecommendationsToReturn { get; set; }
             public decimal DefaultTargetPercentile { get; set; }
+            public int TimeoutMilliseconds { get; set; }
 
             public RecommendationsConfig()
             {
@@ -70,6 +70,7 @@ namespace AnimeRecs.WebCore
                 MaximumRecommendersToReturn = 6;
                 MaximumRecommendationsToReturn = 60;
                 DefaultTargetPercentile = 35;
+                TimeoutMilliseconds = 10000;
             }
         }
 
