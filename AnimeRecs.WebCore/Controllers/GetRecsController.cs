@@ -156,10 +156,11 @@ namespace AnimeRecs.WebCore.Controllers
                 {
                     if (input.GoodPercentile != null)
                     {
+                        decimal targetFraction = input.GoodPercentile.Value / 100;
                         _logger.LogInformation("Querying rec source {0} for {1} recommendations for {2} using target of top {3}%.",
-                            input.RecSourceName, numRecsToTryToGet, input.MalName, input.GoodPercentile.Value);
-                        recResults = await recClient.GetMalRecommendationsWithPercentileTargetAsync(animeList,
-                            input.RecSourceName, numRecsToTryToGet, input.GoodPercentile.Value,
+                            input.RecSourceName, numRecsToTryToGet, input.MalName, targetFraction);
+                        recResults = await recClient.GetMalRecommendationsWithFractionTargetAsync(animeList,
+                            input.RecSourceName, numRecsToTryToGet, targetFraction,
                             TimeSpan.FromMilliseconds(recConfig.TimeoutMilliseconds), CancellationToken.None).ConfigureAwait(false);
                     }
                     else if (input.GoodCutoff != null)
@@ -172,10 +173,11 @@ namespace AnimeRecs.WebCore.Controllers
                     }
                     else
                     {
+                        decimal targetFraction = recConfig.DefaultTargetPercentile / 100;
                         _logger.LogInformation("Querying rec source {0} for {1} recommendations for {2} using default target of top {3}%.",
-                            input.RecSourceName, numRecsToTryToGet, input.MalName, recConfig.DefaultTargetPercentile);
-                        recResults = await recClient.GetMalRecommendationsWithPercentileTargetAsync(animeList,
-                            input.RecSourceName, numRecsToTryToGet, recConfig.DefaultTargetPercentile,
+                            input.RecSourceName, numRecsToTryToGet, input.MalName, targetFraction);
+                        recResults = await recClient.GetMalRecommendationsWithFractionTargetAsync(animeList,
+                            input.RecSourceName, numRecsToTryToGet, targetFraction,
                             TimeSpan.FromMilliseconds(recConfig.TimeoutMilliseconds), CancellationToken.None)
                             .ConfigureAwait(false);
                     }

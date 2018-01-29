@@ -130,14 +130,14 @@ namespace AnimeRecs.RecService.ClientLib
             return GetMalRecommendationsAsync(operation, timeout, cancellationToken);
         }
 
-        public Task<MalRecResults<IEnumerable<IRecommendation>>> GetMalRecommendationsWithPercentileTargetAsync(
-            IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName, int numRecsDesired, decimal targetPercentile,
+        public Task<MalRecResults<IEnumerable<IRecommendation>>> GetMalRecommendationsWithFractionTargetAsync(
+            IDictionary<int, RecEngine.MAL.MalListEntry> animeList, string recSourceName, int numRecsDesired, decimal targetFraction,
             TimeSpan timeout, CancellationToken cancellationToken)
         {
             List<DTO.MalListEntry> dtoAnimeList = CreateDtoAnimeList(animeList);
 
             Operation<GetMalRecsRequest> operation = new Operation<GetMalRecsRequest>(OperationTypes.GetMalRecs,
-                GetMalRecsRequest.CreateWithTargetFraction(recSourceName, numRecsDesired, targetPercentile, new MalListForUser(dtoAnimeList)));
+                GetMalRecsRequest.CreateWithTargetFraction(recSourceName, numRecsDesired, targetFraction, new MalListForUser(dtoAnimeList)));
 
             return GetMalRecommendationsAsync(operation, timeout, cancellationToken);
         }
