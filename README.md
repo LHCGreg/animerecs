@@ -24,26 +24,19 @@ AnimeRecs.RecService.ClientLib: Client library for interacting with AnimeRecs.Re
 
 AnimeRecs.RecService.Client: Command-line rec service client application for controlling a running rec service and testing recommendation sources.
 
-AnimeRecs.Web: Nancy web application that gives recommendations based on a user's myanimelist.net account
+AnimeRecs.Web: ASP.NET web application that gives recommendations based on a user's myanimelist.net account
 
 # Setting up
 
-**Note that myanimelist.net now blocks programmatic HTTP requests unless your application is whitelisted so you will not be able to populate a user database or test normally. What you can do is get a database from *somewhere* and enable the config option for getting users' anime list from the database instead of from myanimelist.net.**
-
 To set up a development environment you will need to install the following:
 
-- Visual Studio 2013 Community Edition
-- PostgreSQL (http://www.postgresql.org/) (9.1.x supported, earlier versions will probably work also)
+- Visual Studio 2017 Community Edition
+- PostgreSQL (http://www.postgresql.org/) (9.6.x supported, other versions will probably work)
 
-Set up instructions for Linux assume Ubuntu or Debian. If you want to use a different distro, good luck, you're on your own. I have found Ubuntu and Debian to have good Mono support.
-
-To build for Mono on Linux, you must use xbuild (or MonoDevelop set to use xbuild) on Linux. Cross-compiling is not supported. Building for .NET vs. Mono have slight differences. The only difference in run-time behavior is that when running on Windows recservice is existing by pressing any key, while on Linux it is terminated by sending a SIGINT (ctrl+c) or SIGTERM.
-
-Building on Linux with xbuild:
-$ xbuild /t:build /p:Configuration=Debug /p:Platform=AnyCPU xyz.csproj
-
-## Setting up PostgreSQL in Ubuntu
+## Setting up PostgreSQL in Debian
 1. Set your locale to UTF-8. This ensures that Postgres that does not install with a default of ASCII and prevent you from creating a database that uses UTF-8 as its encoding.
+$ echo "en_US.UTF-8 UTF-8" | sudo tee /etc/locale.gen > /dev/null
+$ sudo locale-gen
 $ sudo update-locale LANG=en_US.UTF-8
 
 2. Increase the maximum shared memory size from the ridiculously small default. This step is optional but will allow you to later increase the amount of shared memory Postgres can use.
@@ -57,7 +50,7 @@ $ sudo service procps start
 
 3. Install the postgres package
 
-4. Set a password for the "postgres" PostgreSQL user and allow Linux users other than postgres to log in as the "postgres" PostgreSQL user. Using the postgres user is not necessarily ideal in a production environment, but it's easiest to set up for development.
+4. Set a password for the "postgres" PostgreSQL user and allow Linux users other than postgres to log in as the "postgres" PostgreSQL user. Using the postgres user is not ideal in a production environment, but it's easiest to set up for development.
 
 $ su - postgres
 $ psql -d template1 -c "ALTER USER postgres WITH PASSWORD 'testpw';"
@@ -70,53 +63,46 @@ $ exit
 
 ## Populating the database with ratings
 
-Note that this cannot be done in a development environment because MAL will reject requests that do not have an API key. If you are interested in developing for animerecs, contact me and I can provide you with a usable database.
-
-1. Edit App.Debug.config (App.DebugMono.config on Linux) in AnimeRecs.FreshenMalDatabase. Edit the connection string to use your Postgres username and password. Set UsersPerRun to 1000 (or however many users you want to have in the database initially).
+1. Copy config.example.xml in AnimeRecs.FreshenMalDatabase to config.xml. Edit the connection string to use your Postgres username and password. Set UsersPerRun and MaxUsersInDatabase appropriately.
 2. Compile and run AnimeRecs.FreshenMalDatabase. This will populate the database with users from myanimelist.net's "recently online users" page. This will take some time to run.
 
 ## Populating the database with stream mappings
 
-Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/StreamMappings.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f StreamMappings.sql
-
-## Populating the database with prerequisite mappings
-
-Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/Prereqs.sql. On Windows you can use pgAdmin and paste the SQL in. On Linux, psql -U postgres -d animerecs -f Prereqs.sql
+Connect to the animerecs database and run AnimeRecs.DAL/DB Init Scripts/StreamMappings.sql. psql -h localhost -U postgres -d animerecs -f StreamMappings.sql
 
 ## Running the web site
 
-1. Edit App.Debug.config (App.DebugMono.config on Linux) in the AnimeRecs.RecService project. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
-2. Compile AnimeRecs.RecService.Client and load some rec sources, preferably at least one with the name "default". See the recclient tutorial below for how to use AnimeRecs.RecService.Client.
-3. Compile and run the web site locally. Try it out. The site runs on port 8888 by default. You can just this by editing Hosting.Port in the config. You can use http://localhost:8888/?algorithm=some_rec_source to use a non-default rec source.
+1. Copy NLog.example.config in AnimeRecs.AnimeRecs.RecService to NLog.config. Copy config.example.xml to config.xml. Edit the connection string to use your Postgres username and password. Compile AnimeRecs.RecService and run it in a command prompt.
+2. Compile and run the web site locally. Try it out. You can use http://localhost:8888/?algorithm=some_rec_source to use a non-default rec source.
 
-
+## recclient tutorial
 [Get command-line usage info]
-recclient.exe -h
+dotnet recclient.dll -h
 
 [Load a rec source that uses average score to recommend anime]
-recclient.exe -c LoadRecSource -type AverageScore -name avg
+dotnet recclient.dll -c LoadRecSource -type AverageScore -name avg
 
 [Load a rec source that requires 40 users to have rated an anime before recommending it instead of the default of 50]
-recclient.exe -c LoadRecSource -type AverageScore -name avg --min_users_to_count_anime=40
+dotnet recclient.dll -c LoadRecSource -type AverageScore -name avg --min_users_to_count_anime=40
 
 [Oops! That last command failed because there's already a rec source named "avg". Use the -f switch to overwrite an already-loaded rec source]
-recclient.exe -c LoadRecSource -type AverageScore -name avg -f --min_users_to_count_anime=40
+dotnet recclient.dll -c LoadRecSource -type AverageScore -name avg -f --min_users_to_count_anime=40
 
 [Get anime recommendations for the myanimelist.net user "LordHighCaptain" using the loaded rec source called "avg"]
-recclient.exe -c GetMalRecs -name avg -u LordHighCaptain
+dotnet recclient.dll -c GetMalRecs -name avg -u LordHighCaptain
 
 [Load a rec source that uses MyMediaLite's BiasedMatrixFactorization algorithm. Since we don't specify -name, it uses the name "default".]
-recclient.exe -c LoadRecSource -type BiasedMatrixFactorization
+dotnet recclient.dll -c LoadRecSource -type BiasedMatrixFactorization
 
 [Get anime recommendations using the loaded rec source called "default"]
-recclient.exe -c GetMalRecs -u LordHighCaptain
+dotnet recclient.dll -c GetMalRecs -u LordHighCaptain
 
-[Let's try reloading it with some non-default options. Use recclient.exe -h to see all possible tunable parameters]
-recclient.exe -c LoadRecSource -type BiasedMatrixFactorization -f -bold_driver --bias_learn_rate=0.5
-recclient.exe -c GetMalRecs -u LordHighCaptain
+[Let's try reloading it with some non-default options. Use dotnet recclient.dll -h to see all possible tunable parameters]
+dotnet recclient.dll -c LoadRecSource -type BiasedMatrixFactorization -f -bold_driver --bias_learn_rate=0.5
+dotnet recclient.dll -c GetMalRecs -u LordHighCaptain
 
 [You decided you don't want to use the average score rec source. You can unload a rec source and make its memory available for garbage collection]
-recclient.exe -c UnloadRecSource -name avg
+dotnet recclient.dll -c UnloadRecSource -name avg
 
 [If you have run FreshenMalDatabase to update the database you can retrain all loaded rec sources with current data]
-recclient.exe -c ReloadTrainingData
+dotnet recclient.dll -c ReloadTrainingData
