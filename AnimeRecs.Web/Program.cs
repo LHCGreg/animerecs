@@ -62,7 +62,6 @@ namespace AnimeRecs.Web
             IWebHostBuilder hostBuilder = new WebHostBuilder();
 
             CommandLineArgs commandLine = ReadCommandLine(args);
-            //Config config = Config.LoadFromFile(commandLine.ConfigFile);
 
             // Load the config file to read some early startup settings
             // Namely, the logging config file path and everything in the Hosting section.
@@ -102,7 +101,6 @@ namespace AnimeRecs.Web
                         options.Listen(IPAddress.Loopback, bootstrapConfig.Hosting.Port);
                     }
                 })
-                 //.UseContentRoot(appDir)
                  .UseContentRoot(Environment.CurrentDirectory)
                  .ConfigureAppConfiguration((context, configBuilder) =>
                  {

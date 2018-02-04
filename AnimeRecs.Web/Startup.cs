@@ -75,19 +75,6 @@ namespace AnimeRecs.Web
             app.UseExceptionHandler("/error/500");
             app.UseStatusCodePages();
 
-            //app.UseExceptionHandler(builder =>
-            //{
-            //    builder.Run(async context =>
-            //    {
-            //        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-            //    });
-            //});
-
-            //appLifetime.ApplicationStarted.Register
-            //appLifetime.ApplicationStopping.Register
-            //appLifetime.ApplicationStopped.Register
-
             app.UseForwardedHeaders();
 
             app.UseStaticFiles();
