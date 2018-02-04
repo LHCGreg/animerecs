@@ -6,29 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!--<TrimUnusedDependencies>false</TrimUnusedDependencies>-->
-    <!--<RootPackageReference>false</RootPackageReference>-->
     <PublishWithAspNetCoreTargetManifest>true</PublishWithAspNetCoreTargetManifest>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <!--<MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>-->
   </PropertyGroup>
-
-  <ItemGroup>
-    <AspNetCoreTargetManifestFiles Include="$(MSBuildThisFileDirectory)aspnetcore-store-*.xml" />
-  </ItemGroup>
-
-  <!-- DIY ASP.net core manifest usage instead of referencing Microsoft.AspNetCore.All to reduce deps.json bloat.
-       Microsoft.Packaging.Tools.Trimming doesn't seem to help with that. -->
-  <PropertyGroup Condition="'$(PublishWithAspNetCoreTargetManifest)' == 'true'">
-    <TargetManifestFiles>$(TargetManifestFiles);@(AspNetCoreTargetManifestFiles)</TargetManifestFiles>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Remove="Views\Home\Index.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
 
     <!-- No Common.Logging NLog adapter supports netstandard yet. -->
     <!-- <PackageReference Include="Common.Logging.NLog41" Version="3.4.0-Beta2" /> -->
@@ -39,54 +22,7 @@
     <PackageReference Include="Mono.Options" Version="5.3.0.1" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     
-    <!--<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />-->
-    <!--<PackageReference Include="Microsoft.Packaging.Tools.Trimming" Version="1.1.0-preview1-25818-01" />-->
-    
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.HttpOverrides" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.MiddlewareAnalysis" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.0.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
 
     <ProjectReference Include="..\Common.Logging.NLogNetStandard\Common.Logging.NLogNetStandard.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj" />
