@@ -1,76 +1,116 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
-using Nancy.Hosting.Self;
-#if MONO
-using Mono.Unix;
-using Mono.Unix.Native;
-#endif
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace AnimeRecs.Web
 {
-    class Program
+    enum ExitCode
     {
-        static void Main(string[] args)
+        Success = 0,
+        Error = 1
+    }
+
+    public class Program
+    {
+        public static int Main(string[] args)
         {
-            Logging.Log.Info("Starting AnimeRecs web app");
-
-            HostConfiguration config = new HostConfiguration()
+            try
             {
-                RewriteLocalhost = false
-            };
-
-            string portString = ConfigurationManager.AppSettings["Hosting.Port"];
-            uint port;
-            if (!uint.TryParse(portString, out port))
+                BuildWebHost(args).Run();
+            }
+            catch (Exception ex)
             {
-                throw new Exception("Hosting.Port is not a valid port number.");
+                if (Logging.Log != null)
+                {
+                    Logging.Log.FatalFormat("Fatal error: {0}", ex, ex.Message);
+                }
+                else
+                {
+                    Console.Error.WriteLine("Fatal error: {0}", ex);
+                }
+
+                return (int)ExitCode.Error;
             }
 
-            using (var host = new NancyHost(config, new Uri(string.Format("http://localhost:{0}", port))))
-            {
-                host.Start();
-                Logging.Log.InfoFormat("Started listening on port {0}", port);
-#if MONO
-                    WaitForUnixStopSignal();
-#else
-                Console.ReadLine();
-#endif
-                Logging.Log.Info("Got stop signal, stopping web app");
-            }
+            Logging.Log.Info("Shutdown complete.");
+            return (int)ExitCode.Success;
         }
 
-#if MONO
-        static void WaitForUnixStopSignal()
+        private static CommandLineArgs ReadCommandLine(string[] args)
         {
-            UnixSignal[] signals = new UnixSignal[]
-                        {
-                            new UnixSignal(Signum.SIGINT),
-                            new UnixSignal(Signum.SIGTERM)
-                        };
-            UnixSignal.WaitAny(signals);
+            CommandLineArgs commandLine = new CommandLineArgs(args);
+            if (commandLine.ShowHelp)
+            {
+                commandLine.DisplayHelp(Console.Out);
+                Environment.Exit((int)ExitCode.Success);
+            }
+
+            return commandLine;
         }
-#endif
+
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            IWebHostBuilder hostBuilder = new WebHostBuilder();
+
+            CommandLineArgs commandLine = ReadCommandLine(args);
+            //Config config = Config.LoadFromFile(commandLine.ConfigFile);
+
+            // Load the config file to read some early startup settings
+            // Namely, the logging config file path and everything in the Hosting section.
+            // ASP.NET Core will read the same file again because the rest of the app's settings are there.
+            IConfigurationBuilder bootstrapConfigBuilder = new ConfigurationBuilder()
+                .AddXmlFile(commandLine.ConfigFile);
+            IConfigurationRoot bootstrapRawConfig = bootstrapConfigBuilder.Build();
+            Config bootstrapConfig = bootstrapRawConfig.Get<Config>();
+
+            if (!string.IsNullOrWhiteSpace(bootstrapConfig.LoggingConfigPath))
+            {
+                Logging.SetUpLogging(bootstrapConfig.LoggingConfigPath);
+                hostBuilder.UseNLog();
+            }
+            else
+            {
+                Console.Error.WriteLine("No logging configuration file set. Logging to console.");
+                Logging.SetUpConsoleLogging();
+                hostBuilder.ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.SetMinimumLevel(LogLevel.Information);
+                    logging.AddConsole();
+                });
+            }
+
+            string appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            hostBuilder
+                .UseKestrel(options =>
+                {
+                    if (bootstrapConfig.Hosting.UnixSocketPath != null)
+                    {
+                        options.ListenUnixSocket(bootstrapConfig.Hosting.UnixSocketPath);
+                    }
+                    else
+                    {
+                        options.Listen(IPAddress.Loopback, bootstrapConfig.Hosting.Port);
+                    }
+                })
+                 //.UseContentRoot(appDir)
+                 .UseContentRoot(Environment.CurrentDirectory)
+                 .ConfigureAppConfiguration((context, configBuilder) =>
+                 {
+                     configBuilder.AddXmlFile(commandLine.ConfigFile, optional: false, reloadOnChange: true);
+                 })
+                 .UseStartup<Startup>();
+
+            return hostBuilder.Build();
+        }
     }
 }
-
-// Copyright (C) 2014 Greg Najda
-//
-// This file is part of AnimeRecs.Web.
-//
-// AnimeRecs.Web is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// AnimeRecs.Web is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with AnimeRecs.Web.  If not, see <http://www.gnu.org/licenses/>.

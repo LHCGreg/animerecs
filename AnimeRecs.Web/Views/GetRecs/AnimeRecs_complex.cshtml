@@ -1,0 +1,181 @@
+﻿@model GetRecsViewModel
+@using AnimeRecs.RecService.ClientLib;
+@using AnimeRecs.RecEngine.MAL;
+@using System.Collections.Generic;
+@using MalApi;
+@using System.Linq;
+           
+@{
+    MalRecResults<MalAnimeRecsResults> results = Model.Results.CastRecs<MalAnimeRecsResults>();
+    IEnumerable<int> animeIdsShownInMainResults = results.Results.Recommenders
+        .Where(recUser => recUser.RecsNotInCommon.Count > 0 && recUser.UserId != Model.UserId)
+        .Take(Model.MaximumRecommendersToReturn)
+        .SelectMany(recUser => recUser.AllRecommendations.Select(rec => rec.MalAnimeId));
+    HashSet<int> animeIdsShown = new HashSet<int>(animeIdsShownInMainResults);
+    animeIdsShown.UnionWith(Model.AnimeWithheld.Keys);
+    await Model.DeclareAnimeToBeDisplayedAsync(animeIdsShown).ConfigureAwait(false);
+ }
+
+ @if (Model.AnimeWithheld.Count > 0)
+{
+    Dictionary<int, MyAnimeListEntry> animeInUsersList = new Dictionary<int, MyAnimeListEntry>();
+    foreach(MyAnimeListEntry entry in Model.UserLookup.AnimeList)
+    {
+        animeInUsersList[entry.AnimeInfo.AnimeId] = entry;  
+    }
+
+    List<int> animeWithheld = Model.AnimeWithheld.Keys
+        .OrderByDescending(animeId => Model.AnimeWithheld[animeId].Rating ?? 0)
+        .ThenBy(animeId => animeInUsersList[animeId].AnimeInfo.Title)
+        .ToList();
+
+    Dictionary<int, int> rankInRecListByAnimeId = new Dictionary<int, int>();
+    int rank = 1;
+    foreach (int animeId in Model.Results.Results.Select(rec => rec.ItemId))
+    {
+        rankInRecListByAnimeId[animeId] = rank;
+        rank++;
+    }
+    
+    
+    <table class="recsTable">
+        <thead>
+            <tr>
+                <td>
+                    Streams
+                </td>
+                <td>
+                    Anime withheld
+                </td>
+                <td>
+                    Type
+                </td>
+                <td>
+                    Status
+                </td>
+                <td>
+                    Actual rating
+                </td>
+                <td>
+                    Rank in recommendations
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (int animeId in animeWithheld)
+            {
+                <tr>
+                    <td>
+                        @HtmlHelpers.GetStreamLinksHtml(animeId, Model, Url)
+                    </td>
+                    <td>
+                        @HtmlHelpers.GetWithheldMalAnimeHtml(animeId, animeInUsersList[animeId].AnimeInfo.Title)
+                    </td>
+                    <td>
+                        @HtmlHelpers.MalAnimeTypeAsString(animeInUsersList[animeId].AnimeInfo.Type)
+                    </td>
+                    <td>
+                        @HtmlHelpers.MalAnimeStatusAsString(animeInUsersList[animeId].Status)
+                    </td>
+                    <td>
+                        @HtmlHelpers.GetMalRatingString(animeInUsersList[animeId].Score)
+                    </td>
+                    <td>
+                        @if (rankInRecListByAnimeId.ContainsKey(animeId))
+                        {
+                            <text>@rankInRecListByAnimeId[animeId]</text>
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+           
+<script type="text/javascript">
+    $(".datainput .good").val(@results.Results.TargetScoreUsed);
+</script>
+Your best matches are
+<ol class="matchList">
+    @foreach (MalAnimeRecsRecommenderUser recommender in results.Results.Recommenders
+        .Where(recUser => recUser.RecsNotInCommon.Count > 0 && recUser.UserId != Model.UserId)
+        .Take(Model.MaximumRecommendersToReturn))
+    {
+        string percentLiked = ((double)recommender.RecsLiked.Count / recommender.NumRecsWithJudgment).ToString("P2");
+        string lowerBound = (recommender.CompatibilityLowEndpoint ?? 0.0).ToString("P2");
+        string upperBound = (recommender.CompatibilityHighEndpoint ?? 0.0).ToString("P2");
+        
+        <li>
+            <div class="userhead">
+                <a href=@HtmlHelpers.Attribute(HtmlHelpers.GetMalListUrl(recommender.Username)) class="recommender">@recommender.Username</a>'s
+                recommendations <span class="compatibilityRating">(@recommender.RecsLiked.Count/@recommender.NumRecsWithJudgment
+                    @percentLiked recs liked, @lowerBound - @upperBound estimated compatibility)</span>
+            </div>
+            <table class="recsTable">
+                <thead>
+                    <tr>
+                        <td>
+                            Streams
+                        </td>
+                        <td>
+                            Anime
+                        </td>
+                        <td>
+                            Their Rating
+                        </td>
+                        <td>
+                            Your Rating
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MalAnimeRecsRecommenderRecommendation recommendation in recommender.AllRecommendations.OrderBy(
+                    rec => HtmlHelpers.GetRecommendationType(recommender, rec, Model.UserAnimeList))
+                    .ThenByDescending(rec => rec.RecommenderScore)
+                    .ThenByDescending(rec => rec.AverageScore))
+                    {
+                        AnimeRecsRecommendationType recType = HtmlHelpers.GetRecommendationType(recommender, recommendation, Model.UserAnimeList);
+                        string rowClass = "";
+                        if (recType == AnimeRecsRecommendationType.Liked)
+                        {
+                            rowClass = "class=\"goodRec\"";
+                        }
+                        else if (recType == AnimeRecsRecommendationType.NotLiked)
+                        {
+                            rowClass = "class=\"badRec\"";
+                        }
+                        else if(recType == AnimeRecsRecommendationType.Inconclusive)
+                        {
+                            rowClass = "class=\"inconclusiveRec\"";
+                        }
+                        <tr @Html.Raw(rowClass)>
+                            <td>
+                                @HtmlHelpers.GetStreamLinksHtml(recommendation.MalAnimeId, Model, Url)
+                            </td>
+                            <td>
+                                @HtmlHelpers.GetRecommendedMalAnimeHtml(recommendation.MalAnimeId, Model)
+                            </td>
+                            <td>
+                                @(recommendation.RecommenderScore.HasValue ? recommendation.RecommenderScore.Value.ToString("F0") : "-")
+                            </td>
+                            <td>
+                                @if (Model.UserAnimeList.ContainsKey(recommendation.MalAnimeId) && Model.UserAnimeList[recommendation.MalAnimeId].Rating != null)
+                                {
+                                    @Model.UserAnimeList[recommendation.MalAnimeId].Rating.Value.ToString("F0")
+                                }
+                                else
+                                {
+                                    @:-
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </li>
+    }
+</ol>

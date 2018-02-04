@@ -5,22 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AnimeRecs.DAL;
-using AnimeRecs.Web.Modules.GetRecs;
 using AnimeRecs.RecEngine.MAL;
+using AnimeRecs.Web.Models;
 using MalApi;
-using Nancy.ViewEngines;
-using Nancy.ViewEngines.Razor;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace AnimeRecs.Web
 {
     // MUST be public, not internal, for razor to access it
     public static class HtmlHelpers
     {
-        public static IHtmlString Attribute(string text)
+        public static IHtmlContent Attribute(string text)
         {
-            return new NonEncodedHtmlString(AttributeString(text));
+            return new HtmlString(AttributeString(text));
         }
-        
+
         /// <summary>
         /// Puts the text in double quotes and escapes necessary attribute characters.
         /// </summary>
@@ -28,7 +29,6 @@ namespace AnimeRecs.Web
         /// <returns></returns>
         private static string AttributeString(string text)
         {
-            // Don't use System.Web.HttpUtility, we're avoiding System.Web
             // " & <
             StringBuilder encodedString = new StringBuilder(text.Length + 2);
             encodedString.Append("\"");
@@ -54,18 +54,13 @@ namespace AnimeRecs.Web
             return encodedString.ToString();
         }
 
-        public static IHtmlString Encode(string text)
-        {
-            return new EncodedHtmlString(text);
-        }
-
         private static string EncodeToString(string text)
         {
-            return new EncodedHtmlString(text).ToHtmlString();
+            return System.Text.Encodings.Web.HtmlEncoder.Default.Encode(text);
         }
 
-        public static IHtmlString GetStreamLinksHtml(int malAnimeId, GetRecsViewModel model, IRenderContext renderContext)
-        {   
+        public static IHtmlContent GetStreamLinksHtml(int malAnimeId, GetRecsViewModel model, IUrlHelper url)
+        {
             List<string> streamLinks = new List<string>();
             if (model.StreamsByAnime.ContainsKey(malAnimeId))
             {
@@ -79,52 +74,52 @@ namespace AnimeRecs.Web
                     switch (service)
                     {
                         case StreamingService.Crunchyroll:
-                            imagePath = renderContext.ParsePath("~/Content/crunchyroll_icon.png");
+                            imagePath = url.Content("Content/crunchyroll_icon.png");
                             altText = "Crunchyroll";
                             titleText = "Watch on Crunchyroll";
                             break;
                         case StreamingService.Funimation:
-                            imagePath = renderContext.ParsePath("~/Content/funimation_icon.png");
+                            imagePath = url.Content("Content/funimation_icon.png");
                             altText = "Funimation";
                             titleText = "Watch on Funimation";
                             break;
                         case StreamingService.Viz:
-                            imagePath = renderContext.ParsePath("~/Content/viz_icon.png");
+                            imagePath = url.Content("Content/viz_icon.png");
                             altText = "Viz";
                             titleText = "Watch on Viz";
                             break;
                         case StreamingService.Hulu:
-                            imagePath = renderContext.ParsePath("~/Content/hulu_icon.png");
+                            imagePath = url.Content("Content/hulu_icon.png");
                             altText = "Hulu";
                             titleText = "Watch on Hulu";
                             break;
                         case StreamingService.Viewster:
-                            imagePath = renderContext.ParsePath("~/Content/viewster_icon.png");
+                            imagePath = url.Content("Content/viewster_icon.png");
                             altText = "Viewster";
                             titleText = "Watch on Viewster";
                             break;
                         case StreamingService.Daisuki:
-                            imagePath = renderContext.ParsePath("~/Content/daisuki_icon.png");
+                            imagePath = url.Content("Content/daisuki_icon.png");
                             altText = "Daisuki";
                             titleText = "Watch on Daisuki";
                             break;
                         case StreamingService.AnimeNetwork:
-                            imagePath = renderContext.ParsePath("~/Content/anime_network_icon.png");
+                            imagePath = url.Content("Content/anime_network_icon.png");
                             altText = "Anime Network";
                             titleText = "Watch on The Anime Network";
                             break;
                         case StreamingService.AmazonPrime:
-                            imagePath = renderContext.ParsePath("~/Content/amazon_prime_icon.png");
+                            imagePath = url.Content("Content/amazon_prime_icon.png");
                             altText = "Amazon Prime";
                             titleText = "Watch on Amazon Prime";
                             break;
                         case StreamingService.AmazonAnimeStrike:
-                            imagePath = renderContext.ParsePath("~/Content/amazon_anime_strike_icon.png");
+                            imagePath = url.Content("Content/amazon_anime_strike_icon.png");
                             altText = "Anime Strike";
                             titleText = "Watch on Amazon Anime Strike";
                             break;
                         case StreamingService.Hidive:
-                            imagePath = renderContext.ParsePath("~/Content/hidive_icon.png");
+                            imagePath = url.Content("Content/hidive_icon.png");
                             altText = "Hidive";
                             titleText = "Watch on Hidive";
                             break;
@@ -141,7 +136,7 @@ namespace AnimeRecs.Web
             }
 
             string linksHtml = string.Join(" ", streamLinks);
-            return new NonEncodedHtmlString(linksHtml);
+            return new HtmlString(linksHtml);
         }
 
         public static string MalAnimeTypeAsString(MalAnimeType type)
@@ -198,21 +193,21 @@ namespace AnimeRecs.Web
             }
         }
 
-        public static IHtmlString GetRecommendedMalAnimeHtml(int malAnimeId, GetRecsViewModel model)
+        public static IHtmlContent GetRecommendedMalAnimeHtml(int malAnimeId, GetRecsViewModel model)
         {
             string animeTitle = model.Results.AnimeInfo[malAnimeId].Title;
             string encodedString = string.Format(@"<a href={0} class=""recommendation"">{1}</a>",
                 AttributeString(GetMalAnimeUrl(malAnimeId, animeTitle)), EncodeToString(animeTitle));
 
-            return new NonEncodedHtmlString(encodedString);
+            return new HtmlString(encodedString);
         }
 
-        public static IHtmlString GetWithheldMalAnimeHtml(int malAnimeId, string animeTitle)
+        public static IHtmlContent GetWithheldMalAnimeHtml(int malAnimeId, string animeTitle)
         {
             string encodedString = string.Format(@"<a href={0} class=""recommendation"">{1}</a>",
                 AttributeString(GetMalAnimeUrl(malAnimeId, animeTitle)), EncodeToString(animeTitle));
 
-            return new NonEncodedHtmlString(encodedString);
+            return new HtmlString(encodedString);
         }
 
         public static string GetMalAnimeUrl(int malAnimeId, string animeTitle)
@@ -227,7 +222,7 @@ namespace AnimeRecs.Web
         }
 
         public static AnimeRecsRecommendationType GetRecommendationType(MalAnimeRecsRecommenderUser recommender,
-    MalAnimeRecsRecommenderRecommendation rec, IDictionary<int, MalListEntry> userAnimeList)
+            MalAnimeRecsRecommenderRecommendation rec, IDictionary<int, MalListEntry> userAnimeList)
         {
             if (recommender.RecsNotInCommon.Contains(rec))
             {
@@ -258,20 +253,3 @@ namespace AnimeRecs.Web
         }
     }
 }
-
-// Copyright (C) 2014 Greg Najda
-//
-// This file is part of AnimeRecs.Web.
-//
-// AnimeRecs.Web is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// AnimeRecs.Web is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  along with AnimeRecs.Web.  If not, see <http://www.gnu.org/licenses/>.
