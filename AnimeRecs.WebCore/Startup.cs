@@ -73,6 +73,7 @@ namespace AnimeRecs.WebCore
 
             // This error handler is for both API and user-facing URLs
             app.UseExceptionHandler("/error/500");
+            app.UseStatusCodePages();
 
             //app.UseExceptionHandler(builder =>
             //{
