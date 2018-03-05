@@ -57,11 +57,6 @@
     <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Contains('core')) OR $(TargetFramework.Contains('standard'))">
-    <!-- .NET core 1.x needs the System.ValueTuple package to use C# 7 tuple returns. -->
-    <PackageReference Include="System.ValueTuple" Version="4.3.1" />
-  </ItemGroup>
-
   <ItemGroup>
     <None Update="config.example.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
