@@ -6,7 +6,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using AnimeRecs.DAL;
 using CsvHelper;
-using CsvHelper.Configuration;
 
 namespace AnimeRecs.UpdatePrereqs
 {
@@ -20,17 +19,13 @@ namespace AnimeRecs.UpdatePrereqs
 
             // open input file and parse it
 
-            CsvConfiguration csvConfig = new CsvConfiguration()
+            var csvConfig = new CsvHelper.Configuration.Configuration()
             {
                 AllowComments = false,
-                HasExcelSeparator = false,
                 HasHeaderRecord = true,
                 IgnoreBlankLines = true,
-                IgnorePrivateAccessor = true,
-                ThrowOnBadData = true,
-                TrimFields = false,
-                UseExcelLeadingZerosFormatForNumerics = false,
-                WillThrowOnMissingField = true,
+                IncludePrivateMembers = true,
+                TrimOptions = CsvHelper.Configuration.TrimOptions.None,
             };
 
             using (FileStream inputStream = new FileStream(commandLine.InputFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))

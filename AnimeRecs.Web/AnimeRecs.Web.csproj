@@ -11,18 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Common.Logging" Version="3.4.0-Beta2" />
+    <PackageReference Include="Common.Logging" Version="3.4.1" />
 
     <!-- No Common.Logging NLog adapter supports netstandard yet. -->
     <!-- <PackageReference Include="Common.Logging.NLog41" Version="3.4.0-Beta2" /> -->
 
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc2" />
-    <PackageReference Include="NLog" Version="4.5.0-rc03" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc3" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
 
     <PackageReference Include="Mono.Options" Version="5.3.0.1" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
 
     <ProjectReference Include="..\Common.Logging.NLogNetStandard\Common.Logging.NLogNetStandard.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj" />
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
 
   <!-- Conditionals for full .NET framework -->

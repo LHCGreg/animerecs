@@ -6,7 +6,6 @@ using System.IO;
 using AnimeRecs.DAL;
 using AnimeRecs.UpdateStreams.Crunchyroll;
 using CsvHelper;
-using CsvHelper.Configuration;
 using System.Threading.Tasks;
 using System.Threading;
 using AnimeRecs.Utils;
@@ -216,17 +215,13 @@ namespace AnimeRecs.UpdateStreams
         {
             List<CsvRow> inputCsvRows = new List<CsvRow>();
 
-            CsvConfiguration csvConfig = new CsvConfiguration()
+            var csvConfig = new CsvHelper.Configuration.Configuration()
             {
                 AllowComments = false,
-                HasExcelSeparator = false,
                 HasHeaderRecord = true,
                 IgnoreBlankLines = true,
-                IgnorePrivateAccessor = true,
-                ThrowOnBadData = true,
-                TrimFields = false,
-                UseExcelLeadingZerosFormatForNumerics = false,
-                WillThrowOnMissingField = true,
+                IncludePrivateMembers = true,
+                TrimOptions = CsvHelper.Configuration.TrimOptions.None,
             };
 
             using (FileStream inputStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read, FileShare.Read))
