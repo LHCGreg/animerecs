@@ -20,7 +20,7 @@ namespace AnimeRecs.Web
             }
             else
             {
-                NLogBuilder.ConfigureNLog(loggingConfigPath);
+                NLog.LogManager.LoadConfiguration(loggingConfigPath);
 
                 // Do not pass the log config file here, because NLog has already been configured with NLogBuilder.ConfigureNLog.
                 Common.Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(new Common.Logging.Configuration.NameValueCollection());
