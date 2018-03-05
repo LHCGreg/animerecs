@@ -79,7 +79,6 @@ namespace AnimeRecs.UpdateStreams.UnitTests
             new AnimeStreamInfo("Orphen Season 1", "https://www.amazon.com/Orphen-01-Sword-Baltanders/dp/B008P95CBA", StreamingService.AmazonPrime),
             new AnimeStreamInfo("The Mystical Laws", "https://www.amazon.com/Mystical-Laws-Isamu-Imakake/dp/B00TJZ2O2Y", StreamingService.AmazonPrime),
             new AnimeStreamInfo("UFO Ultramaiden Season 2", "https://www.amazon.com/UFO-Ultramaiden-01-Key-Time/dp/B0041WL02K", StreamingService.AmazonPrime),
-            new AnimeStreamInfo("Robotech: The Complete Series - Digitally Remastered", "https://www.amazon.com/The-Masters-Saga-Danas-Story/dp/B01I4F5L9M", StreamingService.AmazonPrime),
             new AnimeStreamInfo("Robotech: The Shadow Chronicles", "https://www.amazon.com/Robotech-Shadow-Chronicles-Mark-Hamill/dp/B01HPMWXU0", StreamingService.AmazonPrime),
             new AnimeStreamInfo("Swiss Family Robinson", "https://www.amazon.com/The-Adventure-Begins/dp/B019EFG1MC", StreamingService.AmazonPrime),
             new AnimeStreamInfo("Clip: The travel of a commuter.", "https://www.amazon.com/Clip-travel-commuter-Shigeo-Fukushima/dp/B01MYRDR43", StreamingService.AmazonPrime),
