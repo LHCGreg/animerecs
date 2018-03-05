@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using MiscUtil.Extensions;
 using AnimeRecs.RecEngine.MAL;
 using AnimeRecs.RecService.DTO;
 using AnimeRecs.DAL;
@@ -189,7 +188,7 @@ namespace AnimeRecs.RecService
 
         public async Task UnloadRecSourceAsync(string name, CancellationToken cancellationToken)
         {
-            name.ThrowIfNull("name");
+            if (name == null) throw new ArgumentNullException("name");
             Logging.Log.DebugFormat("Unloading rec source {0}", name);
 
             using (var recSourcesWriteLock = await m_recSourcesLockAsync.EnterWriteLockAsync(cancellationToken).ConfigureAwait(false))
@@ -217,7 +216,7 @@ namespace AnimeRecs.RecService
 
         public async Task<string> GetRecSourceTypeAsync(string recSourceName, CancellationToken cancellationToken)
         {
-            recSourceName.ThrowIfNull("recSourceName");
+            if (recSourceName == null) throw new ArgumentNullException("recSourceName");
             const int lockTimeoutInSeconds = 3;
             using (CancellationTokenSource lockTimeout = new CancellationTokenSource(TimeSpan.FromSeconds(lockTimeoutInSeconds)))
             using (CancellationTokenSource lockCancel = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, lockTimeout.Token))
