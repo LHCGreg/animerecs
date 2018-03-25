@@ -228,6 +228,8 @@ namespace AnimeRecs.UpdateStreams
             using (TextReader inputReader = new StreamReader(inputStream, Encoding.UTF8))
             using (CsvReader csvReader = new CsvReader(inputReader, csvConfig))
             {
+                csvReader.Read();
+                csvReader.ReadHeader();
                 while (csvReader.Read())
                 {
                     StreamingService service = csvReader.GetField<StreamingService>("Service");
