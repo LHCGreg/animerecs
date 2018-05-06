@@ -49,7 +49,7 @@ namespace AnimeRecs.UpdateStreams
 
             Console.WriteLine("Getting Hulu API token.");
 
-            string huluPageHtml = await _webClient.GetStringAsync("http://www.hulu.com/tv/genres/anime", cancellationToken);
+            string huluPageHtml = await _webClient.GetStringAsync("https://www.hulu.com/sailor-moon", cancellationToken);
 
             Regex oathTokenRegex = new Regex("w.API_DONUT = '(?<Token>[^']*)'");
             Match m = oathTokenRegex.Match(huluPageHtml);
@@ -102,7 +102,7 @@ namespace AnimeRecs.UpdateStreams
             // if current position < count, repeat
             //
             // data[x].show.name is the show's name.
-            // data[x].show.canonical_name is how you get the url for the show - http://www.hulu.com/{canonical_name}
+            // data[x].show.canonical_name is how you get the url for the show - https://www.hulu.com/{canonical_name}
 
             await EnsureOauthTokenAsync(cancellationToken);
 
@@ -132,7 +132,7 @@ namespace AnimeRecs.UpdateStreams
                 foreach (var data in json.data)
                 {
                     string animeName = data.show.name;
-                    string animeUrl = string.Format("http://www.hulu.com/{0}", data.show.canonical_name);
+                    string animeUrl = string.Format("https://www.hulu.com/{0}", data.show.canonical_name);
                     streams.Add(new AnimeStreamInfo(animeName: animeName, url: animeUrl, service: StreamingService.Hulu));
                     position++;
                 }
