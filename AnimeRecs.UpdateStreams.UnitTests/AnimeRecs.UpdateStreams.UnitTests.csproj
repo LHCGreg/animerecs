@@ -11,10 +11,16 @@
   <ItemGroup>
     <None Remove="hidive_empty.html" />
     <None Remove="hidive_movies.html" />
+    <None Remove="hulu_1.html" />
+    <None Remove="hulu_2.html" />
+    <None Remove="hulu_3.html" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="hidive_empty.html" />
     <EmbeddedResource Include="hidive_movies.html" />
+    <EmbeddedResource Include="hulu_1.html" />
+    <EmbeddedResource Include="hulu_2.html" />
+    <EmbeddedResource Include="hulu_3.html" />
   </ItemGroup>
   
   <ItemGroup>
