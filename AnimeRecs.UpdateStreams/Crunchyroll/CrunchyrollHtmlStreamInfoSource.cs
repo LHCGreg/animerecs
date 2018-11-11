@@ -65,6 +65,10 @@ namespace AnimeRecs.UpdateStreams.Crunchyroll
                 {
                     fixedStreams[i] = new AnimeStreamInfo("PUCHIM@S", fixedStreams[i].Url, StreamingService.Crunchyroll);
                 }
+                if (fixedStreams[i].Url == "http://www.crunchyroll.com/the-idolmster-sidem-wakeatte-mini")
+                {
+                    fixedStreams[i] = new AnimeStreamInfo("THE IDOLM@STER SideM Wakeatte Mini!", fixedStreams[i].Url, StreamingService.Crunchyroll);
+                }
             }
 
             return fixedStreams;
