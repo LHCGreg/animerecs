@@ -11,7 +11,7 @@ namespace AnimeRecs.UpdateStreams
     class VizStreamInfoSource : HtmlParsingAnimeStreamInfoSource
     {
         private const string URL = "http://www.viz.com/watch/streaming/watch";
-        private const string AnimeDivXPath = @"//div[contains(@class,'property-row')]/a";
+        private const string AnimeDivXPath = @"//a[contains(@class,'o_property-link')]";
 
         public VizStreamInfoSource(IWebClient webClient)
             : base(URL, AnimeDivXPath, webClient)
