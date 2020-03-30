@@ -22,7 +22,7 @@
     <PackageReference Include="Mono.Options" Version="5.3.0.1" />
     <PackageReference Include="MalApi" Version="4.0.0-Beta3" />
     
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
 
     <ProjectReference Include="..\Common.Logging.NLogNetStandard\Common.Logging.NLogNetStandard.csproj" />
     <ProjectReference Include="..\AnimeRecs.RecService.ClientLib\AnimeRecs.RecService.ClientLib.csproj" />
