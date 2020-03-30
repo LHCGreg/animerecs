@@ -1,4 +1,8 @@
-﻿AnimeRecs is a project that aims to provide accurate and useful anime recommendations. It contains several components. All components ultimately serve the needs of AnimeRecs.Web, an ASP.NET MVC web application for giving anime recommendations based on the user's myanimelist.net account.
+﻿myanimelist.net's API was taken down in 2018. There is now a new API, but I no longer watch anime and am not interested in investing the time to update the site.
+
+----
+
+AnimeRecs is a project that aims to provide accurate and useful anime recommendations. It contains several components. All components ultimately serve the needs of AnimeRecs.Web, an ASP.NET MVC web application for giving anime recommendations based on the user's myanimelist.net account.
 
 All components are licensed under the GPL version 3. See LICENSE.txt for license information.
 
